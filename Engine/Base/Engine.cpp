@@ -3,6 +3,8 @@
 #include "Scene.h"
 #include "Rand.h"
 
+//ƒeƒXƒg
+
 using namespace IFE;
 
 Engine* IFE::Engine::Instance()
