@@ -1,0 +1,36 @@
+[
+    {
+        "Fog": {
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "fogFar": 700.0,
+            "fogFlag": false,
+            "fogNear": 650.0
+        },
+        "TransformCamera": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "projectionSize": [
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        "component": [
+            "Fog",
+            "TransformCamera"
+        ],
+        "name": "initCamera"
+    }
+]
