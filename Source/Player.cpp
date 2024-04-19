@@ -1,6 +1,7 @@
 #include "Player.h"
 #include"Transform.h"
 #include "Input.h"
+#include "Collider.h"
 
 void Player::Initialize()
 {
@@ -18,5 +19,9 @@ void Player::Draw()
 }
 
 void Player::Finalize()
+{
+}
+
+void Player::OnColliderHit(IFE::Collider collider)
 {
 }

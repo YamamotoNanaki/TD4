@@ -18,4 +18,6 @@ public:
 	void Draw();
 
 	void Finalize();
+
+	void OnColliderHit(IFE::Collider collider);
 };
