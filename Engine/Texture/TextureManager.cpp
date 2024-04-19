@@ -296,4 +296,9 @@ void IFE::TextureManager::LoadingScene()
 		LoadTexture(i);
 	}
 	j->JsonReset();
+
+	if (tex_[1].free_ == false)
+	{
+		LoadTexture("white.png");
+	}
 }
