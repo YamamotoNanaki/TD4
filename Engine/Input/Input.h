@@ -56,7 +56,7 @@ namespace IFE
 		/// </summary>
 		/// <param name="keyCode">判定を取りたいキーのマクロ</param>
 		/// <returns></returns>
-		static bool GetKeyDown(const Key& keyFlag);
+		static bool GetKeyPush(const Key& keyFlag);
 		/// <summary>
 		/// リリース判定
 		/// </summary>
@@ -76,7 +76,7 @@ namespace IFE
 		static float GetRXAnalog(std::int32_t unresponsive_range = 1000);
 		static float GetLYAnalog(std::int32_t unresponsive_range = 1000);
 		static float GetRYAnalog(std::int32_t unresponsive_range = 1000);
-		static bool PadDown(const PADCODE& pad);
+		static bool PadPush(const PADCODE& pad);
 		static bool PadTriggere(const PADCODE& pad);
 		static bool PadRelease(const PADCODE& pad);
 		static void PadVibrationStart(const WORD& L, const WORD& R);
