@@ -1,1 +1,16 @@
-null
+[
+    {
+        "name": "playerModel_Model",
+        "playerModel_Model": {
+            "settings": 104,
+            "smooth": true
+        }
+    },
+    {
+        "name": "playerModel_Model",
+        "playerModel_Model": {
+            "settings": 104,
+            "smooth": true
+        }
+    }
+]
