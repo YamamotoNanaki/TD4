@@ -69,7 +69,7 @@ void IFE::ImguiManager::StartNewFrame()
 void IFE::ImguiManager::Update()
 {
 	//ペーストの処理
-	if (copyObjects_.size() > 0 && (Input::GetKeyDown(Key::LCONTROL) || Input::GetKeyDown(Key::RCONTROL)) &&
+	if (copyObjects_.size() > 0 && (Input::GetKeyPush(Key::LCONTROL) || Input::GetKeyPush(Key::RCONTROL)) &&
 		Input::GetKeyTrigger(Key::V))
 	{
 		auto om = ObjectManager::Instance();
@@ -82,8 +82,8 @@ void IFE::ImguiManager::Update()
 
 	//オブジェクトのコピーの処理
 	if (!openObj_)return;
-	if ((Input::GetKeyDown(Key::LCONTROL) || Input::GetKeyDown(Key::RCONTROL)) &&
-		(Input::GetKeyDown(Key::LSHIFT) || Input::GetKeyDown(Key::RSHIFT)) && Input::GetKeyDown(Key::C))
+	if ((Input::GetKeyPush(Key::LCONTROL) || Input::GetKeyPush(Key::RCONTROL)) &&
+		(Input::GetKeyPush(Key::LSHIFT) || Input::GetKeyPush(Key::RSHIFT)) && Input::GetKeyPush(Key::C))
 	{
 		for (auto& itr : copyObjects_)
 		{
@@ -95,7 +95,7 @@ void IFE::ImguiManager::Update()
 		}
 		copyObjects_.push_back(openObj_);
 	}
-	else if ((Input::GetKeyDown(Key::LCONTROL) || Input::GetKeyDown(Key::RCONTROL)) && Input::GetKeyDown(Key::C))
+	else if ((Input::GetKeyPush(Key::LCONTROL) || Input::GetKeyPush(Key::RCONTROL)) && Input::GetKeyPush(Key::C))
 	{
 		copyObjects_.clear();
 		copyObjects_.push_back(openObj_);

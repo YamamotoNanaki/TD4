@@ -159,7 +159,7 @@ float Input::GetRYAnalog(int32_t unresponsive_range)
 	if (y == -32768)y = -32767;
 	return y / 32767.0f;
 }
-bool Input::PadDown(const PADCODE& p)
+bool Input::PadPush(const PADCODE& p)
 {
 	if (sInputInstance_->pad_.Gamepad.wButtons & (uint32_t)p)return true;
 	return false;
@@ -197,7 +197,7 @@ bool IFE::Input::GetKeyTrigger(const Key& keyFlag)
 	return  sInputInstance_->key_[(uint16_t)keyFlag] && !sInputInstance_->oldkey_[(uint16_t)keyFlag];
 }
 
-bool IFE::Input::GetKeyDown(const Key& keyFlag)
+bool IFE::Input::GetKeyPush(const Key& keyFlag)
 {
 	return sInputInstance_->key_[(uint16_t)keyFlag];
 }

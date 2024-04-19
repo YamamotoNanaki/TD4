@@ -1,5 +1,6 @@
 #include "Player.h"
 #include"Transform.h"
+#include "Input.h"
 
 void Player::Initialize()
 {
@@ -8,6 +9,8 @@ void Player::Initialize()
 
 void Player::Update()
 {
+	transform_->position_ += IFE::Input::GetLXAnalog();
+	transform_->position_ += IFE::Input::GetKeyPush(IFE::Key::Enter);
 }
 
 void Player::Draw()
