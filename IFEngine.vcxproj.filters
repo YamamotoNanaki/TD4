@@ -139,6 +139,12 @@
     <Filter Include="ヘッダー ファイル\Engine\External">
       <UniqueIdentifier>{d425c799-8987-4bcc-8705-072d19fd0a0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Source\Enemy">
+      <UniqueIdentifier>{df564da2-2aa5-4947-a6fe-4b922e99ac32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Source\Enemy">
+      <UniqueIdentifier>{b84cf260-41ab-45bc-991d-4ae8590f272b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp">
@@ -333,7 +339,7 @@
     <ClCompile Include="Source\Player.cpp">
       <Filter>ソース ファイル\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Enemy.cpp">
+    <ClCompile Include="NormalEnemy.cpp">
       <Filter>ソース ファイル\Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -563,8 +569,11 @@
     <ClInclude Include="Source\Player.h">
       <Filter>ヘッダー ファイル\Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Enemy.h">
-      <Filter>ヘッダー ファイル\Source</Filter>
+    <ClInclude Include="Source\BaseEnemy.h">
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalEnemy.h">
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
