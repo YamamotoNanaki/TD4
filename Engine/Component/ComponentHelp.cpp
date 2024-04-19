@@ -12,6 +12,7 @@
 #include "Collider.h"
 #include "Animator.h"
 #include <typeinfo>
+#include"Player.h"
 
 using namespace IFE;
 using namespace std;
@@ -50,6 +51,10 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<RectTexture>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<Fog>(str));
+	if (tmp != nullptr)return tmp;
+
+	//Ç±Ç±Ç©ÇÁÉQÅ[ÉÄÇÃÇ‚Ç¬
+	tmp = std::move(GetPtr<Player>(str));
 	if (tmp != nullptr)return tmp;
 
 	return nullptr;
