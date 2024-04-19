@@ -78,7 +78,7 @@
     <ClCompile Include="Engine\Util\StringUtil.cpp" />
     <ClCompile Include="Engine\Util\Util.cpp" />
     <ClCompile Include="Engine\Base\StructuredBuffer.cpp" />
-    <ClCompile Include="Source\Enemy.cpp" />
+    <ClCompile Include="NormalEnemy.cpp" />
     <ClCompile Include="Source\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,7 +156,8 @@
     <ClInclude Include="Engine\Util\Util.h" />
     <ClInclude Include="External\strconv2.h" />
     <ClInclude Include="Engine\Base\StructuredBuffer.h" />
-    <ClInclude Include="Source\Enemy.h" />
+    <ClInclude Include="NormalEnemy.h" />
+    <ClInclude Include="Source\BaseEnemy.h" />
     <ClInclude Include="Source\Player.h" />
   </ItemGroup>
   <ItemGroup>
@@ -368,7 +369,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;IMGUI_DEFINE_MATH_OPERATORS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Source;$(ProjectDir)Engine;$(ProjectDir)Engine\Collider;$(ProjectDir)External\imgui;$(ProjectDir)External\imGuizmo;$(ProjectDir)Engine\Material;$(ProjectDir)Engine\Component;$(ProjectDir)External\Assimp\include;$(ProjectDir)Engine\Sound;$(ProjectDir)Engine\Light;$(ProjectDir)Engine\Texture;$(ProjectDir)Engine\Camera;$(ProjectDir)Engine\Object3D;$(ProjectDir)Engine\Scene;$(ProjectDir)Engine\Input;$(ProjectDir)Engine\Util;$(ProjectDir)Engine\GraphicsPipeline;$(ProjectDir)Engine\Model;$(ProjectDir)Engine\Math;$(ProjectDir)Engine\Sprite;$(ProjectDir)Engine\Particle;$(ProjectDir)Engine\Base;$(ProjectDir)Engine\PostEffect;$(ProjectDir)External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Source;$(ProjectDir)Engine;$(ProjectDir)Engine\Collider;$(ProjectDir)External\imgui;$(ProjectDir)External\imGuizmo;$(ProjectDir)Engine\Material;$(ProjectDir)Engine\Component;$(ProjectDir)External\Assimp\include;$(ProjectDir)Engine\Sound;$(ProjectDir)Engine\Light;$(ProjectDir)Engine\Texture;$(ProjectDir)Engine\Camera;$(ProjectDir)Engine\Object3D;$(ProjectDir)Engine\Scene;$(ProjectDir)Engine\Input;$(ProjectDir)Engine\Util;$(ProjectDir)Engine\GraphicsPipeline;$(ProjectDir)Engine\Model;$(ProjectDir)Engine\Math;$(ProjectDir)Engine\Sprite;$(ProjectDir)Engine\Particle;$(ProjectDir)Engine\Base;$(ProjectDir)Engine\PostEffect;$(ProjectDir)External;$(ProjectDir)Source\Enemy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -391,7 +392,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;IMGUI_DEFINE_MATH_OPERATORS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Source;$(ProjectDir)Engine;$(ProjectDir)Engine\Collider;$(ProjectDir)External\imgui;$(ProjectDir)External\imGuizmo;$(ProjectDir)Engine\Material;$(ProjectDir)Engine\Component;$(ProjectDir)External\Assimp\include;$(ProjectDir)Engine\Sound;$(ProjectDir)Engine\Light;$(ProjectDir)Engine\Texture;$(ProjectDir)Engine\Camera;$(ProjectDir)Engine\Object3D;$(ProjectDir)Engine\Scene;$(ProjectDir)Engine\Input;$(ProjectDir)Engine\Util;$(ProjectDir)Engine\GraphicsPipeline;$(ProjectDir)Engine\Model;$(ProjectDir)Engine\Math;$(ProjectDir)Engine\Sprite;$(ProjectDir)Engine\Particle;$(ProjectDir)Engine\Base;$(ProjectDir)Engine\PostEffect;$(ProjectDir)External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Source;$(ProjectDir)Engine;$(ProjectDir)Engine\Collider;$(ProjectDir)External\imgui;$(ProjectDir)External\imGuizmo;$(ProjectDir)Engine\Material;$(ProjectDir)Engine\Component;$(ProjectDir)External\Assimp\include;$(ProjectDir)Engine\Sound;$(ProjectDir)Engine\Light;$(ProjectDir)Engine\Texture;$(ProjectDir)Engine\Camera;$(ProjectDir)Engine\Object3D;$(ProjectDir)Engine\Scene;$(ProjectDir)Engine\Input;$(ProjectDir)Engine\Util;$(ProjectDir)Engine\GraphicsPipeline;$(ProjectDir)Engine\Model;$(ProjectDir)Engine\Math;$(ProjectDir)Engine\Sprite;$(ProjectDir)Engine\Particle;$(ProjectDir)Engine\Base;$(ProjectDir)Engine\PostEffect;$(ProjectDir)External;$(ProjectDir)Source\Enemy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -417,7 +418,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>DEVELOP;_WINDOWS;IMGUI_DEFINE_MATH_OPERATORS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Source;$(ProjectDir)Engine;$(ProjectDir)Engine\Collider;$(ProjectDir)External\imgui;$(ProjectDir)External\imGuizmo;$(ProjectDir)Engine\Material;$(ProjectDir)Engine\Component;$(ProjectDir)External\Assimp\include;$(ProjectDir)Engine\Sound;$(ProjectDir)Engine\Light;$(ProjectDir)Engine\Texture;$(ProjectDir)Engine\Camera;$(ProjectDir)Engine\Object3D;$(ProjectDir)Engine\Scene;$(ProjectDir)Engine\Input;$(ProjectDir)Engine\Util;$(ProjectDir)Engine\GraphicsPipeline;$(ProjectDir)Engine\Model;$(ProjectDir)Engine\Math;$(ProjectDir)Engine\Sprite;$(ProjectDir)Engine\Particle;$(ProjectDir)Engine\Base;$(ProjectDir)Engine\PostEffect;$(ProjectDir)External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Source;$(ProjectDir)Engine;$(ProjectDir)Engine\Collider;$(ProjectDir)External\imgui;$(ProjectDir)External\imGuizmo;$(ProjectDir)Engine\Material;$(ProjectDir)Engine\Component;$(ProjectDir)External\Assimp\include;$(ProjectDir)Engine\Sound;$(ProjectDir)Engine\Light;$(ProjectDir)Engine\Texture;$(ProjectDir)Engine\Camera;$(ProjectDir)Engine\Object3D;$(ProjectDir)Engine\Scene;$(ProjectDir)Engine\Input;$(ProjectDir)Engine\Util;$(ProjectDir)Engine\GraphicsPipeline;$(ProjectDir)Engine\Model;$(ProjectDir)Engine\Math;$(ProjectDir)Engine\Sprite;$(ProjectDir)Engine\Particle;$(ProjectDir)Engine\Base;$(ProjectDir)Engine\PostEffect;$(ProjectDir)External;$(ProjectDir)Source\Enemy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
