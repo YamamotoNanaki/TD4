@@ -78,6 +78,7 @@
     <ClCompile Include="Engine\Util\StringUtil.cpp" />
     <ClCompile Include="Engine\Util\Util.cpp" />
     <ClCompile Include="Engine\Base\StructuredBuffer.cpp" />
+    <ClCompile Include="Source\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Compute.h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Engine\Util\Util.h" />
     <ClInclude Include="External\strconv2.h" />
     <ClInclude Include="Engine\Base\StructuredBuffer.h" />
+    <ClInclude Include="Source\Player.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Shaders\Model.hlsli" />
