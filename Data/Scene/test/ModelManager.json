@@ -7,10 +7,11 @@
         }
     },
     {
-        "name": "playerModel_Model",
-        "playerModel_Model": {
-            "settings": 104,
-            "smooth": true
+        "name": "skydome_Model",
+        "skydome_Model": {
+            "fileName": "skydome",
+            "settings": 0,
+            "smooth": false
         }
     }
 ]

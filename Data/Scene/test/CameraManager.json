@@ -14,8 +14,8 @@
         "TransformCamera": {
             "position": [
                 0.0,
-                0.0,
-                0.0
+                7.25,
+                -38.25
             ],
             "projectionSize": [
                 1600.0,
