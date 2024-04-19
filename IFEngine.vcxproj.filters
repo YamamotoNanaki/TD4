@@ -333,6 +333,9 @@
     <ClCompile Include="Source\Player.cpp">
       <Filter>ソース ファイル\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Enemy.cpp">
+      <Filter>ソース ファイル\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -558,6 +561,9 @@
       <Filter>ヘッダー ファイル\Engine\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Source\Player.h">
+      <Filter>ヘッダー ファイル\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enemy.h">
       <Filter>ヘッダー ファイル\Source</Filter>
     </ClInclude>
   </ItemGroup>
