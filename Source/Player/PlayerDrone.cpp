@@ -4,6 +4,20 @@
 #include "Input.h"
 #include"Transform.h"
 
+void PlayerDrone::SpeedZero(float& speed)
+{
+	if (speed > 0)
+	{
+		speed -= 0.03f;
+		speed = max(speed, 0);
+	}
+	else
+	{
+		speed += 0.03f;
+		speed = min(speed, 0);
+	}
+}
+
 void PlayerDrone::Initialize()
 {
 	objectPtr_->DrawFlag_ = false;
@@ -25,22 +39,79 @@ void PlayerDrone::OnColliderHit(IFE::Collider collider)
 {
 }
 
+void PlayerDrone::MoveUpdate()
+{
+	Move();
+	Rotation();
+}
+
 void PlayerDrone::Move()
+{
+	/*float maxXSpeed = IFE::Input::GetLAnalog().x;
+	float maxXSpeed = IFE::Input::GetLAnalog().x;*/
+
+	if (IFE::Input::GetKeyPush(IFE::Key::A))
+	{
+		speed_.x -= 0.1f;
+		transform_->position_ += { speed_.x, 0, 0 };
+	}
+	if (IFE::Input::GetKeyPush(IFE::Key::D))
+	{
+		speed_.x += 0.1f;
+		transform_->position_ += { speed_.x, 0, 0 };
+	}
+	SpeedZero(speed_.x);
+	
+	if (IFE::Input::GetKeyPush(IFE::Key::W))
+	{
+		speed_.z += 0.1f;
+		transform_->position_ += { 0, 0, speed_.z };
+	}if (IFE::Input::GetKeyPush(IFE::Key::S))
+	{
+		speed_.z -= 0.1f;
+		transform_->position_ += { 0, 0, speed_.z };
+	}
+	SpeedZero(speed_.z);
+	
+	if (IFE::Input::GetKeyPush(IFE::Key::Q))
+	{
+		speed_.y -= 0.1f;
+		transform_->position_ += { 0, speed_.y, 0 };
+	}if (IFE::Input::GetKeyPush(IFE::Key::E))
+	{
+		speed_.y += 0.1f;
+		transform_->position_ += { 0, speed_.y, 0 };
+	}
+	SpeedZero(speed_.y);
+
+	//ƒXƒs[ƒhŒÀŠEˆ—
+	const float maxSpeed = 0.5f;
+	speed_.x = std::clamp(speed_.x, -maxSpeed, maxSpeed);
+	speed_.y = std::clamp(speed_.y, -maxSpeed, maxSpeed);
+	speed_.z = std::clamp(speed_.z, -maxSpeed, maxSpeed);
+}
+
+void PlayerDrone::Rotation()
 {
 	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
 	{
-		transform_->position_ += { -1, 0, 0 };
+		transform_->eulerAngleDegrees_ += { 0, -5.0f, 0 };
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::RIGHT))
 	{
-		transform_->position_ += { 1, 0, 0 };
-	}if (IFE::Input::GetKeyPush(IFE::Key::UP))
+		transform_->eulerAngleDegrees_ += { 0, 5.0f, 0 };
+	}
+	
+	if (IFE::Input::GetKeyPush(IFE::Key::UP))
 	{
-		transform_->position_ += { 0, 0, 1 };
+		transform_->eulerAngleDegrees_ += { -5.0f, 0, 0 };
 	}if (IFE::Input::GetKeyPush(IFE::Key::DOWN))
 	{
-		transform_->position_ += { 0, 0, -1 };
+		transform_->eulerAngleDegrees_ += { 5.0f, 0, 0 };
 	}
+	//c‰ñ“]‚ÌŒÀŠEˆ—
+	const float maxVerticalRotation = 45.0f;
+	transform_->eulerAngleDegrees_.x = std::clamp(transform_->eulerAngleDegrees_.x, -maxVerticalRotation, maxVerticalRotation);
 }
 
 bool PlayerDrone::GetDrawFlag()

@@ -6,6 +6,10 @@ class PlayerDrone :public IFE::Component
 {
 private:
 
+	IFE::Vector3 speed_ = {};
+
+	void SpeedZero(float& speed);
+
 public:
 
 	void Initialize();
@@ -18,7 +22,9 @@ public:
 
 	void OnColliderHit(IFE::Collider collider);
 
+	void MoveUpdate();
 	void Move();
+	void Rotation();
 
 	bool GetDrawFlag();
 	void SetDrawFlag(bool flag);

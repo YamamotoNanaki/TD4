@@ -24,7 +24,7 @@ void Player::Update()
 	}
 	else
 	{
-		drone_->Move();
+		drone_->MoveUpdate();
 	}
 }
 
