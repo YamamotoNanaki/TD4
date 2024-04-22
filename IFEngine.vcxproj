@@ -43,7 +43,7 @@
     <ClCompile Include="Engine\Math\Float2.cpp" />
     <ClCompile Include="Engine\Math\Float3.cpp" />
     <ClCompile Include="Engine\Math\Float4.cpp" />
-    <ClCompile Include="Engine\Math\IFMath.cpp" />
+    <ClCompile Include="Engine\Math\IFEMath.cpp" />
     <ClCompile Include="Engine\Math\Matrix.cpp" />
     <ClCompile Include="Engine\Math\Quaternion.cpp" />
     <ClCompile Include="Engine\Math\Vector2.cpp" />
@@ -118,7 +118,7 @@
     <ClInclude Include="Engine\Math\Float2.h" />
     <ClInclude Include="Engine\Math\Float3.h" />
     <ClInclude Include="Engine\Math\Float4.h" />
-    <ClInclude Include="Engine\Math\IFMath.h" />
+    <ClInclude Include="Engine\Math\IFEMath.h" />
     <ClInclude Include="Engine\Math\Matrix.h" />
     <ClInclude Include="Engine\Math\Quaternion.h" />
     <ClInclude Include="Engine\Math\Vector2.h" />

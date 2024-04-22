@@ -1,7 +1,7 @@
 #pragma once
 #include "Sprite.h"
 #include "Texture.h"
-#include "IFMath.h"
+#include "IFEMath.h"
 #include <list>
 #include <memory>
 

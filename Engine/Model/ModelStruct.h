@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "IFMath.h"
+#include "IFEMath.h"
 #include "Quaternion.h"
 
 namespace IFE

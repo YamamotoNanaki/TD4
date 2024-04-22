@@ -4,7 +4,7 @@
 #include <memory>
 #include <string>
 #include "ConstStruct.h"
-#include "IFMath.h"
+#include "IFEMath.h"
 #include "IndexBuffer.h"
 #include "Component.h"
 #include "ModelStruct.h"

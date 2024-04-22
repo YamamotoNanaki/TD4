@@ -1,6 +1,6 @@
 #pragma once
 #include"Component.h"
-#include"IFMath.h"
+#include"IFEMath.h"
 
 class Player:public IFE::Component
 {

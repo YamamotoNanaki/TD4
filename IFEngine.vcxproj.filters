@@ -162,7 +162,7 @@
     <ClCompile Include="Engine\Math\Float4.cpp">
       <Filter>ソース ファイル\Engine\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Math\IFMath.cpp">
+    <ClCompile Include="Engine\Math\IFEMath.cpp">
       <Filter>ソース ファイル\Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Math\Matrix.cpp">
@@ -350,7 +350,7 @@
     <ClInclude Include="Engine\Base\WindowsAPI.h">
       <Filter>ヘッダー ファイル\Engine\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Math\IFMath.h">
+    <ClInclude Include="Engine\Math\IFEMath.h">
       <Filter>ヘッダー ファイル\Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Math\Matrix.h">

@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "IFMath.h"
+#include "IFEMath.h"
 #include "nlohmann/json.hpp"
 
 namespace IFE

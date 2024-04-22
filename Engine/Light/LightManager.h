@@ -1,7 +1,7 @@
 #pragma once
 #include <d3dx12.h>
 #include <memory>
-#include "IFMath.h"
+#include "IFEMath.h"
 #include "DirectionalLight.h"
 #include "PointLight.h"
 #include "SpotLight.h"

@@ -1,6 +1,6 @@
 #pragma once
 #include "Texture.h"
-#include "IFMath.h"
+#include "IFEMath.h"
 #include "ConstBuffer.h"
 #include "ConstStruct.h"
 #include "Component.h"

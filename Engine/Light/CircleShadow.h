@@ -1,5 +1,5 @@
 #pragma once
-#include "IFMath.h"
+#include "IFEMath.h"
 
 namespace IFE
 {

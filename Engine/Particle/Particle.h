@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 #include "ConstStruct.h"
-#include "IFMath.h"
+#include "IFEMath.h"
 #include "ComponentManager.h"
 #include "ConstBuffer.h"
 #include "VertexBuffer.h"

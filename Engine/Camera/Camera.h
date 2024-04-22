@@ -2,7 +2,7 @@
 #include "View.h"
 #include "Projection.h"
 #include "Quaternion.h"
-#include "IFMath.h"
+#include "IFEMath.h"
 #include "ComponentManager.h"
 
 #pragma warning(push)

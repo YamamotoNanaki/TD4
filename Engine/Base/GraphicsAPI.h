@@ -4,7 +4,7 @@
 #include <vector>
 #include <wrl.h>
 #include <chrono>
-#include "IFMath.h"
+#include "IFEMath.h"
 
 namespace IFE
 {
