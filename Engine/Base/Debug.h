@@ -1,3 +1,3 @@
 #pragma once
-#ifdef _DEBUG
+#ifdef EditorMode
 #endif

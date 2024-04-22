@@ -3,6 +3,7 @@
 #include "IFEMath.h"
 #include <list>
 #include <memory>
+#include "EditorMode.h"
 
 namespace IFE
 {
@@ -45,7 +46,7 @@ namespace IFE
 		std::string SetNameNumber(std::string objectName);
 
 	public:
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputScene();

@@ -291,9 +291,6 @@
     <ClCompile Include="Engine\Component\ComponentManager.cpp">
       <Filter>ソース ファイル\Engine\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Component\ComponentHelp.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Collider\CollisionPrimitive.cpp">
       <Filter>ソース ファイル\Engine\Collider</Filter>
     </ClCompile>
@@ -354,6 +351,7 @@
     <ClCompile Include="Source\Enemy\NormalEnemy.cpp">
       <Filter>ソース ファイル\Source\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Component\ComponentHelp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -593,6 +591,7 @@
     <ClInclude Include="Source\Player\Player.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
+    <ClInclude Include="EditorMode.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Shaders\Particle.hlsli">

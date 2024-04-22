@@ -2,6 +2,7 @@
 #include <string>
 #include "IFEMath.h"
 #include "nlohmann/json.hpp"
+#include "EditorMode.h"
 
 namespace IFE
 {
@@ -31,7 +32,7 @@ namespace IFE
 		nlohmann::json& GetJsonData();
 		bool SceneCheck(const std::string& name);
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void OutputFloat2(nlohmann::json& json, const Float2& f);
 		void OutputFloat3(nlohmann::json& json, const Float3& f);

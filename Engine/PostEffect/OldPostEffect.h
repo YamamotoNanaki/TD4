@@ -3,6 +3,7 @@
 #include "Sprite.h"
 #include "ConstStruct.h"
 #include "ConstBuffer.h"
+#include "EditorMode.h"
 
 namespace IFE
 {
@@ -46,7 +47,7 @@ namespace IFE
 		void SetVBInit();
 		void SetVBGame();
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputScene();

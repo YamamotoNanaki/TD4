@@ -132,7 +132,7 @@ void IFE::Collider::LoadingComponent(nlohmann::json& json)
 	notPushBack_ = json["notPushBack"];
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::Collider::OutputComponent(nlohmann::json& json)
 {

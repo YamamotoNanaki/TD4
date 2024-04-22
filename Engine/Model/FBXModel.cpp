@@ -265,7 +265,7 @@ std::vector<Triangle> IFE::FBXModel::GetMeshColliderTriangle()
 	return triangles;
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::FBXModel::DebugGUI()
 {

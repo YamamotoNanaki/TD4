@@ -40,7 +40,7 @@ namespace IFE
 		void ReadNodeHeirarchy(float AnimationTime, Node* pNode, uint8_t animNum);
 
 	public:
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI()override;
 		void OutputComponent(nlohmann::json& json);

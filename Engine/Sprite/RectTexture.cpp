@@ -29,7 +29,7 @@ void IFE::RectTexture::Initialize()
 	}
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
 void IFE::RectTexture::ComponentDebugGUI()

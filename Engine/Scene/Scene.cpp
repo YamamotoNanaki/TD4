@@ -17,7 +17,7 @@ void Test()
 
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 void IFE::Scene::Initialize()
 {
 	Sprite::StaticInitialize();
@@ -182,7 +182,7 @@ void IFE::Scene::Finalize()
 	ModelManager::Finalize();
 	ParticleManager::Finalize();
 	Sound::Finalize();
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 	JsonManager::Instance()->SetDebugScene();
 #endif
@@ -337,7 +337,7 @@ void IFE::Scene::AsyncLoad()
 	SceneTransitionOut();
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::Scene::OutputScene()
 {

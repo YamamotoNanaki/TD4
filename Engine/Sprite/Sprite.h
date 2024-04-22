@@ -7,6 +7,7 @@
 #include "GraphicsPipeline.h"
 #include "ConstStruct.h"
 #include <string>
+#include "EditorMode.h"
 
 namespace IFE
 {
@@ -54,7 +55,7 @@ namespace IFE
 		void Destroy();
 		bool GetDeleteFlag()const;
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		virtual void DebugGUI(bool fdelete, bool fmove, std::string* str);
 		void ComponentGUI();

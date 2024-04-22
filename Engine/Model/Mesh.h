@@ -35,7 +35,7 @@ namespace IFE
 		void SetMaterial(MaterialParams mat);
 		MaterialParams GetMaterial();
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void ComponentDebugGUI()override;
 #endif

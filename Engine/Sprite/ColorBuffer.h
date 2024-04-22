@@ -22,7 +22,7 @@ namespace IFE
 		void SetAlpha(float a);
 		void SetColor(float r, float g, float b, float a);
 		Float4 GetColor();
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputComponent(nlohmann::json&json)override;

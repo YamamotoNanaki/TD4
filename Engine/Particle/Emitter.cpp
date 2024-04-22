@@ -147,7 +147,7 @@ IFE::Emitter::~Emitter()
 	ComponentManager::Finalize();
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
 void IFE::Emitter::DebugGUI(bool flagdelete)

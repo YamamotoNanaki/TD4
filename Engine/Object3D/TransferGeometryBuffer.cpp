@@ -41,7 +41,7 @@ void IFE::TransferGeometryBuffer::Copy(Component* component)
 	bllomFlag_ = t->bllomFlag_;
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 
 void IFE::TransferGeometryBuffer::DebugGUI()

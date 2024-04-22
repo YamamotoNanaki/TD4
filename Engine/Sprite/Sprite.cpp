@@ -170,7 +170,7 @@ bool IFE::Sprite::GetDeleteFlag() const
 	return deleteFlag_;
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
 

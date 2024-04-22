@@ -6,6 +6,7 @@
 #include <string>
 #include <typeinfo>
 #include <memory>
+#include "EditorMode.h"
 
 namespace IFE
 {
@@ -74,7 +75,7 @@ namespace IFE
 		std::vector<std::string> GetAllComponentName();
 		void OnColliderHit(Collider* collider);
 		void CopyValue(ComponentManager* ptr);
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputScene(nlohmann::json& json);
@@ -131,6 +132,7 @@ namespace IFE
 	template<class T>
 	inline T* ComponentManager::GetComponent()
 	{
+		if (this == nullptr)return nullptr;
 		for (auto& itr : componentList_)
 		{
 			T* ptr = dynamic_cast<T*>(itr.get());

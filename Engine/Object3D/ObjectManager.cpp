@@ -253,7 +253,7 @@ std::string IFE::ObjectManager::SetNameNumber(std::string objectName)
 	return name;
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 #include "imgui.h"
 void IFE::ObjectManager::DebugGUI()

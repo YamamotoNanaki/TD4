@@ -183,7 +183,7 @@ bool IFE::Object3D::GetDeleteFlag()
 	return deleteFlag_;
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::Object3D::DebugGUI(bool fdelete, bool fmove, std::string* str)
 {

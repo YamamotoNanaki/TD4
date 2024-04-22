@@ -5,6 +5,7 @@
 #include <nlohmann/json.hpp>
 #include <memory>
 #include <list>
+#include "EditorMode.h"
 #include <string>
 //#include "PostEffect.h"
 
@@ -58,7 +59,7 @@ namespace IFE
 		void Draw();
 		~Emitter();
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI(bool flagdelete);
 		void ComponentGUI();

@@ -11,6 +11,7 @@
 #include "SpriteManager.h"
 #include "ParticleManager.h"
 #include "OldPostEffect.h"
+#include "EditorMode.h"
 
 namespace IFE
 {
@@ -66,7 +67,7 @@ namespace IFE
 	public:
 		void LoadingScene();
 		void AsyncLoad();
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		ImguiManager& gui_ = *ImguiManager::Instance();
 		bool debug_ = false;

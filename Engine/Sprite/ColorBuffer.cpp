@@ -39,7 +39,7 @@ Float4 IFE::ColorBuffer::GetColor()
 	return color_;
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::ColorBuffer::DebugGUI()
 {

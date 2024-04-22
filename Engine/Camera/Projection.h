@@ -1,5 +1,6 @@
 #pragma once
 #include "IFEMath.h"
+#include "EditorMode.h"
 
 namespace IFE
 {

@@ -3,6 +3,7 @@
 #include <string>
 #include <typeinfo>
 #include "JsonManager.h"
+#include "EditorMode.h"
 
 namespace IFE
 {
@@ -54,7 +55,7 @@ namespace IFE
 		virtual void OnColliderHit(Collider* collider);
 		void CopyValue(Component* component);
 		virtual void CopyValueComponent(Component* component);
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		virtual void DebugGUI();
 		virtual void ComponentDebugGUI() {};

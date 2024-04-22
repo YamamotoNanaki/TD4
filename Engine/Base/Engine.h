@@ -1,6 +1,7 @@
 #pragma once
 #include "WindowsAPI.h"
 #include "GraphicsAPI.h"
+#include "EditorMode.h"
 
 namespace IFE
 {

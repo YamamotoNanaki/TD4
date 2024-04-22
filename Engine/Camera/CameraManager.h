@@ -2,6 +2,7 @@
 #include "Camera.h"
 #include <list>
 #include <memory>
+#include "EditorMode.h"
 
 namespace IFE
 {
@@ -29,7 +30,7 @@ namespace IFE
 		Camera* GetCamera(const std::string& name);
 		void SetActiveCamera(const std::string& name);
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		inline static Camera* sDebugCamera_ = nullptr;
 		void DebugInitialize();

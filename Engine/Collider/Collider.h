@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "CollisionPrimitive.h"
+#include "EditorMode.h"
 
 namespace IFE
 {
@@ -61,7 +62,7 @@ namespace IFE
 
 		void LoadingComponent(nlohmann::json& json)override;
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void OutputComponent(nlohmann::json& json)override;
 		void ComponentDebugGUI()override;

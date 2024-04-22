@@ -3,6 +3,7 @@
 #include <list>
 #include <d3d12.h>
 #include "CollisionPrimitive.h"
+#include "EditorMode.h"
 
 namespace IFE
 {

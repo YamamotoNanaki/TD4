@@ -148,7 +148,7 @@ void IFE::Component::CopyValue(Component* component)
 
 void IFE::Component::CopyValueComponent(Component* component) { component; }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
 void IFE::Component::DebugGUI()

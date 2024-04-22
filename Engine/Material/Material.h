@@ -49,7 +49,7 @@ namespace IFE
 		void Copy(Component* component);
 		void SetMaterial(MaterialParams mat);
 		MaterialParams GetMaterial();
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputComponent(nlohmann::json& json)override;

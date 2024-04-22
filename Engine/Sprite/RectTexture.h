@@ -14,7 +14,7 @@ namespace IFE
 		void Update();
 		~RectTexture();
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void ComponentDebugGUI()override;
 		void OutputComponent(nlohmann::json& json)override;

@@ -4,6 +4,7 @@
 #include "Quaternion.h"
 #include "IFEMath.h"
 #include "ComponentManager.h"
+#include "EditorMode.h"
 
 #pragma warning(push)
 #pragma warning(disable:4244)
@@ -37,7 +38,7 @@ namespace IFE
 		void SetComponent(std::unique_ptr<Component> component);
 		void SetComponentFront(std::unique_ptr<Component> component);
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugUpdate();
 		void DebugCameraInitialize();

@@ -29,7 +29,7 @@ namespace IFE
 		void SetAnimation(std::string animName);
 		std::string GetAnimation();
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void ComponentDebugGUI()override;
 #endif

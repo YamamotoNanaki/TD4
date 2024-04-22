@@ -93,7 +93,7 @@ Camera* IFE::CameraManager::Add(const std::string& cameraName)
 	return cameraList_.back().get();
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
 #include "ImGui.h"
@@ -195,7 +195,7 @@ void IFE::CameraManager::LoadingScene()
 	JsonManager* jm = JsonManager::Instance();
 	jm->Input("CameraManager");
 	nlohmann::json js = jm->GetJsonData();
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 	DebugInitialize();
 #endif

@@ -84,6 +84,7 @@
     <ClCompile Include="Source\Player\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EditorMode.h" />
     <ClInclude Include="Engine\Base\Compute.h" />
     <ClInclude Include="Engine\Base\ConstBuffer.h" />
     <ClInclude Include="Engine\Base\ConstStruct.h" />

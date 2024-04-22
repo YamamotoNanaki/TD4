@@ -164,7 +164,7 @@ IFE::Transform::~Transform()
 {
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::Transform::DebugGUI()
 {
@@ -265,7 +265,7 @@ IFE::Transform2D::~Transform2D()
 {
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::Transform2D::DebugGUI()
 {
@@ -435,7 +435,7 @@ IFE::TransformParticle::~TransformParticle()
 {
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::TransformParticle::DebugGUI()
 {
@@ -505,47 +505,45 @@ void IFE::TransformCamera::Update()
 
 void IFE::TransformCamera::UpdateMatrix()
 {
-	if (eyeTargetUpFlag_)
-	{
 		auto v = cameraPtr_->GetView();
 		v->eye_ = eye_;
 		v->target_ = target_;
 		v->up_ = up_;
 		v->Update();
-	}
-	else
-	{
-		//////‰ñ“]//////
-		Float3 eulerRadians = ConvertToRadians(eulerAngleDegrees_);
-		rotation_ = EulerToQuaternion(eulerRadians);
-		matRot_ = RotateMatrix(rotation_);
 
-		//////•½sˆÚ“®//////
-		//ˆÚ“®—Ê‚ðs—ñ‚ÉÝ’è‚·‚é
-		matTrans_ =
-		{ 1,0,0,0,
-		0,1,0,0,
-		0,0,1,0,
-		position_.x,position_.y,position_.z,1 };
+	//else
+	//{
+	//	//////‰ñ“]//////
+	//	Float3 eulerRadians = ConvertToRadians(eulerAngleDegrees_);
+	//	rotation_ = EulerToQuaternion(eulerRadians);
+	//	matRot_ = RotateMatrix(rotation_);
+
+	//	//////•½sˆÚ“®//////
+	//	//ˆÚ“®—Ê‚ðs—ñ‚ÉÝ’è‚·‚é
+	//	matTrans_ =
+	//	{ 1,0,0,0,
+	//	0,1,0,0,
+	//	0,0,1,0,
+	//	position_.x,position_.y,position_.z,1 };
 
 
-		//’PˆÊs—ñ‚ð‘ã“ü
-		matWorld_ = MatrixIdentity();
-		//‡¬—p‰ñ“]s—ñ‚ðŠ|‚¯‚é
-		matWorld_ *= matRot_;
-		//•½sˆÚ“®s—ñ‚ðŠ|‚¯‚é
-		matWorld_ *= matTrans_;
+	//	//’PˆÊs—ñ‚ð‘ã“ü
+	//	matWorld_ = MatrixIdentity();
+	//	//‡¬—p‰ñ“]s—ñ‚ðŠ|‚¯‚é
+	//	matWorld_ *= matRot_;
+	//	//•½sˆÚ“®s—ñ‚ðŠ|‚¯‚é
+	//	matWorld_ *= matTrans_;
 
-		if (parent_ != nullptr)
-		{
-			parent_->UpdateMatrix();
-			matWorld_ *= parent_->matWorld_;//e‚Ìs—ñ‚ðŠ|‚¯ŽZ‚·‚é
-			matRot_ *= parent_->matRot_;//e‚Ì‰ñ“]s—ñ‚àŠ|‚¯ŽZ‚·‚é
-			matTrans_ *= parent_->matTrans_;//e‚Ì•½sˆÚ“®s—ñ‚àŠ|‚¯ŽZ‚·‚é
-		}
-		cameraPtr_->GetView()->SetMatrixView(matWorld_);
-		cameraPtr_->GetView()->eye_ = position_;
-	}
+	//	if (parent_ != nullptr)
+	//	{
+	//		parent_->UpdateMatrix();
+	//		matWorld_ *= parent_->matWorld_;//e‚Ìs—ñ‚ðŠ|‚¯ŽZ‚·‚é
+	//		matRot_ *= parent_->matRot_;//e‚Ì‰ñ“]s—ñ‚àŠ|‚¯ŽZ‚·‚é
+	//		matTrans_ *= parent_->matTrans_;//e‚Ì•½sˆÚ“®s—ñ‚àŠ|‚¯ŽZ‚·‚é
+	//	}
+	//	cameraPtr_->GetView()->SetMatrixView(matWorld_);
+	//	cameraPtr_->GetView()->eye_ = position_;
+	//}
 	cameraPtr_->GetProjection()->Inisialize(45, projectionSize_.x, projectionSize_.y);
 }
 
@@ -554,111 +552,115 @@ void IFE::TransformCamera::Copy(Component* component)
 	TransformCamera* t = dynamic_cast<TransformCamera*>(component);
 	if (t == nullptr)return;
 	eulerFlag_ = t->eulerFlag_;
-	eulerAngleDegrees_ = t->eulerAngleDegrees_;
-	billbord_ = t->billbord_;
-	position_ = t->position_;
-	rotation_ = t->rotation_;
+	up_ = t->up_;
+	target_ = t->target_;
+	eye_ = t->eye_;
+	//eulerAngleDegrees_ = t->eulerAngleDegrees_;
+	//billbord_ = t->billbord_;
+	//position_ = t->position_;
+	//rotation_ = t->rotation_;
 }
 
-Vector3 IFE::TransformCamera::TransformPoint(const Vector3& p)
-{
-	UpdateMatrix();
-	return Matrix::Transform(p, matWorld_);
-}
+//Vector3 IFE::TransformCamera::TransformPoint(const Vector3& p)
+//{
+//	UpdateMatrix();
+//	return Matrix::Transform(p, matWorld_);
+//}
+//
+//Vector3 IFE::TransformCamera::InverseTransformPoint(const Vector3& p)
+//{
+//	UpdateMatrix();
+//	return Matrix::Transform(p, MatrixInverse(matWorld_));
+//}
+//
+//Vector3 IFE::TransformCamera::GetForwardVector()
+//{
+//	return MultiplyQuaternionAndVector3(rotation_, Vector3(0, 0, 1)).Normalize();
+//}
+//
+//Vector3 IFE::TransformCamera::GetUpVector()
+//{
+//	return MultiplyQuaternionAndVector3(rotation_, Vector3(0, 1, 0)).Normalize();
+//}
+//
+//Vector3 IFE::TransformCamera::GetRightVector()
+//{
+//	return MultiplyQuaternionAndVector3(rotation_, Vector3(1, 0, 0)).Normalize();
+//}
 
-Vector3 IFE::TransformCamera::InverseTransformPoint(const Vector3& p)
-{
-	UpdateMatrix();
-	return Matrix::Transform(p, MatrixInverse(matWorld_));
-}
+//void IFE::TransformCamera::RotateAround(const Float3& point, const Float3& axis, float angle)
+//{
+//	Quaternion rotation = MakeAxisAngle(axis, angle);
+//	Vector3 point2 = position_ - point;
+//	point2 = MultiplyQuaternionAndVector3(rotation, point2);
+//	position_ = (Vector3)point + point2;
+//	eulerAngleDegrees_ = QuaternionToEuler(rotation);
+//}
 
-Vector3 IFE::TransformCamera::GetForwardVector()
-{
-	return MultiplyQuaternionAndVector3(rotation_, Vector3(0, 0, 1)).Normalize();
-}
+//void IFE::TransformCamera::MovePushBack(Vector3 move)
+//{
+//	position_ += move;
+//}
 
-Vector3 IFE::TransformCamera::GetUpVector()
-{
-	return MultiplyQuaternionAndVector3(rotation_, Vector3(0, 1, 0)).Normalize();
-}
+//Vector3 TransformCamera::GetWorldPosition()
+//{
+//	UpdateMatrix();
+//	return Matrix::Transform({ 0,0,0 }, matWorld_);
+//}
 
-Vector3 IFE::TransformCamera::GetRightVector()
-{
-	return MultiplyQuaternionAndVector3(rotation_, Vector3(1, 0, 0)).Normalize();
-}
-
-void IFE::TransformCamera::RotateAround(const Float3& point, const Float3& axis, float angle)
-{
-	Quaternion rotation = MakeAxisAngle(axis, angle);
-	Vector3 point2 = position_ - point;
-	point2 = MultiplyQuaternionAndVector3(rotation, point2);
-	position_ = (Vector3)point + point2;
-	eulerAngleDegrees_ = QuaternionToEuler(rotation);
-}
-
-void IFE::TransformCamera::MovePushBack(Vector3 move)
-{
-	position_ += move;
-}
-
-Vector3 TransformCamera::GetWorldPosition()
-{
-	UpdateMatrix();
-	return Matrix::Transform({ 0,0,0 }, matWorld_);
-}
-
-void TransformCamera::SetWorldPosition(const Vector3& worldPos)
-{
-	if (parent_ == nullptr)
-	{
-		position_ = worldPos;
-	}
-	else
-	{
-		position_ = Matrix::Transform(worldPos, MatrixInverse(parent_->matWorld_));
-	}
-}
+//void TransformCamera::SetWorldPosition(const Vector3& worldPos)
+//{
+//	if (parent_ == nullptr)
+//	{
+//		position_ = worldPos;
+//	}
+//	else
+//	{
+//		position_ = Matrix::Transform(worldPos, MatrixInverse(parent_->matWorld_));
+//	}
+//}
 
 IFE::TransformCamera::~TransformCamera()
 {
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::TransformCamera::DebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
 	std::function<void(void)> guiFunc = [&]()
 	{
-		im->DragFloat3GUI(&position_, "position");
-		im->DragFloat3GUI(&eulerAngleDegrees_, "rotation", 1.0f);
-		if (eulerAngleDegrees_.x >= 360)
-		{
-			eulerAngleDegrees_.x -= 360;
-		}
-		if (eulerAngleDegrees_.y >= 360)
-		{
-			eulerAngleDegrees_.y -= 360;
-		}
-		if (eulerAngleDegrees_.z >= 360)
-		{
-			eulerAngleDegrees_.z -= 360;
-		}
-		if (eulerAngleDegrees_.x <= 0)
-		{
-			eulerAngleDegrees_.x += 360;
-		}
-		if (eulerAngleDegrees_.y <= 0)
-		{
-			eulerAngleDegrees_.y += 360;
-		}
-		if (eulerAngleDegrees_.z <= 0)
-		{
-			eulerAngleDegrees_.z += 360;
-		}
-		rotation_ = EulerToQuaternion(eulerAngleDegrees_);
+		//im->DragFloat3GUI(&position_, "position");
+		//im->DragFloat3GUI(&eulerAngleDegrees_, "rotation", 1.0f);
+		//if (eulerAngleDegrees_.x >= 360)
+		//{
+		//	eulerAngleDegrees_.x -= 360;
+		//}
+		//if (eulerAngleDegrees_.y >= 360)
+		//{
+		//	eulerAngleDegrees_.y -= 360;
+		//}
+		//if (eulerAngleDegrees_.z >= 360)
+		//{
+		//	eulerAngleDegrees_.z -= 360;
+		//}
+		//if (eulerAngleDegrees_.x <= 0)
+		//{
+		//	eulerAngleDegrees_.x += 360;
+		//}
+		//if (eulerAngleDegrees_.y <= 0)
+		//{
+		//	eulerAngleDegrees_.y += 360;
+		//}
+		//if (eulerAngleDegrees_.z <= 0)
+		//{
+		//	eulerAngleDegrees_.z += 360;
+		//}
+		//rotation_ = EulerToQuaternion(eulerAngleDegrees_);
 		im->DragFloat3GUI(&eye_, "eye");
 		im->DragFloat3GUI(&target_, "target");
+		im->DragFloat3GUI(&up_, "up");
 		im->DragFloat2GUI(&projectionSize_, "projectionSize");
 	};
 	std::function<void(void)> deleteFunc = [&]()
@@ -670,15 +672,21 @@ void IFE::TransformCamera::DebugGUI()
 void IFE::TransformCamera::OutputComponent(nlohmann::json& j)
 {
 	JsonManager* jm = JsonManager::Instance();
-	jm->OutputFloat3(j["rotation"], eulerAngleDegrees_);
-	jm->OutputFloat3(j["position"], position_);
+	//jm->OutputFloat3(j["rotation"], eulerAngleDegrees_);
+	//jm->OutputFloat3(j["position"], position_);
 	jm->OutputFloat2(j["projectionSize"], projectionSize_);
+	jm->OutputFloat3(j["eye"], eye_);
+	jm->OutputFloat3(j["target"], target_);
+	jm->OutputFloat3(j["up"], up_);
 }
 #endif
 void IFE::TransformCamera::LoadingComponent(nlohmann::json& json)
 {
 	JsonManager* j = JsonManager::Instance();
-	eulerAngleDegrees_ = j->InputFloat3(json["rotation"]);
-	position_ = j->InputFloat3(json["position"]);
+	//eulerAngleDegrees_ = j->InputFloat3(json["rotation"]);
+	//position_ = j->InputFloat3(json["position"]);
 	projectionSize_ = j->InputFloat2(json["projectionSize"]);
+	eye_ = j->InputFloat3(json["eye"]);
+	target_ = j->InputFloat3(json["target"]);
+	up_ = j->InputFloat3(json["up"]);
 }

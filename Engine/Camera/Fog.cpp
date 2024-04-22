@@ -31,7 +31,7 @@ void IFE::Fog::Copy(Component* component)
 	fogFlag_ = t->fogFlag_;
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
 void IFE::Fog::ComponentDebugGUI()

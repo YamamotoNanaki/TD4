@@ -9,6 +9,7 @@
 #include "ConstBuffer.h"
 #include "VertexBuffer.h"
 #include "Emitter.h"
+#include "EditorMode.h"
 #include "IFETime.h"
 
 namespace IFE

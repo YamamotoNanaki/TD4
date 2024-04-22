@@ -2,6 +2,7 @@
 #include <list>
 #include <memory>
 #include "GraphicsPipeline.h"
+#include "EditorMode.h"
 
 namespace IFE
 {

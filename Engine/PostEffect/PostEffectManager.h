@@ -1,6 +1,7 @@
 #pragma once
 #include "IPostEffect.h"
 #include <list>
+#include "EditorMode.h"
 
 namespace IFE
 {

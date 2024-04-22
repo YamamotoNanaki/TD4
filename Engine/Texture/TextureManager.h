@@ -1,6 +1,7 @@
 #pragma once
 #include "Texture.h"
 #include <array>
+#include "EditorMode.h"
 
 namespace IFE
 {
@@ -34,7 +35,7 @@ namespace IFE
 		~TextureManager() {}
 
 	public:
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputScene();

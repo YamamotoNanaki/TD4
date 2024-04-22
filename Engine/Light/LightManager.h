@@ -78,7 +78,7 @@ namespace IFE
 		static LightManager* Instance();
 		static void Finalize();
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputScene();

@@ -3,6 +3,7 @@
 #include <memory>
 #include "Emitter.h"
 #include "Texture.h"
+#include "EditorMode.h"
 #include "IFEMath.h"
 
 namespace IFE
@@ -36,7 +37,7 @@ namespace IFE
 		void Reset();
 		bool SearchName(const std::string& name);
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputScene();

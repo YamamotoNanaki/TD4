@@ -60,7 +60,7 @@ namespace IFE
 		void SetWorldPosition(const Vector3& worldPos);
 
 		~Transform();
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputComponent(nlohmann::json&json)override;
@@ -89,7 +89,7 @@ namespace IFE
 		void UpdateMatrix();
 
 		~Transform2D();
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputComponent(nlohmann::json&json)override;
@@ -140,7 +140,7 @@ namespace IFE
 		void SetWorldPosition(const Vector3& worldPos);
 
 		~TransformParticle();
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputComponent(nlohmann::json& json)override;
@@ -154,18 +154,10 @@ namespace IFE
 		using Component::Component;
 	public:
 		bool eulerFlag_ = false;
-		Float3 eulerAngleDegrees_;
-		uint8_t billbord_ = 0;
-		Matrix matWorld_;
-		Matrix matRot_;
-		Matrix matTrans_;
-		Float3 position_ = { 0,0,0 };
-		Quaternion rotation_;
 		Float2 projectionSize_;
 
 		TransformCamera* parent_ = nullptr;
 
-		bool eyeTargetUpFlag_ = false;
 		Float3 target_ = {0,0,0};
 		Float3 eye_ = {0,0,-5};
 		Float3 up_ = {0,0,-5};
@@ -174,26 +166,26 @@ namespace IFE
 		void Update()override;
 		void UpdateMatrix();
 		void Copy(Component* component);
-		Vector3 TransformPoint(const Vector3& position);
-		Vector3 InverseTransformPoint(const Vector3& position);
-		Vector3 GetForwardVector();
-		Vector3 GetUpVector();
-		Vector3 GetRightVector();
-		void RotateAround(const Float3& point, const Float3& axis, float angle);
-		void MovePushBack(Vector3 move);
+		//Vector3 TransformPoint(const Vector3& position);
+		//Vector3 InverseTransformPoint(const Vector3& position);
+		//Vector3 GetForwardVector();
+		//Vector3 GetUpVector();
+		//Vector3 GetRightVector();
+		//void RotateAround(const Float3& point, const Float3& axis, float angle);
+		//void MovePushBack(Vector3 move);
 
 		/// <summary>
 		///ワールド座標を取得する
 		/// </summary>
-		Vector3 GetWorldPosition();
+		//Vector3 GetWorldPosition();
 
 		/// <summary>
 		///ワールド座標を代入する
 		/// </summary>
-		void SetWorldPosition(const Vector3& worldPos);
+		//void SetWorldPosition(const Vector3& worldPos);
 
 		~TransformCamera();
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputComponent(nlohmann::json& json)override;

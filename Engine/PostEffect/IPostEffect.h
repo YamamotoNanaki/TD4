@@ -1,6 +1,7 @@
 #pragma once
 #include "Sprite.h"
 #include "ConstBuffer.h"
+#include "EditorMode.h"
 
 namespace IFE
 {
