@@ -46,7 +46,23 @@ void IFE::NormalEnemy::Update()
 
 void IFE::NormalEnemy::Move()
 {
-	
+	//•ûŒüƒxƒNƒgƒ‹æ‚Á‚ÄˆÚ“®
+	Vector3 addVec;
+	Vector3 ePos = transform_->position_;
+	if (nowPoints == points.size()) {
+		addVec = points[0] - ePos;
+		nowPoints = 0;
+	}
+	else {
+		addVec = points[nowPoints + 1] - ePos;
+		nowPoints++;
+	}
+	addVec.Normalize();
+	transform_->position_ += addVec;
+}
+
+void IFE::NormalEnemy::Chase()
+{
 }
 
 void IFE::NormalEnemy::Draw()
@@ -56,7 +72,10 @@ void IFE::NormalEnemy::Draw()
 
 void IFE::NormalEnemy::OnColliderHit(IFE::Collider collider)
 {
+	//‘Šè‚ªplayer‚¾‚Á‚½ê‡
+	if (collider.componentName_ == "Player") {
 
+	}
 }
 
 void IFE::NormalEnemy::Finalize()

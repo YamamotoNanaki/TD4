@@ -41,6 +41,8 @@ namespace IFE {
 		/// </summary>
 		void Move();
 
+		void Chase();
+
 		/// <summary>
 		/// •`‰æ
 		/// </summary>
