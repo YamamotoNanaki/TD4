@@ -136,8 +136,20 @@
     <Filter Include="ヘッダー ファイル\Engine\External">
       <UniqueIdentifier>{d425c799-8987-4bcc-8705-072d19fd0a0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Source\Enemy">
+      <UniqueIdentifier>{b84cf260-41ab-45bc-991d-4ae8590f272b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Source\Player">
+      <UniqueIdentifier>{6105d934-31bc-41a0-ae07-9bfadea71d03}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ヘッダー ファイル\Source">
-      <UniqueIdentifier>{37611639-83fc-4dbb-8992-ec679f317602}</UniqueIdentifier>
+      <UniqueIdentifier>{d9220484-4d30-43dd-a71c-8bffbf35cdb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Source\Enemy">
+      <UniqueIdentifier>{c0e0d868-0051-42cb-93cf-bbf0b1335b29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Source\Player">
+      <UniqueIdentifier>{25ca4776-f7a1-4c18-b794-3afca62a3d51}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -330,11 +342,17 @@
     <ClCompile Include="Engine\Camera\DebugCamera.cpp">
       <Filter>ソース ファイル\Engine\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Player.cpp">
-      <Filter>ソース ファイル\Source</Filter>
+    <ClCompile Include="Source\Player\PlayerAction.cpp">
+      <Filter>ソース ファイル\Source\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Enemy.cpp">
-      <Filter>ソース ファイル\Source</Filter>
+    <ClCompile Include="Source\Player\PlayerDrone.cpp">
+      <Filter>ソース ファイル\Source\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player\Player.cpp">
+      <Filter>ソース ファイル\Source\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalEnemy.cpp">
+      <Filter>ソース ファイル\Source\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -560,11 +578,23 @@
     <ClInclude Include="Engine\Camera\DebugCamera.h">
       <Filter>ヘッダー ファイル\Engine\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Player.h">
-      <Filter>ヘッダー ファイル\Source</Filter>
+    <ClInclude Include="Source\Player\PlayerDrone.h">
+      <Filter>ヘッダー ファイル\Source\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player\PlayerAction.h">
+      <Filter>ヘッダー ファイル\Source\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player\Player.h">
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalEnemy.h">
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Source\Enemy.h">
-      <Filter>ヘッダー ファイル\Source</Filter>
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BaseEnemy.h">
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

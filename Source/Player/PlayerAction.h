@@ -1,13 +1,9 @@
 #pragma once
-#include"Component.h"
-#include"IFEMath.h"
+#include "Component.h"
 
-class Player:public IFE::Component
+class PlayerAction : public IFE::Component
 {
 private:
-
-	
-
 
 public:
 
