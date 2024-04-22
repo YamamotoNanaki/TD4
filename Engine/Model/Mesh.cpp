@@ -81,7 +81,7 @@ MaterialParams IFE::Mesh::GetMaterial()
 	return material_->GetMaterial();
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::Mesh::ComponentDebugGUI()
 {

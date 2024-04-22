@@ -66,7 +66,7 @@ namespace IFE
 	public:
 		void LoadingScene();
 		void AsyncLoad();
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		ImguiManager& gui_ = *ImguiManager::Instance();
 		bool debug_ = false;

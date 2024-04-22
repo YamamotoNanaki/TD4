@@ -135,7 +135,7 @@ bool IFE::ParticleManager::SearchName(const std::string& name)
 }
 
 #include "JsonManager.h"
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
 #include "Imgui.h"

@@ -1,4 +1,4 @@
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
 #include "ObjectManager.h"

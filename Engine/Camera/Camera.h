@@ -37,7 +37,7 @@ namespace IFE
 		void SetComponent(std::unique_ptr<Component> component);
 		void SetComponentFront(std::unique_ptr<Component> component);
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugUpdate();
 		void DebugCameraInitialize();

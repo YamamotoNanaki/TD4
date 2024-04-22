@@ -122,7 +122,7 @@ std::vector<std::string> IFE::ModelManager::GetAllModelName()
 	return strs;
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::ModelManager::DebugGUI()
 {

@@ -46,7 +46,7 @@ namespace IFE
 		void SetVBInit();
 		void SetVBGame();
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputScene();

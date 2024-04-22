@@ -45,7 +45,7 @@ namespace IFE
 		std::string SetNameNumber(std::string objectName);
 
 	public:
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputScene();

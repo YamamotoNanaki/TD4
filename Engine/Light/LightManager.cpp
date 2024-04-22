@@ -341,7 +341,7 @@ LightManager* IFE::LightManager::Instance()
 	return &instance;
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
 void IFE::LightManager::DebugGUI()

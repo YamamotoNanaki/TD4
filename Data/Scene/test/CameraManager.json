@@ -12,19 +12,24 @@
             "fogNear": 650.0
         },
         "TransformCamera": {
-            "position": [
+            "eye": [
                 0.0,
-                7.25,
-                -38.25
+                0.0,
+                -20.0
             ],
             "projectionSize": [
                 1600.0,
                 900.0
             ],
-            "rotation": [
-                360.0,
-                360.0,
-                360.0
+            "target": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "up": [
+                0.0,
+                1.0,
+                0.0
             ]
         },
         "component": [

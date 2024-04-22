@@ -70,9 +70,9 @@ void IFE::WindowsAPI::Initialize(int32_t window_width, int32_t window_height, co
 
 	// ウィンドウ表示
 	ShowWindow(hwnd_, SW_SHOW);
-#ifdef NDEBUG
-	ShowCursor(false);
-#endif
+//#ifdef NDEBUG
+//	ShowCursor(false);
+//#endif
 }
 
 void IFE::WindowsAPI::Unregister()

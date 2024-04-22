@@ -6,7 +6,7 @@
 #include <memory>
 #include "IFEMath.h"
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 namespace IFE
 {

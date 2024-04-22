@@ -22,7 +22,7 @@ namespace IFE
 		void Update()override;
 		void Draw()override;
 		void Copy(Component* component)override;
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void ComponentDebugGUI()override;
 		void OutputComponent(nlohmann::json& json)override;

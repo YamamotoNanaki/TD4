@@ -57,7 +57,7 @@ void IFE::Camera::SetComponentFront(std::unique_ptr<Component> component)
 	AddComponent<Component>(std::move(component));
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
 #include "ImGui.h"

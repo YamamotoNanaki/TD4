@@ -35,7 +35,7 @@ namespace IFE
 		void Reset();
 		bool SearchName(const std::string& name);
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputScene();

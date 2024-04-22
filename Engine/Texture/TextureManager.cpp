@@ -245,7 +245,7 @@ ID3D12DescriptorHeap* IFE::TextureManager::GetDescriptorHeap()
 	return srvHeap_.Get();
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::TextureManager::DebugGUI()
 {

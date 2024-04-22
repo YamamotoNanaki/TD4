@@ -34,7 +34,7 @@ namespace IFE
 		~TextureManager() {}
 
 	public:
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		void OutputScene();

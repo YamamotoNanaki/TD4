@@ -67,7 +67,7 @@ std::string IFE::JsonManager::SceneInit()
 	}
 	readingFile >> json_;
 	readingFile.close();
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 	return json_["start"];
 #else
 	return json_["debug"];
@@ -97,7 +97,7 @@ bool IFE::JsonManager::SceneCheck(const std::string& name)
 }
 
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::JsonManager::OutputFloat2(nlohmann::json& jsonName, const Float2& f)
 {

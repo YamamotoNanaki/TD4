@@ -70,7 +70,7 @@ std::string IFE::Animator::GetAnimation()
 	return model_->animations_[animNum_].name;
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
 void IFE::Animator::ComponentDebugGUI()

@@ -58,7 +58,7 @@ namespace IFE
 		void Draw();
 		~Emitter();
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI(bool flagdelete);
 		void ComponentGUI();

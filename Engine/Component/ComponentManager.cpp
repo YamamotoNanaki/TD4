@@ -90,7 +90,7 @@ void IFE::ComponentManager::CopyValue(ComponentManager* ptr)
 	}
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::ComponentManager::DebugGUI()
 {

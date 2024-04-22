@@ -53,7 +53,7 @@ namespace IFE
 		void Destroy();
 		bool GetDeleteFlag();
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI(bool flagdelete, bool fmove, std::string* str);
 		void ComponentGUI();

@@ -107,7 +107,7 @@ MaterialParams IFE::Material::GetMaterial()
 	return m;
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 void IFE::Material::DebugGUI()
 {

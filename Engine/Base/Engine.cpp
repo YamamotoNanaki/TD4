@@ -35,7 +35,9 @@ void IFE::Engine::Run()
 
 		if (window_->Message() || endFlag_)
 		{
-#ifdef _DEBUG
+			int a = 0;
+			a++;
+#ifdef EditorMode
 			scene->OutputScene();
 #endif
 			scene->Finalize();

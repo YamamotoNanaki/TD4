@@ -27,7 +27,7 @@ namespace IFE
 		Component* GetModel(const std::string& modelName);
 		void Reset();
 		std::vector<std::string>GetAllModelName();
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 		void DebugGUI();
 		std::string GetModelNameGUI();
