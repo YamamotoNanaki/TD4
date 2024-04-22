@@ -25,7 +25,10 @@
 //
 
 #include "imgui.h"
+#if defined(IMGUI_DEFINE_MATH_OPERATORS)
+#else
 #define IMGUI_DEFINE_MATH_OPERATORS
+#endif
 #include "imgui_internal.h"
 #include <math.h>
 #include <vector>
@@ -196,12 +199,12 @@ static void DisplayLinks(Delegate& delegate,
             ImVec2 p1a, p1b;
             if (fabsf(dif.x) > fabsf(dif.y))
             {
-                p1a = p10 + ImVec2(fabsf(fabsf(dif.x) - fabsf(dif.y)) * 0.5 * sign(dif.x), 0.f);
+                p1a = p10 + ImVec2(fabsf(fabsf(dif.x) - fabsf(dif.y)) * 0.5f * sign(dif.x), 0.f);
                 p1b = p1a + ImVec2(fabsf(dif.y) * sign(dif.x) , dif.y);
             }
             else
             {
-                p1a = p10 + ImVec2(0.f, fabsf(fabsf(dif.y) - fabsf(dif.x)) * 0.5 * sign(dif.y));
+                p1a = p10 + ImVec2(0.f, fabsf(fabsf(dif.y) - fabsf(dif.x)) * 0.5f * sign(dif.y));
                 p1b = p1a + ImVec2(dif.x, fabsf(dif.x) * sign(dif.y));
             }
             drawList->AddLine(p1,  p10, col, 3.f * factor);
