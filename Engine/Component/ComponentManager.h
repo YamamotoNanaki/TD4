@@ -131,6 +131,7 @@ namespace IFE
 	template<class T>
 	inline T* ComponentManager::GetComponent()
 	{
+		if (this == nullptr)return nullptr;
 		for (auto& itr : componentList_)
 		{
 			T* ptr = dynamic_cast<T*>(itr.get());
