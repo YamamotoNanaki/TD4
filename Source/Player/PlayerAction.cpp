@@ -41,3 +41,8 @@ void PlayerAction::Move()
 		transform_->position_ += { 0, 0, -1 };
 	}
 }
+
+const IFE::Vector3 PlayerAction::GetPos()
+{
+	return transform_->position_;
+}

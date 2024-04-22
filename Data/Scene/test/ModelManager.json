@@ -13,5 +13,13 @@
             "settings": 0,
             "smooth": false
         }
+    },
+    {
+        "dice_Model": {
+            "fileName": "dice",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "dice_Model"
     }
 ]

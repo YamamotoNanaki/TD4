@@ -210,7 +210,7 @@
                 0.30000001192092896,
                 0.30000001192092896
             ],
-            "terxtureName": "white.png"
+            "terxtureName": "greenDice.png"
         },
         "PlayerDrone": null,
         "TransferGeometryBuffer": {
@@ -223,7 +223,7 @@
         },
         "Transform": {
             "position": [
-                0.0,
+                -7.826759338378906,
                 0.0,
                 0.0
             ],
@@ -244,8 +244,8 @@
             "Material",
             "PlayerDrone"
         ],
-        "drawFlag": true,
-        "model": "playerModel_Model",
+        "drawFlag": false,
+        "model": "dice_Model",
         "name": "PlayerDrone",
         "prefab": false
     }
