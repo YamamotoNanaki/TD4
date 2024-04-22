@@ -24,7 +24,7 @@ void Player::Update()
 	}
 	else
 	{
-
+		drone_->Move();
 	}
 }
 
@@ -42,7 +42,7 @@ void Player::OnColliderHit(IFE::Collider collider)
 
 void Player::ChangeMode()
 {
-	if (IFE::Input::GetKeyPush(IFE::Key::Y))
+	if (IFE::Input::GetKeyTrigger(IFE::Key::Y))
 	{
 		if (modeFlag_ == false)
 		{
@@ -51,6 +51,12 @@ void Player::ChangeMode()
 		else
 		{
 			modeFlag_ = false;
+		}
+
+		if (drone_->GetDrawFlag() == false)
+		{
+			drone_->SetDrawFlag(true);
+			drone_->SetPos(action_->GetPos());
 		}
 	}
 }
