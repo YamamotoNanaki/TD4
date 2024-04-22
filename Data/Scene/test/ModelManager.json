@@ -13,5 +13,12 @@
             "settings": 0,
             "smooth": false
         }
+    },
+    {
+        "name": "normalEnemyModel_Model",
+        "normalEnemyModel_Model": {
+            "settings": 100,
+            "smooth": false
+        }
     }
 ]

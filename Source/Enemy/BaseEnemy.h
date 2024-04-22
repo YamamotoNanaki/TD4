@@ -6,7 +6,7 @@ namespace IFE {
 	class BaseEnemy :public IFE::Component
 	{
 		//メンバ変数
-	private:
+	protected:
 		//状態
 		enum State {
 			//待機
@@ -14,8 +14,9 @@ namespace IFE {
 			//探索
 			SEARCH,
 			//追跡
-			Chase
+			CHASE
 		};
+		State state;
 
 
 		//メンバ関数
@@ -40,8 +41,16 @@ namespace IFE {
 		virtual void Draw() = 0;
 
 		/// <summary>
+		/// 当たり判定
+		/// </summary>
+		/// <param name="collider"></param>
+		virtual void OnColliderHit(IFE::Collider collider) = 0;
+
+		/// <summary>
 		/// 終了
 		/// </summary>
 		virtual void Finalize() = 0;
+
+		virtual void ComponentDebugGUI() = 0;
 	};
 }
