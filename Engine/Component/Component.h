@@ -3,6 +3,7 @@
 #include <string>
 #include <typeinfo>
 #include "JsonManager.h"
+#include "EditorMode.h"
 
 namespace IFE
 {

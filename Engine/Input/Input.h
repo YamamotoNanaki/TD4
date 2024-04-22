@@ -4,6 +4,7 @@
 #include <Xinput.h>
 #include <cstdint>
 #include "Float2.h"
+#include "EditorMode.h"
 
 namespace IFE
 {

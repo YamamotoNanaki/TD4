@@ -11,6 +11,7 @@
 #include "SpriteManager.h"
 #include "ParticleManager.h"
 #include "OldPostEffect.h"
+#include "EditorMode.h"
 
 namespace IFE
 {

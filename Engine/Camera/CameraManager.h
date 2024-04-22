@@ -2,6 +2,7 @@
 #include "Camera.h"
 #include <list>
 #include <memory>
+#include "EditorMode.h"
 
 namespace IFE
 {

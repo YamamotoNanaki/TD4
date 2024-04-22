@@ -4,6 +4,7 @@
 #include "IFEMath.h"
 #include <list>
 #include <memory>
+#include "EditorMode.h"
 
 namespace IFE
 {

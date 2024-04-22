@@ -5,6 +5,7 @@
 #include <functional>
 #include <memory>
 #include "IFEMath.h"
+#include "EditorMode.h"
 
 #ifdef InverseEditorMode
 #else

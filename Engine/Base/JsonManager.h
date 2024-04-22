@@ -2,6 +2,7 @@
 #include <string>
 #include "IFEMath.h"
 #include "nlohmann/json.hpp"
+#include "EditorMode.h"
 
 namespace IFE
 {

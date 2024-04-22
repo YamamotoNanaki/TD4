@@ -3,6 +3,7 @@
 #include <memory>
 #include "Emitter.h"
 #include "Texture.h"
+#include "EditorMode.h"
 #include "IFEMath.h"
 
 namespace IFE

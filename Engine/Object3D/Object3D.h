@@ -5,6 +5,7 @@
 #include "JsonManager.h"
 #include "GraphicsPipeline.h"
 #include <memory>
+#include "EditorMode.h"
 
 namespace IFE
 {

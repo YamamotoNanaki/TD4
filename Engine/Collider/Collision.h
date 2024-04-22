@@ -1,5 +1,6 @@
 #pragma once
 #include "CollisionPrimitive.h"
+#include "EditorMode.h"
 
 namespace IFE
 {

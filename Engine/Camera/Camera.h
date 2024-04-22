@@ -4,6 +4,7 @@
 #include "Quaternion.h"
 #include "IFEMath.h"
 #include "ComponentManager.h"
+#include "EditorMode.h"
 
 #pragma warning(push)
 #pragma warning(disable:4244)

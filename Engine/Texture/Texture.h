@@ -6,6 +6,7 @@
 #pragma warning(disable:26812)
 #include <DirectXTex.h>
 #pragma warning(pop)
+#include "EditorMode.h"
 
 namespace IFE
 {

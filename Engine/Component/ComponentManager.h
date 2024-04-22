@@ -6,6 +6,7 @@
 #include <string>
 #include <typeinfo>
 #include <memory>
+#include "EditorMode.h"
 
 namespace IFE
 {

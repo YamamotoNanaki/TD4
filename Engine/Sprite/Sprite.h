@@ -7,6 +7,7 @@
 #include "GraphicsPipeline.h"
 #include "ConstStruct.h"
 #include <string>
+#include "EditorMode.h"
 
 namespace IFE
 {

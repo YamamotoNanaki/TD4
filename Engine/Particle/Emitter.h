@@ -5,6 +5,7 @@
 #include <nlohmann/json.hpp>
 #include <memory>
 #include <list>
+#include "EditorMode.h"
 #include <string>
 //#include "PostEffect.h"
 

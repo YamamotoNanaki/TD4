@@ -1,6 +1,7 @@
 #pragma once
 #include "Texture.h"
 #include <array>
+#include "EditorMode.h"
 
 namespace IFE
 {
