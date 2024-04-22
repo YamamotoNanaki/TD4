@@ -15,6 +15,7 @@
 #include"Player.h"
 #include"PlayerAction.h"
 #include"PlayerDrone.h"
+#include "NormalEnemy.h"
 
 using namespace IFE;
 using namespace std;
@@ -61,6 +62,10 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<PlayerAction>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<PlayerDrone>(str));
+	if (tmp != nullptr)return tmp;
+
+	//enemy
+	tmp = std::move(GetPtr<NormalEnemy>(str));
 	if (tmp != nullptr)return tmp;
 
 	return nullptr;
