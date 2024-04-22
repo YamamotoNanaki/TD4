@@ -584,14 +584,14 @@
     <ClInclude Include="Source\Player\PlayerAction.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Player\Player.h">
-      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Enemy\BaseEnemy.h">
       <Filter>ヘッダー ファイル\Source\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Source\Enemy\NormalEnemy.h">
       <Filter>ヘッダー ファイル\Source\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player\Player.h">
+      <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
