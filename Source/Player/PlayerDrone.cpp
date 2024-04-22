@@ -53,37 +53,35 @@ void PlayerDrone::Move()
 	if (IFE::Input::GetKeyPush(IFE::Key::A))
 	{
 		speed_.x -= 0.1f;
-		transform_->position_ += { speed_.x, 0, 0 };
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::D))
 	{
 		speed_.x += 0.1f;
-		transform_->position_ += { speed_.x, 0, 0 };
 	}
-	SpeedZero(speed_.x);
 	
 	if (IFE::Input::GetKeyPush(IFE::Key::W))
 	{
 		speed_.z += 0.1f;
-		transform_->position_ += { 0, 0, speed_.z };
-	}if (IFE::Input::GetKeyPush(IFE::Key::S))
+	}
+	if (IFE::Input::GetKeyPush(IFE::Key::S))
 	{
 		speed_.z -= 0.1f;
-		transform_->position_ += { 0, 0, speed_.z };
 	}
-	SpeedZero(speed_.z);
 	
 	if (IFE::Input::GetKeyPush(IFE::Key::Q))
 	{
 		speed_.y -= 0.1f;
-		transform_->position_ += { 0, speed_.y, 0 };
-	}if (IFE::Input::GetKeyPush(IFE::Key::E))
+	}
+	if (IFE::Input::GetKeyPush(IFE::Key::E))
 	{
 		speed_.y += 0.1f;
-		transform_->position_ += { 0, speed_.y, 0 };
 	}
+
+	SpeedZero(speed_.x);
+	SpeedZero(speed_.z);
 	SpeedZero(speed_.y);
 
+	transform_->position_ += speed_;
 	//スピード限界処理
 	const float maxSpeed = 0.5f;
 	speed_.x = std::clamp(speed_.x, -maxSpeed, maxSpeed);
