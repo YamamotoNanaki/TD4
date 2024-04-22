@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseEnemy.h"
+#include "PlayerAction.h"
 
 namespace IFE {
 	//---‚ß‚Á‚¿‚á•’Ê‚Ì“G---//
@@ -15,6 +16,8 @@ namespace IFE {
 		int nowPoints;
 		//lerp—p
 		float moveTime;
+		//Œã‚Å¡‚·
+		PlayerAction* p_ = nullptr;
 
 	//ƒƒ“ƒoŠÖ”
 	public:
@@ -46,7 +49,7 @@ namespace IFE {
 		/// <summary>
 		/// ’Ç‚¦
 		/// </summary>
-		void Chase(const Float3& playerPos);
+		void Chase();
 
 		/// <summary>
 		/// •`‰æ
