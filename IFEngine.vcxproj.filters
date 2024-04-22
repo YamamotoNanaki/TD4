@@ -351,7 +351,7 @@
     <ClCompile Include="Source\Player\Player.cpp">
       <Filter>ソース ファイル\Source\Player</Filter>
     </ClCompile>
-    <ClCompile Include="NormalEnemy.cpp">
+    <ClCompile Include="Source\Enemy\NormalEnemy.cpp">
       <Filter>ソース ファイル\Source\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
@@ -584,17 +584,14 @@
     <ClInclude Include="Source\Player\PlayerAction.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
-    <ClInclude Include="NormalEnemy.h">
-      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Enemy.h">
-      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BaseEnemy.h">
-      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Player\Player.h">
-      <Filter>ヘッダー ファイル\Source\Player</Filter>
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enemy\BaseEnemy.h">
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enemy\NormalEnemy.h">
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
