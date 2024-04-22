@@ -10,9 +10,11 @@ namespace IFE {
 		//待機タイマー
 		int waitTimer;
 		//経由地点
-		std::vector<Vector3> points;
+		std::vector<Float3> points;
 		//経由地点数
 		int nowPoints;
+		//lerp用
+		float moveTime;
 
 	//メンバ関数
 	public:
@@ -24,7 +26,7 @@ namespace IFE {
 		/// <summary>
 		/// 座標指定あり初期化
 		/// </summary>
-		void Initialize(const Vector3& pos_, const std::vector<Vector3>& points);
+		void Initialize(const Vector3& pos_, const std::vector<Float3>& points);
 
 		/// <summary>
 		/// 状態変化
@@ -37,11 +39,14 @@ namespace IFE {
 		void Update();
 
 		/// <summary>
-		/// 動け
+		/// 探せ
 		/// </summary>
-		void Move();
+		void Search();
 
-		void Chase();
+		/// <summary>
+		/// 追え
+		/// </summary>
+		void Chase(const Float3& playerPos);
 
 		/// <summary>
 		/// 描画
