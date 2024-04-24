@@ -8,12 +8,12 @@ void PlayerDrone::SpeedZero(float& speed)
 {
 	if (speed > 0)
 	{
-		speed -= 0.03f;
+		speed -= 0.04f;
 		speed = max(speed, 0);
 	}
 	else
 	{
-		speed += 0.03f;
+		speed += 0.04f;
 		speed = min(speed, 0);
 	}
 }
@@ -50,31 +50,33 @@ void PlayerDrone::Move()
 	/*float maxXSpeed = IFE::Input::GetLAnalog().x;
 	float maxXSpeed = IFE::Input::GetLAnalog().x;*/
 
+	float addSpeed = 0.05f;
+
 	if (IFE::Input::GetKeyPush(IFE::Key::A))
 	{
-		speed_.x -= 0.1f;
+		speed_.x -= addSpeed;
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::D))
 	{
-		speed_.x += 0.1f;
+		speed_.x += addSpeed;
 	}
 	
 	if (IFE::Input::GetKeyPush(IFE::Key::W))
 	{
-		speed_.z += 0.1f;
+		speed_.z += addSpeed;
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::S))
 	{
-		speed_.z -= 0.1f;
+		speed_.z -= addSpeed;
 	}
 	
 	if (IFE::Input::GetKeyPush(IFE::Key::Q))
 	{
-		speed_.y -= 0.1f;
+		speed_.y -= addSpeed;
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::E))
 	{
-		speed_.y += 0.1f;
+		speed_.y += addSpeed;
 	}
 
 	SpeedZero(speed_.x);
