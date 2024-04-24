@@ -18,7 +18,6 @@ void IFE::NormalEnemy::Initialize(const Vector3& pos_, const std::vector<Float3>
 	nowPoints = 0;
 	moveTime = 0.f;
 	transform_->position_ = pos_;
-	p_ = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>();
 }
 
 void IFE::NormalEnemy::ChangeState()
@@ -46,7 +45,7 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::Update()
 {
-	
+	Chase();
 }
 
 void IFE::NormalEnemy::Search()
@@ -67,9 +66,10 @@ void IFE::NormalEnemy::Search()
 void IFE::NormalEnemy::Chase()
 {
 	//ƒŒƒC‚ª‚Ü‚¾‚¾‚©‚ç‚Æ‚è‚ ‚¦‚¸’Ç‚¢‚©‚¯‚é
-	Vector3 addVec = p_->GetObjectPtr()->transform_->position_ - transform_->position_;
+	Vector3 ePos = transform_->position_;
+	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos() - ePos;
 	addVec.Normalize();
-	transform_->position_ += addVec;
+	transform_->position_ += (addVec * 0.5f);
 }
 
 void IFE::NormalEnemy::Draw()
@@ -77,11 +77,14 @@ void IFE::NormalEnemy::Draw()
 	
 }
 
+//“®‚¢‚Ä‚È‚¢‚Á‚Û‚¢
 void IFE::NormalEnemy::OnColliderHit(IFE::Collider collider)
 {
 	//‘ŠŽè‚ªplayer‚¾‚Á‚½ê‡
-	if (collider.componentName_ == "Player") {
+	if (collider.componentName_ == "PlayerAction") {
 		//“–‚½‚Á‚½Žž‚Ìˆ—
+		componentDeleteFlag_ = true;
+		objectPtr_->DrawFlag_ = false;
 	}
 }
 

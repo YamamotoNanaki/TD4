@@ -16,8 +16,6 @@ namespace IFE {
 		int nowPoints;
 		//lerp—p
 		float moveTime;
-		//Œã‚Å¡‚·
-		PlayerAction* p_ = nullptr;
 
 	//ƒƒ“ƒoŠÖ”
 	public:
