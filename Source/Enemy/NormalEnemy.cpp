@@ -97,7 +97,7 @@ void IFE::NormalEnemy::Finalize()
 void IFE::NormalEnemy::ComponentDebugGUI()
 {
 	ImguiManager* gui = ImguiManager::Instance();
-	gui->DragVectorFloat3GUI(points, "points");
+	gui->DragVectorFloat3GUI(points, "points",transform_->position_);
 }
 
 void IFE::NormalEnemy::OutputComponent(nlohmann::json& json)
