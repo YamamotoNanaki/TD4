@@ -51,7 +51,7 @@ void IFE::JsonManager::InputVectorFloat3(nlohmann::json& json, std::vector<Float
 	v.resize(json["size"]);
 	for (size_t i = 0; i < v.size(); i++)
 	{
-		InputFloat3(json[i]);
+		InputFloat3(json["nums"][i]);
 	}
 }
 
@@ -162,7 +162,7 @@ void IFE::JsonManager::OutputVectorFloat3(nlohmann::json& json, std::vector<Floa
 	json["size"] = v.size();
 	for (size_t i = 0; i < v.size(); i++)
 	{
-		OutputFloat3(json[i], v[i]);
+		OutputFloat3(json["nums"][i], v[i]);
 	}
 }
 
