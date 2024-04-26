@@ -124,6 +124,13 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "attribute": 0,
+            "colliderType": 0,
+            "groundJudge": false,
+            "notPushBack": false,
+            "pushBack": false
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -179,7 +186,8 @@
             "Transform",
             "TransferGeometryBuffer",
             "Material",
-            "PlayerAction"
+            "PlayerAction",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "playerModel_Model",
@@ -250,6 +258,13 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "attribute": 0,
+            "colliderType": 0,
+            "groundJudge": false,
+            "notPushBack": false,
+            "pushBack": false
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -305,7 +320,8 @@
             "Transform",
             "TransferGeometryBuffer",
             "Material",
-            "NormalEnemy"
+            "NormalEnemy",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "normalEnemyModel_Model",
