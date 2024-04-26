@@ -44,7 +44,7 @@ namespace IFE {
 		/// “–‚½‚è”»’è
 		/// </summary>
 		/// <param name="collider"></param>
-		virtual void OnColliderHit(IFE::Collider collider) = 0;
+		//virtual void OnColliderHit(IFE::Collider collider) = 0;
 
 		/// <summary>
 		/// I—¹

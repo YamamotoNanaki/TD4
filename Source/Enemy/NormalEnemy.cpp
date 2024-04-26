@@ -78,10 +78,10 @@ void IFE::NormalEnemy::Draw()
 }
 
 //“®‚¢‚Ä‚È‚¢‚Á‚Û‚¢
-void IFE::NormalEnemy::OnColliderHit(IFE::Collider collider)
+void IFE::NormalEnemy::OnColliderHit(IFE::Collider* collider)
 {
 	//‘ŠŽè‚ªplayer‚¾‚Á‚½ê‡
-	if (collider.componentName_ == "PlayerAction") {
+	if (collider->componentName_ == "PlayerAction") {
 		//“–‚½‚Á‚½Žž‚Ìˆ—
 		componentDeleteFlag_ = true;
 		objectPtr_->DrawFlag_ = false;
