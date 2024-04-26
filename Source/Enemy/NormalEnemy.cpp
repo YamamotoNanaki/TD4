@@ -51,9 +51,9 @@ void IFE::NormalEnemy::Update()
 void IFE::NormalEnemy::Search()
 {
 	//経由地点を線形補間(たぶんまだちゃんとうごかない)
-	transform_->position_ = IFE::LerpFloat3(points[nowPoints], points[nowPoints + 1],150,moveTime);
+	transform_->position_ = IFE::LerpFloat3(points[nowPoints], points[nowPoints + 1], 150, moveTime);
 	if (moveTime >= 150) {
-		if (nowPoints == points.size() -1) {
+		if (nowPoints == points.size() - 1) {
 			nowPoints = 0;
 		}
 		else {
@@ -74,14 +74,14 @@ void IFE::NormalEnemy::Chase()
 
 void IFE::NormalEnemy::Draw()
 {
-	
+
 }
 
 //動いてないっぽい
 void IFE::NormalEnemy::OnColliderHit(IFE::Collider* collider)
 {
 	//相手がplayerだった場合
-	if (collider->componentName_ == "PlayerAction") {
+	if (collider->objectPtr_->GetComponent<PlayerAction>()) {
 		//当たった時の処理
 		componentDeleteFlag_ = true;
 		objectPtr_->DrawFlag_ = false;
@@ -92,6 +92,25 @@ void IFE::NormalEnemy::Finalize()
 {
 }
 
+#ifdef EditorMode
+#include "ImguiManager.h"
 void IFE::NormalEnemy::ComponentDebugGUI()
 {
+	ImguiManager* gui = ImguiManager::Instance();
+	gui->DragVectorFloat3GUI(points, "points");
+}
+
+void IFE::NormalEnemy::OutputComponent(nlohmann::json& json)
+{
+	JsonManager::Instance()->OutputVectorFloat3(json["points"], points);
+}
+#endif
+
+void IFE::NormalEnemy::LoadingComponent(nlohmann::json& json)
+{
+	//if (JsonManager::Instance()->ErrorCheck(json, "points"))
+	//{
+	//	return;
+	//}
+	JsonManager::Instance()->InputVectorFloat3(json["points"], points);
 }

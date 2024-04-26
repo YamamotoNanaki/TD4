@@ -65,9 +65,14 @@ namespace IFE {
 		/// </summary>
 		void Finalize();
 
+
+#ifdef EditorMode
 		/// <summary>
 		/// デバック中に調整できるらしい
 		/// </summary>
-		void ComponentDebugGUI();
+		void ComponentDebugGUI()override;
+		void OutputComponent(nlohmann::json& json)override;
+#endif
+		void LoadingComponent(nlohmann::json& json)override;
 	};
 }

@@ -5,6 +5,21 @@
 using namespace IFE;
 using namespace std;
 
+
+//bool IFE::JsonManager::ErrorCheck(const nlohmann::json& json, std::string name)
+//{
+//	json; name;
+//	assert(json.contains(name));
+//	return false;
+//}
+//
+//bool IFE::JsonManager::ErrorCheck(const nlohmann::json& json, int32_t num)
+//{
+//	json; num;
+//	assert(json.contains(num));
+//	return false;
+//}
+
 void IFE::JsonManager::SetSceneName(const std::string& s)
 {
 	sceneName_ = s;
@@ -29,6 +44,15 @@ Float3 IFE::JsonManager::InputFloat3(const nlohmann::json& jsonName)
 Float4 IFE::JsonManager::InputFloat4(const nlohmann::json& jsonName)
 {
 	return Float4(jsonName[0], jsonName[1], jsonName[2], jsonName[3]);
+}
+
+void IFE::JsonManager::InputVectorFloat3(nlohmann::json& json, std::vector<Float3>& v)
+{
+	v.resize(json["size"]);
+	for (size_t i = 0; i < v.size(); i++)
+	{
+		InputFloat3(json[i]);
+	}
 }
 
 void IFE::JsonManager::Input(const std::string& filename)
@@ -131,6 +155,15 @@ void IFE::JsonManager::OutputFloat3(nlohmann::json& jsonName, const Vector3& v)
 	jsonName[0] = v.x;
 	jsonName[1] = v.y;
 	jsonName[2] = v.z;
+}
+
+void IFE::JsonManager::OutputVectorFloat3(nlohmann::json& json, std::vector<Float3> v)
+{
+	json["size"] = v.size();
+	for (size_t i = 0; i < v.size(); i++)
+	{
+		OutputFloat3(json[i], v[i]);
+	}
 }
 
 void IFE::JsonManager::Output(const std::string& filename)
