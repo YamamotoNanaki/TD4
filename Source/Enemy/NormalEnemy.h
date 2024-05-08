@@ -8,6 +8,7 @@ namespace IFE {
 	{
 	private:
 		const float LERP_TIME = 200.f;
+		const int WAIT_TIME = 200;
 	//メンバ変数
 	private:
 		//待機タイマー
@@ -41,6 +42,16 @@ namespace IFE {
 		/// 更新
 		/// </summary>
 		void Update();
+
+		/// <summary>
+		/// 待て
+		/// </summary>
+		void Wait();
+
+		/// <summary>
+		/// 警戒
+		/// </summary>
+		void Warning();
 
 		/// <summary>
 		/// 探せ
