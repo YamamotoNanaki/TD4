@@ -342,6 +342,7 @@
             "TransferGeometryBuffer",
             "Material",
             "NormalEnemy",
+            "Collider",
             "Collider"
         ],
         "drawFlag": true,

@@ -9,16 +9,8 @@ void IFE::NormalEnemy::Initialize()
 {
 	state = WAIT;
 	waitTimer = 0;
-	nowPoint = 0;
-}
-
-void IFE::NormalEnemy::Initialize(const Vector3& pos_, const std::vector<Float3>& points_) {
-	state = WAIT;
-	waitTimer = 0;
-	points = points_;
-	nowPoint = 0;
-	moveTime = 0.f;
-	transform_->position_ = pos_;
+	nextPoint = 0;
+	/*objectPtr_->GetComponents<Collider><();*/
 }
 
 void IFE::NormalEnemy::ChangeState()
@@ -75,25 +67,24 @@ void IFE::NormalEnemy::Warning()
 
 void IFE::NormalEnemy::Search()
 {
-
 	//ポイント1以上
 	if (points.size() > 0) {
 		//経由地点を補間(現状ループするだけ)
-		Vector3 dirVec = points[nowPoint] - transform_->position_;
+		Vector3 dirVec = points[nextPoint] - transform_->position_;
 		dirVec.Normalize();
 		transform_->position_ += (dirVec * MOVE_VELO);
 
 		//次の地点へ
-		double len = sqrt(pow(transform_->position_.x - points[nowPoint].x, 2) + pow(transform_->position_.y - points[nowPoint].y, 2) +
-			pow(transform_->position_.z - points[nowPoint].z, 2));
+		double len = sqrt(pow(transform_->position_.x - points[nextPoint].x, 2) + pow(transform_->position_.y - points[nextPoint].y, 2) +
+			pow(transform_->position_.z - points[nextPoint].z, 2));
 
 		//これで行けるのか2024
 		if (len <= 0.1) {
-			if (nowPoint == points.size() - 1) {
-				nowPoint = 0;
+			if (nextPoint == points.size() - 1) {
+				nextPoint = 0;
 			}
 			else {
-				nowPoint++;
+				nextPoint++;
 			}
 		}
 	}

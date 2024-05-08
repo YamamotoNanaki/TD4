@@ -7,7 +7,6 @@ namespace IFE {
 	class NormalEnemy : public IFE::BaseEnemy
 	{
 	private:
-		const float LERP_TIME = 200.f;
 		//周りを見渡す時間
 		const int WAIT_TIME = 200;
 		//探索時移動速度 
@@ -18,22 +17,17 @@ namespace IFE {
 		int waitTimer;
 		//経由地点
 		std::vector<Float3> points;
-		//経由地点
-		int nowPoint;
+		//次の場所
+		int nextPoint;
 		//lerp用
 		float moveTime;
 
 	//メンバ関数
 	public:
 		/// <summary>
-		/// 座標指定なし初期化
+		/// 初期化
 		/// </summary>
 		void Initialize();
-
-		/// <summary>
-		/// 座標指定あり初期化
-		/// </summary>
-		void Initialize(const Vector3& pos_, const std::vector<Float3>& points);
 
 		/// <summary>
 		/// 状態変化
