@@ -2,6 +2,7 @@
 #include "Collider.h"
 #include "Input.h"
 #include"Transform.h"
+#include"Object3D.h"
 
 void PlayerAction::Initialize()
 {
@@ -30,6 +31,11 @@ void PlayerAction::MoveUpdate()
 	{
 		Rotation();
 		Move();
+		objectPtr_->SetColor({ 1,1,1,1 });
+	}
+	else
+	{
+		objectPtr_->SetColor({ 1,0,0,1 });
 	}
 	Attack();
 }
@@ -65,7 +71,7 @@ void PlayerAction::Rotation()
 
 void PlayerAction::Attack()
 {
-	if (IFE::Input::GetKeyPush(IFE::Key::Space))
+	if (IFE::Input::GetKeyTrigger(IFE::Key::Space))
 	{
 		attackFlag_ = true;
 	}
