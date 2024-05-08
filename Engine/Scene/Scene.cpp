@@ -426,9 +426,13 @@ void IFE::Scene::DebugGUI()
 		}
 	}
 	ImGui::SameLine();
-	if (ImGui::Button("Make this scene the initial scene"))
+	if (ImGui::Button("Set initial scene"))
 	{
 		JsonManager::Instance()->SetInitScene();
+	}
+	if (ImGui::Button("Criate New scene"))
+	{
+		SetNextScene(sname);
 	}
 	if (errorNum & 0b1)
 	{

@@ -7,7 +7,7 @@ namespace IFE
 {
 	enum class ColliderType
 	{
-		SPHERE, MESH
+		SPHERE, MESH, RAY
 	};
 	enum class Attribute
 	{
@@ -33,6 +33,9 @@ namespace IFE
 		uint16_t attribute_ = 0;
 		bool onGround_ = false;
 		RaycastHit groundHit_;
+
+		Vector3 rayDir_ = {1,0,0};
+		float rayDistance = 0;
 
 	public:
 		void Initialize()override;
