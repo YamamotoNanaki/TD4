@@ -49,6 +49,11 @@ bool IFE::MeshCollider::CheckCollisionSphere(const Sphere& sphere, Vector3* inte
 
 bool IFE::MeshCollider::CheckCollisionRay(const Ray& ray, float* distance, Vector3* inter)
 {
+	CheckCollisionRay(ray, distance, nullptr, inter);
+}
+
+bool IFE::MeshCollider::CheckCollisionRay(const Ray& ray, float* distance, float* hittingdistance, Vector3* inter)
+{
 	invMatWorld = MatrixInverse(*matWorld_);
 	Ray localRay(Vector3Transform(ray.start, invMatWorld), Vector3TransformNormal(ray.dir, invMatWorld));
 
