@@ -46,3 +46,9 @@ const IFE::Vector3 PlayerAction::GetPos()
 {
 	return transform_->position_;
 }
+
+void PlayerAction::Rotation()
+{
+	frontVec_ = front_ - pos_;
+	frontVec_.Normalize();
+}
