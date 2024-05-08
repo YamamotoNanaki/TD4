@@ -10,6 +10,7 @@
 #include "FBXModel.h"
 #include "Collider.h"
 #include "ImguiManager.h"
+#include "ComponentManager.h"
 
 using namespace IFE;
 using namespace std;
@@ -181,6 +182,26 @@ void IFE::Object3D::Destroy()
 bool IFE::Object3D::GetDeleteFlag()
 {
 	return deleteFlag_;
+}
+
+void IFE::Object3D::SetColor(const Float4& color)
+{
+	GetComponent<Material>()->SetColor(color);
+}
+
+void IFE::Object3D::SetColor255(const Float4& color)
+{
+	GetComponent<Material>()->SetColor255(color);
+}
+
+Float4 IFE::Object3D::GetColor()
+{
+	return GetComponent<Material>()->GetColor();
+}
+
+Float4 IFE::Object3D::GetColor255()
+{
+	return GetComponent<Material>()->GetColor255();
 }
 
 #ifdef InverseEditorMode
