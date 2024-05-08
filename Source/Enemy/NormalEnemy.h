@@ -8,7 +8,10 @@ namespace IFE {
 	{
 	private:
 		const float LERP_TIME = 200.f;
+		//周りを見渡す時間
 		const int WAIT_TIME = 200;
+		//探索時移動速度 
+		const float MOVE_SPEED = 2.0f;
 	//メンバ変数
 	private:
 		//待機タイマー

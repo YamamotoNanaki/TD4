@@ -45,6 +45,7 @@ void IFE::NormalEnemy::ChangeState()
 void IFE::NormalEnemy::Update()
 {
 	/*Chase();*/
+	objectPtr_->
 	Search();
 }
 
@@ -77,6 +78,7 @@ void IFE::NormalEnemy::Warning()
 
 void IFE::NormalEnemy::Search()
 {
+	Vector3 moveVec = points[pointA] - transform_->position_;
 	//経由地点を補間(現状ループするだけ)
 	transform_->position_ = IFE::LerpFloat3(points[pointA], points[pointB], LERP_TIME, moveTime);
 
