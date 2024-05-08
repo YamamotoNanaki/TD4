@@ -6,14 +6,17 @@ namespace IFE {
 	//---めっちゃ普通の敵---//
 	class NormalEnemy : public IFE::BaseEnemy
 	{
+	private:
+		const float LERP_TIME = 200.f;
 	//メンバ変数
 	private:
 		//待機タイマー
 		int waitTimer;
 		//経由地点
 		std::vector<Float3> points;
-		//経由地点数
-		int nowPoints;
+		//経由地点
+		int pointA;
+		int pointB;
 		//lerp用
 		float moveTime;
 

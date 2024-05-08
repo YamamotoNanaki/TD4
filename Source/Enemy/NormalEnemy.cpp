@@ -9,13 +9,16 @@ void IFE::NormalEnemy::Initialize()
 {
 	state = WAIT;
 	waitTimer = 0;
+	pointA = 0;
+	pointB = pointA + 1;
 }
 
 void IFE::NormalEnemy::Initialize(const Vector3& pos_, const std::vector<Float3>& points_) {
 	state = WAIT;
 	waitTimer = 0;
 	points = points_;
-	nowPoints = 0;
+	pointA = 0;
+	pointB = pointA + 1;
 	moveTime = 0.f;
 	transform_->position_ = pos_;
 }
@@ -45,21 +48,36 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::Update()
 {
-	Chase();
+	/*Chase();*/
+	Search();
 }
 
 void IFE::NormalEnemy::Search()
 {
-	//経由地点を線形補間(たぶんまだちゃんとうごかない)
-	transform_->position_ = IFE::LerpFloat3(points[nowPoints], points[nowPoints + 1], 150, moveTime);
-	if (moveTime >= 150) {
-		if (nowPoints == points.size() - 1) {
-			nowPoints = 0;
+	//経由地点を補間(現状ループするだけ)
+	transform_->position_ = IFE::LerpFloat3(points[pointA], points[pointB], LERP_TIME, moveTime);
+
+	//次の地点へ
+	if (moveTime == LERP_TIME) {
+		moveTime = 0;
+		//終点
+		if (pointA == points.size() - 2) {
+			pointA++;
+			pointB = 0;
 		}
+		//終点から始点へ
+		else if (pointB == 0) {
+			pointA = 0;
+			pointB++;
+		}
+		//それ以外
 		else {
-			nowPoints++;
+			pointA++;
+			pointB++;
 		}
-		moveTime = 0.f;
+	}
+	else {
+		moveTime++;
 	}
 }
 
@@ -77,14 +95,13 @@ void IFE::NormalEnemy::Draw()
 
 }
 
-//動いてないっぽい
 void IFE::NormalEnemy::OnColliderHit(IFE::Collider* collider)
 {
 	//相手がplayerだった場合
 	if (collider->objectPtr_->GetComponent<PlayerAction>()) {
 		//当たった時の処理
-		componentDeleteFlag_ = true;
-		objectPtr_->DrawFlag_ = false;
+		/*componentDeleteFlag_ = true;
+		objectPtr_->DrawFlag_ = false;*/
 	}
 }
 
@@ -97,7 +114,7 @@ void IFE::NormalEnemy::Finalize()
 void IFE::NormalEnemy::ComponentDebugGUI()
 {
 	ImguiManager* gui = ImguiManager::Instance();
-	gui->DragVectorFloat3GUI(points, "points",transform_->position_);
+	gui->DragVectorFloat3GUI(points, "points", transform_->position_);
 }
 
 void IFE::NormalEnemy::OutputComponent(nlohmann::json& json)
