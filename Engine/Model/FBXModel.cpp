@@ -267,26 +267,51 @@ std::vector<Triangle> IFE::FBXModel::GetMeshColliderTriangle()
 
 #ifdef InverseEditorMode
 #else
-void IFE::FBXModel::DebugGUI()
+//void IFE::FBXModel::DebugGUI()
+//{
+//	ImguiManager* imgui = ImguiManager::Instance();
+//	if (imgui->NewTreeNode(fileName_))
+//	{
+//		for (unique_ptr<Node>& node : nodes_)
+//		{
+//			for (auto mesh : node->meshes)
+//			{
+//				mesh->DebugGUI();
+//			}
+//		}
+//		imgui->EndTreeNode();
+//	}
+//}
+
+bool IFE::FBXModel::ModelGUI(bool deleteFlag)
 {
 	ImguiManager* imgui = ImguiManager::Instance();
 	if (imgui->NewTreeNode(fileName_))
 	{
 		for (unique_ptr<Node>& node : nodes_)
 		{
+			uint32_t num = 0;
 			for (auto mesh : node->meshes)
 			{
-				mesh->DebugGUI();
+				mesh->DebugGUI(num++);
+			}
+		}
+		if (deleteFlag)
+		{
+			if (imgui->ButtonGUI(U8("íœ")))
+			{
+				return true;
 			}
 		}
 		imgui->EndTreeNode();
 	}
+	return false;
 }
 
 void IFE::FBXModel::OutputComponent(nlohmann::json& j)
 {
-	j["fileName"]= fileName_;
-	j["settings"]= (uint32_t)setting_;
-	j["smooth"]= smooth_;
+	j["fileName"] = fileName_;
+	j["settings"] = (uint32_t)setting_;
+	j["smooth"] = smooth_;
 }
 #endif

@@ -376,10 +376,27 @@ void IFE::PrimitiveModel::CreateNormal(std::vector<Vertex>& _vertices, const std
 
 #ifdef InverseEditorMode
 #else
-void IFE::PrimitiveModel::DebugGUI()
+//void IFE::PrimitiveModel::DebugGUI()
+//{
+//	ImguiManager* im = ImguiManager::Instance();
+//	im->ModelGUI(componentName_);
+//}
+
+bool IFE::PrimitiveModel::ModelGUI(bool deleteFlag)
 {
 	ImguiManager* im = ImguiManager::Instance();
-	im->ModelGUI(componentName_);
+	if (im->NewTreeNode(componentName_))
+	{
+		if (deleteFlag)
+		{
+			if (im->ButtonGUI(U8("íœ")))
+			{
+				return true;
+			}
+		}
+		im->EndTreeNode();
+	}
+	return false;
 }
 
 void IFE::PrimitiveModel::OutputComponent(nlohmann::json& j)
