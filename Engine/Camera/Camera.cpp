@@ -103,7 +103,7 @@ void IFE::Camera::ComponentGUI()
 
 	if (cameraName_ == imgui->sOpenComponentName_)
 	{
-		imgui->NewGUI("Component List", (int32_t)ImGuiWindowFlags_MenuBar);
+		imgui->NewGUI(U8("インスペクター"), (int32_t)ImGuiWindowFlags_MenuBar);
 		if (imgui->NewMenuBar())
 		{
 			if (imgui->NewMenu("add"))

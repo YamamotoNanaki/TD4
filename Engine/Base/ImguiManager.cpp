@@ -21,7 +21,6 @@
 #include "CameraManager.h"
 #include "Transform.h"
 #include <cuchar>
-#include "strconv2.h"
 
 using namespace IFE;
 
@@ -517,12 +516,12 @@ int32_t IFE::ImguiManager::GetModelNameGUI(const std::vector<std::string>& names
 	return returnnum;
 }
 
-void IFE::ImguiManager::ModelGUI(const std::string& modelName)
-{
-	if (ImGui::CollapsingHeader(modelName.c_str()))
-	{
-	}
-}
+//void IFE::ImguiManager::ModelGUI(const std::string& modelName)
+//{
+//	if (ImGui::CollapsingHeader(modelName.c_str()))
+//	{
+//	}
+//}
 
 void IFE::ImguiManager::ComponentGUI(const std::function<void(void)>& guiFunc, const std::function<void(void)>& deleteFunc, const std::string& componentName)
 {

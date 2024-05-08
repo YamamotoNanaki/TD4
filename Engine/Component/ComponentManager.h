@@ -59,6 +59,8 @@ namespace IFE
 		template <class T>
 		T* GetComponent();
 		template <class T>
+		std::vector<T*> GetComponents();
+		template <class T>
 		void DeleteComponent();
 		template <class T>
 		void RemoveComponent();
@@ -139,6 +141,18 @@ namespace IFE
 			if (ptr)return ptr;
 		}
 		return nullptr;
+	}
+	template<class T>
+	inline std::vector<T*> ComponentManager::GetComponents()
+	{
+		std::vector<T*> ptrs;
+		if (this == nullptr)return nullptr;
+		for (auto& itr : componentList_)
+		{
+			T* ptr = dynamic_cast<T*>(itr.get());
+			ptrs.push_back(ptr);
+		}
+		return ptrs;
 	}
 	template<class T>
 	inline void ComponentManager::DeleteComponent()

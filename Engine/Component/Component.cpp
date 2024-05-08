@@ -151,18 +151,19 @@ void IFE::Component::CopyValueComponent(Component* component) { component; }
 #ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
-void IFE::Component::DebugGUI()
+void IFE::Component::DebugGUI(uint32_t num)
 {
 	std::function<void(void)>func = [&]()
-	{
-		ImguiManager::Instance()->TextGUI(componentName_.c_str());
-		ComponentDebugGUI();
-	};
+		{
+			ImguiManager::Instance()->TextGUI(componentName_.c_str());
+			ComponentDebugGUI();
+		};
 	std::function<void(void)>deleteFunc = [&]()
-	{
-		componentDeleteFlag_ = true;
-	};
-	ImguiManager::Instance()->ComponentGUI(func, deleteFunc, componentName_.c_str());
+		{
+			componentDeleteFlag_ = true;
+		};
+	std::string s = std::to_string(num) + " : " + componentName_;
+	ImguiManager::Instance()->ComponentGUI(func, deleteFunc, s.c_str());
 }
 
 void IFE::Component::OutputScene(nlohmann::json& j)
