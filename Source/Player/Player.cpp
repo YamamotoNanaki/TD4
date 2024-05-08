@@ -20,7 +20,7 @@ void Player::Update()
 
 	if (modeFlag_ == false)
 	{
-		action_->Move();
+		action_->MoveUpdate();
 	}
 	else
 	{

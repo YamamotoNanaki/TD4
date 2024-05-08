@@ -24,6 +24,16 @@ void PlayerAction::OnColliderHit(IFE::Collider collider)
 {
 }
 
+void PlayerAction::MoveUpdate()
+{
+	if (attackFlag_ == false)
+	{
+		Rotation();
+		Move();
+	}
+	Attack();
+}
+
 void PlayerAction::Move()
 {
 	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
@@ -51,4 +61,22 @@ void PlayerAction::Rotation()
 {
 	frontVec_ = front_ - pos_;
 	frontVec_.Normalize();
+}
+
+void PlayerAction::Attack()
+{
+	if (IFE::Input::GetKeyPush(IFE::Key::Space))
+	{
+		attackFlag_ = true;
+	}
+
+	if (attackFlag_ == true)
+	{
+		if (attackTimer_ > attackTime_)
+		{
+			attackFlag_ = false;
+			attackTimer_ = 0;
+		}
+		attackTimer_++;
+	}
 }
