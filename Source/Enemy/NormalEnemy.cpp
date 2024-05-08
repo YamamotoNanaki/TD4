@@ -77,30 +77,33 @@ void IFE::NormalEnemy::Warning()
 
 void IFE::NormalEnemy::Search()
 {
-	//経由地点を補間(現状ループするだけ)
-	transform_->position_ = IFE::LerpFloat3(points[pointA], points[pointB], LERP_TIME, moveTime);
+	//ポイント1以上
+	if (points.size() > 0) {
+		//経由地点を補間(現状ループするだけ)
+		transform_->position_ = IFE::LerpFloat3(points[pointA], points[pointB], LERP_TIME, moveTime);
 
-	//次の地点へ
-	if (moveTime == LERP_TIME) {
-		moveTime = 0;
-		//終点
-		if (pointA == points.size() - 2) {
-			pointA++;
-			pointB = 0;
+		////次の地点へ
+		if (moveTime == LERP_TIME) {
+			moveTime = 0;
+			//終点
+			if (pointA == points.size() - 2) {
+				pointA++;
+				pointB = 0;
+			}
+			//終点から始点へ
+			else if (pointB == 0) {
+				pointA = 0;
+				pointB++;
+			}
+			//それ以外
+			else {
+				pointA++;
+				pointB++;
+			}
 		}
-		//終点から始点へ
-		else if (pointB == 0) {
-			pointA = 0;
-			pointB++;
-		}
-		//それ以外
 		else {
-			pointA++;
-			pointB++;
+			moveTime++;
 		}
-	}
-	else {
-		moveTime++;
 	}
 }
 
