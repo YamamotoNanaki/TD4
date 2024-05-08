@@ -34,7 +34,9 @@ namespace IFE
 
 #ifdef InverseEditorMode
 #else
-		void DebugGUI();
+	public:
+		//void DebugGUI();
+		bool ModelGUI(bool deleteFlag);
 		void OutputComponent(nlohmann::json& json)override;
 #endif
 	};

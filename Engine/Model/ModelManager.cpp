@@ -143,7 +143,21 @@ void IFE::ModelManager::DebugGUI()
 	}
 	for (auto& itr : modelList_)
 	{
-		itr->DebugGUI();
+		bool deleteFlag = false;
+		PrimitiveModel* pm = dynamic_cast<PrimitiveModel*>(itr.get());
+		if (pm)
+		{
+			deleteFlag = pm->ModelGUI(fdelete);
+		}
+		FBXModel* fm = dynamic_cast<FBXModel*>(itr.get());
+		if (fm)
+		{
+			deleteFlag = fm->ModelGUI(fdelete);
+		}
+		if (deleteFlag)
+		{
+			
+		}
 	}
 
 	im->EndGUI();
