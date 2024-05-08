@@ -150,7 +150,7 @@ namespace IFE
 		for (auto& itr : componentList_)
 		{
 			T* ptr = dynamic_cast<T*>(itr.get());
-			ptrs.push_back(ptr);
+			if (ptr)ptrs.push_back(ptr);
 		}
 		return ptrs;
 	}
