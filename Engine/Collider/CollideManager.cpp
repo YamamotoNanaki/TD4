@@ -115,6 +115,18 @@ void IFE::CollideManager::CollidersUpdate()
 			}
 			else if (colA->GetColliderType() == ColliderType::RAY && colB->GetColliderType() == ColliderType::MESH)
 			{
+				MeshCollider* mesh = colB->GetMeshCollider();
+				Ray ray(colA->GetColliderPosition(), colA->rayDir_);
+				Vector3 inter;
+				float dis;
+				if (mesh->CheckCollisionRay(ray, &dis,&inter))
+				{
+					colA->interPoint_ = inter;
+					colB->interPoint_ = inter;
+					colA->rayDistance = dis;
+					colB->rayDistance = dis;
+					OnColliderHit(colA, colB);
+				}
 			}
 			else if (colA->GetColliderType() == ColliderType::SPHERE && colB->GetColliderType() == ColliderType::RAY)
 			{
@@ -133,7 +145,18 @@ void IFE::CollideManager::CollidersUpdate()
 			}
 			else if (colA->GetColliderType() == ColliderType::MESH && colB->GetColliderType() == ColliderType::RAY)
 			{
-
+				MeshCollider* mesh = colA->GetMeshCollider();
+				Ray ray(colB->GetColliderPosition(), colB->rayDir_);
+				Vector3 inter;
+				float dis;
+				if (mesh->CheckCollisionRay(ray, &dis, &inter))
+				{
+					colA->interPoint_ = inter;
+					colB->interPoint_ = inter;
+					colA->rayDistance = dis;
+					colB->rayDistance = dis;
+					OnColliderHit(colA, colB);
+				}
 			}
 		}
 	}
