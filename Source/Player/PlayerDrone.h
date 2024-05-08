@@ -8,6 +8,10 @@ private:
 
 	IFE::Vector3 speed_ = {};
 
+	IFE::Vector3 front_ = { 0,0,1 };
+	IFE::Vector3 pos_ = { 0,0,0 };
+	IFE::Vector3 frontVec_ = {};
+
 	void SpeedZero(float& speed);
 
 public:

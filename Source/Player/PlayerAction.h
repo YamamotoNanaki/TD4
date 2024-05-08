@@ -6,6 +6,10 @@ class PlayerAction : public IFE::Component
 {
 private:
 
+	IFE::Vector3 front_ = { 0,0,1 };
+	IFE::Vector3 pos_ = { 0,0,0 };
+	IFE::Vector3 frontVec_ = {};
+
 public:
 
 	void Initialize();
@@ -21,4 +25,8 @@ public:
 	void Move();
 
 	const IFE::Vector3 GetPos();
+
+private:
+
+	void Rotation();
 };

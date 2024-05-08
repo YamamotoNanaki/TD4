@@ -41,8 +41,8 @@ void PlayerDrone::OnColliderHit(IFE::Collider collider)
 
 void PlayerDrone::MoveUpdate()
 {
-	Move();
 	Rotation();
+	Move();
 }
 
 void PlayerDrone::Move()
@@ -112,6 +112,9 @@ void PlayerDrone::Rotation()
 	//c‰ñ“]‚ÌŒÀŠEˆ—
 	const float maxVerticalRotation = 45.0f;
 	transform_->eulerAngleDegrees_.x = std::clamp(transform_->eulerAngleDegrees_.x, -maxVerticalRotation, maxVerticalRotation);
+
+	frontVec_ = front_ - pos_;
+	frontVec_.Normalize();
 }
 
 bool PlayerDrone::GetDrawFlag()
