@@ -29,16 +29,12 @@ void IFE::NormalEnemy::ChangeState()
 	if (state == CHASE) {
 		Chase();
 	}
+	else if (state == WARNING) {
+		Warning();
+	}
 	else {
 		if (state == WAIT) {
-			///
-			//ü‚è‚ğŒ©“n‚·‚æ‚¤‚Èˆ—
-			///
-			waitTimer++;
-			if (waitTimer == 150) {
-				waitTimer = 0;
-				state = SEARCH;
-			}
+			Wait();
 		}
 		else if (state == SEARCH) {
 			Search();
@@ -50,6 +46,33 @@ void IFE::NormalEnemy::Update()
 {
 	/*Chase();*/
 	Search();
+}
+
+void IFE::NormalEnemy::Wait()
+{
+	///ü‚è‚ğŒ©“n‚·ˆ—
+	if (waitTimer < 50) {
+		transform_->eulerAngleDegrees_ += { 0, -1.5f, 0 };
+	}
+	else if (waitTimer < 150) {
+		transform_->eulerAngleDegrees_ += { 0, 1.5f, 0 };
+	}
+	else if (waitTimer < WAIT_TIME) {
+		transform_->eulerAngleDegrees_ += { 0, -1.5f, 0 };
+	}
+	///
+	waitTimer++;
+	if (waitTimer == WAIT_TIME) {
+		waitTimer = 0;
+		transform_->rotation_ = { 0,0,0 };
+		state = SEARCH;
+	}
+}
+
+void IFE::NormalEnemy::Warning()
+{
+	//ˆÙ•Ï‚Ìó‘Ô‚ª‘±‚¢‚½‚ç’ÇÕ‚ÖˆÚs
+	state = CHASE;
 }
 
 void IFE::NormalEnemy::Search()

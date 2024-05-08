@@ -13,6 +13,8 @@ namespace IFE {
 			WAIT,
 			//íTçı
 			SEARCH,
+			//åxâ˙
+			WARNING,
 			//í«ê’
 			CHASE
 		};
