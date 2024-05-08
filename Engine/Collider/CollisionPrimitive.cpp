@@ -85,3 +85,5 @@ bool IFE::MeshCollider::CheckCollisionRay(const Ray& ray, float* distance, Vecto
 	}
 	return false;
 }
+
+IFE::Ray::Ray(Vector3 start, Vector3 dir) :start(start), dir(dir) {}

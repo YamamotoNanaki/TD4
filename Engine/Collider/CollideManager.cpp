@@ -53,6 +53,7 @@ void IFE::CollideManager::CollidersUpdate()
 		{
 			Collider* colA = *itA;
 			Collider* colB = *itB;
+			if (colA->objectPtr_ == colB->objectPtr_ || colA->emitterPtr_ || colB->emitterPtr_)continue;
 
 			//‚Æ‚à‚É‹…
 			if (colA->GetColliderType() == ColliderType::SPHERE && colB->GetColliderType() == ColliderType::SPHERE)
@@ -96,6 +97,43 @@ void IFE::CollideManager::CollidersUpdate()
 					PushBack(colA, colB, reject);
 					OnColliderHit(colA, colB);
 				}
+			}
+			else if (colA->GetColliderType() == ColliderType::RAY && colB->GetColliderType() == ColliderType::SPHERE)
+			{
+				Ray ray(colA->GetColliderPosition(), colA->rayDir_);
+				Sphere sphere(colB->GetColliderPosition(), Vector3(colB->GetColliderScale()).Length());
+				Vector3 inter;
+				float dis;
+				if (Collision::CheckRaySphere(ray, sphere, &dis, &inter))
+				{
+					colA->interPoint_ = inter;
+					colB->interPoint_ = inter;
+					colA->rayDistance = dis;
+					colB->rayDistance = dis;
+					OnColliderHit(colA, colB);
+				}
+			}
+			else if (colA->GetColliderType() == ColliderType::RAY && colB->GetColliderType() == ColliderType::MESH)
+			{
+			}
+			else if (colA->GetColliderType() == ColliderType::SPHERE && colB->GetColliderType() == ColliderType::RAY)
+			{
+				Ray ray(colB->GetColliderPosition(), colB->rayDir_);
+				Sphere sphere(colA->GetColliderPosition(), Vector3(colA->GetColliderScale()).Length());
+				Vector3 inter;
+				float dis;
+				if (Collision::CheckRaySphere(ray, sphere, &dis, &inter))
+				{
+					colA->interPoint_ = inter;
+					colB->interPoint_ = inter;
+					colA->rayDistance = dis;
+					colB->rayDistance = dis;
+					OnColliderHit(colA, colB);
+				}
+			}
+			else if (colA->GetColliderType() == ColliderType::MESH && colB->GetColliderType() == ColliderType::RAY)
+			{
+
 			}
 		}
 	}

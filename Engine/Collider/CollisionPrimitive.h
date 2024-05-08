@@ -28,6 +28,8 @@ namespace IFE
 	{
 		Vector3 start{};
 		Vector3 dir = { 1,0,0 };
+		Ray(Vector3 start, Vector3 dir);
+		Ray() {};
 	};
 	class FBXModel;
 	struct MeshCollider

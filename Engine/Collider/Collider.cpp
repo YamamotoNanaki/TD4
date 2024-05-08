@@ -155,6 +155,7 @@ void IFE::Collider::ComponentDebugGUI()
 		int32_t num = (int32_t)colliderType_;
 		gui->RadioButtonGUI("Sphere", &num, (int32_t)ColliderType::SPHERE);
 		gui->RadioButtonGUI("Mesh", &num, (int32_t)ColliderType::MESH);
+		gui->RadioButtonGUI("Ray", &num, (int32_t)ColliderType::RAY);
 		colliderType_ = (ColliderType)num;
 		gui->EndTreeNode();
 	}
