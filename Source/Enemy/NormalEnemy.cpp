@@ -10,7 +10,12 @@ void IFE::NormalEnemy::Initialize()
 	state = WAIT;
 	waitTimer = 0;
 	nextPoint = 0;
-	/*objectPtr_->GetComponents<Collider><();*/
+	std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
+	for (size_t i = 0; i < colliders.size(); i++) {
+		if (colliders[i]->GetColliderType() == ColliderType::RAY) {
+			rayColl = colliders[i];
+		}
+	}
 }
 
 void IFE::NormalEnemy::ChangeState()

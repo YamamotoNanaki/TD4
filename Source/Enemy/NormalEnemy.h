@@ -21,6 +21,8 @@ namespace IFE {
 		int nextPoint;
 		//lerp用
 		float moveTime;
+		//コライダー取得用
+		Collider* rayColl = nullptr;
 
 	//メンバ関数
 	public:
