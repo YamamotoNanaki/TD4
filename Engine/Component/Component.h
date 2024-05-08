@@ -30,6 +30,7 @@ namespace IFE
 		bool componentDeleteFlag_ = false;
 	protected:
 		virtual void Initialize() {};
+
 	public:
 		Transform* transform_ = nullptr;
 		TransformParticle* transformParticle_ = nullptr;
@@ -57,7 +58,7 @@ namespace IFE
 		virtual void CopyValueComponent(Component* component);
 #ifdef InverseEditorMode
 #else
-		virtual void DebugGUI();
+		virtual void DebugGUI(uint32_t num);
 		virtual void ComponentDebugGUI() {};
 		void OutputScene(nlohmann::json& json);
 		virtual void OutputComponent(nlohmann::json& json);
