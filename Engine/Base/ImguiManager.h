@@ -1,4 +1,7 @@
 #pragma once
+
+#ifdef InverseEditorMode
+#else
 #include <string>
 #include <vector>
 #include <array>
@@ -6,9 +9,8 @@
 #include <memory>
 #include "IFEMath.h"
 #include "EditorMode.h"
+#include "strconv2.h"
 
-#ifdef InverseEditorMode
-#else
 namespace IFE
 {
 	class ComponentManager;
@@ -46,7 +48,7 @@ namespace IFE
 		void ModelManagerGUI(bool* flagadd, bool* flagdelete);
 		bool ModelAddGUI(std::string* newObjectName, std::string* newFilename, uint16_t* settings, bool* smooth);
 		int32_t GetModelNameGUI(const std::vector<std::string>& names);
-		void ModelGUI(const std::string& modelName);
+		//void ModelGUI(const std::string& modelName);
 		void ComponentGUI(const std::function<void(void)>& guiFunc, const std::function<void(void)>& deleteFunc, const std::string& componentName);
 		void ChangeTextureGUI(const std::function<void(std::string)>& guiFunc);
 		void TextureGUI(bool* load, bool* search);

@@ -49,14 +49,6 @@ void IFE::ComponentManager::SetObjectPtr(Object3D* p)
 	objectPtr_ = p;
 }
 
-//void IFE::ComponentManager::OnColliderHit(ADXCollider* myCol, ADXCollider* col)
-//{
-//	for (auto& itr : componentList)
-//	{
-//		itr->OnColliderHit(myCol, col);
-//	}
-//}
-
 std::vector<std::string> IFE::ComponentManager::GetAllComponentName()
 {
 	std::vector<std::string>s;
@@ -94,9 +86,11 @@ void IFE::ComponentManager::CopyValue(ComponentManager* ptr)
 #else
 void IFE::ComponentManager::DebugGUI()
 {
+	uint32_t num = 0;
 	for (auto& itr : componentList_)
 	{
-		if (itr)itr->DebugGUI();
+		if (itr)itr->DebugGUI(num);
+		num++;
 	}
 }
 
