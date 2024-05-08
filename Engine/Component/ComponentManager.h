@@ -146,7 +146,7 @@ namespace IFE
 	inline std::vector<T*> ComponentManager::GetComponents()
 	{
 		std::vector<T*> ptrs;
-		if (this == nullptr)return nullptr;
+		if (this == nullptr)return ptrs;
 		for (auto& itr : componentList_)
 		{
 			T* ptr = dynamic_cast<T*>(itr.get());
