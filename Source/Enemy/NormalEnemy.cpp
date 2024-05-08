@@ -9,16 +9,14 @@ void IFE::NormalEnemy::Initialize()
 {
 	state = WAIT;
 	waitTimer = 0;
-	pointA = 0;
-	pointB = pointA + 1;
+	nowPoint = 0;
 }
 
 void IFE::NormalEnemy::Initialize(const Vector3& pos_, const std::vector<Float3>& points_) {
 	state = WAIT;
 	waitTimer = 0;
 	points = points_;
-	pointA = 0;
-	pointB = pointA + 1;
+	nowPoint = 0;
 	moveTime = 0.f;
 	transform_->position_ = pos_;
 }
@@ -77,32 +75,26 @@ void IFE::NormalEnemy::Warning()
 
 void IFE::NormalEnemy::Search()
 {
+
 	//ポイント1以上
 	if (points.size() > 0) {
 		//経由地点を補間(現状ループするだけ)
-		transform_->position_ = IFE::LerpFloat3(points[pointA], points[pointB], LERP_TIME, moveTime);
+		Vector3 dirVec = points[nowPoint] - transform_->position_;
+		dirVec.Normalize();
+		transform_->position_ += (dirVec * MOVE_VELO);
 
-		////次の地点へ
-		if (moveTime == LERP_TIME) {
-			moveTime = 0;
-			//終点
-			if (pointA == points.size() - 2) {
-				pointA++;
-				pointB = 0;
+		//次の地点へ
+		double len = sqrt(pow(transform_->position_.x - points[nowPoint].x, 2) + pow(transform_->position_.y - points[nowPoint].y, 2) +
+			pow(transform_->position_.z - points[nowPoint].z, 2));
+
+		//これで行けるのか2024
+		if (len <= 0.1) {
+			if (nowPoint == points.size() - 1) {
+				nowPoint = 0;
 			}
-			//終点から始点へ
-			else if (pointB == 0) {
-				pointA = 0;
-				pointB++;
-			}
-			//それ以外
 			else {
-				pointA++;
-				pointB++;
+				nowPoint++;
 			}
-		}
-		else {
-			moveTime++;
 		}
 	}
 }

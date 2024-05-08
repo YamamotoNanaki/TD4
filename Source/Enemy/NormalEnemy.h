@@ -11,7 +11,7 @@ namespace IFE {
 		//周りを見渡す時間
 		const int WAIT_TIME = 200;
 		//探索時移動速度 
-		const float MOVE_SPEED = 2.0f;
+		const float MOVE_VELO = 0.08f;
 	//メンバ変数
 	private:
 		//待機タイマー
@@ -19,8 +19,7 @@ namespace IFE {
 		//経由地点
 		std::vector<Float3> points;
 		//経由地点
-		int pointA;
-		int pointB;
+		int nowPoint;
 		//lerp用
 		float moveTime;
 
