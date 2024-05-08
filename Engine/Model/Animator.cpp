@@ -60,6 +60,7 @@ void IFE::Animator::SetAnimation(std::string animName)
 		if (anim.name == animName)
 		{
 			animNum_ = i;
+			break;
 		}
 		i++;
 	}

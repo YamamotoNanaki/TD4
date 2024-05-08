@@ -53,6 +53,10 @@ namespace IFE
 		void CopyValue(Object3D* ptr);
 		void Destroy();
 		bool GetDeleteFlag();
+		void SetColor(const Float4& color);
+		void SetColor255(const Float4& color);
+		Float4 GetColor();
+		Float4 GetColor255();
 
 #ifdef InverseEditorMode
 #else
