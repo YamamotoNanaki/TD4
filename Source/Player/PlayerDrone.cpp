@@ -119,21 +119,21 @@ void PlayerDrone::Rotation()
 	//ƒJƒƒ‰‚ÌŒü‚«‚Éi‚ÞƒJƒƒ‰
 	else
 	{
-		if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
+		/*if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
 		{
 			transform_->eulerAngleDegrees_ += { 0, -5.0f, 0 };
 		}
 		if (IFE::Input::GetKeyPush(IFE::Key::RIGHT))
 		{
 			transform_->eulerAngleDegrees_ += { 0, 5.0f, 0 };
-		}
+		}*/
 
 		if (IFE::Input::GetKeyPush(IFE::Key::UP))
 		{
 			transform_->eulerAngleDegrees_ += transform_->GetForwardVector();
 		}if (IFE::Input::GetKeyPush(IFE::Key::DOWN))
 		{
-			transform_->eulerAngleDegrees_ += { 5.0f, 0, 0 };
+			transform_->eulerAngleDegrees_ -= transform_->GetForwardVector();
 		}
 	}
 	

@@ -13,7 +13,7 @@ private:
 	IFE::Vector3 frontVec_ = {};
 
 	IFE::Camera* droneCamera_ = nullptr;
-	bool cameraMode_ = false;
+	bool cameraMode_ = true;
 
 	void SpeedZero(float& speed);
 
