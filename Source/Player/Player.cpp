@@ -5,6 +5,7 @@
 #include"PlayerAction.h"
 #include"PlayerDrone.h"
 #include"ObjectManager.h"
+#include"CameraManager.h"
 
 void Player::Initialize()
 {
@@ -47,10 +48,12 @@ void Player::ChangeMode()
 		if (modeFlag_ == false)
 		{
 			modeFlag_ = true;
+			IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
 		}
 		else
 		{
 			modeFlag_ = false;
+			IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
 		}
 
 		if (drone_->GetDrawFlag() == false)

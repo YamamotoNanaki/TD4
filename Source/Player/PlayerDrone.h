@@ -12,6 +12,9 @@ private:
 	IFE::Vector3 pos_ = { 0,0,0 };
 	IFE::Vector3 frontVec_ = {};
 
+	IFE::Camera* droneCamera_ = nullptr;
+	bool cameraMode_ = false;
+
 	void SpeedZero(float& speed);
 
 public:
@@ -29,6 +32,8 @@ public:
 	void MoveUpdate();
 	void Move();
 	void Rotation();
+
+	void CameraUpdate();
 
 	bool GetDrawFlag();
 	void SetDrawFlag(bool flag);

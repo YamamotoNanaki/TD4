@@ -9,6 +9,7 @@ namespace IFE
 	public:
 		static bool CheckSpherePlane(const Sphere& sphere, const Plane& plane, Vector3* inter = nullptr);
 		static bool CheckRaySphere(const Ray& ray, const Sphere& sphere, float* distance = nullptr, Vector3* inter = nullptr);
+		static bool CheckRaySphere(const Ray& ray, const Sphere& sphere, float* distance = nullptr, float* rayHittingdistance = nullptr, Vector3* inter = nullptr);
 		static bool CheckRayPlane(const Ray& ray, const Plane& plane, float* distance = nullptr, Vector3* inter = nullptr);
 		static bool CheckRayTriangle(const Ray& ray, const Triangle& triangle, float* distance = nullptr, Vector3* inter = nullptr);
 		//static bool CheckSphere(const Sphere& s1, const Sphere& s2, Vector3* inter = nullptr);

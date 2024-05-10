@@ -36,6 +36,8 @@ namespace IFE
 
 		Vector3 rayDir_ = { 1,0,0 };
 		float rayDistance = 0;
+		//“–‚½‚è”»’è‚Ì‹——£
+		//0ˆÈ‰º‚Í‹——£§ŒÀ‚È‚µ
 		float rayHittingdistance = -1;
 
 	public:

@@ -104,7 +104,12 @@ void IFE::CollideManager::CollidersUpdate()
 				Sphere sphere(colB->GetColliderPosition(), Vector3(colB->GetColliderScale()).Length());
 				Vector3 inter;
 				float dis;
-				if (Collision::CheckRaySphere(ray, sphere, &dis, &inter))
+				float* hitdis = nullptr;
+				if (&colA->rayHittingdistance > 0)
+				{
+					hitdis = &colA->rayHittingdistance;
+				}
+				if (Collision::CheckRaySphere(ray, sphere, &dis, hitdis, &inter))
 				{
 					colA->interPoint_ = inter;
 					colB->interPoint_ = inter;
@@ -119,7 +124,12 @@ void IFE::CollideManager::CollidersUpdate()
 				Ray ray(colA->GetColliderPosition(), colA->rayDir_);
 				Vector3 inter;
 				float dis;
-				if (mesh->CheckCollisionRay(ray, &dis, &inter))
+				float* hitdis = nullptr;
+				if (&colA->rayHittingdistance > 0)
+				{
+					hitdis = &colA->rayHittingdistance;
+				}
+				if (mesh->CheckCollisionRay(ray, &dis, hitdis, &inter))
 				{
 					colA->interPoint_ = inter;
 					colB->interPoint_ = inter;
@@ -134,7 +144,12 @@ void IFE::CollideManager::CollidersUpdate()
 				Sphere sphere(colA->GetColliderPosition(), Vector3(colA->GetColliderScale()).Length());
 				Vector3 inter;
 				float dis;
-				if (Collision::CheckRaySphere(ray, sphere, &dis, &inter))
+				float* hitdis = nullptr;
+				if (&colB->rayHittingdistance > 0)
+				{
+					hitdis = &colB->rayHittingdistance;
+				}
+				if (Collision::CheckRaySphere(ray, sphere, &dis, hitdis, &inter))
 				{
 					colA->interPoint_ = inter;
 					colB->interPoint_ = inter;
@@ -149,7 +164,12 @@ void IFE::CollideManager::CollidersUpdate()
 				Ray ray(colB->GetColliderPosition(), colB->rayDir_);
 				Vector3 inter;
 				float dis;
-				if (mesh->CheckCollisionRay(ray, &dis, &inter))
+				float* hitdis = nullptr;
+				if (&colB->rayHittingdistance > 0)
+				{
+					hitdis = &colB->rayHittingdistance;
+				}
+				if (mesh->CheckCollisionRay(ray, &dis, hitdis, &inter))
 				{
 					colA->interPoint_ = inter;
 					colB->interPoint_ = inter;

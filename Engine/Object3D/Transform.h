@@ -63,7 +63,7 @@ namespace IFE
 #ifdef InverseEditorMode
 #else
 		void ComponentDebugGUI();
-		void OutputComponent(nlohmann::json&json)override;
+		void OutputComponent(nlohmann::json& json)override;
 #endif
 		void LoadingComponent(nlohmann::json& json)override;
 	};
@@ -92,7 +92,7 @@ namespace IFE
 #ifdef InverseEditorMode
 #else
 		void ComponentDebugGUI();
-		void OutputComponent(nlohmann::json&json)override;
+		void OutputComponent(nlohmann::json& json)override;
 #endif
 		void LoadingComponent(nlohmann::json& json)override;
 	};
@@ -154,13 +154,13 @@ namespace IFE
 		using Component::Component;
 	public:
 		bool eulerFlag_ = false;
-		Float2 projectionSize_;
+		Float2 projectionSize_ = { 1920,1080 };
 
 		TransformCamera* parent_ = nullptr;
 
-		Float3 target_ = {0,0,0};
-		Float3 eye_ = {0,0,-5};
-		Float3 up_ = {0,0,-5};
+		Float3 target_ = { 0,0,0 };
+		Float3 eye_ = { 0,0,-5 };
+		Float3 up_ = { 0,1,0 };
 
 	public:
 		void Update()override;
