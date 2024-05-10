@@ -44,7 +44,7 @@ void IFE::TransferGeometryBuffer::Copy(Component* component)
 #ifdef InverseEditorMode
 #else
 
-void IFE::TransferGeometryBuffer::DebugGUI()
+void IFE::TransferGeometryBuffer::ComponentDebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
 	std::function<void(void)> guiFunc = [&]()

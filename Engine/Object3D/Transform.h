@@ -62,7 +62,7 @@ namespace IFE
 		~Transform();
 #ifdef InverseEditorMode
 #else
-		void DebugGUI();
+		void ComponentDebugGUI();
 		void OutputComponent(nlohmann::json&json)override;
 #endif
 		void LoadingComponent(nlohmann::json& json)override;
@@ -91,7 +91,7 @@ namespace IFE
 		~Transform2D();
 #ifdef InverseEditorMode
 #else
-		void DebugGUI();
+		void ComponentDebugGUI();
 		void OutputComponent(nlohmann::json&json)override;
 #endif
 		void LoadingComponent(nlohmann::json& json)override;
@@ -142,7 +142,7 @@ namespace IFE
 		~TransformParticle();
 #ifdef InverseEditorMode
 #else
-		void DebugGUI();
+		void ComponentDebugGUI();
 		void OutputComponent(nlohmann::json& json)override;
 #endif
 		void LoadingComponent(nlohmann::json& json)override;
@@ -187,7 +187,7 @@ namespace IFE
 		~TransformCamera();
 #ifdef InverseEditorMode
 #else
-		void DebugGUI();
+		void ComponentDebugGUI();
 		void OutputComponent(nlohmann::json& json)override;
 #endif
 		void LoadingComponent(nlohmann::json& json)override;
