@@ -150,12 +150,18 @@ void IFE::NormalEnemy::OnColliderHit(Collider* myCollider, Collider* hitCollider
 	{
 		if (hitCollider->objectPtr_->GetComponent<NormalEnemy>()) {
 			Vector3 ePos = transform_->position_;
-			Vector3 addVec = hitCollider->objectPtr_->GetComponent<NormalEnemy>()->GetPos() - ePos;
+			Vector3 hitPos = hitCollider->objectPtr_->GetComponent<NormalEnemy>()->GetPos();
+			Vector3 addVec = hitPos - ePos;
 			addVec.Normalize();
 			addVec *= Vector3(-1, 0, -1);
 			transform_->position_+= (addVec * 0.1f);
 		}
 	}
+}
+
+IFE::Vector3 IFE::NormalEnemy::GetPos() {
+	Vector3 temp = transform_->position_;
+	return temp;
 }
 
 void IFE::NormalEnemy::Finalize()

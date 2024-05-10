@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseEnemy.h"
 #include "PlayerAction.h"
+#include "IFEMath.h"
 
 namespace IFE {
 	//---‚ß‚Á‚¿‚á•’Ê‚Ì“G---//
@@ -82,7 +83,7 @@ namespace IFE {
 
 
 		///-----Getter-----///
-		Vector3 GetPos() { return transform_->position_; }
+		Vector3 GetPos();
 
 
 #ifdef EditorMode
