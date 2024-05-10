@@ -43,7 +43,7 @@ void IFE::NormalEnemy::ChangeState()
 void IFE::NormalEnemy::Update()
 {
 	std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
-	Search();
+	ChangeState();
 }
 
 void IFE::NormalEnemy::Wait()
@@ -104,7 +104,7 @@ void IFE::NormalEnemy::Chase()
 	Vector3 ePos = transform_->position_;
 	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos() - ePos;
 	addVec.Normalize();
-	transform_->position_ += (addVec * 0.5f);
+	transform_->position_ += (addVec * 0.1f);
 }
 
 void IFE::NormalEnemy::Draw()
@@ -118,13 +118,17 @@ void IFE::NormalEnemy::OnColliderHit(Collider* myCollider, Collider* hitCollider
 	{
 		if (state != CHASE) {
 			state = CHASE;
+			objectPtr_->SetColor({1,0,0,1});
 		}
 	}
 	//‘ŠŽè‚ªplayer‚¾‚Á‚½ê‡
-	if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
-		//“–‚½‚Á‚½Žž‚Ìˆ—
-		/*componentDeleteFlag_ = true;
-		objectPtr_->DrawFlag_ = false;*/
+	if (myCollider->GetColliderType() == ColliderType::SPHERE)
+	{
+		if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
+			//“–‚½‚Á‚½Žž‚Ìˆ—
+			componentDeleteFlag_ = true;
+			objectPtr_->DrawFlag_ = false;
+		}
 	}
 }
 
