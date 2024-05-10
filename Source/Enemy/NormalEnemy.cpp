@@ -129,6 +129,17 @@ void IFE::NormalEnemy::OnColliderHit(Collider* myCollider, Collider* hitCollider
 			objectPtr_->Destroy();
 		}
 	}
+	//“G‚Æ“G
+	if (myCollider->GetColliderType() == ColliderType::SPHERE)
+	{
+		if (hitCollider->objectPtr_->GetComponent<NormalEnemy>()) {
+			Vector3 ePos = transform_->position_;
+			Vector3 addVec = hitCollider->objectPtr_->GetComponent<NormalEnemy>()->GetPos() - ePos;
+			addVec.Normalize();
+			addVec *= Vector3(-1, 0, -1);
+			transform_->position_+= (addVec * 0.1f);
+		}
+	}
 }
 
 void IFE::NormalEnemy::Finalize()

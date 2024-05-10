@@ -74,6 +74,10 @@ namespace IFE {
 		void Finalize();
 
 
+		///-----Getter-----///
+		Vector3 GetPos() { return transform_->position_; }
+
+
 #ifdef EditorMode
 		/// <summary>
 		/// デバック中に調整できるらしい
