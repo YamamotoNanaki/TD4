@@ -11,9 +11,11 @@ void IFE::NormalEnemy::Initialize()
 	waitTimer = 0;
 	nextPoint = 0;
 	std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
+	//ƒŒƒC(‹ü)
 	for (size_t i = 0; i < colliders.size(); i++) {
 		if (colliders[i]->GetColliderType() == ColliderType::RAY) {
 			rayColl = colliders[i];
+			rayColl->rayDir_ = { 0,0,-1 };
 		}
 	}
 }
@@ -39,7 +41,7 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::Update()
 {
-	/*Chase();*/
+	std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
 	Search();
 }
 
