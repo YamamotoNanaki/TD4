@@ -60,11 +60,11 @@ std::vector<std::string> IFE::ComponentManager::GetAllComponentName()
 	return s;
 }
 
-void IFE::ComponentManager::OnColliderHit(Collider* collider)
+void IFE::ComponentManager::OnColliderHit(Collider* myCollider, Collider* hitCollider)
 {
 	for (auto& itr : componentList_)
 	{
-		itr->OnColliderHit(collider);
+		itr->OnColliderHit(myCollider, hitCollider);
 	}
 }
 

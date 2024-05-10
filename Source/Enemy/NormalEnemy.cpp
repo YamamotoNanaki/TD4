@@ -111,10 +111,14 @@ void IFE::NormalEnemy::Draw()
 
 }
 
-void IFE::NormalEnemy::OnColliderHit(IFE::Collider* collider)
+void IFE::NormalEnemy::OnColliderHit(Collider* myCollider, Collider* hitCollider)
 {
+	if (myCollider->GetColliderType() == ColliderType::RAY)
+	{
+
+	}
 	//‘ŠŽè‚ªplayer‚¾‚Á‚½ê‡
-	if (collider->objectPtr_->GetComponent<PlayerAction>()) {
+	if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
 		//“–‚½‚Á‚½Žž‚Ìˆ—
 		/*componentDeleteFlag_ = true;
 		objectPtr_->DrawFlag_ = false;*/

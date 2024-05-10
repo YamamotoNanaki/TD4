@@ -75,7 +75,7 @@ namespace IFE
 		void SetParticlePtr(Particle* particlePtr);
 		void SetCameraPtr(Camera* cameraPtr);
 		std::vector<std::string> GetAllComponentName();
-		void OnColliderHit(Collider* collider);
+		void OnColliderHit(Collider* myCollider, Collider* hitCollider);
 		void CopyValue(ComponentManager* ptr);
 #ifdef InverseEditorMode
 #else

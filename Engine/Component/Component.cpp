@@ -135,9 +135,9 @@ IFE::Camera* IFE::Component::GetCameraPtr()
 
 void IFE::Component::Copy(Component* c) { c; }
 
-void IFE::Component::OnColliderHit(Collider* collider)
+void IFE::Component::OnColliderHit(Collider* myCollider, Collider* hitCollider)
 {
-	collider;
+	myCollider, hitCollider;
 }
 
 void IFE::Component::CopyValue(Component* component)
