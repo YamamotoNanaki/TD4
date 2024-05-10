@@ -44,7 +44,7 @@ void IFE::TransferGeometryBuffer::Copy(Component* component)
 #ifdef InverseEditorMode
 #else
 
-void IFE::TransferGeometryBuffer::DebugGUI()
+void IFE::TransferGeometryBuffer::ComponentDebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
 	std::function<void(void)> guiFunc = [&]()
@@ -60,7 +60,7 @@ void IFE::TransferGeometryBuffer::DebugGUI()
 	{
 		componentDeleteFlag_ = true;
 	};
-	im->ComponentGUI(guiFunc, deleteFunc, componentName_);
+	im->ComponentGUI(guiFunc, deleteFunc);
 }
 
 void IFE::TransferGeometryBuffer::OutputComponent(nlohmann::json& json)

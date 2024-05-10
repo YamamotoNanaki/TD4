@@ -87,7 +87,7 @@ void IFE::Mesh::ComponentDebugGUI()
 {
 	if (material_)
 	{
-		material_->DebugGUI();
+		material_->DebugGUI(0);
 		material_->componentName_ = componentName_;
 	}
 }

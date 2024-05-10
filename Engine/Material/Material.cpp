@@ -109,7 +109,7 @@ MaterialParams IFE::Material::GetMaterial()
 
 #ifdef InverseEditorMode
 #else
-void IFE::Material::DebugGUI()
+void IFE::Material::ComponentDebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
 	std::function<void(std::string)> guiFunc2 = [&](std::string textureName)
@@ -129,7 +129,7 @@ void IFE::Material::DebugGUI()
 		{
 			componentDeleteFlag_ = true;
 		};
-	im->ComponentGUI(guiFunc, deleteFunc, componentName_);
+	im->ComponentGUI(guiFunc, deleteFunc);
 }
 
 void IFE::Material::OutputComponent(nlohmann::json& j)

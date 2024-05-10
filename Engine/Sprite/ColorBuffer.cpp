@@ -52,7 +52,7 @@ void IFE::ColorBuffer::DebugGUI()
 	{
 		componentDeleteFlag_ = true;
 	};
-	im->ComponentGUI(guiFunc, deleteFunc, componentName_);
+	im->ComponentGUI(guiFunc, deleteFunc);
 }
 
 void IFE::ColorBuffer::OutputComponent(nlohmann::json& json)

@@ -34,8 +34,9 @@ namespace IFE
 		bool onGround_ = false;
 		RaycastHit groundHit_;
 
-		Vector3 rayDir_ = {1,0,0};
+		Vector3 rayDir_ = { 1,0,0 };
 		float rayDistance = 0;
+		float rayHittingdistance = -1;
 
 	public:
 		void Initialize()override;

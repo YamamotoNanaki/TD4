@@ -166,7 +166,7 @@ IFE::Transform::~Transform()
 
 #ifdef InverseEditorMode
 #else
-void IFE::Transform::DebugGUI()
+void IFE::Transform::ComponentDebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
 	std::function<void(void)> guiFunc = [&]()
@@ -204,7 +204,7 @@ void IFE::Transform::DebugGUI()
 	{
 		componentDeleteFlag_ = true;
 	};
-	im->ComponentGUI(guiFunc, deleteFunc, componentName_);
+	im->ComponentGUI(guiFunc, deleteFunc);
 	UpdateMatrix();
 }
 void IFE::Transform::OutputComponent(nlohmann::json& j)
@@ -267,7 +267,7 @@ IFE::Transform2D::~Transform2D()
 
 #ifdef InverseEditorMode
 #else
-void IFE::Transform2D::DebugGUI()
+void IFE::Transform2D::ComponentDebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
 	std::function<void(void)> guiFunc = [&]()
@@ -288,7 +288,7 @@ void IFE::Transform2D::DebugGUI()
 	{
 		componentDeleteFlag_ = true;
 	};
-	im->ComponentGUI(guiFunc, deleteFunc, componentName_);
+	im->ComponentGUI(guiFunc, deleteFunc);
 }
 
 void IFE::Transform2D::OutputComponent(nlohmann::json& j)
@@ -437,7 +437,7 @@ IFE::TransformParticle::~TransformParticle()
 
 #ifdef InverseEditorMode
 #else
-void IFE::TransformParticle::DebugGUI()
+void IFE::TransformParticle::ComponentDebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
 	std::function<void(void)> guiFunc = [&]()
@@ -475,7 +475,7 @@ void IFE::TransformParticle::DebugGUI()
 	{
 		componentDeleteFlag_ = true;
 	};
-	im->ComponentGUI(guiFunc, deleteFunc, componentName_);
+	im->ComponentGUI(guiFunc, deleteFunc);
 }
 
 void IFE::TransformParticle::OutputComponent(nlohmann::json& json)
@@ -626,7 +626,7 @@ IFE::TransformCamera::~TransformCamera()
 
 #ifdef InverseEditorMode
 #else
-void IFE::TransformCamera::DebugGUI()
+void IFE::TransformCamera::ComponentDebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
 	std::function<void(void)> guiFunc = [&]()
@@ -667,7 +667,7 @@ void IFE::TransformCamera::DebugGUI()
 	{
 		componentDeleteFlag_ = true;
 	};
-	im->ComponentGUI(guiFunc, deleteFunc, componentName_);
+	im->ComponentGUI(guiFunc, deleteFunc);
 }
 void IFE::TransformCamera::OutputComponent(nlohmann::json& j)
 {

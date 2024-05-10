@@ -40,6 +40,7 @@ namespace IFE
 		MeshCollider(FBXModel* model, Matrix* matWorld);
 		bool CheckCollisionSphere(const Sphere& sphere, Vector3* inter = nullptr, Vector3* reject = nullptr);
 		bool CheckCollisionRay(const Ray& ray, float* distance = nullptr, Vector3* inter = nullptr);
+		bool CheckCollisionRay(const Ray& ray, float* distance = nullptr, float* hittingdistance = nullptr, Vector3* inter = nullptr);
 		~MeshCollider() {};
 	};
 	class Collider;
