@@ -15,6 +15,11 @@ bool IFE::Collision::CheckSpherePlane(const Sphere& sphere, const Plane& plane, 
 
 bool IFE::Collision::CheckRaySphere(const Ray& ray, const Sphere& sphere, float* distance, Vector3* inter)
 {
+	return CheckRaySphere(ray, sphere, distance, nullptr, inter);
+}
+
+bool IFE::Collision::CheckRaySphere(const Ray& ray, const Sphere& sphere, float* distance, float* rayHittingdistance, Vector3* inter)
+{
 	Vector3 m = ray.start - sphere.center;
 	float b = Vector3Dot(m, ray.dir);
 	float c = Vector3Dot(m, m) - sphere.radius * sphere.radius;
@@ -26,14 +31,25 @@ bool IFE::Collision::CheckRaySphere(const Ray& ray, const Sphere& sphere, float*
 	float t = -b - sqrtf(discr);
 	if (t < 0.0f)t = 0.0f;
 
-	if (distance)*distance = t;
-	if (inter)
+	if (distance)
 	{
-		inter->x = ray.start.x + t * ray.dir.x;
-		inter->y = ray.start.y + t * ray.dir.y;
-		inter->z = ray.start.z + t * ray.dir.z;
+		if (rayHittingdistance && rayHittingdistance > distance)
+		{
+			*distance = t;
+			if (inter)
+			{
+				inter->x = ray.start.x + t * ray.dir.x;
+				inter->y = ray.start.y + t * ray.dir.y;
+				inter->z = ray.start.z + t * ray.dir.z;
+			}
+			return true;
+		}
+		else if (!rayHittingdistance)
+		{
+			return true;
+		}
 	}
-	return true;
+	return false;
 }
 
 bool IFE::Collision::CheckRayPlane(const Ray& ray, const Plane& plane, float* distance, Vector3* inter)
