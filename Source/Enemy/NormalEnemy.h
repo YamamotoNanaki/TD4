@@ -22,7 +22,7 @@ namespace IFE {
 		//lerp用
 		float moveTime;
 		//コライダー取得用
-		Collider* rayColl = nullptr;
+		ColliderComponent* rayColl = nullptr;
 
 	//メンバ関数
 	public:
@@ -70,7 +70,7 @@ namespace IFE {
 		/// ヒット時
 		/// </summary>
 		/// <param name="collider"></param>
-		void OnColliderHit(Collider* myCollider, Collider* hitCollider)override;
+		void OnColliderHit(ColliderComponent* myCollider, ColliderComponent* hitCollider)override;
 
 		/// <summary>
 		/// 終了

@@ -10,7 +10,7 @@ void IFE::NormalEnemy::Initialize()
 	state = WAIT;
 	waitTimer = 0;
 	nextPoint = 0;
-	std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
+	std::vector<ColliderComponent*>colliders = objectPtr_->GetComponents<ColliderComponent>();
 	for (size_t i = 0; i < colliders.size(); i++) {
 		if (colliders[i]->GetColliderType() == ColliderType::RAY) {
 			rayColl = colliders[i];
@@ -109,7 +109,7 @@ void IFE::NormalEnemy::Draw()
 
 }
 
-void IFE::NormalEnemy::OnColliderHit(Collider* myCollider, Collider* hitCollider)
+void IFE::NormalEnemy::OnColliderHit(ColliderComponent* myCollider, ColliderComponent* hitCollider)
 {
 	if (myCollider->GetColliderType() == ColliderType::RAY)
 	{

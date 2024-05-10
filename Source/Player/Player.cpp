@@ -37,7 +37,7 @@ void Player::Finalize()
 {
 }
 
-void Player::OnColliderHit(IFE::Collider collider)
+void Player::OnColliderHit(IFE::ColliderComponent collider)
 {
 }
 

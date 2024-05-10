@@ -22,7 +22,7 @@ void PlayerAction::Finalize()
 {
 }
 
-void PlayerAction::OnColliderHit(IFE::Collider collider)
+void PlayerAction::OnColliderHit(IFE::ColliderComponent collider)
 {
 }
 

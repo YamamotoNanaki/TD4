@@ -14,7 +14,7 @@ namespace IFE
 		LANDSHAPE = 0b1 << 0, ALLIES = 0b1 << 1, ENEMYS = 0b1 << 2,
 		ALL = 0xffff
 	};
-	class Collider : public Component
+	class ColliderComponent : public Component
 	{
 		using Component::Component;
 	private:
@@ -64,6 +64,24 @@ namespace IFE
 
 	private:
 		void GetParentParms();
+	public:
+
+		void Loading(nlohmann::json& json);
+
+#ifdef InverseEditorMode
+#else
+		void Output(nlohmann::json& json);
+		bool ColliderGUI(uint32_t num);
+#endif
+	};
+
+	class Collider : public Component
+	{
+		std::list<std::unique_ptr<ColliderComponent>>colliderList_;
+	public:
+		void Initialize()override;
+		void Update()override;
+
 	public:
 
 		void LoadingComponent(nlohmann::json& json)override;
