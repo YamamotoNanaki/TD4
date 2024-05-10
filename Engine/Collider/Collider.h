@@ -14,7 +14,7 @@ namespace IFE
 		LANDSHAPE = 0b1 << 0, ALLIES = 0b1 << 1, ENEMYS = 0b1 << 2,
 		ALL = 0xffff
 	};
-	class ColliderComponent : public Component
+	class ColliderCore : public Component
 	{
 		using Component::Component;
 	private:
@@ -77,11 +77,12 @@ namespace IFE
 
 	class Collider : public Component
 	{
-		std::list<std::unique_ptr<ColliderComponent>>colliderList_;
+		std::list<std::unique_ptr<ColliderCore>>colliderList_;
 	public:
 		void Initialize()override;
 		void Update()override;
-		ColliderComponent* AddCollider();
+		ColliderCore* AddCollider();
+		ColliderCore* GetCollider(uint32_t num);
 
 	public:
 

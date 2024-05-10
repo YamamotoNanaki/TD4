@@ -37,7 +37,7 @@ void PlayerDrone::Finalize()
 {
 }
 
-void PlayerDrone::OnColliderHit(IFE::ColliderComponent collider)
+void PlayerDrone::OnColliderHit(IFE::ColliderCore collider)
 {
 }
 

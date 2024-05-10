@@ -74,7 +74,7 @@ namespace IFE {
 		/// ƒqƒbƒg
 		/// </summary>
 		/// <param name="collider"></param>
-		void OnColliderHit(ColliderComponent* myCollider, ColliderComponent* hitCollider)override;
+		void OnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)override;
 
 		/// <summary>
 		/// I—¹

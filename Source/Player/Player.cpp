@@ -39,7 +39,7 @@ void Player::Finalize()
 {
 }
 
-void Player::OnColliderHit(IFE::ColliderComponent collider)
+void Player::OnColliderHit(IFE::ColliderCore collider)
 {
 }
 

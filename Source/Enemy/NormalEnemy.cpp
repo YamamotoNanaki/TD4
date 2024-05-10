@@ -128,7 +128,7 @@ void IFE::NormalEnemy::Draw()
 
 }
 
-void IFE::NormalEnemy::OnColliderHit(ColliderComponent* myCollider, ColliderComponent* hitCollider)
+void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
 {
 	if (myCollider->GetColliderType() == ColliderType::RAY)
 	{

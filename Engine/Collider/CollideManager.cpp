@@ -41,8 +41,8 @@ void IFE::CollideManager::RaycastSystemUpdate()
 void IFE::CollideManager::CollidersUpdate()
 {
 	if (colliders_.size() < 2)return;
-	list<ColliderComponent*>::iterator itA;
-	list<ColliderComponent*>::iterator itB;
+	list<ColliderCore*>::iterator itA;
+	list<ColliderCore*>::iterator itB;
 
 	itA = colliders_.begin();
 	for (; itA != colliders_.end(); ++itA)
@@ -51,8 +51,8 @@ void IFE::CollideManager::CollidersUpdate()
 		++itB;
 		for (; itB != colliders_.end(); ++itB)
 		{
-			ColliderComponent* colA = *itA;
-			ColliderComponent* colB = *itB;
+			ColliderCore* colA = *itA;
+			ColliderCore* colB = *itB;
 			if (colA->objectPtr_ == colB->objectPtr_ || colA->emitterPtr_ || colB->emitterPtr_)continue;
 
 			//ともに球
@@ -188,7 +188,7 @@ void IFE::CollideManager::Reset()
 	colliders_.clear();
 }
 
-void IFE::CollideManager::ColliderSet(ColliderComponent* collider)
+void IFE::CollideManager::ColliderSet(ColliderCore* collider)
 {
 	colliders_.push_back(collider);
 }
@@ -201,15 +201,15 @@ bool IFE::CollideManager::Raycast(const Ray& ray, RaycastHit* hitInfo, float max
 bool IFE::CollideManager::Raycast(const Ray& ray, uint16_t attribute, RaycastHit* hitInfo, float maxDistance)
 {
 	bool result = false;
-	std::list<ColliderComponent*>::iterator it;
-	std::list<ColliderComponent*>::iterator it_hit;
+	std::list<ColliderCore*>::iterator it;
+	std::list<ColliderCore*>::iterator it_hit;
 	float distance = maxDistance;
 	Vector3 inter;
 
 	// 全てのコライダーと総当りチェック
 	it = colliders_.begin();
 	for (; it != colliders_.end(); ++it) {
-		ColliderComponent* colA = *it;
+		ColliderCore* colA = *it;
 
 		// 属性が合わなければスキップ
 		if (!(colA->attribute_ & attribute)) {
@@ -254,7 +254,7 @@ bool IFE::CollideManager::Raycast(const Ray& ray, uint16_t attribute, RaycastHit
 	return result;
 }
 
-void IFE::CollideManager::PushBack(ColliderComponent* colA, ColliderComponent* colB, const Vector3& reject)
+void IFE::CollideManager::PushBack(ColliderCore* colA, ColliderCore* colB, const Vector3& reject)
 {
 	// 地面判定しきい値
 	static const float threshold = cosf(ConvertToRadians(30.0f));
@@ -293,7 +293,7 @@ void IFE::CollideManager::PushBack(ColliderComponent* colA, ColliderComponent* c
 	}
 }
 
-void IFE::CollideManager::OnColliderHit(ColliderComponent* colA, ColliderComponent* colB)
+void IFE::CollideManager::OnColliderHit(ColliderCore* colA, ColliderCore* colB)
 {
 	if (colA->objectPtr_)
 	{
