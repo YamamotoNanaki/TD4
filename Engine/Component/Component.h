@@ -53,7 +53,7 @@ namespace IFE
 		Particle* GetParticlePtr();
 		Camera* GetCameraPtr();
 		virtual void Copy(Component* component);
-		virtual void OnColliderHit(ColliderComponent* myCollider, ColliderComponent* hitCollider);
+		virtual void OnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider);
 		void CopyValue(Component* component);
 		virtual void CopyValueComponent(Component* component);
 #ifdef InverseEditorMode
