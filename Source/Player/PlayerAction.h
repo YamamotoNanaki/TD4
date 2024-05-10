@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include"IFEMath.h"
+#include"CameraManager.h"
 
 class PlayerAction : public IFE::Component
 {
@@ -12,6 +13,8 @@ private:
 
 	IFE::Vector3 cameraPos_ = {};
 	IFE::Vector2 cameraAngle_ = {};
+
+	IFE::Camera* actionCamera_ = nullptr;
 
 	bool attackFlag_ = false;
 	const uint8_t attackTime_ = 10;

@@ -6,7 +6,8 @@
 
 void PlayerAction::Initialize()
 {
-
+	actionCamera_=IFE::CameraManager::Instance()->GetCamera("ActionCamera");
+	IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
 }
 
 void PlayerAction::Update()
@@ -73,12 +74,13 @@ void PlayerAction::CameraUpdate()
 {
 	const float distance = 1.0f;
 
-	cameraPos_ =
+	actionCamera_->transform_->eye_ =
 	{
 		distance * cosf(cameraAngle_.x) * sinf(cameraAngle_.y),
 		distance * sinf(cameraAngle_.x),
 		distance * cosf(cameraAngle_.x) * cosf(cameraAngle_.y)
 	};
+	actionCamera_->transform_->target_ = transform_->position_;
 }
 
 void PlayerAction::Attack()
