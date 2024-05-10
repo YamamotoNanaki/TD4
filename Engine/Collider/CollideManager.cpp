@@ -119,7 +119,7 @@ void IFE::CollideManager::CollidersUpdate()
 				Ray ray(colA->GetColliderPosition(), colA->rayDir_);
 				Vector3 inter;
 				float dis;
-				if (mesh->CheckCollisionRay(ray, &dis,&inter))
+				if (mesh->CheckCollisionRay(ray, &dis, &inter))
 				{
 					colA->interPoint_ = inter;
 					colB->interPoint_ = inter;
@@ -277,18 +277,18 @@ void IFE::CollideManager::OnColliderHit(Collider* colA, Collider* colB)
 {
 	if (colA->objectPtr_)
 	{
-		colA->objectPtr_->OnColliderHit(colB);
+		colA->objectPtr_->OnColliderHit(colA, colB);
 	}
 	else if (colA->emitterPtr_)
 	{
-		colA->emitterPtr_->OnColliderHit(colB);
+		colA->emitterPtr_->OnColliderHit(colA, colB);
 	}
 	if (colB->objectPtr_)
 	{
-		colB->objectPtr_->OnColliderHit(colA);
+		colB->objectPtr_->OnColliderHit(colB, colA);
 	}
 	else if (colB->emitterPtr_)
 	{
-		colB->emitterPtr_->OnColliderHit(colA);
+		colB->emitterPtr_->OnColliderHit(colB, colA);
 	}
 }
