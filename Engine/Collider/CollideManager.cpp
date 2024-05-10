@@ -105,7 +105,7 @@ void IFE::CollideManager::CollidersUpdate()
 				Vector3 inter;
 				float dis;
 				float* hitdis = nullptr;
-				if (&colA->rayHittingdistance > 0)
+				if (colA->rayHittingdistance > 0.f)
 				{
 					hitdis = &colA->rayHittingdistance;
 				}
@@ -125,7 +125,7 @@ void IFE::CollideManager::CollidersUpdate()
 				Vector3 inter;
 				float dis;
 				float* hitdis = nullptr;
-				if (&colA->rayHittingdistance > 0)
+				if (colA->rayHittingdistance > 0.f)
 				{
 					hitdis = &colA->rayHittingdistance;
 				}
@@ -145,7 +145,7 @@ void IFE::CollideManager::CollidersUpdate()
 				Vector3 inter;
 				float dis;
 				float* hitdis = nullptr;
-				if (&colB->rayHittingdistance > 0)
+				if (colB->rayHittingdistance > 0.f)
 				{
 					hitdis = &colB->rayHittingdistance;
 				}
@@ -165,7 +165,7 @@ void IFE::CollideManager::CollidersUpdate()
 				Vector3 inter;
 				float dis;
 				float* hitdis = nullptr;
-				if (&colB->rayHittingdistance > 0)
+				if (colB->rayHittingdistance > 0.f)
 				{
 					hitdis = &colB->rayHittingdistance;
 				}
