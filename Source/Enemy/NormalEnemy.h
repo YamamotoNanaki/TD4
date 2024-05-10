@@ -19,6 +19,8 @@ namespace IFE {
 		std::vector<Float3> points;
 		//Ÿ‚ÌêŠ
 		int nextPoint;
+		//UŒ‚‚µ‚½‚©
+		bool isAttack;
 
 	//ƒƒ“ƒoŠÖ”
 	public:
@@ -56,6 +58,11 @@ namespace IFE {
 		/// ’Ç‚¦
 		/// </summary>
 		void Chase();
+
+		/// <summary>
+		/// ‰£‚ê
+		/// </summary>
+		void Attack();
 
 		/// <summary>
 		/// •`‰æ

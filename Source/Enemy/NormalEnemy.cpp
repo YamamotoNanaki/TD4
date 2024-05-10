@@ -10,6 +10,7 @@ void IFE::NormalEnemy::Initialize()
 	state = WAIT;
 	waitTimer = 0;
 	nextPoint = 0;
+	isAttack = false;
 	std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
 	//ÉåÉC(éãê¸)
 	for (size_t i = 0; i < colliders.size(); i++) {
@@ -102,9 +103,24 @@ void IFE::NormalEnemy::Chase()
 {
 	//ÉåÉCÇ™Ç‹ÇæÇæÇ©ÇÁÇ∆ÇËÇ†Ç¶Ç∏í«Ç¢Ç©ÇØÇÈ
 	Vector3 ePos = transform_->position_;
-	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos() - ePos;
+	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	Vector3 addVec = pPos - ePos;
 	addVec.Normalize();
 	transform_->position_ += (addVec * 0.1f);
+
+	//ãﬂÇ√Ç¢ÇΩÇÁâ£ÇÈ
+	double len = sqrt(pow(ePos.x - pPos.x, 2) + pow(ePos.y - pPos.y, 2) +
+		pow(ePos.z - pPos.z, 2));
+	if (len <= 3.0) {
+		Attack();
+	}
+}
+
+void IFE::NormalEnemy::Attack()
+{
+	if (isAttack == false) {
+		isAttack = true;
+	}
 }
 
 void IFE::NormalEnemy::Draw()
