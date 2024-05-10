@@ -13,11 +13,11 @@ void IFE::NormalEnemy::Initialize()
 	std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
 	//ƒŒƒC(‹ü)
 	for (size_t i = 0; i < colliders.size(); i++) {
+		colliders[0]->SetColliderType(ColliderType::SPHERE);
+		colliders[1]->SetColliderType(ColliderType::RAY);
 		if (colliders[i]->GetColliderType() == ColliderType::RAY) {
 			colliders[i]->rayDir_ = { 0,0,-1 };
 		}
-		colliders[0]->SetColliderType(ColliderType::SPHERE);
-		colliders[1]->SetColliderType(ColliderType::RAY);
 	}
 }
 
@@ -116,7 +116,9 @@ void IFE::NormalEnemy::OnColliderHit(Collider* myCollider, Collider* hitCollider
 {
 	if (myCollider->GetColliderType() == ColliderType::RAY)
 	{
-
+		if (state != CHASE) {
+			state = CHASE;
+		}
 	}
 	//‘Šè‚ªplayer‚¾‚Á‚½ê‡
 	if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
