@@ -126,8 +126,7 @@ void IFE::NormalEnemy::OnColliderHit(Collider* myCollider, Collider* hitCollider
 	{
 		if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
 			//“–‚½‚Á‚½Žž‚Ìˆ—
-			componentDeleteFlag_ = true;
-			objectPtr_->DrawFlag_ = false;
+			objectPtr_->Destroy();
 		}
 	}
 }
