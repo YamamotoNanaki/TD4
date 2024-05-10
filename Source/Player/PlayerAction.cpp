@@ -7,6 +7,7 @@
 void PlayerAction::Initialize()
 {
 	actionCamera_ = IFE::CameraManager::Instance()->GetCamera("ActionCamera");
+	cameraAngle_.y = 180.0f;
 }
 
 void PlayerAction::Update()
@@ -45,7 +46,7 @@ void PlayerAction::Move()
 {
 	if (IFE::Input::GetKeyPush(IFE::Key::A))
 	{
-		transform_->position_ += { -1,0,0 };
+		transform_->position_ += { -1, 0, 0 };
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::D))
 	{
@@ -92,14 +93,14 @@ void PlayerAction::CameraUpdate()
 	{
 		cameraAngle_.x += 5;
 	}
-	cameraAngle_.x=std::clamp(cameraAngle_.x, -75.0f, 75.0f);
+	cameraAngle_.x = std::clamp(cameraAngle_.x, -75.0f, 75.0f);
 #pragma endregion ƒJƒƒ‰ˆÚ“®
 
 	actionCamera_->transform_->eye_ =
 	{
-		distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * sinf(IFE::ConvertToRadians(cameraAngle_.y)),
-		distance * sinf(IFE::ConvertToRadians(cameraAngle_.x)),
-		distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * cosf(IFE::ConvertToRadians(cameraAngle_.y))
+		transform_->position_.x + distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * sinf(IFE::ConvertToRadians(cameraAngle_.y)),
+		transform_->position_.y + distance * sinf(IFE::ConvertToRadians(cameraAngle_.x)),
+		transform_->position_.z + distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * cosf(IFE::ConvertToRadians(cameraAngle_.y))
 	};
 	actionCamera_->transform_->target_ = transform_->position_;
 }
