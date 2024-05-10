@@ -49,7 +49,7 @@ bool IFE::MeshCollider::CheckCollisionSphere(const Sphere& sphere, Vector3* inte
 
 bool IFE::MeshCollider::CheckCollisionRay(const Ray& ray, float* distance, Vector3* inter)
 {
-	CheckCollisionRay(ray, distance, nullptr, inter);
+	return CheckCollisionRay(ray, distance, nullptr, inter);
 }
 
 bool IFE::MeshCollider::CheckCollisionRay(const Ray& ray, float* distance, float* hittingdistance, Vector3* inter)
@@ -78,14 +78,23 @@ bool IFE::MeshCollider::CheckCollisionRay(const Ray& ray, float* distance, float
 			{
 				Vector3 sub = tempInter - ray.start;
 				*distance = Vector3Dot(sub, ray.dir);
+				if (hittingdistance && distance < hittingdistance)
+				{
+					if (inter)
+					{
+						*inter = tempInter;
+					}
+					return true;
+				}
+				else if(!hittingdistance)
+				{
+					if (inter)
+					{
+						*inter = tempInter;
+					}
+					return true;
+				}
 			}
-
-			if (inter)
-			{
-				*inter = tempInter;
-			}
-
-			return true;
 		}
 	}
 	return false;

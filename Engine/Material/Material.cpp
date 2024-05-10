@@ -109,7 +109,7 @@ MaterialParams IFE::Material::GetMaterial()
 
 #ifdef InverseEditorMode
 #else
-void IFE::Material::DebugGUI()
+void IFE::Material::ComponentDebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
 	std::function<void(std::string)> guiFunc2 = [&](std::string textureName)
