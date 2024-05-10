@@ -7,7 +7,6 @@
 void PlayerAction::Initialize()
 {
 	actionCamera_ = IFE::CameraManager::Instance()->GetCamera("ActionCamera");
-	IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
 }
 
 void PlayerAction::Update()
