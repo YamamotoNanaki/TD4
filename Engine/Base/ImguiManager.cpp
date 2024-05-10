@@ -523,16 +523,19 @@ int32_t IFE::ImguiManager::GetModelNameGUI(const std::vector<std::string>& names
 //	}
 //}
 
-void IFE::ImguiManager::ComponentGUI(const std::function<void(void)>& guiFunc, const std::function<void(void)>& deleteFunc)
+void IFE::ImguiManager::ComponentGUI(const std::string& name, const std::function<void(void)>& guiFunc, const std::function<void(void)>& deleteFunc)
 {
-	if (componentDeleteFlag_)
+	if (ImGui::CollapsingHeader(name.c_str()))
 	{
-		if (ImGui::Button("Remove"))
+		if (componentDeleteFlag_)
 		{
-			deleteFunc();
+			if (ImGui::Button("Remove"))
+			{
+				deleteFunc();
+			}
 		}
+		guiFunc();
 	}
-	guiFunc();
 }
 
 void IFE::ImguiManager::ChangeTextureGUI(const std::function<void(std::string)>& guiFunc)

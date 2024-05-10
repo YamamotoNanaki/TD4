@@ -9,7 +9,6 @@
 #include "ColorBuffer.h"
 #include "RectTexture.h"
 #include "Fog.h"
-#include "Collider.h"
 #include "Animator.h"
 #include <typeinfo>
 #include"Player.h"

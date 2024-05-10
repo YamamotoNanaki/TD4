@@ -116,20 +116,12 @@ void IFE::Material::ComponentDebugGUI()
 		{
 			tex_ = TextureManager::Instance()->GetTexture(textureName);
 		};
-	std::function<void(void)> guiFunc = [&]()
-		{
-			im->CheckBoxGUI(&bloom_, "bllom");
-			im->ColorEdit4GUI(&color_, "color");
-			im->DragFloat3GUI(&ambient_, "ambient");
-			im->DragFloat3GUI(&diffuse_, "diffuse");
-			im->DragFloat3GUI(&specular_, "specular");
-			im->ChangeTextureGUI(guiFunc2);
-		};
-	std::function<void(void)> deleteFunc = [&]()
-		{
-			componentDeleteFlag_ = true;
-		};
-	im->ComponentGUI(guiFunc, deleteFunc);
+	im->CheckBoxGUI(&bloom_, "bllom");
+	im->ColorEdit4GUI(&color_, "color");
+	im->DragFloat3GUI(&ambient_, "ambient");
+	im->DragFloat3GUI(&diffuse_, "diffuse");
+	im->DragFloat3GUI(&specular_, "specular");
+	im->ChangeTextureGUI(guiFunc2);
 }
 
 void IFE::Material::OutputComponent(nlohmann::json& j)

@@ -41,8 +41,8 @@ void IFE::CollideManager::RaycastSystemUpdate()
 void IFE::CollideManager::CollidersUpdate()
 {
 	if (colliders_.size() < 2)return;
-	list<Collider*>::iterator itA;
-	list<Collider*>::iterator itB;
+	list<ColliderComponent*>::iterator itA;
+	list<ColliderComponent*>::iterator itB;
 
 	itA = colliders_.begin();
 	for (; itA != colliders_.end(); ++itA)
@@ -51,8 +51,8 @@ void IFE::CollideManager::CollidersUpdate()
 		++itB;
 		for (; itB != colliders_.end(); ++itB)
 		{
-			Collider* colA = *itA;
-			Collider* colB = *itB;
+			ColliderComponent* colA = *itA;
+			ColliderComponent* colB = *itB;
 			if (colA->objectPtr_ == colB->objectPtr_ || colA->emitterPtr_ || colB->emitterPtr_)continue;
 
 			//ともに球
@@ -188,7 +188,7 @@ void IFE::CollideManager::Reset()
 	colliders_.clear();
 }
 
-void IFE::CollideManager::ColliderSet(Collider* collider)
+void IFE::CollideManager::ColliderSet(ColliderComponent* collider)
 {
 	colliders_.push_back(collider);
 }
@@ -201,15 +201,15 @@ bool IFE::CollideManager::Raycast(const Ray& ray, RaycastHit* hitInfo, float max
 bool IFE::CollideManager::Raycast(const Ray& ray, uint16_t attribute, RaycastHit* hitInfo, float maxDistance)
 {
 	bool result = false;
-	std::list<Collider*>::iterator it;
-	std::list<Collider*>::iterator it_hit;
+	std::list<ColliderComponent*>::iterator it;
+	std::list<ColliderComponent*>::iterator it_hit;
 	float distance = maxDistance;
 	Vector3 inter;
 
 	// 全てのコライダーと総当りチェック
 	it = colliders_.begin();
 	for (; it != colliders_.end(); ++it) {
-		Collider* colA = *it;
+		ColliderComponent* colA = *it;
 
 		// 属性が合わなければスキップ
 		if (!(colA->attribute_ & attribute)) {
@@ -254,7 +254,7 @@ bool IFE::CollideManager::Raycast(const Ray& ray, uint16_t attribute, RaycastHit
 	return result;
 }
 
-void IFE::CollideManager::PushBack(Collider* colA, Collider* colB, const Vector3& reject)
+void IFE::CollideManager::PushBack(ColliderComponent* colA, ColliderComponent* colB, const Vector3& reject)
 {
 	// 地面判定しきい値
 	static const float threshold = cosf(ConvertToRadians(30.0f));
@@ -293,7 +293,7 @@ void IFE::CollideManager::PushBack(Collider* colA, Collider* colB, const Vector3
 	}
 }
 
-void IFE::CollideManager::OnColliderHit(Collider* colA, Collider* colB)
+void IFE::CollideManager::OnColliderHit(ColliderComponent* colA, ColliderComponent* colB)
 {
 	if (colA->objectPtr_)
 	{

@@ -44,15 +44,7 @@ Float4 IFE::ColorBuffer::GetColor()
 void IFE::ColorBuffer::DebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
-	std::function<void(void)> guiFunc = [&]()
-	{
 		im->ColorEdit4GUI(&color_, "color");
-	};
-	std::function<void(void)> deleteFunc = [&]()
-	{
-		componentDeleteFlag_ = true;
-	};
-	im->ComponentGUI(guiFunc, deleteFunc);
 }
 
 void IFE::ColorBuffer::OutputComponent(nlohmann::json& json)

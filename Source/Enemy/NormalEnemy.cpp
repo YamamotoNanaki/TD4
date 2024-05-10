@@ -11,15 +11,15 @@ void IFE::NormalEnemy::Initialize()
 	waitTimer = 0;
 	nextPoint = 0;
 	isAttack = false;
-	std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
-	//ƒŒƒC(‹ü)
-	for (size_t i = 0; i < colliders.size(); i++) {
-		colliders[0]->SetColliderType(ColliderType::SPHERE);
-		colliders[1]->SetColliderType(ColliderType::RAY);
-		if (colliders[i]->GetColliderType() == ColliderType::RAY) {
-			colliders[i]->rayDir_ = { 0,0,-1 };
-		}
-	}
+	//std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
+	////ƒŒƒC(‹ü)
+	//for (size_t i = 0; i < colliders.size(); i++) {
+	//	colliders[0]->SetColliderType(ColliderType::SPHERE);
+	//	colliders[1]->SetColliderType(ColliderType::RAY);
+	//	if (colliders[i]->GetColliderType() == ColliderType::RAY) {
+	//		colliders[i]->rayDir_ = { 0,0,-1 };
+	//	}
+	//}
 }
 
 void IFE::NormalEnemy::ChangeState()
@@ -128,7 +128,7 @@ void IFE::NormalEnemy::Draw()
 
 }
 
-void IFE::NormalEnemy::OnColliderHit(Collider* myCollider, Collider* hitCollider)
+void IFE::NormalEnemy::OnColliderHit(ColliderComponent* myCollider, ColliderComponent* hitCollider)
 {
 	if (myCollider->GetColliderType() == ColliderType::RAY)
 	{

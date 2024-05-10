@@ -7,8 +7,12 @@
 
 using namespace IFE;
 
-void IFE::Collider::Initialize()
+void IFE::ColliderComponent::Initialize()
 {
+	if (objectPtr_)
+	{
+		transform_ = objectPtr_->transform_;
+	}
 	if (colliderType_ == ColliderType::MESH)
 	{
 		if (meshCollider_)meshCollider_.release();
@@ -17,26 +21,26 @@ void IFE::Collider::Initialize()
 	}
 }
 
-void IFE::Collider::Draw()
+void IFE::ColliderComponent::Draw()
 {
 }
 
-void IFE::Collider::Update()
+void IFE::ColliderComponent::Update()
 {
 	CollideManager::Instance()->ColliderSet(this);
 }
 
-Float3 IFE::Collider::GetOffsetPosition()
+Float3 IFE::ColliderComponent::GetOffsetPosition()
 {
 	return offsetPosition_;
 }
 
-Float3 IFE::Collider::GetOffsetScale()
+Float3 IFE::ColliderComponent::GetOffsetScale()
 {
 	return offsetScale_;
 }
 
-Float3 IFE::Collider::GetColliderPosition()
+Float3 IFE::ColliderComponent::GetColliderPosition()
 {
 	if (!parentPosition_)
 	{
@@ -45,7 +49,7 @@ Float3 IFE::Collider::GetColliderPosition()
 	return *parentPosition_ + offsetPosition_;
 }
 
-Float3 IFE::Collider::GetColliderScale()
+Float3 IFE::ColliderComponent::GetColliderScale()
 {
 	if (!parentScale_)
 	{
@@ -54,62 +58,62 @@ Float3 IFE::Collider::GetColliderScale()
 	return *parentScale_ + offsetScale_;
 }
 
-ColliderType IFE::Collider::GetColliderType()
+ColliderType IFE::ColliderComponent::GetColliderType()
 {
 	return colliderType_;
 }
 
-void IFE::Collider::SetColliderType(const ColliderType& colliderType)
+void IFE::ColliderComponent::SetColliderType(const ColliderType& colliderType)
 {
 	colliderType_ = colliderType;
 }
 
-void IFE::Collider::SetOffsetPosition(const Float3& pos)
+void IFE::ColliderComponent::SetOffsetPosition(const Float3& pos)
 {
 	offsetPosition_ = pos;
 }
 
-void IFE::Collider::SetOffsetScale(const Float3& sca)
+void IFE::ColliderComponent::SetOffsetScale(const Float3& sca)
 {
 	offsetScale_ = sca;
 }
 
-MeshCollider* IFE::Collider::GetMeshCollider()
+MeshCollider* IFE::ColliderComponent::GetMeshCollider()
 {
 	return meshCollider_.get();
 }
 
-bool IFE::Collider::GetPushBackFlag()
+bool IFE::ColliderComponent::GetPushBackFlag()
 {
 	return pushBack_;
 }
 
-bool IFE::Collider::GetNoPushBackFlag()
+bool IFE::ColliderComponent::GetNoPushBackFlag()
 {
 	return notPushBack_;
 }
 
-bool IFE::Collider::GetGroundJudgeFlag()
+bool IFE::ColliderComponent::GetGroundJudgeFlag()
 {
 	return groundJudge_;
 }
 
-void IFE::Collider::SetPushBackFlag(bool flag)
+void IFE::ColliderComponent::SetPushBackFlag(bool flag)
 {
 	pushBack_ = flag;
 }
 
-void IFE::Collider::SetNoPushBackFlag(bool flag)
+void IFE::ColliderComponent::SetNoPushBackFlag(bool flag)
 {
 	notPushBack_ = flag;
 }
 
-void IFE::Collider::SetGroundJudgeFlag(bool flag)
+void IFE::ColliderComponent::SetGroundJudgeFlag(bool flag)
 {
 	groundJudge_ = flag;
 }
 
-void IFE::Collider::GetParentParms()
+void IFE::ColliderComponent::GetParentParms()
 {
 	if (objectPtr_)
 	{
@@ -123,7 +127,7 @@ void IFE::Collider::GetParentParms()
 	}
 }
 
-void IFE::Collider::LoadingComponent(nlohmann::json& json)
+void IFE::ColliderComponent::Loading(nlohmann::json& json)
 {
 	colliderType_ = json["colliderType"];
 	pushBack_ = json["pushBack"];
@@ -134,7 +138,7 @@ void IFE::Collider::LoadingComponent(nlohmann::json& json)
 
 #ifdef InverseEditorMode
 #else
-void IFE::Collider::OutputComponent(nlohmann::json& json)
+void IFE::ColliderComponent::Output(nlohmann::json& json)
 {
 	json["colliderType"] = colliderType_;
 	json["pushBack"] = pushBack_;
@@ -144,29 +148,106 @@ void IFE::Collider::OutputComponent(nlohmann::json& json)
 }
 
 #include "ImguiManager.h"
-void IFE::Collider::ComponentDebugGUI()
+void IFE::ColliderComponent::ColliderGUI(uint32_t num)
 {
 	ImguiManager* gui = ImguiManager::Instance();
-	gui->CheckBoxGUI(&pushBack_, "pushBack");
-	gui->CheckBoxGUI(&notPushBack_, "notPushBack");
-	gui->CheckBoxGUI(&groundJudge_, "ground judgement");
-	if (gui->NewTreeNode("Collider Type"))
+	std::string name = "collider" + std::to_string(num);
+	if (gui->NewTreeNode(name))
 	{
-		int32_t num = (int32_t)colliderType_;
-		gui->RadioButtonGUI("Sphere", &num, (int32_t)ColliderType::SPHERE);
-		gui->RadioButtonGUI("Mesh", &num, (int32_t)ColliderType::MESH);
-		gui->RadioButtonGUI("Ray", &num, (int32_t)ColliderType::RAY);
-		colliderType_ = (ColliderType)num;
+		gui->CheckBoxGUI(&pushBack_, "pushBack");
+		gui->CheckBoxGUI(&notPushBack_, "notPushBack");
+		gui->CheckBoxGUI(&groundJudge_, "ground judgement");
+		if (gui->NewTreeNode("Collider Type"))
+		{
+			int32_t n = (int32_t)colliderType_;
+			gui->RadioButtonGUI("Sphere", &n, (int32_t)ColliderType::SPHERE);
+			gui->RadioButtonGUI("Mesh", &n, (int32_t)ColliderType::MESH);
+			gui->RadioButtonGUI("Ray", &n, (int32_t)ColliderType::RAY);
+			colliderType_ = (ColliderType)n;
+			gui->EndTreeNode();
+		}
+		if (gui->NewTreeNode("attribute"))
+		{
+			int32_t n = (int32_t)attribute_;
+			gui->RadioButtonGUI("Landshape", &n, (int32_t)Attribute::LANDSHAPE);
+			gui->RadioButtonGUI("Allies", &n, (int32_t)Attribute::ALLIES);
+			gui->RadioButtonGUI("Enemys", &n, (int32_t)Attribute::ENEMYS);
+			attribute_ = (uint16_t)n;
+			gui->EndTreeNode();
+		}
+		if (gui->ButtonGUI("Delete"))
+		{
+			componentDeleteFlag_ = true;
+		}
 		gui->EndTreeNode();
 	}
-	if (gui->NewTreeNode("attribute"))
+}
+#endif
+
+void IFE::Collider::Initialize()
+{
+	for (auto& itr : colliderList_)
 	{
-		int32_t num = (int32_t)attribute_;
-		gui->RadioButtonGUI("Landshape", &num, (int32_t)Attribute::LANDSHAPE);
-		gui->RadioButtonGUI("Allies", &num, (int32_t)Attribute::ALLIES);
-		gui->RadioButtonGUI("Enemys", &num, (int32_t)Attribute::ENEMYS);
-		attribute_ = (uint16_t)num;
-		gui->EndTreeNode();
+		itr->objectPtr_ = objectPtr_;
+		itr->emitterPtr_ = emitterPtr_;
+		itr->Initialize();
 	}
+}
+
+void IFE::Collider::Update()
+{
+	colliderList_.remove_if([](std::unique_ptr<ColliderComponent>& itr) {return itr->componentDeleteFlag_; });
+	for (auto& itr : colliderList_)
+	{
+		itr->Update();
+	}
+}
+
+ColliderComponent* IFE::Collider::AddCollider()
+{
+	std::unique_ptr<ColliderComponent> temp = std::make_unique<ColliderComponent>();
+	temp->objectPtr_ = objectPtr_;
+	temp->emitterPtr_ = emitterPtr_;
+	temp->Initialize();
+	colliderList_.push_back(std::move(temp));
+	return colliderList_.back().get();
+}
+
+void IFE::Collider::LoadingComponent(nlohmann::json& json)
+{
+	for (auto& j : json["content"])
+	{
+		auto ptr = AddCollider();
+		ptr->Loading(j);
+	}
+}
+
+#ifdef InverseEditorMode
+#else
+
+void IFE::Collider::OutputComponent(nlohmann::json& json)
+{
+	uint32_t i = 0;
+	for (auto& itr : colliderList_)
+	{
+		itr->Output(json["content"][i]);
+		i++;
+	}
+}
+
+void IFE::Collider::ComponentDebugGUI()
+{
+	uint32_t i = 0;
+	ImguiManager* gui = ImguiManager::Instance();
+	if (gui->ButtonGUI(U8("’Ç‰Á")))
+	{
+		AddCollider();
+	}
+	for (auto& itr : colliderList_)
+	{
+		itr->ColliderGUI(i);
+		i++;
+	}
+	colliderList_.remove_if([](std::unique_ptr<ColliderComponent>& itr) {return itr->componentDeleteFlag_; });
 }
 #endif

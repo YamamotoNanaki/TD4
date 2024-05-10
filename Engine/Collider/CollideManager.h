@@ -9,7 +9,7 @@ namespace IFE
 {
 	class CollideManager
 	{
-		std::list<Collider*>colliders_;
+		std::list<ColliderComponent*>colliders_;
 	private:
 		CollideManager() {};
 		CollideManager(const CollideManager& obj) = delete;
@@ -19,12 +19,12 @@ namespace IFE
 		void RaycastSystemUpdate();
 		void CollidersUpdate();
 		void Reset();
-		void ColliderSet(Collider* collider);
+		void ColliderSet(ColliderComponent* collider);
 		bool Raycast(const Ray& ray, RaycastHit* hitInfo = nullptr, float maxDistance = D3D12_FLOAT32_MAX);
 		bool Raycast(const Ray& ray, uint16_t attribute, RaycastHit* hitInfo = nullptr, float maxDistance = D3D12_FLOAT32_MAX);
 
 	private:
-		void PushBack(Collider* colA, Collider* colB, const Vector3& reject);
-		void OnColliderHit(Collider* colA, Collider* colB);
+		void PushBack(ColliderComponent* colA, ColliderComponent* colB, const Vector3& reject);
+		void OnColliderHit(ColliderComponent* colA, ColliderComponent* colB);
 	};
 }
