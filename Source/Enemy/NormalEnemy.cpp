@@ -111,7 +111,7 @@ void IFE::NormalEnemy::Chase()
 	//‹ß‚Ã‚¢‚½‚ç‰£‚é
 	double len = sqrt(pow(ePos.x - pPos.x, 2) + pow(ePos.y - pPos.y, 2) +
 		pow(ePos.z - pPos.z, 2));
-	if (len <= 3.0) {
+	if (len <= 5.0) {
 		Attack();
 	}
 }
