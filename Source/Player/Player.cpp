@@ -12,6 +12,8 @@ void Player::Initialize()
 	action_ = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>();
 	drone_ = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>();
 
+	IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
+
 	transform_->position_ = { 0,0,0 };
 }
 
