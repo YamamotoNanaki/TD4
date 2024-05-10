@@ -28,5 +28,33 @@
             "smooth": false
         },
         "name": "dice_Model"
+    },
+    {
+        "name": "testGround_Model",
+        "testGround_Model": {
+            "settings": 100,
+            "smooth": false
+        }
+    },
+    {
+        "name": "testWall_Model",
+        "testWall_Model": {
+            "settings": 100,
+            "smooth": false
+        }
+    },
+    {
+        "name": "testDrone_ground_Model",
+        "testDrone_ground_Model": {
+            "settings": 100,
+            "smooth": false
+        }
+    },
+    {
+        "name": "testDrone_wall_Model",
+        "testDrone_wall_Model": {
+            "settings": 100,
+            "smooth": false
+        }
     }
 ]
