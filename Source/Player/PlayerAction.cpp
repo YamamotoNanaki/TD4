@@ -69,6 +69,18 @@ void PlayerAction::Rotation()
 	frontVec_.Normalize();
 }
 
+void PlayerAction::CameraUpdate()
+{
+	const float distance = 1.0f;
+
+	cameraPos_ =
+	{
+		distance * cosf(cameraAngle_.x) * sinf(cameraAngle_.y),
+		distance * sinf(cameraAngle_.x),
+		distance * cosf(cameraAngle_.x) * cosf(cameraAngle_.y)
+	};
+}
+
 void PlayerAction::Attack()
 {
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Space))

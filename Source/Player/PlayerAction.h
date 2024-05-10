@@ -10,6 +10,9 @@ private:
 	IFE::Vector3 pos_ = { 0,0,0 };
 	IFE::Vector3 frontVec_ = {};
 
+	IFE::Vector3 cameraPos_ = {};
+	IFE::Vector2 cameraAngle_ = {};
+
 	bool attackFlag_ = false;
 	const uint8_t attackTime_ = 10;
 	uint8_t attackTimer_ = 0;
@@ -35,6 +38,8 @@ private:
 	void Move();
 
 	void Rotation();
+
+	void CameraUpdate();
 
 	void Attack();
 };
