@@ -3,6 +3,7 @@
 #include"Object3D.h"
 #include "Input.h"
 #include"Transform.h"
+#include"CameraManager.h"
 
 void PlayerDrone::SpeedZero(float& speed)
 {
@@ -21,6 +22,7 @@ void PlayerDrone::SpeedZero(float& speed)
 void PlayerDrone::Initialize()
 {
 	objectPtr_->DrawFlag_ = false;
+	droneCamera_ = IFE::CameraManager::Instance()->GetCamera("ActionCamera");
 }
 
 void PlayerDrone::Update()
@@ -43,6 +45,7 @@ void PlayerDrone::MoveUpdate()
 {
 	Rotation();
 	Move();
+	CameraUpdate();
 }
 
 void PlayerDrone::Move()
@@ -93,28 +96,76 @@ void PlayerDrone::Move()
 
 void PlayerDrone::Rotation()
 {
-	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
+	//移動方向を変えずに向きだけ変わるカメラ(水平モード)
+	if (cameraMode_ == false)
 	{
-		transform_->eulerAngleDegrees_ += { 0, -5.0f, 0 };
+		if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
+		{
+			transform_->eulerAngleDegrees_ += { 0, -5.0f, 0 };
+		}
+		if (IFE::Input::GetKeyPush(IFE::Key::RIGHT))
+		{
+			transform_->eulerAngleDegrees_ += { 0, 5.0f, 0 };
+		}
+
+		if (IFE::Input::GetKeyPush(IFE::Key::UP))
+		{
+			transform_->eulerAngleDegrees_ += { -5.0f, 0, 0 };
+		}if (IFE::Input::GetKeyPush(IFE::Key::DOWN))
+		{
+			transform_->eulerAngleDegrees_ += { 5.0f, 0, 0 };
+		}
 	}
-	if (IFE::Input::GetKeyPush(IFE::Key::RIGHT))
+	//カメラの向きに進むカメラ
+	else
 	{
-		transform_->eulerAngleDegrees_ += { 0, 5.0f, 0 };
+		if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
+		{
+			transform_->eulerAngleDegrees_ += { 0, -5.0f, 0 };
+		}
+		if (IFE::Input::GetKeyPush(IFE::Key::RIGHT))
+		{
+			transform_->eulerAngleDegrees_ += { 0, 5.0f, 0 };
+		}
+
+		if (IFE::Input::GetKeyPush(IFE::Key::UP))
+		{
+			transform_->eulerAngleDegrees_ += transform_->GetForwardVector();
+		}if (IFE::Input::GetKeyPush(IFE::Key::DOWN))
+		{
+			transform_->eulerAngleDegrees_ += { 5.0f, 0, 0 };
+		}
 	}
 	
-	if (IFE::Input::GetKeyPush(IFE::Key::UP))
-	{
-		transform_->eulerAngleDegrees_ += { -5.0f, 0, 0 };
-	}if (IFE::Input::GetKeyPush(IFE::Key::DOWN))
-	{
-		transform_->eulerAngleDegrees_ += { 5.0f, 0, 0 };
-	}
 	//縦回転の限界処理
 	const float maxVerticalRotation = 45.0f;
 	transform_->eulerAngleDegrees_.x = std::clamp(transform_->eulerAngleDegrees_.x, -maxVerticalRotation, maxVerticalRotation);
 
 	frontVec_ = front_ - pos_;
 	frontVec_.Normalize();
+}
+
+void PlayerDrone::CameraUpdate()
+{
+	droneCamera_->transform_->eye_ = transform_->position_;
+
+	//移動方向を変えずに向きだけ変わるカメラ(水平モード)
+	if (cameraMode_ == false)
+	{
+		const float targetDifference = 3.0f;
+		droneCamera_->transform_->target_ =
+		{
+			transform_->position_.x + targetDifference * transform_->GetForwardVector().x,
+			transform_->position_.y + targetDifference * transform_->GetForwardVector().y,
+			transform_->position_.z + targetDifference * transform_->GetForwardVector().z,
+		};
+	}
+	//カメラの向きに進むカメラ
+	else
+	{
+
+	}
+	
 }
 
 bool PlayerDrone::GetDrawFlag()
