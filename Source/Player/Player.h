@@ -25,7 +25,7 @@ public:
 
 	void Finalize();
 
-	void OnColliderHit(IFE::ColliderComponent collider);
+	void OnColliderHit(IFE::ColliderCore collider);
 
 private:
 

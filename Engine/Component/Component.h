@@ -16,7 +16,7 @@ namespace IFE
 	class TransformParticle;
 	class TransformCamera;
 	class ComponentManager;
-	class ColliderComponent;
+	class ColliderCore;
 	class Camera;
 	class Component
 	{
