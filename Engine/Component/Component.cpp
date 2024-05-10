@@ -163,7 +163,7 @@ void IFE::Component::DebugGUI(uint32_t num)
 			componentDeleteFlag_ = true;
 		};
 	std::string s = std::to_string(num) + " : " + componentName_;
-	ImguiManager::Instance()->ComponentGUI(func, deleteFunc);
+	ImguiManager::Instance()->ComponentGUI(s,func, deleteFunc);
 }
 
 void IFE::Component::OutputScene(nlohmann::json& j)

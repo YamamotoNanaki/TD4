@@ -40,7 +40,9 @@ void IFE::NormalEnemy::ChangeState()
 void IFE::NormalEnemy::Update()
 {
 	/*Chase();*/
-	Search();
+	//Search();
+	objectPtr_->SetColor({ 1, 1, 1, 1
+		});
 }
 
 void IFE::NormalEnemy::Wait()
@@ -114,12 +116,13 @@ void IFE::NormalEnemy::OnColliderHit(ColliderComponent* myCollider, ColliderComp
 	if (myCollider->GetColliderType() == ColliderType::RAY)
 	{
 
-	}
-	//‘ŠŽè‚ªplayer‚¾‚Á‚½ê‡
-	if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
-		//“–‚½‚Á‚½Žž‚Ìˆ—
-		/*componentDeleteFlag_ = true;
-		objectPtr_->DrawFlag_ = false;*/
+		//‘ŠŽè‚ªplayer‚¾‚Á‚½ê‡
+		if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
+			//“–‚½‚Á‚½Žž‚Ìˆ—
+			/*componentDeleteFlag_ = true;
+			objectPtr_->DrawFlag_ = false;*/
+			objectPtr_->SetColor({ 1,0,0,1 });
+		}
 	}
 }
 

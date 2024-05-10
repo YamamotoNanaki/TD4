@@ -71,7 +71,7 @@ namespace IFE
 #ifdef InverseEditorMode
 #else
 		void Output(nlohmann::json& json);
-		bool ColliderGUI(uint32_t num);
+		void ColliderGUI(uint32_t num);
 #endif
 	};
 
@@ -81,6 +81,7 @@ namespace IFE
 	public:
 		void Initialize()override;
 		void Update()override;
+		ColliderComponent* AddCollider();
 
 	public:
 

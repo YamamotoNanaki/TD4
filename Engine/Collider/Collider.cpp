@@ -9,6 +9,10 @@ using namespace IFE;
 
 void IFE::ColliderComponent::Initialize()
 {
+	if (objectPtr_)
+	{
+		transform_ = objectPtr_->transform_;
+	}
 	if (colliderType_ == ColliderType::MESH)
 	{
 		if (meshCollider_)meshCollider_.release();
@@ -144,11 +148,10 @@ void IFE::ColliderComponent::Output(nlohmann::json& json)
 }
 
 #include "ImguiManager.h"
-bool IFE::ColliderComponent::ColliderGUI(uint32_t num)
+void IFE::ColliderComponent::ColliderGUI(uint32_t num)
 {
 	ImguiManager* gui = ImguiManager::Instance();
 	std::string name = "collider" + std::to_string(num);
-	bool flag = false;
 	if (gui->NewTreeNode(name))
 	{
 		gui->CheckBoxGUI(&pushBack_, "pushBack");
@@ -174,11 +177,10 @@ bool IFE::ColliderComponent::ColliderGUI(uint32_t num)
 		}
 		if (gui->ButtonGUI("Delete"))
 		{
-			flag = true;
+			componentDeleteFlag_ = true;
 		}
 		gui->EndTreeNode();
 	}
-	return flag;
 }
 #endif
 
@@ -186,23 +188,38 @@ void IFE::Collider::Initialize()
 {
 	for (auto& itr : colliderList_)
 	{
-		itr->Initialize();
 		itr->objectPtr_ = objectPtr_;
 		itr->emitterPtr_ = emitterPtr_;
+		itr->Initialize();
 	}
 }
 
 void IFE::Collider::Update()
 {
+	colliderList_.remove_if([](std::unique_ptr<ColliderComponent>& itr) {return itr->componentDeleteFlag_; });
 	for (auto& itr : colliderList_)
 	{
 		itr->Update();
 	}
 }
 
+ColliderComponent* IFE::Collider::AddCollider()
+{
+	std::unique_ptr<ColliderComponent> temp = std::make_unique<ColliderComponent>();
+	temp->objectPtr_ = objectPtr_;
+	temp->emitterPtr_ = emitterPtr_;
+	temp->Initialize();
+	colliderList_.push_back(std::move(temp));
+	return colliderList_.back().get();
+}
+
 void IFE::Collider::LoadingComponent(nlohmann::json& json)
 {
-	json;
+	for (auto& j : json["content"])
+	{
+		auto ptr = AddCollider();
+		ptr->Loading(j);
+	}
 }
 
 #ifdef InverseEditorMode
@@ -210,24 +227,27 @@ void IFE::Collider::LoadingComponent(nlohmann::json& json)
 
 void IFE::Collider::OutputComponent(nlohmann::json& json)
 {
-	json;
+	uint32_t i = 0;
+	for (auto& itr : colliderList_)
+	{
+		itr->Output(json["content"][i]);
+		i++;
+	}
 }
 
 void IFE::Collider::ComponentDebugGUI()
 {
 	uint32_t i = 0;
 	ImguiManager* gui = ImguiManager::Instance();
-	if (gui->ButtonGUI("Add"))
+	if (gui->ButtonGUI(U8("’Ç‰Á")))
 	{
-		colliderList_.push_back(std::make_unique<ColliderComponent>());
-		colliderList_.end()->get()->Initialize();
-		colliderList_.end()->get()->objectPtr_ = objectPtr_;
-		colliderList_.end()->get()->emitterPtr_ = emitterPtr_;
+		AddCollider();
 	}
 	for (auto& itr : colliderList_)
 	{
 		itr->ColliderGUI(i);
 		i++;
 	}
+	colliderList_.remove_if([](std::unique_ptr<ColliderComponent>& itr) {return itr->componentDeleteFlag_; });
 }
 #endif

@@ -9,7 +9,6 @@
 #include "ColorBuffer.h"
 #include "RectTexture.h"
 #include "Fog.h"
-#include "Collider.h"
 #include "Animator.h"
 #include <typeinfo>
 #include"Player.h"
@@ -45,7 +44,7 @@ Component* IFE::StringToComponent(const std::string& str)
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<Material>(str));
 	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<ColliderComponent>(str));
+	tmp = std::move(GetPtr<Collider>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<Animator>(str));
 	if (tmp != nullptr)return tmp;

@@ -47,20 +47,12 @@ void IFE::TransferGeometryBuffer::Copy(Component* component)
 void IFE::TransferGeometryBuffer::ComponentDebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
-	std::function<void(void)> guiFunc = [&]()
-	{
 		im->DragFloatGUI(&explosion_, "explosion");
 		im->DragFloatGUI(&gravity_, "gravity");
 		im->DragFloatGUI(&rotation_, "polygon rotation");
 		im->DragFloatGUI(&polygonSize_, "polygon size");
 		im->CheckBoxGUI(&lightFlag_, "lightFlag");
 		im->CheckBoxGUI(&toonFlag_, "toonFlag");
-	};
-	std::function<void(void)> deleteFunc = [&]()
-	{
-		componentDeleteFlag_ = true;
-	};
-	im->ComponentGUI(guiFunc, deleteFunc);
 }
 
 void IFE::TransferGeometryBuffer::OutputComponent(nlohmann::json& json)
