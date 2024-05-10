@@ -19,10 +19,6 @@ namespace IFE {
 		std::vector<Float3> points;
 		//次の場所
 		int nextPoint;
-		//lerp用
-		float moveTime;
-		//コライダー取得用
-		Collider* rayColl = nullptr;
 
 	//メンバ関数
 	public:

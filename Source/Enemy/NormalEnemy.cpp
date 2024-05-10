@@ -14,9 +14,10 @@ void IFE::NormalEnemy::Initialize()
 	//ƒŒƒC(‹ü)
 	for (size_t i = 0; i < colliders.size(); i++) {
 		if (colliders[i]->GetColliderType() == ColliderType::RAY) {
-			rayColl = colliders[i];
-			rayColl->rayDir_ = { 0,0,-1 };
+			colliders[i]->rayDir_ = { 0,0,-1 };
 		}
+		colliders[0]->SetColliderType(ColliderType::SPHERE);
+		colliders[1]->SetColliderType(ColliderType::RAY);
 	}
 }
 
