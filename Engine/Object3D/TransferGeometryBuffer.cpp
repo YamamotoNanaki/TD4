@@ -60,7 +60,7 @@ void IFE::TransferGeometryBuffer::ComponentDebugGUI()
 	{
 		componentDeleteFlag_ = true;
 	};
-	im->ComponentGUI(guiFunc, deleteFunc, componentName_);
+	im->ComponentGUI(guiFunc, deleteFunc);
 }
 
 void IFE::TransferGeometryBuffer::OutputComponent(nlohmann::json& json)

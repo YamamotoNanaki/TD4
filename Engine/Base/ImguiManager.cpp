@@ -523,7 +523,7 @@ int32_t IFE::ImguiManager::GetModelNameGUI(const std::vector<std::string>& names
 //	}
 //}
 
-void IFE::ImguiManager::ComponentGUI(const std::function<void(void)>& guiFunc, const std::function<void(void)>& deleteFunc, const std::string& componentName)
+void IFE::ImguiManager::ComponentGUI(const std::function<void(void)>& guiFunc, const std::function<void(void)>& deleteFunc)
 {
 	if (componentDeleteFlag_)
 	{

@@ -49,7 +49,7 @@ namespace IFE
 		bool ModelAddGUI(std::string* newObjectName, std::string* newFilename, uint16_t* settings, bool* smooth);
 		int32_t GetModelNameGUI(const std::vector<std::string>& names);
 		//void ModelGUI(const std::string& modelName);
-		void ComponentGUI(const std::function<void(void)>& guiFunc, const std::function<void(void)>& deleteFunc, const std::string& componentName);
+		void ComponentGUI(const std::function<void(void)>& guiFunc, const std::function<void(void)>& deleteFunc);
 		void ChangeTextureGUI(const std::function<void(std::string)>& guiFunc);
 		void TextureGUI(bool* load, bool* search);
 		void TextureLoadGUI(const std::function<void(std::string)>&);

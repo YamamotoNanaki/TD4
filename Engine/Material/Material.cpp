@@ -129,7 +129,7 @@ void IFE::Material::ComponentDebugGUI()
 		{
 			componentDeleteFlag_ = true;
 		};
-	im->ComponentGUI(guiFunc, deleteFunc, componentName_);
+	im->ComponentGUI(guiFunc, deleteFunc);
 }
 
 void IFE::Material::OutputComponent(nlohmann::json& j)

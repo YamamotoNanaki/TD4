@@ -204,7 +204,7 @@ void IFE::Transform::ComponentDebugGUI()
 	{
 		componentDeleteFlag_ = true;
 	};
-	im->ComponentGUI(guiFunc, deleteFunc, componentName_);
+	im->ComponentGUI(guiFunc, deleteFunc);
 	UpdateMatrix();
 }
 void IFE::Transform::OutputComponent(nlohmann::json& j)
@@ -288,7 +288,7 @@ void IFE::Transform2D::ComponentDebugGUI()
 	{
 		componentDeleteFlag_ = true;
 	};
-	im->ComponentGUI(guiFunc, deleteFunc, componentName_);
+	im->ComponentGUI(guiFunc, deleteFunc);
 }
 
 void IFE::Transform2D::OutputComponent(nlohmann::json& j)
@@ -475,7 +475,7 @@ void IFE::TransformParticle::ComponentDebugGUI()
 	{
 		componentDeleteFlag_ = true;
 	};
-	im->ComponentGUI(guiFunc, deleteFunc, componentName_);
+	im->ComponentGUI(guiFunc, deleteFunc);
 }
 
 void IFE::TransformParticle::OutputComponent(nlohmann::json& json)
@@ -667,7 +667,7 @@ void IFE::TransformCamera::ComponentDebugGUI()
 	{
 		componentDeleteFlag_ = true;
 	};
-	im->ComponentGUI(guiFunc, deleteFunc, componentName_);
+	im->ComponentGUI(guiFunc, deleteFunc);
 }
 void IFE::TransformCamera::OutputComponent(nlohmann::json& j)
 {
