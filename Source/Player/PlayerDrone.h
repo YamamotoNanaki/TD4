@@ -15,24 +15,52 @@ private:
 	IFE::Camera* droneCamera_ = nullptr;
 	bool cameraMode_ = false;
 
+	/// <summary>
+	/// 段々speedを0にする処理
+	/// </summary>
+	/// <param name="speed"></param>
 	void SpeedZero(float& speed);
 
 public:
 
+	/// <summary>
+	/// 初期化処理
+	/// </summary>
 	void Initialize();
 
+	/// <summary>
+	/// 更新処理
+	/// </summary>
 	void Update();
 
+	/// <summary>
+	/// 描画処理
+	/// </summary>
 	void Draw();
 
+	/// <summary>
+	/// 終了処理
+	/// </summary>
 	void Finalize();
 
 	void OnColliderHit(IFE::ColliderCore collider);
 
+	/// <summary>
+	/// Playerクラスで呼ぶ操作全般更新処理
+	/// </summary>
 	void MoveUpdate();
+	/// <summary>
+	/// 移動処理
+	/// </summary>
 	void Move();
+	/// <summary>
+	/// 回転処理
+	/// </summary>
 	void Rotation();
 
+	/// <summary>
+	/// カメラの更新処理
+	/// </summary>
 	void CameraUpdate();
 
 	bool GetDrawFlag();
