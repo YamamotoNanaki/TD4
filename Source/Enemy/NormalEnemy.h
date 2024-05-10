@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseEnemy.h"
 #include "PlayerAction.h"
+#include "IFEMath.h"
 
 namespace IFE {
 	//---めっちゃ普通の敵---//
@@ -19,10 +20,8 @@ namespace IFE {
 		std::vector<Float3> points;
 		//次の場所
 		int nextPoint;
-		//lerp用
-		float moveTime;
-		//コライダー取得用
-		ColliderComponent* rayColl = nullptr;
+		//攻撃したか
+		bool isAttack;
 
 	//メンバ関数
 	public:
@@ -62,6 +61,11 @@ namespace IFE {
 		void Chase();
 
 		/// <summary>
+		/// 殴れ
+		/// </summary>
+		void Attack();
+
+		/// <summary>
 		/// 描画
 		/// </summary>
 		void Draw();
@@ -76,6 +80,10 @@ namespace IFE {
 		/// 終了
 		/// </summary>
 		void Finalize();
+
+
+		///-----Getter-----///
+		Vector3 GetPos();
 
 
 #ifdef EditorMode

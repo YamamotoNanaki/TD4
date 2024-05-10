@@ -10,12 +10,16 @@ void IFE::NormalEnemy::Initialize()
 	state = WAIT;
 	waitTimer = 0;
 	nextPoint = 0;
-	std::vector<ColliderComponent*>colliders = objectPtr_->GetComponents<ColliderComponent>();
-	for (size_t i = 0; i < colliders.size(); i++) {
-		if (colliders[i]->GetColliderType() == ColliderType::RAY) {
-			rayColl = colliders[i];
-		}
-	}
+	isAttack = false;
+	//std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
+	////ÉåÉC(éãê¸)
+	//for (size_t i = 0; i < colliders.size(); i++) {
+	//	colliders[0]->SetColliderType(ColliderType::SPHERE);
+	//	colliders[1]->SetColliderType(ColliderType::RAY);
+	//	if (colliders[i]->GetColliderType() == ColliderType::RAY) {
+	//		colliders[i]->rayDir_ = { 0,0,-1 };
+	//	}
+	//}
 }
 
 void IFE::NormalEnemy::ChangeState()
@@ -39,10 +43,8 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::Update()
 {
-	/*Chase();*/
-	//Search();
-	objectPtr_->SetColor({ 1, 1, 1, 1
-		});
+	std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
+	ChangeState();
 }
 
 void IFE::NormalEnemy::Wait()
@@ -101,9 +103,24 @@ void IFE::NormalEnemy::Chase()
 {
 	//ÉåÉCÇ™Ç‹ÇæÇæÇ©ÇÁÇ∆ÇËÇ†Ç¶Ç∏í«Ç¢Ç©ÇØÇÈ
 	Vector3 ePos = transform_->position_;
-	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos() - ePos;
+	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	Vector3 addVec = pPos - ePos;
 	addVec.Normalize();
-	transform_->position_ += (addVec * 0.5f);
+	transform_->position_ += (addVec * 0.1f);
+
+	//ãﬂÇ√Ç¢ÇΩÇÁâ£ÇÈ
+	double len = sqrt(pow(ePos.x - pPos.x, 2) + pow(ePos.y - pPos.y, 2) +
+		pow(ePos.z - pPos.z, 2));
+	if (len <= 3.0) {
+		Attack();
+	}
+}
+
+void IFE::NormalEnemy::Attack()
+{
+	if (isAttack == false) {
+		isAttack = true;
+	}
 }
 
 void IFE::NormalEnemy::Draw()
@@ -115,15 +132,36 @@ void IFE::NormalEnemy::OnColliderHit(ColliderComponent* myCollider, ColliderComp
 {
 	if (myCollider->GetColliderType() == ColliderType::RAY)
 	{
-
-		//ëäéËÇ™playerÇæÇ¡ÇΩèÍçá
-		if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
-			//ìñÇΩÇ¡ÇΩéûÇÃèàóù
-			/*componentDeleteFlag_ = true;
-			objectPtr_->DrawFlag_ = false;*/
-			objectPtr_->SetColor({ 1,0,0,1 });
+		if (state != CHASE) {
+			state = CHASE;
+			objectPtr_->SetColor({1,0,0,1});
 		}
 	}
+	//ëäéËÇ™playerÇæÇ¡ÇΩèÍçá
+	if (myCollider->GetColliderType() == ColliderType::SPHERE)
+	{
+		if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
+			//ìñÇΩÇ¡ÇΩéûÇÃèàóù
+			objectPtr_->Destroy();
+		}
+	}
+	//ìGÇ∆ìG
+	if (myCollider->GetColliderType() == ColliderType::SPHERE)
+	{
+		if (hitCollider->objectPtr_->GetComponent<NormalEnemy>()) {
+			Vector3 ePos = transform_->position_;
+			Vector3 hitPos = hitCollider->objectPtr_->GetComponent<NormalEnemy>()->GetPos();
+			Vector3 addVec = hitPos - ePos;
+			addVec.Normalize();
+			addVec *= Vector3(-1, 0, -1);
+			transform_->position_+= (addVec * 0.1f);
+		}
+	}
+}
+
+IFE::Vector3 IFE::NormalEnemy::GetPos() {
+	Vector3 temp = transform_->position_;
+	return temp;
 }
 
 void IFE::NormalEnemy::Finalize()
