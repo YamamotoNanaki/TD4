@@ -102,6 +102,14 @@ void IFE::ComponentManager::OutputScene(nlohmann::json& j)
 	}
 }
 
+void IFE::ComponentManager::DebugInitialize()
+{
+	for (auto& itr : componentList_)
+	{
+		if (itr)itr->DebugINITIALIZE();
+	}
+}
+
 void IFE::ComponentManager::DebugUpdate()
 {
 	componentList_.remove_if([](std::unique_ptr<Component>& com) {return com->GetComponentDeleteFlag(); });
@@ -126,7 +134,7 @@ void IFE::ComponentManager::LoadingScene(nlohmann::json& j, const std::string& c
 {
 	auto com = StringToComponent(comName);
 	com->LoadingScene(j[comName]);
-	AddComponentBack<Component>(std::unique_ptr<Component>(com));
+	DebugAddComponentBack<Component>(std::unique_ptr<Component>(com));
 }
 
 std::string IFE::ComponentManager::SetName(const std::string& name)

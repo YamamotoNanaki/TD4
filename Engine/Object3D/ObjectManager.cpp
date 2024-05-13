@@ -433,6 +433,7 @@ void IFE::ObjectManager::DebugUpdate()
 		itr->DebugUpdate();
 	}
 }
+
 #endif
 void IFE::ObjectManager::LoadingScene()
 {
@@ -446,7 +447,11 @@ void IFE::ObjectManager::LoadingScene()
 		else obj = Add(j["name"]);
 		obj->SetModel(ModelManager::Instance()->GetModel(j["model"]));
 		obj->LoadingScene(j);
+#ifdef InverseEditorMode
 		obj->Initialize();
+#else
+		obj->DebugInitialize();
+#endif
 		string s = j["name"];
 	}
 }

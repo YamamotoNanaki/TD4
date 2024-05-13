@@ -228,9 +228,6 @@ void IFE::Scene::SceneInit()
 	particleM->LoadingScene();
 	cameraM_->LoadingScene();
 	lightM_->LoadingScene();
-	objM_->Initialize();
-	spriteM_->Initialize();
-	particleM->Initialize();
 	oldPostEffect->LoadingScene();
 }
 
@@ -322,9 +319,6 @@ void IFE::Scene::LoadingScene()
 	spriteM_->LoadingScene();
 	particleM->LoadingScene();
 	lightM_->LoadingScene();
-	objM_->Initialize();
-	spriteM_->Initialize();
-	particleM->Initialize();
 	cameraM_->LoadingScene();
 	oldPostEffect->LoadingScene();
 	nowScene_ = nextScene_;
@@ -393,7 +387,6 @@ void IFE::Scene::DebugGUI()
 			nextScene_ = nowScene_;
 			sound_->AllStop();
 			LoadingScene();
-			objM_->Initialize();
 		}
 	}
 	else
@@ -403,6 +396,8 @@ void IFE::Scene::DebugGUI()
 			OutputScene();
 			debug_ = true;
 			objM_->Initialize();
+			spriteM_->Initialize();
+			particleM->Initialize();
 		}
 	}
 	static char name[256];

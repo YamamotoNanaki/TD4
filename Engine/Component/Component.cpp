@@ -28,6 +28,7 @@ void IFE::Component::INITIALIZE()
 	else if (particlePtr_ != nullptr)transformParticle_ = particlePtr_->GetComponent<TransformParticle>();
 	else if (emitterPtr_ != nullptr)transformParticle_ = emitterPtr_->GetComponent<TransformParticle>();
 	else if (cameraPtr_ != nullptr)transformCamera_ = cameraPtr_->GetComponent<TransformCamera>();
+
 	Initialize();
 }
 
@@ -164,6 +165,21 @@ void IFE::Component::DebugGUI(uint32_t num)
 		};
 	std::string s = std::to_string(num) + " : " + componentName_;
 	ImguiManager::Instance()->ComponentGUI(s,func, deleteFunc);
+}
+
+void IFE::Component::DebugINITIALIZE()
+{
+	if (objectPtr_ != nullptr)transform_ = objectPtr_->GetComponent<Transform>();
+	else if (spritePtr_ != nullptr)transform2D_ = spritePtr_->GetComponent<Transform2D>();
+	else if (particlePtr_ != nullptr)transformParticle_ = particlePtr_->GetComponent<TransformParticle>();
+	else if (emitterPtr_ != nullptr)transformParticle_ = emitterPtr_->GetComponent<TransformParticle>();
+	else if (cameraPtr_ != nullptr)transformCamera_ = cameraPtr_->GetComponent<TransformCamera>();
+
+	DebugInitialize();
+}
+
+void IFE::Component::DebugInitialize()
+{
 }
 
 void IFE::Component::OutputScene(nlohmann::json& j)

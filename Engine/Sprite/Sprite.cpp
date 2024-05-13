@@ -75,8 +75,13 @@ void IFE::Sprite::SPRITEInitialize(const std::string& texName, const Float2& s, 
 	this->flipY_ = y;
 
 	BufferInitialize();
+#ifdef InverseEditorMode
 	AddComponent<ColorBuffer>();
 	AddComponent<Transform2D>();
+#else
+	DebugAddComponent<ColorBuffer>();
+	DebugAddComponent<Transform2D>();
+#endif
 	transform_ = GetComponent<Transform2D>();
 	ComponentManager::Initialize();
 }

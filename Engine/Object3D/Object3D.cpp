@@ -22,9 +22,15 @@ IFE::Object3D::Object3D()
 
 void IFE::Object3D::OBJInitialize()
 {
+#ifdef InverseEditorMode
 	AddComponent<Material>();
 	AddComponent<TransferGeometryBuffer>();
 	AddComponent<Transform>();
+#else
+	DebugAddComponent<Material>();
+	DebugAddComponent<TransferGeometryBuffer>();
+	DebugAddComponent<Transform>();
+#endif
 	ComponentManager::Initialize();
 	Material* m = GetComponent<Material>();
 	m->SetDefaultParameter();
@@ -271,6 +277,13 @@ void IFE::Object3D::DebugUpdate()
 			child_[i]->deleteFlag_ = true;
 		}
 	}
+}
+
+void IFE::Object3D::DebugInitialize()
+{
+	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("3dNormal");
+	ComponentManager::DebugInitialize();
+	transform_ = GetComponent<Transform>();
 }
 
 #endif

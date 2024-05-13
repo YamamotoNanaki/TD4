@@ -4,6 +4,7 @@
 #include "Ease.h"
 #include "IFETime.h"
 #include "ObjectManager.h"
+#include "ModelManager.h"
 
 void IFE::NormalEnemy::Initialize()
 {
@@ -11,7 +12,12 @@ void IFE::NormalEnemy::Initialize()
 	waitTimer = 0;
 	nextPoint = 0;
 	isAttack = false;
-	hp_ = IFE::ObjectManager::Instance()->GetObjectPtr("EnemyHp")->GetComponent<EnemyHp>();
+	if (!hp_)
+	{
+		auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyHp", ModelManager::Instance()->GetModel("dice"));
+		ptr->AddComponent<EnemyHp>();
+		hp_ = ptr->GetComponent<EnemyHp>();
+	}
 }
 
 void IFE::NormalEnemy::ChangeState()
@@ -76,7 +82,7 @@ void IFE::NormalEnemy::Search()
 		//経由地点を補間(現状ループするだけ)
 		Vector3 dirVec = points[nextPoint] - transform_->position_;
 		dirVec.Normalize();
-		transform_->position_+= (dirVec * MOVE_VELO);
+		transform_->position_ += (dirVec * MOVE_VELO);
 
 		//次の地点へ
 		double len = sqrt(pow(transform_->position_.x - points[nextPoint].x, 2) + pow(transform_->position_.y - points[nextPoint].y, 2) +
@@ -129,7 +135,7 @@ void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hit
 	{
 		if (state != CHASE && hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
 			state = CHASE;
-			objectPtr_->SetColor({1,0,0,1});
+			objectPtr_->SetColor({ 1,0,0,1 });
 		}
 	}
 	//相手がplayerだった場合

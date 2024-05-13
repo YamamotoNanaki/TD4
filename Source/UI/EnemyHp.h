@@ -5,6 +5,7 @@
 namespace IFE {
 	class EnemyHp :public IFE::Component
 	{
+		using Component::Component;
 	private:
 		const int MAX_HP = 100;
 	private:

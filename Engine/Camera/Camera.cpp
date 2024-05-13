@@ -16,8 +16,13 @@ Camera::Camera()
 
 void IFE::Camera::CameraInitialize()
 {
+#ifdef InverseEditorMode
 	AddComponent<TransformCamera>();
 	AddComponent<Fog>();
+#else
+	DebugAddComponent<TransformCamera>();
+	DebugAddComponent<Fog>();
+#endif
 	ComponentManager::Initialize();
 	transform_ = GetComponent<TransformCamera>();
 }

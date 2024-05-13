@@ -59,6 +59,8 @@ namespace IFE
 #ifdef InverseEditorMode
 #else
 		virtual void DebugGUI(uint32_t num);
+		void DebugINITIALIZE();
+		virtual void DebugInitialize();
 		virtual void ComponentDebugGUI() {};
 		void OutputScene(nlohmann::json& json);
 		virtual void OutputComponent(nlohmann::json& json);

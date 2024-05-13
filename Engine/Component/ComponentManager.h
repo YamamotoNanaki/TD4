@@ -31,11 +31,15 @@ namespace IFE
 		template <class T>
 		void AddComponent();
 		template <class T>
+		void DebugAddComponent();
+		template <class T>
 		void AddComponent(std::unique_ptr<Component> ptr);
 		template <class T>
 		void AddComponentBack();
 		template <class T>
 		void AddComponentBack(std::unique_ptr<Component> ptr);
+		template <class T>
+		void DebugAddComponentBack(std::unique_ptr<Component> ptr);
 		template <class T>
 		void AddComponent(std::unique_ptr<Component> ptr, Object3D* components);
 		template <class T>
@@ -81,6 +85,7 @@ namespace IFE
 #else
 		void DebugGUI();
 		void OutputScene(nlohmann::json& json);
+		void DebugInitialize();
 		void DebugUpdate();
 #endif
 		void LoadingScene(nlohmann::json& json, const std::string& comName);
@@ -95,6 +100,14 @@ namespace IFE
 		auto ptr = std::make_unique<T>(this);
 		ptr->SetComponentName(SetName(typeid(T).name()));
 		ptr->INITIALIZE();
+		componentList_.push_front(std::move(ptr));
+	}
+	template<class T>
+	inline void ComponentManager::DebugAddComponent()
+	{
+		auto ptr = std::make_unique<T>(this);
+		ptr->SetComponentName(SetName(typeid(T).name()));
+		ptr->DebugINITIALIZE();
 		componentList_.push_front(std::move(ptr));
 	}
 	template<class T>
@@ -117,6 +130,13 @@ namespace IFE
 	{
 		ptr->SetComponents(this);
 		ptr->INITIALIZE();
+		componentList_.push_back(std::move(ptr));
+	}
+	template<class T>
+	inline void ComponentManager::DebugAddComponentBack(std::unique_ptr<Component> ptr)
+	{
+		ptr->SetComponents(this);
+		ptr->DebugINITIALIZE();
 		componentList_.push_back(std::move(ptr));
 	}
 	template<class T>
