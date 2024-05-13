@@ -39,7 +39,7 @@ void IFE::NormalEnemy::Update()
 	ChangeState();
 	hp_->transform_->position_ = transform_->position_;
 
-	IFE::ObjectManager::Instance()->GetObjectPtr("EnemyHp")->GetComponent<EnemyHp>()
+	IFE::ObjectManager::Instance()->GetObjectPtr("EnemyHp")->GetComponent<EnemyHp>();
 }
 
 void IFE::NormalEnemy::Wait()
