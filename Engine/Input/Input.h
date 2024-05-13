@@ -78,7 +78,7 @@ namespace IFE
 		static float GetLYAnalog(std::int32_t unresponsive_range = 1000);
 		static float GetRYAnalog(std::int32_t unresponsive_range = 1000);
 		static bool PadPush(const PADCODE& pad);
-		static bool PadTriggere(const PADCODE& pad);
+		static bool PadTrigger(const PADCODE& pad);
 		static bool PadRelease(const PADCODE& pad);
 		static void PadVibrationStart(const WORD& L, const WORD& R);
 		static void PadVibrationStop();

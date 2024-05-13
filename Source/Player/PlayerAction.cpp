@@ -44,26 +44,39 @@ void PlayerAction::MoveUpdate()
 
 void PlayerAction::Move()
 {
+	//正面ベクトルの作成
+	IFE::Vector3 frontVec = transform_->position_ - actionCamera_->transform_->eye_;
+	frontVec.Normalize();
+	//仮ベクトル
+	IFE::Vector3 temporaryVec = { 0,1,0 };
+	//右ベクトルの作成
+	IFE::Vector3 rightVec = frontVec.Cross(temporaryVec);
+	rightVec.Normalize();
+
+	//今回はY軸の動きは無くて良い
+	frontVec.y = 0.0f;
+	rightVec.y = 0.0f;
+
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::A))
 	{
-		transform_->position_ += { -1, 0, 0 };
+		transform_->position_ += rightVec;
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::D))
 	{
-		transform_->position_ += { 1, 0, 0 };
+		transform_->position_ -= rightVec;
 	}if (IFE::Input::GetKeyPush(IFE::Key::W))
 	{
-		transform_->position_ += { 0, 0, 1 };
+		transform_->position_ += frontVec;
 	}if (IFE::Input::GetKeyPush(IFE::Key::S))
 	{
-		transform_->position_ += { 0, 0, -1 };
+		transform_->position_ -= frontVec;
 	}
 #pragma endregion キーボード
 
 #pragma region コントローラー
-	//移動
-	transform_->position_ += {IFE::Input::GetLXAnalog(10000), 0, IFE::Input::GetLYAnalog(10000)};
+	transform_->position_ -= IFE::Input::GetLXAnalog(controllerRange_) * rightVec;
+	transform_->position_ += IFE::Input::GetLYAnalog(controllerRange_) * frontVec;
 #pragma endregion
 }
 
@@ -105,7 +118,7 @@ void PlayerAction::CameraUpdate()
 
 #pragma region コントローラー
 
-	cameraAngle_ += {-IFE::Input::GetRYAnalog(10000), IFE::Input::GetRXAnalog(10000)};
+	cameraAngle_ += {-IFE::Input::GetRYAnalog(controllerRange_), IFE::Input::GetRXAnalog(controllerRange_)};
 
 #pragma endregion コントローラー
 	cameraAngle_.x = std::clamp(cameraAngle_.x, -75.0f, 75.0f);
@@ -122,7 +135,7 @@ void PlayerAction::CameraUpdate()
 
 void PlayerAction::Attack()
 {
-	if (IFE::Input::GetKeyTrigger(IFE::Key::Space))
+	if (IFE::Input::GetKeyTrigger(IFE::Key::Space)|| IFE::Input::PadTrigger(IFE::PADCODE::X))
 	{
 		attackFlag_ = true;
 	}

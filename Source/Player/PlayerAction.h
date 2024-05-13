@@ -22,6 +22,8 @@ private:
 	const uint8_t attackTime_ = 10;
 	uint8_t attackTimer_ = 0;
 
+	const uint16_t controllerRange_ = 10000;
+
 public:
 
 	/// <summary>
