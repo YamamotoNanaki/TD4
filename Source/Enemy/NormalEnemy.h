@@ -22,6 +22,7 @@ namespace IFE {
 		int nextPoint;
 		//UŒ‚‚µ‚½‚©
 		bool isAttack;
+		Vector3 moveVec;
 
 	//ƒƒ“ƒoŠÖ”
 	public:

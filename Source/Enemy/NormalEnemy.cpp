@@ -11,15 +11,7 @@ void IFE::NormalEnemy::Initialize()
 	waitTimer = 0;
 	nextPoint = 0;
 	isAttack = false;
-	//std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
-	////レイ(視線)
-	//for (size_t i = 0; i < colliders.size(); i++) {
-	//	colliders[0]->SetColliderType(ColliderType::SPHERE);
-	//	colliders[1]->SetColliderType(ColliderType::RAY);
-	//	if (colliders[i]->GetColliderType() == ColliderType::RAY) {
-	//		colliders[i]->rayDir_ = { 0,0,-1 };
-	//	}
-	//}
+	moveVec = { 0,0,0 };
 }
 
 void IFE::NormalEnemy::ChangeState()
@@ -45,6 +37,7 @@ void IFE::NormalEnemy::Update()
 {
 	std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
 	ChangeState();
+	transform_->position_ += moveVec;
 }
 
 void IFE::NormalEnemy::Wait()
@@ -81,7 +74,7 @@ void IFE::NormalEnemy::Search()
 		//経由地点を補間(現状ループするだけ)
 		Vector3 dirVec = points[nextPoint] - transform_->position_;
 		dirVec.Normalize();
-		transform_->position_ += (dirVec * MOVE_VELO);
+		moveVec = (dirVec * MOVE_VELO);
 
 		//次の地点へ
 		double len = sqrt(pow(transform_->position_.x - points[nextPoint].x, 2) + pow(transform_->position_.y - points[nextPoint].y, 2) +
@@ -106,7 +99,7 @@ void IFE::NormalEnemy::Chase()
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
 	Vector3 addVec = pPos - ePos;
 	addVec.Normalize();
-	transform_->position_ += (addVec * 0.1f);
+	moveVec = (addVec * 0.1f);
 
 	//近づいたら殴る
 	double len = sqrt(pow(ePos.x - pPos.x, 2) + pow(ePos.y - pPos.y, 2) +
@@ -132,7 +125,7 @@ void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hit
 {
 	if (myCollider->GetColliderType() == ColliderType::RAY)
 	{
-		if (state != CHASE) {
+		if (state != CHASE && hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
 			state = CHASE;
 			objectPtr_->SetColor({1,0,0,1});
 		}
@@ -143,18 +136,6 @@ void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hit
 		if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
 			//当たった時の処理
 			objectPtr_->Destroy();
-		}
-	}
-	//敵と敵
-	if (myCollider->GetColliderType() == ColliderType::SPHERE)
-	{
-		if (hitCollider->objectPtr_->GetComponent<NormalEnemy>()) {
-			Vector3 ePos = transform_->position_;
-			Vector3 hitPos = hitCollider->objectPtr_->GetComponent<NormalEnemy>()->GetPos();
-			Vector3 addVec = hitPos - ePos;
-			addVec.Normalize();
-			addVec *= Vector3(-1, 0, -1);
-			transform_->position_+= (addVec * 0.1f);
 		}
 	}
 }
