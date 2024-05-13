@@ -54,4 +54,5 @@ namespace IFE
 
 	Vector3 MultiplyQuaternionAndVector3(const Quaternion& rotation, const Vector3& point);
 	Quaternion DirectionToDirection(const Vector3& u, const Vector3& v);
+	Vector3 Rotate(const Quaternion& q, const Vector3& v);
 }
