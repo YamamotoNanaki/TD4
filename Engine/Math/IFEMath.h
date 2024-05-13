@@ -73,4 +73,7 @@ namespace IFE
 	Float3 ConvertToRadians(const Float3& fDegrees);
 	Float3 ConvertToDegrees(const Float3& fRadians);
 	Float3 operator+(const Float3& f, const Vector2& v);
+
+	float Average(Vector2 v);
+	float Average(Vector3 v);
 };

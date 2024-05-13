@@ -44,6 +44,7 @@ void PlayerAction::MoveUpdate()
 
 void PlayerAction::Move()
 {
+#pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::A))
 	{
 		transform_->position_ += { -1, 0, 0 };
@@ -58,6 +59,12 @@ void PlayerAction::Move()
 	{
 		transform_->position_ += { 0, 0, -1 };
 	}
+#pragma endregion キーボード
+
+#pragma region コントローラー
+	//移動
+	transform_->position_ += {IFE::Input::GetLXAnalog(10000), 0, IFE::Input::GetLYAnalog(10000)};
+#pragma endregion
 }
 
 const IFE::Vector3 PlayerAction::GetPos()
@@ -77,6 +84,7 @@ void PlayerAction::CameraUpdate()
 	const float distance = 20.0f;
 
 #pragma region カメラ移動
+#pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
 	{
 		cameraAngle_.y -= 5;
@@ -93,6 +101,13 @@ void PlayerAction::CameraUpdate()
 	{
 		cameraAngle_.x += 5;
 	}
+#pragma endregion キーボード
+
+#pragma region コントローラー
+
+	cameraAngle_ += {-IFE::Input::GetRYAnalog(10000), IFE::Input::GetRXAnalog(10000)};
+
+#pragma endregion コントローラー
 	cameraAngle_.x = std::clamp(cameraAngle_.x, -75.0f, 75.0f);
 #pragma endregion カメラ移動
 

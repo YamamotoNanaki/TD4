@@ -53,5 +53,41 @@ namespace IFE
 		// 衝突点までの距離
 		float distance = 0.0f;
 	};
+	struct OBB {
+	public:
+		Vector3 center;  // 中心点
+		Vector3 axis[3]; // 局所軸
+		Vector3 extents; // 各軸に沿った半径（長さ）
+
+		OBB(Vector3 c, Vector3 a[3], Vector3 e)
+			: center(c), extents(e) {
+			axis[0] = a[0];
+			axis[1] = a[1];
+			axis[2] = a[2];
+		}
+		OBB(Vector3 c, const Quaternion& q, Vector3 e)
+			: center(c), extents(e) {
+			Vector3 baseX(1, 0, 0);
+			Vector3 baseY(0, 1, 0);
+			Vector3 baseZ(0, 0, 1);
+			axis[0] = Rotate(q, baseX);
+			axis[1] = Rotate(q, baseY);
+			axis[2] = Rotate(q, baseZ);
+		}
+		OBB(Vector3 c, Matrix r, Vector3 e)
+			: center(c), extents(e) {
+			Vector3 baseX(1, 0, 0);
+			Vector3 baseY(0, 1, 0);
+			Vector3 baseZ(0, 0, 1);
+
+			Vector3 rotatedX = Vector3Transform(baseX, r);
+			Vector3 rotatedY = Vector3Transform(baseY, r);
+			Vector3 rotatedZ = Vector3Transform(baseZ, r);
+
+			axis[0] = rotatedX;
+			axis[1] = rotatedY;
+			axis[2] = rotatedZ;
+		}
+	};
 }
 

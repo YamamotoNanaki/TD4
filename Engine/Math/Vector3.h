@@ -12,6 +12,8 @@ namespace IFE
 		void Set(float x, float y, float z);
 
 		float Length() const;
+		// ƒxƒNƒgƒ‹‚Ì’·‚³‚Ì“ñæ
+		float LengthSquared() const;
 		Vector3& Normalize();
 		float Dot(const Vector3& v) const;
 		Vector3 Cross(const Vector3& v)const;

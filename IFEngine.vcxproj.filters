@@ -151,6 +151,12 @@
     <Filter Include="ヘッダー ファイル\Source\Player">
       <UniqueIdentifier>{25ca4776-f7a1-4c18-b794-3afca62a3d51}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Source\StageGimmick">
+      <UniqueIdentifier>{3e631c58-c6eb-4580-96d8-4d9d6be84f86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Source\StageGimmick">
+      <UniqueIdentifier>{cc851394-261e-4644-b126-6b41afc578d1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ヘッダー ファイル\Source\UI">
       <UniqueIdentifier>{927238c9-7fba-479e-af25-af1308d6927e}</UniqueIdentifier>
     </Filter>
@@ -358,6 +364,9 @@
       <Filter>ソース ファイル\Source\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Component\ComponentHelp.cpp" />
+    <ClCompile Include="Source\StageGimmick\LaserWire.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
     <ClCompile Include="Source\UI\EnemyHp.cpp">
       <Filter>ソース ファイル\Source\UI</Filter>
     </ClCompile>
@@ -601,6 +610,9 @@
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
     <ClInclude Include="EditorMode.h" />
+    <ClInclude Include="Source\StageGimmick\LaserWire.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
+    </ClInclude>
     <ClInclude Include="Source\UI\EnemyHp.h">
       <Filter>ヘッダー ファイル\Source\UI</Filter>
     </ClInclude>

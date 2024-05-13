@@ -1,4 +1,5 @@
 #include "Collision.h"
+#include <cmath>
 
 using namespace IFE;
 
@@ -157,6 +158,186 @@ bool IFE::Collision::CheckSphereTriangle(const Sphere& sphere, const Triangle& t
 	return true;
 }
 
+bool IFE::Collision::CheckOBB(const OBB& box1, const OBB& box2, Vector3* inter, Vector3* reject)
+{
+	float minOverlap = std::numeric_limits<float>::max();
+	Vector3 smallestAxis;
+	bool isSeparated = false; // 分離が発見されたかどうか
+
+	// 各軸で分離軸定理を適用
+	for (int i = 0; i < 3; i++) {
+		Vector3 axis = box1.axis[i];
+		if (IsSeparatedByAxis(axis, box1, box2)) {
+			isSeparated = true;
+			break;
+		}
+	}
+	for (int i = 0; i < 3; i++) {
+		Vector3 axis = box2.axis[i];
+		if (IsSeparatedByAxis(axis, box1, box2)) {
+			isSeparated = true;
+			break;
+		}
+	}
+
+	if (!isSeparated) {
+		if (inter)*inter = smallestAxis * minOverlap; // 押し出しベクトルの計算
+		if (reject)*reject = (box1.center + box2.center) * 0.5f; // 衝突地点の簡易計算
+		return true;
+	}
+	return false;
+}
+
+bool IFE::Collision::CheckOBBSphere(const OBB& box, const Sphere& sphere, Vector3* inter, Vector3* reject)
+{// OBBの中心から球の中心までのベクトル
+	Vector3 d = sphere.center - box.center;
+
+	// 球の中心をOBBの局所座標系に投影する
+	Vector3 closestPoint = box.center;
+	float dist;
+	Vector3 displacement;
+
+	// 各軸に対する処理
+	float extents[] = { box.extents.x, box.extents.y, box.extents.z };
+
+	for (int i = 0; i < 3; i++) {
+		// OBBの局所軸に沿って中心からの距離を計算
+		dist = d.Dot(box.axis[i]);
+		if (dist > extents[i]) dist = extents[i];
+		if (dist < -extents[i]) dist = -extents[i];
+		closestPoint += box.axis[i] * dist;
+	}
+
+	displacement = closestPoint - sphere.center;
+	float distanceSquared = displacement.LengthSquared();
+	float radiusSquared = sphere.radius * sphere.radius;
+
+	// 球の中心と最も近い点との距離が球の半径以下なら衝突
+	if (distanceSquared < radiusSquared) {
+		float distance = sqrt(distanceSquared);
+		if (inter)*inter = closestPoint; // 衝突地点は最も近い点
+		if (reject)
+		{
+			if (distance == 0) {
+				// 衝突点が球の中心の場合（避けるために任意の方向に少し移動）
+				*reject = box.axis[0] * sphere.radius;
+			}
+			else {
+				*reject = displacement * ((sphere.radius - distance) / distance); // 押し出しベクトル
+			}
+		}
+		return true;
+	}
+
+	return false;
+}
+
+bool IFE::Collision::CheckOBBTriangle(const OBB& obb, const Triangle& triangle, Vector3* inter, Vector3* reject)
+{
+	float minPoint[3] = { std::numeric_limits<float>::max(), std::numeric_limits<float>::max(), std::numeric_limits<float>::max() };
+	float maxPoint[3] = { -std::numeric_limits<float>::max(), -std::numeric_limits<float>::max(), -std::numeric_limits<float>::max() };
+
+	Vector3 vertices[3] = { triangle.p0,triangle.p1,triangle.p2, };
+	// 各軸に対する処理
+	float extents[] = { obb.extents.x, obb.extents.y, obb.extents.z };
+
+	Vector3 penetrationDepths[3]; // 各軸での浸透深度を記録
+
+	// 三角形の頂点をOBBの局所座標系に変換します
+	for (int i = 0; i < 3; ++i) {
+		Vector3 localVertex = vertices[i] - obb.center;
+		for (int j = 0; j < 3; ++j) {
+			float projection = localVertex.Dot(obb.axis[j]);
+			minPoint[j] = std::min(minPoint[j], projection);
+			maxPoint[j] = std::max(maxPoint[j], projection);
+		}
+	}
+
+	// 三角形がOBBの外側にあるかどうかをチェックします
+	Vector3 pushDirection;
+	float minPenetrationDepth = std::numeric_limits<float>::max();
+	for (int i = 0; i < 3; ++i) {
+		float penetrationDepth = 0;
+		if (maxPoint[i] < -extents[i] || minPoint[i] > extents[i]) {
+			return false; // 衝突していません
+		}
+		// 押し出しベクトルの計算
+		float minDepth = extents[i] - minPoint[i]; // min側の浸透深度
+		float maxDepth = extents[i] + maxPoint[i]; // max側の浸透深度
+		if (minDepth < maxDepth) {
+			penetrationDepth = minDepth;
+			pushDirection = obb.axis[i] * -1; // 内向きに修正
+		}
+		else {
+			penetrationDepth = maxDepth;
+			pushDirection = obb.axis[i]; // 外向き
+		}
+
+		if (penetrationDepth < minPenetrationDepth) {
+			minPenetrationDepth = penetrationDepth;
+			if (reject)*reject = pushDirection * penetrationDepth;
+		}
+	}
+
+	// 衝突地点の計算（ここでは簡略化されています）
+	if (inter && reject)*inter = obb.center + (*reject) * 0.5; // これは単なる推定です
+	if (inter)*inter = obb.center; // これは単なる推定です
+
+	return true; // 衝突が検出されました
+}
+
+bool IFE::Collision::CheckOBBRay(const OBB& box, const Ray& ray, float* distance, float* rayHittingdistance, Vector3* inter)
+{
+	float tMin = 0.0f; // レイがOBBに入る最小のt値
+	float tMax = std::numeric_limits<float>::max(); // レイがOBBから出る最大のt値
+
+	Vector3 delta = box.center - ray.start; // レイの原点からOBBの中心へのベクトル
+
+	// 各軸に対する処理
+	float extents[] = { box.extents.x, box.extents.y, box.extents.z };
+
+	// 各軸で交差チェック
+	for (int i = 0; i < 3; i++) {
+		Vector3 axis = box.axis[i];
+		float e = axis.Dot(delta); // OBB中心へのベクトルを軸に投影
+		float f = ray.dir.Dot(axis); // レイ方向を軸に投影
+
+		if (fabs(f) > 0.001f) { // レイ方向が軸に対してほぼ平行でない場合
+			float t1 = (e + extents[i]) / f;
+			float t2 = (e - extents[i]) / f;
+
+			if (t1 > t2) {
+				std::swap(t1, t2);
+			}
+
+			tMin = std::max(tMin, t1);
+			tMax = std::min(tMax, t2);
+
+			if (tMin > tMax) return false; // 分離が確認された場合
+		}
+		else { // レイが軸に対して平行で、範囲外にある場合
+			if (-e + extents[i] < 0 || -e - extents[i] > 0)
+				return false;
+		}
+	}
+
+	// 交差するが、指定された距離以外にある場合
+	if (tMin > *rayHittingdistance) return false;
+
+	// 有効な交差点が後方にある場合
+	if (tMin < 0 && tMax < 0) return false;
+
+	float tHit = tMin >= 0 ? tMin : tMax; // 実際の衝突t値
+
+	if (tHit <= *rayHittingdistance) {
+		*inter = ray.start + ray.dir * tHit; // 衝突地点
+		*distance = tHit; // 衝突までの距離
+		return true;
+	}
+
+	return false;
+}
+
 //bool IF::Collision::CheckSphere(const Sphere& s1, const Sphere& s2, Vector3* inter)
 //{
 //	Vector3 vec = s2.center - s1.center;
@@ -172,6 +353,28 @@ bool IFE::Collision::CheckSphereTriangle(const Sphere& sphere, const Triangle& t
 //
 //	return true;
 //}
+
+bool IFE::Collision::IsSeparatedByAxis(const Vector3 axis, const OBB& box1, const OBB& box2)
+{
+	auto projectBox = [](const OBB& box, const Vector3& axis) {
+		float radius = box.extents.x * std::fabs(axis.Dot(box.axis[0])) +
+			box.extents.y * std::fabs(axis.Dot(box.axis[1])) +
+			box.extents.z * std::fabs(axis.Dot(box.axis[2]));
+		float centerProjection = axis.Dot(box.center);
+		return std::make_pair(centerProjection - radius, centerProjection + radius);
+		};
+
+	// 各ボックスを軸に沿って投影
+	auto projection1 = projectBox(box1, axis);
+	auto projection2 = projectBox(box2, axis);
+
+	// プロジェクションが重なっていないか確認
+	if (projection1.second < projection2.first || projection2.second < projection1.first) {
+		return true; // 分離が確認された場合
+	}
+
+	return false; // 分離が確認されない場合
+}
 
 void IFE::Collision::ClosestPtPoint2Triangle(const Vector3& point, const Triangle& triangle, Vector3* closest)
 {
