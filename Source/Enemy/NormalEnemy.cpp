@@ -11,7 +11,7 @@ void IFE::NormalEnemy::Initialize()
 	waitTimer = 0;
 	nextPoint = 0;
 	isAttack = false;
-	moveVec = { 0,0,0 };
+	hp_ = IFE::ObjectManager::Instance()->GetObjectPtr("EnemyHp")->GetComponent<EnemyHp>();
 }
 
 void IFE::NormalEnemy::ChangeState()
@@ -37,7 +37,9 @@ void IFE::NormalEnemy::Update()
 {
 	std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
 	ChangeState();
-	transform_->position_ += moveVec;
+	hp_->transform_->position_ = transform_->position_;
+
+	IFE::ObjectManager::Instance()->GetObjectPtr("EnemyHp")->GetComponent<EnemyHp>()
 }
 
 void IFE::NormalEnemy::Wait()
@@ -74,7 +76,7 @@ void IFE::NormalEnemy::Search()
 		//経由地点を補間(現状ループするだけ)
 		Vector3 dirVec = points[nextPoint] - transform_->position_;
 		dirVec.Normalize();
-		moveVec = (dirVec * MOVE_VELO);
+		transform_->position_+= (dirVec * MOVE_VELO);
 
 		//次の地点へ
 		double len = sqrt(pow(transform_->position_.x - points[nextPoint].x, 2) + pow(transform_->position_.y - points[nextPoint].y, 2) +
@@ -99,7 +101,7 @@ void IFE::NormalEnemy::Chase()
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
 	Vector3 addVec = pPos - ePos;
 	addVec.Normalize();
-	moveVec = (addVec * 0.1f);
+	transform_->position_ += (addVec * 0.1f);
 
 	//近づいたら殴る
 	double len = sqrt(pow(ePos.x - pPos.x, 2) + pow(ePos.y - pPos.y, 2) +

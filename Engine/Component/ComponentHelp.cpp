@@ -16,6 +16,7 @@
 #include"PlayerDrone.h"
 #include "NormalEnemy.h"
 #include "LaserWire.h"
+#include "EnemyHp.h"
 
 using namespace IFE;
 using namespace std;
@@ -63,9 +64,10 @@ Component* IFE::StringToComponent(const std::string& str)
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<PlayerDrone>(str));
 	if (tmp != nullptr)return tmp;
-
 	//enemy
 	tmp = std::move(GetPtr<NormalEnemy>(str));
+	if (tmp != nullptr)return tmp;
+	tmp = std::move(GetPtr<EnemyHp>(str));
 	if (tmp != nullptr)return tmp;
 
 	//ステージギミック

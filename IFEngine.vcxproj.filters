@@ -157,6 +157,12 @@
     <Filter Include="ヘッダー ファイル\Source\StageGimmick">
       <UniqueIdentifier>{cc851394-261e-4644-b126-6b41afc578d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Source\UI">
+      <UniqueIdentifier>{927238c9-7fba-479e-af25-af1308d6927e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Source\UI">
+      <UniqueIdentifier>{46e0458c-4097-4051-9109-ef586efa19ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp">
@@ -360,6 +366,9 @@
     <ClCompile Include="Engine\Component\ComponentHelp.cpp" />
     <ClCompile Include="Source\StageGimmick\LaserWire.cpp">
       <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\EnemyHp.cpp">
+      <Filter>ソース ファイル\Source\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -603,6 +612,9 @@
     <ClInclude Include="EditorMode.h" />
     <ClInclude Include="Source\StageGimmick\LaserWire.h">
       <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\EnemyHp.h">
+      <Filter>ヘッダー ファイル\Source\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
