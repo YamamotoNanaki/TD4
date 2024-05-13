@@ -2,6 +2,7 @@
 #include "BaseEnemy.h"
 #include "PlayerAction.h"
 #include "IFEMath.h"
+#include "EnemyHp.h"
 
 namespace IFE {
 	//---めっちゃ普通の敵---//
@@ -19,10 +20,11 @@ namespace IFE {
 		//経由地点
 		std::vector<Float3> points;
 		//次の場所
-		int nextPoint;
+		size_t nextPoint;
 		//攻撃したか
 		bool isAttack;
-		Vector3 moveVec;
+		//hp
+		EnemyHp* hp_ = nullptr;
 
 	//メンバ関数
 	public:

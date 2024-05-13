@@ -151,6 +151,12 @@
     <Filter Include="ヘッダー ファイル\Source\Player">
       <UniqueIdentifier>{25ca4776-f7a1-4c18-b794-3afca62a3d51}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Source\UI">
+      <UniqueIdentifier>{927238c9-7fba-479e-af25-af1308d6927e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Source\UI">
+      <UniqueIdentifier>{46e0458c-4097-4051-9109-ef586efa19ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp">
@@ -352,6 +358,9 @@
       <Filter>ソース ファイル\Source\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Component\ComponentHelp.cpp" />
+    <ClCompile Include="Source\UI\EnemyHp.cpp">
+      <Filter>ソース ファイル\Source\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -592,6 +601,9 @@
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
     <ClInclude Include="EditorMode.h" />
+    <ClInclude Include="Source\UI\EnemyHp.h">
+      <Filter>ヘッダー ファイル\Source\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Shaders\Particle.hlsli">
