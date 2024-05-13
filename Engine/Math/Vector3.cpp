@@ -37,7 +37,12 @@ void Vector3::Set(float _x, float _y, float _z)
 
 float Vector3::Length() const
 {
-	return sqrtf(x * x + y * y + z * z);
+	return sqrtf(LengthSquared());
+}
+
+float IFE::Vector3::LengthSquared() const
+{
+	return x * x + y * y + z * z;
 }
 
 Vector3& Vector3::Normalize()

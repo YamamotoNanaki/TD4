@@ -16,10 +16,15 @@ namespace IFE
 		static bool CheckSphere(const Sphere& sphereA, const Sphere& sphereB, Vector3* inter = nullptr, Vector3* reject = nullptr);
 		//static bool CheckSphereTriangle(const Sphere& sphere, const Triangle& triangle, Vector3* inter = nullptr);
 		static bool CheckSphereTriangle(const Sphere& sphere, const Triangle& triangle, Vector3* inter = nullptr, Vector3* reject = nullptr);
+		static bool CheckOBB(const OBB& box1, const OBB& box2, Vector3* inter = nullptr, Vector3* reject = nullptr);
+		static bool CheckOBBSphere(const OBB& box, const Sphere& sphere, Vector3* inter = nullptr, Vector3* reject = nullptr);
+		static bool CheckOBBTriangle(const OBB& box, const Triangle& triangle, Vector3* inter = nullptr, Vector3* reject = nullptr);
+		static bool CheckOBBRay(const OBB& box, const Ray& ray, float* distance = nullptr, float* rayHittingdistance = nullptr, Vector3* inter = nullptr);
 		//static bool CheckAABB(const Primitive& box1, const Primitive& box2);
 		//static bool CheckCircleXY(const Primitive& Circle1, const Primitive& Circle2);
 		//static bool CheckCircleXYAABB(const Primitive& Circle, const Primitive& box);
 	private:
+		static bool IsSeparatedByAxis(const Vector3 axis, const OBB& box1, const OBB& box2);
 		static void ClosestPtPoint2Triangle(const Vector3& point, const Triangle& triangle, Vector3* closest);
 
 		//2d

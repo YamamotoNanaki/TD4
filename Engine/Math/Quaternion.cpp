@@ -334,6 +334,15 @@ Quaternion IFE::DirectionToDirection(const Vector3& u, const Vector3& v)
 	return MakeAxisAngle(axis, theta);
 }
 
+Vector3 IFE::Rotate(const Quaternion& q, const Vector3& v)
+{
+	Quaternion qv(0, v.x, v.y, v.z); // ベクトルをクオタニオンに変換
+	Quaternion qr = Conjugate(q); // 逆クオタニオン（共役）
+	Quaternion qResult = q * qv * qr; // ベクトルの回転
+	return Vector3(qResult.x, qResult.y, qResult.z); // 新しいベクトルを返す
+
+}
+
 Float4 IFE::Quaternion::GetFloat4()
 {
 	return Float4(x,y,z,w);

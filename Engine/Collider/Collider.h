@@ -7,7 +7,7 @@ namespace IFE
 {
 	enum class ColliderType
 	{
-		SPHERE, MESH, RAY
+		SPHERE, MESH, RAY, OBB
 	};
 	enum class Attribute
 	{

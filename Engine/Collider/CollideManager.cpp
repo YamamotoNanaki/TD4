@@ -58,8 +58,8 @@ void IFE::CollideManager::CollidersUpdate()
 			//ともに球
 			if (colA->GetColliderType() == ColliderType::SPHERE && colB->GetColliderType() == ColliderType::SPHERE)
 			{
-				Sphere SphereA(colA->GetColliderPosition(), Vector3(colA->GetColliderScale()).Length());
-				Sphere SphereB(colB->GetColliderPosition(), Vector3(colB->GetColliderScale()).Length());
+				Sphere SphereA(colA->GetColliderPosition(), Average(colA->GetColliderScale()));
+				Sphere SphereB(colB->GetColliderPosition(), Average(colB->GetColliderScale()));
 				Vector3 inter;
 				Vector3 reject;
 				if (Collision::CheckSphere(SphereA, SphereB, &inter, &reject))
@@ -70,10 +70,11 @@ void IFE::CollideManager::CollidersUpdate()
 					OnColliderHit(colA, colB);
 				}
 			}
+			//メッシュと球
 			else if (colA->GetColliderType() == ColliderType::MESH && colB->GetColliderType() == ColliderType::SPHERE)
 			{
 				MeshCollider* mesh = colA->GetMeshCollider();
-				Sphere sphere(colB->GetColliderPosition(), Vector3(colB->GetColliderScale()).Length());
+				Sphere sphere(colB->GetColliderPosition(), Average(colB->GetColliderScale()));
 				Vector3 inter;
 				Vector3 reject;
 				if (mesh->CheckCollisionSphere(sphere, &inter, &reject))
@@ -84,10 +85,11 @@ void IFE::CollideManager::CollidersUpdate()
 					OnColliderHit(colA, colB);
 				}
 			}
+			//メッシュと球
 			else if (colA->GetColliderType() == ColliderType::SPHERE && colB->GetColliderType() == ColliderType::MESH)
 			{
 				MeshCollider* mesh = colB->GetMeshCollider();
-				Sphere sphere(colA->GetColliderPosition(), Vector3(colA->GetColliderScale()).Length());
+				Sphere sphere(colA->GetColliderPosition(), Average(colA->GetColliderScale()));
 				Vector3 inter;
 				Vector3 reject;
 				if (mesh->CheckCollisionSphere(sphere, &inter, &reject))
@@ -98,10 +100,11 @@ void IFE::CollideManager::CollidersUpdate()
 					OnColliderHit(colA, colB);
 				}
 			}
+			//レイと球
 			else if (colA->GetColliderType() == ColliderType::RAY && colB->GetColliderType() == ColliderType::SPHERE)
 			{
 				Ray ray(colA->GetColliderPosition(), colA->rayDir_);
-				Sphere sphere(colB->GetColliderPosition(), Vector3(colB->GetColliderScale()).Length());
+				Sphere sphere(colB->GetColliderPosition(), Average(colB->GetColliderScale()));
 				Vector3 inter;
 				float dis;
 				float* hitdis = nullptr;
@@ -118,6 +121,7 @@ void IFE::CollideManager::CollidersUpdate()
 					OnColliderHit(colA, colB);
 				}
 			}
+			//レイとメッシュ
 			else if (colA->GetColliderType() == ColliderType::RAY && colB->GetColliderType() == ColliderType::MESH)
 			{
 				MeshCollider* mesh = colB->GetMeshCollider();
@@ -138,10 +142,11 @@ void IFE::CollideManager::CollidersUpdate()
 					OnColliderHit(colA, colB);
 				}
 			}
+			//レイと球
 			else if (colA->GetColliderType() == ColliderType::SPHERE && colB->GetColliderType() == ColliderType::RAY)
 			{
 				Ray ray(colB->GetColliderPosition(), colB->rayDir_);
-				Sphere sphere(colA->GetColliderPosition(), Vector3(colA->GetColliderScale()).Length());
+				Sphere sphere(colA->GetColliderPosition(), Average(colA->GetColliderScale()));
 				Vector3 inter;
 				float dis;
 				float* hitdis = nullptr;
@@ -158,6 +163,7 @@ void IFE::CollideManager::CollidersUpdate()
 					OnColliderHit(colA, colB);
 				}
 			}
+			//レイとメッシュ
 			else if (colA->GetColliderType() == ColliderType::MESH && colB->GetColliderType() == ColliderType::RAY)
 			{
 				MeshCollider* mesh = colA->GetMeshCollider();
@@ -175,6 +181,51 @@ void IFE::CollideManager::CollidersUpdate()
 					colB->interPoint_ = inter;
 					colA->rayDistance = dis;
 					colB->rayDistance = dis;
+					OnColliderHit(colA, colB);
+				}
+			}
+			//ともにOBB
+			if (colA->GetColliderType() == ColliderType::OBB && colB->GetColliderType() == ColliderType::OBB)
+			{
+				OBB OBBA(colA->GetColliderPosition(), colA->transform_->matRot_, colA->GetColliderScale());
+				OBB OBBB(colB->GetColliderPosition(), colB->transform_->matRot_, colB->GetColliderScale());
+				Vector3 inter;
+				Vector3 reject;
+				if (Collision::CheckOBB(OBBA, OBBB, &inter, &reject))
+				{
+					colA->interPoint_ = inter;
+					colB->interPoint_ = inter;
+					PushBack(colA, colB, reject);
+					OnColliderHit(colA, colB);
+				}
+			}
+			//OBBと球
+			if (colA->GetColliderType() == ColliderType::SPHERE && colB->GetColliderType() == ColliderType::OBB)
+			{
+				Sphere sphere(colA->GetColliderPosition(), Average(colA->GetColliderScale()));
+				OBB OBB(colB->GetColliderPosition(), colB->transform_->matRot_, colB->GetColliderScale());
+				Vector3 inter;
+				Vector3 reject;
+				if (Collision::CheckOBBSphere(OBB, sphere, &inter, &reject))
+				{
+					colA->interPoint_ = inter;
+					colB->interPoint_ = inter;
+					PushBack(colA, colB, reject);
+					OnColliderHit(colA, colB);
+				}
+			}
+			//OBBと球
+			if (colA->GetColliderType() == ColliderType::OBB && colB->GetColliderType() == ColliderType::SPHERE)
+			{
+				OBB OBB(colA->GetColliderPosition(), colA->transform_->matRot_, colA->GetColliderScale());
+				Sphere sphere(colB->GetColliderPosition(), Average(colB->GetColliderScale()));
+				Vector3 inter;
+				Vector3 reject;
+				if (Collision::CheckOBBSphere(OBB, sphere, &inter, &reject))
+				{
+					colA->interPoint_ = inter;
+					colB->interPoint_ = inter;
+					PushBack(colA, colB, reject);
 					OnColliderHit(colA, colB);
 				}
 			}

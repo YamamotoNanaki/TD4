@@ -12,6 +12,8 @@ void IFE::ColliderComponent::Initialize()
 	if (objectPtr_)
 	{
 		transform_ = objectPtr_->transform_;
+		parentPosition_ = &transform_->position_;
+		parentScale_ = &transform_->scale_;
 	}
 	if (colliderType_ == ColliderType::MESH)
 	{
@@ -163,6 +165,7 @@ void IFE::ColliderComponent::ColliderGUI(uint32_t num)
 			gui->RadioButtonGUI("Sphere", &n, (int32_t)ColliderType::SPHERE);
 			gui->RadioButtonGUI("Mesh", &n, (int32_t)ColliderType::MESH);
 			gui->RadioButtonGUI("Ray", &n, (int32_t)ColliderType::RAY);
+			gui->RadioButtonGUI("OBB", &n, (int32_t)ColliderType::OBB);
 			colliderType_ = (ColliderType)n;
 			gui->EndTreeNode();
 		}
