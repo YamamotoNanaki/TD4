@@ -15,6 +15,7 @@ void Player::Initialize()
 	IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
 
 	transform_->position_ = { 0,0,0 };
+	objectPtr_->DrawFlag_ = false;
 }
 
 void Player::Update()
@@ -45,7 +46,7 @@ void Player::OnColliderHit(IFE::ColliderCore collider)
 
 void Player::ChangeMode()
 {
-	if (IFE::Input::GetKeyTrigger(IFE::Key::Y))
+	if (IFE::Input::GetKeyTrigger(IFE::Key::Y) || IFE::Input::PadTrigger(IFE::PADCODE::Y))
 	{
 		if (modeFlag_ == false)
 		{

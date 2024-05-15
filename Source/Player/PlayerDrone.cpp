@@ -43,108 +43,107 @@ void PlayerDrone::OnColliderHit(IFE::ColliderCore collider)
 
 void PlayerDrone::MoveUpdate()
 {
+	if (objectPtr_->DrawFlag_ == true)
+	{
+		objectPtr_->DrawFlag_ = false;
+	}
+	CameraUpdate();
 	Rotation();
 	Move();
-	CameraUpdate();
 }
 
 void PlayerDrone::Move()
 {
-	/*float maxXSpeed = IFE::Input::GetLAnalog().x;
-	float maxXSpeed = IFE::Input::GetLAnalog().x;*/
+	//仮ベクトル
+	IFE::Vector3 temporaryVec = { 0,1,0 };
+	//右ベクトルの作成
+	IFE::Vector3 rightVec = frontVec_.Cross(temporaryVec);
+	rightVec.Normalize();
 
-	float addSpeed = 0.05f;
-	//移動方向を変えずに向きだけ変わるカメラ(水平モード)
-	if (cameraMode_ == false)
-	{
-		if (IFE::Input::GetKeyPush(IFE::Key::A))
-		{
-			speed_.x -= addSpeed;
-		}
-		if (IFE::Input::GetKeyPush(IFE::Key::D))
-		{
-			speed_.x += addSpeed;
-		}
+	//今回はY軸の動きは無くて良い
+	frontVec_.y = 0.0f;
+	rightVec.y = 0.0f;
 
-		if (IFE::Input::GetKeyPush(IFE::Key::W))
-		{
-			speed_.z += addSpeed;
-		}
-		if (IFE::Input::GetKeyPush(IFE::Key::S))
-		{
-			speed_.z -= addSpeed;
-		}
-	}
-	//カメラの向きに進むカメラ
-	else
+#pragma region キーボード
+	if (IFE::Input::GetKeyPush(IFE::Key::A))
 	{
-		if (IFE::Input::GetKeyPush(IFE::Key::W))
-		{
-			speed_ += addSpeed * transform_->GetForwardVector();
-		}
-		if (IFE::Input::GetKeyPush(IFE::Key::S))
-		{
-			speed_ -= addSpeed * transform_->GetForwardVector();
-		}
+		speed_ += rightVec;
 	}
+	if (IFE::Input::GetKeyPush(IFE::Key::D))
+	{
+		speed_ -= rightVec;
+	}if (IFE::Input::GetKeyPush(IFE::Key::W))
+	{
+		speed_ += frontVec_;
+	}if (IFE::Input::GetKeyPush(IFE::Key::S))
+	{
+		speed_ -= frontVec_;
+	}
+	transform_->position_ += speed_;
+#pragma endregion キーボード
 
-	if (IFE::Input::GetKeyTrigger(IFE::Key::H))
-	{
-		if (cameraMode_ == false)
-		{
-			cameraMode_ = true;
-		}
-		else
-		{
-			cameraMode_ = false;
-		}
-	}
-	
-	if (IFE::Input::GetKeyPush(IFE::Key::Q))
-	{
-		speed_.y -= addSpeed;
-	}
-	if (IFE::Input::GetKeyPush(IFE::Key::E))
-	{
-		speed_.y += addSpeed;
-	}
+#pragma region コントローラー
+	speed_ -= IFE::Input::GetLXAnalog(controllerRange_) * rightVec;
+	speed_ += IFE::Input::GetLYAnalog(controllerRange_) * frontVec_;
+	transform_->position_ += speed_;
+#pragma endregion コントローラー
 
 	SpeedZero(speed_.x);
 	SpeedZero(speed_.z);
 	SpeedZero(speed_.y);
 
-	transform_->position_ += speed_;
 	//スピード限界処理
 	const float maxSpeed = 0.5f;
 	speed_.x = std::clamp(speed_.x, -maxSpeed, maxSpeed);
 	speed_.y = std::clamp(speed_.y, -maxSpeed, maxSpeed);
 	speed_.z = std::clamp(speed_.z, -maxSpeed, maxSpeed);
+
+	transform_->UpdateMatrix();
 }
 
 void PlayerDrone::Rotation()
 {
+	const float cameraRotSpeed = 1.0;
+#pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
 	{
-		transform_->eulerAngleDegrees_ += { 0, -5.0f, 0 };
+		transform_->eulerAngleDegrees_ += { 0, -cameraRotSpeed, 0 };
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::RIGHT))
 	{
-		transform_->eulerAngleDegrees_ += { 0, 5.0f, 0 };
+		transform_->eulerAngleDegrees_ += { 0, cameraRotSpeed, 0 };
 	}
 
 	if (IFE::Input::GetKeyPush(IFE::Key::UP))
 	{
-		transform_->eulerAngleDegrees_ += { -5.0f, 0, 0 };
+		transform_->eulerAngleDegrees_ += { -cameraRotSpeed, 0, 0 };
 	}if (IFE::Input::GetKeyPush(IFE::Key::DOWN))
 	{
-		transform_->eulerAngleDegrees_ += { 5.0f, 0, 0 };
+		transform_->eulerAngleDegrees_ += { cameraRotSpeed, 0, 0 };
 	}
+#pragma endregion キーボード
+
+#pragma region コントローラー
+	transform_->eulerAngleDegrees_ +=
+	{
+		-IFE::Input::GetRYAnalog(controllerRange_)* cameraRotSpeed,
+		IFE::Input::GetRXAnalog(controllerRange_)* cameraRotSpeed,
+		0
+	};
+#pragma endregion コントローラー
+
+
 	
 	//縦回転の限界処理
 	const float maxVerticalRotation = 45.0f;
 	transform_->eulerAngleDegrees_.x = std::clamp(transform_->eulerAngleDegrees_.x, -maxVerticalRotation, maxVerticalRotation);
 
-	frontVec_ = front_ - pos_;
+	frontVec_ =
+	{
+		droneCamera_->transform_->target_.x - transform_->position_.x,
+		droneCamera_->transform_->target_.y - transform_->position_.y,
+		droneCamera_->transform_->target_.z - transform_->position_.z
+	};
 	frontVec_.Normalize();
 }
 

@@ -15,6 +15,8 @@ private:
 	IFE::Camera* droneCamera_ = nullptr;
 	bool cameraMode_ = false;
 
+	const uint16_t controllerRange_ = 10000;
+
 	/// <summary>
 	/// ’iXspeed‚ğ0‚É‚·‚éˆ—
 	/// </summary>
