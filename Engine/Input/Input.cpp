@@ -166,7 +166,8 @@ bool Input::PadPush(const PADCODE& p)
 }
 bool Input::PadTrigger(const PADCODE& p)
 {
-	if ((sInputInstance_->pad_.Gamepad.wButtons & (uint32_t)p) && !(sInputInstance_->oldpad_.Gamepad.wButtons & (uint32_t)p))return true;
+	if ((sInputInstance_->pad_.Gamepad.wButtons & (uint32_t)p) && !(sInputInstance_->oldpad_.Gamepad.wButtons & (uint32_t)p))
+		return true;
 	return false;
 }
 bool Input::PadRelease(const PADCODE& p)

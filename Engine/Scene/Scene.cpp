@@ -347,6 +347,7 @@ void IFE::Scene::OutputScene()
 	lightM_->OutputScene();
 }
 #include "imgui.h"
+#include "Input.h"
 void IFE::Scene::DebugGUI()
 {
 	gui_.NewGUI("SceneManager", 1024);
@@ -368,7 +369,7 @@ void IFE::Scene::DebugGUI()
 	{
 		if (stop_)
 		{
-			if (gui_.ButtonGUI("start"))
+			if (gui_.ButtonGUI("start") || (Input::PadPush(PADCODE::LSHOULDER) && Input::PadPush(PADCODE::RSHOULDER) && Input::PadTrigger(PADCODE::B)))
 			{
 				stop_ = false;
 			}
@@ -380,7 +381,7 @@ void IFE::Scene::DebugGUI()
 				stop_ = true;
 			}
 		}
-		if (gui_.ButtonGUI("Debug End"))
+		if (gui_.ButtonGUI("Debug End") || (Input::PadPush(PADCODE::LSHOULDER) && Input::PadPush(PADCODE::RSHOULDER) && Input::PadTrigger(PADCODE::B)))
 		{
 			debug_ = false;
 			stop_ = false;
@@ -391,7 +392,7 @@ void IFE::Scene::DebugGUI()
 	}
 	else
 	{
-		if (gui_.ButtonGUI("Debug Start"))
+		if (gui_.ButtonGUI("Debug Start") || (Input::PadPush(PADCODE::LSHOULDER) && Input::PadPush(PADCODE::RSHOULDER) && Input::PadTrigger(PADCODE::B)))
 		{
 			OutputScene();
 			debug_ = true;
