@@ -76,4 +76,13 @@ namespace IFE
 
 	float Average(Vector2 v);
 	float Average(Vector3 v);
+
+	/// <summary>
+	/// •âŠ®(“™‘¬)
+	/// </summary>
+	/// <param name="x1">ˆÚ“®‚µ‚½‚¢•Ï”</param>
+	/// <param name="x2">ˆÚ“®‚µ‚½‚¢‹——£</param>
+	/// <param name="flame">ŠÔ</param>
+	/// <returns>•âŠ®Œã‚Ì’l</returns>
+	float Complement(float& x1, float& x2, float flame);
 };
