@@ -257,6 +257,16 @@ float IFE::Average(Vector3 v)
 	return (v.x + v.y + v.z) / 3;
 }
 
+float IFE::Complement(float& x1, float& x2, float flame)
+{
+	float distanceX = x2 - x1;//‹——£‚ğo‚·
+	float dividedDistanceX = distanceX / flame;//‹——£‚ğflame‚ÅŠ„‚Á‚½’l
+
+	x1 += dividedDistanceX;//‹——£‚ğflame‚ÅŠ„‚Á‚½’l‚ğ‘«‚·
+
+	return x1;
+}
+
 int32_t IFE::Int2::operator=(const int32_t& i)
 {
 	return i;
