@@ -21,7 +21,7 @@ private:
 	/// ’iXspeed‚ğ0‚É‚·‚éˆ—
 	/// </summary>
 	/// <param name="speed"></param>
-	void SpeedZero(float& speed);
+	void SpeedZero(float& speed, float decelerationSpeed);
 
 public:
 

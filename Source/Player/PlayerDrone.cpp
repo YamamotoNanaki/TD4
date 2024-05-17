@@ -4,17 +4,18 @@
 #include "Input.h"
 #include"Transform.h"
 #include"CameraManager.h"
+#include"IFETime.h"
 
-void PlayerDrone::SpeedZero(float& speed)
+void PlayerDrone::SpeedZero(float& speed, float decelerationSpeed)
 {
 	if (speed > 0)
 	{
-		speed -= 0.04f;
+		speed -= decelerationSpeed;
 		speed = max(speed, 0);
 	}
 	else
 	{
-		speed += 0.04f;
+		speed += decelerationSpeed;
 		speed = min(speed, 0);
 	}
 }
@@ -79,18 +80,18 @@ void PlayerDrone::Move()
 	{
 		speed_ -= frontVec_;
 	}
-	transform_->position_ += speed_;
+	transform_->position_ += speed_ * IFE::IFETime::sDeltaTime_;
 #pragma endregion キーボード
 
 #pragma region コントローラー
 	speed_ -= IFE::Input::GetLXAnalog(controllerRange_) * rightVec;
 	speed_ += IFE::Input::GetLYAnalog(controllerRange_) * frontVec_;
-	transform_->position_ += speed_;
+	transform_->position_ += speed_ * IFE::IFETime::sDeltaTime_;
 #pragma endregion コントローラー
 
-	SpeedZero(speed_.x);
-	SpeedZero(speed_.z);
-	SpeedZero(speed_.y);
+	SpeedZero(speed_.x, 0.04f);
+	SpeedZero(speed_.z, 0.04f);
+	SpeedZero(speed_.y, 0.04f);
 
 	//スピード限界処理
 	const float maxSpeed = 0.5f;
@@ -103,7 +104,7 @@ void PlayerDrone::Move()
 
 void PlayerDrone::Rotation()
 {
-	const float cameraRotSpeed = 1.0;
+	const float cameraRotSpeed = 1.0f * IFE::IFETime::sDeltaTime_;
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
 	{
@@ -126,14 +127,12 @@ void PlayerDrone::Rotation()
 #pragma region コントローラー
 	transform_->eulerAngleDegrees_ +=
 	{
-		-IFE::Input::GetRYAnalog(controllerRange_)* cameraRotSpeed,
-		IFE::Input::GetRXAnalog(controllerRange_)* cameraRotSpeed,
-		0
+		-IFE::Input::GetRYAnalog(controllerRange_) * cameraRotSpeed,
+			IFE::Input::GetRXAnalog(controllerRange_)* cameraRotSpeed,
+			0
 	};
 #pragma endregion コントローラー
 
-
-	
 	//縦回転の限界処理
 	const float maxVerticalRotation = 45.0f;
 	transform_->eulerAngleDegrees_.x = std::clamp(transform_->eulerAngleDegrees_.x, -maxVerticalRotation, maxVerticalRotation);

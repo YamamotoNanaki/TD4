@@ -3,6 +3,7 @@
 #include "Input.h"
 #include"Transform.h"
 #include"Object3D.h"
+#include"IFETime.h"
 
 void PlayerAction::Initialize()
 {
@@ -44,6 +45,8 @@ void PlayerAction::MoveUpdate()
 
 void PlayerAction::Move()
 {
+	const float speed = 10.0f;
+
 	//正面ベクトルの作成
 	IFE::Vector3 frontVec = transform_->position_ - actionCamera_->transform_->eye_;
 	frontVec.Normalize();
@@ -60,23 +63,23 @@ void PlayerAction::Move()
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::A))
 	{
-		transform_->position_ += rightVec;
+		transform_->position_ += rightVec * speed * IFE::IFETime::sDeltaTime_;
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::D))
 	{
-		transform_->position_ -= rightVec;
+		transform_->position_ -= rightVec * speed * IFE::IFETime::sDeltaTime_;
 	}if (IFE::Input::GetKeyPush(IFE::Key::W))
 	{
-		transform_->position_ += frontVec;
+		transform_->position_ += frontVec * speed * IFE::IFETime::sDeltaTime_;
 	}if (IFE::Input::GetKeyPush(IFE::Key::S))
 	{
-		transform_->position_ -= frontVec;
+		transform_->position_ -= frontVec * speed * IFE::IFETime::sDeltaTime_;
 	}
 #pragma endregion キーボード
 
 #pragma region コントローラー
-	transform_->position_ -= IFE::Input::GetLXAnalog(controllerRange_) * rightVec;
-	transform_->position_ += IFE::Input::GetLYAnalog(controllerRange_) * frontVec;
+	transform_->position_ -= IFE::Input::GetLXAnalog(controllerRange_) * rightVec * speed * IFE::IFETime::sDeltaTime_;
+	transform_->position_ += IFE::Input::GetLYAnalog(controllerRange_) * frontVec * speed * IFE::IFETime::sDeltaTime_;
 #pragma endregion
 }
 
@@ -94,43 +97,58 @@ void PlayerAction::Rotation()
 void PlayerAction::CameraUpdate()
 {
 	//ターゲットからの距離
-	const float distance = 20.0f;
+	const float distance = 15.0f;
 
-#pragma region カメラ移動
+	const float rotSpeed = 40.0f;
+
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
 	{
-		cameraAngle_.y -= 5;
+		cameraAngle_.y -= rotSpeed * IFE::IFETime::sDeltaTime_;
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::RIGHT))
 	{
-		cameraAngle_.y += 5;
+		cameraAngle_.y += rotSpeed * IFE::IFETime::sDeltaTime_;
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::UP))
 	{
-		cameraAngle_.x -= 5;
+		cameraAngle_.x -= rotSpeed * IFE::IFETime::sDeltaTime_;
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::DOWN))
 	{
-		cameraAngle_.x += 5;
+		cameraAngle_.x += rotSpeed * IFE::IFETime::sDeltaTime_;
 	}
 #pragma endregion キーボード
 
 #pragma region コントローラー
 
-	cameraAngle_ += {-IFE::Input::GetRYAnalog(controllerRange_), IFE::Input::GetRXAnalog(controllerRange_)};
+	cameraAngle_ += {-IFE::Input::GetRYAnalog(controllerRange_)*rotSpeed * IFE::IFETime::sDeltaTime_, IFE::Input::GetRXAnalog(controllerRange_)* rotSpeed* IFE::IFETime::sDeltaTime_};
 
 #pragma endregion コントローラー
 	cameraAngle_.x = std::clamp(cameraAngle_.x, -75.0f, 75.0f);
-#pragma endregion カメラ移動
 
-	actionCamera_->transform_->eye_ =
+	//補間時間調整値
+	const float adjustedTimeValue = 15.0f;
+
+	const float cameraYAdd = 5.0f;
+
+	//視点の移動先の座標
+	IFE::Vector3 eyeDestinationPos =
 	{
 		transform_->position_.x + distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * sinf(IFE::ConvertToRadians(cameraAngle_.y)),
-		transform_->position_.y + distance * sinf(IFE::ConvertToRadians(cameraAngle_.x)),
+		transform_->position_.y + cameraYAdd + distance * sinf(IFE::ConvertToRadians(cameraAngle_.x)),
 		transform_->position_.z + distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * cosf(IFE::ConvertToRadians(cameraAngle_.y))
 	};
-	actionCamera_->transform_->target_ = transform_->position_;
+
+	//視点
+	IFE::Complement(actionCamera_->transform_->eye_.x, eyeDestinationPos.x, adjustedTimeValue);
+	IFE::Complement(actionCamera_->transform_->eye_.y, eyeDestinationPos.y, adjustedTimeValue);
+	IFE::Complement(actionCamera_->transform_->eye_.z, eyeDestinationPos.z, adjustedTimeValue);
+
+	//注視点
+	IFE::Complement(actionCamera_->transform_->target_.x, transform_->position_.x, adjustedTimeValue);
+	IFE::Complement(actionCamera_->transform_->target_.y, transform_->position_.y, adjustedTimeValue);
+	IFE::Complement(actionCamera_->transform_->target_.z, transform_->position_.z, adjustedTimeValue);
 }
 
 void PlayerAction::Attack()
