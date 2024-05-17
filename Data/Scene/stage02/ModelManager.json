@@ -1,0 +1,60 @@
+[
+    {
+        "name": "playerModel_Model",
+        "playerModel_Model": {
+            "settings": 104,
+            "smooth": true
+        }
+    },
+    {
+        "name": "skydome_Model",
+        "skydome_Model": {
+            "fileName": "skydome",
+            "settings": 0,
+            "smooth": false
+        }
+    },
+    {
+        "name": "normalEnemyModel_Model",
+        "normalEnemyModel_Model": {
+            "settings": 100,
+            "smooth": false
+        }
+    },
+    {
+        "dice_Model": {
+            "fileName": "dice",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "dice_Model"
+    },
+    {
+        "name": "testGround_Model",
+        "testGround_Model": {
+            "settings": 100,
+            "smooth": false
+        }
+    },
+    {
+        "name": "testWall_Model",
+        "testWall_Model": {
+            "settings": 100,
+            "smooth": false
+        }
+    },
+    {
+        "name": "testDrone_ground_Model",
+        "testDrone_ground_Model": {
+            "settings": 100,
+            "smooth": false
+        }
+    },
+    {
+        "name": "testDrone_wall_Model",
+        "testDrone_wall_Model": {
+            "settings": 100,
+            "smooth": false
+        }
+    }
+]
