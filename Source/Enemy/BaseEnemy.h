@@ -43,12 +43,6 @@ namespace IFE {
 		virtual void Draw() = 0;
 
 		/// <summary>
-		/// “–‚½‚è”»’è
-		/// </summary>
-		/// <param name="collider"></param>
-		//virtual void OnColliderHit(IFE::Collider collider) = 0;
-
-		/// <summary>
 		/// I—¹
 		/// </summary>
 		virtual void Finalize() = 0;

@@ -11,6 +11,7 @@ namespace IFE {
 	private:
 		//ƒƒ“ƒo•Ï”
 		int hp_;
+		bool isDead;
 
 		//ƒƒ“ƒoŠÖ”
 	public:
@@ -37,5 +38,7 @@ namespace IFE {
 
 		//getter
 		int GetHp() { return hp_; }
+		//setter
+		void SetIsDead(bool isDead_) { isDead = isDead_; }
 	};
 }

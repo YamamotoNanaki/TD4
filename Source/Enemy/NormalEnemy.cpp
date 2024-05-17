@@ -14,7 +14,7 @@ void IFE::NormalEnemy::Initialize()
 	isAttack = false;
 	if (!hp_)
 	{
-		auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyHp", ModelManager::Instance()->GetModel("dice"));
+		auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyHp", ModelManager::Instance()->GetModel("ground"));
 		ptr->AddComponent<EnemyHp>();
 		hp_ = ptr->GetComponent<EnemyHp>();
 	}
@@ -43,9 +43,7 @@ void IFE::NormalEnemy::Update()
 {
 	std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
 	ChangeState();
-	hp_->transform_->position_ = transform_->position_;
-
-	IFE::ObjectManager::Instance()->GetObjectPtr("EnemyHp")->GetComponent<EnemyHp>();
+	hp_->transform_->position_ = Vector3(transform_->position_.x, transform_->position_.y + 2, transform_->position_.z);
 }
 
 void IFE::NormalEnemy::Wait()
@@ -143,6 +141,7 @@ void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hit
 	{
 		if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
 			//“–‚½‚Á‚½Žž‚Ìˆ—
+			hp_->SetIsDead(true);
 			objectPtr_->Destroy();
 		}
 	}
