@@ -99,7 +99,7 @@ void PlayerAction::CameraUpdate()
 	//ターゲットからの距離
 	const float distance = 15.0f;
 
-	const float rotSpeed = 40.0f;
+	const float rotSpeed = 80.0f;
 
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
@@ -130,6 +130,7 @@ void PlayerAction::CameraUpdate()
 	//補間時間調整値
 	const float adjustedTimeValue = 15.0f;
 
+	//カメラのY座標調節値
 	const float cameraYAdd = 5.0f;
 
 	//視点の移動先の座標
@@ -140,12 +141,12 @@ void PlayerAction::CameraUpdate()
 		transform_->position_.z + distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * cosf(IFE::ConvertToRadians(cameraAngle_.y))
 	};
 
-	//視点
+	//視点の補間移動
 	IFE::Complement(actionCamera_->transform_->eye_.x, eyeDestinationPos.x, adjustedTimeValue);
 	IFE::Complement(actionCamera_->transform_->eye_.y, eyeDestinationPos.y, adjustedTimeValue);
 	IFE::Complement(actionCamera_->transform_->eye_.z, eyeDestinationPos.z, adjustedTimeValue);
 
-	//注視点
+	//注視点の補間移動
 	IFE::Complement(actionCamera_->transform_->target_.x, transform_->position_.x, adjustedTimeValue);
 	IFE::Complement(actionCamera_->transform_->target_.y, transform_->position_.y, adjustedTimeValue);
 	IFE::Complement(actionCamera_->transform_->target_.z, transform_->position_.z, adjustedTimeValue);
