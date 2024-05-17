@@ -78,6 +78,14 @@ void IFE::Transform::UpdateMatrix()
 	matWorld_ *= matRot_;
 	//•½sˆÚ“®s—ñ‚ðŠ|‚¯‚é
 	matWorld_ *= matTrans_;
+	if (billbord_ == (uint8_t)BillboardFlag::Billboard)
+	{
+		matWorld_ *= camera_->GetView()->sMatBillBoard_;
+	}
+	else if (billbord_ == (uint8_t)BillboardFlag::YBillboard)
+	{
+		matWorld_ *= camera_->GetView()->sMatBillBoardY_;
+	}
 
 	if (parent_ == nullptr && objectPtr_->parent_ != nullptr)
 	{
