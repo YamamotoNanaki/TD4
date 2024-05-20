@@ -92,6 +92,12 @@ void PlayerDrone::Move()
 	}if (IFE::Input::GetKeyPush(IFE::Key::S))
 	{
 		moveValue_ -= frontVec_;
+	}if (IFE::Input::GetKeyPush(IFE::Key::Q))
+	{
+		moveValue_.y++;
+	}if (IFE::Input::GetKeyPush(IFE::Key::E))
+	{
+		moveValue_.y--;
 	}
 	transform_->position_ += moveValue_ * speed * IFE::IFETime::sDeltaTime_;
 #pragma endregion キーボード
@@ -99,12 +105,20 @@ void PlayerDrone::Move()
 #pragma region コントローラー
 	moveValue_ -= IFE::Input::GetLXAnalog(controllerRange_) * rightVec;
 	moveValue_ += IFE::Input::GetLYAnalog(controllerRange_) * frontVec_;
+
+	if (IFE::Input::PadPush(IFE::PADCODE::RSHOULDER))
+	{
+		moveValue_.y++;
+	}if (IFE::Input::PadPush(IFE::PADCODE::LSHOULDER))
+	{
+		moveValue_.y--;
+	}
 	transform_->position_ += moveValue_ * speed * IFE::IFETime::sDeltaTime_;
 #pragma endregion コントローラー
 
-	SpeedZero(moveValue_.x, 0.04f);
-	SpeedZero(moveValue_.z, 0.04f);
-	SpeedZero(moveValue_.y, 0.04f);
+	SpeedZero(moveValue_.x, 0.02f);
+	SpeedZero(moveValue_.z, 0.02f);
+	SpeedZero(moveValue_.y, 0.02f);
 
 	//スピード限界処理
 	const float maxSpeed = 0.5f;
