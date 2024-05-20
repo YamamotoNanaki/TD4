@@ -1,13 +1,12 @@
 #pragma once
-#include "Component.h"
-#include "IFEMath.h"
 
-class LaserWire:public IFE::Component
+#include "Component.h"
+
+class Gimmick :public IFE::Component
 {
 public:
 
-	//åªç›ìñÇΩÇ¡ÇƒÇ¢ÇÈÇ©
-	bool isHit_ = false;
+	
 
 public:
 
@@ -21,18 +20,15 @@ public:
 
 	void OnColliderHit(IFE::ColliderCore collider);
 
-
 #ifdef EditorMode
-
+	
 	void ComponentDebugGUI()override;
 	void OutputComponent(nlohmann::json& json)override;
 #endif
 	void LoadingComponent(nlohmann::json& json)override;
 
-
 private:
 
-	
+
 
 };
-
