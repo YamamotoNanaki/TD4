@@ -12,6 +12,8 @@ namespace IFE {
 	private:
 		//メンバ変数
 		int hp_;
+		int preHp_;
+		int decHp_;
 		bool isDead_;
 		//フラグ
 		bool isHit_;
@@ -29,6 +31,11 @@ namespace IFE {
 		/// 更新
 		/// </summary>
 		void Update(Float3 pos_);
+
+		/// <summary>
+		/// hp表示計算
+		/// </summary>
+		void ScaleCalc();
 
 		/// <summary>
 		/// 体力減少

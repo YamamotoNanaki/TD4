@@ -14,7 +14,7 @@ void IFE::NormalEnemy::Initialize()
 	isAttack = false;
 	if (!hp_)
 	{
-		auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyHp", ModelManager::Instance()->GetModel("ground"));
+		auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyHp", ModelManager::Instance()->GetModel("hppanel"));
 		ptr->AddComponent<EnemyHp>();
 		hp_ = ptr->GetComponent<EnemyHp>();
 	}
