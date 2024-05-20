@@ -300,6 +300,7 @@ bool IFE::FBXModel::ModelGUI(bool deleteFlag)
 		{
 			if (imgui->ButtonGUI(U8("íœ")))
 			{
+				imgui->EndTreeNode();
 				return true;
 			}
 		}

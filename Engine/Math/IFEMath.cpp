@@ -267,6 +267,11 @@ float IFE::Complement(float& x1, float& x2, float flame)
 	return x1;
 }
 
+float IFE::SimpleHarmonicMotion(float time, float amplitude, float period)
+{
+	return amplitude * sinf(2 * static_cast<float>(PI) * time / period);
+}
+
 int32_t IFE::Int2::operator=(const int32_t& i)
 {
 	return i;
