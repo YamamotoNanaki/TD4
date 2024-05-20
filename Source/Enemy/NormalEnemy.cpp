@@ -41,9 +41,14 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::Update()
 {
-	std::vector<Collider*>colliders = objectPtr_->GetComponents<Collider>();
 	ChangeState();
-	hp_->transform_->position_ = Vector3(transform_->position_.x, transform_->position_.y + 2, transform_->position_.z);
+	//hp•\Ž¦
+	hp_->Update(transform_->position_);
+	//Ž€–S
+	if (hp_->GetHp() == 0) {
+		hp_->objectPtr_->Destroy();
+		objectPtr_->Destroy();
+	}
 }
 
 void IFE::NormalEnemy::Wait()
@@ -100,7 +105,7 @@ void IFE::NormalEnemy::Search()
 
 void IFE::NormalEnemy::Chase()
 {
-	//ƒŒƒC‚ª‚Ü‚¾‚¾‚©‚ç‚Æ‚è‚ ‚¦‚¸’Ç‚¢‚©‚¯‚é
+	//‚Æ‚è‚ ‚¦‚¸’Ç‚¢‚©‚¯‚é
 	Vector3 ePos = transform_->position_;
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
 	Vector3 addVec = pPos - ePos;
@@ -129,6 +134,7 @@ void IFE::NormalEnemy::Draw()
 
 void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
 {
+	//”­Œ©
 	if (myCollider->GetColliderType() == ColliderType::RAY)
 	{
 		if (state != CHASE && hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
@@ -141,8 +147,7 @@ void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hit
 	{
 		if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
 			//“–‚½‚Á‚½Žž‚Ìˆ—
-			hp_->SetIsDead(true);
-			objectPtr_->Destroy();
+			hp_->DecHp();
 		}
 	}
 }
