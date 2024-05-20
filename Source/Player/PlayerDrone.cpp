@@ -28,6 +28,17 @@ void PlayerDrone::Initialize()
 
 void PlayerDrone::Update()
 {
+	const float maxTime = 120;
+	time_++;
+	if (time_ > maxTime)
+	{
+		time_ = 0;
+	}
+
+	if (objectPtr_->DrawFlag_ == true)
+	{
+		transform_->position_.y = dronePosY_ + IFE::SimpleHarmonicMotion(time_,0.1f, maxTime);
+	}
 }
 
 void PlayerDrone::Draw()
@@ -65,46 +76,48 @@ void PlayerDrone::Move()
 	frontVec_.y = 0.0f;
 	rightVec.y = 0.0f;
 
+	const float speed = 10.0f;
+
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::A))
 	{
-		speed_ += rightVec;
+		moveValue_ += rightVec;
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::D))
 	{
-		speed_ -= rightVec;
+		moveValue_ -= rightVec;
 	}if (IFE::Input::GetKeyPush(IFE::Key::W))
 	{
-		speed_ += frontVec_;
+		moveValue_ += frontVec_;
 	}if (IFE::Input::GetKeyPush(IFE::Key::S))
 	{
-		speed_ -= frontVec_;
+		moveValue_ -= frontVec_;
 	}
-	transform_->position_ += speed_ * IFE::IFETime::sDeltaTime_;
+	transform_->position_ += moveValue_ * speed * IFE::IFETime::sDeltaTime_;
 #pragma endregion キーボード
 
 #pragma region コントローラー
-	speed_ -= IFE::Input::GetLXAnalog(controllerRange_) * rightVec;
-	speed_ += IFE::Input::GetLYAnalog(controllerRange_) * frontVec_;
-	transform_->position_ += speed_ * IFE::IFETime::sDeltaTime_;
+	moveValue_ -= IFE::Input::GetLXAnalog(controllerRange_) * rightVec;
+	moveValue_ += IFE::Input::GetLYAnalog(controllerRange_) * frontVec_;
+	transform_->position_ += moveValue_ * speed * IFE::IFETime::sDeltaTime_;
 #pragma endregion コントローラー
 
-	SpeedZero(speed_.x, 0.04f);
-	SpeedZero(speed_.z, 0.04f);
-	SpeedZero(speed_.y, 0.04f);
+	SpeedZero(moveValue_.x, 0.04f);
+	SpeedZero(moveValue_.z, 0.04f);
+	SpeedZero(moveValue_.y, 0.04f);
 
 	//スピード限界処理
 	const float maxSpeed = 0.5f;
-	speed_.x = std::clamp(speed_.x, -maxSpeed, maxSpeed);
-	speed_.y = std::clamp(speed_.y, -maxSpeed, maxSpeed);
-	speed_.z = std::clamp(speed_.z, -maxSpeed, maxSpeed);
+	moveValue_.x = std::clamp(moveValue_.x, -maxSpeed, maxSpeed);
+	moveValue_.y = std::clamp(moveValue_.y, -maxSpeed, maxSpeed);
+	moveValue_.z = std::clamp(moveValue_.z, -maxSpeed, maxSpeed);
 
 	transform_->UpdateMatrix();
 }
 
 void PlayerDrone::Rotation()
 {
-	const float cameraRotSpeed = 1.0f * IFE::IFETime::sDeltaTime_;
+	const float cameraRotSpeed = 80.0f * IFE::IFETime::sDeltaTime_;
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
 	{
@@ -167,6 +180,10 @@ bool PlayerDrone::GetDrawFlag()
 void PlayerDrone::SetDrawFlag(bool flag)
 {
 	objectPtr_->DrawFlag_ = flag;
+	if (flag == false)
+	{
+		dronePosY_ = transform_->position_.y;
+	}
 }
 
 void PlayerDrone::SetPos(const IFE::Vector3& pos)
