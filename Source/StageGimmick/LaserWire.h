@@ -32,7 +32,7 @@ public:
 
 private:
 
-	
+	IFE::Vector3 pos_;
 
 };
 

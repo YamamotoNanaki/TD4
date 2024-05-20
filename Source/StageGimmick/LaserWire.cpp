@@ -32,11 +32,9 @@ void LaserWire::OnColliderHit(IFE::ColliderCore collider)
 #include "ImguiManager.h"
 void LaserWire::ComponentDebugGUI()
 {
-	IFE::Vector3 posBuff = transform_->position_;
+	
 	IFE::ImguiManager* gui = IFE::ImguiManager::Instance();
-	gui->DragFloat3GUI(&posBuff, "points", 0.25f,-1000,1000);
-
-	transform_->position_ = posBuff;
+	gui->DragFloat3GUI(&pos_, "points", 0.25f,-1000,1000);
 
 }
 
