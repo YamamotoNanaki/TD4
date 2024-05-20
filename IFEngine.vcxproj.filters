@@ -609,7 +609,7 @@
     <ClInclude Include="Source\Player\Player.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
-    <ClInclude Include="EditorMode.h" />
+    <ClInclude Include="Engine\Base\EditorMode.h" />
     <ClInclude Include="Source\StageGimmick\LaserWire.h">
       <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
     </ClInclude>
