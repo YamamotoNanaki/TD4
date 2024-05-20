@@ -96,9 +96,70 @@ void PlayerAction::Rotation()
 
 void PlayerAction::CameraUpdate()
 {
+	//カメラの回転
+	CameraRot();
+
+	//カメラ補間
+	CameraComplement();
+}
+
+void PlayerAction::Attack()
+{
+	if (IFE::Input::GetKeyTrigger(IFE::Key::Space)|| IFE::Input::PadTrigger(IFE::PADCODE::X))
+	{
+		attackFlag_ = true;
+	}
+
+	if (attackFlag_ == true)
+	{
+		if (attackTimer_ > attackTime_)
+		{
+			attackFlag_ = false;
+			attackTimer_ = 0;
+		}
+		attackTimer_++;
+	}
+}
+
+void PlayerAction::CameraComplement()
+{
 	//ターゲットからの距離
 	const float distance = 15.0f;
+	//補間時間調整値
+	const float adjustedTimeValue = 15.0f;
+	//カメラのY座標調節値
+	const float cameraYAdd = 7.5f;
 
+	//視点の移動先の座標
+	IFE::Vector3 eyeDestinationPos =
+	{
+		transform_->position_.x + distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * sinf(IFE::ConvertToRadians(cameraAngle_.y)),
+		transform_->position_.y + cameraYAdd + distance * sinf(IFE::ConvertToRadians(cameraAngle_.x)),
+		transform_->position_.z + distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * cosf(IFE::ConvertToRadians(cameraAngle_.y))
+	};
+
+	//視点の補間移動
+	IFE::Complement(actionCamera_->transform_->eye_.x, eyeDestinationPos.x, adjustedTimeValue);
+	IFE::Complement(actionCamera_->transform_->eye_.y, eyeDestinationPos.y, adjustedTimeValue);
+	IFE::Complement(actionCamera_->transform_->eye_.z, eyeDestinationPos.z, adjustedTimeValue);
+
+	//注視点の移動先の座標
+	IFE::Vector3 targetDestinationPos =
+	{
+		transform_->position_.x - distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * sinf(IFE::ConvertToRadians(cameraAngle_.y)),
+		transform_->position_.y - distance * sinf(IFE::ConvertToRadians(cameraAngle_.x)),
+		transform_->position_.z - distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * cosf(IFE::ConvertToRadians(cameraAngle_.y))
+	};
+
+	//注視点の補間移動
+	IFE::Complement(actionCamera_->transform_->target_.x, targetDestinationPos.x, adjustedTimeValue);
+	IFE::Complement(actionCamera_->transform_->target_.y, targetDestinationPos.y, adjustedTimeValue);
+	IFE::Complement(actionCamera_->transform_->target_.z, targetDestinationPos.z, adjustedTimeValue);
+}
+
+void PlayerAction::CameraRot()
+{
+	//回転速度
 	const float rotSpeed = 80.0f;
 
 #pragma region キーボード
@@ -122,50 +183,10 @@ void PlayerAction::CameraUpdate()
 
 #pragma region コントローラー
 
-	cameraAngle_ += {-IFE::Input::GetRYAnalog(controllerRange_)*rotSpeed * IFE::IFETime::sDeltaTime_, IFE::Input::GetRXAnalog(controllerRange_)* rotSpeed* IFE::IFETime::sDeltaTime_};
+	cameraAngle_ += {-IFE::Input::GetRYAnalog(controllerRange_) * rotSpeed * IFE::IFETime::sDeltaTime_, IFE::Input::GetRXAnalog(controllerRange_)* rotSpeed* IFE::IFETime::sDeltaTime_};
 
 #pragma endregion コントローラー
-	cameraAngle_.x = std::clamp(cameraAngle_.x, -75.0f, 75.0f);
 
-	//補間時間調整値
-	const float adjustedTimeValue = 15.0f;
-
-	//カメラのY座標調節値
-	const float cameraYAdd = 5.0f;
-
-	//視点の移動先の座標
-	IFE::Vector3 eyeDestinationPos =
-	{
-		transform_->position_.x + distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * sinf(IFE::ConvertToRadians(cameraAngle_.y)),
-		transform_->position_.y + cameraYAdd + distance * sinf(IFE::ConvertToRadians(cameraAngle_.x)),
-		transform_->position_.z + distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * cosf(IFE::ConvertToRadians(cameraAngle_.y))
-	};
-
-	//視点の補間移動
-	IFE::Complement(actionCamera_->transform_->eye_.x, eyeDestinationPos.x, adjustedTimeValue);
-	IFE::Complement(actionCamera_->transform_->eye_.y, eyeDestinationPos.y, adjustedTimeValue);
-	IFE::Complement(actionCamera_->transform_->eye_.z, eyeDestinationPos.z, adjustedTimeValue);
-
-	//注視点の補間移動
-	IFE::Complement(actionCamera_->transform_->target_.x, transform_->position_.x, adjustedTimeValue);
-	IFE::Complement(actionCamera_->transform_->target_.y, transform_->position_.y, adjustedTimeValue);
-	IFE::Complement(actionCamera_->transform_->target_.z, transform_->position_.z, adjustedTimeValue);
-}
-
-void PlayerAction::Attack()
-{
-	if (IFE::Input::GetKeyTrigger(IFE::Key::Space)|| IFE::Input::PadTrigger(IFE::PADCODE::X))
-	{
-		attackFlag_ = true;
-	}
-
-	if (attackFlag_ == true)
-	{
-		if (attackTimer_ > attackTime_)
-		{
-			attackFlag_ = false;
-			attackTimer_ = 0;
-		}
-		attackTimer_++;
-	}
+	//縦回転限界処理
+	cameraAngle_.x = std::clamp(cameraAngle_.x, -60.0f, 60.0f);
 }

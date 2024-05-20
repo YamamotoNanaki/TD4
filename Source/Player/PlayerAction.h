@@ -81,4 +81,14 @@ private:
 	/// UŒ‚ˆ—
 	/// </summary>
 	void Attack();
+
+	/// <summary>
+	/// ƒJƒƒ‰•âŠÔ
+	/// </summary>
+	void CameraComplement();
+
+	/// <summary>
+	/// ƒJƒƒ‰‚Ì‰ñ“]ˆ—
+	/// </summary>
+	void CameraRot();
 };
