@@ -84,5 +84,16 @@ void IFE::EnemyHp::Finalize()
 
 void IFE::EnemyHp::SetPos(Float3 pos_)
 {
-	transform_->position_ = { pos_.x - 2,pos_.y + 2,pos_.z };
+	//カメラ
+	Vector3 eye = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetActionCamera()->transform_->eye_;
+	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	//正面ベクトル
+	Vector3 frontVec = pPos - eye;
+	frontVec.Normalize();
+	Vector3 tmp = { 0,1,0 };
+	//右ベクトルの作成
+	Vector3 rightVec = frontVec.Cross(tmp);
+	rightVec.Normalize();
+	transform_->position_ = { pos_.x,pos_.y + 2,pos_.z };
+	transform_->position_ += (rightVec * 1.8f);
 }

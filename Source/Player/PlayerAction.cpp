@@ -88,6 +88,11 @@ const IFE::Vector3 PlayerAction::GetPos()
 	return transform_->position_;
 }
 
+IFE::Camera* PlayerAction::GetActionCamera()
+{
+	return actionCamera_;
+}
+
 void PlayerAction::Rotation()
 {
 	frontVec_ = front_ - pos_;
