@@ -33,11 +33,6 @@ namespace IFE {
 		void Update(Float3 pos_);
 
 		/// <summary>
-		/// hp表示計算
-		/// </summary>
-		void ScaleCalc();
-
-		/// <summary>
 		/// 体力減少
 		/// </summary>
 		void DecHp();
@@ -61,6 +56,17 @@ namespace IFE {
 		int GetHp() { return hp_; }
 		//setter
 		void SetIsDead(bool isDead) { isDead_ = isDead; }
+
+	private:
+		/// <summary>
+		/// hp表示計算
+		/// </summary>
+		void ScaleCalc();
+
+		/// <summary>
+		/// 表示位置調整
+		/// </summary>
+		/// <param name="pos_"></param>
 		void SetPos(Float3 pos_);
 	};
 }

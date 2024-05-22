@@ -27,6 +27,8 @@ public:
 
 	void OnColliderHit(IFE::ColliderCore collider);
 
+	bool GetMode();
+
 private:
 
 	void ChangeMode();

@@ -44,6 +44,11 @@ void Player::OnColliderHit(IFE::ColliderCore collider)
 {
 }
 
+bool Player::GetMode()
+{
+	return modeFlag_;
+}
+
 void Player::ChangeMode()
 {
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Y) || IFE::Input::PadTrigger(IFE::PADCODE::Y))

@@ -72,4 +72,7 @@ public:
 	void SetDrawFlag(bool flag);
 
 	void SetPos(const IFE::Vector3& pos);
+	IFE::Vector3 GetPos();
+
+	IFE::Camera* GetDroneCamera();
 };

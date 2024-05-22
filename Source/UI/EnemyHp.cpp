@@ -3,6 +3,7 @@
 #include "Transform.h"
 #include "ObjectManager.h"
 #include "NormalEnemy.h"
+#include "Player.h"
 
 void IFE::EnemyHp::Initialize()
 {
@@ -84,11 +85,22 @@ void IFE::EnemyHp::Finalize()
 
 void IFE::EnemyHp::SetPos(Float3 pos_)
 {
-	//カメラ
-	Vector3 eye = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetActionCamera()->transform_->eye_;
-	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	Vector3 eye;
+	Vector3 pPos;
 	//正面ベクトル
-	Vector3 frontVec = pPos - eye;
+	Vector3 frontVec;
+	//アクション
+	if (IFE::ObjectManager::Instance()->GetObjectPtr("playerObject")->GetComponent<Player>()->GetMode() == false) {
+		eye = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetActionCamera()->transform_->eye_;
+		pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+		frontVec = pPos - eye;
+	}
+	//ドローン
+	else {
+		eye = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetDroneCamera()->transform_->target_;
+		pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
+		frontVec = eye - pPos;
+	}
 	frontVec.Normalize();
 	Vector3 tmp = { 0,1,0 };
 	//右ベクトルの作成

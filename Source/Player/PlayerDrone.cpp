@@ -204,3 +204,13 @@ void PlayerDrone::SetPos(const IFE::Vector3& pos)
 {
 	transform_->position_ = pos;
 }
+
+IFE::Vector3 PlayerDrone::GetPos()
+{
+	return transform_->position_;
+}
+
+IFE::Camera* PlayerDrone::GetDroneCamera()
+{
+	return droneCamera_;
+}
