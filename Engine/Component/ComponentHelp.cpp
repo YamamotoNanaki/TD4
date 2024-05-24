@@ -18,6 +18,7 @@
 #include "LaserWire.h"
 #include "EnemyHp.h"
 #include "StageCollideManageer.h"
+#include "EnemyAttack.h"
 
 using namespace IFE;
 using namespace std;
@@ -69,6 +70,8 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<NormalEnemy>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<EnemyHp>(str));
+	if (tmp != nullptr)return tmp;
+	tmp = std::move(GetPtr<EnemyAttack>(str));
 	if (tmp != nullptr)return tmp;
 
 	//ステージギミック

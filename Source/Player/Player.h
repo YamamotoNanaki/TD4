@@ -13,8 +13,6 @@ private:
 	PlayerAction* action_ = nullptr;
 	PlayerDrone* drone_ = nullptr;
 
-	uint8_t hp = 10;
-
 public:
 
 	void Initialize();
