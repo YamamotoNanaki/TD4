@@ -370,6 +370,9 @@
     <ClCompile Include="Source\UI\EnemyHp.cpp">
       <Filter>ソース ファイル\Source\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Enemy\EnemyManager.cpp">
+      <Filter>ソース ファイル\Source\Enemy</Filter>
+    </ClCompile>
     <ClCompile Include="Source\StageGimmick\StageCollideManageer.cpp">
       <Filter>ソース ファイル\Source\StageGimmick</Filter>
     </ClCompile>
@@ -618,6 +621,9 @@
     </ClInclude>
     <ClInclude Include="Source\UI\EnemyHp.h">
       <Filter>ヘッダー ファイル\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enemy\EnemyManager.h">
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Source\StageGimmick\StageCollideManageer.h">
       <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
