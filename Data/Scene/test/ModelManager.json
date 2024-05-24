@@ -72,5 +72,13 @@
             "smooth": false
         },
         "name": "ground_Model"
+    },
+    {
+        "hppanel_Model": {
+            "fileName": "hppanel",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "hppanel_Model"
     }
 ]

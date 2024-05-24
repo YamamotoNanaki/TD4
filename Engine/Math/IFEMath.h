@@ -12,6 +12,8 @@
 
 namespace IFE
 {
+	constexpr double PI = 3.14159265358979;
+
 	struct Int2
 	{
 		int32_t x;
@@ -78,11 +80,20 @@ namespace IFE
 	float Average(Vector3 v);
 
 	/// <summary>
-	/// 補完(等速)
+	/// 補完
 	/// </summary>
 	/// <param name="x1">移動したい変数</param>
 	/// <param name="x2">移動したい距離</param>
 	/// <param name="flame">時間</param>
 	/// <returns>補完後の値</returns>
 	float Complement(float& x1, float& x2, float flame);
+
+	/// <summary>
+	/// 単振動をした値を返す
+	/// </summary>
+	/// <param name="time">経過時間</param>
+	/// <param name="amplitude">振幅</param>
+	/// <param name="period">周期</param>
+	/// <returns></returns>
+	float SimpleHarmonicMotion(float time, float amplitude = 10.0f, float period = 60.0f);
 };

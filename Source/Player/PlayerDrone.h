@@ -6,7 +6,7 @@ class PlayerDrone :public IFE::Component
 {
 private:
 
-	IFE::Vector3 speed_ = {};
+	IFE::Vector3 moveValue_ = {};
 
 	IFE::Vector3 front_ = { 0,0,1 };
 	IFE::Vector3 pos_ = { 0,0,0 };
@@ -16,6 +16,9 @@ private:
 	bool cameraMode_ = false;
 
 	const uint16_t controllerRange_ = 10000;
+
+	uint8_t time_ = 0;
+	float dronePosY_ = 0.0f;
 
 	/// <summary>
 	/// íiÅXspeedÇ0Ç…Ç∑ÇÈèàóù
@@ -69,4 +72,7 @@ public:
 	void SetDrawFlag(bool flag);
 
 	void SetPos(const IFE::Vector3& pos);
+	IFE::Vector3 GetPos();
+
+	IFE::Camera* GetDroneCamera();
 };

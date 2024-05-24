@@ -60,6 +60,12 @@ public:
 	/// <returns></returns>
 	const IFE::Vector3 GetPos();
 
+	/// <summary>
+	/// アクションカメラ取得
+	/// </summary>
+	/// <returns></returns>
+	IFE::Camera* GetActionCamera();
+
 private:
 
 	/// <summary>

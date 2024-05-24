@@ -156,9 +156,10 @@ void IFE::ModelManager::DebugGUI()
 		}
 		if (deleteFlag)
 		{
-			
+			itr->componentDeleteFlag_ = true;
 		}
 	}
+	modelList_.remove_if([](unique_ptr<Component>& obj) {return obj->componentDeleteFlag_; });
 
 	im->EndGUI();
 }

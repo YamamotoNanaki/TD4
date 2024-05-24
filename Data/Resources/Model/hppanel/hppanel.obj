@@ -1,6 +1,6 @@
 # Blender 3.6.1
 # www.blender.org
-mtllib panel.mtl
+mtllib hppanel.mtl
 o 平面
 v 0.000000 0.000000 -0.000000
 v 2.000000 0.000000 -0.000000

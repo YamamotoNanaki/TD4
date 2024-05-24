@@ -14,7 +14,7 @@ Engine* IFE::Engine::Instance()
 
 void IFE::Engine::Initialize()
 {
-	window_->Initialize(1600, 900,L"TD4");
+	window_->Initialize(1920, 1080,L"TD4");
 	gapi_->Initialize(*WindowsAPI::Instance()->GetHWnd());
 	Input::Initalize();
 	IFERand::Initialize();

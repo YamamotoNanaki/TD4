@@ -8,10 +8,16 @@ namespace IFE {
 		using Component::Component;
 	private:
 		const int MAX_HP = 100;
+		const int HIT_COOLTIME = 25;
 	private:
 		//メンバ変数
 		int hp_;
-		bool isDead;
+		int preHp_;
+		int decHp_;
+		bool isDead_;
+		//フラグ
+		bool isHit_;
+		int hitTime_;
 
 		//メンバ関数
 	public:
@@ -24,7 +30,17 @@ namespace IFE {
 		/// <summary>
 		/// 更新
 		/// </summary>
-		void Update();
+		void Update(Float3 pos_);
+
+		/// <summary>
+		/// 体力減少
+		/// </summary>
+		void DecHp();
+
+		/// <summary>
+		/// 一撃で死ぬ
+		/// </summary>
+		void OneShot();
 
 		/// <summary>
 		/// 描画
@@ -39,6 +55,18 @@ namespace IFE {
 		//getter
 		int GetHp() { return hp_; }
 		//setter
-		void SetIsDead(bool isDead_) { isDead = isDead_; }
+		void SetIsDead(bool isDead) { isDead_ = isDead; }
+
+	private:
+		/// <summary>
+		/// hp表示計算
+		/// </summary>
+		void ScaleCalc();
+
+		/// <summary>
+		/// 表示位置調整
+		/// </summary>
+		/// <param name="pos_"></param>
+		void SetPos(Float3 pos_);
 	};
 }
