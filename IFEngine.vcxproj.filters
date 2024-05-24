@@ -376,6 +376,9 @@
     <ClCompile Include="Source\StageGimmick\StageCollideManageer.cpp">
       <Filter>ソース ファイル\Source\StageGimmick</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Enemy\EnemyAttack.cpp">
+      <Filter>ソース ファイル\Source\Enemy</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Sprite\AnimationTexture.cpp">
       <Filter>ソース ファイル\Engine\Sprite</Filter>
     </ClCompile>
@@ -630,6 +633,9 @@
     </ClInclude>
     <ClInclude Include="Source\StageGimmick\StageCollideManageer.h">
       <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enemy\EnemyAttack.h">
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Sprite\AnimationTexture.h">
       <Filter>ヘッダー ファイル\Engine\Sprite</Filter>

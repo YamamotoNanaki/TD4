@@ -3,6 +3,8 @@
 #include "PlayerAction.h"
 #include "IFEMath.h"
 #include "EnemyHp.h"
+#include "enemyAttack.h"
+#include "IFETime.h"
 
 namespace IFE {
 	//---めっちゃ普通の敵---//
@@ -12,8 +14,10 @@ namespace IFE {
 		//周りを見渡す時間
 		const int32_t WAIT_TIME = 200;
 		//探索時移動速度 
-		const float MOVE_VELO = 0.08f;
-	//メンバ変数
+		const float SEARCH_VELO = 2.5f;
+		//追跡時速度
+		const float CHASE_VELO = 5.0f;
+		//メンバ変数
 	private:
 		//待機タイマー
 		int32_t waitTimer;
@@ -21,14 +25,16 @@ namespace IFE {
 		std::vector<Float3> points;
 		//次の場所
 		size_t nextPoint;
-		//攻撃したか
-		bool isAttack;
+		//攻撃時間
+		int32_t attackTime;
 		//警戒時間
 		int32_t warningTime;
 		//hp
 		EnemyHp* hp_ = nullptr;
+		//攻撃判定クラス
+		EnemyAttack* enemyAttack = nullptr;
 
-	//メンバ関数
+		//メンバ関数
 	public:
 		/// <summary>
 		/// 初期化
@@ -69,6 +75,11 @@ namespace IFE {
 		/// 殴れ
 		/// </summary>
 		void Attack();
+
+		/// <summary>
+		/// プレイヤーの方を向かせる
+		/// </summary>
+		void LookAt();
 
 		/// <summary>
 		/// 描画

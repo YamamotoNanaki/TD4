@@ -4,6 +4,7 @@
 #include"Transform.h"
 #include"Object3D.h"
 #include"IFETime.h"
+#include "EnemyAttack.h"
 
 void PlayerAction::Initialize()
 {
@@ -23,8 +24,16 @@ void PlayerAction::Finalize()
 {
 }
 
-void PlayerAction::OnColliderHit(IFE::ColliderCore collider)
+void PlayerAction::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
 {
+	//“GUŒ‚”í’e
+	if (myCollider->GetColliderType() == IFE::ColliderType::SPHERE)
+	{
+		if (hitCollider->objectPtr_->GetComponent<IFE::EnemyAttack>()) {
+			//“–‚½‚Á‚½‚Ìˆ—
+			/*hp--;*/
+		}
+	}
 }
 
 void PlayerAction::MoveUpdate()
