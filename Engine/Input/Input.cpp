@@ -217,3 +217,25 @@ int32_t IFE::Input::GetMouseWheel()
 {
 	return sInputInstance_->mouse_.lZ;
 }
+
+float IFE::Input::GetRTrigger(std::int32_t unresponsive_range)
+{
+	float r;
+	r = sInputInstance_->pad_.Gamepad.bRightTrigger;
+	if (r < unresponsive_range)
+	{
+		r = 0;
+	}
+	return r;
+}
+
+float IFE::Input::GetLTrigger(std::int32_t unresponsive_range)
+{
+	float l;
+	l = sInputInstance_->pad_.Gamepad.bLeftTrigger;
+	if (l < unresponsive_range)
+	{
+		l = 0;
+	}
+	return l;
+}
