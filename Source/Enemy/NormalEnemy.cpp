@@ -1,7 +1,6 @@
 #include "NormalEnemy.h"
 #include "Transform.h"
 #include "Collider.h"
-#include "Ease.h"
 #include "IFETime.h"
 #include "ObjectManager.h"
 #include "ModelManager.h"
@@ -12,19 +11,29 @@ void IFE::NormalEnemy::Initialize()
 	preState = state;
 	waitTimer = 0;
 	nextPoint = 0;
-	isAttack = false;
+	attackTime = 0;
+	//HPUI
 	if (!hp_)
 	{
 		auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyHp", ModelManager::Instance()->GetModel("hppanel"));
 		ptr->AddComponent<EnemyHp>();
 		hp_ = ptr->GetComponent<EnemyHp>();
 	}
+	//攻撃
+	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyAttack", ModelManager::Instance()->GetModel("dice"));
+	ptr->AddComponent<EnemyAttack>();
+	enemyAttack = ptr->GetComponent<EnemyAttack>();
+	enemyAttack->transform_->parent_ = transform_;
+	enemyAttack->objectPtr_->transform_->position_ += {2, 0, 0};
 }
 
 void IFE::NormalEnemy::ChangeState()
 {
-	//追跡は最優先
-	if (state == CHASE) {
+	//攻撃は最優先
+	if (state == ATTACK) {
+		Attack();
+	}
+	else if (state == CHASE) {
 		Chase();
 	}
 	else if (state == WARNING) {
@@ -58,13 +67,13 @@ void IFE::NormalEnemy::Wait()
 {
 	///周りを見渡す処理
 	if (waitTimer < 50) {
-		transform_->eulerAngleDegrees_ += { 0, -1.5f, 0 };
+		transform_->eulerAngleDegrees_ += ( Float3( 0, -15, 0) * IFE::IFETime::sDeltaTime_);
 	}
 	else if (waitTimer < 150) {
-		transform_->eulerAngleDegrees_ += { 0, 1.5f, 0 };
+		transform_->eulerAngleDegrees_ += (Float3(0, 15, 0) * IFE::IFETime::sDeltaTime_);
 	}
 	else if (waitTimer < WAIT_TIME) {
-		transform_->eulerAngleDegrees_ += { 0, -1.5f, 0 };
+		transform_->eulerAngleDegrees_ += (Float3(0, -15, 0) * IFE::IFETime::sDeltaTime_);
 	}
 	///
 	waitTimer++;
@@ -97,7 +106,7 @@ void IFE::NormalEnemy::Search()
 		//経由地点を補間(現状ループするだけ)
 		Vector3 dirVec = points[nextPoint] - transform_->position_;
 		dirVec.Normalize();
-		transform_->position_ += (dirVec * MOVE_VELO);
+		transform_->position_ += (dirVec * SEARCH_VELO * IFE::IFETime::sDeltaTime_);
 
 		//次の地点へ
 		double len = sqrt(pow(transform_->position_.x - points[nextPoint].x, 2) + pow(transform_->position_.y - points[nextPoint].y, 2) +
@@ -124,21 +133,64 @@ void IFE::NormalEnemy::Chase()
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
 	Vector3 addVec = pPos - ePos;
 	addVec.Normalize();
-	transform_->position_ += (addVec * 0.1f);
+	transform_->position_ += (addVec * CHASE_VELO * IFE::IFETime::sDeltaTime_);
 
 	//近づいたら殴る
 	double len = sqrt(pow(ePos.x - pPos.x, 2) + pow(ePos.y - pPos.y, 2) +
 		pow(ePos.z - pPos.z, 2));
 	if (len <= 5.0) {
-		Attack();
+		enemyAttack->objectPtr_->DrawFlag_ = true;
+		state = ATTACK;
+	}
+	warningTime++;
+	if (warningTime == 150) {
+		warningTime = 0;
+		state = SEARCH;
+		objectPtr_->SetColor({ 1,1,1,1 });
 	}
 }
 
 void IFE::NormalEnemy::Attack()
 {
-	if (isAttack == false) {
-		isAttack = true;
+	enemyAttack->Update();
+	attackTime++;
+	if (attackTime == 50) {
+		attackTime = 0;
+		enemyAttack->objectPtr_->DrawFlag_ = false;
+		state = CHASE;
 	}
+}
+
+void IFE::NormalEnemy::LookAt()
+{
+	Quaternion rotation;
+	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	// ターゲットの位置から自分の位置へのベクトルを計算
+	Vector3 direction(pPos.x - transform_->position_.x,
+		pPos.y - transform_->position_.y,
+		pPos.z - transform_->position_.z);
+	direction.Normalize(); // ベクトルを正規化
+
+	// ベクトルからクォータニオンを生成
+	float dot = direction.x + direction.y + direction.z;
+	float w, x, y, z;
+
+	if (dot < 1e-6f - 1.0f) {
+		w = 0.0f;
+		x = 1.0f;
+		y = z = 0.0f;
+	}
+	else {
+		float s = std::sqrt((1 + dot) * 2);
+		x = direction.x / s;
+		y = direction.y / s;
+		z = direction.z / s;
+		w = 0.5f * s;
+	}
+
+	// クォータニオンを設定
+	rotation = Quaternion(w, x, y, z);
+	transform_->eulerAngleDegrees_ = { rotation.x,rotation.y,rotation.z };
 }
 
 void IFE::NormalEnemy::Draw()
@@ -172,6 +224,8 @@ IFE::Vector3 IFE::NormalEnemy::GetPos() {
 
 void IFE::NormalEnemy::Finalize()
 {
+	delete hp_;
+	delete enemyAttack;
 }
 
 #ifdef EditorMode

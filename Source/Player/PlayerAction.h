@@ -10,6 +10,7 @@ private:
 	IFE::Vector3 front_ = { 0,0,1 };
 	IFE::Vector3 pos_ = { 0,0,0 };
 	IFE::Vector3 frontVec_ = {};
+	uint8_t hp = 10;
 
 #pragma region ÉJÉÅÉâ
 	IFE::Vector3 cameraPos_ = {};
@@ -46,7 +47,7 @@ public:
 	/// </summary>
 	void Finalize();
 
-	void OnColliderHit(IFE::ColliderCore collider);
+	void OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)override;
 
 
 	/// <summary>

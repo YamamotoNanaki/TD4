@@ -23,8 +23,15 @@ void PlayerAction::Finalize()
 {
 }
 
-void PlayerAction::OnColliderHit(IFE::ColliderCore collider)
+void PlayerAction::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
 {
+	if (myCollider->GetColliderType() == IFE::ColliderType::SPHERE)
+	{
+		if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
+			//“–‚½‚Á‚½‚Ìˆ—
+			hp--;
+		}
+	}
 }
 
 void PlayerAction::MoveUpdate()
