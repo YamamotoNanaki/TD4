@@ -9,6 +9,7 @@
 void IFE::NormalEnemy::Initialize()
 {
 	state = WAIT;
+	preState = state;
 	waitTimer = 0;
 	nextPoint = 0;
 	isAttack = false;
@@ -49,6 +50,8 @@ void IFE::NormalEnemy::Update()
 		hp_->objectPtr_->Destroy();
 		objectPtr_->Destroy();
 	}
+	//最終フレームの状態を取得
+	preState = state;
 }
 
 void IFE::NormalEnemy::Wait()
@@ -69,13 +72,22 @@ void IFE::NormalEnemy::Wait()
 		waitTimer = 0;
 		transform_->rotation_ = { 0,0,0 };
 		state = SEARCH;
+		objectPtr_->SetColor({ 1,1,1,1 });
 	}
 }
 
 void IFE::NormalEnemy::Warning()
 {
 	//異変の状態が続いたら追跡へ移行
-	state = CHASE;
+	objectPtr_->SetColor({ 0.5f,0.5f,0,1 });
+	warningTime++;
+	state = preState;
+
+	if (warningTime == 75) {
+		warningTime = 0;
+		state = CHASE;
+		objectPtr_->SetColor({ 1,0,0,1 });
+	}
 }
 
 void IFE::NormalEnemy::Search()
@@ -98,6 +110,8 @@ void IFE::NormalEnemy::Search()
 			}
 			else {
 				nextPoint++;
+				state = WAIT;
+				objectPtr_->SetColor({ 1,1,1,1 });
 			}
 		}
 	}
@@ -137,9 +151,8 @@ void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hit
 	//発見
 	if (myCollider->GetColliderType() == ColliderType::RAY)
 	{
-		if (state != CHASE && hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
-			state = CHASE;
-			objectPtr_->SetColor({ 1,0,0,1 });
+		if (state == SEARCH ||  state == WAIT && hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
+			state = WARNING;
 		}
 	}
 	//相手がplayerだった場合
