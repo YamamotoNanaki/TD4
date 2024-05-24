@@ -10,19 +10,21 @@ namespace IFE {
 	{
 	private:
 		//周りを見渡す時間
-		const int WAIT_TIME = 200;
+		const int32_t WAIT_TIME = 200;
 		//探索時移動速度 
 		const float MOVE_VELO = 0.08f;
 	//メンバ変数
 	private:
 		//待機タイマー
-		int waitTimer;
+		int32_t waitTimer;
 		//経由地点
 		std::vector<Float3> points;
 		//次の場所
 		size_t nextPoint;
 		//攻撃したか
 		bool isAttack;
+		//警戒時間
+		int32_t warningTime;
 		//hp
 		EnemyHp* hp_ = nullptr;
 
