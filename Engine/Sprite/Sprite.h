@@ -48,6 +48,7 @@ namespace IFE
 		void Draw();
 		void SetSize(const Float2& size);
 		void SetTextureRect(const Float2& texBase, const Float2& texSize);
+		void SetAnimation(uint16_t sheetsNumX, uint16_t sheetsNumY, uint16_t& nowNum, bool flipX, bool flipY);
 		void SetComponent(std::unique_ptr<Component> component);
 		void SetComponentFront(std::unique_ptr<Component> component);
 		void SetTexture(const std::string& texName);

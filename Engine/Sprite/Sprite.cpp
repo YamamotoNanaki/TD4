@@ -142,6 +142,44 @@ void Sprite::SetTextureRect(const Float2& b, const Float2& s)
 	TransferVertex();
 }
 
+void IFE::Sprite::SetAnimation(uint16_t sheetsNumX, uint16_t sheetsNumY, uint16_t& nowNum, bool flipX, bool flipY)
+{
+	int isFlipX, isFlipY;
+	if (flipX == false)isFlipX = 1;
+	else isFlipX = -1;
+	if (flipY == false)isFlipY = 1;
+	else isFlipY = -1;
+
+	float left = ((0.0f - anchorpoint_.x) * tex_->texbuff_->GetDesc().Width / sheetsNumX) * isFlipX;
+	float right = ((1.0f - anchorpoint_.x) * tex_->texbuff_->GetDesc().Width / sheetsNumX) * isFlipX;
+	float top = ((0.0f - anchorpoint_.y) * tex_->texbuff_->GetDesc().Height / sheetsNumY) * isFlipY;
+	float bottom = ((1.0f - anchorpoint_.y) * tex_->texbuff_->GetDesc().Height / sheetsNumY) * isFlipY;
+
+	uint16_t animationXYNum = sheetsNumX * sheetsNumY;//ï™äÑêî(ëççáåv)
+	uint16_t x = nowNum % sheetsNumX;
+	uint16_t y = nowNum / sheetsNumX;
+
+	if (nowNum + 1 > animationXYNum)
+	{
+		nowNum = 0;//0ñáñ⁄Ç…ñﬂÇ∑èàóù
+	}
+
+	Vertex2D vertices[4];
+
+	enum { LB, LT, RB, RT };
+
+	vertices[LT].pos = { left,	top,	0.0f };
+	vertices[LT].uv = { static_cast<float>(x) / static_cast<float>(sheetsNumX),static_cast<float>(y) / static_cast<float>(sheetsNumY) };
+	vertices[LB].pos = { left,	bottom,	0.0f };
+	vertices[LB].uv = { static_cast<float>(x) / static_cast<float>(sheetsNumX),(static_cast<float>(y) + 1) / static_cast<float>(sheetsNumY) };
+	vertices[RT].pos = { right,	top,	0.0f };
+	vertices[RT].uv = { (static_cast<float>(x) + 1) / static_cast<float>(sheetsNumX),static_cast<float>(y) / static_cast<float>(sheetsNumY) };
+	vertices[RB].pos = { right,	bottom,	0.0f };
+	vertices[RB].uv = { (static_cast<float>(x) + 1) / static_cast<float>(sheetsNumX),(static_cast<float>(y) + 1) / static_cast<float>(sheetsNumY) };
+
+	vb_.Transfer(vertices, _countof(vertices));
+}
+
 void IFE::Sprite::SetComponent(std::unique_ptr<Component> component)
 {
 	AddComponentBack<Component>(std::move(component));
@@ -195,13 +233,13 @@ void IFE::Sprite::DebugGUI(bool fdelete, bool fmove, std::string* str)
 void IFE::Sprite::ComponentGUI()
 {
 	std::function<void(std::unique_ptr<Component>)> addFunc = [&](std::unique_ptr<Component> com)
-	{
-		SetComponent(std::move(com));
-	};
+		{
+			SetComponent(std::move(com));
+		};
 	std::function<void(void)>f = [&]()
-	{
-		ComponentManager::DebugGUI();
-	};
+		{
+			ComponentManager::DebugGUI();
+		};
 	//std::function<void(std::string)>texFunc = [&](std::string name)
 	//{
 	//	tex = TextureManager::Instance()->GetTexture(name);

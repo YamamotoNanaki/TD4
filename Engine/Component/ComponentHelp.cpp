@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "Transform.h"
 #include "TransferGeometryBuffer.h"
+#include "AnimationTexture.h"
 #include "Material.h"
 #include "CollisionPrimitive.h"
 #include "Collider.h"
@@ -54,6 +55,8 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<TransformCamera>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<RectTexture>(str));
+	if (tmp != nullptr)return tmp;
+	tmp = std::move(GetPtr<AnimationTexture>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<Fog>(str));
 	if (tmp != nullptr)return tmp;

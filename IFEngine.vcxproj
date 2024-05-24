@@ -66,6 +66,7 @@
     <ClCompile Include="Engine\PostEffect\PostEffectManager.cpp" />
     <ClCompile Include="Engine\Scene\Scene.cpp" />
     <ClCompile Include="Engine\Sound\Sound.cpp" />
+    <ClCompile Include="Engine\Sprite\AnimationTexture.cpp" />
     <ClCompile Include="Engine\Sprite\ColorBuffer.cpp" />
     <ClCompile Include="Engine\Sprite\RectTexture.cpp" />
     <ClCompile Include="Engine\Sprite\Sprite.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Engine\PostEffect\PostEffectManager.h" />
     <ClInclude Include="Engine\Scene\Scene.h" />
     <ClInclude Include="Engine\Sound\Sound.h" />
+    <ClInclude Include="Engine\Sprite\AnimationTexture.h" />
     <ClInclude Include="Engine\Sprite\ColorBuffer.h" />
     <ClInclude Include="Engine\Sprite\RectTexture.h" />
     <ClInclude Include="Engine\Sprite\Sprite.h" />
