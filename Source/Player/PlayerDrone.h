@@ -20,6 +20,8 @@ private:
 	uint8_t time_ = 0;
 	float dronePosY_ = 0.0f;
 
+	bool slowSpeedMode_ = false;
+
 	/// <summary>
 	/// ’iXspeed‚ğ0‚É‚·‚éˆ—
 	/// </summary>

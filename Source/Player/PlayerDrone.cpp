@@ -99,7 +99,6 @@ void PlayerDrone::Move()
 	{
 		moveValue_.y--;
 	}
-	transform_->position_ += moveValue_ * speed * IFE::IFETime::sDeltaTime_;
 #pragma endregion キーボード
 
 #pragma region コントローラー
@@ -113,20 +112,63 @@ void PlayerDrone::Move()
 	{
 		moveValue_.y--;
 	}
-	transform_->position_ += moveValue_ * speed * IFE::IFETime::sDeltaTime_;
+
+	if (IFE::Input::PadTrigger(IFE::PADCODE::LTHUMB))
+	{
+		if (slowSpeedMode_ == false)
+		{
+			slowSpeedMode_ = true;
+		}
+		else
+		{
+			slowSpeedMode_ = false;
+		}
+	}
 #pragma endregion コントローラー
 
-	SpeedZero(moveValue_.x, 0.02f);
-	SpeedZero(moveValue_.z, 0.02f);
-	SpeedZero(moveValue_.y, 0.02f);
+#pragma region 統一処理
+
+	if (IFE::Input::GetKeyTrigger(IFE::Key::LSHIFT)|| IFE::Input::GetKeyTrigger(IFE::Key::RSHIFT) ||IFE::Input::PadTrigger(IFE::PADCODE::LTHUMB))
+	{
+		if (slowSpeedMode_ == false)
+		{
+			slowSpeedMode_ = true;
+		}
+		else
+		{
+			slowSpeedMode_ = false;
+		}
+	}
+
+	//減速速度
+	float decelerationSpeed = 0.00f;
 
 	//スピード限界処理
-	const float maxSpeed = 0.5f;
+	float maxSpeed = 0.0f;
+
+	if (slowSpeedMode_ == false)
+	{
+		decelerationSpeed = 0.02f;
+		maxSpeed = 0.5f;
+	}
+	else
+	{
+		decelerationSpeed = 0.01f;
+		maxSpeed = 0.125f;
+	}
+
+	SpeedZero(moveValue_.x, decelerationSpeed);
+	SpeedZero(moveValue_.z, decelerationSpeed);
+	SpeedZero(moveValue_.y, decelerationSpeed);
+
 	moveValue_.x = std::clamp(moveValue_.x, -maxSpeed, maxSpeed);
 	moveValue_.y = std::clamp(moveValue_.y, -maxSpeed, maxSpeed);
 	moveValue_.z = std::clamp(moveValue_.z, -maxSpeed, maxSpeed);
 
+	transform_->position_ += moveValue_ * speed * IFE::IFETime::sDeltaTime_;
+
 	transform_->UpdateMatrix();
+#pragma endregion
 }
 
 void PlayerDrone::Rotation()
