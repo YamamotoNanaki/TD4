@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "IFEMath.h"
+#include "Object3D.h"
 
 class LaserWire:public IFE::Component
 {
@@ -33,6 +34,10 @@ public:
 private:
 
 	IFE::Vector3 pos_;
+
+	std::vector<IFE::Vector3> poss_;
+
+	std::vector<IFE::Object3D> objects_;
 
 };
 
