@@ -181,9 +181,9 @@ void IFE::ObjectManager::SetModel(const std::string& objectName, Component* mode
 	}
 }
 
-std::list<std::unique_ptr<Object3D>>* IFE::ObjectManager::GetObjList()
+std::list<std::unique_ptr<Object3D>>& IFE::ObjectManager::GetObjList()
 {
-	return &objectList_;
+	return objectList_;
 }
 
 void IFE::ObjectManager::Reset()

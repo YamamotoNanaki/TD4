@@ -19,6 +19,7 @@ namespace IFE {
 			CHASE
 		};
 		State state;
+		State preState;
 
 
 		//ƒƒ“ƒoŠÖ”

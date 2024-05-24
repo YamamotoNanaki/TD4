@@ -77,6 +77,7 @@ namespace IFE
 
 	class Collider : public Component
 	{
+		using Component::Component;
 		std::list<std::unique_ptr<ColliderCore>>colliderList_;
 	public:
 		void Initialize()override;

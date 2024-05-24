@@ -7,17 +7,17 @@ namespace IFE {
 	{
 		using Component::Component;
 	private:
-		const int MAX_HP = 100;
-		const int HIT_COOLTIME = 25;
+		const int32_t MAX_HP = 100;
+		const int32_t HIT_COOLTIME = 25;
 	private:
 		//メンバ変数
-		int hp_;
-		int preHp_;
-		int decHp_;
+		int32_t hp_;
+		int32_t preHp_;
+		int32_t decHp_;
 		bool isDead_;
 		//フラグ
 		bool isHit_;
-		int hitTime_;
+		int32_t hitTime_;
 
 		//メンバ関数
 	public:
