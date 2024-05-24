@@ -56,5 +56,29 @@
             "settings": 100,
             "smooth": false
         }
+    },
+    {
+        "Plane_Model": {
+            "fileName": "panel",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "Plane_Model"
+    },
+    {
+        "ground_Model": {
+            "fileName": "ground",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "ground_Model"
+    },
+    {
+        "hppanel_Model": {
+            "fileName": "hppanel",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "hppanel_Model"
     }
 ]

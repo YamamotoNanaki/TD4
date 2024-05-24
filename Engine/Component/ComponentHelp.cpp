@@ -17,6 +17,7 @@
 #include "NormalEnemy.h"
 #include "LaserWire.h"
 #include "EnemyHp.h"
+#include "StageCollideManageer.h"
 
 using namespace IFE;
 using namespace std;
@@ -72,6 +73,10 @@ Component* IFE::StringToComponent(const std::string& str)
 
 	//ステージギミック
 	tmp = std::move(GetPtr<LaserWire>(str));
+	if (tmp != nullptr)return tmp;
+
+	//壁管理
+	tmp = std::move(GetPtr<StageCollideManageer>(str));
 	if (tmp != nullptr)return tmp;
 
 	return nullptr;

@@ -31,7 +31,7 @@ namespace IFE
 		Object3D* GetObjectPtr(const std::string& objectName);
 		Object3D* GetPrefab(const std::string& name);
 		void SetModel(const std::string& objectName, Component* model);
-		std::list<std::unique_ptr<Object3D>>* GetObjList();
+		std::list<std::unique_ptr<Object3D>>& GetObjList();
 		void Reset();
 		bool SearchName(const std::string& name);
 		Object3D* SearchObject(const std::string& name);
