@@ -4943,7 +4943,7 @@
         "model": "testDrone_wall_Model",
         "name": "drone_wall9",
         "prefab": false
-          },
+    },
     {
         "Material": {
             "ambient": [
@@ -5006,7 +5006,6 @@
         "model": "dice_Model",
         "name": "StageCollideManageer",
         "prefab": false
-    }
     },
     {
         "Material": {
