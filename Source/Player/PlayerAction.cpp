@@ -107,14 +107,18 @@ void PlayerAction::Rotation()
 {
 	IFE::Vector3 standardVec = { 1,0,0 };
 
+	float lx = IFE::Input::GetLXAnalog(controllerRange_);
+	float ly = IFE::Input::GetLYAnalog(controllerRange_);
+
 	//‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚æ‚ë‚µ‚­
-	if (IFE::Input::GetLAnalog(controllerRange_).x >= controllerRange_ && IFE::Input::GetLAnalog(controllerRange_).x <= -controllerRange_ || IFE::Input::GetLAnalog(controllerRange_).y>= controllerRange_&& IFE::Input::GetLAnalog(controllerRange_).y <= -controllerRange_)
+	if (lx != 0 || ly != 0)
 	{
-		front_ = { IFE::Input::GetLXAnalog(controllerRange_),0,IFE::Input::GetLYAnalog(controllerRange_) };
+		front_ = { lx,0,ly };
+		front_.Normalize();
 	}
 
 	float angleY = IFE::ConvertToDegrees(std::atan2(IFE::Input::GetLXAnalog(controllerRange_), IFE::Input::GetLYAnalog(controllerRange_)));
-	transform_->eulerAngleDegrees_.y= angleY;
+	transform_->eulerAngleDegrees_.y = angleY;
 }
 
 void PlayerAction::CameraUpdate()
@@ -128,7 +132,7 @@ void PlayerAction::CameraUpdate()
 
 void PlayerAction::Attack()
 {
-	if (IFE::Input::GetKeyTrigger(IFE::Key::Space)|| IFE::Input::PadTrigger(IFE::PADCODE::X))
+	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X))
 	{
 		attackFlag_ = true;
 	}
