@@ -8729,5 +8729,509 @@
         "model": "testWall_Model",
         "name": "roof_drone4",
         "prefab": false
+    },
+    {
+        "Collider": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.760617733001709,
+                0.30482086539268494,
+                0.16739463806152344,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -29.0,
+                2.0,
+                26.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "box_squat",
+        "prefab": false
+    },
+    {
+        "Collider": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.760617733001709,
+                0.30482086539268494,
+                0.16739463806152344,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -19.0,
+                2.0,
+                45.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "box_squat1",
+        "prefab": false
+    },
+    {
+        "Collider": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.760617733001709,
+                0.30482086539268494,
+                0.16739463806152344,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -29.0,
+                2.0,
+                67.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "box_squat2",
+        "prefab": false
+    },
+    {
+        "Collider": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.760617733001709,
+                0.30482086539268494,
+                0.16739463806152344,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -29.0,
+                2.0,
+                162.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "box_squat3",
+        "prefab": false
+    },
+    {
+        "Collider": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.760617733001709,
+                0.30482086539268494,
+                0.16739463806152344,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -55.0,
+                2.0,
+                187.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "box_squat4",
+        "prefab": false
+    },
+    {
+        "Collider": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.760617733001709,
+                0.30482086539268494,
+                0.16739463806152344,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -90.0,
+                2.0,
+                197.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "box_squat5",
+        "prefab": false
+    },
+    {
+        "Collider": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.760617733001709,
+                0.30482086539268494,
+                0.16739463806152344,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -130.0,
+                2.0,
+                187.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "box_squat6",
+        "prefab": false
+    },
+    {
+        "Collider": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.760617733001709,
+                0.30482086539268494,
+                0.16739463806152344,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -155.0,
+                2.0,
+                162.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "box_squat7",
+        "prefab": false
     }
 ]
