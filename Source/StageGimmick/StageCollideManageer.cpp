@@ -13,7 +13,7 @@ void StageCollideManageer::Initialize()
 
 	for (auto& itr : list)
 	{
-		if (itr->GetObjectName().find("ground") != std::string::npos || itr->GetObjectName().find("wall") != std::string::npos)
+		if (itr->GetObjectName().find("ground") != std::string::npos || itr->GetObjectName().find("wall") != std::string::npos || itr->GetObjectName().find("roof") != std::string::npos)
 		{
 			if (itr->GetComponent<Collider>())continue;
 			itr->AddComponentBack<Collider>();
@@ -22,6 +22,11 @@ void StageCollideManageer::Initialize()
 			c->SetColliderType(ColliderType::OBB);
 			c->SetNoPushBackFlag(true);
 			c->SetPushBackFlag(true);
+		}
+
+		if (itr->GetObjectName().find("roof") != std::string::npos)
+		{
+			itr->DrawFlag_ = true;
 		}
 	}
 }
