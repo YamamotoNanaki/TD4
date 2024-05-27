@@ -24,7 +24,7 @@ void IFE::NormalEnemy::Initialize()
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
 	enemyAttack->transform_->parent_ = transform_;
-	enemyAttack->objectPtr_->transform_->position_ += {2, 0, 0};
+	enemyAttack->objectPtr_->transform_->position_ += {0, 0, 2};
 }
 
 void IFE::NormalEnemy::ChangeState()
@@ -128,6 +128,8 @@ void IFE::NormalEnemy::Search()
 
 void IFE::NormalEnemy::Chase()
 {
+	//playerの方を向く
+	LookAt();
 	//とりあえず追いかける
 	Vector3 ePos = transform_->position_;
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
@@ -143,7 +145,7 @@ void IFE::NormalEnemy::Chase()
 		state = ATTACK;
 	}
 	warningTime++;
-	if (warningTime == 150) {
+	if (warningTime == 200) {
 		warningTime = 0;
 		state = SEARCH;
 		objectPtr_->SetColor({ 1,1,1,1 });
@@ -163,34 +165,17 @@ void IFE::NormalEnemy::Attack()
 
 void IFE::NormalEnemy::LookAt()
 {
-	Quaternion rotation;
+	Vector3 ePos = transform_->position_;
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
-	// ターゲットの位置から自分の位置へのベクトルを計算
-	Vector3 direction(pPos.x - transform_->position_.x,
-		pPos.y - transform_->position_.y,
-		pPos.z - transform_->position_.z);
-	direction.Normalize(); // ベクトルを正規化
-
-	// ベクトルからクォータニオンを生成
-	float dot = direction.x + direction.y + direction.z;
-	float w, x, y, z;
-
-	if (dot < 1e-6f - 1.0f) {
-		w = 0.0f;
-		x = 1.0f;
-		y = z = 0.0f;
-	}
-	else {
-		float s = std::sqrt((1 + dot) * 2);
-		x = direction.x / s;
-		y = direction.y / s;
-		z = direction.z / s;
-		w = 0.5f * s;
-	}
-
-	// クォータニオンを設定
-	rotation = Quaternion(w, x, y, z);
-	transform_->eulerAngleDegrees_ = { rotation.x,rotation.y,rotation.z };
+	Vector3 frontVec = pPos - ePos;
+	//カメラ方向に合わせてY軸の回転
+	float radY = std::atan2(frontVec.x, frontVec.z);
+	transform_->eulerAngleDegrees_={ ePos.x,radY * 180.0f / (float)PI,ePos.z };
+	//カメラ方向に合わせてX軸の回転
+	Vector3 rotaVec = { frontVec.x,0,frontVec.z };
+	float length = rotaVec.Length();
+	float radX = std::atan2(-frontVec.y, length);
+	transform_->eulerAngleDegrees_ = { radX * 180.0f / (float)PI ,radY * 180.0f / (float)PI,0 };
 }
 
 void IFE::NormalEnemy::Draw()
