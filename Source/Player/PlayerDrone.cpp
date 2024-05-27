@@ -76,7 +76,7 @@ void PlayerDrone::Move()
 	frontVec_.y = 0.0f;
 	rightVec.y = 0.0f;
 
-	const float speed = 10.0f;
+	const float speed = 1.0f;
 
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::A))
@@ -141,20 +141,20 @@ void PlayerDrone::Move()
 	}
 
 	//減速速度
-	float decelerationSpeed = 0.00f;
+	float decelerationSpeed = 0.0f;
 
 	//スピード限界処理
 	float maxSpeed = 0.0f;
 
 	if (slowSpeedMode_ == false)
 	{
-		decelerationSpeed = 0.02f;
-		maxSpeed = 0.5f;
+		decelerationSpeed = 0.5f;
+		maxSpeed = 5.0f;
 	}
 	else
 	{
-		decelerationSpeed = 0.01f;
-		maxSpeed = 0.125f;
+		decelerationSpeed = 0.25f;
+		maxSpeed = 2.5f;
 	}
 
 	SpeedZero(moveValue_.x, decelerationSpeed);
