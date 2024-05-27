@@ -9,6 +9,7 @@
 void PlayerAction::Initialize()
 {
 	actionCamera_ = IFE::CameraManager::Instance()->GetCamera("ActionCamera");
+	transform_->position_.y = 2.0f;
 	cameraAngle_.y = 180.0f;
 }
 
@@ -104,8 +105,16 @@ IFE::Camera* PlayerAction::GetActionCamera()
 
 void PlayerAction::Rotation()
 {
-	frontVec_ = front_ - pos_;
-	frontVec_.Normalize();
+	IFE::Vector3 standardVec = { 1,0,0 };
+
+	//‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚æ‚ë‚µ‚­
+	if (IFE::Input::GetLAnalog(controllerRange_).x >= controllerRange_ && IFE::Input::GetLAnalog(controllerRange_).x <= -controllerRange_ || IFE::Input::GetLAnalog(controllerRange_).y>= controllerRange_&& IFE::Input::GetLAnalog(controllerRange_).y <= -controllerRange_)
+	{
+		front_ = { IFE::Input::GetLXAnalog(controllerRange_),0,IFE::Input::GetLYAnalog(controllerRange_) };
+	}
+
+	float angleY = IFE::ConvertToDegrees(std::atan2(IFE::Input::GetLXAnalog(controllerRange_), IFE::Input::GetLYAnalog(controllerRange_)));
+	transform_->eulerAngleDegrees_.y= angleY;
 }
 
 void PlayerAction::CameraUpdate()
