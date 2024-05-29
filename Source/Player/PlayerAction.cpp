@@ -5,6 +5,8 @@
 #include"Object3D.h"
 #include"IFETime.h"
 #include "EnemyAttack.h"
+#include "ObjectManager.h"
+#include "ModelManager.h"
 
 void PlayerAction::Initialize()
 {
@@ -24,6 +26,7 @@ void PlayerAction::Draw()
 
 void PlayerAction::Finalize()
 {
+	delete playerAttack_;
 }
 
 void PlayerAction::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
@@ -129,9 +132,17 @@ void PlayerAction::CameraUpdate()
 
 void PlayerAction::Attack()
 {
+	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("PlayerAttack", IFE::ModelManager::Instance()->GetModel("dice"));
+	ptr->AddComponent<PlayerAttack>();
+	playerAttack_ = ptr->GetComponent<PlayerAttack>();
+
+	const float attackDistance = 2.0f;
+
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X))
 	{
 		attackFlag_ = true;
+		playerAttack_->transform_->position_ = frontVec_ * attackDistance;
+		playerAttack_->objectPtr_->DrawFlag_ = true;
 	}
 
 	if (attackFlag_ == true)
@@ -140,6 +151,7 @@ void PlayerAction::Attack()
 		{
 			attackFlag_ = false;
 			attackTimer_ = 0;
+			playerAttack_->objectPtr_->DrawFlag_ = false;
 		}
 		attackTimer_++;
 	}
