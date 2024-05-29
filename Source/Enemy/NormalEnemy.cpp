@@ -84,7 +84,7 @@ void IFE::NormalEnemy::Update()
 		isFound = false;
 	}
 	//–ˆƒtƒŒ[ƒ€‰Šú‰»
-	/*rayDist = 0.0f;*/
+	rayDist = 0.0f;
 	ChangeState();
 	//hp•\Ž¦
 	hp_->Update(transform_->position_);
