@@ -9,7 +9,14 @@ private:
 
 	IFE::Vector3 front_ = { 0,0,1 };
 	IFE::Vector3 pos_ = { 0,0,0 };
+
+	//正面ベクトルの作成
 	IFE::Vector3 frontVec_ = {};
+	//仮ベクトル
+	IFE::Vector3 temporaryVec_ = { 0,1,0 };
+	//右ベクトルの作成
+	IFE::Vector3 rightVec_ = {};
+
 	uint8_t hp = 10;
 
 #pragma region カメラ
@@ -23,7 +30,7 @@ private:
 	const uint8_t attackTime_ = 10;
 	uint8_t attackTimer_ = 0;
 
-	const uint16_t controllerRange_ = 5000;
+	const uint16_t controllerRange_ = 10000;
 
 public:
 

@@ -58,38 +58,38 @@ void PlayerAction::Move()
 	const float speed = 10.0f;
 
 	//正面ベクトルの作成
-	IFE::Vector3 frontVec = transform_->position_ - actionCamera_->transform_->eye_;
-	frontVec.Normalize();
+	frontVec_ = transform_->position_ - actionCamera_->transform_->eye_;
+	frontVec_.Normalize();
 	//仮ベクトル
-	IFE::Vector3 temporaryVec = { 0,1,0 };
+	temporaryVec_ = { 0,1,0 };
 	//右ベクトルの作成
-	IFE::Vector3 rightVec = frontVec.Cross(temporaryVec);
-	rightVec.Normalize();
+	rightVec_ = frontVec_.Cross(temporaryVec_);
+	rightVec_.Normalize();
 
 	//今回はY軸の動きは無くて良い
-	frontVec.y = 0.0f;
-	rightVec.y = 0.0f;
+	frontVec_.y = 0.0f;
+	rightVec_.y = 0.0f;
 
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::A))
 	{
-		transform_->position_ += rightVec * speed * IFE::IFETime::sDeltaTime_;
+		transform_->position_ += rightVec_ * speed * IFE::IFETime::sDeltaTime_;
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::D))
 	{
-		transform_->position_ -= rightVec * speed * IFE::IFETime::sDeltaTime_;
+		transform_->position_ -= rightVec_ * speed * IFE::IFETime::sDeltaTime_;
 	}if (IFE::Input::GetKeyPush(IFE::Key::W))
 	{
-		transform_->position_ += frontVec * speed * IFE::IFETime::sDeltaTime_;
+		transform_->position_ += frontVec_ * speed * IFE::IFETime::sDeltaTime_;
 	}if (IFE::Input::GetKeyPush(IFE::Key::S))
 	{
-		transform_->position_ -= frontVec * speed * IFE::IFETime::sDeltaTime_;
+		transform_->position_ -= frontVec_ * speed * IFE::IFETime::sDeltaTime_;
 	}
 #pragma endregion キーボード
 
 #pragma region コントローラー
-	transform_->position_ -= IFE::Input::GetLXAnalog(controllerRange_) * rightVec * speed * IFE::IFETime::sDeltaTime_;
-	transform_->position_ += IFE::Input::GetLYAnalog(controllerRange_) * frontVec * speed * IFE::IFETime::sDeltaTime_;
+	transform_->position_ -= IFE::Input::GetLXAnalog(controllerRange_) * rightVec_ * speed * IFE::IFETime::sDeltaTime_;
+	transform_->position_ += IFE::Input::GetLYAnalog(controllerRange_) * frontVec_ * speed * IFE::IFETime::sDeltaTime_;
 #pragma endregion
 }
 
@@ -105,19 +105,17 @@ IFE::Camera* PlayerAction::GetActionCamera()
 
 void PlayerAction::Rotation()
 {
-	IFE::Vector3 standardVec = { 1,0,0 };
-
 	float lx = IFE::Input::GetLXAnalog(controllerRange_);
 	float ly = IFE::Input::GetLYAnalog(controllerRange_);
 
-	//ここここここここここここここここここここここここここここここここここここここここここここここよろしく
 	if (lx != 0 || ly != 0)
 	{
-		front_ = { lx,0,ly };
-		front_.Normalize();
+		/*front_ = { lx,0,ly };
+		front_.Normalize();*/
 	}
 
-	float angleY = IFE::ConvertToDegrees(std::atan2(IFE::Input::GetLXAnalog(controllerRange_), IFE::Input::GetLYAnalog(controllerRange_)));
+	//ここここここここここここここここここここここここここここここここここここここここここここここ正面ベクトルの方向いてくれない
+	float angleY = IFE::ConvertToDegrees(std::atan2(front_.x, front_.z));
 	transform_->eulerAngleDegrees_.y = angleY;
 }
 
