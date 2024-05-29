@@ -320,16 +320,29 @@ bool IFE::Collision::CheckOBBRay(const OBB& box, const Ray& ray, float* distance
 				return false;
 		}
 	}
+	if (rayHittingdistance)
+	{
+		// 交差するが、指定された距離以外にある場合
+		if (tMin > *rayHittingdistance) return false;
 
-	// 交差するが、指定された距離以外にある場合
-	if (tMin > *rayHittingdistance) return false;
+		// 有効な交差点が後方にある場合
+		if (tMin < 0 && tMax < 0) return false;
 
-	// 有効な交差点が後方にある場合
-	if (tMin < 0 && tMax < 0) return false;
+		float tHit = tMin >= 0 ? tMin : tMax; // 実際の衝突t値
 
-	float tHit = tMin >= 0 ? tMin : tMax; // 実際の衝突t値
+		if (tHit <= *rayHittingdistance) {
+			*inter = ray.start + ray.dir * tHit; // 衝突地点
+			*distance = tHit; // 衝突までの距離
+			return true;
+		}
+	}
+	else
+	{
+		// 有効な交差点が後方にある場合
+		if (tMin < 0 && tMax < 0) return false;
 
-	if (tHit <= *rayHittingdistance) {
+		float tHit = tMin >= 0 ? tMin : tMax; // 実際の衝突t値
+
 		*inter = ray.start + ray.dir * tHit; // 衝突地点
 		*distance = tHit; // 衝突までの距離
 		return true;

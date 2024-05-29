@@ -28,5 +28,14 @@ void StageCollideManageer::Initialize()
 		{
 			itr->DrawFlag_ = true;
 		}
+		stages.push_back(itr.get());
+	}
+}
+
+void StageCollideManageer::Update()
+{
+	for (auto& itr : stages)
+	{
+		itr->DrawFlag_ = true;
 	}
 }

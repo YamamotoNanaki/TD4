@@ -399,6 +399,7 @@ void IFE::Scene::DebugGUI()
 			objM_->Initialize();
 			spriteM_->Initialize();
 			particleM->Initialize();
+			cameraM_->AllCameraInitialize();
 		}
 	}
 	static char name[256];

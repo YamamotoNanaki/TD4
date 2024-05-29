@@ -4,14 +4,18 @@
 #include "IFETime.h"
 #include "ObjectManager.h"
 #include "ModelManager.h"
+#include "StageCollideManageer.h"
 
 void IFE::NormalEnemy::Initialize()
 {
-	state = WAIT;
+	state = SEARCH;
 	preState = state;
 	waitTimer = 0;
 	nextPoint = 0;
 	attackTime = 0;
+	rayDist = 0.0f;
+	preRayDist = 0.0f;
+	isFound = false;
 	//HPUI
 	if (!hp_)
 	{
@@ -35,22 +39,52 @@ void IFE::NormalEnemy::ChangeState()
 	}
 	else if (state == CHASE) {
 		Chase();
+		objectPtr_->SetColor({ 1,0,0,1 });
 	}
 	else if (state == WARNING) {
 		Warning();
+		objectPtr_->SetColor({ 0.5f,0.5f,0,1 });
 	}
 	else {
 		if (state == WAIT) {
 			Wait();
+			objectPtr_->SetColor({ 1,0,0,1 });
 		}
 		else if (state == SEARCH) {
 			Search();
+			objectPtr_->SetColor({ 1,0,1,1 });
 		}
 	}
 }
 
 void IFE::NormalEnemy::Update()
 {
+	if (isFound == false && hitColl_ != nullptr) {
+		if (rayDist == 0) {
+			rayDist = preRayDist;
+			if (hitColl_->objectPtr_->GetComponent<PlayerAction>()) {
+				isFound = true;
+			}
+		}
+		else if (rayDist > preRayDist) {
+			rayDist = preRayDist;
+			if (hitColl_->objectPtr_->GetComponent<PlayerAction>()) {
+				isFound = true;
+			}
+		}
+		else if(rayDist <= preRayDist) {
+
+		}
+	}
+	//状態を取得
+	preState = state;
+	//前フレームに敵を見つけていたなら警戒体制に
+	if (isFound == true && state != WARNING) {
+		state = WARNING;
+		isFound = false;
+	}
+	//毎フレーム初期化
+	/*rayDist = 0.0f;*/
 	ChangeState();
 	//hp表示
 	hp_->Update(transform_->position_);
@@ -59,8 +93,6 @@ void IFE::NormalEnemy::Update()
 		hp_->objectPtr_->Destroy();
 		objectPtr_->Destroy();
 	}
-	//最終フレームの状態を取得
-	preState = state;
 }
 
 void IFE::NormalEnemy::Wait()
@@ -81,21 +113,18 @@ void IFE::NormalEnemy::Wait()
 		waitTimer = 0;
 		transform_->rotation_ = { 0,0,0 };
 		state = SEARCH;
-		objectPtr_->SetColor({ 1,1,1,1 });
 	}
 }
 
 void IFE::NormalEnemy::Warning()
 {
 	//異変の状態が続いたら追跡へ移行
-	objectPtr_->SetColor({ 0.5f,0.5f,0,1 });
 	warningTime++;
 	state = preState;
 
 	if (warningTime == 75) {
 		warningTime = 0;
 		state = CHASE;
-		objectPtr_->SetColor({ 1,0,0,1 });
 	}
 }
 
@@ -103,6 +132,7 @@ void IFE::NormalEnemy::Search()
 {
 	//ポイント1以上
 	if (points.size() > 0) {
+		LookAt(points[nextPoint]);
 		//経由地点を補間(現状ループするだけ)
 		Vector3 dirVec = points[nextPoint] - transform_->position_;
 		dirVec.Normalize();
@@ -120,7 +150,6 @@ void IFE::NormalEnemy::Search()
 			else {
 				nextPoint++;
 				state = WAIT;
-				objectPtr_->SetColor({ 1,1,1,1 });
 			}
 		}
 	}
@@ -128,11 +157,11 @@ void IFE::NormalEnemy::Search()
 
 void IFE::NormalEnemy::Chase()
 {
-	//playerの方を向く
-	LookAt();
 	//とりあえず追いかける
 	Vector3 ePos = transform_->position_;
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	//playerの方を向く
+	LookAt(pPos);
 	Vector3 addVec = pPos - ePos;
 	addVec.Normalize();
 	transform_->position_ += (addVec * CHASE_VELO * IFE::IFETime::sDeltaTime_);
@@ -148,7 +177,6 @@ void IFE::NormalEnemy::Chase()
 	if (warningTime == 200) {
 		warningTime = 0;
 		state = SEARCH;
-		objectPtr_->SetColor({ 1,1,1,1 });
 	}
 }
 
@@ -163,11 +191,10 @@ void IFE::NormalEnemy::Attack()
 	}
 }
 
-void IFE::NormalEnemy::LookAt()
+void IFE::NormalEnemy::LookAt(Vector3 lookfor)
 {
 	Vector3 ePos = transform_->position_;
-	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
-	Vector3 frontVec = pPos - ePos;
+	Vector3 frontVec = lookfor - ePos;
 	//カメラ方向に合わせてY軸の回転
 	float radY = std::atan2(frontVec.x, frontVec.z);
 	transform_->eulerAngleDegrees_={ ePos.x,radY * 180.0f / (float)PI,ePos.z };
@@ -188,9 +215,14 @@ void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hit
 	//発見
 	if (myCollider->GetColliderType() == ColliderType::RAY)
 	{
-		if (state == SEARCH || state == WAIT && hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
-			state = WARNING;
+		if (state == SEARCH || state == WAIT) {
+			preRayDist = myCollider->rayDistance;
+			hitColl_ = hitCollider;
 		}
+		/*if (state == SEARCH || state == WAIT && hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
+			preRayDist = myCollider->rayDistance;
+			hitColl_ = hitCollider;
+		}*/
 	}
 	//相手がplayerだった場合
 	if (myCollider->GetColliderType() == ColliderType::SPHERE)
