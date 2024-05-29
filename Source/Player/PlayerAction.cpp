@@ -9,6 +9,7 @@
 void PlayerAction::Initialize()
 {
 	actionCamera_ = IFE::CameraManager::Instance()->GetCamera("ActionCamera");
+	
 	transform_->position_.y = 2.0f;
 	cameraAngle_.y = 180.0f;
 }
