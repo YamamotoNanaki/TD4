@@ -2,6 +2,7 @@
 #include "Component.h"
 #include"IFEMath.h"
 #include"CameraManager.h"
+#include"PlayerAttack.h"
 
 class PlayerAction : public IFE::Component
 {
@@ -18,6 +19,9 @@ private:
 	IFE::Vector3 rightVec_ = {};
 
 	uint8_t hp = 10;
+
+	//UŒ‚”»’èƒNƒ‰ƒX
+	PlayerAttack* playerAttack_ = nullptr;
 
 #pragma region ƒJƒƒ‰
 	IFE::Vector3 cameraPos_ = {};

@@ -15,6 +15,11 @@ void IFE::ColliderCore::Initialize()
 		parentPosition_ = &transform_->position_;
 		parentScale_ = &transform_->scale_;
 	}
+	if (cameraPtr_)
+	{
+		transformCamera_ = cameraPtr_->transform_;
+		parentPosition_ = &cameraPtr_->transform_->eye_;
+	}
 	if (colliderType_ == ColliderType::MESH)
 	{
 		if (meshCollider_)meshCollider_.release();
@@ -192,6 +197,7 @@ void IFE::Collider::Initialize()
 	for (auto& itr : colliderList_)
 	{
 		itr->objectPtr_ = objectPtr_;
+		itr->cameraPtr_ = cameraPtr_;
 		itr->emitterPtr_ = emitterPtr_;
 		itr->Initialize();
 	}
@@ -210,6 +216,7 @@ ColliderCore* IFE::Collider::AddCollider()
 {
 	std::unique_ptr<ColliderCore> temp = std::make_unique<ColliderCore>();
 	temp->objectPtr_ = objectPtr_;
+	temp->cameraPtr_ = cameraPtr_;
 	temp->emitterPtr_ = emitterPtr_;
 	temp->Initialize();
 	colliderList_.push_back(std::move(temp));

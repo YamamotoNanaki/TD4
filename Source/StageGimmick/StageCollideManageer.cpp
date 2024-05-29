@@ -30,3 +30,17 @@ void StageCollideManageer::Initialize()
 		}
 	}
 }
+
+void StageCollideManageer::Update()
+{
+	objectPtr_->DrawFlag_ = true;
+}
+
+void StageCollideManageer::OnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
+{
+	if (hitCollider->cameraPtr_)
+	{
+		objectPtr_->DrawFlag_ = false;
+	}
+	myCollider;
+}

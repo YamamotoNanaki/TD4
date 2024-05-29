@@ -63,11 +63,14 @@ Component* IFE::StringToComponent(const std::string& str)
 	if (tmp != nullptr)return tmp;
 
 	//‚±‚±‚©‚çƒQ[ƒ€‚Ì‚â‚Â
+	//player
 	tmp = std::move(GetPtr<Player>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<PlayerAction>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<PlayerDrone>(str));
+	if (tmp != nullptr)return tmp;
+	tmp = std::move(GetPtr<PlayerAttack>(str));
 	if (tmp != nullptr)return tmp;
 	//enemy
 	tmp = std::move(GetPtr<NormalEnemy>(str));
