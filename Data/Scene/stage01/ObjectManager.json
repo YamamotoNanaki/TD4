@@ -102,9 +102,9 @@
                 0.0
             ],
             "rotation": [
-                0.0,
-                0.0,
-                0.0
+                360.0,
+                360.0,
+                360.0
             ],
             "scale": [
                 1.0,
@@ -267,7 +267,7 @@
                 {
                     "attribute": 0,
                     "colliderType": 0,
-                    "groundJudge": false,
+                    "groundJudge": true,
                     "notPushBack": false,
                     "pushBack": true
                 },
@@ -309,27 +309,17 @@
             "points": {
                 "nums": [
                     [
-                        10.0,
-                        0.0,
-                        10.0
+                        22.0,
+                        2.0,
+                        0.0
                     ],
                     [
-                        -10.0,
-                        0.0,
-                        10.0
-                    ],
-                    [
-                        -10.0,
-                        0.0,
-                        -10.0
-                    ],
-                    [
-                        10.0,
-                        0.0,
-                        -10.0
+                        -24.0,
+                        2.0,
+                        0.0
                     ]
                 ],
-                "size": 4
+                "size": 2
             }
         },
         "TransferGeometryBuffer": {
@@ -342,9 +332,9 @@
         },
         "Transform": {
             "position": [
-                10.0,
-                0.0,
-                10.0
+                22.0,
+                2.0,
+                0.0
             ],
             "rotation": [
                 360.0,
@@ -9312,6 +9302,230 @@
         "drawFlag": true,
         "model": "dice_Model",
         "name": "box_squat7",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 4,
+                    "colliderType": 2,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                },
+                {
+                    "attribute": 0,
+                    "colliderType": 1,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        -24.0,
+                        2.0,
+                        12.0
+                    ],
+                    [
+                        -24.0,
+                        2.0,
+                        80.0
+                    ]
+                ],
+                "size": 2
+            }
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -24.0,
+                2.0,
+                12.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy",
+            "Collider"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "normalEnemy1",
+        "prefab": false
+    },
+    {
+        "EnemyHp": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                2.0,
+                0.4000000059604645,
+                1.0
+            ]
+        },
+        "component": [
+            "EnemyHp",
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "hppanel_Model",
+        "name": "EnemyHp",
+        "prefab": false
+    },
+    {
+        "EnemyAttack": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                2.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "EnemyAttack",
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "EnemyAttack",
         "prefab": false
     }
 ]

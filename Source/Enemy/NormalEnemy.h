@@ -29,10 +29,16 @@ namespace IFE {
 		int32_t attackTime;
 		//警戒時間
 		int32_t warningTime;
+		//発見
+		bool isFound;
 		//hp
 		EnemyHp* hp_ = nullptr;
 		//攻撃判定クラス
 		EnemyAttack* enemyAttack = nullptr;
+		//レイヒット記憶変数
+		float rayDist;
+		float preRayDist;
+		ColliderCore* hitColl_ = nullptr;
 
 		//メンバ関数
 	public:
@@ -79,7 +85,7 @@ namespace IFE {
 		/// <summary>
 		/// プレイヤーの方を向かせる
 		/// </summary>
-		void LookAt();
+		void LookAt(Vector3 lookfor);
 
 		/// <summary>
 		/// 描画
