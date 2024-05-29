@@ -119,7 +119,7 @@
             "Player"
         ],
         "drawFlag": true,
-        "model": "playerModel_Model",
+        "model": "dice_Model",
         "name": "playerObject",
         "prefab": false
     },
@@ -194,7 +194,7 @@
             "Collider"
         ],
         "drawFlag": true,
-        "model": "playerModel_Model",
+        "model": "dice_Model",
         "name": "PlayerAction",
         "prefab": false
     },

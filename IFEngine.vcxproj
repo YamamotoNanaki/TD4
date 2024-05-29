@@ -79,6 +79,7 @@
     <ClCompile Include="Engine\Util\StringUtil.cpp" />
     <ClCompile Include="Engine\Util\Util.cpp" />
     <ClCompile Include="Engine\Base\StructuredBuffer.cpp" />
+    <ClCompile Include="PlayerAttack.cpp" />
     <ClCompile Include="Source\Enemy\EnemyAttack.cpp" />
     <ClCompile Include="Source\Enemy\EnemyManager.cpp" />
     <ClCompile Include="Source\Enemy\NormalEnemy.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Engine\Util\Util.h" />
     <ClInclude Include="External\strconv2.h" />
     <ClInclude Include="Engine\Base\StructuredBuffer.h" />
+    <ClInclude Include="PlayerAttack.h" />
     <ClInclude Include="Source\Enemy\BaseEnemy.h" />
     <ClInclude Include="Source\Enemy\EnemyAttack.h" />
     <ClInclude Include="Source\Enemy\EnemyManager.h" />

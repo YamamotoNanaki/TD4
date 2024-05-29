@@ -9,7 +9,14 @@ private:
 
 	IFE::Vector3 front_ = { 0,0,1 };
 	IFE::Vector3 pos_ = { 0,0,0 };
+
+	//正面ベクトルの作成
 	IFE::Vector3 frontVec_ = {};
+	//仮ベクトル
+	IFE::Vector3 temporaryVec_ = { 0,1,0 };
+	//右ベクトルの作成
+	IFE::Vector3 rightVec_ = {};
+
 	uint8_t hp = 10;
 
 #pragma region カメラ
