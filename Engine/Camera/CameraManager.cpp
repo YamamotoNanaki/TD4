@@ -15,6 +15,14 @@ CameraManager* IFE::CameraManager::Instance()
 	return &inst;
 }
 
+void IFE::CameraManager::AllCameraInitialize()
+{
+	for (auto& itr : cameraList_)
+	{
+		itr->Initialize();
+	}
+}
+
 void IFE::CameraManager::Initialize()
 {
 	auto c = new Camera;

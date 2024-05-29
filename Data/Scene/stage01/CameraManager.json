@@ -90,6 +90,17 @@
         "name": "ActionCamera"
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 2,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Fog": {
             "color": [
                 1.0,
@@ -124,7 +135,8 @@
         },
         "component": [
             "Fog",
-            "TransformCamera"
+            "TransformCamera",
+            "Collider"
         ],
         "name": "DroneCamera"
     }

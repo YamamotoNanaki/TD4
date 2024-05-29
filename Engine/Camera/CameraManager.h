@@ -20,6 +20,7 @@ namespace IFE
 		inline static Camera* sNextCamera_ = nullptr;
 		static CameraManager* Instance();
 		void Initialize();
+		void AllCameraInitialize();
 		void LoadingScene();
 		void Update();
 		void Draw();
