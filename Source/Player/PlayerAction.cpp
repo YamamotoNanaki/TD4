@@ -108,15 +108,13 @@ void PlayerAction::Rotation()
 	float lx = IFE::Input::GetLXAnalog(controllerRange_);
 	float ly = IFE::Input::GetLYAnalog(controllerRange_);
 
-	if (lx != 0 || ly != 0)
+	float angleY = 0;
+	if (lx <= 0 || ly != 0)
 	{
-		/*front_ = { lx,0,ly };
-		front_.Normalize();*/
+		//方向ベクトルの角度+コントローラーの角度
+		angleY = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(lx, ly));
+		transform_->eulerAngleDegrees_.y = angleY;
 	}
-
-	//ここここここここここここここここここここここここここここここここここここここここここここここ正面ベクトルの方向いてくれない
-	float angleY = IFE::ConvertToDegrees(std::atan2(front_.x, front_.z));
-	transform_->eulerAngleDegrees_.y = angleY;
 }
 
 void PlayerAction::CameraUpdate()
