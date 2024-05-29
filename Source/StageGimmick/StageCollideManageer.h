@@ -3,9 +3,9 @@
 
 class StageCollideManageer : public IFE::Component
 {
+	std::list<IFE::Object3D*>stages;
 public:
 	void Initialize()override;
 	void Update()override;
-	void OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)override;
 };
 

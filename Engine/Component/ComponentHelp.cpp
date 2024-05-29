@@ -20,6 +20,7 @@
 #include "EnemyHp.h"
 #include "StageCollideManageer.h"
 #include "EnemyAttack.h"
+#include "PlayerCommonCamera.h"
 
 using namespace IFE;
 using namespace std;
@@ -71,6 +72,8 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<PlayerDrone>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<PlayerAttack>(str));
+	if (tmp != nullptr)return tmp;
+	tmp = std::move(GetPtr<PlayerCommonCamera>(str));
 	if (tmp != nullptr)return tmp;
 	//enemy
 	tmp = std::move(GetPtr<NormalEnemy>(str));

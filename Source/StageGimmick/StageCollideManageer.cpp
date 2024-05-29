@@ -28,19 +28,14 @@ void StageCollideManageer::Initialize()
 		{
 			itr->DrawFlag_ = true;
 		}
+		stages.push_back(itr.get());
 	}
 }
 
 void StageCollideManageer::Update()
 {
-	objectPtr_->DrawFlag_ = true;
-}
-
-void StageCollideManageer::OnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
-{
-	if (hitCollider->cameraPtr_)
+	for (auto& itr : stages)
 	{
-		objectPtr_->DrawFlag_ = false;
+		itr->DrawFlag_ = true;
 	}
-	myCollider;
 }

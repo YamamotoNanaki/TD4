@@ -61,6 +61,7 @@
             "fogFlag": false,
             "fogNear": 650.0
         },
+        "PlayerCommonCamera": null,
         "TransformCamera": {
             "eye": [
                 0.0,
@@ -85,7 +86,8 @@
         "component": [
             "Fog",
             "TransformCamera",
-            "Collider"
+            "Collider",
+            "PlayerCommonCamera"
         ],
         "name": "ActionCamera"
     },
@@ -112,6 +114,7 @@
             "fogFlag": false,
             "fogNear": 650.0
         },
+        "PlayerCommonCamera": null,
         "TransformCamera": {
             "eye": [
                 0.0,
@@ -136,7 +139,8 @@
         "component": [
             "Fog",
             "TransformCamera",
-            "Collider"
+            "Collider",
+            "PlayerCommonCamera"
         ],
         "name": "DroneCamera"
     }

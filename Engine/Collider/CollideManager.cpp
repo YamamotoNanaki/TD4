@@ -53,7 +53,9 @@ void IFE::CollideManager::CollidersUpdate()
 		{
 			ColliderCore* colA = *itA;
 			ColliderCore* colB = *itB;
-			if (colA->objectPtr_ == colB->objectPtr_ || colA->emitterPtr_ || colB->emitterPtr_)continue;
+			if ((colA->objectPtr_ || colB->objectPtr_) && colA->objectPtr_ == colB->objectPtr_)continue;
+			if ((colA->emitterPtr_ || colB->emitterPtr_) && colA->emitterPtr_ == colB->emitterPtr_)continue;
+			if ((colA->cameraPtr_ || colB->cameraPtr_) && colA->cameraPtr_ == colB->cameraPtr_)continue;
 
 			//‚Æ‚à‚É‹…
 			if (colA->GetColliderType() == ColliderType::SPHERE && colB->GetColliderType() == ColliderType::SPHERE)
@@ -229,6 +231,48 @@ void IFE::CollideManager::CollidersUpdate()
 					OnColliderHit(colA, colB);
 				}
 			}
+			//OBB‚ÆƒŒƒC
+			if (colA->GetColliderType() == ColliderType::OBB && colB->GetColliderType() == ColliderType::RAY)
+			{
+				OBB OBB(colA->GetColliderPosition(), colA->transform_->matRot_, colA->GetColliderScale());
+				Ray ray(colB->GetColliderPosition(), colB->rayDir_);
+				Vector3 inter;
+				float dis;
+				float* hitdis = nullptr;
+				if (colB->rayHittingdistance > 0.f)
+				{
+					hitdis = &colB->rayHittingdistance;
+				}
+				if (Collision::CheckOBBRay(OBB, ray, &dis, hitdis, &inter))
+				{
+					colA->interPoint_ = inter;
+					colB->interPoint_ = inter;
+					colA->rayDistance = dis;
+					colB->rayDistance = dis;
+					OnColliderHit(colA, colB);
+				}
+			}
+			//OBB‚ÆƒŒƒC
+			if (colA->GetColliderType() == ColliderType::RAY && colB->GetColliderType() == ColliderType::OBB)
+			{
+				OBB OBB(colB->GetColliderPosition(), colB->transform_->matRot_, colB->GetColliderScale());
+				Ray ray(colA->GetColliderPosition(), colA->rayDir_);
+				Vector3 inter;
+				float dis;
+				float* hitdis = nullptr;
+				if (colA->rayHittingdistance > 0.f)
+				{
+					hitdis = &colA->rayHittingdistance;
+				}
+				if (Collision::CheckOBBRay(OBB, ray, &dis, hitdis, &inter))
+				{
+					colA->interPoint_ = inter;
+					colB->interPoint_ = inter;
+					colA->rayDistance = dis;
+					colB->rayDistance = dis;
+					OnColliderHit(colA, colB);
+				}
+			}
 		}
 	}
 	RaycastSystemUpdate();
@@ -354,6 +398,10 @@ void IFE::CollideManager::OnColliderHit(ColliderCore* colA, ColliderCore* colB)
 	{
 		colA->emitterPtr_->OnColliderHit(colA, colB);
 	}
+	else if (colA->cameraPtr_)
+	{
+		colA->cameraPtr_->OnColliderHit(colA, colB);
+	}
 	if (colB->objectPtr_)
 	{
 		colB->objectPtr_->OnColliderHit(colB, colA);
@@ -361,5 +409,9 @@ void IFE::CollideManager::OnColliderHit(ColliderCore* colA, ColliderCore* colB)
 	else if (colB->emitterPtr_)
 	{
 		colB->emitterPtr_->OnColliderHit(colB, colA);
+	}
+	else if (colB->cameraPtr_)
+	{
+		colB->cameraPtr_->OnColliderHit(colB, colA);
 	}
 }

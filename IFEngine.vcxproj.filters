@@ -383,6 +383,9 @@
       <Filter>ソース ファイル\Engine\Sprite</Filter>
     </ClCompile>
     <ClCompile Include="PlayerAttack.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player\PlayerCommonCamera.cpp">
       <Filter>ソース ファイル\Source\Player</Filter>
     </ClCompile>
   </ItemGroup>
@@ -644,6 +647,9 @@
       <Filter>ヘッダー ファイル\Engine\Sprite</Filter>
     </ClInclude>
     <ClInclude Include="PlayerAttack.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player\PlayerCommonCamera.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
   </ItemGroup>
