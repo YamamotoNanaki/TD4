@@ -11,9 +11,15 @@
 void PlayerAction::Initialize()
 {
 	actionCamera_ = IFE::CameraManager::Instance()->GetCamera("ActionCamera");
-	
+
 	transform_->position_.y = 2.0f;
 	cameraAngle_.y = 180.0f;
+
+	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("PlayerAttack", IFE::ModelManager::Instance()->GetModel("dice"));
+	ptr->AddComponent<PlayerAttack>();
+	playerAttack_ = ptr->GetComponent<PlayerAttack>();
+	playerAttack_->transform_->parent_ = transform_;
+	playerAttack_->objectPtr_->transform_->position_ += {0, 0, 2};
 }
 
 void PlayerAction::Update()
@@ -62,16 +68,16 @@ void PlayerAction::Move()
 	const float speed = 10.0f;
 
 	//正面ベクトルの作成
-	frontVec_ = transform_->position_ - actionCamera_->transform_->eye_;
-	frontVec_.Normalize();
+	cameraFrontVec_ = transform_->position_ - actionCamera_->transform_->eye_;
+	cameraFrontVec_.Normalize();
 	//仮ベクトル
 	temporaryVec_ = { 0,1,0 };
 	//右ベクトルの作成
-	rightVec_ = frontVec_.Cross(temporaryVec_);
+	rightVec_ = cameraFrontVec_.Cross(temporaryVec_);
 	rightVec_.Normalize();
 
 	//今回はY軸の動きは無くて良い
-	frontVec_.y = 0.0f;
+	cameraFrontVec_.y = 0.0f;
 	rightVec_.y = 0.0f;
 
 #pragma region キーボード
@@ -84,16 +90,16 @@ void PlayerAction::Move()
 		transform_->position_ -= rightVec_ * speed * IFE::IFETime::sDeltaTime_;
 	}if (IFE::Input::GetKeyPush(IFE::Key::W))
 	{
-		transform_->position_ += frontVec_ * speed * IFE::IFETime::sDeltaTime_;
+		transform_->position_ += cameraFrontVec_ * speed * IFE::IFETime::sDeltaTime_;
 	}if (IFE::Input::GetKeyPush(IFE::Key::S))
 	{
-		transform_->position_ -= frontVec_ * speed * IFE::IFETime::sDeltaTime_;
+		transform_->position_ -= cameraFrontVec_ * speed * IFE::IFETime::sDeltaTime_;
 	}
 #pragma endregion キーボード
 
 #pragma region コントローラー
 	transform_->position_ -= IFE::Input::GetLXAnalog(controllerRange_) * rightVec_ * speed * IFE::IFETime::sDeltaTime_;
-	transform_->position_ += IFE::Input::GetLYAnalog(controllerRange_) * frontVec_ * speed * IFE::IFETime::sDeltaTime_;
+	transform_->position_ += IFE::Input::GetLYAnalog(controllerRange_) * cameraFrontVec_ * speed * IFE::IFETime::sDeltaTime_;
 #pragma endregion
 }
 
@@ -113,10 +119,10 @@ void PlayerAction::Rotation()
 	float ly = IFE::Input::GetLYAnalog(controllerRange_);
 
 	float angleY = 0;
-	if (lx <= 0 || ly != 0)
+	if (lx != 0 || ly != 0)
 	{
 		//方向ベクトルの角度+コントローラーの角度
-		angleY = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(lx, ly));
+		angleY = IFE::ConvertToDegrees(std::atan2(cameraFrontVec_.x, cameraFrontVec_.z) + std::atan2(lx, ly));
 		transform_->eulerAngleDegrees_.y = angleY;
 	}
 }
@@ -132,16 +138,9 @@ void PlayerAction::CameraUpdate()
 
 void PlayerAction::Attack()
 {
-	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("PlayerAttack", IFE::ModelManager::Instance()->GetModel("dice"));
-	ptr->AddComponent<PlayerAttack>();
-	playerAttack_ = ptr->GetComponent<PlayerAttack>();
-
-	const float attackDistance = 2.0f;
-
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X))
 	{
 		attackFlag_ = true;
-		playerAttack_->transform_->position_ = frontVec_ * attackDistance;
 		playerAttack_->objectPtr_->DrawFlag_ = true;
 	}
 
