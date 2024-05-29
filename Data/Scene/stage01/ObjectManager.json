@@ -8731,7 +8731,17 @@
         "prefab": false
     },
     {
-        "Collider": null,
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -8794,7 +8804,17 @@
         "prefab": false
     },
     {
-        "Collider": null,
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -8857,7 +8877,17 @@
         "prefab": false
     },
     {
-        "Collider": null,
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -8920,7 +8950,17 @@
         "prefab": false
     },
     {
-        "Collider": null,
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -8983,7 +9023,17 @@
         "prefab": false
     },
     {
-        "Collider": null,
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -9046,7 +9096,17 @@
         "prefab": false
     },
     {
-        "Collider": null,
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -9109,7 +9169,17 @@
         "prefab": false
     },
     {
-        "Collider": null,
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -9172,7 +9242,17 @@
         "prefab": false
     },
     {
-        "Collider": null,
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
