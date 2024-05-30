@@ -127,7 +127,7 @@
         "Collider": {
             "content": [
                 {
-                    "attribute": 0,
+                    "attribute": 2,
                     "colliderType": 0,
                     "groundJudge": false,
                     "notPushBack": false,
@@ -172,7 +172,7 @@
         "Transform": {
             "position": [
                 0.0,
-                0.0,
+                3.75,
                 0.0
             ],
             "rotation": [

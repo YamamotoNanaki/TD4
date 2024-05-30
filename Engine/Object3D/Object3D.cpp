@@ -279,12 +279,6 @@ void IFE::Object3D::DebugUpdate()
 	}
 }
 
-void IFE::Object3D::DebugInitialize()
-{
-	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("3dNormal");
-	ComponentManager::DebugInitialize();
-	transform_ = GetComponent<Transform>();
-}
 
 #endif
 void IFE::Object3D::LoadingScene(nlohmann::json& j)
@@ -306,4 +300,11 @@ void IFE::Object3D::LoadChild()
 	{
 		child_.push_back(ObjectManager::Instance()->GetObjectPtr(childName_[i]));
 	}
+}
+
+void IFE::Object3D::DebugInitialize()
+{
+	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("3dNormal");
+	ComponentManager::DebugInitialize();
+	transform_ = GetComponent<Transform>();
 }

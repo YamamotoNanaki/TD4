@@ -64,9 +64,9 @@ namespace IFE
 		void ComponentGUI();
 		void OutputScene(nlohmann::json& j, bool prefab = false);
 		void DebugUpdate();
-		void DebugInitialize();
 #endif
 		void LoadingScene(nlohmann::json& json);
 		void LoadChild();
+		void DebugInitialize();
 	};
 }

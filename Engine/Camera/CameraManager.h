@@ -30,11 +30,11 @@ namespace IFE
 		bool SearchName(const std::string& name);
 		Camera* GetCamera(const std::string& name);
 		void SetActiveCamera(const std::string& name);
+		void DebugInitialize();
 
 #ifdef InverseEditorMode
 #else
 		inline static Camera* sDebugCamera_ = nullptr;
-		void DebugInitialize();
 		void DebugUpdate();
 		void DebugGUI();
 		void OutputScene();

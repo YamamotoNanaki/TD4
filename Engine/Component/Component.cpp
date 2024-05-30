@@ -149,6 +149,20 @@ void IFE::Component::CopyValue(Component* component)
 
 void IFE::Component::CopyValueComponent(Component* component) { component; }
 
+void IFE::Component::DebugINITIALIZE()
+{
+	if (objectPtr_ != nullptr)transform_ = objectPtr_->GetComponent<Transform>();
+	else if (spritePtr_ != nullptr)transform2D_ = spritePtr_->GetComponent<Transform2D>();
+	else if (particlePtr_ != nullptr)transformParticle_ = particlePtr_->GetComponent<TransformParticle>();
+	else if (emitterPtr_ != nullptr)transformParticle_ = emitterPtr_->GetComponent<TransformParticle>();
+	else if (cameraPtr_ != nullptr)transformCamera_ = cameraPtr_->GetComponent<TransformCamera>();
+
+	DebugInitialize();
+}
+
+void IFE::Component::DebugInitialize()
+{
+}
 #ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
@@ -167,20 +181,6 @@ void IFE::Component::DebugGUI(uint32_t num)
 	ImguiManager::Instance()->ComponentGUI(s,func, deleteFunc);
 }
 
-void IFE::Component::DebugINITIALIZE()
-{
-	if (objectPtr_ != nullptr)transform_ = objectPtr_->GetComponent<Transform>();
-	else if (spritePtr_ != nullptr)transform2D_ = spritePtr_->GetComponent<Transform2D>();
-	else if (particlePtr_ != nullptr)transformParticle_ = particlePtr_->GetComponent<TransformParticle>();
-	else if (emitterPtr_ != nullptr)transformParticle_ = emitterPtr_->GetComponent<TransformParticle>();
-	else if (cameraPtr_ != nullptr)transformCamera_ = cameraPtr_->GetComponent<TransformCamera>();
-
-	DebugInitialize();
-}
-
-void IFE::Component::DebugInitialize()
-{
-}
 
 void IFE::Component::OutputScene(nlohmann::json& j)
 {
