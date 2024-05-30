@@ -39,8 +39,6 @@ namespace IFE
 		template <class T>
 		void AddComponentBack(std::unique_ptr<Component> ptr);
 		template <class T>
-		void DebugAddComponentBack(std::unique_ptr<Component> ptr);
-		template <class T>
 		void AddComponent(std::unique_ptr<Component> ptr, Object3D* components);
 		template <class T>
 		void AddComponentBack(std::unique_ptr<Component> ptr, Object3D* components);
@@ -68,6 +66,8 @@ namespace IFE
 		void DeleteComponent();
 		template <class T>
 		void RemoveComponent();
+		template <class T>
+		void DebugAddComponentBack(std::unique_ptr<Component> ptr);
 		void Initialize();
 		void Update();
 		void Draw();
@@ -85,9 +85,9 @@ namespace IFE
 #else
 		void DebugGUI();
 		void OutputScene(nlohmann::json& json);
-		void DebugInitialize();
 		void DebugUpdate();
 #endif
+		void DebugInitialize();
 		void LoadingScene(nlohmann::json& json, const std::string& comName);
 
 		virtual ~ComponentManager() {};
@@ -130,13 +130,6 @@ namespace IFE
 	{
 		ptr->SetComponents(this);
 		ptr->INITIALIZE();
-		componentList_.push_back(std::move(ptr));
-	}
-	template<class T>
-	inline void ComponentManager::DebugAddComponentBack(std::unique_ptr<Component> ptr)
-	{
-		ptr->SetComponents(this);
-		ptr->DebugINITIALIZE();
 		componentList_.push_back(std::move(ptr));
 	}
 	template<class T>
@@ -245,6 +238,14 @@ namespace IFE
 	inline void ComponentManager::AddComponentBack(std::unique_ptr<Component> ptr, Camera* components)
 	{
 		if (components)ptr->SetComponents(components);
+		componentList_.push_back(std::move(ptr));
+	}
+
+	template<class T>
+	inline void ComponentManager::DebugAddComponentBack(std::unique_ptr<Component> ptr)
+	{
+		ptr->SetComponents(this);
+		ptr->DebugINITIALIZE();
 		componentList_.push_back(std::move(ptr));
 	}
 }

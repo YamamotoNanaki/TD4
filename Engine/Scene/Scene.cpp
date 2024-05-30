@@ -25,8 +25,8 @@ void IFE::Scene::Initialize()
 	gp_->CreateBasicGraphicsPipeLine();
 	gp_->CreateAnimGraphicsPipeLine();
 	gp_->CreateBasicParticleGraphicsPipeLine();
-	gp_->CreateTransparentParticleGraphicsPipeLine();
 	gp_->CreateSubParticleGraphicsPipeLine();
+	gp_->CreateTransparentParticleGraphicsPipeLine();
 	Emitter::StaticInitialize();
 	tex_->Initialize();
 	objM_->OBJInitialize();
@@ -39,8 +39,10 @@ void IFE::Scene::Initialize()
 	oldPostEffect->SetBrightness(0);
 	oldPostEffect->SetContrast(1.25f);
 	SceneInit();
-
+	objM_->Initialize();
+	spriteM_->Initialize();
 	particleM->Initialize();
+	cameraM_->AllCameraInitialize();
 }
 
 void IFE::Scene::Update()

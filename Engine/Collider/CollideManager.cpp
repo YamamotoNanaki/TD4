@@ -56,6 +56,7 @@ void IFE::CollideManager::CollidersUpdate()
 			if ((colA->objectPtr_ || colB->objectPtr_) && colA->objectPtr_ == colB->objectPtr_)continue;
 			if ((colA->emitterPtr_ || colB->emitterPtr_) && colA->emitterPtr_ == colB->emitterPtr_)continue;
 			if ((colA->cameraPtr_ || colB->cameraPtr_) && colA->cameraPtr_ == colB->cameraPtr_)continue;
+			if (colA->attribute_ == uint16_t(Attribute::LANDSHAPE) && colA->attribute_ == colB->attribute_)continue;
 
 			//‚Æ‚à‚É‹…
 			if (colA->GetColliderType() == ColliderType::SPHERE && colB->GetColliderType() == ColliderType::SPHERE)
@@ -312,12 +313,24 @@ bool IFE::CollideManager::Raycast(const Ray& ray, uint16_t attribute, RaycastHit
 		}
 
 		if (colA->GetColliderType() == ColliderType::SPHERE) {
-			Sphere* sphere = dynamic_cast<Sphere*>(colA);
-			if (!sphere)continue;
+			Sphere sphere(colA->GetColliderPosition(), Average(colA->GetColliderScale()));
 			float tempDistance;
 			Vector3 tempInter;
 
-			if (!Collision::CheckRaySphere(ray, *sphere, &tempDistance, &tempInter)) continue;
+			if (!Collision::CheckRaySphere(ray, sphere, &tempDistance, &tempInter)) continue;
+			if (tempDistance >= distance) continue;
+
+			result = true;
+			distance = tempDistance;
+			inter = tempInter;
+			it_hit = it;
+		}
+		else if (colA->GetColliderType() == ColliderType::OBB) {
+			OBB obb(colA->GetColliderPosition(), colA->transform_->matRot_, colA->GetColliderScale());
+			float tempDistance;
+			Vector3 tempInter;
+
+			if (!Collision::CheckOBBRay(obb, ray, &tempDistance, &tempInter)) continue;
 			if (tempDistance >= distance) continue;
 
 			result = true;
@@ -374,7 +387,7 @@ void IFE::CollideManager::PushBack(ColliderCore* colA, ColliderCore* colB, const
 		float cos = Vector3Dot(rejectDir, up);
 		if (-threshold < cos && cos < threshold)
 		{
-			colA->transform_->MovePushBack(reject);
+			colA->transform_->MovePushBack(reject * 2);
 		}
 	}
 	else if (colB->GetPushBackFlag())
@@ -383,7 +396,7 @@ void IFE::CollideManager::PushBack(ColliderCore* colA, ColliderCore* colB, const
 		float cos = Vector3Dot(rejectDir, up);
 		if (-threshold < cos && cos < threshold)
 		{
-			colB->transform_->MovePushBack(-reject);
+			colB->transform_->MovePushBack(-reject * 2);
 		}
 	}
 }

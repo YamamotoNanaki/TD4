@@ -13,22 +13,26 @@ void StageCollideManageer::Initialize()
 
 	for (auto& itr : list)
 	{
-		if (itr->GetObjectName().find("ground") != std::string::npos || itr->GetObjectName().find("wall") != std::string::npos || itr->GetObjectName().find("roof") != std::string::npos)
+		if (itr->GetObjectName().find("ground") != std::string::npos || itr->GetObjectName().find("wall") != std::string::npos || itr->GetObjectName().find("roof") != std::string::npos || itr->GetObjectName().find("box") != std::string::npos)
 		{
 			if (itr->GetComponent<Collider>())continue;
 			itr->AddComponentBack<Collider>();
 			auto col = itr->GetComponent<Collider>();
 			auto c = col->AddCollider();
 			c->SetColliderType(ColliderType::OBB);
-			c->SetNoPushBackFlag(true);
-			c->SetPushBackFlag(true);
+			c->SetNoPushBackFlag(false);
+			c->SetPushBackFlag(false);
+			c->attribute_ = uint16_t(Attribute::LANDSHAPE);
+			if (itr->GetObjectName().find("wall") != std::string::npos)
+			{
+				stages.push_back(itr.get());
+			}
 		}
 
 		if (itr->GetObjectName().find("roof") != std::string::npos)
 		{
 			itr->DrawFlag_ = true;
 		}
-		stages.push_back(itr.get());
 	}
 }
 

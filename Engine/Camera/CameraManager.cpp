@@ -101,10 +101,6 @@ Camera* IFE::CameraManager::Add(const std::string& cameraName)
 	return cameraList_.back().get();
 }
 
-#ifdef InverseEditorMode
-#else
-#include "ImguiManager.h"
-#include "ImGui.h"
 void IFE::CameraManager::DebugInitialize()
 {
 	//auto d = new Camera;
@@ -114,6 +110,11 @@ void IFE::CameraManager::DebugInitialize()
 	//sDebugCamera_->CameraInitialize();
 	//sDebugCamera_->DebugCameraInitialize();
 }
+
+#ifdef InverseEditorMode
+#else
+#include "ImguiManager.h"
+#include "ImGui.h"
 void IFE::CameraManager::DebugUpdate()
 {
 	cameraList_.remove_if([](std::unique_ptr<Camera>& camera) {return camera->deleteFlag_; });
@@ -204,6 +205,7 @@ void IFE::CameraManager::LoadingScene()
 	jm->Input("CameraManager");
 	nlohmann::json js = jm->GetJsonData();
 #ifdef InverseEditorMode
+	DebugInitialize();
 #else
 	DebugInitialize();
 #endif

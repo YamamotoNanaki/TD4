@@ -5,6 +5,7 @@
 namespace IFE {
 	class BaseEnemy :public IFE::Component
 	{
+		using Component::Component;
 		//ƒƒ“ƒo•Ï”
 	protected:
 		//ó‘Ô
@@ -50,6 +51,8 @@ namespace IFE {
 		/// </summary>
 		virtual void Finalize() = 0;
 
+#ifdef EditorMode
 		virtual void ComponentDebugGUI() = 0;
+#endif
 	};
 }

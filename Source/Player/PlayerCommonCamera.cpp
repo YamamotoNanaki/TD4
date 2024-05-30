@@ -7,6 +7,7 @@ using namespace IFE;
 void PlayerCommonCamera::Initialize()
 {
 	col = cameraPtr_->GetComponent<Collider>();
+	col->GetCollider(0)->rayHittingdistance = 10;
 }
 
 void PlayerCommonCamera::Update()

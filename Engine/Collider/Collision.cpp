@@ -223,7 +223,7 @@ bool IFE::Collision::CheckOBBSphere(const OBB& box, const Sphere& sphere, Vector
 				*reject = box.axis[0] * sphere.radius;
 			}
 			else {
-				*reject = displacement * ((sphere.radius - distance) / distance); // 押し出しベクトル
+				*reject = -displacement * ((sphere.radius - distance) / distance); // 押し出しベクトル
 			}
 		}
 		return true;
@@ -349,6 +349,11 @@ bool IFE::Collision::CheckOBBRay(const OBB& box, const Ray& ray, float* distance
 	}
 
 	return false;
+}
+
+bool IFE::Collision::CheckOBBRay(const OBB& box, const Ray& ray, float* distance, Vector3* inter)
+{
+	return CheckOBBRay(box, ray, distance, nullptr, inter);
 }
 
 //bool IF::Collision::CheckSphere(const Sphere& s1, const Sphere& s2, Vector3* inter)

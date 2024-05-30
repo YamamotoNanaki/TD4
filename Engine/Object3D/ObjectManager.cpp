@@ -448,7 +448,7 @@ void IFE::ObjectManager::LoadingScene()
 		obj->SetModel(ModelManager::Instance()->GetModel(j["model"]));
 		obj->LoadingScene(j);
 #ifdef InverseEditorMode
-		obj->Initialize();
+		obj->DebugInitialize();
 #else
 		obj->DebugInitialize();
 #endif

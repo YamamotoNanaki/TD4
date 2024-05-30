@@ -82,6 +82,13 @@ void IFE::ComponentManager::CopyValue(ComponentManager* ptr)
 	}
 }
 
+void IFE::ComponentManager::DebugInitialize()
+{
+	for (auto& itr : componentList_)
+	{
+		if (itr)itr->DebugINITIALIZE();
+	}
+}
 #ifdef InverseEditorMode
 #else
 void IFE::ComponentManager::DebugGUI()
@@ -102,13 +109,6 @@ void IFE::ComponentManager::OutputScene(nlohmann::json& j)
 	}
 }
 
-void IFE::ComponentManager::DebugInitialize()
-{
-	for (auto& itr : componentList_)
-	{
-		if (itr)itr->DebugINITIALIZE();
-	}
-}
 
 void IFE::ComponentManager::DebugUpdate()
 {
@@ -134,7 +134,12 @@ void IFE::ComponentManager::LoadingScene(nlohmann::json& j, const std::string& c
 {
 	auto com = StringToComponent(comName);
 	com->LoadingScene(j[comName]);
+
+#ifdef InverseEditorMode
 	DebugAddComponentBack<Component>(std::unique_ptr<Component>(com));
+#else
+	DebugAddComponentBack<Component>(std::unique_ptr<Component>(com));
+#endif
 }
 
 std::string IFE::ComponentManager::SetName(const std::string& name)

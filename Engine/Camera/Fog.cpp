@@ -55,10 +55,6 @@ void IFE::Fog::OutputComponent(nlohmann::json& json)
 	json["fogNear"] = fogNear_;
 	json["fogFlag"] = fogFlag_;
 }
-void IFE::Fog::DebugInitialize()
-{
-	Initialize();
-}
 #endif
 
 void IFE::Fog::LoadingComponent(nlohmann::json& json)
@@ -68,4 +64,9 @@ void IFE::Fog::LoadingComponent(nlohmann::json& json)
 	fogFar_ = json["fogFar"];
 	fogNear_ = json["fogNear"];
 	fogFlag_ = json["fogFlag"];
+}
+
+void IFE::Fog::DebugInitialize()
+{
+	Initialize();
 }

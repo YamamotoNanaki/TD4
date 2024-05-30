@@ -127,7 +127,7 @@
         "Collider": {
             "content": [
                 {
-                    "attribute": 0,
+                    "attribute": 2,
                     "colliderType": 0,
                     "groundJudge": false,
                     "notPushBack": false,
@@ -137,9 +137,9 @@
         },
         "Material": {
             "ambient": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
+                1.0,
+                1.0,
+                1.0
             ],
             "bloom": false,
             "color": [
@@ -149,14 +149,14 @@
                 1.0
             ],
             "diffuse": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
+                1.0,
+                1.0,
+                1.0
             ],
             "specular": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
+                1.0,
+                1.0,
+                1.0
             ],
             "terxtureName": "white.png"
         },
@@ -172,7 +172,7 @@
         "Transform": {
             "position": [
                 0.0,
-                0.0,
+                3.75,
                 0.0
             ],
             "rotation": [
@@ -8721,17 +8721,6 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": true
-                }
-            ]
-        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -8785,8 +8774,7 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material",
-            "Collider"
+            "Material"
         ],
         "drawFlag": true,
         "model": "dice_Model",
@@ -8794,17 +8782,6 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": true
-                }
-            ]
-        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -8858,8 +8835,7 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material",
-            "Collider"
+            "Material"
         ],
         "drawFlag": true,
         "model": "dice_Model",
@@ -8867,17 +8843,6 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": true
-                }
-            ]
-        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -8931,8 +8896,7 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material",
-            "Collider"
+            "Material"
         ],
         "drawFlag": true,
         "model": "dice_Model",
@@ -8940,17 +8904,6 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": true
-                }
-            ]
-        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -9004,8 +8957,7 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material",
-            "Collider"
+            "Material"
         ],
         "drawFlag": true,
         "model": "dice_Model",
@@ -9013,17 +8965,6 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": true
-                }
-            ]
-        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -9077,8 +9018,7 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material",
-            "Collider"
+            "Material"
         ],
         "drawFlag": true,
         "model": "dice_Model",
@@ -9086,17 +9026,6 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": true
-                }
-            ]
-        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -9150,8 +9079,7 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material",
-            "Collider"
+            "Material"
         ],
         "drawFlag": true,
         "model": "dice_Model",
@@ -9232,17 +9160,6 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": true
-                }
-            ]
-        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -9296,8 +9213,7 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material",
-            "Collider"
+            "Material"
         ],
         "drawFlag": true,
         "model": "dice_Model",
