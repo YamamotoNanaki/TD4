@@ -225,7 +225,7 @@ bool PlayerDrone::GetDrawFlag()
 void PlayerDrone::SetDrawFlag(bool flag)
 {
 	objectPtr_->DrawFlag_ = flag;
-	if (flag == false)
+	if (flag == true)
 	{
 		dronePosY_ = transform_->position_.y;
 	}
