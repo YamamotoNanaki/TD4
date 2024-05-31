@@ -111,6 +111,7 @@ namespace IFE {
 		///-----Getter-----///
 		Vector3 GetPos();
 		bool GetIsAttack() { return isAttack; }
+		EnemyHp* GetHp() { return hp_; }
 
 
 #ifdef EditorMode

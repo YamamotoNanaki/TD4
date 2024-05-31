@@ -55,10 +55,12 @@ void IFE::NormalEnemy::ChangeState()
 	else {
 		if (state == WAIT) {
 			Wait();
-			objectPtr_->SetColor({ 1,0,0,1 });
+			rayDist = 0.0f;
+			objectPtr_->SetColor({ 1,0,1,1 });
 		}
 		else if (state == SEARCH) {
 			Search();
+			rayDist = 0.0f;
 			objectPtr_->SetColor({ 1,0,1,1 });
 		}
 	}
@@ -69,29 +71,11 @@ void IFE::NormalEnemy::Update()
 	if (isFound == false && hitColl_ != nullptr) {
 		if (rayDist == 0) {
 			rayDist = preRayDist;
-			if (hitColl_->objectPtr_->GetComponent<PlayerAction>()) {
-				isFound = true;
-			}
-		}
-		else if (rayDist > preRayDist) {
-			rayDist = preRayDist;
-			if (hitColl_->objectPtr_->GetComponent<PlayerAction>()) {
-				isFound = true;
-			}
-		}
-		else if(rayDist <= preRayDist) {
-
+			isFound = true;
 		}
 	}
 	//ó‘Ô‚ðŽæ“¾
 	preState = state;
-	//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
-	if (isFound == true && state != WARNING) {
-		state = WARNING;
-		isFound = false;
-	}
-	//–ˆƒtƒŒ[ƒ€‰Šú‰»
-	rayDist = 0.0f;
 	ChangeState();
 	//hp•\Ž¦
 	hp_->Update(transform_->position_);
@@ -120,6 +104,12 @@ void IFE::NormalEnemy::Wait()
 		waitTimer = 0;
 		transform_->rotation_ = { 0,0,0 };
 		state = SEARCH;
+	}
+
+	//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
+	if (isFound == true) {
+		state = WARNING;
+		isFound = false;
 	}
 }
 
@@ -160,6 +150,12 @@ void IFE::NormalEnemy::Search()
 			}
 		}
 	}
+
+	//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
+	if (isFound == true) {
+		state = WARNING;
+		isFound = false;
+	}
 }
 
 void IFE::NormalEnemy::Chase()
@@ -184,13 +180,19 @@ void IFE::NormalEnemy::Chase()
 	warningTime++;
 	if (warningTime == 200) {
 		warningTime = 0;
-		state = SEARCH;
+		//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
+		if (isFound == true) {
+			state = WARNING;
+			isFound = false;
+		}
+		else {
+			state = SEARCH;
+		}
 	}
 }
 
 void IFE::NormalEnemy::Attack()
 {
-	enemyAttack->Update();
 	attackTime++;
 	if (attackTime == 50) {
 		attackTime = 0;
@@ -224,14 +226,14 @@ void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hit
 	//”­Œ©
 	if (myCollider->GetColliderType() == ColliderType::RAY)
 	{
-		if (state == SEARCH || state == WAIT) {
+		if (state == SEARCH || state == WAIT && hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
 			preRayDist = myCollider->rayDistance;
 			hitColl_ = hitCollider;
 		}
-		/*if (state == SEARCH || state == WAIT && hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
-			preRayDist = myCollider->rayDistance;
-			hitColl_ = hitCollider;
-		}*/
+		//•Ç‚ª‚ ‚Á‚½ê‡
+		if (state == WARNING && hitCollider->objectPtr_->GetComponent<StageCollideManageer>()) {
+			state = SEARCH;
+		}
 	}
 	//‘ŠŽè‚ªplayer‚¾‚Á‚½ê‡
 	if (myCollider->GetColliderType() == ColliderType::SPHERE)
