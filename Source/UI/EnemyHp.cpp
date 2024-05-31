@@ -7,53 +7,33 @@
 
 void IFE::EnemyHp::Initialize()
 {
-	hp_ = MAX_HP;
-	preHp_ = MAX_HP;
-	decHp_ = 0;
+	hp_ = 100;
+	isDead = false;
 	objectPtr_->SetColor({ 1,0,0,1 });
 	objectPtr_->transform_->scale_ = { 2.0f,0.4f,1.0f };
 	objectPtr_->transform_->eulerAngleDegrees_ = { 0, 0, 0 };
 	objectPtr_->transform_->billbord_ = 2;
-	isDead_ = false;
-	isHit_ = false;
-	hitTime_ = 0;
 }
 
-void IFE::EnemyHp::Update(Float3 pos_)
+void IFE::EnemyHp::Update(Float3 pos_,int8_t hp, int8_t& decHp_)
 {
+	hp_ = hp;
 	//enemy‚Ì“ªã‚É•\Ž¦
 	SetPos(pos_);
-	ScaleCalc();
-	//hitcool
-	if (isHit_ == true) {
-		hitTime_--;
-		if (hitTime_ == 0) {
-			isHit_ = false;
-		}
-	}
-	//“G‚ªÁ‚¦‚½‚çÁ‚¦‚é
-	if (isDead_ == true) {
-		objectPtr_->Destroy();
+	ScaleCalc(decHp_);
+	if (hp_ == 0 && decHp_ == 0) {
+		isDead = true;
 	}
 }
-
-
-
-
-
 
 void IFE::EnemyHp::IconUpdate(Float3 pos_)
 {
 	objectPtr_->transform_->scale_ = { 1.0f,1.0f,1.0f };
 	//«‚±‚ê‚àŒÂ•Ê‚É‚¢‚é‚©‚à(‰¡‚É‚¸‚ç‚·’l))
 	SetPos(pos_);
-	//“G‚ªÁ‚¦‚½‚çÁ‚¦‚é
-	if (isDead_ == true) {
-		objectPtr_->Destroy();
-	}
 }
 
-void IFE::EnemyHp::ScaleCalc()
+void IFE::EnemyHp::ScaleCalc(int8_t& decHp_)
 {
 	if (decHp_ >= 4) {
 		transform_->scale_ -= {0.08f, 0, 0};
@@ -66,28 +46,6 @@ void IFE::EnemyHp::ScaleCalc()
 	else if (decHp_ >= 1) {
 		transform_->scale_ -= {0.02f, 0, 0};
 		decHp_ --;
-	}
-}
-
-void IFE::EnemyHp::DecHp()
-{
-	if (isHit_ == false) {
-		hp_ -= 25;
-		decHp_ = preHp_ - hp_;
-		preHp_ = hp_;
-		hitTime_ = HIT_COOLTIME;
-		isHit_ = true;
-	}
-}
-
-void IFE::EnemyHp::OneShot()
-{
-	if (isHit_ == false) {
-		hp_ -= hp_;
-		decHp_ = preHp_ - hp_;
-		preHp_ = hp_;
-		hitTime_ = HIT_COOLTIME;
-		isHit_ = true;
 	}
 }
 
