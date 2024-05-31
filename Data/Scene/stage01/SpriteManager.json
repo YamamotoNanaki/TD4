@@ -1,1 +1,31 @@
-null
+{
+    "fore": [
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    955.0,
+                    520.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    19.200000762939453,
+                    10.800000190734863
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "flame",
+            "texture": "Flame.png"
+        }
+    ]
+}
