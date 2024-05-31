@@ -14,8 +14,29 @@ void PlayerAttack::Initialize()
 
 void PlayerAttack::Update()
 {
+
 }
 
 void PlayerAttack::Finalize()
 {
+}
+
+void PlayerAttack::SetName(std::string name)
+{
+	name_ = name;
+}
+
+std::string PlayerAttack::GetName()
+{
+	return name_;
+}
+
+void PlayerAttack::SetIsAttack(bool flag)
+{
+	isAttack_ = flag;
+}
+
+const bool PlayerAttack::GetIsAttack()
+{
+	return isAttack_;
 }

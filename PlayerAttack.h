@@ -6,6 +6,8 @@ class PlayerAttack :public IFE::Component
 	using Component::Component;
 private:
 
+	std::string name_ = "";
+	bool isAttack_ = false;
 
 public:
 
@@ -24,5 +26,11 @@ public:
 	/// </summary>
 	void Finalize();
 
+	void SetName(std::string name);
 
+	std::string GetName();
+
+	void SetIsAttack(bool flag);
+
+	const bool GetIsAttack();
 };
