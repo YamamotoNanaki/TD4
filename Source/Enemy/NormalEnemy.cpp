@@ -227,7 +227,7 @@ void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hit
 	//‘ŠŽè‚ªplayer‚¾‚Á‚½ê‡
 	if (myCollider->GetColliderType() == ColliderType::SPHERE)
 	{
-		if (hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
+		if (hitCollider->objectPtr_->GetComponent<PlayerAttack>()) {
 			//“–‚½‚Á‚½Žž‚Ìˆ—
 			hp_->DecHp();
 		}

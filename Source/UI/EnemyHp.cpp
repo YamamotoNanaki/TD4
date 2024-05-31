@@ -37,6 +37,17 @@ void IFE::EnemyHp::Update(Float3 pos_)
 	}
 }
 
+void IFE::EnemyHp::IconUpdate(Float3 pos_)
+{
+	objectPtr_->transform_->scale_ = { 1.0f,1.0f,1.0f };
+	//«‚±‚ê‚àŒÂ•Ê‚É‚¢‚é‚©‚à(‰¡‚É‚¸‚ç‚·’l))
+	SetPos(pos_);
+	//“G‚ªÁ‚¦‚½‚çÁ‚¦‚é
+	if (isDead_ == true) {
+		objectPtr_->Destroy();
+	}
+}
+
 void IFE::EnemyHp::ScaleCalc()
 {
 	if (decHp_ >= 4) {

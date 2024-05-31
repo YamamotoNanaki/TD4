@@ -33,6 +33,11 @@ namespace IFE {
 		void Update(Float3 pos_);
 
 		/// <summary>
+		/// アイコン用
+		/// </summary>
+		void IconUpdate(Float3 pos_);
+
+		/// <summary>
 		/// 体力減少
 		/// </summary>
 		void DecHp();
