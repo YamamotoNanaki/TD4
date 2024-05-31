@@ -119,14 +119,7 @@ void PlayerDrone::Move()
 
 	if (IFE::Input::GetKeyTrigger(IFE::Key::LSHIFT)|| IFE::Input::GetKeyTrigger(IFE::Key::RSHIFT) ||IFE::Input::PadTrigger(IFE::PADCODE::LTHUMB))
 	{
-		if (slowSpeedMode_ == false)
-		{
-			slowSpeedMode_ = true;
-		}
-		else
-		{
-			slowSpeedMode_ = false;
-		}
+		slowSpeedMode_ = !slowSpeedMode_;
 	}
 
 	//Œ¸‘¬‘¬“x
@@ -225,7 +218,7 @@ bool PlayerDrone::GetDrawFlag()
 void PlayerDrone::SetDrawFlag(bool flag)
 {
 	objectPtr_->DrawFlag_ = flag;
-	if (flag == false)
+	if (flag == true)
 	{
 		dronePosY_ = transform_->position_.y;
 	}

@@ -4,12 +4,14 @@
 #include "IFEMath.h"
 #include "EnemyHp.h"
 #include "enemyAttack.h"
+#include "EnemyBackColl.h"
 #include "IFETime.h"
 
 namespace IFE {
 	//---‚ß‚Á‚¿‚á•’Ê‚Ì“G---//
 	class NormalEnemy : public IFE::BaseEnemy
 	{
+		using BaseEnemy::BaseEnemy;					
 	private:
 		//ü‚è‚ğŒ©“n‚·ŠÔ
 		const int32_t WAIT_TIME = 200;
@@ -33,8 +35,11 @@ namespace IFE {
 		bool isFound;
 		//hp
 		EnemyHp* hp_ = nullptr;
+		EnemyHp* status_ = nullptr;
 		//UŒ‚”»’èƒNƒ‰ƒX
 		EnemyAttack* enemyAttack = nullptr;
+		EnemyBackColl* backColl = nullptr;
+		bool isAttack;
 		//ƒŒƒCƒqƒbƒg‹L‰¯•Ï”
 		float rayDist;
 		float preRayDist;
@@ -106,6 +111,8 @@ namespace IFE {
 
 		///-----Getter-----///
 		Vector3 GetPos();
+		bool GetIsAttack() { return isAttack; }
+		EnemyHp* GetHp() { return hp_; }
 
 
 #ifdef EditorMode

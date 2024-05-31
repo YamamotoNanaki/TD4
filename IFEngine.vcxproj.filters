@@ -382,10 +382,13 @@
     <ClCompile Include="Engine\Sprite\AnimationTexture.cpp">
       <Filter>ソース ファイル\Engine\Sprite</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerAttack.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Player\PlayerCommonCamera.cpp">
+      <Filter>ソース ファイル\Source\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBackColl.cpp">
+      <Filter>ソース ファイル\Source\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAttack.cpp">
       <Filter>ソース ファイル\Source\Player</Filter>
     </ClCompile>
   </ItemGroup>
@@ -646,10 +649,13 @@
     <ClInclude Include="Engine\Sprite\AnimationTexture.h">
       <Filter>ヘッダー ファイル\Engine\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerAttack.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Player\PlayerCommonCamera.h">
+      <Filter>ヘッダー ファイル\Source\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBackColl.h">
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAttack.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
   </ItemGroup>
