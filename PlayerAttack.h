@@ -26,6 +26,8 @@ public:
 	/// </summary>
 	void Finalize();
 
+	void OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)override;
+
 	void SetName(std::string name);
 
 	std::string GetName();

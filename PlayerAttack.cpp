@@ -2,6 +2,7 @@
 #include "ObjectManager.h"
 #include "Transform.h"
 #include "Collider.h"
+#include"NormalEnemy.h"
 
 void PlayerAttack::Initialize()
 {
@@ -14,11 +15,20 @@ void PlayerAttack::Initialize()
 
 void PlayerAttack::Update()
 {
-
+	auto playerCol = objectPtr_->GetComponent<IFE::Collider>();
+	playerCol->GetCollider(0)->active_ = isAttack_;
 }
 
 void PlayerAttack::Finalize()
 {
+}
+
+void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
+{
+	if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()) {
+		//“–‚½‚Á‚½Žž‚Ìˆ—
+		hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>();
+	}
 }
 
 void PlayerAttack::SetName(std::string name)

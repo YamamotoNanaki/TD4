@@ -160,7 +160,7 @@ void PlayerAction::Attack()
 		}
 		attackTimer_++;
 	}
-
+	
 	playerAttack_->SetIsAttack(attackFlag_);
 }
 
