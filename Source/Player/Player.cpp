@@ -13,6 +13,8 @@ void Player::Initialize()
 	action_ = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>();
 	drone_ = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>();
 
+	IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
+
 	ChangeUI();
 
 	transform_->position_ = { 0,0,0 };
@@ -56,8 +58,10 @@ void Player::ChangeMode()
 	{
 		if (modeFlag_ == false)
 		{
+			//ドローンモード
 			modeFlag_ = true;
 			drone_->SetDrawFlag(false);
+			IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
 			if (isDrone_ == false)
 			{
 				drone_->SetPos(action_->GetPos());
@@ -66,18 +70,20 @@ void Player::ChangeMode()
 		}
 		else
 		{
+			//アクションモード
 			modeFlag_ = false;
 			drone_->SetDrawFlag(true);
+			IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
 		}
+		//UI表示切替
 		ChangeUI();
 	}
 }
 
 void Player::ChangeUI()
 {
-	if (modeFlag_ == false)
+	if (modeFlag_ == true)
 	{
-		IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
 		IFE::SpriteManager::Instance()->GetSpritePtr("flame")->drawFlag_ = true;
 		IFE::SpriteManager::Instance()->GetSpritePtr("Down")->drawFlag_ = true;
 		IFE::SpriteManager::Instance()->GetSpritePtr("Up")->drawFlag_ = true;
@@ -98,7 +104,6 @@ void Player::ChangeUI()
 	}
 	else
 	{
-		IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
 		IFE::SpriteManager::Instance()->GetSpritePtr("flame")->drawFlag_ = false;
 		IFE::SpriteManager::Instance()->GetSpritePtr("Down")->drawFlag_ = false;
 		IFE::SpriteManager::Instance()->GetSpritePtr("Up")->drawFlag_ = false;
