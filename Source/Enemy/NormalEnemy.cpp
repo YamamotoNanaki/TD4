@@ -5,6 +5,7 @@
 #include "ObjectManager.h"
 #include "ModelManager.h"
 #include "StageCollideManageer.h"
+#include "TextureManager.h"
 
 void IFE::NormalEnemy::Initialize()
 {
@@ -23,7 +24,11 @@ void IFE::NormalEnemy::Initialize()
 		auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyHp", ModelManager::Instance()->GetModel("hppanel"));
 		ptr->AddComponent<EnemyHp>();
 		hp_ = ptr->GetComponent<EnemyHp>();
+		ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyHp", ModelManager::Instance()->GetModel("hppanel"));
+		ptr->AddComponent<EnemyHp>();
+		status_ = ptr->GetComponent<EnemyHp>();
 	}
+	
 	//UŒ‚
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyAttack", ModelManager::Instance()->GetModel("dice"));
 	ptr->AddComponent<EnemyAttack>();
@@ -47,10 +52,12 @@ void IFE::NormalEnemy::ChangeState()
 	else if (state == CHASE) {
 		Chase();
 		objectPtr_->SetColor({ 1,0,0,1 });
+		IFE::TextureManager::Instance()->LoadTexture("exclamation");
 	}
 	else if (state == WARNING) {
 		Warning();
 		objectPtr_->SetColor({ 0.5f,0.5f,0,1 });
+		IFE::TextureManager::Instance()->LoadTexture("eye");
 	}
 	else {
 		if (state == WAIT) {
@@ -95,6 +102,7 @@ void IFE::NormalEnemy::Update()
 	ChangeState();
 	//hp•\Ž¦
 	hp_->Update(transform_->position_);
+	status_->IconUpdate(transform_->position_);
 	//Ž€–S
 	if (hp_->GetHp() == 0) {
 		hp_->objectPtr_->Destroy();
