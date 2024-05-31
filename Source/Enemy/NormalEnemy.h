@@ -4,6 +4,7 @@
 #include "IFEMath.h"
 #include "EnemyHp.h"
 #include "enemyAttack.h"
+#include "EnemyBackColl.h"
 #include "IFETime.h"
 
 namespace IFE {
@@ -35,6 +36,7 @@ namespace IFE {
 		EnemyHp* hp_ = nullptr;
 		//攻撃判定クラス
 		EnemyAttack* enemyAttack = nullptr;
+		EnemyBackColl* backColl = nullptr;
 		//レイヒット記憶変数
 		float rayDist;
 		float preRayDist;
