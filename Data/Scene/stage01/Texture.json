@@ -6,6 +6,27 @@
         "greenDice.png",
         "Flame.png",
         "eye.png",
-        "exclamation.png"
+        "exclamation.png",
+        "key//A.png",
+        "key//B.png",
+        "key//X.png",
+        "key//Y.png",
+        "key//LStickDrone.png",
+        "key//LStickNormal.png",
+        "key//LT.png",
+        "key//Pause.png",
+        "key//RStick.png",
+        "key//RT.png",
+        "text//CameraMove.png",
+        "text//CharaMove.png",
+        "text//Down.png",
+        "text//ModeChangeDrone.png",
+        "text//MOdeChangeNormal.png",
+        "text//Sneak.png",
+        "text//SpeedChange.png",
+        "text//Up.png",
+        "text//ModeChangeNormal.png",
+        "text//PauseText.png",
+        "key//YDrone.png"
     ]
 }
