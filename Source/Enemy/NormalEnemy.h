@@ -110,6 +110,7 @@ namespace IFE {
 
 		///-----Getter-----///
 		Vector3 GetPos();
+		bool GetIsAttack() { return isAttack; }
 
 
 #ifdef EditorMode
