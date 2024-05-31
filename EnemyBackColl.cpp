@@ -13,3 +13,11 @@ void IFE::EnemyBackColl::Initialize()
 void IFE::EnemyBackColl::Update()
 {
 }
+
+void IFE::EnemyBackColl::Finalize()
+{
+}
+
+void IFE::EnemyBackColl::ComponentDebugGUI()
+{
+}

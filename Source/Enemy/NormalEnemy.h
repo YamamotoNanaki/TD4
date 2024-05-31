@@ -11,6 +11,7 @@ namespace IFE {
 	//---‚ß‚Á‚¿‚á•’Ê‚Ì“G---//
 	class NormalEnemy : public IFE::BaseEnemy
 	{
+		using BaseEnemy::BaseEnemy;					
 	private:
 		//ü‚è‚ğŒ©“n‚·ŠÔ
 		const int32_t WAIT_TIME = 200;

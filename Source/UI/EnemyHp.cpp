@@ -37,6 +37,11 @@ void IFE::EnemyHp::Update(Float3 pos_)
 	}
 }
 
+
+
+
+
+
 void IFE::EnemyHp::IconUpdate(Float3 pos_)
 {
 	objectPtr_->transform_->scale_ = { 1.0f,1.0f,1.0f };
