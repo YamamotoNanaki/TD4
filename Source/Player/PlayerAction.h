@@ -79,6 +79,12 @@ public:
 	/// <returns></returns>
 	IFE::Camera* GetActionCamera();
 
+	/// <summary>
+	/// UŒ‚ƒtƒ‰ƒO‚Ìæ“¾
+	/// </summary>
+	/// <returns></returns>
+	const bool GetAttackFlag();
+
 private:
 
 	/// <summary>

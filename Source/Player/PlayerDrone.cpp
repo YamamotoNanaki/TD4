@@ -119,14 +119,7 @@ void PlayerDrone::Move()
 
 	if (IFE::Input::GetKeyTrigger(IFE::Key::LSHIFT)|| IFE::Input::GetKeyTrigger(IFE::Key::RSHIFT) ||IFE::Input::PadTrigger(IFE::PADCODE::LTHUMB))
 	{
-		if (slowSpeedMode_ == false)
-		{
-			slowSpeedMode_ = true;
-		}
-		else
-		{
-			slowSpeedMode_ = false;
-		}
+		slowSpeedMode_ = !slowSpeedMode_;
 	}
 
 	//Œ¸‘¬‘¬“x
