@@ -11,6 +11,7 @@ void IFE::LightManager::Initialize()
 {
 	constBuff_ = make_unique<ConstBuffer<ConstBufferData>>();
 	Reset();
+	TransferConstBuffer();
 }
 
 void IFE::LightManager::Reset()
@@ -304,6 +305,11 @@ void IFE::LightManager::Update()
 	}
 }
 
+void IFE::LightManager::ForcedUpdate()
+{
+	TransferConstBuffer();
+}
+
 uint8_t IFE::LightManager::GetPointLightNumber()
 {
 	uint8_t returnNum = (uint8_t)-1;
@@ -425,4 +431,5 @@ void IFE::LightManager::LoadingScene()
 			dLight_[j["num"]].SetLightColor(col);
 		}
 	}
+	ForcedUpdate();
 }

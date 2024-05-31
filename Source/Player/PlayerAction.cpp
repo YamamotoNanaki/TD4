@@ -154,9 +154,15 @@ void PlayerAction::Attack()
 	{
 		if (attackTimer_ > attackTime_)
 		{
+			playerAttack_->objectPtr_->transform_->position_.y = 0.0f;
 			attackFlag_ = false;
 			attackTimer_ = 0;
 			playerAttack_->objectPtr_->DrawFlag_ = false;
+		}
+		else if (attackTimer_ == attackTime_)
+		{
+			//–³—–î—”»’è‚¸‚ç‚µ‚Ä‚é‚¾‚¯‚Å‰½ŒÌ‚©“–‚½‚è”»’è‚ªŽc‚Á‚Ä‚¢‚éó‘Ô‚É‚È‚Á‚Ä‚¢‚é(’¼‚¹)
+			playerAttack_->objectPtr_->transform_->position_.y = -10.0f;
 		}
 		attackTimer_++;
 	}
