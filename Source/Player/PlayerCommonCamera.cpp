@@ -7,7 +7,7 @@ using namespace IFE;
 void PlayerCommonCamera::Initialize()
 {
 	col = cameraPtr_->GetComponent<Collider>();
-	col->GetCollider(0)->rayHittingdistance = 10;
+	col->GetCollider(0)->rayHittingdistance = 15;
 }
 
 void PlayerCommonCamera::Update()
@@ -23,9 +23,12 @@ void PlayerCommonCamera::Update()
 
 void PlayerCommonCamera::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
 {
-	if (hitCollider->objectPtr_->GetObjectName().find("wall") != std::string::npos)
+	if (cameraPtr_->cameraName_ == "ActionCamera")
 	{
-		hitCollider->objectPtr_->DrawFlag_ = false;
+		if (hitCollider->objectPtr_->GetObjectName().find("wall") != std::string::npos)
+		{
+			hitCollider->objectPtr_->DrawFlag_ = false;
+		}
 	}
 	myCollider;
 }
