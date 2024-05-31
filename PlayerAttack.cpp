@@ -25,9 +25,13 @@ void PlayerAttack::Finalize()
 
 void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
 {
-	if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()) {
-		//“–‚½‚Á‚½Žž‚Ìˆ—
-		hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>();
+	myCollider;
+	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE)
+	{
+		if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()) {
+			//“–‚½‚Á‚½Žž‚Ìˆ—
+			hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetHp()->DecHp();
+		}
 	}
 }
 

@@ -52,12 +52,10 @@ void IFE::NormalEnemy::ChangeState()
 	else if (state == CHASE) {
 		Chase();
 		objectPtr_->SetColor({ 1,0,0,1 });
-		IFE::TextureManager::Instance()->LoadTexture("exclamation");
 	}
 	else if (state == WARNING) {
 		Warning();
 		objectPtr_->SetColor({ 0.5f,0.5f,0,1 });
-		IFE::TextureManager::Instance()->LoadTexture("eye");
 	}
 	else {
 		if (state == WAIT) {
@@ -241,14 +239,6 @@ void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hit
 		//•Ç‚ª‚ ‚Á‚½ê‡
 		if (state == WARNING && hitCollider->objectPtr_->GetComponent<StageCollideManageer>()) {
 			state = SEARCH;
-		}
-	}
-	//‘ŠŽè‚ªplayer‚¾‚Á‚½ê‡
-	if (myCollider->GetColliderType() == ColliderType::SPHERE)
-	{
-		if (hitCollider->objectPtr_->GetComponent<PlayerAttack>()->GetIsAttack()) {
-			//“–‚½‚Á‚½Žž‚Ìˆ—
-			hp_->DecHp();
 		}
 	}
 }
