@@ -73,6 +73,7 @@ namespace IFE
 		void SetCircleShadowAtten(int32_t index, const Float3& shadowAtten);
 		void SetCircleShadowFactorAngle(int32_t index, const Float2& shadowFactorAngle);
 		void Update();
+		void ForcedUpdate();
 		static uint8_t GetPointLightNumber();
 		void Draw(uint32_t rootParameterIndex);
 		static LightManager* Instance();
