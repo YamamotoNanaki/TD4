@@ -88,6 +88,7 @@ void IFE::NormalEnemy::Update()
 	//Ž€–S
 	if (hp_->GetHp() == 0) {
 		hp_->objectPtr_->Destroy();
+		enemyAttack->objectPtr_->Destroy();
 		objectPtr_->Destroy();
 	}
 }
