@@ -13,6 +13,8 @@ private:
 	PlayerAction* action_ = nullptr;
 	PlayerDrone* drone_ = nullptr;
 
+	bool isDrone_ = false;
+
 public:
 
 	void Initialize();

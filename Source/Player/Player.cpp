@@ -57,7 +57,13 @@ void Player::ChangeMode()
 		{
 			modeFlag_ = true;
 			drone_->SetDrawFlag(false);
+			if (isDrone_ == false)
+			{
+				drone_->SetPos(action_->GetPos());
+				isDrone_ = true;
+			}
 			IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
+			
 		}
 		else
 		{
