@@ -205,6 +205,7 @@ void IFE::NormalEnemy::Chase()
 	if (len <= 5.0) {
 		enemyAttack->objectPtr_->DrawFlag_ = true;
 		state = ATTACK;
+		enemyAttack->objectPtr_->transform_->position_ = { 0, 0, 2 };
 		isAttack = true;
 	}
 	warningTime++;
@@ -226,9 +227,12 @@ void IFE::NormalEnemy::Chase()
 void IFE::NormalEnemy::Attack()
 {
 	attackTime++;
+	if (enemyAttack->objectPtr_->DrawFlag_ == false) {
+		isAttack = false;
+	}
 	if (attackTime == 100) {
 		enemyAttack->objectPtr_->DrawFlag_ = false;
-		isAttack = false;
+		enemyAttack->objectPtr_->transform_->position_ = { 0, -10, 0 };
 	}
 	else if(attackTime == 200) {
 		attackTime = 0;
