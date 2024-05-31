@@ -18,12 +18,17 @@ void IFE::NormalEnemy::Initialize()
 	preRayDist = 0.0f;
 	isFound = false;
 	isAttack = false;
+	hp_ = 100;
+	decHp_ = 0;
+	isHit_ = false;
+	hitTime_ = 0;
+	objectPtr_->SetColor({1, 0, 1, 1});
 	//HPUI
-	if (!hp_)
+	if (!hpUI)
 	{
 		auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyHp", ModelManager::Instance()->GetModel("hppanel"));
 		ptr->AddComponent<EnemyHp>();
-		hp_ = ptr->GetComponent<EnemyHp>();
+		hpUI = ptr->GetComponent<EnemyHp>();
 		ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyHp", ModelManager::Instance()->GetModel("hppanel"));
 		ptr->AddComponent<EnemyHp>();
 		status_ = ptr->GetComponent<EnemyHp>();
@@ -34,40 +39,47 @@ void IFE::NormalEnemy::Initialize()
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
 	enemyAttack->transform_->parent_ = transform_;
-	enemyAttack->objectPtr_->transform_->position_ += {0, 0, 2};
+	enemyAttack->objectPtr_->transform_->position_ = {0, 0, 2};
 	//”w’†‚­‚ç‚¢”»’è
 	ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyBackColl", ModelManager::Instance()->GetModel("dice"));
 	ptr->AddComponent<EnemyBackColl>();
 	backColl = ptr->GetComponent<EnemyBackColl>();
 	backColl->transform_->parent_ = transform_;
-	backColl->objectPtr_->transform_->position_ += {0, 0, -2};
+	backColl->objectPtr_->transform_->position_ = {0, 0, -1};
 }
 
 void IFE::NormalEnemy::ChangeState()
 {
+	if (hp_ == 0) {
+		state = DEAD;
+	}
 	//UŒ‚‚ÍÅ—Dæ
-	if (state == ATTACK) {
-		Attack();
-	}
-	else if (state == CHASE) {
-		Chase();
-		objectPtr_->SetColor({ 1,0,0,1 });
-	}
-	else if (state == WARNING) {
+	switch (state)
+	{
+	case IFE::BaseEnemy::WAIT:
+
+		Wait();
+		break;
+	case IFE::BaseEnemy::SEARCH:
+
+		Search();
+		break;
+	case IFE::BaseEnemy::WARNING:
+
 		Warning();
-		objectPtr_->SetColor({ 0.5f,0.5f,0,1 });
-	}
-	else {
-		if (state == WAIT) {
-			Wait();
-			rayDist = 0.0f;
-			objectPtr_->SetColor({ 1,0,1,1 });
-		}
-		else if (state == SEARCH) {
-			Search();
-			rayDist = 0.0f;
-			objectPtr_->SetColor({ 1,0,1,1 });
-		}
+		break;
+	case IFE::BaseEnemy::CHASE:
+
+		Chase();
+		break;
+	case IFE::BaseEnemy::ATTACK:
+
+		Attack();
+		break;
+	case IFE::BaseEnemy::DEAD:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -82,12 +94,20 @@ void IFE::NormalEnemy::Update()
 	//ó‘Ô‚ðŽæ“¾
 	preState = state;
 	ChangeState();
+	//hitcool
+	if (isHit_ == true) {
+		hitTime_--;
+		if (hitTime_ == 0) {
+			isHit_ = false;
+		}
+	}
 	//hp•\Ž¦
-	hp_->Update(transform_->position_);
+	hpUI->Update(transform_->position_,hp_,decHp_);
 	status_->IconUpdate(transform_->position_);
 	//Ž€–S
-	if (hp_->GetHp() == 0) {
-		hp_->objectPtr_->Destroy();
+	if (hpUI->GetIsDead() == true) {
+		hpUI->objectPtr_->Destroy();
+		status_->objectPtr_->Destroy();
 		enemyAttack->objectPtr_->Destroy();
 		objectPtr_->Destroy();
 	}
@@ -115,6 +135,7 @@ void IFE::NormalEnemy::Wait()
 
 	//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
 	if (isFound == true) {
+		objectPtr_->SetColor({ 0.5f, 0.5f, 0, 1 });
 		state = WARNING;
 		isFound = false;
 	}
@@ -128,6 +149,7 @@ void IFE::NormalEnemy::Warning()
 
 	if (warningTime == 75) {
 		warningTime = 0;
+		objectPtr_->SetColor({ 1, 0, 0, 1 });
 		state = CHASE;
 	}
 }
@@ -160,6 +182,7 @@ void IFE::NormalEnemy::Search()
 
 	//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
 	if (isFound == true) {
+		objectPtr_->SetColor({ 0.5f, 0.5f, 0, 1 });
 		state = WARNING;
 		isFound = false;
 	}
@@ -189,10 +212,12 @@ void IFE::NormalEnemy::Chase()
 		warningTime = 0;
 		//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
 		if (isFound == true) {
+			objectPtr_->SetColor({ 0.5f, 0.5f, 0, 1 });
 			state = WARNING;
 			isFound = false;
 		}
 		else {
+			objectPtr_->SetColor({ 1, 0, 1, 1 });
 			state = SEARCH;
 		}
 	}
@@ -201,10 +226,12 @@ void IFE::NormalEnemy::Chase()
 void IFE::NormalEnemy::Attack()
 {
 	attackTime++;
-	if (attackTime == 50) {
-		attackTime = 0;
+	if (attackTime == 100) {
 		enemyAttack->objectPtr_->DrawFlag_ = false;
 		isAttack = false;
+	}
+	else if(attackTime == 200) {
+		attackTime = 0;
 		state = CHASE;
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
@@ -222,6 +249,26 @@ void IFE::NormalEnemy::LookAt(Vector3 lookfor)
 	float length = rotaVec.Length();
 	float radX = std::atan2(-frontVec.y, length);
 	transform_->eulerAngleDegrees_ = { radX * 180.0f / (float)PI ,radY * 180.0f / (float)PI,0 };
+}
+
+void IFE::NormalEnemy::DecHp()
+{
+	if (isHit_ == false) {
+		hp_ -= 25;
+		decHp_ = 25;
+		hitTime_ = HIT_COOLTIME;
+		isHit_ = true;
+	}
+}
+
+void IFE::NormalEnemy::OneShot()
+{
+	if (isHit_ == false) {
+		hp_ -= hp_;
+		decHp_ = hp_;
+		hitTime_ = HIT_COOLTIME;
+		isHit_ = true;
+	}
 }
 
 void IFE::NormalEnemy::Draw()
@@ -252,7 +299,7 @@ IFE::Vector3 IFE::NormalEnemy::GetPos() {
 
 void IFE::NormalEnemy::Finalize()
 {
-	delete hp_;
+	delete hpUI;
 	delete enemyAttack;
 }
 

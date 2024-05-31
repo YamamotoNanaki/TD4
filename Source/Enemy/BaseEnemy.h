@@ -19,7 +19,9 @@ namespace IFE {
 			//’ÇÕ
 			CHASE,
 			//UŒ‚
-			ATTACK
+			ATTACK,
+			//€–S
+			DEAD
 		};
 		State state;
 		State preState;
