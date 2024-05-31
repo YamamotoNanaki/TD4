@@ -27,6 +27,9 @@
         "text//Up.png",
         "text//ModeChangeNormal.png",
         "text//PauseText.png",
-        "key//YDrone.png"
+        "key//YDrone.png",
+        "Text//Attack.png",
+        "Key//PauseDrone.png",
+        "Text//PauseTextDrone.png"
     ]
 }

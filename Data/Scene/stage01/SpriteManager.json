@@ -38,13 +38,13 @@
             },
             "Transform2D": {
                 "position": [
-                    1600.0,
-                    900.0
+                    1590.0,
+                    885.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    0.5,
-                    0.5
+                    0.699999988079071,
+                    0.699999988079071
                 ]
             },
             "component": [
@@ -65,13 +65,13 @@
             },
             "Transform2D": {
                 "position": [
-                    1400.0,
-                    900.0
+                    1380.0,
+                    885.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    0.5,
-                    0.5
+                    0.699999988079071,
+                    0.699999988079071
                 ]
             },
             "component": [
@@ -92,8 +92,8 @@
             },
             "Transform2D": {
                 "position": [
-                    1600.0,
-                    900.0
+                    1590.0,
+                    885.0
                 ],
                 "rotation": 0.0,
                 "scale": [
@@ -119,8 +119,8 @@
             },
             "Transform2D": {
                 "position": [
-                    1400.0,
-                    900.0
+                    1380.0,
+                    885.0
                 ],
                 "rotation": 0.0,
                 "scale": [
@@ -146,13 +146,13 @@
             },
             "Transform2D": {
                 "position": [
-                    1600.0,
+                    1590.0,
                     950.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    0.5,
-                    0.5
+                    0.699999988079071,
+                    0.699999988079071
                 ]
             },
             "component": [
@@ -173,13 +173,13 @@
             },
             "Transform2D": {
                 "position": [
-                    1600.0,
-                    850.0
+                    1590.0,
+                    820.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    0.5,
-                    0.5
+                    0.699999988079071,
+                    0.699999988079071
                 ]
             },
             "component": [
@@ -200,13 +200,13 @@
             },
             "Transform2D": {
                 "position": [
-                    1400.0,
-                    850.0
+                    1380.0,
+                    820.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    0.5,
-                    0.5
+                    0.699999988079071,
+                    0.699999988079071
                 ]
             },
             "component": [
@@ -227,13 +227,13 @@
             },
             "Transform2D": {
                 "position": [
-                    1680.0,
-                    855.0
+                    1700.0,
+                    825.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    1.0,
-                    0.6000000238418579
+                    1.5,
+                    0.800000011920929
                 ]
             },
             "component": [
@@ -254,13 +254,13 @@
             },
             "Transform2D": {
                 "position": [
-                    1480.0,
-                    855.0
+                    1485.0,
+                    825.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    1.0,
-                    0.6000000238418579
+                    1.5,
+                    0.800000011920929
                 ]
             },
             "component": [
@@ -282,12 +282,12 @@
             "Transform2D": {
                 "position": [
                     1480.0,
-                    900.0
+                    885.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    0.699999988079071,
-                    0.6000000238418579
+                    1.0,
+                    1.0
                 ]
             },
             "component": [
@@ -308,13 +308,13 @@
             },
             "Transform2D": {
                 "position": [
-                    1480.0,
+                    1485.0,
                     950.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    1.0,
-                    0.6000000238418579
+                    1.5,
+                    0.800000011920929
                 ]
             },
             "component": [
@@ -335,13 +335,13 @@
             },
             "Transform2D": {
                 "position": [
-                    1680.0,
-                    900.0
+                    1695.0,
+                    885.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    1.0,
-                    0.6000000238418579
+                    1.5,
+                    0.800000011920929
                 ]
             },
             "component": [
@@ -357,18 +357,18 @@
                     1.0,
                     1.0,
                     1.0,
-                    1.0
+                    0.3921568691730499
                 ]
             },
             "Transform2D": {
                 "position": [
-                    0.0,
-                    0.0
+                    1700.0,
+                    825.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    1.0,
-                    1.0
+                    1.7999999523162842,
+                    0.800000011920929
                 ]
             },
             "component": [
@@ -390,12 +390,12 @@
             "Transform2D": {
                 "position": [
                     1680.0,
-                    900.0
+                    885.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    0.699999988079071,
-                    0.6000000238418579
+                    1.0,
+                    1.0
                 ]
             },
             "component": [
@@ -416,13 +416,13 @@
             },
             "Transform2D": {
                 "position": [
-                    1400.0,
+                    1380.0,
                     950.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    0.5,
-                    0.5
+                    0.699999988079071,
+                    0.699999988079071
                 ]
             },
             "component": [
@@ -443,13 +443,13 @@
             },
             "Transform2D": {
                 "position": [
-                    1480.0,
+                    1485.0,
                     950.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    1.0,
-                    0.6000000238418579
+                    1.5,
+                    0.800000011920929
                 ]
             },
             "component": [
@@ -465,26 +465,53 @@
                     1.0,
                     1.0,
                     1.0,
-                    1.0
+                    0.3921568691730499
                 ]
             },
             "Transform2D": {
                 "position": [
-                    1680.0,
+                    1380.0,
                     950.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    1.0,
-                    0.5
+                    0.699999988079071,
+                    0.699999988079071
                 ]
             },
             "component": [
                 "Transform2D",
                 "ColorBuffer"
             ],
-            "name": "pauseText",
-            "texture": "text//PauseText.png"
+            "name": "YDrone",
+            "texture": "key//YDrone.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1480.0,
+                    885.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.699999988079071,
+                    0.699999988079071
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "Attack",
+            "texture": "Text//Attack.png"
         },
         {
             "ColorBuffer": {
@@ -497,21 +524,75 @@
             },
             "Transform2D": {
                 "position": [
-                    1400.0,
+                    1695.0,
                     950.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    0.5,
-                    0.5
+                    1.5,
+                    0.699999988079071
                 ]
             },
             "component": [
                 "Transform2D",
                 "ColorBuffer"
             ],
-            "name": "YDrone",
-            "texture": "key//YDrone.png"
+            "name": "PauseTextDrone",
+            "texture": "Text//PauseTextDrone.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.3921568691730499
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1590.0,
+                    950.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.699999988079071,
+                    0.699999988079071
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "PauseDrone",
+            "texture": "Key//PauseDrone.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1695.0,
+                    950.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.5,
+                    0.800000011920929
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "PauseText",
+            "texture": "text//PauseText.png"
         }
     ]
 }
