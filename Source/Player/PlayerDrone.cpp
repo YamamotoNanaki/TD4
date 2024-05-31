@@ -113,17 +113,6 @@ void PlayerDrone::Move()
 		moveValue_.y--;
 	}
 
-	if (IFE::Input::PadTrigger(IFE::PADCODE::LTHUMB))
-	{
-		if (slowSpeedMode_ == false)
-		{
-			slowSpeedMode_ = true;
-		}
-		else
-		{
-			slowSpeedMode_ = false;
-		}
-	}
 #pragma endregion コントローラー
 
 #pragma region 統一処理
