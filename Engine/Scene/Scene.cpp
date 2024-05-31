@@ -111,8 +111,8 @@ void IFE::Scene::Initialize()
 	cameraM_->Initialize();
 	oldPostEffect = std::make_unique<OldPostEffect>();
 	oldPostEffect->Initialize();
-	oldPostEffect->SetBrightness(0);
-	oldPostEffect->SetContrast(1.25f);
+	//oldPostEffect->SetBrightness(0);
+	//oldPostEffect->SetContrast(1.25f);
 	SceneInit();
 	particleM->Initialize();
 }

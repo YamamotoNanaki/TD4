@@ -123,6 +123,7 @@ void GraphicsAPI::Initialize(const HWND& hwnd)
 		}
 	}
 
+
 #ifdef _DEBUG
 	ComPtr<ID3D12InfoQueue>infoQueue;
 	if (SUCCEEDED(sDevice_->QueryInterface(IID_PPV_ARGS(&infoQueue))))

@@ -404,7 +404,8 @@
       <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
     </Link>
     <PostBuildEvent>
-      <Command>copy /y $(TargetPath) $(ProjectDir)</Command>
+      <Command>copy /y $(TargetPath) $(ProjectDir)
+copy /y $(TargetDir)zlibd1.dll $(ProjectDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -432,7 +433,8 @@
       <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
     </Link>
     <PostBuildEvent>
-      <Command>copy /y $(TargetPath) $(ProjectDir)</Command>
+      <Command>copy /y $(TargetPath) $(ProjectDir)
+copy /y $(TargetDir)zlib1.dll $(ProjectDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">
@@ -459,7 +461,8 @@
       <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
     </Link>
     <PostBuildEvent>
-      <Command>copy /y $(TargetPath) $(ProjectDir)</Command>
+      <Command>copy /y $(TargetPath) $(ProjectDir)
+copy /y $(TargetDir)zlib1.dll $(ProjectDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

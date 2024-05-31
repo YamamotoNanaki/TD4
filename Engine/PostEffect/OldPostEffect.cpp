@@ -45,8 +45,8 @@ void OldPostEffect::Draw(bool add)
 	buffer_.SetConstBuffView(0);
 	// シェーダリソースビューをセット
 	cmdList->SetGraphicsRootDescriptorTable(1, CD3DX12_GPU_DESCRIPTOR_HANDLE(descHeapSRV->GetGPUDescriptorHandleForHeapStart(), 0, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV)));
-	cmdList->SetGraphicsRootDescriptorTable(2, CD3DX12_GPU_DESCRIPTOR_HANDLE(descHeapSRV->GetGPUDescriptorHandleForHeapStart(), 1, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV)));
-	cmdList->SetGraphicsRootDescriptorTable(3, CD3DX12_GPU_DESCRIPTOR_HANDLE(descHeapSRV->GetGPUDescriptorHandleForHeapStart(), 2, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV)));
+	//cmdList->SetGraphicsRootDescriptorTable(2, CD3DX12_GPU_DESCRIPTOR_HANDLE(descHeapSRV->GetGPUDescriptorHandleForHeapStart(), 1, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV)));
+	//cmdList->SetGraphicsRootDescriptorTable(3, CD3DX12_GPU_DESCRIPTOR_HANDLE(descHeapSRV->GetGPUDescriptorHandleForHeapStart(), 2, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV)));
 	// 描画コマンド
 	cmdList->DrawInstanced(4, 1, 0, 0);
 }
@@ -83,7 +83,7 @@ void OldPostEffect::Initialize()
 
 	D3D12_CLEAR_VALUE d = CD3DX12_CLEAR_VALUE(DXGI_FORMAT_R8G8B8A8_UNORM_SRGB, clearColor);
 
-	for (uint16_t i = 0; i < 3; i++)
+	for (uint16_t i = 0; i < 1; i++)
 	{
 		result = device->CreateCommittedResource(
 			&c, D3D12_HEAP_FLAG_NONE, &texresDesc, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE,
@@ -94,7 +94,7 @@ void OldPostEffect::Initialize()
 	D3D12_DESCRIPTOR_HEAP_DESC srvDescHeapDesc = {};
 	srvDescHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 	srvDescHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-	srvDescHeapDesc.NumDescriptors = 3;
+	srvDescHeapDesc.NumDescriptors = 1;
 
 	result = device->CreateDescriptorHeap(&srvDescHeapDesc, IID_PPV_ARGS(&descHeapSRV));
 	assert(SUCCEEDED(result));
@@ -105,18 +105,18 @@ void OldPostEffect::Initialize()
 	srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
 	srvDesc.Texture2D.MipLevels = 1;
 
-	for (uint16_t i = 0; i < 3; i++)
+	for (uint16_t i = 0; i < 1; i++)
 	{
 		device->CreateShaderResourceView(texBuff[i].Get(), &srvDesc, CD3DX12_CPU_DESCRIPTOR_HANDLE(
 			descHeapSRV->GetCPUDescriptorHandleForHeapStart(), i, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV)));
 	}
 	D3D12_DESCRIPTOR_HEAP_DESC rtvDescHeapDesc{};
 	rtvDescHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
-	rtvDescHeapDesc.NumDescriptors = 3;
+	rtvDescHeapDesc.NumDescriptors = 1;
 
 	result = device->CreateDescriptorHeap(&rtvDescHeapDesc, IID_PPV_ARGS(&descHeapRTV));
 	assert(SUCCEEDED(result));
-	for (uint16_t i = 0; i < 3; i++)
+	for (uint16_t i = 0; i < 1; i++)
 	{
 		device->CreateRenderTargetView(texBuff[i].Get(), nullptr, CD3DX12_CPU_DESCRIPTOR_HANDLE(descHeapRTV->GetCPUDescriptorHandleForHeapStart(), i, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV)));
 	}
@@ -159,38 +159,38 @@ void OldPostEffect::DrawBefore()
 {
 	ID3D12Device* device = GraphicsAPI::Instance()->GetDevice();
 	ID3D12GraphicsCommandList* cmdList = GraphicsAPI::Instance()->GetCmdList();
-	for (uint16_t i = 0; i < 3; i++)
+	for (uint16_t i = 0; i < 1; i++)
 	{
 		D3D12_RESOURCE_BARRIER a = CD3DX12_RESOURCE_BARRIER::Transition(texBuff[i].Get(),
 			D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE, D3D12_RESOURCE_STATE_RENDER_TARGET);
 		cmdList->ResourceBarrier(1, &a);
 	}
 
-	D3D12_CPU_DESCRIPTOR_HANDLE rtvH[3];
-	for (uint16_t i = 0; i < 3; i++)
+	D3D12_CPU_DESCRIPTOR_HANDLE rtvH[1];
+	for (uint16_t i = 0; i < 1; i++)
 	{
 		rtvH[i] = CD3DX12_CPU_DESCRIPTOR_HANDLE(descHeapRTV->GetCPUDescriptorHandleForHeapStart(), i, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV));
 	}
 	D3D12_CPU_DESCRIPTOR_HANDLE dsvH = descHeapDSV->GetCPUDescriptorHandleForHeapStart();
 
-	cmdList->OMSetRenderTargets(3, rtvH, false, &dsvH);
+	cmdList->OMSetRenderTargets(1, rtvH, false, &dsvH);
 
 	auto w = WindowsAPI::Instance()->winWidth_;
 	auto h = WindowsAPI::Instance()->winHeight_;
 
-	CD3DX12_VIEWPORT viewport[3];
-	CD3DX12_RECT rect[3];
-	for (uint16_t i = 0; i < 3; i++)
+	CD3DX12_VIEWPORT viewport[1];
+	CD3DX12_RECT rect[1];
+	for (uint16_t i = 0; i < 1; i++)
 	{
 		viewport[i] = CD3DX12_VIEWPORT(0.f, 0.f, (float)w, (float)h);
 		rect[i] = CD3DX12_RECT(0, 0, (LONG)w, (LONG)h);
 	}
 
 
-	cmdList->RSSetViewports(3, viewport);
-	cmdList->RSSetScissorRects(3, rect);
+	cmdList->RSSetViewports(1, viewport);
+	cmdList->RSSetScissorRects(1, rect);
 
-	for (uint16_t i = 0; i < 3; i++)
+	for (uint16_t i = 0; i < 1; i++)
 	{
 		cmdList->ClearRenderTargetView(rtvH[i], clearColor, 0, nullptr);
 	}
@@ -200,7 +200,7 @@ void OldPostEffect::DrawBefore()
 
 void OldPostEffect::DrawAfter()
 {
-	for (uint16_t i = 0; i < 3; i++)
+	for (uint16_t i = 0; i < 1; i++)
 	{
 		D3D12_RESOURCE_BARRIER a = CD3DX12_RESOURCE_BARRIER::Transition(texBuff[i].Get(),
 			D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE);
@@ -402,26 +402,26 @@ void OldPostEffect::CreateGraphicsPipelineState()
 	// 図形の形状設定（三角形）
 	gpipeline.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 
-	gpipeline.NumRenderTargets = 3;	// 描画対象は1つ
+	gpipeline.NumRenderTargets = 1;	// 描画対象は1つ
 	gpipeline.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	gpipeline.RTVFormats[1] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	gpipeline.RTVFormats[2] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
+	//gpipeline.RTVFormats[1] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
+	//gpipeline.RTVFormats[2] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
 	gpipeline.SampleDesc.Count = 1; // 1ピクセルにつき1回サンプリング
 
 	// デスクリプタレンジ
 	CD3DX12_DESCRIPTOR_RANGE descRangeSRV0;
 	descRangeSRV0.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0); // t0 レジスタ
-	CD3DX12_DESCRIPTOR_RANGE descRangeSRV1;
-	descRangeSRV1.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 1); // t1 レジスタ
-	CD3DX12_DESCRIPTOR_RANGE descRangeSRV2;
-	descRangeSRV2.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 2); // t1 レジスタ
+	//CD3DX12_DESCRIPTOR_RANGE descRangeSRV1;
+	//descRangeSRV1.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 1); // t1 レジスタ
+	//CD3DX12_DESCRIPTOR_RANGE descRangeSRV2;
+	//descRangeSRV2.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 2); // t1 レジスタ
 
 	// ルートパラメータ
-	CD3DX12_ROOT_PARAMETER rootparams[4];
+	CD3DX12_ROOT_PARAMETER rootparams[2];
 	rootparams[0].InitAsConstantBufferView(0, 0, D3D12_SHADER_VISIBILITY_ALL);
 	rootparams[1].InitAsDescriptorTable(1, &descRangeSRV0, D3D12_SHADER_VISIBILITY_ALL);
-	rootparams[2].InitAsDescriptorTable(1, &descRangeSRV1, D3D12_SHADER_VISIBILITY_ALL);
-	rootparams[3].InitAsDescriptorTable(1, &descRangeSRV2, D3D12_SHADER_VISIBILITY_ALL);
+	//rootparams[2].InitAsDescriptorTable(1, &descRangeSRV1, D3D12_SHADER_VISIBILITY_ALL);
+	//rootparams[3].InitAsDescriptorTable(1, &descRangeSRV2, D3D12_SHADER_VISIBILITY_ALL);
 
 	// スタティックサンプラー
 	CD3DX12_STATIC_SAMPLER_DESC samplerDesc = CD3DX12_STATIC_SAMPLER_DESC(0, D3D12_FILTER_MIN_MAG_MIP_POINT); // s0 レジスタ

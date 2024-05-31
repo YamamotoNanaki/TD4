@@ -126,10 +126,8 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateBasicGraphicsPipeLine()
 
 	pipelineDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 
-	pipelineDesc.NumRenderTargets = 3; // 描画対象は1つ
+	pipelineDesc.NumRenderTargets = 1; // 描画対象は1つ
 	pipelineDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.RTVFormats[1] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.RTVFormats[2] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
 	pipelineDesc.SampleDesc.Count = 1; // 1ピクセルにつき1回サンプリング
 
 	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc = pipelineDesc.BlendState.RenderTarget[0];
@@ -143,24 +141,6 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateBasicGraphicsPipeLine()
 	blendDesc.BlendOp = D3D12_BLEND_OP_ADD;				//加算
 	blendDesc.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
 	blendDesc.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
-	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc2 = pipelineDesc.BlendState.RenderTarget[1];
-	blendDesc2.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-	blendDesc2.BlendEnable = true;						//ブレンドを有効にする
-	blendDesc2.BlendOpAlpha = D3D12_BLEND_OP_ADD;			//加算
-	blendDesc2.SrcBlendAlpha = D3D12_BLEND_ONE;			//ソースの値を100%使う
-	blendDesc2.DestBlendAlpha = D3D12_BLEND_ZERO;			//デストの値を  0%使う
-	blendDesc2.BlendOp = D3D12_BLEND_OP_ADD;				//加算
-	blendDesc2.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
-	blendDesc2.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
-	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc3 = pipelineDesc.BlendState.RenderTarget[2];
-	blendDesc3.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-	blendDesc3.BlendEnable = true;						//ブレンドを有効にする
-	blendDesc3.BlendOpAlpha = D3D12_BLEND_OP_ADD;			//加算
-	blendDesc3.SrcBlendAlpha = D3D12_BLEND_ONE;			//ソースの値を100%使う
-	blendDesc3.DestBlendAlpha = D3D12_BLEND_ZERO;			//デストの値を  0%使う
-	blendDesc3.BlendOp = D3D12_BLEND_OP_ADD;				//加算
-	blendDesc3.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
-	blendDesc3.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
 
 	if (CreateGraphicsPipeline("3dNormal", rootSignatureDesc, pipelineDesc, (uint8_t)PIPELINE_SETTING::Normal))
 	{
@@ -260,10 +240,8 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateAnimGraphicsPipeLine()
 
 	pipelineDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 
-	pipelineDesc.NumRenderTargets = 3; // 描画対象は1つ
+	pipelineDesc.NumRenderTargets = 1; // 描画対象は1つ
 	pipelineDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.RTVFormats[1] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.RTVFormats[2] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
 	pipelineDesc.SampleDesc.Count = 1; // 1ピクセルにつき1回サンプリング
 
 	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc = pipelineDesc.BlendState.RenderTarget[0];
@@ -277,24 +255,6 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateAnimGraphicsPipeLine()
 	blendDesc.BlendOp = D3D12_BLEND_OP_ADD;				//加算
 	blendDesc.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
 	blendDesc.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
-	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc2 = pipelineDesc.BlendState.RenderTarget[1];
-	blendDesc2.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-	blendDesc2.BlendEnable = true;						//ブレンドを有効にする
-	blendDesc2.BlendOpAlpha = D3D12_BLEND_OP_ADD;			//加算
-	blendDesc2.SrcBlendAlpha = D3D12_BLEND_ONE;			//ソースの値を100%使う
-	blendDesc2.DestBlendAlpha = D3D12_BLEND_ZERO;			//デストの値を  0%使う
-	blendDesc2.BlendOp = D3D12_BLEND_OP_ADD;				//加算
-	blendDesc2.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
-	blendDesc2.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
-	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc3 = pipelineDesc.BlendState.RenderTarget[2];
-	blendDesc3.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-	blendDesc3.BlendEnable = true;						//ブレンドを有効にする
-	blendDesc3.BlendOpAlpha = D3D12_BLEND_OP_ADD;			//加算
-	blendDesc3.SrcBlendAlpha = D3D12_BLEND_ONE;			//ソースの値を100%使う
-	blendDesc3.DestBlendAlpha = D3D12_BLEND_ZERO;			//デストの値を  0%使う
-	blendDesc3.BlendOp = D3D12_BLEND_OP_ADD;				//加算
-	blendDesc3.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
-	blendDesc3.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
 
 	if (CreateGraphicsPipeline("3dAnim", rootSignatureDesc, pipelineDesc, (uint8_t)PIPELINE_SETTING::Anim))
 	{
@@ -485,10 +445,8 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateBasicParticleGraphicsPipeL
 
 	pipelineDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_POINT;
 
-	pipelineDesc.NumRenderTargets = 3; // 描画対象は1つ
+	pipelineDesc.NumRenderTargets = 1; // 描画対象は1つ
 	pipelineDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.RTVFormats[1] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.RTVFormats[2] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
 	pipelineDesc.SampleDesc.Count = 1; // 1ピクセルにつき1回サンプリング
 
 	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc = pipelineDesc.BlendState.RenderTarget[0];
@@ -502,25 +460,6 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateBasicParticleGraphicsPipeL
 	blendDesc.BlendOp = D3D12_BLEND_OP_ADD;				//加算
 	blendDesc.SrcBlend = D3D12_BLEND_ONE;				//ソースの値を100%使う
 	blendDesc.DestBlend = D3D12_BLEND_ONE;				//ソースの値を100%使う
-
-	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc2 = pipelineDesc.BlendState.RenderTarget[1];
-	blendDesc2.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-	blendDesc2.BlendEnable = true;						//ブレンドを有効にする
-	blendDesc2.BlendOpAlpha = D3D12_BLEND_OP_ADD;			//加算
-	blendDesc2.SrcBlendAlpha = D3D12_BLEND_ONE;			//ソースの値を100%使う
-	blendDesc2.DestBlendAlpha = D3D12_BLEND_ZERO;			//デストの値を  0%使う
-	blendDesc2.BlendOp = D3D12_BLEND_OP_ADD;				//加算
-	blendDesc2.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
-	blendDesc2.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
-	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc3 = pipelineDesc.BlendState.RenderTarget[2];
-	blendDesc3.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-	blendDesc3.BlendEnable = true;						//ブレンドを有効にする
-	blendDesc3.BlendOpAlpha = D3D12_BLEND_OP_ADD;			//加算
-	blendDesc3.SrcBlendAlpha = D3D12_BLEND_ONE;			//ソースの値を100%使う
-	blendDesc3.DestBlendAlpha = D3D12_BLEND_ZERO;			//デストの値を  0%使う
-	blendDesc3.BlendOp = D3D12_BLEND_OP_ADD;				//加算
-	blendDesc3.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
-	blendDesc3.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
 
 	if (CreateGraphicsPipeline("ParticleNormal", rootSignatureDesc, pipelineDesc, (uint8_t)PIPELINE_SETTING::Transparent))
 	{
@@ -609,10 +548,8 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateTransparentParticleGraphic
 
 	pipelineDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_POINT;
 
-	pipelineDesc.NumRenderTargets = 3; // 描画対象は1つ
+	pipelineDesc.NumRenderTargets = 1; // 描画対象は1つ
 	pipelineDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.RTVFormats[1] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.RTVFormats[2] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
 	pipelineDesc.SampleDesc.Count = 1; // 1ピクセルにつき1回サンプリング
 
 	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc = pipelineDesc.BlendState.RenderTarget[0];
@@ -626,25 +563,6 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateTransparentParticleGraphic
 	blendDesc.BlendOp = D3D12_BLEND_OP_ADD;				//加算
 	blendDesc.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
 	blendDesc.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
-
-	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc2 = pipelineDesc.BlendState.RenderTarget[1];
-	blendDesc2.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-	blendDesc2.BlendEnable = true;						//ブレンドを有効にする
-	blendDesc2.BlendOpAlpha = D3D12_BLEND_OP_ADD;			//加算
-	blendDesc2.SrcBlendAlpha = D3D12_BLEND_ONE;			//ソースの値を100%使う
-	blendDesc2.DestBlendAlpha = D3D12_BLEND_ZERO;			//デストの値を  0%使う
-	blendDesc2.BlendOp = D3D12_BLEND_OP_ADD;				//加算
-	blendDesc2.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
-	blendDesc2.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
-	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc3 = pipelineDesc.BlendState.RenderTarget[2];
-	blendDesc3.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-	blendDesc3.BlendEnable = true;						//ブレンドを有効にする
-	blendDesc3.BlendOpAlpha = D3D12_BLEND_OP_ADD;			//加算
-	blendDesc3.SrcBlendAlpha = D3D12_BLEND_ONE;			//ソースの値を100%使う
-	blendDesc3.DestBlendAlpha = D3D12_BLEND_ZERO;			//デストの値を  0%使う
-	blendDesc3.BlendOp = D3D12_BLEND_OP_ADD;				//加算
-	blendDesc3.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
-	blendDesc3.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
 
 	if (CreateGraphicsPipeline("ParticleTransparent", rootSignatureDesc, pipelineDesc, (uint8_t)PIPELINE_SETTING::Transparent))
 	{
@@ -733,10 +651,8 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateSubParticleGraphicsPipeLin
 
 	pipelineDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_POINT;
 
-	pipelineDesc.NumRenderTargets = 3; // 描画対象は1つ
+	pipelineDesc.NumRenderTargets = 1; // 描画対象は1つ
 	pipelineDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.RTVFormats[1] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.RTVFormats[2] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
 	pipelineDesc.SampleDesc.Count = 1; // 1ピクセルにつき1回サンプリング
 
 	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc = pipelineDesc.BlendState.RenderTarget[0];
@@ -750,25 +666,6 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateSubParticleGraphicsPipeLin
 	blendDesc.BlendOp = D3D12_BLEND_OP_REV_SUBTRACT;				//加算
 	blendDesc.SrcBlend = D3D12_BLEND_ONE;			//ソースのアルファ値
 	blendDesc.DestBlend = D3D12_BLEND_ONE;		//1.0f-ソースのアルファ値
-
-	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc2 = pipelineDesc.BlendState.RenderTarget[1];
-	blendDesc2.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-	blendDesc2.BlendEnable = true;						//ブレンドを有効にする
-	blendDesc2.BlendOpAlpha = D3D12_BLEND_OP_ADD;			//加算
-	blendDesc2.SrcBlendAlpha = D3D12_BLEND_ONE;			//ソースの値を100%使う
-	blendDesc2.DestBlendAlpha = D3D12_BLEND_ZERO;			//デストの値を  0%使う
-	blendDesc2.BlendOp = D3D12_BLEND_OP_ADD;				//加算
-	blendDesc2.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
-	blendDesc2.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
-	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc3 = pipelineDesc.BlendState.RenderTarget[2];
-	blendDesc3.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-	blendDesc3.BlendEnable = true;						//ブレンドを有効にする
-	blendDesc3.BlendOpAlpha = D3D12_BLEND_OP_ADD;			//加算
-	blendDesc3.SrcBlendAlpha = D3D12_BLEND_ONE;			//ソースの値を100%使う
-	blendDesc3.DestBlendAlpha = D3D12_BLEND_ZERO;			//デストの値を  0%使う
-	blendDesc3.BlendOp = D3D12_BLEND_OP_ADD;				//加算
-	blendDesc3.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
-	blendDesc3.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
 
 	if (CreateGraphicsPipeline("ParticleSub", rootSignatureDesc, pipelineDesc, (uint8_t)PIPELINE_SETTING::Transparent))
 	{
