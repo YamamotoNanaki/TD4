@@ -41,7 +41,7 @@ Float4 IFE::ColorBuffer::GetColor()
 
 #ifdef InverseEditorMode
 #else
-void IFE::ColorBuffer::DebugGUI()
+void IFE::ColorBuffer::ComponentDebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
 		im->ColorEdit4GUI(&color_, "color");
