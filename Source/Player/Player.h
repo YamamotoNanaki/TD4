@@ -29,7 +29,9 @@ public:
 
 	bool GetMode();
 
+
 private:
 
 	void ChangeMode();
+	void ChangeUI();
 };

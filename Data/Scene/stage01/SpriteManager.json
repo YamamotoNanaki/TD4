@@ -26,6 +26,492 @@
             ],
             "name": "flame",
             "texture": "Flame.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1600.0,
+                    900.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "B",
+            "texture": "key//B.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1400.0,
+                    900.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "X",
+            "texture": "key//X.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.3921568691730499
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1600.0,
+                    900.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.699999988079071,
+                    0.699999988079071
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "RT",
+            "texture": "key//RT.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.3921568691730499
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1400.0,
+                    900.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.699999988079071,
+                    0.699999988079071
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "LT",
+            "texture": "key//LT.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1600.0,
+                    950.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "Pause",
+            "texture": "key//Pause.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1600.0,
+                    850.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "RStick",
+            "texture": "key//RStick.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1400.0,
+                    850.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "LStickNormal",
+            "texture": "key//LStickNormal.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1680.0,
+                    855.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.0,
+                    0.6000000238418579
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "CameraMove",
+            "texture": "text//CameraMove.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1480.0,
+                    855.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.0,
+                    0.6000000238418579
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "CharaMove",
+            "texture": "text//CharaMove.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.3921568691730499
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1480.0,
+                    900.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.699999988079071,
+                    0.6000000238418579
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "Down",
+            "texture": "text//Down.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.3921568691730499
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1480.0,
+                    950.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.0,
+                    0.6000000238418579
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "ModeChangeDrone",
+            "texture": "text//ModeChangeDrone.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1680.0,
+                    900.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.0,
+                    0.6000000238418579
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "Sneak",
+            "texture": "text//Sneak.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    0.0,
+                    0.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "SpeedChange",
+            "texture": "text//SpeedChange.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.3921568691730499
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1680.0,
+                    900.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.699999988079071,
+                    0.6000000238418579
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "Up",
+            "texture": "text//Up.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1400.0,
+                    950.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "Y",
+            "texture": "key//Y.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1480.0,
+                    950.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.0,
+                    0.6000000238418579
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "ModeChangeNormal",
+            "texture": "text//ModeChangeNormal.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1680.0,
+                    950.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.0,
+                    0.5
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "pauseText",
+            "texture": "text//PauseText.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.3921568691730499
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1400.0,
+                    950.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "YDrone",
+            "texture": "key//YDrone.png"
         }
     ]
 }
