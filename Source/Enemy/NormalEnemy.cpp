@@ -206,6 +206,7 @@ void IFE::NormalEnemy::Attack()
 		isAttack = false;
 		state = CHASE;
 	}
+	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
 
 void IFE::NormalEnemy::LookAt(Vector3 lookfor)

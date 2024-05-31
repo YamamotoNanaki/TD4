@@ -267,7 +267,7 @@
                 {
                     "attribute": 0,
                     "colliderType": 0,
-                    "groundJudge": true,
+                    "groundJudge": false,
                     "notPushBack": false,
                     "pushBack": true
                 },
@@ -9171,7 +9171,7 @@
                 },
                 {
                     "attribute": 0,
-                    "colliderType": 1,
+                    "colliderType": 0,
                     "groundJudge": false,
                     "notPushBack": false,
                     "pushBack": true

@@ -10,6 +10,7 @@ void IFE::EnemyAttack::Initialize()
 	objectPtr_->AddComponent<IFE::Collider>(); 
 	auto ptr = objectPtr_->GetComponent<IFE::Collider>()->AddCollider();
 	ptr->SetNoPushBackFlag(true);
+	ptr->active_ = false;
 }
 
 void IFE::EnemyAttack::Update()

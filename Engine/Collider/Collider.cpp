@@ -54,7 +54,15 @@ Float3 IFE::ColliderCore::GetColliderPosition()
 	{
 		GetParentParms();
 	}
-	return *parentPosition_ + offsetPosition_;
+	Float3 pos = *parentPosition_;
+	if (objectPtr_ && !transform_)transform_ = objectPtr_->transform_;
+	if (objectPtr_ && transform_->parent_)
+	{
+		pos.x = transform_->matWorld_.m[3][0];
+		pos.y = transform_->matWorld_.m[3][1];
+		pos.z = transform_->matWorld_.m[3][2];
+	}
+	return  pos + offsetPosition_;
 }
 
 Float3 IFE::ColliderCore::GetColliderScale()
@@ -200,6 +208,7 @@ void IFE::Collider::Initialize()
 		itr->objectPtr_ = objectPtr_;
 		itr->cameraPtr_ = cameraPtr_;
 		itr->emitterPtr_ = emitterPtr_;
+		itr->transform_ = transform_;
 		itr->Initialize();
 	}
 }
@@ -219,6 +228,7 @@ ColliderCore* IFE::Collider::AddCollider()
 	temp->objectPtr_ = objectPtr_;
 	temp->cameraPtr_ = cameraPtr_;
 	temp->emitterPtr_ = emitterPtr_;
+	temp->transform_ = transform_;
 	temp->Initialize();
 	colliderList_.push_back(std::move(temp));
 	return colliderList_.back().get();
