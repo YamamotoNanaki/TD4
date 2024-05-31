@@ -20,6 +20,7 @@ void PlayerAction::Initialize()
 	playerAttack_ = ptr->GetComponent<PlayerAttack>();
 	playerAttack_->transform_->parent_ = transform_;
 	playerAttack_->objectPtr_->transform_->position_ += {0, 0, 2};
+	playerAttack_->SetName("player");
 }
 
 void PlayerAction::Update()
@@ -42,7 +43,7 @@ void PlayerAction::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 	{
 		if (hitCollider->objectPtr_->GetComponent<IFE::EnemyAttack>()) {
 			//“–‚½‚Á‚½Žž‚Ìˆ—
-			/*hp--;*/
+			hp--;
 		}
 	}
 }
@@ -113,6 +114,11 @@ IFE::Camera* PlayerAction::GetActionCamera()
 	return actionCamera_;
 }
 
+const bool PlayerAction::GetAttackFlag()
+{
+	return attackFlag_;
+}
+
 void PlayerAction::Rotation()
 {
 	float lx = IFE::Input::GetLXAnalog(controllerRange_);
@@ -154,6 +160,8 @@ void PlayerAction::Attack()
 		}
 		attackTimer_++;
 	}
+
+	playerAttack_->SetIsAttack(attackFlag_);
 }
 
 void PlayerAction::CameraComplement()

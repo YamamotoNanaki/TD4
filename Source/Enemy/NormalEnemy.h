@@ -4,12 +4,14 @@
 #include "IFEMath.h"
 #include "EnemyHp.h"
 #include "enemyAttack.h"
+#include "EnemyBackColl.h"
 #include "IFETime.h"
 
 namespace IFE {
 	//---めっちゃ普通の敵---//
 	class NormalEnemy : public IFE::BaseEnemy
 	{
+		using BaseEnemy::BaseEnemy;					
 	private:
 		//周りを見渡す時間
 		const int32_t WAIT_TIME = 200;
@@ -33,8 +35,11 @@ namespace IFE {
 		bool isFound;
 		//hp
 		EnemyHp* hp_ = nullptr;
+		EnemyHp* status_ = nullptr;
 		//攻撃判定クラス
 		EnemyAttack* enemyAttack = nullptr;
+		EnemyBackColl* backColl = nullptr;
+		bool isAttack;
 		//レイヒット記憶変数
 		float rayDist;
 		float preRayDist;
@@ -106,6 +111,7 @@ namespace IFE {
 
 		///-----Getter-----///
 		Vector3 GetPos();
+		bool GetIsAttack() { return isAttack; }
 
 
 #ifdef EditorMode

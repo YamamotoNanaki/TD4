@@ -5,6 +5,7 @@
 #include "ObjectManager.h"
 #include "ModelManager.h"
 #include "StageCollideManageer.h"
+#include "TextureManager.h"
 
 void IFE::NormalEnemy::Initialize()
 {
@@ -16,19 +17,30 @@ void IFE::NormalEnemy::Initialize()
 	rayDist = 0.0f;
 	preRayDist = 0.0f;
 	isFound = false;
+	isAttack = false;
 	//HPUI
 	if (!hp_)
 	{
 		auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyHp", ModelManager::Instance()->GetModel("hppanel"));
 		ptr->AddComponent<EnemyHp>();
 		hp_ = ptr->GetComponent<EnemyHp>();
+		ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyHp", ModelManager::Instance()->GetModel("hppanel"));
+		ptr->AddComponent<EnemyHp>();
+		status_ = ptr->GetComponent<EnemyHp>();
 	}
+	
 	//UŒ‚
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyAttack", ModelManager::Instance()->GetModel("dice"));
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
 	enemyAttack->transform_->parent_ = transform_;
 	enemyAttack->objectPtr_->transform_->position_ += {0, 0, 2};
+	//”w’†‚­‚ç‚¢”»’è
+	ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyBackColl", ModelManager::Instance()->GetModel("dice"));
+	ptr->AddComponent<EnemyBackColl>();
+	backColl = ptr->GetComponent<EnemyBackColl>();
+	backColl->transform_->parent_ = transform_;
+	backColl->objectPtr_->transform_->position_ += {0, 0, -2};
 }
 
 void IFE::NormalEnemy::ChangeState()
@@ -40,10 +52,12 @@ void IFE::NormalEnemy::ChangeState()
 	else if (state == CHASE) {
 		Chase();
 		objectPtr_->SetColor({ 1,0,0,1 });
+		IFE::TextureManager::Instance()->LoadTexture("exclamation");
 	}
 	else if (state == WARNING) {
 		Warning();
 		objectPtr_->SetColor({ 0.5f,0.5f,0,1 });
+		IFE::TextureManager::Instance()->LoadTexture("eye");
 	}
 	else {
 		if (state == WAIT) {
@@ -88,6 +102,7 @@ void IFE::NormalEnemy::Update()
 	ChangeState();
 	//hp•\Ž¦
 	hp_->Update(transform_->position_);
+	status_->IconUpdate(transform_->position_);
 	//Ž€–S
 	if (hp_->GetHp() == 0) {
 		hp_->objectPtr_->Destroy();
@@ -172,6 +187,7 @@ void IFE::NormalEnemy::Chase()
 	if (len <= 5.0) {
 		enemyAttack->objectPtr_->DrawFlag_ = true;
 		state = ATTACK;
+		isAttack = true;
 	}
 	warningTime++;
 	if (warningTime == 200) {
@@ -187,6 +203,7 @@ void IFE::NormalEnemy::Attack()
 	if (attackTime == 50) {
 		attackTime = 0;
 		enemyAttack->objectPtr_->DrawFlag_ = false;
+		isAttack = false;
 		state = CHASE;
 	}
 }
@@ -227,7 +244,7 @@ void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hit
 	//‘ŠŽè‚ªplayer‚¾‚Á‚½ê‡
 	if (myCollider->GetColliderType() == ColliderType::SPHERE)
 	{
-		if (hitCollider->objectPtr_->GetComponent<PlayerAttack>()) {
+		if (hitCollider->objectPtr_->GetComponent<PlayerAttack>()->GetIsAttack()) {
 			//“–‚½‚Á‚½Žž‚Ìˆ—
 			hp_->DecHp();
 		}
