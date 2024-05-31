@@ -33,6 +33,7 @@ namespace IFE {
 		bool isFound;
 		//hp
 		EnemyHp* hp_ = nullptr;
+		EnemyHp* status_ = nullptr;
 		//攻撃判定クラス
 		EnemyAttack* enemyAttack = nullptr;
 		//レイヒット記憶変数
