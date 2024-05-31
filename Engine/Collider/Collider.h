@@ -22,7 +22,7 @@ namespace IFE
 		Float3 offsetScale_;
 		Float3* parentPosition_ = nullptr;
 		Float3* parentScale_ = nullptr;
-		ColliderType colliderType_;
+		ColliderType colliderType_ = ColliderType::SPHERE;
 		bool pushBack_ = false;
 		bool notPushBack_ = false;
 		bool groundJudge_ = false;
@@ -33,6 +33,7 @@ namespace IFE
 		uint16_t attribute_ = 0;
 		bool onGround_ = false;
 		RaycastHit groundHit_;
+		bool active_ = true;
 
 		Vector3 rayDir_ = { 1,0,0 };
 		float rayDistance = 0;

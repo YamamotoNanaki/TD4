@@ -35,7 +35,7 @@ void IFE::ColliderCore::Draw()
 
 void IFE::ColliderCore::Update()
 {
-	CollideManager::Instance()->ColliderSet(this);
+	if (active_)CollideManager::Instance()->ColliderSet(this);
 }
 
 Float3 IFE::ColliderCore::GetOffsetPosition()
