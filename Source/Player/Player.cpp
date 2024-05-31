@@ -6,6 +6,7 @@
 #include"PlayerDrone.h"
 #include"ObjectManager.h"
 #include"CameraManager.h"
+#include"SpriteManager.h"
 
 void Player::Initialize()
 {
@@ -13,7 +14,7 @@ void Player::Initialize()
 	drone_ = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>();
 
 	IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
-
+	IFE::SpriteManager::Instance()->GetSpritePtr("flame")->drawFlag_ = false;
 	transform_->position_ = { 0,0,0 };
 	objectPtr_->DrawFlag_ = false;
 }
@@ -63,13 +64,14 @@ void Player::ChangeMode()
 				isDrone_ = true;
 			}
 			IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
-			
+			IFE::SpriteManager::Instance()->GetSpritePtr("flame")->drawFlag_ = true;
 		}
 		else
 		{
 			modeFlag_ = false;
 			drone_->SetDrawFlag(true);
 			IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
+			IFE::SpriteManager::Instance()->GetSpritePtr("flame")->drawFlag_ = false;
 		}
 	}
 }

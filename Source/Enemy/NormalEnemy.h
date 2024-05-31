@@ -35,6 +35,7 @@ namespace IFE {
 		bool isFound;
 		//hp
 		EnemyHp* hp_ = nullptr;
+		EnemyHp* status_ = nullptr;
 		//UŒ‚”»’èƒNƒ‰ƒX
 		EnemyAttack* enemyAttack = nullptr;
 		EnemyBackColl* backColl = nullptr;
