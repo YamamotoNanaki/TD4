@@ -38,6 +38,7 @@ namespace IFE {
 		//攻撃判定クラス
 		EnemyAttack* enemyAttack = nullptr;
 		EnemyBackColl* backColl = nullptr;
+		bool isAttack;
 		//レイヒット記憶変数
 		float rayDist;
 		float preRayDist;

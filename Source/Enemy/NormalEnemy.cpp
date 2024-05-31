@@ -16,6 +16,7 @@ void IFE::NormalEnemy::Initialize()
 	rayDist = 0.0f;
 	preRayDist = 0.0f;
 	isFound = false;
+	isAttack = false;
 	//HPUI
 	if (!hp_)
 	{
@@ -178,6 +179,7 @@ void IFE::NormalEnemy::Chase()
 	if (len <= 5.0) {
 		enemyAttack->objectPtr_->DrawFlag_ = true;
 		state = ATTACK;
+		isAttack = true;
 	}
 	warningTime++;
 	if (warningTime == 200) {
@@ -193,6 +195,7 @@ void IFE::NormalEnemy::Attack()
 	if (attackTime == 50) {
 		attackTime = 0;
 		enemyAttack->objectPtr_->DrawFlag_ = false;
+		isAttack = false;
 		state = CHASE;
 	}
 }
