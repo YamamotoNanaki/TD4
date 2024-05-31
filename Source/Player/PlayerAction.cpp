@@ -113,6 +113,11 @@ IFE::Camera* PlayerAction::GetActionCamera()
 	return actionCamera_;
 }
 
+const bool PlayerAction::GetAttackFlag()
+{
+	return attackFlag_;
+}
+
 void PlayerAction::Rotation()
 {
 	float lx = IFE::Input::GetLXAnalog(controllerRange_);
