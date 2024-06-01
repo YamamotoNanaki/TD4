@@ -6,6 +6,7 @@
 #include"PlayerDrone.h"
 #include"ObjectManager.h"
 #include"CameraManager.h"
+#include"SpriteManager.h"
 
 void Player::Initialize()
 {
@@ -13,6 +14,8 @@ void Player::Initialize()
 	drone_ = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>();
 
 	IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
+
+	ChangeUI();
 
 	transform_->position_ = { 0,0,0 };
 	objectPtr_->DrawFlag_ = false;
@@ -55,21 +58,80 @@ void Player::ChangeMode()
 	{
 		if (modeFlag_ == false)
 		{
+			//ドローンモード
 			modeFlag_ = true;
 			drone_->SetDrawFlag(false);
+			IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
 			if (isDrone_ == false)
 			{
 				drone_->SetPos(action_->GetPos());
 				isDrone_ = true;
 			}
-			IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
-			
 		}
 		else
 		{
+			//アクションモード
 			modeFlag_ = false;
 			drone_->SetDrawFlag(true);
 			IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
 		}
+		//UI表示切替
+		ChangeUI();
+	}
+}
+
+void Player::ChangeUI()
+{
+	if (modeFlag_ == true)
+	{
+		//ドローンモードのUI
+		IFE::SpriteManager::Instance()->GetSpritePtr("flame")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("Down")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("Up")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("ModeChangeDrone")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("CameraMove")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("CharaMove")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("ModeChangeNormal")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("SpeedChange")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("Sneak")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("RT")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("LT")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("B")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("X")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("Y")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("PauseText")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("PauseDrone")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("PauseTextDrone")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("YDrone")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("RStick")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("LStickNormal")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("Attack")->drawFlag_ = false;
+	}
+	else
+	{
+		//アクションモードのUI
+		IFE::SpriteManager::Instance()->GetSpritePtr("flame")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("Down")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("Up")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("ModeChangeDrone")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("CameraMove")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("CharaMove")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("ModeChangeNormal")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("SpeedChange")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("Sneak")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("RT")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("LT")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("B")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("X")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("Y")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("PauseText")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("PauseDrone")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("PauseTextDrone")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("YDrone")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("RStick")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("LStickNormal")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("Attack")->drawFlag_ = true;
 	}
 }

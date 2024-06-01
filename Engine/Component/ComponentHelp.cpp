@@ -21,6 +21,7 @@
 #include "StageCollideManageer.h"
 #include "EnemyAttack.h"
 #include "PlayerCommonCamera.h"
+#include "EnemyBackColl.h"
 
 using namespace IFE;
 using namespace std;
@@ -81,6 +82,8 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<EnemyHp>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<EnemyAttack>(str));
+	if (tmp != nullptr)return tmp;
+	tmp = std::move(GetPtr<EnemyBackColl>(str));
 	if (tmp != nullptr)return tmp;
 
 	//ステージギミック

@@ -4,12 +4,14 @@
 #include "IFEMath.h"
 #include "EnemyHp.h"
 #include "enemyAttack.h"
+#include "EnemyBackColl.h"
 #include "IFETime.h"
 
 namespace IFE {
 	//---めっちゃ普通の敵---//
 	class NormalEnemy : public IFE::BaseEnemy
 	{
+		using BaseEnemy::BaseEnemy;					
 	private:
 		//周りを見渡す時間
 		const int32_t WAIT_TIME = 200;
@@ -17,6 +19,9 @@ namespace IFE {
 		const float SEARCH_VELO = 2.5f;
 		//追跡時速度
 		const float CHASE_VELO = 5.0f;
+		//hp
+		const int8_t MAX_HP = 100;
+		const int8_t HIT_COOLTIME = 100;
 		//メンバ変数
 	private:
 		//待機タイマー
@@ -26,15 +31,22 @@ namespace IFE {
 		//次の場所
 		size_t nextPoint;
 		//攻撃時間
-		int32_t attackTime;
+		int8_t attackTime;
 		//警戒時間
-		int32_t warningTime;
+		int8_t warningTime;
 		//発見
 		bool isFound;
 		//hp
-		EnemyHp* hp_ = nullptr;
+		int8_t hp_;
+		int8_t decHp_;
+		bool isHit_;
+		int8_t hitTime_;
+		EnemyHp* hpUI = nullptr;
+		EnemyHp* status_ = nullptr;
 		//攻撃判定クラス
 		EnemyAttack* enemyAttack = nullptr;
+		EnemyBackColl* backColl = nullptr;
+		bool isAttack;
 		//レイヒット記憶変数
 		float rayDist;
 		float preRayDist;
@@ -88,6 +100,16 @@ namespace IFE {
 		void LookAt(Vector3 lookfor);
 
 		/// <summary>
+		/// 体力減少
+		/// </summary>
+		void DecHp();
+
+		/// <summary>
+		/// 一撃で死ぬ
+		/// </summary>
+		void OneShot();
+
+		/// <summary>
 		/// 描画
 		/// </summary>
 		void Draw();
@@ -106,7 +128,8 @@ namespace IFE {
 
 		///-----Getter-----///
 		Vector3 GetPos();
-
+		bool GetIsAttack() { return isAttack; }
+		bool GetIsHit() { return isHit_; }
 
 #ifdef EditorMode
 		/// <summary>
