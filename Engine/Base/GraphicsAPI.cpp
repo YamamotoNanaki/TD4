@@ -48,11 +48,14 @@ GraphicsAPI* IFE::GraphicsAPI::Instance()
 void IFE::GraphicsAPI::Finalize()
 {
 #ifdef _DEBUG
-	//ComPtr<ID3D12DebugDevice> debugInterface = nullptr;
-	//if (SUCCEEDED(sDevice_->QueryInterface(debugInterface.GetAddressOf())))
-	//{
-	//	debugInterface->ReportLiveDeviceObjects(D3D12_RLDO_DETAIL | D3D12_RLDO_IGNORE_INTERNAL);
-	//}
+	{
+		//ComPtr<ID3D12DebugDevice> debugDevice;
+		//if (SUCCEEDED(sDevice_->QueryInterface(IID_PPV_ARGS(&debugDevice))))
+		//{
+		//	debugDevice->ReportLiveDeviceObjects(D3D12_RLDO_DETAIL | D3D12_RLDO_IGNORE_INTERNAL);
+		//	debugDevice->Release();
+		//}
+	}
 #endif
 }
 
@@ -109,6 +112,7 @@ void GraphicsAPI::Initialize(const HWND& hwnd)
 		debugController->EnableDebugLayer();
 		debugController->SetEnableGPUBasedValidation(TRUE);
 	}
+	if (debugController)debugController->Release();
 #endif
 
 	for (size_t i = 0; i < _countof(levels); i++)
