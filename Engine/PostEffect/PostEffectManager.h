@@ -11,6 +11,12 @@ namespace IFE
 		std::list<std::unique_ptr<IPostEffect>>postEffects;
 		IPostEffect* defaultPE;
 	public:
+		PostEffectManager() {}
+		PostEffectManager(const PostEffectManager&) {}
+		PostEffectManager& operator=(const PostEffectManager&) {}
+		~PostEffectManager() {}
+		static PostEffectManager* Instance();
+
 		void Draw();
 		void Update();
 		void Initialize();

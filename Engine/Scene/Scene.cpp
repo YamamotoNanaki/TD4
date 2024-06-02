@@ -34,10 +34,7 @@ void IFE::Scene::Initialize()
 	lightM_->Initialize();
 	sound_->Initialize();
 	cameraM_->Initialize();
-	oldPostEffect = std::make_unique<OldPostEffect>();
-	oldPostEffect->Initialize();
-	oldPostEffect->SetBrightness(0);
-	oldPostEffect->SetContrast(1.25f);
+	postEffectM_->Initialize();
 	SceneInit();
 	objM_->Initialize();
 	spriteM_->Initialize();
@@ -67,13 +64,13 @@ void IFE::Scene::Update()
 
 void IFE::Scene::PostEffectDraw()
 {
-	oldPostEffect->DrawBefore();
+	postEffectM_->ObjectDrawBefore();
 	if (loadEnd_)
 	{
 		objM_->Draw();
 		particleM->Draw();
 	}
-	oldPostEffect->DrawAfter();
+	postEffectM_->ObjectDrawAfter();
 }
 
 void IFE::Scene::Draw()
@@ -82,7 +79,7 @@ void IFE::Scene::Draw()
 	{
 		Sprite::DrawBefore();
 		spriteM_->BackDraw();
-		oldPostEffect->Draw();
+		postEffectM_->Draw();
 		spriteM_->ForeDraw();
 	}
 	else
@@ -109,10 +106,7 @@ void IFE::Scene::Initialize()
 	sound_->Initialize();
 	gui_.Initialize();
 	cameraM_->Initialize();
-	oldPostEffect = std::make_unique<OldPostEffect>();
-	oldPostEffect->Initialize();
-	//oldPostEffect->SetBrightness(0);
-	//oldPostEffect->SetContrast(1.25f);
+	postEffectM_->Initialize();
 	SceneInit();
 	particleM->Initialize();
 }
@@ -153,13 +147,13 @@ void IFE::Scene::Update()
 
 void IFE::Scene::PostEffectDraw()
 {
-	oldPostEffect->DrawBefore();
+	postEffectM_->ObjectDrawBefore();
 	if (loadEnd_)
 	{
 		objM_->Draw();
 		particleM->Draw();
 	}
-	oldPostEffect->DrawAfter();
+	postEffectM_->ObjectDrawAfter();
 }
 
 void IFE::Scene::Draw()
@@ -168,7 +162,7 @@ void IFE::Scene::Draw()
 	{
 		Sprite::DrawBefore();
 		spriteM_->BackDraw();
-		oldPostEffect->Draw();
+		postEffectM_->Draw();
 		spriteM_->ForeDraw();
 		gui_.Draw();
 	}
@@ -230,7 +224,7 @@ void IFE::Scene::SceneInit()
 	particleM->LoadingScene();
 	cameraM_->LoadingScene();
 	lightM_->LoadingScene();
-	oldPostEffect->LoadingScene();
+	//oldPostEffect->LoadingScene();
 }
 
 void IFE::Scene::SceneTransitionIn()
@@ -322,7 +316,7 @@ void IFE::Scene::LoadingScene()
 	particleM->LoadingScene();
 	lightM_->LoadingScene();
 	cameraM_->LoadingScene();
-	oldPostEffect->LoadingScene();
+	//oldPostEffect->LoadingScene();
 	nowScene_ = nextScene_;
 	loadEnd_ = true;
 }
@@ -345,7 +339,7 @@ void IFE::Scene::OutputScene()
 	spriteM_->OutputScene();
 	particleM->OutputScene();
 	cameraM_->OutputScene();
-	oldPostEffect->OutputScene();
+	//oldPostEffect->OutputScene();
 	lightM_->OutputScene();
 }
 #include "imgui.h"
@@ -449,7 +443,7 @@ void IFE::Scene::DebugGUI()
 	cameraM_->DebugGUI();
 	particleM->DebugGUI();
 	lightM_->DebugGUI();
-	oldPostEffect->DebugGUI();
+	//oldPostEffect->DebugGUI();
 }
 
 bool IFE::Scene::SceneCheck(const std::string& sceneName)

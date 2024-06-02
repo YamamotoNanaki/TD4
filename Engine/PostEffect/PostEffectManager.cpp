@@ -1,11 +1,16 @@
 #include "PostEffectManager.h"
 
+using namespace IFE;
+
+PostEffectManager* IFE::PostEffectManager::Instance()
+{
+	static PostEffectManager inst;
+	return &inst;
+}
+
 void IFE::PostEffectManager::Draw()
 {
-	for (auto& itr : postEffects)
-	{
-		itr->PostEffectDraw();
-	}
+	postEffects.back()->PostEffectDraw();
 }
 
 void IFE::PostEffectManager::Update()
@@ -20,6 +25,7 @@ void IFE::PostEffectManager::Initialize()
 {
 	postEffects.push_back(std::move(std::make_unique<DefaultPostEffect>()));
 	defaultPE = postEffects.front().get();
+	defaultPE->PostEffectInitialize();
 }
 
 void IFE::PostEffectManager::ObjectDrawBefore()

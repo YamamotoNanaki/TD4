@@ -248,7 +248,7 @@ void IFE::OldPostEffect::SetVBGame()
 	vb_.Initialize();
 }
 
-#ifdef NDEBUG
+#ifdef InverseEditorMode
 #else
 #include "ImguiManager.h"
 void IFE::OldPostEffect::DebugGUI()

@@ -355,6 +355,7 @@ void IFE::TextureManager::OutputScene()
 	for (uint16_t i = 1; i < 1000; i++)
 	{
 		if (tex_[i].free_ == false)continue;
+		if (tex_[i].name_.find("_Render_") != std::string::npos)continue;
 		js["Texture"][num] = tex_[i].texName_;
 		num++;
 	}

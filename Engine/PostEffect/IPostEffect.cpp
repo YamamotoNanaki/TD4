@@ -15,11 +15,12 @@ void IFE::IPostEffect::SetInitParams(int16_t texSize)
 
 void IFE::IPostEffect::PostEffectInitialize()
 {
+	if (texSize_ == 0)SetInitParams(1);
 	HRESULT result;
 
 	ID3D12Device* device = GraphicsAPI::Instance()->GetDevice();
-	//uint32_t w = WindowsAPI::Instance()->winWidth_;
-	//uint32_t h = WindowsAPI::Instance()->winHeight_;
+	uint32_t w = WindowsAPI::Instance()->winWidth_;
+	uint32_t h = WindowsAPI::Instance()->winHeight_;
 
 	Sprite::Initialize();
 
@@ -48,6 +49,30 @@ void IFE::IPostEffect::PostEffectInitialize()
 	{
 		device->CreateRenderTargetView(tex_[i]->texbuff_.Get(), nullptr, CD3DX12_CPU_DESCRIPTOR_HANDLE(descHeapRTV->GetCPUDescriptorHandleForHeapStart(), i, device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV)));
 	}
+
+	CD3DX12_RESOURCE_DESC depthResDesc = CD3DX12_RESOURCE_DESC::Tex2D(
+		DXGI_FORMAT_D32_FLOAT, w, h, 1, 0, 1, 0, D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL);
+
+	D3D12_HEAP_PROPERTIES e = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
+	D3D12_CLEAR_VALUE f = CD3DX12_CLEAR_VALUE(DXGI_FORMAT_D32_FLOAT, 1.0f, 0);
+
+	result = device->CreateCommittedResource(&e, D3D12_HEAP_FLAG_NONE,
+		&depthResDesc, D3D12_RESOURCE_STATE_DEPTH_WRITE, &f, IID_PPV_ARGS(&depthBuff));
+
+	assert(SUCCEEDED(result));
+
+	D3D12_DESCRIPTOR_HEAP_DESC DescHeapDesc{};
+	DescHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_DSV;
+	DescHeapDesc.NumDescriptors = 1;
+
+	result = device->CreateDescriptorHeap(&DescHeapDesc, IID_PPV_ARGS(&descHeapDSV));
+	assert(SUCCEEDED(result));
+
+	D3D12_DEPTH_STENCIL_VIEW_DESC dsvDesc = {};
+	dsvDesc.Format = DXGI_FORMAT_D32_FLOAT;
+	dsvDesc.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
+
+	device->CreateDepthStencilView(depthBuff.Get(), &dsvDesc, descHeapDSV->GetCPUDescriptorHandleForHeapStart());
 
 	Initialize();
 }
