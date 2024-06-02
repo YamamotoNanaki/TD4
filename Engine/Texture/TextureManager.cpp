@@ -4,6 +4,7 @@
 #include "JsonManager.h"
 #include "Debug.h"
 #include "ImguiManager.h"
+#include "WindowsAPI.h"
 #include <d3d12.h>
 #include <d3dx12.h>
 #include <DirectXTex.h>
@@ -52,6 +53,9 @@ void IFE::TextureManager::Initialize()
 		tex_[i].name_.clear();
 		tex_[i].free_ = false;
 	}
+	startCPUAddress_ = srvHeap_->GetCPUDescriptorHandleForHeapStart().ptr;
+	startGPUAddress_ = srvHeap_->GetGPUDescriptorHandleForHeapStart().ptr;
+	descriptorSize_ = GraphicsAPI::GetDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 }
 
 Texture* IFE::TextureManager::GetTexture(const std::string& filename)
@@ -209,9 +213,8 @@ Texture* IFE::TextureManager::LoadTexture(const std::string& filename, int32_t n
 
 	intermediateResource->Release();
 
-	auto descriptorSize = device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-	newtex.CPUHandle_ = CD3DX12_CPU_DESCRIPTOR_HANDLE(srvHeap_->GetCPUDescriptorHandleForHeapStart(), num, descriptorSize);
-	newtex.GPUHandle_ = CD3DX12_GPU_DESCRIPTOR_HANDLE(srvHeap_->GetGPUDescriptorHandleForHeapStart(), num, descriptorSize);
+	newtex.CPUHandle_.ptr = startCPUAddress_ + num * descriptorSize_;
+	newtex.GPUHandle_.ptr = startGPUAddress_ + num * descriptorSize_;
 	newtex.free_ = true;
 
 	tex_[num] = newtex;
@@ -226,6 +229,79 @@ Texture* IFE::TextureManager::LoadTexture(const std::string& filename, int32_t n
 	srvDesc.Texture2D.MipLevels = resDesc2.MipLevels;
 
 	//ヒープの２番目にシェーダーリソースビュー作成
+	device->CreateShaderResourceView(
+		tex_[num].texbuff_.Get(),		//ビューと関連付けるバッファ
+		&srvDesc,		//テクスチャ設定情報
+		tex_[num].CPUHandle_);
+
+	textureSize_++;
+	return &tex_[num];
+}
+
+Texture* IFE::TextureManager::CreateRanderTexture(const std::string& texname)
+{
+	assert(textureSize_ < sTEX_MAX_ && "ヒープサイズが足りません");
+
+	//WICテクスチャのロード
+	TexMetadata metadata{};
+	ScratchImage scratchImg{};
+	HRESULT result;
+	auto device = GraphicsAPI::GetDevice();
+	uint32_t w = WindowsAPI::Instance()->winWidth_;
+	uint32_t h = WindowsAPI::Instance()->winHeight_;
+
+	uint16_t num = 200;
+	for (uint16_t i = 200; i < 1000; i++)
+	{
+		if (tex_[i].free_ == false)continue;
+		if (tex_[i].texName_ == texname)return &tex_[i];
+	}
+
+	for (uint16_t i = 200; i < 1000; i++)
+	{
+		if (tex_[i].free_ == false)
+		{
+			num = i;
+			break;
+		}
+	}
+	D3D12_HEAP_PROPERTIES c{};
+	c.Type = D3D12_HEAP_TYPE_DEFAULT;
+	D3D12_CLEAR_VALUE clearValue;
+	D3D12_RESOURCE_STATES states;
+
+	D3D12_RESOURCE_DESC texresDesc{};
+	static const float clearColor[4] = { 0,0,0,0.0f };
+	texresDesc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
+	texresDesc.Width = w;
+	texresDesc.Height = h;
+	texresDesc.DepthOrArraySize = 1;
+	texresDesc.MipLevels = 1;
+	texresDesc.SampleDesc.Count = 1;
+	texresDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+	texresDesc.Flags = D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET;
+	clearValue = CD3DX12_CLEAR_VALUE(DXGI_FORMAT_R8G8B8A8_UNORM_SRGB, clearColor);
+	states = D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE;
+
+	result = device->CreateCommittedResource(
+		&c, D3D12_HEAP_FLAG_NONE, &texresDesc, states,
+		&clearValue, IID_PPV_ARGS(&tex_[num].texbuff_));
+	assert(SUCCEEDED(result));
+
+	tex_[num].CPUHandle_.ptr = startCPUAddress_ + num * descriptorSize_;
+	tex_[num].GPUHandle_.ptr = startGPUAddress_ + num * descriptorSize_;
+	tex_[num].free_ = true;
+	tex_[num].texName_ = texname;
+	tex_[num].name_ = texname;
+
+	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc{};			//設定構造体
+	srvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;					//画像読み込み
+
+	srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+	srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;		//2dテクスチャ
+	srvDesc.Texture2D.MipLevels = 1;
+
+	//ヒープのnum番目にシェーダーリソースビュー作成
 	device->CreateShaderResourceView(
 		tex_[num].texbuff_.Get(),		//ビューと関連付けるバッファ
 		&srvDesc,		//テクスチャ設定情報
@@ -257,9 +333,9 @@ void IFE::TextureManager::DebugGUI()
 	if (load)
 	{
 		std::function<void(std::string)> guiFunc = [&](std::string filename)
-		{
-			LoadTexture(filename);
-		};
+			{
+				LoadTexture(filename);
+			};
 		im->TextureLoadGUI(guiFunc);
 	}
 	if (search)

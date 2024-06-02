@@ -12,7 +12,7 @@ namespace IFE
 	};
 	enum class PIPELINE_SETTING
 	{
-		Normal = 0, Anim = 20, Transparent = 40, SPrite = 100
+		Normal = 0, Anim = 20, Transparent = 40, SPrite = 100, PostEffect = 200
 	};
 	class GraphicsPipelineManager
 	{
@@ -39,6 +39,9 @@ namespace IFE
 			D3D12_GRAPHICS_PIPELINE_STATE_DESC pipelineDesc, uint8_t pipelineNum);
 		GraphicsPipeline* GetGraphicsPipeline(const std::string& name);
 		ID3DBlob* GetBlob(uint8_t num);
+
+		GraphicsPipeline* CreateDefaultPostEffectPipeLine();
+
 
 	private:
 		GraphicsPipelineManager() {}

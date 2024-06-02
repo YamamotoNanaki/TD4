@@ -1,35 +1,43 @@
 #pragma once
 #include "Sprite.h"
 #include "ConstBuffer.h"
-#include "EditorMode.h"
+#include "GraphicsPipeline.h"
 
 namespace IFE
 {
 	class IPostEffect : public Sprite
 	{
-	private:
-		Microsoft::WRL::ComPtr<ID3D12Resource>texBuff[3];
-		Microsoft::WRL::ComPtr<ID3D12Resource>depthTex;
-		Microsoft::WRL::ComPtr<ID3D12DescriptorHeap>descHeapSRV;
+	protected:
+		Microsoft::WRL::ComPtr<ID3D12DescriptorHeap>depthSRV;
 		Microsoft::WRL::ComPtr<ID3D12Resource>depthBuff;
 		Microsoft::WRL::ComPtr<ID3D12DescriptorHeap>descHeapRTV;
 		Microsoft::WRL::ComPtr<ID3D12DescriptorHeap>descHeapDSV;
 		Microsoft::WRL::ComPtr<ID3D12PipelineState>pipelineState;
 		Microsoft::WRL::ComPtr<ID3D12PipelineState>pipelineStateAdd;
 		Microsoft::WRL::ComPtr<ID3D12RootSignature>rootSignature;
-		ConstBuffer<ConstBufferPostEffect> buffer_;
 
 	public:
-		ConstBufferPostEffect* constMapPostEffect = nullptr;
+		std::string name;
 
-	private:
-		inline static const float clearColor[4] = {0,0,0,0};
+	protected:
+		inline static const float clearColor[4] = { 0,0,0,0 };
+		std::vector<Texture*>tex_;
+		int16_t texSize_ = 0;
+		GraphicsPipeline* gp_;
 
-		void Draw();
-		void Update();
-		void Initialize();
-		void DrawBefore();
-		void DrawAfter();
-		void CreateGraphicsPipelineState();
+	protected:
+		virtual void Draw() = 0;
+		virtual void Update() {};
+		virtual void Initialize() {};
+		virtual void DrawBefore() {};
+		virtual void DrawAfter() {};
+
+	public:
+		void SetInitParams(int16_t texSize);
+		void PostEffectInitialize();
+		void PostEffectUpdate();
+		void PostEffectDraw();
+		void PostEffectDrawBefore();
+		void PostEffectDrawAfter();
 	};
 }

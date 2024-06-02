@@ -2,17 +2,20 @@
 #include "IPostEffect.h"
 #include <list>
 #include "EditorMode.h"
+#include "DefaultPostEffect.h"
 
 namespace IFE
 {
 	class PostEffectManager
 	{
-		std::list<IPostEffect>postEffects;
+		std::list<std::unique_ptr<IPostEffect>>postEffects;
+		IPostEffect* defaultPE;
 	public:
 		void Draw();
 		void Update();
 		void Initialize();
-		void DrawBefore();
-		void DrawAfter();
+		void ObjectDrawBefore();
+		void ObjectDrawAfter();
+		void Finalize();
 	};
 }

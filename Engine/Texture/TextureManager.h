@@ -13,6 +13,9 @@ namespace IFE
 
 		D3D12_DESCRIPTOR_RANGE descRangeSRV_{};
 		Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> srvHeap_ = nullptr;
+		size_t startCPUAddress_;
+		size_t startGPUAddress_;
+		size_t descriptorSize_;
 		std::array<Texture, sTEX_MAX_> tex_;
 
 	public:
@@ -20,6 +23,7 @@ namespace IFE
 		void Initialize();
 		Texture* GetTexture(const std::string& filename);
 		Texture* LoadTexture(const std::string& filename, int32_t number = -1);
+		Texture* CreateRanderTexture(const std::string& texname);
 		void TexReset() {};
 
 

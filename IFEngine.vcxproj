@@ -58,6 +58,7 @@
     <ClCompile Include="Engine\Particle\Emitter.cpp" />
     <ClCompile Include="Engine\Particle\Particle.cpp" />
     <ClCompile Include="Engine\Particle\ParticleManager.cpp" />
+    <ClCompile Include="Engine\PostEffect\DefaultPostEffect.cpp" />
     <ClCompile Include="Engine\PostEffect\IPostEffect.cpp" />
     <ClCompile Include="Engine\PostEffect\OldPostEffect.cpp" />
     <ClCompile Include="Engine\PostEffect\PostEffectManager.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Engine\Particle\Emitter.h" />
     <ClInclude Include="Engine\Particle\Particle.h" />
     <ClInclude Include="Engine\Particle\ParticleManager.h" />
+    <ClInclude Include="Engine\PostEffect\DefaultPostEffect.h" />
     <ClInclude Include="Engine\PostEffect\IPostEffect.h" />
     <ClInclude Include="Engine\PostEffect\OldPostEffect.h" />
     <ClInclude Include="Engine\PostEffect\PostEffectManager.h" />
@@ -180,6 +182,7 @@
     <ClInclude Include="Source\UI\EnemyHp.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\Shaders\DefaultPE.hlsli" />
     <None Include="Data\Shaders\Model.hlsli" />
     <None Include="Data\Shaders\ModelAnim.hlsli" />
     <None Include="Data\Shaders\Particle.hlsli" />
@@ -188,6 +191,18 @@
     <None Include="Data\Shaders\Util.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Data\Shaders\DefaultPEPS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\DefaultPEVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
     <FxCompile Include="Data\Shaders\ModelAnimGS.hlsl">
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Geometry</ShaderType>

@@ -391,6 +391,9 @@
     <ClCompile Include="PlayerAttack.cpp">
       <Filter>ソース ファイル\Source\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\PostEffect\DefaultPostEffect.cpp">
+      <Filter>ソース ファイル\Engine\PostEffect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -658,6 +661,9 @@
     <ClInclude Include="PlayerAttack.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\PostEffect\DefaultPostEffect.h">
+      <Filter>ヘッダー ファイル\Engine\PostEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Shaders\Particle.hlsli">
@@ -676,6 +682,9 @@
       <Filter>シェーダーファイル</Filter>
     </None>
     <None Include="Data\Shaders\ModelAnim.hlsli">
+      <Filter>シェーダーファイル</Filter>
+    </None>
+    <None Include="Data\Shaders\DefaultPE.hlsli">
       <Filter>シェーダーファイル</Filter>
     </None>
   </ItemGroup>
@@ -720,6 +729,12 @@
       <Filter>シェーダーファイル</Filter>
     </FxCompile>
     <FxCompile Include="Data\Shaders\testCS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\DefaultPEPS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\DefaultPEVS.hlsl">
       <Filter>シェーダーファイル</Filter>
     </FxCompile>
   </ItemGroup>
