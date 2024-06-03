@@ -69,16 +69,16 @@ void PlayerAction::Move()
 	const float speed = 10.0f;
 
 	//正面ベクトルの作成
-	cameraFrontVec_ = transform_->position_ - actionCamera_->transform_->eye_;
-	cameraFrontVec_.Normalize();
+	frontVec_ = transform_->position_ - actionCamera_->transform_->eye_;
+	frontVec_.Normalize();
 	//仮ベクトル
 	temporaryVec_ = { 0,1,0 };
 	//右ベクトルの作成
-	rightVec_ = cameraFrontVec_.Cross(temporaryVec_);
+	rightVec_ = frontVec_.Cross(temporaryVec_);
 	rightVec_.Normalize();
 
 	//今回はY軸の動きは無くて良い
-	cameraFrontVec_.y = 0.0f;
+	frontVec_.y = 0.0f;
 	rightVec_.y = 0.0f;
 
 #pragma region キーボード
@@ -91,16 +91,16 @@ void PlayerAction::Move()
 		transform_->position_ -= rightVec_ * speed * IFE::IFETime::sDeltaTime_;
 	}if (IFE::Input::GetKeyPush(IFE::Key::W))
 	{
-		transform_->position_ += cameraFrontVec_ * speed * IFE::IFETime::sDeltaTime_;
+		transform_->position_ += frontVec_ * speed * IFE::IFETime::sDeltaTime_;
 	}if (IFE::Input::GetKeyPush(IFE::Key::S))
 	{
-		transform_->position_ -= cameraFrontVec_ * speed * IFE::IFETime::sDeltaTime_;
+		transform_->position_ -= frontVec_ * speed * IFE::IFETime::sDeltaTime_;
 	}
 #pragma endregion キーボード
 
 #pragma region コントローラー
 	transform_->position_ -= IFE::Input::GetLXAnalog(controllerRange_) * rightVec_ * speed * IFE::IFETime::sDeltaTime_;
-	transform_->position_ += IFE::Input::GetLYAnalog(controllerRange_) * cameraFrontVec_ * speed * IFE::IFETime::sDeltaTime_;
+	transform_->position_ += IFE::Input::GetLYAnalog(controllerRange_) * frontVec_ * speed * IFE::IFETime::sDeltaTime_;
 #pragma endregion
 }
 
@@ -119,6 +119,11 @@ const bool PlayerAction::GetAttackFlag()
 	return attackFlag_;
 }
 
+const IFE::Vector3 PlayerAction::GetFrontVec()
+{
+	return frontVec_;
+}
+
 void PlayerAction::Rotation()
 {
 	float lx = IFE::Input::GetLXAnalog(controllerRange_);
@@ -128,7 +133,7 @@ void PlayerAction::Rotation()
 	if (lx != 0 || ly != 0)
 	{
 		//方向ベクトルの角度+コントローラーの角度
-		angleY = IFE::ConvertToDegrees(std::atan2(cameraFrontVec_.x, cameraFrontVec_.z) + std::atan2(lx, ly));
+		angleY = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(lx, ly));
 		transform_->eulerAngleDegrees_.y = angleY;
 	}
 }
