@@ -4,8 +4,9 @@
 
 void IFE::EnemyBackColl::Initialize()
 {
-	objectPtr_->DrawFlag_ = false;
+	/*objectPtr_->DrawFlag_ = false;*/
 	objectPtr_->AddComponent<IFE::Collider>();
+	objectPtr_->SetColor({ 0,1,0,1 });
 	auto ptr = objectPtr_->GetComponent<IFE::Collider>()->AddCollider();
 	ptr->SetNoPushBackFlag(true);
 }

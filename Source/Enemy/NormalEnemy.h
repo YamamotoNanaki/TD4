@@ -21,7 +21,7 @@ namespace IFE {
 		const float CHASE_VELO = 5.0f;
 		//hp
 		const int8_t MAX_HP = 100;
-		const int8_t HIT_COOLTIME = 100;
+		const int8_t HIT_COOLTIME = 20;
 		//メンバ変数
 	private:
 		//待機タイマー
@@ -30,12 +30,14 @@ namespace IFE {
 		std::vector<Float3> points;
 		//次の場所
 		size_t nextPoint;
+		Vector3 frontVec;
 		//攻撃時間
-		int8_t attackTime;
+		int32_t attackTime;
 		//警戒時間
 		int8_t warningTime;
 		//発見
 		bool isFound;
+		Vector3 lookfor;
 		//hp
 		int8_t hp_;
 		int8_t decHp_;
@@ -45,7 +47,6 @@ namespace IFE {
 		EnemyHp* status_ = nullptr;
 		//攻撃判定クラス
 		EnemyAttack* enemyAttack = nullptr;
-		EnemyBackColl* backColl = nullptr;
 		bool isAttack;
 		//レイヒット記憶変数
 		float rayDist;
@@ -97,7 +98,7 @@ namespace IFE {
 		/// <summary>
 		/// プレイヤーの方を向かせる
 		/// </summary>
-		void LookAt(Vector3 lookfor);
+		void LookAt();
 
 		/// <summary>
 		/// 体力減少
@@ -128,8 +129,10 @@ namespace IFE {
 
 		///-----Getter-----///
 		Vector3 GetPos();
+		bool GetBack();
 		bool GetIsAttack() { return isAttack; }
 		bool GetIsHit() { return isHit_; }
+		bool GetIsFound() { return isFound; }
 
 #ifdef EditorMode
 		/// <summary>
