@@ -245,6 +245,7 @@ ColliderCore* IFE::Collider::GetCollider(uint32_t num)
 			{
 				return itr.get();
 			}
+			i++;
 		}
 	}
 	return nullptr;

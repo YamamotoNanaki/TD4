@@ -24,6 +24,7 @@ void IFE::EnemyManager::Initialize()
 			col1->SetColliderType(ColliderType::SPHERE);
 			col1->attribute_ = uint16_t(Attribute::ENEMYS);
 			col1->SetPushBackFlag(true);
+			col1->SetGroundJudgeFlag(true);
 			enemyList_.push_back(enemy);
 		}
 	}

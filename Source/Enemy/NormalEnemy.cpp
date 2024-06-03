@@ -22,7 +22,7 @@ void IFE::NormalEnemy::Initialize()
 	decHp_ = 0;
 	isHit_ = false;
 	hitTime_ = 0;
-	objectPtr_->SetColor({1, 0, 1, 1});
+	objectPtr_->SetColor({ 1, 0, 1, 1 });
 	frontVec = { 0,0,0 };
 	lookfor = { 0,0,0 };
 	//HPUI
@@ -35,13 +35,13 @@ void IFE::NormalEnemy::Initialize()
 		ptr->AddComponent<EnemyHp>();
 		status_ = ptr->GetComponent<EnemyHp>();
 	}
-	
+
 	//UŒ‚
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyAttack", ModelManager::Instance()->GetModel("dice"));
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
 	enemyAttack->transform_->parent_ = transform_;
-	enemyAttack->objectPtr_->transform_->position_ = {0, 0, 2};
+	enemyAttack->objectPtr_->transform_->position_ = { 0, 0, 2 };
 }
 
 void IFE::NormalEnemy::ChangeState()
@@ -98,7 +98,7 @@ void IFE::NormalEnemy::Update()
 		}
 	}
 	//hp•\¦
-	hpUI->Update(transform_->position_,hp_,decHp_);
+	hpUI->Update(transform_->position_, hp_, decHp_);
 	status_->IconUpdate(transform_->position_);
 	//€–S
 	if (hpUI->GetIsDead() == true) {
@@ -106,6 +106,13 @@ void IFE::NormalEnemy::Update()
 		status_->objectPtr_->Destroy();
 		enemyAttack->objectPtr_->Destroy();
 		objectPtr_->Destroy();
+	}
+
+
+	//d—Í
+	if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
+	{
+		transform_->position_.y -= 4.9f * IFETime::sDeltaTime_;
 	}
 }
 
@@ -232,7 +239,7 @@ void IFE::NormalEnemy::Attack()
 		enemyAttack->objectPtr_->DrawFlag_ = false;
 		enemyAttack->objectPtr_->transform_->position_ = { 0, -10, 0 };
 	}
-	else if(attackTime == 150) {
+	else if (attackTime == 150) {
 		attackTime = 0;
 		state = CHASE;
 	}
@@ -245,7 +252,7 @@ void IFE::NormalEnemy::LookAt()
 	frontVec = lookfor - ePos;
 	//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄY²‚Ì‰ñ“]
 	float radY = std::atan2(frontVec.x, frontVec.z);
-	transform_->eulerAngleDegrees_={ ePos.x,radY * 180.0f / (float)PI,ePos.z };
+	transform_->eulerAngleDegrees_ = { ePos.x,radY * 180.0f / (float)PI,ePos.z };
 	//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄX²‚Ì‰ñ“]
 	Vector3 rotaVec = { frontVec.x,0,frontVec.z };
 	float length = rotaVec.Length();
