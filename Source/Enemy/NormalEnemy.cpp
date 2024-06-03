@@ -87,7 +87,6 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::Update()
 {
-	GetBack();
 	if (isFound == false && hitColl_ != nullptr) {
 		if (rayDist == 0) {
 			rayDist = preRayDist;
