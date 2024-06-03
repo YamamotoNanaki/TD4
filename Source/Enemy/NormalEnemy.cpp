@@ -23,6 +23,8 @@ void IFE::NormalEnemy::Initialize()
 	isHit_ = false;
 	hitTime_ = 0;
 	objectPtr_->SetColor({1, 0, 1, 1});
+	frontVec = { 0,0,0 };
+	lookfor = { 0,0,0 };
 	//HPUI
 	if (!hpUI)
 	{
@@ -85,6 +87,7 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::Update()
 {
+	GetBack();
 	if (isFound == false && hitColl_ != nullptr) {
 		if (rayDist == 0) {
 			rayDist = preRayDist;
@@ -158,7 +161,8 @@ void IFE::NormalEnemy::Search()
 {
 	//ポイント1以上
 	if (points.size() > 0) {
-		LookAt(points[nextPoint]);
+		lookfor = points[nextPoint];
+		LookAt();
 		//経由地点を補間(現状ループするだけ)
 		Vector3 dirVec = points[nextPoint] - transform_->position_;
 		dirVec.Normalize();
@@ -194,7 +198,8 @@ void IFE::NormalEnemy::Chase()
 	Vector3 ePos = transform_->position_;
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
 	//playerの方を向く
-	LookAt(pPos);
+	lookfor = pPos;
+	LookAt();
 	Vector3 addVec = pPos - ePos;
 	addVec.Normalize();
 	transform_->position_ += (addVec * CHASE_VELO * IFE::IFETime::sDeltaTime_);
@@ -230,21 +235,21 @@ void IFE::NormalEnemy::Attack()
 	if (enemyAttack->objectPtr_->DrawFlag_ == false) {
 		isAttack = false;
 	}
-	if (attackTime == 100) {
+	if (attackTime == 50) {
 		enemyAttack->objectPtr_->DrawFlag_ = false;
 		enemyAttack->objectPtr_->transform_->position_ = { 0, -10, 0 };
 	}
-	else if(attackTime == 200) {
+	else if(attackTime == 150) {
 		attackTime = 0;
 		state = CHASE;
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
 
-void IFE::NormalEnemy::LookAt(Vector3 lookfor)
+void IFE::NormalEnemy::LookAt()
 {
 	Vector3 ePos = transform_->position_;
-	Vector3 frontVec = lookfor - ePos;
+	frontVec = lookfor - ePos;
 	//カメラ方向に合わせてY軸の回転
 	float radY = std::atan2(frontVec.x, frontVec.z);
 	transform_->eulerAngleDegrees_={ ePos.x,radY * 180.0f / (float)PI,ePos.z };
@@ -299,6 +304,17 @@ void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hit
 IFE::Vector3 IFE::NormalEnemy::GetPos() {
 	Vector3 temp = transform_->position_;
 	return temp;
+}
+
+bool IFE::NormalEnemy::GetBack()
+{
+	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
+	float result = pFront.Dot(frontVec);
+	//+なら後ろ
+	if (result > 0) {
+		return true;
+	}
+	return false;
 }
 
 void IFE::NormalEnemy::Finalize()
