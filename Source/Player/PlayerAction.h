@@ -12,7 +12,6 @@ private:
 	IFE::Vector3 pos_ = { 0,0,0 };
 
 	//正面ベクトルの作成
-	IFE::Vector3 cameraFrontVec_ = {};
 	IFE::Vector3 frontVec_ = {};
 	//仮ベクトル
 	IFE::Vector3 temporaryVec_ = { 0,1,0 };
@@ -84,6 +83,8 @@ public:
 	/// </summary>
 	/// <returns></returns>
 	const bool GetAttackFlag();
+
+	const IFE::Vector3 GetFrontVec();
 
 private:
 
