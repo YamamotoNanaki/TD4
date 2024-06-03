@@ -131,12 +131,12 @@ void PlayerDrone::Move()
 	if (slowSpeedMode_ == false)
 	{
 		decelerationSpeed = 0.5f;
-		maxSpeed = 5.0f;
+		maxSpeed = 10.0f;
 	}
 	else
 	{
 		decelerationSpeed = 0.25f;
-		maxSpeed = 2.5f;
+		maxSpeed = 5.0f;
 	}
 
 	SpeedZero(moveValue_.x, decelerationSpeed);
@@ -155,7 +155,7 @@ void PlayerDrone::Move()
 
 void PlayerDrone::Rotation()
 {
-	const float cameraRotSpeed = 80.0f * IFE::IFETime::sDeltaTime_;
+	const float cameraRotSpeed = 100.0f * IFE::IFETime::sDeltaTime_;
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
 	{
