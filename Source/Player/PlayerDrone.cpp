@@ -105,10 +105,10 @@ void PlayerDrone::Move()
 	moveValue_ -= IFE::Input::GetLXAnalog(controllerRange_) * rightVec;
 	moveValue_ += IFE::Input::GetLYAnalog(controllerRange_) * frontVec_;
 
-	if (IFE::Input::PadPush(IFE::PADCODE::RSHOULDER))
+	if (IFE::Input::GetRTrigger())
 	{
 		moveValue_.y++;
-	}if (IFE::Input::PadPush(IFE::PADCODE::LSHOULDER))
+	}if (IFE::Input::GetLTrigger())
 	{
 		moveValue_.y--;
 	}
