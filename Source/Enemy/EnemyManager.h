@@ -2,17 +2,15 @@
 #include "NormalEnemy.h"
 
 namespace IFE {
-	class EnemyManager
+	class EnemyManager : public IFE::Component
 	{
 	//メンバ変数
 	private:
 		//敵リスト
-		std::list<std::unique_ptr<NormalEnemy>> enemyList_;
-
+		std::list<NormalEnemy*> enemyList_;
 
 	//メンバ関数
 	public:
-		
 
 		/// <summary>
 		/// 初期化
@@ -25,22 +23,22 @@ namespace IFE {
 		void Update();
 
 		/// <summary>
-		/// 描画
-		/// </summary>
-		void Draw();
-
-		/// <summary>
 		/// リスト取得
 		/// </summary>
 		/// <returns></returns>
-		std::list<std::unique_ptr<NormalEnemy>>* GetEnemyList() { return &enemyList_; };
+		std::list<NormalEnemy*>* GetEnemyList() { return &enemyList_; };
 
 		/// <summary>
 		/// 終了
 		/// </summary>
-		void Finalize();
+		//void Finalize();
 
+#ifdef EditorMode
+	public:
 		//
 		void ComponentDebugGUI();
+		void OutputComponent(nlohmann::json& json);
+#endif
+		void LoadingComponent(nlohmann::json& json);
 	};
 }

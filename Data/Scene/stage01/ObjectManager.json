@@ -262,24 +262,6 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 0,
-                    "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": true
-                },
-                {
-                    "attribute": 0,
-                    "colliderType": 2,
-                    "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": false
-                }
-            ]
-        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -351,8 +333,7 @@
             "Transform",
             "TransferGeometryBuffer",
             "Material",
-            "NormalEnemy",
-            "Collider"
+            "NormalEnemy"
         ],
         "drawFlag": true,
         "model": "normalEnemyModel_Model",
@@ -9221,24 +9202,6 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 4,
-                    "colliderType": 2,
-                    "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": false
-                },
-                {
-                    "attribute": 0,
-                    "colliderType": 0,
-                    "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": true
-                }
-            ]
-        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -9310,16 +9273,15 @@
             "Transform",
             "TransferGeometryBuffer",
             "Material",
-            "NormalEnemy",
-            "Collider"
+            "NormalEnemy"
         ],
         "drawFlag": true,
-        "model": "dice_Model",
+        "model": "normalEnemyModel_Model",
         "name": "normalEnemy1",
         "prefab": false
     },
     {
-        "EnemyAttack": null,
+        "EnemyManager": null,
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -9328,8 +9290,8 @@
             ],
             "bloom": false,
             "color": [
-                0.0,
-                0.0,
+                1.0,
+                1.0,
                 1.0,
                 1.0
             ],
@@ -9357,12 +9319,12 @@
             "position": [
                 0.0,
                 0.0,
-                2.0
+                0.0
             ],
             "rotation": [
-                0.0,
-                0.0,
-                0.0
+                360.0,
+                360.0,
+                360.0
             ],
             "scale": [
                 1.0,
@@ -9371,14 +9333,14 @@
             ]
         },
         "component": [
-            "EnemyAttack",
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "EnemyManager"
         ],
         "drawFlag": false,
         "model": "dice_Model",
-        "name": "EnemyAttack",
+        "name": "EnemyManager",
         "prefab": false
     }
 ]
