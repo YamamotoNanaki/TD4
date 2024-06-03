@@ -1,5 +1,8 @@
 #include "PostEffectManager.h"
 
+//Œã‚ÅÁ‚¹
+#include "EnemyHighlighting.h"
+
 using namespace IFE;
 
 PostEffectManager* IFE::PostEffectManager::Instance()
@@ -10,7 +13,13 @@ PostEffectManager* IFE::PostEffectManager::Instance()
 
 void IFE::PostEffectManager::Draw()
 {
-	postEffects.back()->PostEffectDraw();
+	for (auto& itr : postEffects)
+	{
+		if (itr->drawFlag_)
+		{
+			itr->PostEffectDraw();
+		}
+	}
 }
 
 void IFE::PostEffectManager::Update()
@@ -26,6 +35,9 @@ void IFE::PostEffectManager::Initialize()
 	postEffects.push_back(std::move(std::make_unique<DefaultPostEffect>()));
 	defaultPE = postEffects.front().get();
 	defaultPE->PostEffectInitialize();
+	postEffects.push_back(std::move(std::make_unique<EnemyHighlighting>()));
+	postEffects.back()->SetInitParams(2);
+	postEffects.back()->PostEffectInitialize();
 }
 
 void IFE::PostEffectManager::ObjectDrawBefore()
@@ -42,4 +54,13 @@ void IFE::PostEffectManager::Finalize()
 {
 	postEffects.clear();
 	defaultPE = nullptr;
+}
+
+IPostEffect* IFE::PostEffectManager::GetPostEffect(std::string name)
+{
+	for (auto& itr : postEffects)
+	{
+		if (itr->name_ == name)return itr.get();
+	}
+	return nullptr;
 }

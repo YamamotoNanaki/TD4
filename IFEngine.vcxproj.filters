@@ -163,6 +163,12 @@
     <Filter Include="ソース ファイル\Source\UI">
       <UniqueIdentifier>{46e0458c-4097-4051-9109-ef586efa19ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Source\PostEffect">
+      <UniqueIdentifier>{b9a72338-e8d9-4918-b946-e93e2b2134f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Source\PostEffect">
+      <UniqueIdentifier>{a9721437-25e9-4ad6-b3d5-ccc2e5912608}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp">
@@ -393,6 +399,9 @@
     </ClCompile>
     <ClCompile Include="Engine\PostEffect\DefaultPostEffect.cpp">
       <Filter>ソース ファイル\Engine\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PostEffect\EnemyHighlighting.cpp">
+      <Filter>ソース ファイル\Source\PostEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -664,6 +673,9 @@
     <ClInclude Include="Engine\PostEffect\DefaultPostEffect.h">
       <Filter>ヘッダー ファイル\Engine\PostEffect</Filter>
     </ClInclude>
+    <ClInclude Include="Source\PostEffect\EnemyHighlighting.h">
+      <Filter>ヘッダー ファイル\Source\PostEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Shaders\Particle.hlsli">
@@ -685,6 +697,9 @@
       <Filter>シェーダーファイル</Filter>
     </None>
     <None Include="Data\Shaders\DefaultPE.hlsli">
+      <Filter>シェーダーファイル</Filter>
+    </None>
+    <None Include="Data\Shaders\EnemyHighlighting.hlsli">
       <Filter>シェーダーファイル</Filter>
     </None>
   </ItemGroup>
@@ -735,6 +750,12 @@
       <Filter>シェーダーファイル</Filter>
     </FxCompile>
     <FxCompile Include="Data\Shaders\DefaultPEVS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\EnemyHighlightingPS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\EnemyHighlightingVS.hlsl">
       <Filter>シェーダーファイル</Filter>
     </FxCompile>
   </ItemGroup>

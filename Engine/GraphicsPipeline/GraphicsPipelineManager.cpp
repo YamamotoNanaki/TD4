@@ -785,19 +785,27 @@ ID3DBlob* IFE::GraphicsPipelineManager::GetBlob(uint8_t num)
 
 GraphicsPipeline* IFE::GraphicsPipelineManager::CreateDefaultPostEffectPipeLine()
 {
-	string vs = defaultDirectory_ + "DefaultPEVS.hlsl";
+	return CreatePostEffectPipeLine("DefaultPEVS", "DefaultPEPS", "defaultPostEffect", 1, 2);
+}
+
+GraphicsPipeline* IFE::GraphicsPipelineManager::CreatePostEffectPipeLine(std::string v, std::string p, std::string name, int16_t inputTexNum, int16_t outputTexNum)
+{
+	string vs = defaultDirectory_ + v + ".hlsl";
 	ShaderCompile(vs, SHADER_COMPILE_SETTINGS::Vertex);
-	string ps = defaultDirectory_ + "DefaultPEPS.hlsl";
+	string ps = defaultDirectory_ + p + ".hlsl";
 	ShaderCompile(ps, SHADER_COMPILE_SETTINGS::Pixel);
 
-	CD3DX12_ROOT_PARAMETER rootParams[2];
+	std::vector<CD3DX12_ROOT_PARAMETER> rootParams;
 	// デスクリプタレンジ
-	CD3DX12_DESCRIPTOR_RANGE descRangeSRV0;
-	descRangeSRV0.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0); // t0 レジスタ
-
+	std::vector<CD3DX12_DESCRIPTOR_RANGE> descRangeSRV;
+	descRangeSRV.resize(inputTexNum);
+	rootParams.resize(inputTexNum + 1);
 	rootParams[0].InitAsConstantBufferView(0, 0, D3D12_SHADER_VISIBILITY_ALL);
-	rootParams[1].InitAsDescriptorTable(1, &descRangeSRV0, D3D12_SHADER_VISIBILITY_ALL);
-
+	for (size_t i = 0; i < inputTexNum; i++)
+	{
+		descRangeSRV[i].Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, UINT(i)); // t0 レジスタ
+		rootParams[i + 1].InitAsDescriptorTable(1, &descRangeSRV[i], D3D12_SHADER_VISIBILITY_ALL);
+	}
 
 	// 頂点レイアウト
 	D3D12_INPUT_ELEMENT_DESC inputLayout[] = {
@@ -811,8 +819,8 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateDefaultPostEffectPipeLine(
 	// ルートシグネチャの設定
 	D3D12_ROOT_SIGNATURE_DESC rootSignatureDesc{};
 	rootSignatureDesc.Flags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
-	rootSignatureDesc.pParameters = &rootParams[0];
-	rootSignatureDesc.NumParameters = 2;
+	rootSignatureDesc.pParameters = rootParams.data();
+	rootSignatureDesc.NumParameters = UINT(rootParams.size());
 	//テクスチャ追加
 	rootSignatureDesc.pStaticSamplers = &samplerDesc;
 	rootSignatureDesc.NumStaticSamplers = 1;
@@ -868,17 +876,18 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateDefaultPostEffectPipeLine(
 	// 図形の形状設定（三角形）
 	pipelineDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 
-	pipelineDesc.NumRenderTargets = 3;	// 描画対象は1つ
-	pipelineDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.RTVFormats[1] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.RTVFormats[2] = DXGI_FORMAT_D32_FLOAT; // 0～255指定のRGBA
+	pipelineDesc.NumRenderTargets = UINT(outputTexNum);	// 描画対象は1つ
+	for (size_t i = 0; i < outputTexNum; i++)
+	{
+		pipelineDesc.RTVFormats[i] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
+	}
 	pipelineDesc.SampleDesc.Count = 1; // 1ピクセルにつき1回サンプリング
 
 	pipelineDesc.VS = CD3DX12_SHADER_BYTECODE(blobs_[(size_t)SHADER_COMPILE_SETTINGS::Vertex].Get());
 	pipelineDesc.PS = CD3DX12_SHADER_BYTECODE(blobs_[(size_t)SHADER_COMPILE_SETTINGS::Pixel].Get());
 
 
-	if (CreateGraphicsPipeline("defaultPostEffect", rootSignatureDesc, pipelineDesc, (uint8_t)PIPELINE_SETTING::PostEffect))
+	if (CreateGraphicsPipeline(name, rootSignatureDesc, pipelineDesc, (uint8_t)PIPELINE_SETTING::PostEffect))
 	{
 		return nullptr;
 	}

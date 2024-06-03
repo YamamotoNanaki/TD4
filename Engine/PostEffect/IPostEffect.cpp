@@ -16,6 +16,9 @@ void IFE::IPostEffect::SetInitParams(int16_t texSize)
 void IFE::IPostEffect::PostEffectInitialize()
 {
 	if (texSize_ == 0)SetInitParams(1);
+
+	Initialize();
+
 	HRESULT result;
 
 	ID3D12Device* device = GraphicsAPI::Instance()->GetDevice();
@@ -36,7 +39,7 @@ void IFE::IPostEffect::PostEffectInitialize()
 
 	for (uint16_t i = 0; i < texSize_; i++)
 	{
-		tex_[i] = TextureManager::Instance()->CreateRanderTexture(name + "_Render_" + std::to_string(i));
+		tex_[i] = TextureManager::Instance()->CreateRanderTexture(name_ + "_Render_" + std::to_string(i));
 	}
 
 	D3D12_DESCRIPTOR_HEAP_DESC rtvDescHeapDesc{};
@@ -73,18 +76,17 @@ void IFE::IPostEffect::PostEffectInitialize()
 	dsvDesc.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
 
 	device->CreateDepthStencilView(depthBuff.Get(), &dsvDesc, descHeapDSV->GetCPUDescriptorHandleForHeapStart());
-
-	Initialize();
 }
 
 void IFE::IPostEffect::PostEffectUpdate()
 {
-	Update();
+	if(updateFlag_)Update();
 	Sprite::Update();
 }
 
 void IFE::IPostEffect::PostEffectDraw()
 {
+	if (!drawFlag_)return;
 	ID3D12GraphicsCommandList* cmdList = GraphicsAPI::Instance()->GetCmdList();
 	cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 	//ID3D12Device* device = GraphicsAPI::Instance()->GetDevice();

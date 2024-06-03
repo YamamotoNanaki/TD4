@@ -17,7 +17,9 @@ namespace IFE
 		Microsoft::WRL::ComPtr<ID3D12RootSignature>rootSignature;
 
 	public:
-		std::string name;
+		std::string name_;
+		bool drawFlag_ = true;
+		bool updateFlag_ = false;
 
 	protected:
 		inline static const float clearColor[4] = { 0,0,0,0 };

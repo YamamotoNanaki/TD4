@@ -7,6 +7,7 @@
 #include"ObjectManager.h"
 #include"CameraManager.h"
 #include"SpriteManager.h"
+#include"PostEffectManager.h"
 
 void Player::Initialize()
 {
@@ -62,6 +63,9 @@ void Player::ChangeMode()
 			modeFlag_ = true;
 			drone_->SetDrawFlag(false);
 			IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
+			auto ptr = IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting");
+			ptr->drawFlag_ = true;
+			ptr->updateFlag_ = true;
 			if (isDrone_ == false)
 			{
 				drone_->SetPos(action_->GetPos());
@@ -74,6 +78,9 @@ void Player::ChangeMode()
 			modeFlag_ = false;
 			drone_->SetDrawFlag(true);
 			IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
+			auto ptr = IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting");
+			ptr->drawFlag_ = false;
+			ptr->updateFlag_ = false;
 		}
 		//UI•\¦Ø‘Ö
 		ChangeUI();

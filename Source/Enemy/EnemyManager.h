@@ -26,7 +26,7 @@ namespace IFE {
 		/// ƒŠƒXƒgæ“¾
 		/// </summary>
 		/// <returns></returns>
-		std::list<NormalEnemy*>* GetEnemyList() { return &enemyList_; };
+		std::list<NormalEnemy*>& GetEnemyList() { return enemyList_; };
 
 		/// <summary>
 		/// I—¹

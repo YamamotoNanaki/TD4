@@ -1,6 +1,7 @@
 #pragma once
 #include "IPostEffect.h"
 #include <list>
+#include <string>
 #include "EditorMode.h"
 #include "DefaultPostEffect.h"
 
@@ -23,5 +24,6 @@ namespace IFE
 		void ObjectDrawBefore();
 		void ObjectDrawAfter();
 		void Finalize();
+		IPostEffect* GetPostEffect(std::string name);
 	};
 }

@@ -41,6 +41,7 @@ namespace IFE
 		ID3DBlob* GetBlob(uint8_t num);
 
 		GraphicsPipeline* CreateDefaultPostEffectPipeLine();
+		GraphicsPipeline* CreatePostEffectPipeLine(std::string vs, std::string ps, std::string name, int16_t inputTexNum = 1, int16_t outputTexNum = 1);
 
 
 	private:

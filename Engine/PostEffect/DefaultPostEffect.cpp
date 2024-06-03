@@ -12,6 +12,7 @@ void IFE::DefaultPostEffect::Update()
 
 void IFE::DefaultPostEffect::Initialize()
 {
+	name_ = "DefaultPostEffect";
 	gp_ = GraphicsPipelineManager::Instance()->CreateDefaultPostEffectPipeLine();
 }
 
