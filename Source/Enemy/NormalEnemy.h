@@ -47,7 +47,6 @@ namespace IFE {
 		EnemyHp* status_ = nullptr;
 		//攻撃判定クラス
 		EnemyAttack* enemyAttack = nullptr;
-		EnemyBackColl* backColl = nullptr;
 		bool isAttack;
 		//レイヒット記憶変数
 		float rayDist;
@@ -133,6 +132,7 @@ namespace IFE {
 		bool GetBack();
 		bool GetIsAttack() { return isAttack; }
 		bool GetIsHit() { return isHit_; }
+		bool GetIsFound() { return isFound; }
 
 #ifdef EditorMode
 		/// <summary>

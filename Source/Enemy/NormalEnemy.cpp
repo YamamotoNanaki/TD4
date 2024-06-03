@@ -42,12 +42,6 @@ void IFE::NormalEnemy::Initialize()
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
 	enemyAttack->transform_->parent_ = transform_;
 	enemyAttack->objectPtr_->transform_->position_ = {0, 0, 2};
-	//”w’†‚­‚ç‚¢”»’è
-	ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyBackColl", ModelManager::Instance()->GetModel("dice"));
-	ptr->AddComponent<EnemyBackColl>();
-	backColl = ptr->GetComponent<EnemyBackColl>();
-	backColl->transform_->parent_ = transform_;
-	backColl->objectPtr_->transform_->position_ = {0, 0, -1};
 }
 
 void IFE::NormalEnemy::ChangeState()
