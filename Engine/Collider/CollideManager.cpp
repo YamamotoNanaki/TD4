@@ -34,6 +34,7 @@ void IFE::CollideManager::RaycastSystemUpdate()
 			{
 				itr->onGround_ = false;
 			}
+			QuerySphere(itr, (uint16_t)Attribute::LANDSHAPE);
 		}
 	}
 }
@@ -362,6 +363,50 @@ bool IFE::CollideManager::Raycast(const Ray& ray, uint16_t attribute, RaycastHit
 	return result;
 }
 
+void IFE::CollideManager::QuerySphere(ColliderCore* c, uint16_t attribute)
+{
+	std::list<ColliderCore*>::iterator it;
+	Sphere sphere(c->GetColliderPosition(), Average(c->GetColliderScale()));
+
+	// 全てのコライダーと総当りチェック
+	it = colliders_.begin();
+	for (; it != colliders_.end(); ++it) {
+		ColliderCore* col = *it;
+
+		// 属性が合わなければスキップ
+		if (!(col->attribute_ & attribute)) {
+			continue;
+		}
+
+		// 球
+		if (col->GetColliderType() == ColliderType::SPHERE) {
+			Sphere sphereB(col->GetColliderPosition(), Average(col->GetColliderScale()));
+
+			Vector3 tempInter;
+			Vector3 tempReject;
+			if (!Collision::CheckSphere(sphere, sphereB, &tempInter, &tempReject)) continue;
+			QueryPushBack(c, tempReject);
+		}
+		// メッシュ
+		else if (col->GetColliderType() == ColliderType::MESH) {
+			MeshCollider* meshCollider = dynamic_cast<MeshCollider*>(col);
+
+			Vector3 tempInter;
+			Vector3 tempReject;
+			if (!meshCollider->CheckCollisionSphere(sphere, &tempInter, &tempReject)) continue;
+			QueryPushBack(c, tempReject);
+		}
+		else if (col->GetColliderType() == ColliderType::OBB) {
+			OBB obb(col->GetColliderPosition(), col->transform_->matRot_, col->GetColliderScale());
+
+			Vector3 tempInter;
+			Vector3 tempReject;
+			if (!Collision::CheckOBBSphere(obb, sphere, &tempInter, &tempReject)) continue;
+			QueryPushBack(c, tempReject);
+		}
+	}
+}
+
 void IFE::CollideManager::PushBack(ColliderCore* colA, ColliderCore* colB, const Vector3& reject)
 {
 	// 地面判定しきい値
@@ -426,5 +471,20 @@ void IFE::CollideManager::OnColliderHit(ColliderCore* colA, ColliderCore* colB)
 	else if (colB->cameraPtr_)
 	{
 		colB->cameraPtr_->OnColliderHit(colB, colA);
+	}
+}
+
+void IFE::CollideManager::QueryPushBack(ColliderCore* col, Vector3 reject)
+{
+	const Vector3 up = { 0,1,0 };
+
+	Vector3 rejectDir = Vector3Normalize(reject);
+	float cos = Vector3Dot(rejectDir, up);
+
+	// 地面判定しきい値
+	const float threshold = cosf(ConvertToRadians(30.0f));
+
+	if (-threshold < cos && cos < threshold) {
+		col->transform_->MovePushBack(reject);
 	}
 }
