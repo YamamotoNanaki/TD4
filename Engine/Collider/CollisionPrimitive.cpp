@@ -101,3 +101,7 @@ bool IFE::MeshCollider::CheckCollisionRay(const Ray& ray, float* distance, float
 }
 
 IFE::Ray::Ray(Vector3 start, Vector3 dir) :start(start), dir(dir) {}
+
+IFE::Cone::Cone() :apex({ 0,0,0 }), radius(1), height(1) {}
+
+IFE::Cone::Cone(Float3 apex, float radius, float height) :apex(apex), radius(radius), height(height) {}

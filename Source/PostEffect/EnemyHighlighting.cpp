@@ -24,14 +24,14 @@ void EnemyHighlighting::Update()
 	if (em->GetEnemyList().size() == 0)return;
 	PostEffectDrawBefore();
 	list<Object3D*>objList;
-	Sphere drone(SetVector3(*dronePosition), droneHighlightingDistance_);
+	Cone drone(*dronePosition, droneHighlightingDistance_, droneHighlightingDistance_);
 	for (auto& itr : em->GetEnemyList())
 	{
 		auto obj = itr->objectPtr_;
 		if (!obj->isActive_)continue;
 		if (!obj->DrawFlag_)continue;
 		Sphere enemy(SetVector3(itr->transform_->position_), Average(itr->transform_->scale_));
-		if (Collision::CheckSphere(drone, enemy))
+		if (Collision::CheckConeSphere(drone, enemy))
 		{
 			objList.push_back(obj);
 		}
