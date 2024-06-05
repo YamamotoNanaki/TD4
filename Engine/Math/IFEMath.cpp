@@ -272,6 +272,16 @@ float IFE::SimpleHarmonicMotion(float time, float amplitude, float period)
 	return amplitude * sinf(2 * static_cast<float>(PI) * time / period);
 }
 
+float IFE::Vector3Max(const Vector3& vec)
+{
+	return fmaxf(vec.x, fmaxf(vec.y,vec.z));
+}
+
+float IFE::Vector3Min(const Vector3& vec)
+{
+	return fminf(vec.x, fminf(vec.y, vec.z));
+}
+
 int32_t IFE::Int2::operator=(const int32_t& i)
 {
 	return i;

@@ -96,4 +96,7 @@ namespace IFE
 	/// <param name="period">ŽüŠú</param>
 	/// <returns></returns>
 	float SimpleHarmonicMotion(float time, float amplitude = 10.0f, float period = 60.0f);
+
+	float Vector3Max(const Vector3& vec);
+	float Vector3Min(const Vector3& vec);
 };

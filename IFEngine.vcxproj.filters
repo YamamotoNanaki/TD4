@@ -403,6 +403,9 @@
     <ClCompile Include="Source\Enemy\BaseEnemy.cpp">
       <Filter>ソース ファイル\Source\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Camera\FrustumCulling.cpp">
+      <Filter>ソース ファイル\Engine\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -672,6 +675,9 @@
     </ClInclude>
     <ClInclude Include="Source\PostEffect\EnemyHighlighting.h">
       <Filter>ヘッダー ファイル\Source\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Camera\FrustumCulling.h">
+      <Filter>ヘッダー ファイル\Engine\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

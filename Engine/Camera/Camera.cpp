@@ -25,12 +25,14 @@ void IFE::Camera::CameraInitialize()
 #endif
 	ComponentManager::Initialize();
 	transform_ = GetComponent<TransformCamera>();
+	frustumCulling_.Initialize(view_.GetAddressOf(), projection_.GetAddressOf());
 }
 
 void IFE::Camera::CameraUpdate()
 {
 	projection_.Update();
 	ComponentManager::Update();
+	frustumCulling_.Update();
 }
 
 View* IFE::Camera::GetView()
@@ -51,6 +53,7 @@ void IFE::Camera::Initialize()
 {
 	ComponentManager::Initialize();
 	transform_ = GetComponent<TransformCamera>();
+	frustumCulling_.Initialize(view_.GetAddressOf(), projection_.GetAddressOf());
 }
 
 void IFE::Camera::SetComponent(std::unique_ptr<Component> component)
@@ -60,6 +63,11 @@ void IFE::Camera::SetComponent(std::unique_ptr<Component> component)
 void IFE::Camera::SetComponentFront(std::unique_ptr<Component> component)
 {
 	AddComponent<Component>(std::move(component));
+}
+
+bool IFE::Camera::IsFrustumCulling(Sphere sphere)
+{
+	return frustumCulling_.IsSphereInFrustum(sphere);
 }
 
 #ifdef InverseEditorMode
@@ -100,6 +108,7 @@ void IFE::Camera::DebugCameraInitialize()
 {
 	AddComponent<DebugCamera>();
 	ComponentManager::Initialize();
+	frustumCulling_.Initialize(view_.GetAddressOf(), projection_.GetAddressOf());
 }
 
 void IFE::Camera::ComponentGUI()
