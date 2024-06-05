@@ -80,9 +80,6 @@ void Player::ChangeMode()
 			modeFlag_ = false;
 			drone_->SetDrawFlag(true);
 			IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
-			auto ptr = IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting");
-			ptr->drawFlag_ = false;
-			ptr->updateFlag_ = false;
 		}
 		//UI•\¦Ø‘Ö
 		ChangeUI();
