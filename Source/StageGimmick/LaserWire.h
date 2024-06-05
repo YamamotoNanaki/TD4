@@ -38,7 +38,10 @@ private:
 	std::vector<IFE::Float3> rots_;
 	std::vector<IFE::Float3> scales_;
 
-	std::vector<IFE::Object3D> objects_;
+	std::vector<IFE::Object3D*> objects_;
+
+	//テストで置く描画用のオブジェクトなんかいい感じに追加する方法あるなら直す
+	IFE::Object3D testobj_[10];
 
 	int32_t oldposSize = 0;
 	int32_t oldrotSize = 0;
