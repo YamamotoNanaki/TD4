@@ -37,7 +37,7 @@ void PlayerDrone::Update()
 
 	if (objectPtr_->DrawFlag_ == true)
 	{
-		transform_->position_.y = dronePosY_ + IFE::SimpleHarmonicMotion(time_,0.1f, maxTime);
+		transform_->position_.y = dronePosY_ + IFE::SimpleHarmonicMotion(time_, 0.1f, maxTime);
 	}
 }
 
@@ -95,9 +95,18 @@ void PlayerDrone::Move()
 	}if (IFE::Input::GetKeyPush(IFE::Key::Q))
 	{
 		moveValue_.y++;
-	}if (IFE::Input::GetKeyPush(IFE::Key::E))
+
+	}
+	if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == false)
 	{
-		moveValue_.y--;
+		if (IFE::Input::GetKeyPush(IFE::Key::E))
+		{
+			moveValue_.y--;
+		}
+	}
+	else
+	{
+
 	}
 #pragma endregion キーボード
 
@@ -108,16 +117,20 @@ void PlayerDrone::Move()
 	if (IFE::Input::GetRTrigger())
 	{
 		moveValue_.y++;
-	}if (IFE::Input::GetLTrigger())
+	}
+	if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == false)
 	{
-		moveValue_.y--;
+		if (IFE::Input::GetLTrigger())
+		{
+			moveValue_.y--;
+		}
 	}
 
 #pragma endregion コントローラー
 
 #pragma region 統一処理
 
-	if (IFE::Input::GetKeyTrigger(IFE::Key::LSHIFT)|| IFE::Input::GetKeyTrigger(IFE::Key::RSHIFT) ||IFE::Input::PadTrigger(IFE::PADCODE::LTHUMB))
+	if (IFE::Input::GetKeyTrigger(IFE::Key::LSHIFT) || IFE::Input::GetKeyTrigger(IFE::Key::RSHIFT) || IFE::Input::PadTrigger(IFE::PADCODE::LTHUMB))
 	{
 		slowSpeedMode_ = !slowSpeedMode_;
 	}

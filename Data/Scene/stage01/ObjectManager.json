@@ -201,6 +201,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 2,
+                    "colliderType": 0,
+                    "groundJudge": true,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -242,9 +253,9 @@
                 0.0
             ],
             "rotation": [
-                0.0,
-                0.0,
-                0.0
+                360.0,
+                360.0,
+                360.0
             ],
             "scale": [
                 1.0,
@@ -256,7 +267,8 @@
             "Transform",
             "TransferGeometryBuffer",
             "Material",
-            "PlayerDrone"
+            "PlayerDrone",
+            "Collider"
         ],
         "drawFlag": false,
         "model": "dice_Model",

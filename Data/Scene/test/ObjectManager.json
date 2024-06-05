@@ -25,7 +25,9 @@
             ],
             "terxtureName": "white.png"
         },
-        "Player": null,
+        "Player": {
+            "Highlighting": 100.0
+        },
         "TransferGeometryBuffer": {
             "explosion": 0.0,
             "gravity": 0.0,
