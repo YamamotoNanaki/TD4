@@ -338,7 +338,7 @@
             "NormalEnemy"
         ],
         "drawFlag": true,
-        "model": "normalEnemyModel_Model",
+        "model": "normalEnemy_Model",
         "name": "normalEnemy",
         "prefab": false
     },
@@ -9278,7 +9278,7 @@
             "NormalEnemy"
         ],
         "drawFlag": true,
-        "model": "normalEnemyModel_Model",
+        "model": "normalEnemy_Model",
         "name": "normalEnemy1",
         "prefab": false
     },

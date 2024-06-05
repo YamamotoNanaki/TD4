@@ -22,6 +22,11 @@ namespace IFE {
 		void Update();
 
 		/// <summary>
+		/// 
+		/// </summary>
+		void OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider);
+
+		/// <summary>
 		/// èIóπ
 		/// </summary>
 		void Finalize();
