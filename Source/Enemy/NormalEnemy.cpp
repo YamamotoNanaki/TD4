@@ -23,6 +23,7 @@ void IFE::NormalEnemy::Initialize()
 	isHit_ = false;
 	hitTime_ = 0;
 	objectPtr_->SetColor({ 1, 0, 1, 1 });
+	objectPtr_->transform_->eulerAngleDegrees_ = { 0,270,0 };
 	frontVec = { 0,0,0 };
 	lookfor = { 0,0,0 };
 	//HPUI
@@ -84,12 +85,8 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::Update()
 {
-	if (isFound == false && hitColl_ != nullptr) {
-		if (rayDist == 0) {
-			rayDist = preRayDist;
-			isFound = true;
-			status_->objectPtr_->DrawFlag_ = true;
-		}
+	if (RaySight() == true) {
+		isFound = true;
 	}
 	//状態を取得
 	preState = state;
@@ -218,19 +215,19 @@ void IFE::NormalEnemy::Chase()
 		isAttack = true;
 	}
 	warningTime++;
-	if (warningTime == 200) {
+	if (warningTime == 300) {
 		warningTime = 0;
 		//前フレームに敵を見つけていたなら警戒体制に
 		if (isFound == true) {
 			objectPtr_->SetColor({ 0.5f, 0.5f, 0, 1 });
 			state = WARNING;
-			isFound = false;
 		}
 		else {
 			objectPtr_->SetColor({ 0.8f, 0, 1, 1 });
 			state = SEARCH;
 		}
 	}
+	isFound = false;
 }
 
 void IFE::NormalEnemy::Attack()
@@ -282,6 +279,34 @@ void IFE::NormalEnemy::OneShot()
 		hitTime_ = HIT_COOLTIME;
 		isHit_ = true;
 	}
+}
+
+bool IFE::NormalEnemy::RaySight() {
+	//視界の距離
+	float maxDistance = 25;
+	//視野角
+	float sightAngle = 45;
+	// 自身の位置
+	Vector3 ePos = transform_->position_;
+	// ターゲットの位置
+	Vector3 targetPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+
+	//俺の正面ベクトル
+	Vector3 selfDir = frontVec;
+
+	// ターゲットまでの向きと距離計算
+	Vector3 targetDir = targetPos - ePos;
+	float targetDistance = targetDir.Length();
+
+	// cos(θ/2)を計算
+	float cosHalf = cos(ConvertToRadians(sightAngle / 2));
+
+	// 自身とターゲットへの向きの内積計算
+	// ターゲットへの向きベクトルを正規化する必要があることに注意
+	float innerProduct = selfDir.Dot(targetDir);
+
+	// 視界判定
+	return innerProduct > cosHalf && targetDistance < maxDistance;
 }
 
 void IFE::NormalEnemy::Draw()
