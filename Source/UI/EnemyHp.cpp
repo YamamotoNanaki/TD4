@@ -4,6 +4,7 @@
 #include "ObjectManager.h"
 #include "NormalEnemy.h"
 #include "Player.h"
+#include "SpriteManager.h"
 
 void IFE::EnemyHp::Initialize()
 {

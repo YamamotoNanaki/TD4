@@ -33,7 +33,7 @@ namespace IFE {
 		//UŒ‚ŠÔ
 		int32_t attackTime;
 		//Œx‰úŠÔ
-		int8_t warningTime;
+		int32_t warningTime;
 		//”­Œ©
 		bool isFound;
 		Vector3 lookfor;
@@ -108,6 +108,11 @@ namespace IFE {
 		/// ˆêŒ‚‚Å€‚Ê
 		/// </summary>
 		void OneShot();
+
+		/// <summary>
+		/// ‹ü”»’è
+		/// </summary>
+		bool RaySight();
 
 		/// <summary>
 		/// •`‰æ
