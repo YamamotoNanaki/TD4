@@ -4,7 +4,6 @@
 #include "IFEMath.h"
 #include "EnemyHp.h"
 #include "enemyAttack.h"
-#include "EnemyBackColl.h"
 #include "IFETime.h"
 
 namespace IFE {

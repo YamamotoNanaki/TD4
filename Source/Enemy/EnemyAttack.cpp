@@ -2,6 +2,7 @@
 #include "ObjectManager.h"
 #include "Transform.h"
 #include "Collider.h"
+#include "PlayerAction.h"
 
 void IFE::EnemyAttack::Initialize()
 {
@@ -11,6 +12,15 @@ void IFE::EnemyAttack::Initialize()
 	auto ptr = objectPtr_->GetComponent<IFE::Collider>()->AddCollider();
 	ptr->SetNoPushBackFlag(true);
 	ptr->active_ = false;
+}
+
+void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
+{
+	myCollider;
+	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<PlayerAction>())
+	{
+		//“–‚½‚Á‚½‚Ìˆ—
+	}
 }
 
 void IFE::EnemyAttack::Update()
