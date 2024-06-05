@@ -10,6 +10,7 @@ PSOutput main(GSOutput input) : SV_TARGET
     {
         PSOutput o;
         o.target0 = float4(0, 0, 0, 0);
+        o.target1 = float4(0, 0, 0, 0);
         return o;
     }
     float4 texcolor = float4(tex.Sample(smp, input.uv));
