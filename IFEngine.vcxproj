@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EnemyBackColl.cpp" />
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp" />
     <ClCompile Include="Engine\Base\Engine.cpp" />
     <ClCompile Include="Engine\Base\ImguiManager.cpp" />
@@ -91,7 +90,6 @@
     <ClCompile Include="Source\UI\EnemyHp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EnemyBackColl.h" />
     <ClInclude Include="Engine\Base\EditorMode.h" />
     <ClInclude Include="Engine\Base\Compute.h" />
     <ClInclude Include="Engine\Base\ConstBuffer.h" />

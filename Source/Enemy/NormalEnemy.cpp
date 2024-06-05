@@ -156,7 +156,7 @@ void IFE::NormalEnemy::Warning()
 
 	if (warningTime == 75) {
 		warningTime = 0;
-		objectPtr_->SetColor({ 1, 0, 0, 1 });
+		objectPtr_->SetColor({ 0.8f, 0, 0, 1 });
 		state = CHASE;
 	}
 }
@@ -227,7 +227,7 @@ void IFE::NormalEnemy::Chase()
 			isFound = false;
 		}
 		else {
-			objectPtr_->SetColor({ 1, 0, 1, 1 });
+			objectPtr_->SetColor({ 0.8f, 0, 1, 1 });
 			state = SEARCH;
 		}
 	}
