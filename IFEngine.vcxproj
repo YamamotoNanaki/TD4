@@ -22,6 +22,7 @@
     <ClCompile Include="Engine\Camera\CameraManager.cpp" />
     <ClCompile Include="Engine\Camera\DebugCamera.cpp" />
     <ClCompile Include="Engine\Camera\Fog.cpp" />
+    <ClCompile Include="Engine\Camera\FrustumCulling.cpp" />
     <ClCompile Include="Engine\Camera\Projection.cpp" />
     <ClCompile Include="Engine\Camera\View.cpp" />
     <ClCompile Include="Engine\Collider\CollideManager.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="Engine\Camera\CameraManager.h" />
     <ClInclude Include="Engine\Camera\DebugCamera.h" />
     <ClInclude Include="Engine\Camera\Fog.h" />
+    <ClInclude Include="Engine\Camera\FrustumCulling.h" />
     <ClInclude Include="Engine\Camera\Projection.h" />
     <ClInclude Include="Engine\Camera\View.h" />
     <ClInclude Include="Engine\Collider\CollideManager.h" />
