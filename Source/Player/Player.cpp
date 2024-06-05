@@ -8,6 +8,7 @@
 #include"CameraManager.h"
 #include"SpriteManager.h"
 #include"PostEffectManager.h"
+#include"EnemyHighlighting.h"
 
 void Player::Initialize()
 {
@@ -20,6 +21,7 @@ void Player::Initialize()
 
 	transform_->position_ = { 0,0,0 };
 	objectPtr_->DrawFlag_ = false;
+	dynamic_cast<EnemyHighlighting*>(IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting"))->droneHighlightingDistance_ = droneHighlightingDistance_;
 }
 
 void Player::Update()
@@ -141,4 +143,21 @@ void Player::ChangeUI()
 		IFE::SpriteManager::Instance()->GetSpritePtr("LStickNormal")->drawFlag_ = true;
 		IFE::SpriteManager::Instance()->GetSpritePtr("Attack")->drawFlag_ = true;
 	}
+}
+
+#ifdef EditorMode
+#include "ImguiManager.h"
+void Player::ComponentDebugGUI()
+{
+	IFE::ImguiManager* gui = IFE::ImguiManager::Instance();
+	gui->DragFloatGUI(&droneHighlightingDistance_, "Highlighting Distance");
+}
+void Player::OutputComponent(nlohmann::json& json)
+{
+	json["Highlighting"] = droneHighlightingDistance_;
+}
+#endif
+void Player::LoadingComponent(nlohmann::json& json)
+{
+	droneHighlightingDistance_ = json["Highlighting"];
 }

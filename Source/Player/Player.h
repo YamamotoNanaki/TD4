@@ -4,7 +4,7 @@
 #include"PlayerAction.h"
 #include"PlayerDrone.h"
 
-class Player:public IFE::Component
+class Player :public IFE::Component
 {
 private:
 
@@ -14,6 +14,7 @@ private:
 	PlayerDrone* drone_ = nullptr;
 
 	bool isDrone_ = false;
+	float droneHighlightingDistance_ = 20;
 
 public:
 
@@ -34,4 +35,10 @@ private:
 
 	void ChangeMode();
 	void ChangeUI();
+
+#ifdef EditorMode
+	void ComponentDebugGUI()override;
+	void OutputComponent(nlohmann::json& json)override;
+#endif
+	void LoadingComponent(nlohmann::json& json)override;
 };

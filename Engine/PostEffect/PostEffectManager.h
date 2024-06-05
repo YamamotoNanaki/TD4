@@ -23,6 +23,7 @@ namespace IFE
 		void Initialize();
 		void ObjectDrawBefore();
 		void ObjectDrawAfter();
+		void Reset();
 		void Finalize();
 		IPostEffect* GetPostEffect(std::string name);
 	};

@@ -86,7 +86,9 @@
             ],
             "terxtureName": "white.png"
         },
-        "Player": null,
+        "Player": {
+            "Highlighting": 20.0
+        },
         "TransferGeometryBuffer": {
             "explosion": 0.0,
             "gravity": 0.0,
@@ -235,7 +237,7 @@
         },
         "Transform": {
             "position": [
-                -7.826759338378906,
+                0.0,
                 0.0,
                 0.0
             ],

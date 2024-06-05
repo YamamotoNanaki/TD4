@@ -50,10 +50,15 @@ void IFE::PostEffectManager::ObjectDrawAfter()
 	defaultPE->PostEffectDrawAfter();
 }
 
-void IFE::PostEffectManager::Finalize()
+void IFE::PostEffectManager::Reset()
 {
 	postEffects.clear();
 	defaultPE = nullptr;
+}
+
+void IFE::PostEffectManager::Finalize()
+{
+	Reset();
 }
 
 IPostEffect* IFE::PostEffectManager::GetPostEffect(std::string name)

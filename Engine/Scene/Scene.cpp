@@ -34,7 +34,6 @@ void IFE::Scene::Initialize()
 	lightM_->Initialize();
 	sound_->Initialize();
 	cameraM_->Initialize();
-	postEffectM_->Initialize();
 	SceneInit();
 	objM_->Initialize();
 	spriteM_->Initialize();
@@ -106,7 +105,6 @@ void IFE::Scene::Initialize()
 	sound_->Initialize();
 	gui_.Initialize();
 	cameraM_->Initialize();
-	postEffectM_->Initialize();
 	SceneInit();
 	particleM->Initialize();
 }
@@ -218,6 +216,7 @@ void IFE::Scene::SceneInit()
 	particleM->Reset();
 	cameraM_->Reset();
 	lightM_->Reset();
+	postEffectM_->Reset();
 	tex_->LoadingScene();
 	modelM_->LoadingScene();
 	objM_->LoadingScene();
@@ -225,6 +224,7 @@ void IFE::Scene::SceneInit()
 	particleM->LoadingScene();
 	cameraM_->LoadingScene();
 	lightM_->LoadingScene();
+	postEffectM_->Initialize();
 	//oldPostEffect->LoadingScene();
 }
 
