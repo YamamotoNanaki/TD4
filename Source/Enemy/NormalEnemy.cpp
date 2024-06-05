@@ -35,6 +35,7 @@ void IFE::NormalEnemy::Initialize()
 		ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyHp", ModelManager::Instance()->GetModel("hppanel"));
 		ptr->AddComponent<EnemyHp>();
 		status_ = ptr->GetComponent<EnemyHp>();
+		status_->objectPtr_->DrawFlag_ = false;
 	}
 
 	//UŒ‚
@@ -62,11 +63,13 @@ void IFE::NormalEnemy::ChangeState()
 		Search();
 		break;
 	case IFE::BaseEnemy::WARNING:
-
+		//Œx‰úó‘Ô‚ÌUI‚É•ÏX
+		status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("eye"));
 		Warning();
 		break;
 	case IFE::BaseEnemy::CHASE:
-
+		//’ÇÕó‘Ô‚ÌUI‚É•ÏX
+		status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("exclamation"));
 		Chase();
 		break;
 	case IFE::BaseEnemy::ATTACK:

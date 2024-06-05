@@ -7,9 +7,7 @@ PSOutput main(GSOutput input) : SV_TARGET
 {
     if (color.a == 0)
     {
-        PSOutput o;
-        o.target0 = float4(0, 0, 0, 0);
-        return o;
+        discard;
     }
     float4 texcolor = float4(tex.Sample(smp, input.uv));
     const float shininess = 4.0f;

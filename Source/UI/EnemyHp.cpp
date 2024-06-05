@@ -31,7 +31,7 @@ void IFE::EnemyHp::IconUpdate(Float3 pos_)
 {
 	objectPtr_->transform_->scale_ = { 1.0f,1.0f,1.0f };
 	//Å´Ç±ÇÍÇ‡å¬ï Ç…Ç¢ÇÈÇ©Ç‡(â°Ç…Ç∏ÇÁÇ∑íl))
-	SetPos(pos_);
+	SetPos({ pos_.x,pos_.y + 1.0f,pos_.z });
 }
 
 void IFE::EnemyHp::ScaleCalc(int8_t& decHp_)

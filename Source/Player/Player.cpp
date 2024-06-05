@@ -70,7 +70,9 @@ void Player::ChangeMode()
 			ptr->updateFlag_ = true;
 			if (isDrone_ == false)
 			{
-				drone_->SetPos(action_->GetPos());
+				IFE::Float3 pos = action_->GetPos();
+				pos.y++;
+				drone_->SetPos(pos);
 				isDrone_ = true;
 			}
 		}
@@ -80,9 +82,6 @@ void Player::ChangeMode()
 			modeFlag_ = false;
 			drone_->SetDrawFlag(true);
 			IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
-			auto ptr = IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting");
-			ptr->drawFlag_ = false;
-			ptr->updateFlag_ = false;
 		}
 		//UI•\¦Ø‘Ö
 		ChangeUI();

@@ -70,6 +70,7 @@ void IFE::Scene::PostEffectDraw()
 		particleM->Draw();
 	}
 	postEffectM_->ObjectDrawAfter();
+	postEffectM_->Update();
 }
 
 void IFE::Scene::Draw()

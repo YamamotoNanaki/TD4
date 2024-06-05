@@ -21,6 +21,7 @@ void EnemyHighlighting::Initialize()
 void EnemyHighlighting::Update()
 {
 	auto em = ObjectManager::Instance()->GetObjectPtr("EnemyManager")->GetComponent<EnemyManager>();
+	if (em->GetEnemyList().size() == 0)return;
 	PostEffectDrawBefore();
 	list<Object3D*>objList;
 	Sphere drone(SetVector3(*dronePosition), droneHighlightingDistance_);

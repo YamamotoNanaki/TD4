@@ -81,7 +81,7 @@ void PlayerAction::Move()
 	frontVec_.y = 0.0f;
 	rightVec_.y = 0.0f;
 
-	if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_==false)
+	if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == false)
 	{
 		transform_->position_.y = -4.9f * IFE::IFETime::sDeltaTime_;
 	}
