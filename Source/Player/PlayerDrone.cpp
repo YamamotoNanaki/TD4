@@ -97,16 +97,9 @@ void PlayerDrone::Move()
 		moveValue_.y++;
 
 	}
-	if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == false)
+	if (IFE::Input::GetKeyPush(IFE::Key::E))
 	{
-		if (IFE::Input::GetKeyPush(IFE::Key::E))
-		{
-			moveValue_.y--;
-		}
-	}
-	else
-	{
-
+		moveValue_.y--;
 	}
 #pragma endregion キーボード
 
@@ -118,12 +111,9 @@ void PlayerDrone::Move()
 	{
 		moveValue_.y++;
 	}
-	if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == false)
+	if (IFE::Input::GetLTrigger())
 	{
-		if (IFE::Input::GetLTrigger())
-		{
-			moveValue_.y--;
-		}
+		moveValue_.y--;
 	}
 
 #pragma endregion コントローラー
@@ -164,6 +154,11 @@ void PlayerDrone::Move()
 
 	transform_->UpdateMatrix();
 #pragma endregion
+
+	if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == true)
+	{
+		transform_->position_.y += 0.2f;
+	}
 }
 
 void PlayerDrone::Rotation()
