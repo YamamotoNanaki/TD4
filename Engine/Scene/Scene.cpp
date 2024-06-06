@@ -226,10 +226,13 @@ void IFE::Scene::SceneInit()
 	cameraM_->LoadingScene();
 	lightM_->LoadingScene();
 	postEffectM_->Initialize();
+
+#ifdef InverseEditorMode
 	objM_->Initialize();
 	spriteM_->Initialize();
 	particleM->Initialize();
 	cameraM_->AllCameraInitialize();
+#endif
 	//oldPostEffect->LoadingScene();
 }
 
