@@ -8899,7 +8899,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof",
         "prefab": false
@@ -8972,7 +8972,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof1",
         "prefab": false
@@ -9045,7 +9045,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof2",
         "prefab": false
@@ -9118,7 +9118,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof3",
         "prefab": false
@@ -9191,7 +9191,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof4",
         "prefab": false
@@ -9264,7 +9264,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof5",
         "prefab": false
@@ -9337,7 +9337,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof6",
         "prefab": false
@@ -9410,7 +9410,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof7",
         "prefab": false
@@ -9483,7 +9483,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof8",
         "prefab": false
@@ -9556,7 +9556,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof9",
         "prefab": false
@@ -9629,7 +9629,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof10",
         "prefab": false
@@ -9702,7 +9702,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof11",
         "prefab": false
@@ -9775,7 +9775,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof12",
         "prefab": false
@@ -9848,7 +9848,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof13",
         "prefab": false
@@ -9921,7 +9921,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof14",
         "prefab": false
@@ -9994,7 +9994,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof_drone",
         "prefab": false
@@ -10067,7 +10067,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof_drone1",
         "prefab": false
@@ -10140,7 +10140,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof_drone2",
         "prefab": false
@@ -10213,7 +10213,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof_drone3",
         "prefab": false
@@ -10286,7 +10286,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testWall_Model",
         "name": "roof_drone4",
         "prefab": false
