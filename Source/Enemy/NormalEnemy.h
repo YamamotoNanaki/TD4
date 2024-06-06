@@ -18,9 +18,6 @@ namespace IFE {
 		const float SEARCH_VELO = 2.5f;
 		//追跡時速度
 		const float CHASE_VELO = 5.0f;
-		//hp
-		const int8_t MAX_HP = 100;
-		const int8_t HIT_COOLTIME = 20;
 		//メンバ変数
 	private:
 		//待機タイマー
@@ -38,10 +35,6 @@ namespace IFE {
 		bool isFound;
 		Vector3 lookfor;
 		//hp
-		int8_t hp_;
-		int8_t decHp_;
-		bool isHit_;
-		int8_t hitTime_;
 		EnemyHp* hpUI = nullptr;
 		EnemyHp* status_ = nullptr;
 		//攻撃判定クラス
@@ -98,16 +91,6 @@ namespace IFE {
 		/// プレイヤーの方を向かせる
 		/// </summary>
 		void LookAt();
-
-		/// <summary>
-		/// 体力減少
-		/// </summary>
-		void DecHp();
-
-		/// <summary>
-		/// 一撃で死ぬ
-		/// </summary>
-		void OneShot();
 
 		/// <summary>
 		/// 視線判定

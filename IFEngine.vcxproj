@@ -79,6 +79,7 @@
     <ClCompile Include="Engine\Base\StructuredBuffer.cpp" />
     <ClCompile Include="PlayerAttack.cpp" />
     <ClCompile Include="Source\Enemy\BaseEnemy.cpp" />
+    <ClCompile Include="Source\Enemy\Boss.cpp" />
     <ClCompile Include="Source\Enemy\EnemyAttack.cpp" />
     <ClCompile Include="Source\Enemy\EnemyManager.cpp" />
     <ClCompile Include="Source\Enemy\NormalEnemy.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Engine\Base\StructuredBuffer.h" />
     <ClInclude Include="PlayerAttack.h" />
     <ClInclude Include="Source\Enemy\BaseEnemy.h" />
+    <ClInclude Include="Source\Enemy\Boss.h" />
     <ClInclude Include="Source\Enemy\EnemyAttack.h" />
     <ClInclude Include="Source\Enemy\EnemyManager.h" />
     <ClInclude Include="Source\Enemy\NormalEnemy.h" />

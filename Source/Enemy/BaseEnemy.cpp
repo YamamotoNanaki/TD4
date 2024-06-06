@@ -34,6 +34,26 @@ void IFE::BaseEnemy::Update()
 	Highlighting();
 }
 
+void IFE::BaseEnemy::DecHp()
+{
+	if (isHit_ == false) {
+		hp_ -= 25;
+		decHp_ = 25;
+		hitTime_ = HIT_COOLTIME;
+		isHit_ = true;
+	}
+}
+
+void IFE::BaseEnemy::OneShot()
+{
+	if (isHit_ == false) {
+		hp_ -= hp_;
+		decHp_ = hp_;
+		hitTime_ = HIT_COOLTIME;
+		isHit_ = true;
+	}
+}
+
 void IFE::BaseEnemy::OnColliderHit(ColliderCore* mycol, ColliderCore* hitcol)
 {
 	if (mycol->GetColliderType() == ColliderType::RAY)

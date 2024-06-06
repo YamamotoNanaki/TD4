@@ -406,6 +406,9 @@
     <ClCompile Include="Engine\Camera\FrustumCulling.cpp">
       <Filter>ソース ファイル\Engine\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Enemy\Boss.cpp">
+      <Filter>ソース ファイル\Source\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -678,6 +681,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Camera\FrustumCulling.h">
       <Filter>ヘッダー ファイル\Engine\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enemy\Boss.h">
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

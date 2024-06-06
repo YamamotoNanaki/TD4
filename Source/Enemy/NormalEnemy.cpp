@@ -261,26 +261,6 @@ void IFE::NormalEnemy::LookAt()
 	transform_->eulerAngleDegrees_ = { radX * 180.0f / (float)PI ,radY * 180.0f / (float)PI,0 };
 }
 
-void IFE::NormalEnemy::DecHp()
-{
-	if (isHit_ == false) {
-		hp_ -= 25;
-		decHp_ = 25;
-		hitTime_ = HIT_COOLTIME;
-		isHit_ = true;
-	}
-}
-
-void IFE::NormalEnemy::OneShot()
-{
-	if (isHit_ == false) {
-		hp_ -= hp_;
-		decHp_ = hp_;
-		hitTime_ = HIT_COOLTIME;
-		isHit_ = true;
-	}
-}
-
 bool IFE::NormalEnemy::RaySight() {
 	//Ž‹ŠE‚Ì‹——£
 	float maxDistance = 25;

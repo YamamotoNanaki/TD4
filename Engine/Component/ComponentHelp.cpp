@@ -22,6 +22,7 @@
 #include "EnemyAttack.h"
 #include "PlayerCommonCamera.h"
 #include "EnemyManager.h"
+#include "Boss.h"
 
 using namespace IFE;
 using namespace std;
@@ -84,6 +85,8 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<EnemyAttack>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<EnemyManager>(str));
+	if (tmp != nullptr)return tmp;
+	tmp = std::move(GetPtr<Boss>(str));
 	if (tmp != nullptr)return tmp;
 
 	//ステージギミック
