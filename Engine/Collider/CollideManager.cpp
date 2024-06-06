@@ -48,12 +48,14 @@ void IFE::CollideManager::CollidersUpdate()
 	itA = colliders_.begin();
 	for (; itA != colliders_.end(); ++itA)
 	{
+		ColliderCore* colA = *itA;
+		if (colA->active_ == false)continue;
 		itB = itA;
 		++itB;
 		for (; itB != colliders_.end(); ++itB)
 		{
-			ColliderCore* colA = *itA;
 			ColliderCore* colB = *itB;
+			if (colB->active_ == false)continue;
 			if ((colA->objectPtr_) && colA->objectPtr_ == colB->objectPtr_)continue;
 			if ((colA->emitterPtr_) && colA->emitterPtr_ == colB->emitterPtr_)continue;
 			if ((colA->cameraPtr_) && colA->cameraPtr_ == colB->cameraPtr_)continue;

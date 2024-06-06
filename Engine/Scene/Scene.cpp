@@ -136,12 +136,12 @@ void IFE::Scene::Update()
 			cameraM_->DebugUpdate();
 		}
 		lightM_->Update();
+		PostEffectDraw();
 	}
 	else
 	{
 		LoadUpdate();
 	}
-	PostEffectDraw();
 }
 
 void IFE::Scene::PostEffectDraw()
@@ -226,6 +226,10 @@ void IFE::Scene::SceneInit()
 	cameraM_->LoadingScene();
 	lightM_->LoadingScene();
 	postEffectM_->Initialize();
+	objM_->Initialize();
+	spriteM_->Initialize();
+	particleM->Initialize();
+	cameraM_->AllCameraInitialize();
 	//oldPostEffect->LoadingScene();
 }
 
@@ -246,7 +250,7 @@ void IFE::Scene::SceneTransitionIn()
 				spriteM_->AddInitialize("fade", "white");
 				fade = spriteM_->GetSpritePtr("fade");
 				fade->GetComponent<Transform2D>()->position2D_ = Float2((float)WindowsAPI::Instance()->winWidth_ / 2, (float)WindowsAPI::Instance()->winHeight_ / 2);
-				fade->GetComponent<Transform2D>()->scale2D_ = Float2(16, 9.1f);
+				fade->GetComponent<Transform2D>()->scale2D_ = Float2(20, 11);
 			}
 			//fade->transform_->position2D_.y = y;
 			//fade->GetComponent<ColorBuffer>()->SetColor(0.7f, 0.7f, 0.7f, 1);
@@ -280,7 +284,7 @@ void IFE::Scene::SceneTransitionOut()
 				spriteM_->AddInitialize("fade", "white");
 				fade = spriteM_->GetSpritePtr("fade");
 				fade->GetComponent<Transform2D>()->position2D_ = Float2((float)WindowsAPI::Instance()->winWidth_ / 2, (float)WindowsAPI::Instance()->winHeight_ / 2);
-				fade->GetComponent<Transform2D>()->scale2D_ = Float2(16, 9.1f);
+				fade->GetComponent<Transform2D>()->scale2D_ = Float2(20, 11);
 			}
 			//fade->transform_->position2D_.y = y;
 			//fade->GetComponent<ColorBuffer>()->SetColor(0.7f, 0.7f, 0.7f, 1);
@@ -308,6 +312,7 @@ void IFE::Scene::LoadDraw()
 void IFE::Scene::LoadingScene()
 {
 	JsonManager::Instance()->SetSceneName(nextScene_);
+	postEffectM_->Reset();
 	objM_->Reset();
 	spriteM_->Reset();
 	particleM->Reset();
@@ -318,6 +323,11 @@ void IFE::Scene::LoadingScene()
 	particleM->LoadingScene();
 	lightM_->LoadingScene();
 	cameraM_->LoadingScene();
+	objM_->Initialize();
+	spriteM_->Initialize();
+	particleM->Initialize();
+	cameraM_->AllCameraInitialize();
+	postEffectM_->Initialize();
 	//oldPostEffect->LoadingScene();
 	nowScene_ = nextScene_;
 	loadEnd_ = true;

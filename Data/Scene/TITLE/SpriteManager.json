@@ -9,6 +9,7 @@
                     1.0
                 ]
             },
+            "Title": null,
             "Transform2D": {
                 "position": [
                     955.0,
@@ -22,7 +23,8 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer"
+                "ColorBuffer",
+                "Title"
             ],
             "name": "Title",
             "texture": "Title.png"

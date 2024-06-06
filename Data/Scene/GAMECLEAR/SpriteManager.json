@@ -1,6 +1,7 @@
 {
     "fore": [
         {
+            "Clear": null,
             "ColorBuffer": {
                 "color": [
                     1.0,
@@ -22,7 +23,8 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer"
+                "ColorBuffer",
+                "Clear"
             ],
             "name": "GameClear",
             "texture": "GameClear.png"

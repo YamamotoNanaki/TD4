@@ -6,6 +6,7 @@
 #include "StageCollideManageer.h"
 #include "TextureManager.h"
 #include "PlayerAction.h"
+#include "Scene.h"
 
 void IFE::Boss::Initialize()
 {
@@ -33,7 +34,7 @@ void IFE::Boss::EnemyUpdate()
 		hpUI->objectPtr_->Destroy();
 		objectPtr_->Destroy();
 		/////-----ここにシーンチェンジ--------//////
-
+		Scene::Instance()->SetNextScene("GAMECLEAR");
 	}
 }
 
