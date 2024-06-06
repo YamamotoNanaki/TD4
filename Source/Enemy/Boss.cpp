@@ -16,7 +16,6 @@ void IFE::Boss::Initialize()
 	isHit_ = false;
 	hitTime_ = 0;
 	objectPtr_->SetColor({ 0, 1, 1, 1 });
-	objectPtr_->transform_->eulerAngleDegrees_ = { 0,270,0 };
 	//HPUI
 	if (!hpUI)
 	{
