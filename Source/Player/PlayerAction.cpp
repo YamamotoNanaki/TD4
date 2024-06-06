@@ -129,17 +129,21 @@ const IFE::Vector3 PlayerAction::GetFrontVec()
 	return frontVec_;
 }
 
+const float PlayerAction::GetRotY()
+{
+	return rotY_;
+}
+
 void PlayerAction::Rotation()
 {
 	float lx = IFE::Input::GetLXAnalog(controllerRange_);
 	float ly = IFE::Input::GetLYAnalog(controllerRange_);
 
-	float angleY = 0;
 	if (lx != 0 || ly != 0)
 	{
 		//方向ベクトルの角度+コントローラーの角度
-		angleY = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(lx, ly));
-		transform_->eulerAngleDegrees_.y = angleY;
+		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(lx, ly));
+		transform_->eulerAngleDegrees_.y = rotY_;
 	}
 }
 
