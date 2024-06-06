@@ -16,11 +16,11 @@ CollideManager* CollideManager::Instance()
 
 void IFE::CollideManager::RaycastSystemUpdate()
 {
-	static const float adsDistance = 0.2f;
 	for (auto itr : colliders_)
 	{
 		if (itr->GetGroundJudgeFlag())
 		{
+			float adsDistance = itr->GetColliderScale().y * 0.2f;
 			Ray ray;
 			ray.start = itr->GetColliderPosition();
 			ray.start.y += itr->GetColliderScale().y;

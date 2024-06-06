@@ -25,7 +25,6 @@ void PlayerDrone::Initialize()
 	objectPtr_->DrawFlag_ = false;
 	droneCamera_ = IFE::CameraManager::Instance()->GetCamera("DroneCamera");
 	transform_->eulerAngleDegrees_.x = 0.0f;
-	//objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->SetOffsetScale({ -0.2f,-0.2f,-0.2f });
 }
 
 void PlayerDrone::Update()
