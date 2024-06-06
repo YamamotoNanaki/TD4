@@ -30,6 +30,6 @@ namespace IFE {
 		/// <summary>
 		/// hp•\Ž¦ŒvŽZ
 		/// </summary>
-		void ScaleCalc(int8_t decHp_);
+		void ScaleCalc(uint8_t hp,uint8_t decHp);
 	};
 }

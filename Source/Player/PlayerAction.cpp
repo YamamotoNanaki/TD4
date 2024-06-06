@@ -7,6 +7,7 @@
 #include "EnemyAttack.h"
 #include "ObjectManager.h"
 #include "ModelManager.h"
+#include"Scene.h"
 
 void PlayerAction::Initialize()
 {
@@ -18,6 +19,7 @@ void PlayerAction::Initialize()
 	//HP
 	auto hpPtr = IFE::SpriteManager::Instance()->GetSpritePtr("playerHp")->GetComponent<IFE::PlayerHp>();
 	playerHp_ = hpPtr;
+	playerHp_->ScaleCalc(hp_, 1);
 
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("PlayerAttack", IFE::ModelManager::Instance()->GetModel("dice"));
 	ptr->AddComponent<PlayerAttack>();
@@ -31,14 +33,20 @@ void PlayerAction::Update()
 {
 	//hitcool
 	if (isHit_ == true) {
-		hitTime_--;
-		if (hitTime_ == 0) {
+		hitTime_ -=IFE::IFETime::sDeltaTime_;
+		if (hitTime_ <= 0) {
 			isHit_ = false;
 		}
+
+		if (hp_ > 0)
+		{
+			playerHp_->ScaleCalc(hp_, 1);
+		}
 	}
-	if (hp_ > 0)
+
+	if (hp_ <= 0)
 	{
-		playerHp_->ScaleCalc(hp_);
+		IFE::Scene::Instance()->SetNextScene("GAMEOVER");
 	}
 }
 
