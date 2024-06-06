@@ -77,7 +77,6 @@
     <ClCompile Include="Engine\Util\StringUtil.cpp" />
     <ClCompile Include="Engine\Util\Util.cpp" />
     <ClCompile Include="Engine\Base\StructuredBuffer.cpp" />
-    <ClCompile Include="PlayerAttack.cpp" />
     <ClCompile Include="Source\Enemy\BaseEnemy.cpp" />
     <ClCompile Include="Source\Enemy\Boss.cpp" />
     <ClCompile Include="Source\Enemy\EnemyAttack.cpp" />
