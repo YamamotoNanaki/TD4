@@ -5,6 +5,7 @@
 #include "LightManager.h"
 #include "Transform.h"
 #include "Collision.h"
+#include "CameraManager.h"
 
 using namespace IFE;
 using namespace std;
@@ -16,6 +17,7 @@ void EnemyHighlighting::Initialize()
 	drawFlag_ = false;
 	auto obj = ObjectManager::Instance()->GetObjectPtr("PlayerDrone");
 	if (obj)dronePosition = &obj->transform_->position_;
+	droneCamera_ = CameraManager::Instance()->GetCamera("DroneCamera");
 }
 
 void EnemyHighlighting::Update()
@@ -29,8 +31,12 @@ void EnemyHighlighting::Update()
 		auto obj = itr->objectPtr_;
 		if (!obj->isActive_)continue;
 		if (!obj->DrawFlag_)continue;
+		//áŠQ•¨‚Ì”»’è
 		if (!itr->GetDroneHitRay())continue;
-		//if (itr->GetDroneHitDistance() > droneHighlightingDistance_)continue;
+		if (itr->GetDroneHitDistance() > droneHighlightingDistance_)continue;
+		//ŽŽ‘äƒJƒŠƒ“ƒO
+		Sphere sphere(itr->transform_->position_, Vector3Max(itr->transform_->scale_));
+		if (!droneCamera_->IsFrustumCulling(sphere))continue;
 
 		objList.push_back(obj);
 	}
