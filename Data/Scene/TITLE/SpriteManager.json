@@ -11,12 +11,12 @@
             },
             "Transform2D": {
                 "position": [
-                    960.0,
-                    504.0
+                    955.0,
+                    520.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    19.200000762939453,
+                    19.799999237060547,
                     10.800000190734863
                 ]
             },
@@ -24,8 +24,8 @@
                 "Transform2D",
                 "ColorBuffer"
             ],
-            "name": "title",
-            "texture": "defaultTitle.png"
+            "name": "Title",
+            "texture": "Title.png"
         }
     ]
 }

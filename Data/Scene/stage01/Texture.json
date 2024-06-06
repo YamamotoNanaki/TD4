@@ -33,6 +33,9 @@
         "Text//PauseTextDrone.png",
         "green.png",
         "defaultTitle.png",
-        "defaultResult.png"
+        "defaultResult.png",
+        "Title.png",
+        "GameClear.png",
+        "GameOver.png"
     ]
 }
