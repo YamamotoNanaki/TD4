@@ -14,11 +14,15 @@ void EnemyHighlighting::Initialize()
 {
 	name_ = "EnemyHighlighting";
 	gp_ = GraphicsPipelineManager::Instance()->CreatePostEffectPipeLine("EnemyHighlightingVS", "EnemyHighlightingPS", "EnemyHighlighting", 2, 1);
-	//enemyJuge = GraphicsPipelineManager::Instance()->CreateObjectGraphicsPipeLine("EnemyJugeVS", "EnemyJugeGS", "EnemyJugePS", "EnemyJuge", 1, 1, 1);
+	enemyJuge = GraphicsPipelineManager::Instance()->CreateObjectGraphicsPipeLine("EnemyJudgeVS", "EnemyJudgeGS", "EnemyJudgePS", "EnemyJudge", 1, 1, 2);
 	drawFlag_ = false;
 	auto obj = ObjectManager::Instance()->GetObjectPtr("PlayerDrone");
 	if (obj)dronePosition = &obj->transform_->position_;
 	droneCamera_ = CameraManager::Instance()->GetCamera("DroneCamera");
+	cb = make_unique<ConstBuffer<Judge>>();
+	cbFalse = make_unique<ConstBuffer<Judge>>();
+	playerAction = ObjectManager::Instance()->GetObjectPtr("PlayerAction");
+	playerDrone = ObjectManager::Instance()->GetObjectPtr("PlayerDrone");
 }
 
 void EnemyHighlighting::Update()
@@ -42,20 +46,23 @@ void EnemyHighlighting::Update()
 
 		objList.push_back(obj);
 	}
-
+	if (objList.size() == 0)return;
 	objList.sort([](const Object3D* objA, const Object3D* objB) {return objA->gp_->pipelineNum_ > objB->gp_->pipelineNum_; });
 	uint8_t num = 255;
+	enemyJuge->SetDrawBlendMode();
+	num = enemyJuge->pipelineNum_;
+	LightManager::Instance()->Draw(3);
+	CameraManager::Instance()->Draw();
+	cb->GetCBMapObject()->enemy = true;
+	cb->SetConstBuffView(6);
 	for (auto& itr : objList)
 	{
-		if (num != itr->gp_->pipelineNum_)
-		{
-			itr->gp_->SetDrawBlendMode();
-			num = itr->gp_->pipelineNum_;
-			LightManager::Instance()->Draw(3);
-			CameraManager::Instance()->Draw();
-		}
 		itr->Draw();
 	}
+	cbFalse->GetCBMapObject()->enemy = false;
+	cbFalse->SetConstBuffView(6);
+	playerAction->Draw();
+	playerDrone->Draw();
 	PostEffectDrawAfter();
 }
 

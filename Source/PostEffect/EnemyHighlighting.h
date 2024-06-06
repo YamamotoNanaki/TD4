@@ -10,6 +10,16 @@ private:
 	IFE::Camera* droneCamera_ = nullptr;
 	IFE::GraphicsPipeline* enemyJuge = nullptr;
 	IFE::GraphicsPipeline* enemyAnimJuge = nullptr;
+	IFE::Object3D* playerAction = nullptr;
+	IFE::Object3D* playerDrone = nullptr;
+
+	struct Judge
+	{
+		bool enemy = true;
+		IFE::Float3 pad;
+	};
+	std::unique_ptr<IFE::ConstBuffer<Judge>>cb;
+	std::unique_ptr<IFE::ConstBuffer<Judge>>cbFalse;
 
 public:
 	float droneHighlightingDistance_ = 20;

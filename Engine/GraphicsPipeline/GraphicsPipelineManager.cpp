@@ -77,8 +77,8 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateObjectGraphicsPipeLine(std
 
 	for (size_t i = 0; i < addRootParam; i++)
 	{
-		UINT registerNum = UINT(i + 5 + inputTexNum);
-		rootParams[registerNum].InitAsConstantBufferView(registerNum, 0, D3D12_SHADER_VISIBILITY_ALL);
+		UINT registerNum = UINT(i + 5);
+		rootParams[registerNum + inputTexNum].InitAsConstantBufferView(registerNum, 0, D3D12_SHADER_VISIBILITY_ALL);
 	}
 
 
