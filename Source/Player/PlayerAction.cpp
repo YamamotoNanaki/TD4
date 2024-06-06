@@ -19,7 +19,7 @@ void PlayerAction::Initialize()
 	//HP
 	auto hpPtr = IFE::SpriteManager::Instance()->GetSpritePtr("playerHp")->GetComponent<IFE::PlayerHp>();
 	playerHp_ = hpPtr;
-	playerHp_->ScaleCalc(hp_, 1);
+	playerHp_->SetHp(hp_);
 
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("PlayerAttack", IFE::ModelManager::Instance()->GetModel("dice"));
 	ptr->AddComponent<PlayerAttack>();
@@ -32,15 +32,16 @@ void PlayerAction::Initialize()
 void PlayerAction::Update()
 {
 	//hitcool
-	if (isHit_ == true) {
-		hitTime_ -=IFE::IFETime::sDeltaTime_;
-		if (hitTime_ <= 0) {
-			isHit_ = false;
-		}
-
+	if (isHit_ == true)
+	{
 		if (hp_ > 0)
 		{
-			playerHp_->ScaleCalc(hp_, 1);
+			playerHp_->ScaleCalc(hp_, 1, hitTime_, HIT_COOLTIME);
+		}
+
+		hitTime_ -= IFE::IFETime::sDeltaTime_;
+		if (hitTime_ <= 0) {
+			isHit_ = false;
 		}
 	}
 

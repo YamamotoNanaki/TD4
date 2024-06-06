@@ -3,6 +3,7 @@
 #include"IFEMath.h"
 #include"SpriteManager.h"
 #include"Transform.h"
+#include"Ease.h"
 
 namespace IFE {
 	class PlayerHp :public IFE::Component
@@ -30,6 +31,8 @@ namespace IFE {
 		/// <summary>
 		/// hp•\Ž¦ŒvŽZ
 		/// </summary>
-		void ScaleCalc(uint8_t hp,uint8_t decHp);
+		void ScaleCalc(uint8_t hp,uint8_t decHp,float hitTime,float maxTime);
+
+		void SetHp(uint8_t hp);
 	};
 }
