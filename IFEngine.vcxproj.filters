@@ -394,14 +394,20 @@
     <ClCompile Include="EnemyBackColl.cpp">
       <Filter>ソース ファイル\Source\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerAttack.cpp">
-      <Filter>ソース ファイル\Source\Player</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\PostEffect\DefaultPostEffect.cpp">
       <Filter>ソース ファイル\Engine\PostEffect</Filter>
     </ClCompile>
     <ClCompile Include="Source\PostEffect\EnemyHighlighting.cpp">
       <Filter>ソース ファイル\Source\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\UI.cpp">
+      <Filter>ソース ファイル\Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player\PlayerAttack.cpp">
+      <Filter>ソース ファイル\Source\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\PlayerHp.cpp">
+      <Filter>ソース ファイル\Source\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -667,14 +673,20 @@
     <ClInclude Include="EnemyBackColl.h">
       <Filter>ヘッダー ファイル\Source\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerAttack.h">
-      <Filter>ヘッダー ファイル\Source\Player</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\PostEffect\DefaultPostEffect.h">
       <Filter>ヘッダー ファイル\Engine\PostEffect</Filter>
     </ClInclude>
     <ClInclude Include="Source\PostEffect\EnemyHighlighting.h">
       <Filter>ヘッダー ファイル\Source\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\UI.h">
+      <Filter>ヘッダー ファイル\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player\PlayerAttack.h">
+      <Filter>ヘッダー ファイル\Source\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\PlayerHp.h">
+      <Filter>ヘッダー ファイル\Source\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

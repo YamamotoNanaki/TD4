@@ -77,11 +77,11 @@
     <ClCompile Include="Engine\Util\StringUtil.cpp" />
     <ClCompile Include="Engine\Util\Util.cpp" />
     <ClCompile Include="Engine\Base\StructuredBuffer.cpp" />
-    <ClCompile Include="PlayerAttack.cpp" />
     <ClCompile Include="Source\Enemy\EnemyAttack.cpp" />
     <ClCompile Include="Source\Enemy\EnemyManager.cpp" />
     <ClCompile Include="Source\Enemy\NormalEnemy.cpp" />
     <ClCompile Include="Source\Player\PlayerAction.cpp" />
+    <ClCompile Include="Source\Player\PlayerAttack.cpp" />
     <ClCompile Include="Source\Player\PlayerCommonCamera.cpp" />
     <ClCompile Include="Source\Player\PlayerDrone.cpp" />
     <ClCompile Include="Source\Player\Player.cpp" />
@@ -89,6 +89,8 @@
     <ClCompile Include="Source\StageGimmick\LaserWire.cpp" />
     <ClCompile Include="Source\StageGimmick\StageCollideManageer.cpp" />
     <ClCompile Include="Source\UI\EnemyHp.cpp" />
+    <ClCompile Include="Source\UI\PlayerHp.cpp" />
+    <ClCompile Include="Source\UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnemyBackColl.h" />
@@ -169,12 +171,12 @@
     <ClInclude Include="Engine\Util\Util.h" />
     <ClInclude Include="External\strconv2.h" />
     <ClInclude Include="Engine\Base\StructuredBuffer.h" />
-    <ClInclude Include="PlayerAttack.h" />
     <ClInclude Include="Source\Enemy\BaseEnemy.h" />
     <ClInclude Include="Source\Enemy\EnemyAttack.h" />
     <ClInclude Include="Source\Enemy\EnemyManager.h" />
     <ClInclude Include="Source\Enemy\NormalEnemy.h" />
     <ClInclude Include="Source\Player\PlayerAction.h" />
+    <ClInclude Include="Source\Player\PlayerAttack.h" />
     <ClInclude Include="Source\Player\PlayerCommonCamera.h" />
     <ClInclude Include="Source\Player\PlayerDrone.h" />
     <ClInclude Include="Source\Player\Player.h" />
@@ -182,6 +184,8 @@
     <ClInclude Include="Source\StageGimmick\LaserWire.h" />
     <ClInclude Include="Source\StageGimmick\StageCollideManageer.h" />
     <ClInclude Include="Source\UI\EnemyHp.h" />
+    <ClInclude Include="Source\UI\PlayerHp.h" />
+    <ClInclude Include="Source\UI\UI.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Shaders\DefaultPE.hlsli" />

@@ -25,6 +25,7 @@ void PlayerAction::Initialize()
 
 void PlayerAction::Update()
 {
+	/*playerHp_->ScaleCalc(hp);*/
 }
 
 void PlayerAction::Draw()
