@@ -593,6 +593,33 @@
             ],
             "name": "PauseText",
             "texture": "text//PauseText.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    180.0,
+                    980.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    3.0,
+                    0.5
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "playerHp",
+            "texture": "green.png"
         }
     ]
 }

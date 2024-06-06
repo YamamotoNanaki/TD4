@@ -1,8 +1,10 @@
 #pragma once
-#include "Component.h"
+#include"Component.h"
 #include"IFEMath.h"
 #include"CameraManager.h"
 #include"PlayerAttack.h"
+#include"PlayerHp.h"
+#include"SpriteManager.h"
 
 class PlayerAction : public IFE::Component
 {
@@ -21,6 +23,9 @@ private:
 	float rotY_ = 0.0f;
 
 	uint8_t hp = 10;
+
+	//PlayerHp
+	IFE::PlayerHp* playerHp_ = nullptr;
 
 	//UŒ‚”»’èƒNƒ‰ƒX
 	PlayerAttack* playerAttack_ = nullptr;
