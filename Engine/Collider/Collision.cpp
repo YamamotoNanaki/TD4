@@ -47,6 +47,7 @@ bool IFE::Collision::CheckRaySphere(const Ray& ray, const Sphere& sphere, float*
 		}
 		else if (!rayHittingdistance)
 		{
+			*distance = t;
 			return true;
 		}
 	}

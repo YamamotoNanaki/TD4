@@ -10,11 +10,11 @@ namespace IFE {
 	//---めっちゃ普通の敵---//
 	class NormalEnemy : public IFE::BaseEnemy
 	{
-		using BaseEnemy::BaseEnemy;					
+		using BaseEnemy::BaseEnemy;
 	private:
 		//周りを見渡す時間
 		const int32_t WAIT_TIME = 200;
-		//探索時移動速度 
+		//探索時移動速度
 		const float SEARCH_VELO = 2.5f;
 		//追跡時速度
 		const float CHASE_VELO = 5.0f;
@@ -67,7 +67,7 @@ namespace IFE {
 		/// <summary>
 		/// 更新
 		/// </summary>
-		void Update();
+		void EnemyUpdate()override;
 
 		/// <summary>
 		/// 待て
@@ -123,7 +123,7 @@ namespace IFE {
 		/// ヒット時
 		/// </summary>
 		/// <param name="collider"></param>
-		void OnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)override;
+		void EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)override;
 
 		/// <summary>
 		/// 終了

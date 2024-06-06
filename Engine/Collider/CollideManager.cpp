@@ -57,7 +57,7 @@ void IFE::CollideManager::CollidersUpdate()
 			if ((colA->objectPtr_ || colB->objectPtr_) && colA->objectPtr_ == colB->objectPtr_)continue;
 			if ((colA->emitterPtr_ || colB->emitterPtr_) && colA->emitterPtr_ == colB->emitterPtr_)continue;
 			if ((colA->cameraPtr_ || colB->cameraPtr_) && colA->cameraPtr_ == colB->cameraPtr_)continue;
-			if (colA->attribute_ == uint16_t(Attribute::LANDSHAPE) && colA->attribute_ == colB->attribute_)continue;
+			if (colA->attribute_ == uint16_t(Attribute::LANDSHAPE) == colB->attribute_)continue;
 
 			//‚Æ‚à‚É‹…
 			if (colA->GetColliderType() == ColliderType::SPHERE && colB->GetColliderType() == ColliderType::SPHERE)
@@ -152,7 +152,7 @@ void IFE::CollideManager::CollidersUpdate()
 				Ray ray(colB->GetColliderPosition(), colB->rayDir_);
 				Sphere sphere(colA->GetColliderPosition(), Average(colA->GetColliderScale()));
 				Vector3 inter;
-				float dis;
+				float dis = 0;
 				float* hitdis = nullptr;
 				if (colB->rayHittingdistance > 0.f)
 				{

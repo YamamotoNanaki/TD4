@@ -83,7 +83,7 @@ void IFE::NormalEnemy::ChangeState()
 	}
 }
 
-void IFE::NormalEnemy::Update()
+void IFE::NormalEnemy::EnemyUpdate()
 {
 	if (RaySight() == true) {
 		isFound = true;
@@ -314,7 +314,7 @@ void IFE::NormalEnemy::Draw()
 
 }
 
-void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
+void IFE::NormalEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
 {
 	//”­Œ©
 	if (myCollider->GetColliderType() == ColliderType::RAY)
