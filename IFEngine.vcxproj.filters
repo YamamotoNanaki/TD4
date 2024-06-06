@@ -400,6 +400,9 @@
     <ClCompile Include="Source\PostEffect\EnemyHighlighting.cpp">
       <Filter>ソース ファイル\Source\PostEffect</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Enemy\BaseEnemy.cpp">
+      <Filter>ソース ファイル\Source\Enemy</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Camera\FrustumCulling.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>

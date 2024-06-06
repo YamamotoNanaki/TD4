@@ -10,11 +10,11 @@ namespace IFE {
 	//---‚ß‚Á‚¿‚á•’Ê‚Ì“G---//
 	class NormalEnemy : public IFE::BaseEnemy
 	{
-		using BaseEnemy::BaseEnemy;					
+		using BaseEnemy::BaseEnemy;
 	private:
 		//ü‚è‚ğŒ©“n‚·ŠÔ
 		const int32_t WAIT_TIME = 200;
-		//’TõˆÚ“®‘¬“x 
+		//’TõˆÚ“®‘¬“x
 		const float SEARCH_VELO = 2.5f;
 		//’ÇÕ‘¬“x
 		const float CHASE_VELO = 5.0f;
@@ -33,7 +33,7 @@ namespace IFE {
 		//UŒ‚ŠÔ
 		int32_t attackTime;
 		//Œx‰úŠÔ
-		int8_t warningTime;
+		int32_t warningTime;
 		//”­Œ©
 		bool isFound;
 		Vector3 lookfor;
@@ -67,7 +67,7 @@ namespace IFE {
 		/// <summary>
 		/// XV
 		/// </summary>
-		void Update();
+		void EnemyUpdate()override;
 
 		/// <summary>
 		/// ‘Ò‚Ä
@@ -110,6 +110,11 @@ namespace IFE {
 		void OneShot();
 
 		/// <summary>
+		/// ‹ü”»’è
+		/// </summary>
+		bool RaySight();
+
+		/// <summary>
 		/// •`‰æ
 		/// </summary>
 		void Draw();
@@ -118,7 +123,7 @@ namespace IFE {
 		/// ƒqƒbƒg
 		/// </summary>
 		/// <param name="collider"></param>
-		void OnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)override;
+		void EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)override;
 
 		/// <summary>
 		/// I—¹

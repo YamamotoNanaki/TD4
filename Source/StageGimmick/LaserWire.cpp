@@ -1,10 +1,21 @@
 #include "LaserWire.h"
 
 #include "Transform.h"
+#include "ModelManager.h"
+#include "ObjectManager.h"
 
 void LaserWire::Initialize()
 {
 	cols_ = objectPtr_->GetComponent<IFE::Collider>();
+	objects_.clear();
+	for (int32_t i = 0; i < poss_.size(); i++)
+	{
+		IFE::Object3D* addObj=IFE::ObjectManager::Instance()->AddInitialize("wireobj", IFE::ModelManager::Instance()->GetModel("dice"));
+		addObj->transform_->position_ = poss_[i];
+		addObj->transform_->rotation_ = transform_->rotation_;
+		addObj->transform_->scale_ = scales_[i];
+		objects_.push_back(addObj);
+	}
 }
 
 void LaserWire::Update()
@@ -23,7 +34,12 @@ void LaserWire::Update()
 
 void LaserWire::Draw()
 {
-
+#ifdef EditorMode
+	for (int32_t i = 0; i < poss_.size(); i++)
+	{
+		objects_[i]->Draw();
+	}
+#endif
 }
 
 void LaserWire::Finalize()
@@ -71,7 +87,29 @@ void LaserWire::ComponentDebugGUI()
 		oldrotSize = (int32_t)rots_.size();
 		oldscaleSize = (int32_t)scales_.size();
 	}
+	
+	//設定用のオブジェクト描画設定
+	for (int32_t i = 0; i < 10; i++)
+	{
+		if (poss_.size() - 1 < i)
+		{
+			testobj_[i].DrawFlag_ = false;
+		}
+		else
+		{
+			testobj_[i].DrawFlag_ = true;
+		}
+	}
 
+	for (int32_t i = 0; i < poss_.size(); i++)
+	{
+
+		//限界なら処理しない
+		if (i > 10)continue;
+		testobj_[i].transform_->position_ = poss_[i];
+		testobj_[i].transform_->rotation_ = transform_->rotation_;
+		testobj_[i].transform_->scale_ = scales_[i];
+	}
 	
 }
 
