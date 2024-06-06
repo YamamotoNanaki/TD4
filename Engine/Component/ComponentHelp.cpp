@@ -97,6 +97,10 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<StageCollideManageer>(str));
 	if (tmp != nullptr)return tmp;
 
+	//UI
+	tmp = std::move(GetPtr<PlayerHp>(str));
+	if (tmp != nullptr)return tmp;
+
 	return nullptr;
 }
 

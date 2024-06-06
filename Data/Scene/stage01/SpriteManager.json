@@ -603,6 +603,7 @@
                     1.0
                 ]
             },
+            "PlayerHp": null,
             "Transform2D": {
                 "position": [
                     180.0,
@@ -616,7 +617,8 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer"
+                "ColorBuffer",
+                "PlayerHp"
             ],
             "name": "playerHp",
             "texture": "green.png"
