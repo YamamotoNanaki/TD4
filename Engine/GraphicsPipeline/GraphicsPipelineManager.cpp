@@ -290,6 +290,124 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateAnimGraphicsPipeLine()
 	return pipelineList_.back().get();
 }
 
+GraphicsPipeline* IFE::GraphicsPipelineManager::CreateAnimObjectGraphicsPipeLine(std::string v, std::string g, std::string p, std::string name, int16_t addRootParam, int16_t inputTexNum, int16_t outputTexNum)
+{
+	string vs = defaultDirectory_ + v + ".hlsl";
+	ShaderCompile(vs, SHADER_COMPILE_SETTINGS::Vertex);
+	string ps = defaultDirectory_ + p + ".hlsl";
+	ShaderCompile(ps, SHADER_COMPILE_SETTINGS::Pixel);
+	string gs = defaultDirectory_ + g + ".hlsl";
+	ShaderCompile(gs, SHADER_COMPILE_SETTINGS::Geometry);
+
+	vector<CD3DX12_ROOT_PARAMETER> rootParams;
+	rootParams.resize(size_t(6 + inputTexNum + addRootParam));
+
+	for (size_t i = 0; i < 5; i++)
+	{
+		rootParams[i].InitAsConstantBufferView((UINT)i, 0, D3D12_SHADER_VISIBILITY_ALL);
+	}
+	// デスクリプタレンジ
+	std::vector<CD3DX12_DESCRIPTOR_RANGE> descRangeSRV;
+	descRangeSRV.resize(inputTexNum);
+	for (size_t i = 0; i < inputTexNum; i++)
+	{
+		descRangeSRV[i].Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, UINT(i)); // t0 レジスタ
+		rootParams[i + 5].InitAsDescriptorTable(1, &descRangeSRV[i], D3D12_SHADER_VISIBILITY_ALL);
+	}
+
+	for (size_t i = 0; i < addRootParam + 1; i++)
+	{
+		UINT registerNum = UINT(i + 5);
+		rootParams[registerNum + inputTexNum].InitAsConstantBufferView(registerNum, 0, D3D12_SHADER_VISIBILITY_ALL);
+	}
+
+
+	std::vector<D3D12_INPUT_ELEMENT_DESC> inputLayout;
+	inputLayout.push_back({ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+	inputLayout.push_back({ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+	inputLayout.push_back({ "TEXCOORD",0,DXGI_FORMAT_R32G32_FLOAT,0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+	inputLayout.push_back({ "BONEINDICES",0,DXGI_FORMAT_R32G32B32A32_UINT,0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+	inputLayout.push_back({ "BONEWEIGHTS",0,DXGI_FORMAT_R32G32B32A32_FLOAT,0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 });
+
+	D3D12_STATIC_SAMPLER_DESC samplerDesc{};
+	samplerDesc.AddressU = D3D12_TEXTURE_ADDRESS_MODE_WRAP;					//横繰り返し
+	samplerDesc.AddressV = D3D12_TEXTURE_ADDRESS_MODE_WRAP;					//縦繰り返し
+	samplerDesc.AddressW = D3D12_TEXTURE_ADDRESS_MODE_WRAP;					//奥行繰り返し
+	samplerDesc.BorderColor = D3D12_STATIC_BORDER_COLOR_TRANSPARENT_BLACK;	//ボーダーの時は黒
+	samplerDesc.Filter = D3D12_FILTER_MIN_MAG_MIP_LINEAR;					//リニア補完
+	samplerDesc.MaxLOD = D3D12_FLOAT32_MAX;									//ミップマップ最大値
+	samplerDesc.MinLOD = 0.0f;												//ミップマップ最小値
+	samplerDesc.ComparisonFunc = D3D12_COMPARISON_FUNC_NEVER;
+	samplerDesc.ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;			//ピクセルシェーダーからのみ可視
+
+	D3D12_ROOT_SIGNATURE_DESC rootSignatureDesc{};
+	rootSignatureDesc.Flags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
+	rootSignatureDesc.pParameters = &rootParams.front();
+	rootSignatureDesc.NumParameters = (UINT)rootParams.size();
+	//テクスチャ追加
+	rootSignatureDesc.pStaticSamplers = &samplerDesc;
+	rootSignatureDesc.NumStaticSamplers = 1;
+
+	D3D12_GRAPHICS_PIPELINE_STATE_DESC pipelineDesc{};
+
+	pipelineDesc.VS.pShaderBytecode = blobs_[(size_t)SHADER_COMPILE_SETTINGS::Vertex]->GetBufferPointer();
+	pipelineDesc.VS.BytecodeLength = blobs_[(size_t)SHADER_COMPILE_SETTINGS::Vertex]->GetBufferSize();
+	if (blobs_[(size_t)SHADER_COMPILE_SETTINGS::Geometry] != nullptr)
+	{
+		pipelineDesc.GS.pShaderBytecode = blobs_[(size_t)SHADER_COMPILE_SETTINGS::Geometry]->GetBufferPointer();
+		pipelineDesc.GS.BytecodeLength = blobs_[(size_t)SHADER_COMPILE_SETTINGS::Geometry]->GetBufferSize();
+	}
+	pipelineDesc.PS.pShaderBytecode = blobs_[(size_t)SHADER_COMPILE_SETTINGS::Pixel]->GetBufferPointer();
+	pipelineDesc.PS.BytecodeLength = blobs_[(size_t)SHADER_COMPILE_SETTINGS::Pixel]->GetBufferSize();
+	//デプスステンシルステートの設定
+	pipelineDesc.DepthStencilState.DepthEnable = true;		//深度テストを行う
+	pipelineDesc.DepthStencilState.DepthFunc = D3D12_COMPARISON_FUNC_LESS;
+	pipelineDesc.DSVFormat = DXGI_FORMAT_D32_FLOAT;		//深度値フォーマット
+
+	pipelineDesc.SampleMask = D3D12_DEFAULT_SAMPLE_MASK; // 標準設定
+	pipelineDesc.RasterizerState.CullMode = D3D12_CULL_MODE_BACK;  // 背面をカリング
+	pipelineDesc.RasterizerState.FillMode = D3D12_FILL_MODE_SOLID; // ポリゴン内塗りつぶし
+	pipelineDesc.RasterizerState.DepthClipEnable = true; // 深度クリッピングを有効に
+
+	pipelineDesc.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL;	//書き込み許可
+
+	pipelineDesc.InputLayout.pInputElementDescs = inputLayout.data();
+	pipelineDesc.InputLayout.NumElements = (UINT)inputLayout.size();
+
+	pipelineDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
+
+	pipelineDesc.NumRenderTargets = (UINT)outputTexNum; // 描画対象は1つ
+	D3D12_RENDER_TARGET_BLEND_DESC blendDesc;
+	blendDesc.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
+
+	blendDesc.BlendEnable = true;						//ブレンドを有効にする
+	blendDesc.LogicOpEnable = false;  // LogicOpを無効にする
+	blendDesc.BlendOpAlpha = D3D12_BLEND_OP_ADD;			//加算
+	blendDesc.SrcBlendAlpha = D3D12_BLEND_ONE;			//ソースの値を100%使う
+	blendDesc.DestBlendAlpha = D3D12_BLEND_ZERO;			//デストの値を  0%使う
+
+	blendDesc.BlendOp = D3D12_BLEND_OP_ADD;				//加算
+	blendDesc.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
+	blendDesc.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
+
+	for (size_t i = 0; i < outputTexNum; i++)
+	{
+		pipelineDesc.RTVFormats[i] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
+		pipelineDesc.BlendState.RenderTarget[i] = blendDesc;
+	}
+	pipelineDesc.SampleDesc.Count = 1; // 1ピクセルにつき1回サンプリング
+
+	static uint8_t number = 0;
+
+	if (CreateGraphicsPipeline(name, rootSignatureDesc, pipelineDesc, (uint8_t)PIPELINE_SETTING::Anim + number))
+	{
+		return nullptr;
+	}
+	number++;
+	if (number >= uint8_t(PIPELINE_SETTING::Transparent))number = 1;
+	return pipelineList_.back().get();
+}
+
 GraphicsPipeline* IFE::GraphicsPipelineManager::CreateBasic2DGraphicsPipeLine()
 {
 	string vs = defaultDirectory_ + "SpriteVS.hlsl";
