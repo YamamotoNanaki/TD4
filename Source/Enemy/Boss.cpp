@@ -49,9 +49,11 @@ bool IFE::Boss::GetBack()
 	return false;
 }
 
+#ifdef EditorMode
 void IFE::Boss::ComponentDebugGUI()
 {
 }
+#endif
 
 void IFE::Boss::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
 {

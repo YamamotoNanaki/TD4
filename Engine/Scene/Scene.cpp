@@ -53,12 +53,12 @@ void IFE::Scene::Update()
 		cameraM_->Update();
 		lightM_->Update();
 		CollideManager::Instance()->CollidersUpdate();
+		PostEffectDraw();
 	}
 	else
 	{
 		LoadUpdate();
 	}
-	PostEffectDraw();
 }
 
 void IFE::Scene::PostEffectDraw()
