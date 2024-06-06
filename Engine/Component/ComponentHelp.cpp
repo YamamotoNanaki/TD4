@@ -33,16 +33,11 @@ using namespace std;
 template <class T>
 static Component* GetPtr(const string& s);
 
-/*↓をコピペ
-tmp = std::move(GetT<クラス名>(str));
-if (tmp != nullptr)return tmp;
-*/
-
 Component* IFE::StringToComponent(const std::string& str)
 {
 	Component* tmp = nullptr;
-	//↓にコピペ
 
+	//engine
 	tmp = std::move(GetPtr<Transform>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<Transform2D>(str));
@@ -68,7 +63,6 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<Fog>(str));
 	if (tmp != nullptr)return tmp;
 
-	//ここからゲームのやつ
 	//player
 	tmp = std::move(GetPtr<Player>(str));
 	if (tmp != nullptr)return tmp;
@@ -80,6 +74,7 @@ Component* IFE::StringToComponent(const std::string& str)
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<PlayerCommonCamera>(str));
 	if (tmp != nullptr)return tmp;
+
 	//enemy
 	tmp = std::move(GetPtr<NormalEnemy>(str));
 	if (tmp != nullptr)return tmp;
@@ -92,18 +87,14 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<Boss>(str));
 	if (tmp != nullptr)return tmp;
 
-	//ステージギミック
 	tmp = std::move(GetPtr<LaserWire>(str));
 	if (tmp != nullptr)return tmp;
 
-	//壁管理
 	tmp = std::move(GetPtr<StageCollideManageer>(str));
 	if (tmp != nullptr)return tmp;
-
-
-	//UI
+	//ui
 	tmp = std::move(GetPtr<PlayerHp>(str));
-  if (tmp != nullptr)return tmp;
+	if(tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<Title>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<Clear>(str));
