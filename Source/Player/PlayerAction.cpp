@@ -137,6 +137,23 @@ const float PlayerAction::GetRotY()
 
 void PlayerAction::Rotation()
 {
+	if (IFE::Input::GetKeyPush(IFE::Key::A))
+	{
+		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(-1.0f, 0.0f));
+	}
+	if (IFE::Input::GetKeyPush(IFE::Key::D))
+	{
+		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(1.0f, 0.0f));
+	}
+	if (IFE::Input::GetKeyPush(IFE::Key::W))
+	{
+		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(0.0f, 1.0f));
+	}
+	if (IFE::Input::GetKeyPush(IFE::Key::S))
+	{
+		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(0.0f, -1.0f));
+	}
+
 	float lx = IFE::Input::GetLXAnalog(controllerRange_);
 	float ly = IFE::Input::GetLYAnalog(controllerRange_);
 
@@ -146,6 +163,8 @@ void PlayerAction::Rotation()
 		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(lx, ly));
 		transform_->eulerAngleDegrees_.y = rotY_;
 	}
+
+	transform_->eulerAngleDegrees_.y = rotY_;
 }
 
 void PlayerAction::CameraUpdate()

@@ -55,25 +55,27 @@ void IFE::NormalEnemy::ChangeState()
 	switch (state)
 	{
 	case IFE::BaseEnemy::WAIT:
-
+		status_->objectPtr_->DrawFlag_ = false;
 		Wait();
 		break;
 	case IFE::BaseEnemy::SEARCH:
-
+		status_->objectPtr_->DrawFlag_ = false;
 		Search();
 		break;
 	case IFE::BaseEnemy::WARNING:
 		//Œx‰úó‘Ô‚ÌUI‚É•ÏX
 		status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("eye"));
+		status_->objectPtr_->DrawFlag_ = true;
 		Warning();
 		break;
 	case IFE::BaseEnemy::CHASE:
 		//’ÇÕó‘Ô‚ÌUI‚É•ÏX
 		status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("exclamation"));
+		status_->objectPtr_->DrawFlag_ = true;
 		Chase();
 		break;
 	case IFE::BaseEnemy::ATTACK:
-
+		
 		Attack();
 		break;
 	case IFE::BaseEnemy::DEAD:
