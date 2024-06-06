@@ -22,7 +22,10 @@ private:
 
 	float rotY_ = 0.0f;
 
-	uint8_t hp = 10;
+	uint8_t hp_ = 10;
+	bool isHit_ = false;
+	int8_t hitTime_;
+	const int8_t HIT_COOLTIME = 15;
 
 	//PlayerHp
 	IFE::PlayerHp* playerHp_ = nullptr;
@@ -65,8 +68,10 @@ public:
 	/// </summary>
 	void Finalize();
 
-	void OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)override;
-
+	/// <summary>
+	/// 体力減少
+	/// </summary>
+	void DecHp();
 
 	/// <summary>
 	/// Playerクラスで呼ぶ操作全般更新処理
@@ -94,6 +99,9 @@ public:
 	const IFE::Vector3 GetFrontVec();
 
 	const float GetRotY();
+
+	//Getter
+	bool GetIsHit() { return isHit_; }
 
 private:
 

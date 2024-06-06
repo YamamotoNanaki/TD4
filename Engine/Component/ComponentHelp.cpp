@@ -33,15 +33,15 @@ using namespace std;
 template <class T>
 static Component* GetPtr(const string& s);
 
-/*«‚ğƒRƒsƒy
-tmp = std::move(GetT<ƒNƒ‰ƒX–¼>(str));
+/*â†“ã‚’ã‚³ãƒ”ãƒš
+tmp = std::move(GetT<ã‚¯ãƒ©ã‚¹å>(str));
 if (tmp != nullptr)return tmp;
 */
 
 Component* IFE::StringToComponent(const std::string& str)
 {
 	Component* tmp = nullptr;
-	//«‚ÉƒRƒsƒy
+	//â†“ã«ã‚³ãƒ”ãƒš
 
 	tmp = std::move(GetPtr<Transform>(str));
 	if (tmp != nullptr)return tmp;
@@ -68,7 +68,7 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<Fog>(str));
 	if (tmp != nullptr)return tmp;
 
-	//‚±‚±‚©‚çƒQ[ƒ€‚Ì‚â‚Â
+	//ã“ã“ã‹ã‚‰ã‚²ãƒ¼ãƒ ã®ã‚„ã¤
 	//player
 	tmp = std::move(GetPtr<Player>(str));
 	if (tmp != nullptr)return tmp;
@@ -92,19 +92,24 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<Boss>(str));
 	if (tmp != nullptr)return tmp;
 
-	//ƒXƒe[ƒWƒMƒ~ƒbƒN
+	//ã‚¹ãƒ†ãƒ¼ã‚¸ã‚®ãƒŸãƒƒã‚¯
 	tmp = std::move(GetPtr<LaserWire>(str));
 	if (tmp != nullptr)return tmp;
 
-	//•ÇŠÇ—
+	//å£ç®¡ç†
 	tmp = std::move(GetPtr<StageCollideManageer>(str));
 	if (tmp != nullptr)return tmp;
 
+
+	//UI
+	tmp = std::move(GetPtr<PlayerHp>(str));
+  if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<Title>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<Clear>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<Over>(str));
+
 	if (tmp != nullptr)return tmp;
 
 	return nullptr;

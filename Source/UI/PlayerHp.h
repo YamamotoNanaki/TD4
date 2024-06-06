@@ -16,6 +16,8 @@ namespace IFE {
 		//ƒƒ“ƒoŠÖ”
 	public:
 
+		void Initialize();
+
 		void Update();
 
 		/// <summary>
