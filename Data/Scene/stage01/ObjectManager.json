@@ -338,9 +338,9 @@
                 0.0
             ],
             "scale": [
-                0.9999968409538269,
-                0.9999968409538269,
-                0.9999968409538269
+                0.9999473094940186,
+                0.9999473094940186,
+                0.9999473094940186
             ]
         },
         "component": [
@@ -350,7 +350,7 @@
             "NormalEnemy"
         ],
         "drawFlag": true,
-        "model": "normalEnemy_Model",
+        "model": "dice_Model",
         "name": "normalEnemy",
         "prefab": false
     },
@@ -10919,9 +10919,9 @@
                 0.0
             ],
             "scale": [
-                0.999988317489624,
-                0.999988317489624,
-                0.999988317489624
+                0.9999628067016602,
+                0.9999628067016602,
+                0.9999628067016602
             ]
         },
         "component": [
@@ -10931,7 +10931,7 @@
             "NormalEnemy"
         ],
         "drawFlag": true,
-        "model": "normalEnemy_Model",
+        "model": "dice_Model",
         "name": "normalEnemy1",
         "prefab": false
     },
@@ -11000,17 +11000,6 @@
     },
     {
         "Boss": null,
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 0,
-                    "groundJudge": true,
-                    "notPushBack": false,
-                    "pushBack": true
-                }
-            ]
-        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -11065,11 +11054,10 @@
             "Transform",
             "TransferGeometryBuffer",
             "Material",
-            "Collider",
             "Boss"
         ],
         "drawFlag": true,
-        "model": "normalEnemy_Model",
+        "model": "dice_Model",
         "name": "boss",
         "prefab": false
     },
@@ -11221,9 +11209,9 @@
                 360.0
             ],
             "scale": [
-                0.998787522315979,
-                0.998787522315979,
-                0.998787522315979
+                0.9987754821777344,
+                0.9987754821777344,
+                0.9987754821777344
             ]
         },
         "component": [
@@ -11233,7 +11221,7 @@
             "NormalEnemy"
         ],
         "drawFlag": true,
-        "model": "normalEnemy_Model",
+        "model": "dice_Model",
         "name": "enemy",
         "prefab": false
     },
@@ -11310,9 +11298,9 @@
                 360.0
             ],
             "scale": [
-                0.9995267391204834,
-                0.9995267391204834,
-                0.9995267391204834
+                0.9995216727256775,
+                0.9995216727256775,
+                0.9995216727256775
             ]
         },
         "component": [
@@ -11322,7 +11310,7 @@
             "NormalEnemy"
         ],
         "drawFlag": true,
-        "model": "normalEnemy_Model",
+        "model": "dice_Model",
         "name": "enemy1",
         "prefab": false
     },
@@ -11399,9 +11387,9 @@
                 360.0
             ],
             "scale": [
-                0.9993242621421814,
-                0.9993242621421814,
-                0.9993242621421814
+                0.9993175864219666,
+                0.9993175864219666,
+                0.9993175864219666
             ]
         },
         "component": [
@@ -11411,7 +11399,7 @@
             "NormalEnemy"
         ],
         "drawFlag": true,
-        "model": "normalEnemy_Model",
+        "model": "dice_Model",
         "name": "enemy2",
         "prefab": false
     },
@@ -11488,9 +11476,9 @@
                 360.0
             ],
             "scale": [
-                0.9992983341217041,
-                0.9992983341217041,
-                0.9992983341217041
+                0.9992927312850952,
+                0.9992927312850952,
+                0.9992927312850952
             ]
         },
         "component": [
@@ -11500,7 +11488,7 @@
             "NormalEnemy"
         ],
         "drawFlag": true,
-        "model": "normalEnemy_Model",
+        "model": "dice_Model",
         "name": "enemy3",
         "prefab": false
     },
@@ -11567,9 +11555,9 @@
                 360.0
             ],
             "scale": [
-                0.9996854066848755,
-                0.9996854066848755,
-                0.9996854066848755
+                0.9996768236160278,
+                0.9996768236160278,
+                0.9996768236160278
             ]
         },
         "component": [
@@ -11579,7 +11567,7 @@
             "NormalEnemy"
         ],
         "drawFlag": true,
-        "model": "normalEnemy_Model",
+        "model": "dice_Model",
         "name": "enemy4",
         "prefab": false
     }

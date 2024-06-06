@@ -8,6 +8,7 @@ namespace IFE
 {
 	class Animator : public Component
 	{
+		using Component::Component;
 		uint8_t oldAnimNum_ = 0;
 		FBXModel* model_;
 		float animTimer_ = 0;
@@ -18,6 +19,7 @@ namespace IFE
 		float animSpeed_ = 1.f;
 		bool loop_ = false;
 		bool animEnd_ = false;
+		bool animFlag_ = true;
 
 	public:
 		void Initialize()override;
@@ -28,6 +30,8 @@ namespace IFE
 
 		void SetAnimation(std::string animName);
 		std::string GetAnimation();
+
+		void ModelUpdate();
 
 #ifdef InverseEditorMode
 #else

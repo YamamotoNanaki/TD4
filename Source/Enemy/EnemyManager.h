@@ -7,7 +7,7 @@ namespace IFE {
 	//メンバ変数
 	private:
 		//敵リスト
-		std::list<NormalEnemy*> enemyList_;
+		std::list<BaseEnemy*> enemyList_;
 
 	//メンバ関数
 	public:
@@ -26,7 +26,7 @@ namespace IFE {
 		/// リスト取得
 		/// </summary>
 		/// <returns></returns>
-		std::list<NormalEnemy*>& GetEnemyList() { return enemyList_; };
+		std::list<BaseEnemy*>& GetEnemyList() { return enemyList_; };
 
 		/// <summary>
 		/// 終了

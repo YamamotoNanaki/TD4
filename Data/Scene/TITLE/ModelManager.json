@@ -78,7 +78,7 @@
         "name": "normalEnemy_Model",
         "normalEnemy_Model": {
             "fileName": "enemy",
-            "settings": 0,
+            "settings": 1,
             "smooth": false
         }
     }

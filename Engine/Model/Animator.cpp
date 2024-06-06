@@ -13,6 +13,7 @@ void IFE::Animator::Initialize()
 
 void IFE::Animator::Update()
 {
+	if (!animFlag_)return;
 	if (animNum_ > model_->animations_.size())animNum_ = oldAnimNum_;
 	if (oldAnimNum_ != animNum_)animTimer_ = 0;
 	animTimer_ += animSpeed_ * IFETime::sDeltaTime_;
@@ -69,6 +70,11 @@ void IFE::Animator::SetAnimation(std::string animName)
 std::string IFE::Animator::GetAnimation()
 {
 	return model_->animations_[animNum_].name;
+}
+
+void IFE::Animator::ModelUpdate()
+{
+	model_ = dynamic_cast<FBXModel*>(objectPtr_->model_);
 }
 
 #ifdef InverseEditorMode

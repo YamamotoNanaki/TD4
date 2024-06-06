@@ -4,7 +4,9 @@
 //#include "JsonManager.h"
 #include "ObjectManager.h"
 #include "Collider.h"
-//#include "ModelManager.h"
+#include "Animator.h"
+#include "ModelManager.h"
+#include "Boss.h"
 
 void IFE::EnemyManager::Initialize()
 {
@@ -26,6 +28,34 @@ void IFE::EnemyManager::Initialize()
 			col1->SetPushBackFlag(true);
 			col1->SetGroundJudgeFlag(true);
 			enemyList_.push_back(enemy);
+			itr->SetModel(IFE::ModelManager::Instance()->GetModel("normalEnemy"));
+			itr->AddComponent<IFE::Animator>();
+			auto anim = itr->GetComponent<IFE::Animator>();
+			//anim->ModelUpdate();
+			anim->SetAnimation("Idle");
+			anim->loop_ = true;
+			continue;
+		}
+		auto boss = itr->GetComponent<IFE::Boss>();
+		if (boss)
+		{
+			boss->objectPtr_->AddComponentBack<Collider>();
+			auto com = boss->objectPtr_->GetComponent<Collider>();
+			auto col0 = com->AddCollider();
+			col0->SetColliderType(ColliderType::RAY);
+			col0->attribute_ = uint16_t(Attribute::ENEMYS);
+			auto col1 = com->AddCollider();
+			col1->SetColliderType(ColliderType::SPHERE);
+			col1->attribute_ = uint16_t(Attribute::ENEMYS);
+			col1->SetPushBackFlag(true);
+			col1->SetGroundJudgeFlag(true);
+			enemyList_.push_back(boss);
+			itr->SetModel(IFE::ModelManager::Instance()->GetModel("normalEnemy"));
+			itr->AddComponent<IFE::Animator>();
+			auto anim = itr->GetComponent<IFE::Animator>();
+			//anim->ModelUpdate();
+			anim->SetAnimation("Idle");
+			anim->loop_ = true;
 		}
 	}
 	//ModelManager* modelM = ModelManager::Instance();
@@ -39,7 +69,7 @@ void IFE::EnemyManager::Initialize()
 void IFE::EnemyManager::Update()
 {
 	objectPtr_->DrawFlag_ = false;
-	if (enemyList_.size() != 0)enemyList_.remove_if([](NormalEnemy* ne) {return ne->objectPtr_->GetDeleteFlag(); });
+	if (enemyList_.size() != 0)enemyList_.remove_if([](BaseEnemy* ne) {return ne->objectPtr_->GetDeleteFlag(); });
 }
 
 #ifdef EditorMode
