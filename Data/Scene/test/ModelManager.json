@@ -78,8 +78,16 @@
         "name": "normalEnemy_Model",
         "normalEnemy_Model": {
             "fileName": "enemy",
-            "settings": 0,
+            "settings": 1,
             "smooth": false
         }
+    },
+    {
+        "drone_Model": {
+            "fileName": "Drone",
+            "settings": 1,
+            "smooth": true
+        },
+        "name": "drone_Model"
     }
 ]

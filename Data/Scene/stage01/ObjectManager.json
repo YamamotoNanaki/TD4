@@ -253,14 +253,14 @@
                 0.0
             ],
             "rotation": [
-                0.0,
+                360.0,
                 360.0,
                 360.0
             ],
             "scale": [
-                1.0,
-                1.0,
-                1.0
+                0.5,
+                0.5,
+                0.5
             ]
         },
         "component": [
@@ -271,7 +271,7 @@
             "Collider"
         ],
         "drawFlag": false,
-        "model": "dice_Model",
+        "model": "drone_Model",
         "name": "PlayerDrone",
         "prefab": false
     },
@@ -11569,6 +11569,136 @@
         "drawFlag": true,
         "model": "dice_Model",
         "name": "enemy4",
+        "prefab": false
+    },
+    {
+        "Collider": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "greenDice.png"
+        },
+        "PlayerDrone": null,
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.5,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "PlayerDrone",
+            "Collider"
+        ],
+        "drawFlag": false,
+        "model": "drone_Model",
+        "name": "PlayerDrone1",
+        "prefab": false
+    },
+    {
+        "Collider": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "greenDice.png"
+        },
+        "PlayerDrone": null,
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.5,
+                0.5,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "PlayerDrone",
+            "Collider"
+        ],
+        "drawFlag": false,
+        "model": "drone_Model",
+        "name": "PlayerDrone2",
         "prefab": false
     }
 ]

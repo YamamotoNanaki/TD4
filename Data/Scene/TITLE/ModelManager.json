@@ -81,5 +81,13 @@
             "settings": 1,
             "smooth": false
         }
+    },
+    {
+        "drone_Model": {
+            "fileName": "Drone",
+            "settings": 1,
+            "smooth": true
+        },
+        "name": "drone_Model"
     }
 ]
