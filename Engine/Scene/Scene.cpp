@@ -326,10 +326,22 @@ void IFE::Scene::LoadingScene()
 	particleM->LoadingScene();
 	lightM_->LoadingScene();
 	cameraM_->LoadingScene();
+
+#ifdef EditorMode
+	if (debug_)
+	{
+		objM_->Initialize();
+		spriteM_->Initialize();
+		particleM->Initialize();
+		cameraM_->AllCameraInitialize();
+	}
+#else
 	objM_->Initialize();
 	spriteM_->Initialize();
 	particleM->Initialize();
 	cameraM_->AllCameraInitialize();
+#endif
+
 	postEffectM_->Initialize();
 	//oldPostEffect->LoadingScene();
 	nowScene_ = nextScene_;
