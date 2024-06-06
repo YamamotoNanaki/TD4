@@ -89,8 +89,8 @@ void IFE::Object3D::Draw()
 {
 	if (!isActive_)return;
 	if (!DrawFlag_)return;
-	Sphere sphere(transform_->position_, Vector3Max(transform_->scale_));
-	if (!CameraManager::Instance()->sActivCamera_->IsFrustumCulling(sphere))return;
+	//Sphere sphere(transform_->position_, Vector3Max(transform_->scale_));
+	//if (!CameraManager::Instance()->sActivCamera_->IsFrustumCulling(sphere))return;
 	ComponentManager::Draw();
 	model_->Draw();
 }
