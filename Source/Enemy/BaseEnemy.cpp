@@ -30,6 +30,13 @@ void IFE::BaseEnemy::Highlighting()
 
 void IFE::BaseEnemy::Update()
 {
+	//hitcool
+	if (isHit_ == true) {
+		hitTime_--;
+		if (hitTime_ == 0) {
+			isHit_ = false;
+		}
+	}
 	EnemyUpdate();
 	Highlighting();
 }

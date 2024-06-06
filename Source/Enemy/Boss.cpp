@@ -29,17 +29,12 @@ void IFE::Boss::Initialize()
 void IFE::Boss::EnemyUpdate()
 {
 	hpUI->Update(transform_->position_,hp_,decHp_);
-	//hitcool
-	if (isHit_ == true) {
-		hitTime_--;
-		if (hitTime_ == 0) {
-			isHit_ = false;
-		}
-	}
 	//死亡
 	if (hpUI->GetIsDead() == true) {
 		hpUI->objectPtr_->Destroy();
 		objectPtr_->Destroy();
+		/////-----ここにシーンチェンジ--------//////
+
 	}
 }
 

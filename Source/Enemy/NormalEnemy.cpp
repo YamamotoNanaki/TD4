@@ -91,13 +91,6 @@ void IFE::NormalEnemy::EnemyUpdate()
 	//ó‘Ô‚ðŽæ“¾
 	preState = state;
 	ChangeState();
-	//hitcool
-	if (isHit_ == true) {
-		hitTime_--;
-		if (hitTime_ == 0) {
-			isHit_ = false;
-		}
-	}
 	//hp•\Ž¦
 	hpUI->Update(transform_->position_, hp_, decHp_);
 	status_->IconUpdate(transform_->position_);
