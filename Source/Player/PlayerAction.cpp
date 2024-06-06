@@ -137,6 +137,35 @@ const float PlayerAction::GetRotY()
 
 void PlayerAction::Rotation()
 {
+#pragma region キーボード
+	float kx = 0.0f;
+	float ky = 0.0f;
+
+	if (IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::S))
+	{
+		if (IFE::Input::GetKeyPush(IFE::Key::A))
+		{
+			kx = -1.0f;
+		}
+		if (IFE::Input::GetKeyPush(IFE::Key::D))
+		{
+			kx = 1.0f;;
+		}
+		if (IFE::Input::GetKeyPush(IFE::Key::W))
+		{
+			ky = 1.0f;
+		}
+		if (IFE::Input::GetKeyPush(IFE::Key::S))
+		{
+			ky = -1.0f;
+		}
+
+		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(kx, ky));
+		transform_->eulerAngleDegrees_.y = rotY_;
+	}
+#pragma endregion キーボード
+
+#pragma region コントローラー
 	float lx = IFE::Input::GetLXAnalog(controllerRange_);
 	float ly = IFE::Input::GetLYAnalog(controllerRange_);
 
@@ -146,6 +175,7 @@ void PlayerAction::Rotation()
 		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(lx, ly));
 		transform_->eulerAngleDegrees_.y = rotY_;
 	}
+#pragma endregion コントローラー
 }
 
 void PlayerAction::CameraUpdate()
