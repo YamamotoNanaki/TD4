@@ -30,6 +30,7 @@ namespace IFE
 
 		bool ShaderCompile(const std::string& shaderName, const SHADER_COMPILE_SETTINGS& setting);
 		GraphicsPipeline* CreateBasicGraphicsPipeLine();
+		GraphicsPipeline* CreateObjectGraphicsPipeLine(std::string vs, std::string gs, std::string ps, std::string name, int16_t addRootParam = 0, int16_t inputTexNum = 1, int16_t outputTexNum = 1);
 		GraphicsPipeline* CreateAnimGraphicsPipeLine();
 		GraphicsPipeline* CreateBasic2DGraphicsPipeLine();
 		GraphicsPipeline* CreateBasicParticleGraphicsPipeLine();

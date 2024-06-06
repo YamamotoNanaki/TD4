@@ -39,6 +39,7 @@ void IFE::EnemyManager::Initialize()
 void IFE::EnemyManager::Update()
 {
 	objectPtr_->DrawFlag_ = false;
+	enemyList_.remove_if([](NormalEnemy* ne) {return ne->objectPtr_->GetDeleteFlag(); });
 }
 
 #ifdef EditorMode

@@ -705,6 +705,12 @@
     <None Include="Data\Shaders\EnemyHighlighting.hlsli">
       <Filter>シェーダーファイル</Filter>
     </None>
+    <None Include="Data\Shaders\EnemyJudge.hlsli">
+      <Filter>シェーダーファイル</Filter>
+    </None>
+    <None Include="Data\Shaders\EnemyJudgeAnim.hlsli">
+      <Filter>シェーダーファイル</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Data\Shaders\ParticleGS.hlsl">
@@ -759,6 +765,24 @@
       <Filter>シェーダーファイル</Filter>
     </FxCompile>
     <FxCompile Include="Data\Shaders\EnemyHighlightingVS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\EnemyJudgeAnimVS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\EnemyJudgeGS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\EnemyJudgePS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\EnemyJudgeVS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\EnemyJudgeAnimGS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\EnemyJudgeAnimPS.hlsl">
       <Filter>シェーダーファイル</Filter>
     </FxCompile>
   </ItemGroup>

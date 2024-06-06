@@ -47,32 +47,39 @@ void* defaultDirectory_;
 
 GraphicsPipeline* IFE::GraphicsPipelineManager::CreateBasicGraphicsPipeLine()
 {
-	string vs = defaultDirectory_ + "ModelVS.hlsl";
+	return CreateObjectGraphicsPipeLine("ModelVS", "ModelGS", "ModelPS", "3dNormal", 0, 1, 2);
+}
+
+GraphicsPipeline* IFE::GraphicsPipelineManager::CreateObjectGraphicsPipeLine(std::string v, std::string g, std::string p, std::string name, int16_t addRootParam, int16_t inputTexNum, int16_t outputTexNum)
+{
+	string vs = defaultDirectory_ + v + ".hlsl";
 	ShaderCompile(vs, SHADER_COMPILE_SETTINGS::Vertex);
-	string ps = defaultDirectory_ + "ModelPS.hlsl";
+	string ps = defaultDirectory_ + p + ".hlsl";
 	ShaderCompile(ps, SHADER_COMPILE_SETTINGS::Pixel);
-	string gs = defaultDirectory_ + "ModelGS.hlsl";
+	string gs = defaultDirectory_ + g + ".hlsl";
 	ShaderCompile(gs, SHADER_COMPILE_SETTINGS::Geometry);
 
-	vector<D3D12_ROOT_PARAMETER> rootParams;
+	vector<CD3DX12_ROOT_PARAMETER> rootParams;
+	rootParams.resize(size_t(5 + inputTexNum + addRootParam));
 
 	for (size_t i = 0; i < 5; i++)
 	{
-		D3D12_ROOT_PARAMETER rootParamSeed;
-		//定数用
-		rootParamSeed.ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;				//種類
-		rootParamSeed.Descriptor.ShaderRegister = (UINT)i;								//デスクリプタレンジ
-		rootParamSeed.Descriptor.RegisterSpace = 0;									//デスクリプタレンジ数
-		rootParamSeed.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;				//すべてのシェーダーから見える
-		rootParams.push_back(rootParamSeed);
+		rootParams[i].InitAsConstantBufferView((UINT)i, 0, D3D12_SHADER_VISIBILITY_ALL);
+	}
+	// デスクリプタレンジ
+	std::vector<CD3DX12_DESCRIPTOR_RANGE> descRangeSRV;
+	descRangeSRV.resize(inputTexNum);
+	for (size_t i = 0; i < inputTexNum; i++)
+	{
+		descRangeSRV[i].Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, UINT(i)); // t0 レジスタ
+		rootParams[i + 5].InitAsDescriptorTable(1, &descRangeSRV[i], D3D12_SHADER_VISIBILITY_ALL);
 	}
 
-	D3D12_ROOT_PARAMETER rootParamSeed2;
-	rootParamSeed2.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;		//種類
-	rootParamSeed2.DescriptorTable.pDescriptorRanges = &TextureManager::Instance()->GetDescRangeSRV();				//デスクリプタレンジ
-	rootParamSeed2.DescriptorTable.NumDescriptorRanges = 1;							//デスクリプタレンジ数
-	rootParamSeed2.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;					//すべてのシェーダーから見える
-	rootParams.push_back(rootParamSeed2);
+	for (size_t i = 0; i < addRootParam; i++)
+	{
+		UINT registerNum = UINT(i + 5 + inputTexNum);
+		rootParams[registerNum].InitAsConstantBufferView(registerNum, 0, D3D12_SHADER_VISIBILITY_ALL);
+	}
 
 
 	std::vector<D3D12_INPUT_ELEMENT_DESC> inputLayout;
@@ -127,16 +134,12 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateBasicGraphicsPipeLine()
 
 	pipelineDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 
-	pipelineDesc.NumRenderTargets = 2; // 描画対象は1つ
-	pipelineDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.RTVFormats[1] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
-	pipelineDesc.SampleDesc.Count = 1; // 1ピクセルにつき1回サンプリング
-
-
-	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc = pipelineDesc.BlendState.RenderTarget[0];
+	pipelineDesc.NumRenderTargets = (UINT)outputTexNum; // 描画対象は1つ
+	D3D12_RENDER_TARGET_BLEND_DESC blendDesc;
 	blendDesc.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
 
 	blendDesc.BlendEnable = true;						//ブレンドを有効にする
+	blendDesc.LogicOpEnable = false;  // LogicOpを無効にする
 	blendDesc.BlendOpAlpha = D3D12_BLEND_OP_ADD;			//加算
 	blendDesc.SrcBlendAlpha = D3D12_BLEND_ONE;			//ソースの値を100%使う
 	blendDesc.DestBlendAlpha = D3D12_BLEND_ZERO;			//デストの値を  0%使う
@@ -144,20 +147,22 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateBasicGraphicsPipeLine()
 	blendDesc.BlendOp = D3D12_BLEND_OP_ADD;				//加算
 	blendDesc.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
 	blendDesc.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
-	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc2 = pipelineDesc.BlendState.RenderTarget[1];
-	blendDesc2.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
-	blendDesc2.BlendEnable = true;						//ブレンドを有効にする
-	blendDesc2.BlendOpAlpha = D3D12_BLEND_OP_ADD;			//加算
-	blendDesc2.SrcBlendAlpha = D3D12_BLEND_ONE;			//ソースの値を100%使う
-	blendDesc2.DestBlendAlpha = D3D12_BLEND_ZERO;			//デストの値を  0%使う
-	blendDesc2.BlendOp = D3D12_BLEND_OP_ADD;				//加算
-	blendDesc2.SrcBlend = D3D12_BLEND_SRC_ALPHA;			//ソースのアルファ値
-	blendDesc2.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;		//1.0f-ソースのアルファ値
 
-	if (CreateGraphicsPipeline("3dNormal", rootSignatureDesc, pipelineDesc, (uint8_t)PIPELINE_SETTING::Normal))
+	for (size_t i = 0; i < outputTexNum; i++)
+	{
+		pipelineDesc.RTVFormats[i] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
+		pipelineDesc.BlendState.RenderTarget[i] = blendDesc;
+	}
+	pipelineDesc.SampleDesc.Count = 1; // 1ピクセルにつき1回サンプリング
+
+	static uint8_t number = 0;
+
+	if (CreateGraphicsPipeline(name, rootSignatureDesc, pipelineDesc, (uint8_t)PIPELINE_SETTING::Normal + number))
 	{
 		return nullptr;
 	}
+	number++;
+	if (number >= uint8_t(PIPELINE_SETTING::Anim))number = 1;
 	return pipelineList_.back().get();
 }
 
@@ -863,9 +868,6 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreatePostEffectPipeLine(std::st
 	blenddesc.SrcBlendAlpha = D3D12_BLEND_ONE;
 	blenddesc.DestBlendAlpha = D3D12_BLEND_ZERO;
 
-	// ブレンドステートの設定
-	pipelineDesc.BlendState.RenderTarget[0] = blenddesc;
-
 	// 深度バッファのフォーマット
 	pipelineDesc.DSVFormat = DXGI_FORMAT_D32_FLOAT;
 
@@ -880,6 +882,8 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreatePostEffectPipeLine(std::st
 	for (size_t i = 0; i < outputTexNum; i++)
 	{
 		pipelineDesc.RTVFormats[i] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0～255指定のRGBA
+		// ブレンドステートの設定
+		pipelineDesc.BlendState.RenderTarget[i] = blenddesc;
 	}
 	pipelineDesc.SampleDesc.Count = 1; // 1ピクセルにつき1回サンプリング
 
