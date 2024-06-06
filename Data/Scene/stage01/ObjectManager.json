@@ -276,24 +276,6 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 4,
-                    "colliderType": 2,
-                    "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": false
-                },
-                {
-                    "attribute": 4,
-                    "colliderType": 0,
-                    "groundJudge": true,
-                    "notPushBack": false,
-                    "pushBack": true
-                }
-            ]
-        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -356,17 +338,16 @@
                 0.0
             ],
             "scale": [
-                1.0,
-                1.0,
-                1.0
+                0.9999968409538269,
+                0.9999968409538269,
+                0.9999968409538269
             ]
         },
         "component": [
             "Transform",
             "TransferGeometryBuffer",
             "Material",
-            "NormalEnemy",
-            "Collider"
+            "NormalEnemy"
         ],
         "drawFlag": true,
         "model": "normalEnemy_Model",
@@ -10876,24 +10857,6 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 4,
-                    "colliderType": 2,
-                    "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": false
-                },
-                {
-                    "attribute": 4,
-                    "colliderType": 0,
-                    "groundJudge": true,
-                    "notPushBack": false,
-                    "pushBack": true
-                }
-            ]
-        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -10956,17 +10919,16 @@
                 0.0
             ],
             "scale": [
-                1.0,
-                1.0,
-                1.0
+                0.999988317489624,
+                0.999988317489624,
+                0.999988317489624
             ]
         },
         "component": [
             "Transform",
             "TransferGeometryBuffer",
             "Material",
-            "NormalEnemy",
-            "Collider"
+            "NormalEnemy"
         ],
         "drawFlag": true,
         "model": "normalEnemy_Model",
@@ -11187,7 +11149,6 @@
         "prefab": false
     },
     {
-        "Collider": null,
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -11260,16 +11221,15 @@
                 360.0
             ],
             "scale": [
-                0.9988027811050415,
-                0.9988027811050415,
-                0.9988027811050415
+                0.998787522315979,
+                0.998787522315979,
+                0.998787522315979
             ]
         },
         "component": [
             "Transform",
             "TransferGeometryBuffer",
             "Material",
-            "Collider",
             "NormalEnemy"
         ],
         "drawFlag": true,
@@ -11350,9 +11310,9 @@
                 360.0
             ],
             "scale": [
-                0.9995411038398743,
-                0.9995411038398743,
-                0.9995411038398743
+                0.9995267391204834,
+                0.9995267391204834,
+                0.9995267391204834
             ]
         },
         "component": [
@@ -11439,9 +11399,9 @@
                 360.0
             ],
             "scale": [
-                0.9993264079093933,
-                0.9993264079093933,
-                0.9993264079093933
+                0.9993242621421814,
+                0.9993242621421814,
+                0.9993242621421814
             ]
         },
         "component": [
@@ -11528,9 +11488,9 @@
                 360.0
             ],
             "scale": [
-                0.9993009567260742,
-                0.9993009567260742,
-                0.9993009567260742
+                0.9992983341217041,
+                0.9992983341217041,
+                0.9992983341217041
             ]
         },
         "component": [
@@ -11607,9 +11567,9 @@
                 360.0
             ],
             "scale": [
-                0.9996901154518127,
-                0.9996901154518127,
-                0.9996901154518127
+                0.9996854066848755,
+                0.9996854066848755,
+                0.9996854066848755
             ]
         },
         "component": [
