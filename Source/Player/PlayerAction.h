@@ -18,6 +18,8 @@ private:
 	//右ベクトルの作成
 	IFE::Vector3 rightVec_ = {};
 
+	float rotY_ = 0.0f;
+
 	uint8_t hp = 10;
 
 	//攻撃判定クラス
@@ -85,6 +87,8 @@ public:
 	const bool GetAttackFlag();
 
 	const IFE::Vector3 GetFrontVec();
+
+	const float GetRotY();
 
 private:
 

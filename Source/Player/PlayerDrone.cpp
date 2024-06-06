@@ -24,6 +24,7 @@ void PlayerDrone::Initialize()
 {
 	objectPtr_->DrawFlag_ = false;
 	droneCamera_ = IFE::CameraManager::Instance()->GetCamera("DroneCamera");
+	transform_->eulerAngleDegrees_.x = 0.0f;
 }
 
 void PlayerDrone::Update()
@@ -240,6 +241,11 @@ void PlayerDrone::SetPos(const IFE::Vector3& pos)
 IFE::Vector3 PlayerDrone::GetPos()
 {
 	return transform_->position_;
+}
+
+void PlayerDrone::SetRotY(const float rot)
+{
+	transform_->eulerAngleDegrees_.y = rot;
 }
 
 IFE::Camera* PlayerDrone::GetDroneCamera()

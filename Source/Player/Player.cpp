@@ -71,8 +71,9 @@ void Player::ChangeMode()
 			if (isDrone_ == false)
 			{
 				IFE::Float3 pos = action_->GetPos();
-				pos.y++;
+				pos.y += 3.0f;
 				drone_->SetPos(pos);
+				drone_->SetRotY(action_->GetRotY());
 				isDrone_ = true;
 			}
 		}
