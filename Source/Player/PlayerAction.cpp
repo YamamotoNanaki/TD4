@@ -15,6 +15,10 @@ void PlayerAction::Initialize()
 	transform_->position_.y = 2.0f;
 	cameraAngle_.y = 180.0f;
 
+	//HP
+	auto hpPtr = IFE::SpriteManager::Instance()->GetSpritePtr("playerHp")->GetComponent<IFE::PlayerHp>();
+	playerHp_ = hpPtr;
+
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("PlayerAttack", IFE::ModelManager::Instance()->GetModel("dice"));
 	ptr->AddComponent<PlayerAttack>();
 	playerAttack_ = ptr->GetComponent<PlayerAttack>();
@@ -25,7 +29,17 @@ void PlayerAction::Initialize()
 
 void PlayerAction::Update()
 {
-	/*playerHp_->ScaleCalc(hp);*/
+	//hitcool
+	if (isHit_ == true) {
+		hitTime_--;
+		if (hitTime_ == 0) {
+			isHit_ = false;
+		}
+	}
+	if (hp_ > 0)
+	{
+		playerHp_->ScaleCalc(hp_);
+	}
 }
 
 void PlayerAction::Draw()
@@ -37,15 +51,12 @@ void PlayerAction::Finalize()
 	delete playerAttack_;
 }
 
-void PlayerAction::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
+void PlayerAction::DecHp()
 {
-	//“GUŒ‚”í’eŽž
-	if (myCollider->GetColliderType() == IFE::ColliderType::SPHERE)
-	{
-		if (hitCollider->objectPtr_->GetComponent<IFE::EnemyAttack>()) {
-			//“–‚½‚Á‚½Žž‚Ìˆ—
-			hp--;
-		}
+	if (isHit_ == false) {
+		hp_--;
+		hitTime_ = HIT_COOLTIME;
+		isHit_ = true;
 	}
 }
 
@@ -203,10 +214,10 @@ void PlayerAction::Attack()
 			attackTimer_ = 0;
 			playerAttack_->objectPtr_->DrawFlag_ = false;
 		}
-		
+
 		attackTimer_++;
 	}
-	
+
 	playerAttack_->SetIsAttack(attackFlag_);
 }
 

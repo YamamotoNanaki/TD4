@@ -20,9 +20,6 @@ namespace IFE {
 		// UIØ‘Ö
 		void UIChange(bool mode);
 
-		// ƒ_ƒ[ƒW
-		void Damage(int8_t hp);
-
 		bool GetIsDead() { return isDead; }
 
 	private:

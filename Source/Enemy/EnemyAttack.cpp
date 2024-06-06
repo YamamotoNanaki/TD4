@@ -19,10 +19,14 @@ void IFE::EnemyAttack::Initialize()
 
 void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
 {
-	myCollider;
+	myCollider->objectPtr_->GetComponent<EnemyAttack>();
 	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<PlayerAction>())
 	{
-		//“–‚½‚Á‚½Žž‚Ìˆ—
+		if (hitCollider->objectPtr_->GetComponent<PlayerAction>()->GetIsHit() == false)
+		{
+			//“–‚½‚Á‚½Žž‚Ìˆ—
+			hitCollider->objectPtr_->GetComponent<PlayerAction>()->DecHp();
+		}
 	}
 }
 

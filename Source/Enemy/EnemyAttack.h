@@ -8,7 +8,6 @@ namespace IFE {
 		//ƒƒ“ƒo•Ï”
 	private:
 
-
 		//ƒƒ“ƒoŠÖ”
 	public:
 		/// <summary>

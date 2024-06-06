@@ -60,10 +60,3 @@ void IFE::UI::UIChange(bool mode)
 		SpriteManager::Instance()->GetSpritePtr("Attack")->drawFlag_ = true;
 	}
 }
-
-void IFE::UI::Damage(int8_t hp)
-{
-	hp--;
-}
-
-
