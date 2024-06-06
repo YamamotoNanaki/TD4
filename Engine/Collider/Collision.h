@@ -24,6 +24,7 @@ namespace IFE
 		//static bool CheckAABB(const Primitive& box1, const Primitive& box2);
 		//static bool CheckCircleXY(const Primitive& Circle1, const Primitive& Circle2);
 		//static bool CheckCircleXYAABB(const Primitive& Circle, const Primitive& box);
+		static bool CheckConeSphere(const Cone& cone, const Sphere& sphere);
 	private:
 		static bool IsSeparatedByAxis(const Vector3 axis, const OBB& box1, const OBB& box2);
 		static void ClosestPtPoint2Triangle(const Vector3& point, const Triangle& triangle, Vector3* closest);

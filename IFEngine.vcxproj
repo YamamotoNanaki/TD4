@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EnemyBackColl.cpp" />
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp" />
     <ClCompile Include="Engine\Base\Engine.cpp" />
     <ClCompile Include="Engine\Base\ImguiManager.cpp" />
@@ -23,6 +22,7 @@
     <ClCompile Include="Engine\Camera\CameraManager.cpp" />
     <ClCompile Include="Engine\Camera\DebugCamera.cpp" />
     <ClCompile Include="Engine\Camera\Fog.cpp" />
+    <ClCompile Include="Engine\Camera\FrustumCulling.cpp" />
     <ClCompile Include="Engine\Camera\Projection.cpp" />
     <ClCompile Include="Engine\Camera\View.cpp" />
     <ClCompile Include="Engine\Collider\CollideManager.cpp" />
@@ -77,6 +77,9 @@
     <ClCompile Include="Engine\Util\StringUtil.cpp" />
     <ClCompile Include="Engine\Util\Util.cpp" />
     <ClCompile Include="Engine\Base\StructuredBuffer.cpp" />
+    <ClCompile Include="PlayerAttack.cpp" />
+    <ClCompile Include="Source\Enemy\BaseEnemy.cpp" />
+    <ClCompile Include="Source\Enemy\Boss.cpp" />
     <ClCompile Include="Source\Enemy\EnemyAttack.cpp" />
     <ClCompile Include="Source\Enemy\EnemyManager.cpp" />
     <ClCompile Include="Source\Enemy\NormalEnemy.cpp" />
@@ -93,7 +96,6 @@
     <ClCompile Include="Source\UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EnemyBackColl.h" />
     <ClInclude Include="Engine\Base\EditorMode.h" />
     <ClInclude Include="Engine\Base\Compute.h" />
     <ClInclude Include="Engine\Base\ConstBuffer.h" />
@@ -110,6 +112,7 @@
     <ClInclude Include="Engine\Camera\CameraManager.h" />
     <ClInclude Include="Engine\Camera\DebugCamera.h" />
     <ClInclude Include="Engine\Camera\Fog.h" />
+    <ClInclude Include="Engine\Camera\FrustumCulling.h" />
     <ClInclude Include="Engine\Camera\Projection.h" />
     <ClInclude Include="Engine\Camera\View.h" />
     <ClInclude Include="Engine\Collider\CollideManager.h" />
@@ -172,6 +175,7 @@
     <ClInclude Include="External\strconv2.h" />
     <ClInclude Include="Engine\Base\StructuredBuffer.h" />
     <ClInclude Include="Source\Enemy\BaseEnemy.h" />
+    <ClInclude Include="Source\Enemy\Boss.h" />
     <ClInclude Include="Source\Enemy\EnemyAttack.h" />
     <ClInclude Include="Source\Enemy\EnemyManager.h" />
     <ClInclude Include="Source\Enemy\NormalEnemy.h" />

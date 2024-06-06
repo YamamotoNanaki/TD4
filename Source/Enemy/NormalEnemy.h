@@ -4,24 +4,20 @@
 #include "IFEMath.h"
 #include "EnemyHp.h"
 #include "enemyAttack.h"
-#include "EnemyBackColl.h"
 #include "IFETime.h"
 
 namespace IFE {
 	//---めっちゃ普通の敵---//
 	class NormalEnemy : public IFE::BaseEnemy
 	{
-		using BaseEnemy::BaseEnemy;					
+		using BaseEnemy::BaseEnemy;
 	private:
 		//周りを見渡す時間
 		const int32_t WAIT_TIME = 200;
-		//探索時移動速度 
+		//探索時移動速度
 		const float SEARCH_VELO = 2.5f;
 		//追跡時速度
 		const float CHASE_VELO = 5.0f;
-		//hp
-		const int8_t MAX_HP = 100;
-		const int8_t HIT_COOLTIME = 20;
 		//メンバ変数
 	private:
 		//待機タイマー
@@ -34,15 +30,11 @@ namespace IFE {
 		//攻撃時間
 		int32_t attackTime;
 		//警戒時間
-		int8_t warningTime;
+		int32_t warningTime;
 		//発見
 		bool isFound;
 		Vector3 lookfor;
 		//hp
-		int8_t hp_;
-		int8_t decHp_;
-		bool isHit_;
-		int8_t hitTime_;
 		EnemyHp* hpUI = nullptr;
 		EnemyHp* status_ = nullptr;
 		//攻撃判定クラス
@@ -68,7 +60,7 @@ namespace IFE {
 		/// <summary>
 		/// 更新
 		/// </summary>
-		void Update();
+		void EnemyUpdate()override;
 
 		/// <summary>
 		/// 待て
@@ -101,14 +93,9 @@ namespace IFE {
 		void LookAt();
 
 		/// <summary>
-		/// 体力減少
+		/// 視線判定
 		/// </summary>
-		void DecHp();
-
-		/// <summary>
-		/// 一撃で死ぬ
-		/// </summary>
-		void OneShot();
+		bool RaySight();
 
 		/// <summary>
 		/// 描画
@@ -119,7 +106,7 @@ namespace IFE {
 		/// ヒット時
 		/// </summary>
 		/// <param name="collider"></param>
-		void OnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)override;
+		void EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)override;
 
 		/// <summary>
 		/// 終了

@@ -23,6 +23,7 @@ void IFE::NormalEnemy::Initialize()
 	isHit_ = false;
 	hitTime_ = 0;
 	objectPtr_->SetColor({ 1, 0, 1, 1 });
+	objectPtr_->transform_->eulerAngleDegrees_ = { 0,270,0 };
 	frontVec = { 0,0,0 };
 	lookfor = { 0,0,0 };
 	//HPUI
@@ -82,25 +83,14 @@ void IFE::NormalEnemy::ChangeState()
 	}
 }
 
-void IFE::NormalEnemy::Update()
+void IFE::NormalEnemy::EnemyUpdate()
 {
-	if (isFound == false && hitColl_ != nullptr) {
-		if (rayDist == 0) {
-			rayDist = preRayDist;
-			isFound = true;
-			status_->objectPtr_->DrawFlag_ = true;
-		}
+	if (RaySight() == true) {
+		isFound = true;
 	}
 	//状態を取得
 	preState = state;
 	ChangeState();
-	//hitcool
-	if (isHit_ == true) {
-		hitTime_--;
-		if (hitTime_ == 0) {
-			isHit_ = false;
-		}
-	}
 	//hp表示
 	hpUI->Update(transform_->position_, hp_, decHp_);
 	status_->IconUpdate(transform_->position_);
@@ -156,7 +146,7 @@ void IFE::NormalEnemy::Warning()
 
 	if (warningTime == 75) {
 		warningTime = 0;
-		objectPtr_->SetColor({ 1, 0, 0, 1 });
+		objectPtr_->SetColor({ 0.8f, 0, 0, 1 });
 		state = CHASE;
 	}
 }
@@ -218,19 +208,19 @@ void IFE::NormalEnemy::Chase()
 		isAttack = true;
 	}
 	warningTime++;
-	if (warningTime == 200) {
+	if (warningTime == 300) {
 		warningTime = 0;
 		//前フレームに敵を見つけていたなら警戒体制に
 		if (isFound == true) {
 			objectPtr_->SetColor({ 0.5f, 0.5f, 0, 1 });
 			state = WARNING;
-			isFound = false;
 		}
 		else {
-			objectPtr_->SetColor({ 1, 0, 1, 1 });
+			objectPtr_->SetColor({ 0.8f, 0, 1, 1 });
 			state = SEARCH;
 		}
 	}
+	isFound = false;
 }
 
 void IFE::NormalEnemy::Attack()
@@ -264,24 +254,32 @@ void IFE::NormalEnemy::LookAt()
 	transform_->eulerAngleDegrees_ = { radX * 180.0f / (float)PI ,radY * 180.0f / (float)PI,0 };
 }
 
-void IFE::NormalEnemy::DecHp()
-{
-	if (isHit_ == false) {
-		hp_ -= 25;
-		decHp_ = 25;
-		hitTime_ = HIT_COOLTIME;
-		isHit_ = true;
-	}
-}
+bool IFE::NormalEnemy::RaySight() {
+	//視界の距離
+	float maxDistance = 25;
+	//視野角
+	float sightAngle = 45;
+	// 自身の位置
+	Vector3 ePos = transform_->position_;
+	// ターゲットの位置
+	Vector3 targetPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
 
-void IFE::NormalEnemy::OneShot()
-{
-	if (isHit_ == false) {
-		hp_ -= hp_;
-		decHp_ = hp_;
-		hitTime_ = HIT_COOLTIME;
-		isHit_ = true;
-	}
+	//俺の正面ベクトル
+	Vector3 selfDir = frontVec;
+
+	// ターゲットまでの向きと距離計算
+	Vector3 targetDir = targetPos - ePos;
+	float targetDistance = targetDir.Length();
+
+	// cos(θ/2)を計算
+	float cosHalf = cos(ConvertToRadians(sightAngle / 2));
+
+	// 自身とターゲットへの向きの内積計算
+	// ターゲットへの向きベクトルを正規化する必要があることに注意
+	float innerProduct = selfDir.Dot(targetDir);
+
+	// 視界判定
+	return innerProduct > cosHalf && targetDistance < maxDistance;
 }
 
 void IFE::NormalEnemy::Draw()
@@ -289,7 +287,7 @@ void IFE::NormalEnemy::Draw()
 
 }
 
-void IFE::NormalEnemy::OnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
+void IFE::NormalEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
 {
 	//発見
 	if (myCollider->GetColliderType() == ColliderType::RAY)

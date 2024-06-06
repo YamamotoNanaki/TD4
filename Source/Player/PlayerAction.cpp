@@ -82,7 +82,7 @@ void PlayerAction::Move()
 	frontVec_.y = 0.0f;
 	rightVec_.y = 0.0f;
 
-	if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_==false)
+	if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == false)
 	{
 		transform_->position_.y = -4.9f * IFE::IFETime::sDeltaTime_;
 	}
@@ -130,17 +130,21 @@ const IFE::Vector3 PlayerAction::GetFrontVec()
 	return frontVec_;
 }
 
+const float PlayerAction::GetRotY()
+{
+	return rotY_;
+}
+
 void PlayerAction::Rotation()
 {
 	float lx = IFE::Input::GetLXAnalog(controllerRange_);
 	float ly = IFE::Input::GetLYAnalog(controllerRange_);
 
-	float angleY = 0;
 	if (lx != 0 || ly != 0)
 	{
 		//方向ベクトルの角度+コントローラーの角度
-		angleY = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(lx, ly));
-		transform_->eulerAngleDegrees_.y = angleY;
+		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(lx, ly));
+		transform_->eulerAngleDegrees_.y = rotY_;
 	}
 }
 
@@ -165,16 +169,11 @@ void PlayerAction::Attack()
 	{
 		if (attackTimer_ > attackTime_)
 		{
-			playerAttack_->objectPtr_->transform_->position_.y = 0.0f;
 			attackFlag_ = false;
 			attackTimer_ = 0;
 			playerAttack_->objectPtr_->DrawFlag_ = false;
 		}
-		else if (attackTimer_ == attackTime_)
-		{
-			//無理矢理判定ずらしてるだけで何故か当たり判定が残っている状態になっている(直せ)
-			playerAttack_->objectPtr_->transform_->position_.y = -10.0f;
-		}
+		
 		attackTimer_++;
 	}
 	

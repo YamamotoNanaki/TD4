@@ -5,6 +5,7 @@
 #include "LightManager.h"
 #include "Transform.h"
 #include "Collision.h"
+#include "CameraManager.h"
 
 using namespace IFE;
 using namespace std;
@@ -16,24 +17,28 @@ void EnemyHighlighting::Initialize()
 	drawFlag_ = false;
 	auto obj = ObjectManager::Instance()->GetObjectPtr("PlayerDrone");
 	if (obj)dronePosition = &obj->transform_->position_;
+	droneCamera_ = CameraManager::Instance()->GetCamera("DroneCamera");
 }
 
 void EnemyHighlighting::Update()
 {
 	auto em = ObjectManager::Instance()->GetObjectPtr("EnemyManager")->GetComponent<EnemyManager>();
+	if (em->GetEnemyList().size() == 0)return;
 	PostEffectDrawBefore();
 	list<Object3D*>objList;
-	Sphere drone(SetVector3(*dronePosition), droneHighlightingDistance_);
 	for (auto& itr : em->GetEnemyList())
 	{
 		auto obj = itr->objectPtr_;
 		if (!obj->isActive_)continue;
 		if (!obj->DrawFlag_)continue;
-		Sphere enemy(SetVector3(itr->transform_->position_), Average(itr->transform_->scale_));
-		if (Collision::CheckSphere(drone, enemy))
-		{
-			objList.push_back(obj);
-		}
+		//áŠQ•¨‚Ì”»’è
+		if (!itr->GetDroneHitRay())continue;
+		if (itr->GetDroneHitDistance() > droneHighlightingDistance_)continue;
+		//ŽŽ‘äƒJƒŠƒ“ƒO
+		Sphere sphere(itr->transform_->position_, Vector3Max(itr->transform_->scale_));
+		if (!droneCamera_->IsFrustumCulling(sphere))continue;
+
+		objList.push_back(obj);
 	}
 
 	objList.sort([](const Object3D* objA, const Object3D* objB) {return objA->gp_->pipelineNum_ > objB->gp_->pipelineNum_; });

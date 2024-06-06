@@ -3,14 +3,18 @@
 #include "Transform.h"
 #include "Collider.h"
 #include"NormalEnemy.h"
+#include "Boss.h"
 
 void PlayerAttack::Initialize()
 {
 	objectPtr_->DrawFlag_ = false;
 	objectPtr_->SetColor({ 0,0,1,1 });
-	objectPtr_->AddComponent<IFE::Collider>();
-	auto ptr = objectPtr_->GetComponent<IFE::Collider>()->AddCollider();
-	ptr->SetNoPushBackFlag(true);
+	if (!objectPtr_->GetComponent<IFE::Collider>())
+	{
+		objectPtr_->AddComponent<IFE::Collider>();
+		auto ptr = objectPtr_->GetComponent<IFE::Collider>()->AddCollider();
+		ptr->SetNoPushBackFlag(true);
+	}
 }
 
 void PlayerAttack::Update()
@@ -26,7 +30,7 @@ void PlayerAttack::Finalize()
 void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
 {
 	myCollider;
-	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>())
+	if (isAttack_ == true && (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()))
 	{
 		if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetIsHit() == false)
 		{
@@ -39,6 +43,23 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 			{
 				//“–‚½‚Á‚½Žž‚Ìˆ—
 				hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->OneShot();
+			}
+		}
+	}
+	//boss
+	if (isAttack_ == true && (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<IFE::Boss>()))
+	{
+		if (hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetIsHit() == false)
+		{
+			if (hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetBack() == false)
+			{
+				//“–‚½‚Á‚½Žž‚Ìˆ—
+				hitCollider->objectPtr_->GetComponent<IFE::Boss>()->DecHp();
+			}
+			else
+			{
+				//“–‚½‚Á‚½Žž‚Ìˆ—
+				hitCollider->objectPtr_->GetComponent<IFE::Boss>()->OneShot();
 			}
 		}
 	}

@@ -5,6 +5,7 @@
 #include "IFEMath.h"
 #include "ComponentManager.h"
 #include "EditorMode.h"
+#include "FrustumCulling.h"
 
 #pragma warning(push)
 #pragma warning(disable:4244)
@@ -21,6 +22,7 @@ namespace IFE
 		Quaternion rotation_;
 		Float3 position_;
 		Float3 eulerAngleDegrees_;
+		FrustumCulling frustumCulling_;
 
 	public:
 		TransformCamera* transform_;
@@ -37,6 +39,7 @@ namespace IFE
 		~Camera();
 		void SetComponent(std::unique_ptr<Component> component);
 		void SetComponentFront(std::unique_ptr<Component> component);
+		bool IsFrustumCulling(Sphere sphere);
 
 #ifdef InverseEditorMode
 #else

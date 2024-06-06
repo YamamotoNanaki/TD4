@@ -69,7 +69,10 @@ void Player::ChangeMode()
 			ptr->updateFlag_ = true;
 			if (isDrone_ == false)
 			{
-				drone_->SetPos(action_->GetPos());
+				IFE::Float3 pos = action_->GetPos();
+				pos.y += 3.0f;
+				drone_->SetPos(pos);
+				drone_->SetRotY(action_->GetRotY());
 				isDrone_ = true;
 			}
 		}

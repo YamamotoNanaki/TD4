@@ -76,5 +76,7 @@ public:
 	void SetPos(const IFE::Vector3& pos);
 	IFE::Vector3 GetPos();
 
+	void SetRotY(const float rot);
+
 	IFE::Camera* GetDroneCamera();
 };

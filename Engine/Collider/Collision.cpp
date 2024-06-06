@@ -47,6 +47,7 @@ bool IFE::Collision::CheckRaySphere(const Ray& ray, const Sphere& sphere, float*
 		}
 		else if (!rayHittingdistance)
 		{
+			*distance = t;
 			return true;
 		}
 	}
@@ -371,6 +372,39 @@ bool IFE::Collision::CheckOBBRay(const OBB& box, const Ray& ray, float* distance
 //
 //	return true;
 //}
+
+bool IFE::Collision::CheckConeSphere(const Cone& cone, const Sphere& sphere)
+{
+	// 頂点から球の中心へのベクトル
+	Float3 apexToCenter = {
+		sphere.center.x - cone.apex.x,
+		sphere.center.y - cone.apex.y,
+		sphere.center.z - cone.apex.z
+	};
+
+	// 円錐の高さ方向ベクトル
+	Float3 coneDir = { 0.0f, 1.0f, 0.0f };
+
+	// 頂点から球の中心へのベクトルと高さ方向ベクトルの内積を計算
+	float dotProduct = apexToCenter.x * coneDir.x + apexToCenter.y * coneDir.y + apexToCenter.z * coneDir.z;
+
+	// 投影点が円錐の高さ内にあるか確認
+	if (dotProduct < 0.0f || dotProduct > cone.height) {
+		return false;
+	}
+
+	// 頂点から球の中心へのベクトルの長さの二乗を計算
+	float distanceSquared = apexToCenter.x * apexToCenter.x +
+		apexToCenter.y * apexToCenter.y +
+		apexToCenter.z * apexToCenter.z;
+
+	// 球の中心が円錐の軸からどれだけ離れているか計算
+	float radiusAtHeight = (dotProduct / cone.height) * cone.radius;
+	float radiusSquared = radiusAtHeight * radiusAtHeight;
+	float sphereRadiusSquared = sphere.radius * sphere.radius;
+
+	return distanceSquared <= (radiusSquared + sphereRadiusSquared);
+}
 
 bool IFE::Collision::IsSeparatedByAxis(const Vector3 axis, const OBB& box1, const OBB& box2)
 {

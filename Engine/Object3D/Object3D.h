@@ -6,6 +6,7 @@
 #include "GraphicsPipeline.h"
 #include <memory>
 #include "EditorMode.h"
+#include "IFEMath.h"
 
 namespace IFE
 {

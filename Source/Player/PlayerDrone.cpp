@@ -24,6 +24,7 @@ void PlayerDrone::Initialize()
 {
 	objectPtr_->DrawFlag_ = false;
 	droneCamera_ = IFE::CameraManager::Instance()->GetCamera("DroneCamera");
+	transform_->eulerAngleDegrees_.x = 0.0f;
 }
 
 void PlayerDrone::Update()
@@ -37,7 +38,7 @@ void PlayerDrone::Update()
 
 	if (objectPtr_->DrawFlag_ == true)
 	{
-		transform_->position_.y = dronePosY_ + IFE::SimpleHarmonicMotion(time_,0.1f, maxTime);
+		transform_->position_.y = dronePosY_ + IFE::SimpleHarmonicMotion(time_, 0.1f, maxTime);
 	}
 }
 
@@ -95,7 +96,9 @@ void PlayerDrone::Move()
 	}if (IFE::Input::GetKeyPush(IFE::Key::Q))
 	{
 		moveValue_.y++;
-	}if (IFE::Input::GetKeyPush(IFE::Key::E))
+
+	}
+	if (IFE::Input::GetKeyPush(IFE::Key::E))
 	{
 		moveValue_.y--;
 	}
@@ -108,7 +111,8 @@ void PlayerDrone::Move()
 	if (IFE::Input::GetRTrigger())
 	{
 		moveValue_.y++;
-	}if (IFE::Input::GetLTrigger())
+	}
+	if (IFE::Input::GetLTrigger())
 	{
 		moveValue_.y--;
 	}
@@ -117,7 +121,7 @@ void PlayerDrone::Move()
 
 #pragma region “ˆêˆ—
 
-	if (IFE::Input::GetKeyTrigger(IFE::Key::LSHIFT)|| IFE::Input::GetKeyTrigger(IFE::Key::RSHIFT) ||IFE::Input::PadTrigger(IFE::PADCODE::LTHUMB))
+	if (IFE::Input::GetKeyTrigger(IFE::Key::LSHIFT) || IFE::Input::GetKeyTrigger(IFE::Key::RSHIFT) || IFE::Input::PadTrigger(IFE::PADCODE::LTHUMB))
 	{
 		slowSpeedMode_ = !slowSpeedMode_;
 	}
@@ -151,6 +155,11 @@ void PlayerDrone::Move()
 
 	transform_->UpdateMatrix();
 #pragma endregion
+
+	if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == true)
+	{
+		transform_->position_.y += 0.2f;
+	}
 }
 
 void PlayerDrone::Rotation()
@@ -232,6 +241,11 @@ void PlayerDrone::SetPos(const IFE::Vector3& pos)
 IFE::Vector3 PlayerDrone::GetPos()
 {
 	return transform_->position_;
+}
+
+void PlayerDrone::SetRotY(const float rot)
+{
+	transform_->eulerAngleDegrees_.y = rot;
 }
 
 IFE::Camera* PlayerDrone::GetDroneCamera()

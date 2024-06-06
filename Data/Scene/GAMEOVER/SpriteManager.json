@@ -1,0 +1,31 @@
+{
+    "fore": [
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    540.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    19.200000762939453,
+                    10.800000190734863
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "gameOver",
+            "texture": "defaultResult.png"
+        }
+    ]
+}

@@ -27,6 +27,7 @@ namespace IFE
 		//void DrawBackGround();
 		Object3D* AddInitialize(const std::string& objectName, Component* model);
 		Object3D* Add(const std::string& objectName);
+		Object3D* Add(const std::string& objectName, Component* model);
 		Object3D* AddPrefab(const std::string& objectName);
 		Object3D* GetObjectPtr(const std::string& objectName);
 		Object3D* GetPrefab(const std::string& name);

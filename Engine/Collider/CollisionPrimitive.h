@@ -89,5 +89,12 @@ namespace IFE
 			axis[2] = rotatedZ;
 		}
 	};
+	struct Cone {
+		Float3 apex; // í∏ì_
+		float radius; // íÍñ îºåa
+		float height; // çÇÇ≥
+		Cone();
+		Cone(Float3 apex, float radius, float height);
+	};
 }
 

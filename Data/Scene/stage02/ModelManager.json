@@ -15,13 +15,6 @@
         }
     },
     {
-        "name": "normalEnemyModel_Model",
-        "normalEnemyModel_Model": {
-            "settings": 100,
-            "smooth": false
-        }
-    },
-    {
         "dice_Model": {
             "fileName": "dice",
             "settings": 0,
@@ -54,6 +47,38 @@
         "name": "testDrone_wall_Model",
         "testDrone_wall_Model": {
             "settings": 100,
+            "smooth": false
+        }
+    },
+    {
+        "Plane_Model": {
+            "fileName": "panel",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "Plane_Model"
+    },
+    {
+        "ground_Model": {
+            "fileName": "ground",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "ground_Model"
+    },
+    {
+        "hppanel_Model": {
+            "fileName": "hppanel",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "hppanel_Model"
+    },
+    {
+        "name": "normalEnemy_Model",
+        "normalEnemy_Model": {
+            "fileName": "enemy",
+            "settings": 0,
             "smooth": false
         }
     }

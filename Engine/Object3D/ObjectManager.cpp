@@ -125,6 +125,15 @@ Object3D* IFE::ObjectManager::Add(const std::string& objectName)
 	return objectList_.back().get();
 }
 
+Object3D* IFE::ObjectManager::Add(const std::string& objectName, Component* model)
+{
+	std::unique_ptr<Object3D> ptr = make_unique<Object3D>();
+	ptr->SetObjectName(SetNameNumber(objectName));
+	ptr->SetModel(model);
+	objectList_.push_back(std::move(ptr));
+	return objectList_.back().get();
+}
+
 Object3D* IFE::ObjectManager::AddPrefab(const std::string& objectName)
 {
 	std::unique_ptr<Object3D> ptr = make_unique<Object3D>();

@@ -11,6 +11,7 @@
 #include "Collider.h"
 #include "ImguiManager.h"
 #include "ComponentManager.h"
+#include "CameraManager.h"
 
 using namespace IFE;
 using namespace std;
@@ -88,6 +89,8 @@ void IFE::Object3D::Draw()
 {
 	if (!isActive_)return;
 	if (!DrawFlag_)return;
+	//Sphere sphere(transform_->position_, Vector3Max(transform_->scale_));
+	//if (!CameraManager::Instance()->sActivCamera_->IsFrustumCulling(sphere))return;
 	ComponentManager::Draw();
 	model_->Draw();
 }
