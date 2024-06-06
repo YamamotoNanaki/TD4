@@ -148,6 +148,13 @@ float IFE::EaseInBack2(float startPos, float endPos, float maxTime, float time) 
 	float c3 = c1 + 0.8f;
 	return change * (c3 * time * time * time - c1 * time * time) + startPos;
 }
+double IFE::EaseOutQuint(double time, const double startPoint, const double endPoint, const double maxTime)
+{
+	double x = time / maxTime;
+	double v = 1.0f - pow(1.0f - x, 5.0f);
+	double ret = (endPoint - startPoint) * v + startPoint;
+	return ret;
+}
 float IFE::EaseOutBounce(float startPos, float endPos, float maxTime, float time) {
 	time /= maxTime;
 	float change = endPos - startPos;

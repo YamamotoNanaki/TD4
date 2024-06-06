@@ -24,8 +24,8 @@ private:
 
 	uint8_t hp_ = 10;
 	bool isHit_ = false;
-	int8_t hitTime_;
-	const int8_t HIT_COOLTIME = 15;
+	float hitTime_;
+	const int8_t HIT_COOLTIME = 1;
 
 	//PlayerHp
 	IFE::PlayerHp* playerHp_ = nullptr;

@@ -10718,7 +10718,7 @@
                     "colliderType": 3,
                     "groundJudge": false,
                     "notPushBack": false,
-                    "pushBack": true
+                    "pushBack": false
                 }
             ]
         },
@@ -10759,7 +10759,7 @@
             "position": [
                 -130.0,
                 3.0,
-                192.10000610351563
+                192.0
             ],
             "rotation": [
                 360.0,

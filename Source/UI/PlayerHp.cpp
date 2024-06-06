@@ -2,7 +2,7 @@
 
 void IFE::PlayerHp::Initialize()
 {
-	transform2D_->position2D_ = {50.0f,950.0f};
+	transform2D_->position2D_ = { 50.0f,950.0f };
 	spritePtr_->anchorpoint_ = { 0.0f,0.5f };
 	spritePtr_->TransferVertex();
 }
@@ -12,18 +12,12 @@ void IFE::PlayerHp::Update()
 
 }
 
-void IFE::PlayerHp::ScaleCalc(int8_t decHp_)
+void IFE::PlayerHp::ScaleCalc(uint8_t hp, uint8_t decHp, float hitTime, float maxTime)
 {
-	if (decHp_ >= 4) {
-		spritePtr_->transform_->scale2D_ -= {0.08f, 0};
-		/*decHp_ -= 4;*/
-	}
-	else if (decHp_ >= 2) {
-		spritePtr_->transform_->scale2D_ -= {0.04f, 0};
-		/*decHp_ -= 2;*/
-	}
-	else if (decHp_ >= 1) {
-		spritePtr_->transform_->scale2D_ -= {0.02f, 0};
-		/*decHp_--;*/
-	}
+	transform2D_->scale2D_.x = static_cast<float>(EaseOutQuint(maxTime - hitTime, (hp + decHp) * 0.5f, hp * 0.5f, maxTime));
+}
+
+void IFE::PlayerHp::SetHp(uint8_t hp)
+{
+	transform2D_->scale2D_.x = hp * 0.5f;
 }
