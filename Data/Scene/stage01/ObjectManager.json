@@ -11185,5 +11185,442 @@
         "model": "dice_Model",
         "name": "PlayerAttack",
         "prefab": false
+    },
+    {
+        "Collider": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                0.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        -65.0,
+                        2.0,
+                        88.0
+                    ],
+                    [
+                        -65.0,
+                        2.0,
+                        138.0
+                    ],
+                    [
+                        18.0,
+                        2.0,
+                        138.0
+                    ],
+                    [
+                        18.0,
+                        2.0,
+                        88.0
+                    ]
+                ],
+                "size": 4
+            }
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -65.0,
+                2.0,
+                88.0
+            ],
+            "rotation": [
+                360.0,
+                270.0,
+                360.0
+            ],
+            "scale": [
+                0.9988027811050415,
+                0.9988027811050415,
+                0.9988027811050415
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "normalEnemy_Model",
+        "name": "enemy",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                0.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        18.0,
+                        2.0,
+                        138.0
+                    ],
+                    [
+                        18.0,
+                        2.0,
+                        88.0
+                    ],
+                    [
+                        -65.0,
+                        2.0,
+                        88.0
+                    ],
+                    [
+                        -65.0,
+                        2.0,
+                        138.0
+                    ]
+                ],
+                "size": 4
+            }
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                18.0,
+                2.0,
+                138.0
+            ],
+            "rotation": [
+                360.0,
+                270.0,
+                360.0
+            ],
+            "scale": [
+                0.9995411038398743,
+                0.9995411038398743,
+                0.9995411038398743
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "normalEnemy_Model",
+        "name": "enemy1",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                0.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        -24.0,
+                        2.0,
+                        160.0
+                    ],
+                    [
+                        -24.0,
+                        2.0,
+                        200.0
+                    ],
+                    [
+                        -81.0,
+                        2.0,
+                        200.0
+                    ],
+                    [
+                        -24.0,
+                        2.0,
+                        200.0
+                    ]
+                ],
+                "size": 4
+            }
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -24.0,
+                2.0,
+                160.0
+            ],
+            "rotation": [
+                360.0,
+                270.0,
+                360.0
+            ],
+            "scale": [
+                0.9993264079093933,
+                0.9993264079093933,
+                0.9993264079093933
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "normalEnemy_Model",
+        "name": "enemy2",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                0.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        -98.0,
+                        2.0,
+                        200.0
+                    ],
+                    [
+                        -161.0,
+                        2.0,
+                        200.0
+                    ],
+                    [
+                        -161.0,
+                        2.0,
+                        156.0
+                    ],
+                    [
+                        -161.0,
+                        2.0,
+                        200.0
+                    ]
+                ],
+                "size": 4
+            }
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -98.0,
+                2.0,
+                200.0
+            ],
+            "rotation": [
+                360.0,
+                270.0,
+                360.0
+            ],
+            "scale": [
+                0.9993009567260742,
+                0.9993009567260742,
+                0.9993009567260742
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "normalEnemy_Model",
+        "name": "enemy3",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                0.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        -83.0,
+                        2.0,
+                        86.0
+                    ],
+                    [
+                        -83.0,
+                        2.0,
+                        139.0
+                    ]
+                ],
+                "size": 2
+            }
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -83.0,
+                2.0,
+                86.0
+            ],
+            "rotation": [
+                360.0,
+                270.0,
+                360.0
+            ],
+            "scale": [
+                0.9996901154518127,
+                0.9996901154518127,
+                0.9996901154518127
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "normalEnemy_Model",
+        "name": "enemy4",
+        "prefab": false
     }
 ]
