@@ -85,7 +85,7 @@
     {
         "drone_Model": {
             "fileName": "Drone",
-            "settings": 1,
+            "settings": 0,
             "smooth": true
         },
         "name": "drone_Model"
