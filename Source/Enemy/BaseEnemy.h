@@ -6,6 +6,10 @@ namespace IFE {
 	class BaseEnemy :public IFE::Component
 	{
 		using Component::Component;
+	private:
+		//hp
+		const int8_t MAX_HP = 100;
+		const int8_t HIT_COOLTIME = 15;
 		//メンバ変数
 	protected:
 		//状態
@@ -25,6 +29,11 @@ namespace IFE {
 		};
 		State state;
 		State preState;
+		//hp
+		int8_t hp_;
+		int8_t decHp_;
+		bool isHit_;
+		int8_t hitTime_;
 
 
 		//Highlighting関連の変数
@@ -61,6 +70,16 @@ namespace IFE {
 		/// 終了
 		/// </summary>
 		virtual void Finalize() = 0;
+
+		/// <summary>
+		/// 体力減少
+		/// </summary>
+		void DecHp();
+
+		/// <summary>
+		/// 一撃で死ぬ
+		/// </summary>
+		void OneShot();
 
 		/// <summary>
 		/// 更新処理

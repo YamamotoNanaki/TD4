@@ -3,6 +3,7 @@
 #include"IFEMath.h"
 #include"PlayerAction.h"
 #include"PlayerDrone.h"
+#include"UI.h"
 
 class Player :public IFE::Component
 {
@@ -12,6 +13,8 @@ private:
 
 	PlayerAction* action_ = nullptr;
 	PlayerDrone* drone_ = nullptr;
+
+	IFE::UI* ui_ = nullptr;
 
 	bool isDrone_ = false;
 	float droneHighlightingDistance_ = 20;
@@ -34,7 +37,6 @@ public:
 private:
 
 	void ChangeMode();
-	void ChangeUI();
 
 #ifdef EditorMode
 	void ComponentDebugGUI()override;

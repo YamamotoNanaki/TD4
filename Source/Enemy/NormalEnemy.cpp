@@ -91,13 +91,6 @@ void IFE::NormalEnemy::EnemyUpdate()
 	//ó‘Ô‚ðŽæ“¾
 	preState = state;
 	ChangeState();
-	//hitcool
-	if (isHit_ == true) {
-		hitTime_--;
-		if (hitTime_ == 0) {
-			isHit_ = false;
-		}
-	}
 	//hp•\Ž¦
 	hpUI->Update(transform_->position_, hp_, decHp_);
 	status_->IconUpdate(transform_->position_);
@@ -259,26 +252,6 @@ void IFE::NormalEnemy::LookAt()
 	float length = rotaVec.Length();
 	float radX = std::atan2(-frontVec.y, length);
 	transform_->eulerAngleDegrees_ = { radX * 180.0f / (float)PI ,radY * 180.0f / (float)PI,0 };
-}
-
-void IFE::NormalEnemy::DecHp()
-{
-	if (isHit_ == false) {
-		hp_ -= 25;
-		decHp_ = 25;
-		hitTime_ = HIT_COOLTIME;
-		isHit_ = true;
-	}
-}
-
-void IFE::NormalEnemy::OneShot()
-{
-	if (isHit_ == false) {
-		hp_ -= hp_;
-		decHp_ = hp_;
-		hitTime_ = HIT_COOLTIME;
-		isHit_ = true;
-	}
 }
 
 bool IFE::NormalEnemy::RaySight() {

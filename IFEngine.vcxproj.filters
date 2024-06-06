@@ -397,14 +397,26 @@
     <ClCompile Include="Engine\PostEffect\DefaultPostEffect.cpp">
       <Filter>ソース ファイル\Engine\PostEffect</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PostEffect\EnemyHighlighting.cpp">
-      <Filter>ソース ファイル\Source\PostEffect</Filter>
+    <ClCompile Include="Source\UI\UI.cpp">
+      <Filter>ソース ファイル\Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player\PlayerAttack.cpp">
+      <Filter>ソース ファイル\Source\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\PlayerHp.cpp">
+      <Filter>ソース ファイル\Source\UI</Filter>
     </ClCompile>
     <ClCompile Include="Source\Enemy\BaseEnemy.cpp">
       <Filter>ソース ファイル\Source\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Camera\FrustumCulling.cpp">
       <Filter>ソース ファイル\Engine\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Enemy\Boss.cpp">
+      <Filter>ソース ファイル\Source\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PostEffect\EnemyHighlighting.cpp">
+      <Filter>ソース ファイル\Source\PostEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -664,20 +676,32 @@
     <ClInclude Include="Engine\Sprite\AnimationTexture.h">
       <Filter>ヘッダー ファイル\Engine\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Player\PlayerCommonCamera.h">
-      <Filter>ヘッダー ファイル\Source\Player</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerAttack.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
     <ClInclude Include="Engine\PostEffect\DefaultPostEffect.h">
       <Filter>ヘッダー ファイル\Engine\PostEffect</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PostEffect\EnemyHighlighting.h">
-      <Filter>ヘッダー ファイル\Source\PostEffect</Filter>
+    <ClInclude Include="Source\UI\UI.h">
+      <Filter>ヘッダー ファイル\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player\PlayerAttack.h">
+      <Filter>ヘッダー ファイル\Source\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\PlayerHp.h">
+      <Filter>ヘッダー ファイル\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Camera\FrustumCulling.h">
       <Filter>ヘッダー ファイル\Engine\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enemy\Boss.h">
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PostEffect\EnemyHighlighting.h">
+      <Filter>ヘッダー ファイル\Source\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player\PlayerCommonCamera.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
