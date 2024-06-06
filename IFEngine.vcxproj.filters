@@ -391,9 +391,6 @@
     <ClCompile Include="Source\Player\PlayerCommonCamera.cpp">
       <Filter>ソース ファイル\Source\Player</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerAttack.cpp">
-      <Filter>ソース ファイル\Source\Player</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\PostEffect\DefaultPostEffect.cpp">
       <Filter>ソース ファイル\Engine\PostEffect</Filter>
     </ClCompile>
@@ -417,6 +414,15 @@
     </ClCompile>
     <ClCompile Include="Source\PostEffect\EnemyHighlighting.cpp">
       <Filter>ソース ファイル\Source\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\Title.cpp">
+      <Filter>ソース ファイル\Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\Clear.cpp">
+      <Filter>ソース ファイル\Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\Over.cpp">
+      <Filter>ソース ファイル\Source\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -676,9 +682,6 @@
     <ClInclude Include="Engine\Sprite\AnimationTexture.h">
       <Filter>ヘッダー ファイル\Engine\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerAttack.h">
-      <Filter>ヘッダー ファイル\Source\Player</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\PostEffect\DefaultPostEffect.h">
       <Filter>ヘッダー ファイル\Engine\PostEffect</Filter>
     </ClInclude>
@@ -702,6 +705,15 @@
     </ClInclude>
     <ClInclude Include="Source\Player\PlayerCommonCamera.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\Title.h">
+      <Filter>ヘッダー ファイル\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\Clear.h">
+      <Filter>ヘッダー ファイル\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\Over.h">
+      <Filter>ヘッダー ファイル\Source\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

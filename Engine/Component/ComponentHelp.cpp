@@ -23,6 +23,9 @@
 #include "PlayerCommonCamera.h"
 #include "EnemyManager.h"
 #include "Boss.h"
+#include "Title.h"
+#include "Clear.h"
+#include "Over.h"
 
 using namespace IFE;
 using namespace std;
@@ -95,6 +98,13 @@ Component* IFE::StringToComponent(const std::string& str)
 
 	//ï«ä«óù
 	tmp = std::move(GetPtr<StageCollideManageer>(str));
+	if (tmp != nullptr)return tmp;
+
+	tmp = std::move(GetPtr<Title>(str));
+	if (tmp != nullptr)return tmp;
+	tmp = std::move(GetPtr<Clear>(str));
+	if (tmp != nullptr)return tmp;
+	tmp = std::move(GetPtr<Over>(str));
 	if (tmp != nullptr)return tmp;
 
 	return nullptr;

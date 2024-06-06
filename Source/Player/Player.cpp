@@ -20,7 +20,6 @@ void Player::Initialize()
 
 	transform_->position_ = { 0,0,0 };
 	objectPtr_->DrawFlag_ = false;
-	dynamic_cast<EnemyHighlighting*>(IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting"))->droneHighlightingDistance_ = droneHighlightingDistance_;
 }
 
 void Player::Update()
@@ -35,6 +34,7 @@ void Player::Update()
 	{
 		drone_->MoveUpdate();
 	}
+	dynamic_cast<EnemyHighlighting*>(IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting"))->droneHighlightingDistance_ = droneHighlightingDistance_;
 }
 
 void Player::Draw()

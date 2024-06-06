@@ -90,8 +90,11 @@
     <ClCompile Include="Source\PostEffect\EnemyHighlighting.cpp" />
     <ClCompile Include="Source\StageGimmick\LaserWire.cpp" />
     <ClCompile Include="Source\StageGimmick\StageCollideManageer.cpp" />
+    <ClCompile Include="Source\UI\Clear.cpp" />
     <ClCompile Include="Source\UI\EnemyHp.cpp" />
+    <ClCompile Include="Source\UI\Over.cpp" />
     <ClCompile Include="Source\UI\PlayerHp.cpp" />
+    <ClCompile Include="Source\UI\Title.cpp" />
     <ClCompile Include="Source\UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -186,8 +189,11 @@
     <ClInclude Include="Source\PostEffect\EnemyHighlighting.h" />
     <ClInclude Include="Source\StageGimmick\LaserWire.h" />
     <ClInclude Include="Source\StageGimmick\StageCollideManageer.h" />
+    <ClInclude Include="Source\UI\Clear.h" />
     <ClInclude Include="Source\UI\EnemyHp.h" />
+    <ClInclude Include="Source\UI\Over.h" />
     <ClInclude Include="Source\UI\PlayerHp.h" />
+    <ClInclude Include="Source\UI\Title.h" />
     <ClInclude Include="Source\UI\UI.h" />
   </ItemGroup>
   <ItemGroup>
