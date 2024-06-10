@@ -7,15 +7,27 @@
 
 void PlayerActionCamera::Initialize()
 {
+	objectPtr_->DrawFlag_ = false;
+}
+
+void PlayerActionCamera::CameraInitialize(const IFE::Vector3& playerPos)
+{
 	actionCamera_ = IFE::CameraManager::Instance()->GetCamera("ActionCamera");
 	cameraAngle_.y = 180.0f;
 
-	objectPtr_->DrawFlag_ = false;
+	transform_->position_ =
+	{
+		playerPos.x + distance_ * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * sinf(IFE::ConvertToRadians(cameraAngle_.y)),
+		playerPos.y + cameraYAdd_ + distance_ * sinf(IFE::ConvertToRadians(cameraAngle_.x)),
+		playerPos.z + distance_ * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * cosf(IFE::ConvertToRadians(cameraAngle_.y))
+	};
+
+	actionCamera_->transform_->eye_ = transform_->position_;
 }
 
 void PlayerActionCamera::Update()
 {
-	if (ColliderHitFlag_)
+	if (!ColliderHitFlag_)
 	{
 		float distance = 15.0f;
 		float adjustedTimeValue = 15.0f;
@@ -57,23 +69,18 @@ IFE::Camera* PlayerActionCamera::GetCamera()
 
 void PlayerActionCamera::CameraMove(const IFE::Vector3& playerPos)
 {
-	//補間時間調整値
-	const float adjustedTimeValue = 15.0f;
-	//カメラのY座標調節値
-	const float cameraYAdd = 7.5f;
-
 	//視点の移動先の座標
 	IFE::Vector3 eyeDestinationPos =
 	{
 		playerPos.x + distance_ * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * sinf(IFE::ConvertToRadians(cameraAngle_.y)),
-		playerPos.y + cameraYAdd + distance_ * sinf(IFE::ConvertToRadians(cameraAngle_.x)),
+		playerPos.y + cameraYAdd_ + distance_ * sinf(IFE::ConvertToRadians(cameraAngle_.x)),
 		playerPos.z + distance_ * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * cosf(IFE::ConvertToRadians(cameraAngle_.y))
 	};
 
 	//視点の補間移動
-	IFE::Complement(transform_->position_.x, eyeDestinationPos.x, adjustedTimeValue);
-	IFE::Complement(transform_->position_.y, eyeDestinationPos.y, adjustedTimeValue);
-	IFE::Complement(transform_->position_.z, eyeDestinationPos.z, adjustedTimeValue);
+	IFE::Complement(transform_->position_.x, eyeDestinationPos.x, adjustedTimeValue_);
+	IFE::Complement(transform_->position_.y, eyeDestinationPos.y, adjustedTimeValue_);
+	IFE::Complement(transform_->position_.z, eyeDestinationPos.z, adjustedTimeValue_);
 
 	actionCamera_->transform_->eye_ = transform_->position_;
 
@@ -86,9 +93,9 @@ void PlayerActionCamera::CameraMove(const IFE::Vector3& playerPos)
 	};
 
 	//注視点の補間移動
-	IFE::Complement(actionCamera_->transform_->target_.x, targetDestinationPos.x, adjustedTimeValue);
-	IFE::Complement(actionCamera_->transform_->target_.y, targetDestinationPos.y, adjustedTimeValue);
-	IFE::Complement(actionCamera_->transform_->target_.z, targetDestinationPos.z, adjustedTimeValue);
+	IFE::Complement(actionCamera_->transform_->target_.x, targetDestinationPos.x, adjustedTimeValue_);
+	IFE::Complement(actionCamera_->transform_->target_.y, targetDestinationPos.y, adjustedTimeValue_);
+	IFE::Complement(actionCamera_->transform_->target_.z, targetDestinationPos.z, adjustedTimeValue_);
 }
 
 void PlayerActionCamera::CameraRot()
