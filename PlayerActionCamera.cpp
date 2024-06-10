@@ -45,6 +45,7 @@ void PlayerActionCamera::Finalize()
 
 void PlayerActionCamera::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
 {
+	myCollider;
 	if (hitCollider->attribute_ == static_cast<uint16_t>(IFE::Attribute::LANDSHAPE))
 	{
 		//“–‚½‚Á‚½‚Æ‚«‚Ì‹——£‚Ì‘ã“ü
