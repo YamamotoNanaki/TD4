@@ -424,6 +424,9 @@
     <ClCompile Include="Source\UI\Over.cpp">
       <Filter>ソース ファイル\Source\UI</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerActionCamera.cpp">
+      <Filter>ソース ファイル\Source\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -703,9 +706,6 @@
     <ClInclude Include="Source\PostEffect\EnemyHighlighting.h">
       <Filter>ヘッダー ファイル\Source\PostEffect</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Player\PlayerCommonCamera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Source\UI\Title.h">
       <Filter>ヘッダー ファイル\Source\UI</Filter>
     </ClInclude>
@@ -714,6 +714,12 @@
     </ClInclude>
     <ClInclude Include="Source\UI\Over.h">
       <Filter>ヘッダー ファイル\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player\PlayerCommonCamera.h">
+      <Filter>ヘッダー ファイル\Source\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerActionCamera.h">
+      <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
