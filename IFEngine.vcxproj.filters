@@ -427,6 +427,9 @@
     <ClCompile Include="PlayerActionCamera.cpp">
       <Filter>ソース ファイル\Source\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Source\StageGimmick\DamageEvent.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -720,6 +723,12 @@
     </ClInclude>
     <ClInclude Include="PlayerActionCamera.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\IEvent.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\DamageEvent.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
