@@ -42,7 +42,6 @@ namespace IFE {
 		bool isAttack;
 		//レイヒット記憶変数
 		float rayDist;
-		float preRayDist;
 		ColliderCore* hitColl_ = nullptr;
 
 		//メンバ関数

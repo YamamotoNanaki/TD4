@@ -15,15 +15,14 @@ void IFE::NormalEnemy::Initialize()
 	nextPoint = 0;
 	attackTime = 0;
 	rayDist = 0.0f;
-	preRayDist = 0.0f;
 	isFound = false;
 	isAttack = false;
+	warningTime = 50;
 	hp_ = 100;
 	decHp_ = 0;
 	isHit_ = false;
 	hitTime_ = 0;
 	objectPtr_->SetColor({ 1, 0, 1, 1 });
-	objectPtr_->transform_->eulerAngleDegrees_ = { 0,270,0 };
 	frontVec = { 0,0,0 };
 	lookfor = { 0,0,0 };
 	//HPUI
@@ -75,7 +74,7 @@ void IFE::NormalEnemy::ChangeState()
 		Chase();
 		break;
 	case IFE::BaseEnemy::ATTACK:
-		
+
 		Attack();
 		break;
 	case IFE::BaseEnemy::DEAD:
@@ -87,9 +86,7 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::EnemyUpdate()
 {
-	if (RaySight() == true) {
-		isFound = true;
-	}
+	isFound = RaySight();
 	//ó‘Ô‚ðŽæ“¾
 	preState = state;
 	ChangeState();
@@ -104,7 +101,7 @@ void IFE::NormalEnemy::EnemyUpdate()
 		objectPtr_->Destroy();
 	}
 
-
+	rayDist = 0;
 	//d—Í
 	if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
 	{
@@ -143,13 +140,22 @@ void IFE::NormalEnemy::Wait()
 void IFE::NormalEnemy::Warning()
 {
 	//ˆÙ•Ï‚Ìó‘Ô‚ª‘±‚¢‚½‚ç’ÇÕ‚ÖˆÚs
-	warningTime++;
-	state = preState;
+	if (isFound == true) {
+		warningTime++;
+	}
+	else {
+		warningTime--;
+	}
 
-	if (warningTime == 75) {
-		warningTime = 0;
+	if (warningTime == 125) {
+		warningTime = 50;
 		objectPtr_->SetColor({ 0.8f, 0, 0, 1 });
 		state = CHASE;
+	}
+	if (warningTime == 0) {
+		warningTime = 50;
+		objectPtr_->SetColor({ 0.8f, 0, 0, 1 });
+		state = SEARCH;
 	}
 }
 
@@ -210,8 +216,8 @@ void IFE::NormalEnemy::Chase()
 		isAttack = true;
 	}
 	warningTime++;
-	if (warningTime == 300) {
-		warningTime = 0;
+	if (warningTime == 350) {
+		warningTime = 50;
 		//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
 		if (isFound == true) {
 			objectPtr_->SetColor({ 0.5f, 0.5f, 0, 1 });
@@ -260,7 +266,7 @@ bool IFE::NormalEnemy::RaySight() {
 	//Ž‹ŠE‚Ì‹——£
 	float maxDistance = 25;
 	//Ž‹–ìŠp
-	float sightAngle = 45;
+	float sightAngle = 30;
 	// Ž©g‚ÌˆÊ’u
 	Vector3 ePos = transform_->position_;
 	// ƒ^[ƒQƒbƒg‚ÌˆÊ’u
@@ -274,14 +280,22 @@ bool IFE::NormalEnemy::RaySight() {
 	float targetDistance = targetDir.Length();
 
 	// cos(ƒÆ/2)‚ðŒvŽZ
-	float cosHalf = cos(ConvertToRadians(sightAngle / 2));
+	float cosHalf = cos(ConvertToRadians(sightAngle / 2 * (float)PI / 180.0f));
 
 	// Ž©g‚Æƒ^[ƒQƒbƒg‚Ö‚ÌŒü‚«‚Ì“àÏŒvŽZ
 	// ƒ^[ƒQƒbƒg‚Ö‚ÌŒü‚«ƒxƒNƒgƒ‹‚ð³‹K‰»‚·‚é•K—v‚ª‚ ‚é‚±‚Æ‚É’ˆÓ
-	float innerProduct = selfDir.Dot(targetDir);
+	float innerProduct = selfDir.Dot(targetDir) / targetDistance;
 
 	// Ž‹ŠE”»’è
-	return innerProduct > cosHalf && targetDistance < maxDistance;
+	bool inSight = innerProduct > cosHalf && targetDistance < maxDistance;
+
+	//// áŠQ•¨‚ª‚È‚¢‚©‚Ç‚¤‚©‚ð”»’è
+	if (rayDist < targetDistance) {
+		// ƒ^[ƒQƒbƒg‚æ‚è‚àáŠQ•¨‚ª‹ß‚¢ê‡‚ÍŽ‹ŠE‚ªŽÕ‚ç‚ê‚Ä‚¢‚é
+		inSight = false;
+	}
+
+	return inSight;
 }
 
 void IFE::NormalEnemy::Draw()
@@ -291,16 +305,13 @@ void IFE::NormalEnemy::Draw()
 
 void IFE::NormalEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
 {
-	//”­Œ©
-	if (myCollider->GetColliderType() == ColliderType::RAY)
-	{
-		if (state == SEARCH || state == WAIT && hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
-			preRayDist = myCollider->rayDistance;
-			hitColl_ = hitCollider;
+	//•Ç‚ª‚ ‚Á‚½ê‡
+	if (myCollider->GetColliderType() == ColliderType::RAY && !hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
+		if (rayDist == 0) {
+			rayDist = myCollider->rayDistance;
 		}
-		//•Ç‚ª‚ ‚Á‚½ê‡
-		if (state == WARNING && hitCollider->objectPtr_->GetComponent<StageCollideManageer>()) {
-			state = SEARCH;
+		else if (rayDist > myCollider->rayDistance) {
+			rayDist = myCollider->rayDistance;
 		}
 	}
 }
