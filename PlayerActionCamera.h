@@ -11,6 +11,11 @@ private:
 	IFE::Vector3 cameraPos_ = {};
 	IFE::Vector2 cameraAngle_ = {};
 
+	//補間時間調整値
+	const float adjustedTimeValue_ = 15.0f;
+	//カメラのY座標調節値
+	const float cameraYAdd_ = 7.5f;
+
 	//ターゲットからの距離
 	float distance_ = 15.0f;
 
@@ -20,6 +25,8 @@ private:
 public:
 
 	void Initialize();
+
+	void CameraInitialize(const IFE::Vector3& playerPos);
 
 	void Update();
 

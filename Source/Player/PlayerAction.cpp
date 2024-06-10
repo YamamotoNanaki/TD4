@@ -11,9 +11,10 @@
 
 void PlayerAction::Initialize()
 {
-	camera_= IFE::ObjectManager::Instance()->GetObjectPtr("PlayerActionCameraObject")->GetComponent<PlayerActionCamera>();
-
 	transform_->position_.y = 2.0f;
+
+	camera_ = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerActionCameraObject")->GetComponent<PlayerActionCamera>();
+	camera_->CameraInitialize(transform_->position_);
 
 	//HP
 	auto hpPtr = IFE::SpriteManager::Instance()->GetSpritePtr("playerHp")->GetComponent<IFE::PlayerHp>();
