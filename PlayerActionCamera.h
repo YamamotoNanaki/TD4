@@ -15,6 +15,7 @@ private:
 	float distance_ = 15.0f;
 
 	const uint16_t controllerRange_ = 10000;
+	bool ColliderHitFlag_ = false;
 
 public:
 

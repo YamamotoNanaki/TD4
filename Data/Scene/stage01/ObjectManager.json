@@ -12553,8 +12553,8 @@
                     "attribute": 0,
                     "colliderType": 0,
                     "groundJudge": false,
-                    "notPushBack": false,
-                    "pushBack": true
+                    "notPushBack": true,
+                    "pushBack": false
                 }
             ]
         },
