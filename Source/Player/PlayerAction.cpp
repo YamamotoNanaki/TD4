@@ -11,10 +11,10 @@
 
 void PlayerAction::Initialize()
 {
-	actionCamera_ = IFE::CameraManager::Instance()->GetCamera("ActionCamera");
-
 	transform_->position_.y = 2.0f;
-	cameraAngle_.y = 180.0f;
+
+	camera_ = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerActionCameraObject")->GetComponent<PlayerActionCamera>();
+	camera_->CameraInitialize(transform_->position_);
 
 	//HP
 	auto hpPtr = IFE::SpriteManager::Instance()->GetSpritePtr("playerHp")->GetComponent<IFE::PlayerHp>();
@@ -82,7 +82,7 @@ void PlayerAction::MoveUpdate()
 		objectPtr_->SetColor({ 1,0,0,1 });
 	}
 	Attack();
-	CameraUpdate();
+	camera_->CameraUpdate(transform_->position_);
 }
 
 void PlayerAction::Move()
@@ -90,7 +90,7 @@ void PlayerAction::Move()
 	const float speed = 10.0f;
 
 	//正面ベクトルの作成
-	frontVec_ = transform_->position_ - actionCamera_->transform_->eye_;
+	frontVec_ = transform_->position_ - camera_->GetPos();
 	frontVec_.Normalize();
 	//仮ベクトル
 	temporaryVec_ = { 0,1,0 };
@@ -137,7 +137,7 @@ const IFE::Vector3 PlayerAction::GetPos()
 
 IFE::Camera* PlayerAction::GetActionCamera()
 {
-	return actionCamera_;
+	return camera_->GetCamera();
 }
 
 const bool PlayerAction::GetAttackFlag()
@@ -198,15 +198,6 @@ void PlayerAction::Rotation()
 #pragma endregion コントローラー
 }
 
-void PlayerAction::CameraUpdate()
-{
-	//カメラの回転
-	CameraRot();
-
-	//カメラ補間
-	CameraComplement();
-}
-
 void PlayerAction::Attack()
 {
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X))
@@ -228,74 +219,4 @@ void PlayerAction::Attack()
 	}
 
 	playerAttack_->SetIsAttack(attackFlag_);
-}
-
-void PlayerAction::CameraComplement()
-{
-	//ターゲットからの距離
-	const float distance = 15.0f;
-	//補間時間調整値
-	const float adjustedTimeValue = 15.0f;
-	//カメラのY座標調節値
-	const float cameraYAdd = 7.5f;
-
-	//視点の移動先の座標
-	IFE::Vector3 eyeDestinationPos =
-	{
-		transform_->position_.x + distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * sinf(IFE::ConvertToRadians(cameraAngle_.y)),
-		transform_->position_.y + cameraYAdd + distance * sinf(IFE::ConvertToRadians(cameraAngle_.x)),
-		transform_->position_.z + distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * cosf(IFE::ConvertToRadians(cameraAngle_.y))
-	};
-
-	//視点の補間移動
-	IFE::Complement(actionCamera_->transform_->eye_.x, eyeDestinationPos.x, adjustedTimeValue);
-	IFE::Complement(actionCamera_->transform_->eye_.y, eyeDestinationPos.y, adjustedTimeValue);
-	IFE::Complement(actionCamera_->transform_->eye_.z, eyeDestinationPos.z, adjustedTimeValue);
-
-	//注視点の移動先の座標
-	IFE::Vector3 targetDestinationPos =
-	{
-		transform_->position_.x - distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * sinf(IFE::ConvertToRadians(cameraAngle_.y)),
-		transform_->position_.y - distance * sinf(IFE::ConvertToRadians(cameraAngle_.x)),
-		transform_->position_.z - distance * cosf(IFE::ConvertToRadians(cameraAngle_.x)) * cosf(IFE::ConvertToRadians(cameraAngle_.y))
-	};
-
-	//注視点の補間移動
-	IFE::Complement(actionCamera_->transform_->target_.x, targetDestinationPos.x, adjustedTimeValue);
-	IFE::Complement(actionCamera_->transform_->target_.y, targetDestinationPos.y, adjustedTimeValue);
-	IFE::Complement(actionCamera_->transform_->target_.z, targetDestinationPos.z, adjustedTimeValue);
-}
-
-void PlayerAction::CameraRot()
-{
-	//回転速度
-	const float rotSpeed = 80.0f;
-
-#pragma region キーボード
-	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
-	{
-		cameraAngle_.y -= rotSpeed * IFE::IFETime::sDeltaTime_;
-	}
-	if (IFE::Input::GetKeyPush(IFE::Key::RIGHT))
-	{
-		cameraAngle_.y += rotSpeed * IFE::IFETime::sDeltaTime_;
-	}
-	if (IFE::Input::GetKeyPush(IFE::Key::UP))
-	{
-		cameraAngle_.x -= rotSpeed * IFE::IFETime::sDeltaTime_;
-	}
-	if (IFE::Input::GetKeyPush(IFE::Key::DOWN))
-	{
-		cameraAngle_.x += rotSpeed * IFE::IFETime::sDeltaTime_;
-	}
-#pragma endregion キーボード
-
-#pragma region コントローラー
-
-	cameraAngle_ += {-IFE::Input::GetRYAnalog(controllerRange_) * rotSpeed * IFE::IFETime::sDeltaTime_, IFE::Input::GetRXAnalog(controllerRange_)* rotSpeed* IFE::IFETime::sDeltaTime_};
-
-#pragma endregion コントローラー
-
-	//縦回転限界処理
-	cameraAngle_.x = std::clamp(cameraAngle_.x, -60.0f, 60.0f);
 }

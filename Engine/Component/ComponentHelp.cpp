@@ -26,6 +26,7 @@
 #include "Title.h"
 #include "Clear.h"
 #include "Over.h"
+#include"PlayerActionCamera.h"
 
 using namespace IFE;
 using namespace std;
@@ -73,6 +74,8 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<PlayerAttack>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<PlayerCommonCamera>(str));
+	if (tmp != nullptr)return tmp; 
+	tmp = std::move(GetPtr<PlayerActionCamera>(str));
 	if (tmp != nullptr)return tmp;
 
 	//enemy

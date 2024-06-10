@@ -5,6 +5,7 @@
 #include"PlayerAttack.h"
 #include"PlayerHp.h"
 #include"SpriteManager.h"
+#include"PlayerActionCamera.h"
 
 class PlayerAction : public IFE::Component
 {
@@ -34,10 +35,9 @@ private:
 	PlayerAttack* playerAttack_ = nullptr;
 
 #pragma region カメラ
-	IFE::Vector3 cameraPos_ = {};
-	IFE::Vector2 cameraAngle_ = {};
 
-	IFE::Camera* actionCamera_ = nullptr;
+	PlayerActionCamera* camera_ = nullptr;
+	
 #pragma endregion カメラ
 
 	bool attackFlag_ = false;
@@ -116,22 +116,7 @@ private:
 	void Rotation();
 
 	/// <summary>
-	/// カメラの更新処理
-	/// </summary>
-	void CameraUpdate();
-
-	/// <summary>
 	/// 攻撃処理
 	/// </summary>
 	void Attack();
-
-	/// <summary>
-	/// カメラ補間
-	/// </summary>
-	void CameraComplement();
-
-	/// <summary>
-	/// カメラの回転処理
-	/// </summary>
-	void CameraRot();
 };
