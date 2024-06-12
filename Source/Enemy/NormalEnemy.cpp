@@ -110,13 +110,13 @@ void IFE::NormalEnemy::Wait()
 {
 	///ü‚è‚ğŒ©“n‚·ˆ—
 	if (waitTimer < 50) {
-		transform_->eulerAngleDegrees_ += (Float3(0, -15, 0) * IFE::IFETime::sDeltaTime_);
+		transform_->rotation_ += (Float3(0, -15, 0) * IFE::IFETime::sDeltaTime_);
 	}
 	else if (waitTimer < 150) {
-		transform_->eulerAngleDegrees_ += (Float3(0, 15, 0) * IFE::IFETime::sDeltaTime_);
+		transform_->rotation_ += (Float3(0, 15, 0) * IFE::IFETime::sDeltaTime_);
 	}
 	else if (waitTimer < WAIT_TIME) {
-		transform_->eulerAngleDegrees_ += (Float3(0, -15, 0) * IFE::IFETime::sDeltaTime_);
+		transform_->rotation_ += (Float3(0, -15, 0) * IFE::IFETime::sDeltaTime_);
 	}
 	///
 	waitTimer++;
@@ -238,7 +238,7 @@ void IFE::NormalEnemy::LookAt()
 	frontVec = lookfor - ePos;
 	//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄY²‚Ì‰ñ“]
 	float radY = std::atan2(frontVec.x, frontVec.z);
-	transform_->eulerAngleDegrees_ = { ePos.x,radY * 180.0f / (float)PI,ePos.z };
+	transform_->rotation_ = { ePos.x,radY * 180.0f / (float)PI,ePos.z };
 	//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄX²‚Ì‰ñ“]
 	Vector3 rotaVec = { frontVec.x,0,frontVec.z };
 	transform_->eulerAngleDegrees_ = { 360.0f,(radY * 180.0f) + 180.0f / (float)PI,360.0f };
