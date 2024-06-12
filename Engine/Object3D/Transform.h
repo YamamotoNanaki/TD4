@@ -21,9 +21,10 @@ namespace IFE
 		ConstBufferDataTransform* constMapTransform_ = nullptr;
 
 		Float3 lossyScale_;
+		Quaternion rotationQuaternion_;
 	public:
 		bool eulerFlag_ = false;
-		Float3 eulerAngleDegrees_;
+		Float3 rotation_;
 		uint8_t billbord_ = 0;
 		Matrix matWorld_;
 		Matrix matScale_;
@@ -31,7 +32,6 @@ namespace IFE
 		Matrix matTrans_;
 		Float3 scale_ = { 1,1,1 };
 		Float3 position_ = { 0,0,0 };
-		Quaternion rotation_;
 
 		Transform* parent_ = nullptr;
 

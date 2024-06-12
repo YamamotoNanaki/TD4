@@ -183,7 +183,7 @@ void PlayerAction::Rotation()
 		}
 
 		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(kx, ky));
-		transform_->eulerAngleDegrees_.y = rotY_;
+		transform_->rotation_.y = rotY_;
 	}
 #pragma endregion キーボード
 
@@ -195,7 +195,7 @@ void PlayerAction::Rotation()
 	{
 		//方向ベクトルの角度+コントローラーの角度
 		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(lx, ly));
-		transform_->eulerAngleDegrees_.y = rotY_;
+		transform_->rotation_.y = rotY_;
 	}
 #pragma endregion コントローラー
 }
