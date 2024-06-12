@@ -1,6 +1,10 @@
 #pragma once
 #include <COmponent.h>
 #include"IFEMath.h"
+#include "Propeller.h"
+#include"ObjectManager.h"
+#include "Propeller.h"
+#include "ModelManager.h"
 
 class PlayerDrone :public IFE::Component
 {
@@ -21,6 +25,8 @@ private:
 	float dronePosY_ = 0.0f;
 
 	bool slowSpeedMode_ = false;
+
+	IFE::Propeller* propeller_[4];
 
 	/// <summary>
 	/// ’iXspeed‚ğ0‚É‚·‚éˆ—

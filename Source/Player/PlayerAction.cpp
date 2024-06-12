@@ -23,6 +23,7 @@ void PlayerAction::Initialize()
 
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("PlayerAttack", IFE::ModelManager::Instance()->GetModel("dice"));
 	ptr->AddComponent<PlayerAttack>();
+
 	playerAttack_ = ptr->GetComponent<PlayerAttack>();
 	playerAttack_->transform_->parent_ = transform_;
 	playerAttack_->objectPtr_->transform_->position_ += {0, 0, 2};
