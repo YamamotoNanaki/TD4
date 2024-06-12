@@ -241,7 +241,7 @@ void IFE::NormalEnemy::LookAt()
 	transform_->rotation_ = { ePos.x,radY * 180.0f / (float)PI,ePos.z };
 	//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄXŽ²‚Ì‰ñ“]
 	Vector3 rotaVec = { frontVec.x,0,frontVec.z };
-	transform_->eulerAngleDegrees_ = { 360.0f,(radY * 180.0f) + 180.0f / (float)PI,360.0f };
+	transform_->rotation_ = { 360.0f,(radY * 180.0f) + 180.0f / (float)PI,360.0f };
 }
 
 bool IFE::NormalEnemy::RaySight() {
