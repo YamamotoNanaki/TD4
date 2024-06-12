@@ -22,7 +22,6 @@ void IFE::NormalEnemy::Initialize()
 	decHp_ = 0;
 	isHit_ = false;
 	hitTime_ = 0;
-	objectPtr_->SetColor({ 1, 0, 1, 1 });
 	frontVec = { 0,0,0 };
 	lookfor = { 0,0,0 };
 	//HPUI
@@ -36,13 +35,10 @@ void IFE::NormalEnemy::Initialize()
 		status_ = ptr->GetComponent<EnemyHp>();
 		status_->objectPtr_->DrawFlag_ = false;
 	}
-
 	//UŒ‚
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyAttack", ModelManager::Instance()->GetModel("dice"));
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
-	enemyAttack->transform_->parent_ = transform_;
-	enemyAttack->objectPtr_->transform_->position_ = { 0, 0, 2 };
 }
 
 void IFE::NormalEnemy::ChangeState()
@@ -131,9 +127,7 @@ void IFE::NormalEnemy::Wait()
 
 	//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
 	if (isFound == true) {
-		objectPtr_->SetColor({ 0.5f, 0.5f, 0, 1 });
 		state = WARNING;
-		isFound = false;
 	}
 }
 
@@ -149,12 +143,10 @@ void IFE::NormalEnemy::Warning()
 
 	if (warningTime == 125) {
 		warningTime = 50;
-		objectPtr_->SetColor({ 0.8f, 0, 0, 1 });
 		state = CHASE;
 	}
 	if (warningTime == 0) {
 		warningTime = 50;
-		objectPtr_->SetColor({ 0.8f, 0, 0, 1 });
 		state = SEARCH;
 	}
 }
@@ -188,9 +180,7 @@ void IFE::NormalEnemy::Search()
 
 	//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
 	if (isFound == true) {
-		objectPtr_->SetColor({ 0.5f, 0.5f, 0, 1 });
 		state = WARNING;
-		isFound = false;
 	}
 }
 
@@ -212,23 +202,16 @@ void IFE::NormalEnemy::Chase()
 	if (len <= 5.0) {
 		enemyAttack->objectPtr_->DrawFlag_ = true;
 		state = ATTACK;
-		enemyAttack->objectPtr_->transform_->position_ = { 0, 0, 2 };
+		enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 		isAttack = true;
 	}
-	warningTime++;
-	if (warningTime == 350) {
-		warningTime = 50;
-		//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
-		if (isFound == true) {
-			objectPtr_->SetColor({ 0.5f, 0.5f, 0, 1 });
-			state = WARNING;
-		}
-		else {
-			objectPtr_->SetColor({ 0.8f, 0, 1, 1 });
-			state = SEARCH;
-		}
+	if (RaySight() == false) {
+		warningTime++;
 	}
-	isFound = false;
+	if (warningTime >= 60) {
+		warningTime = 50;
+		state = WARNING;
+	}
 }
 
 void IFE::NormalEnemy::Attack()
@@ -257,9 +240,8 @@ void IFE::NormalEnemy::LookAt()
 	transform_->eulerAngleDegrees_ = { ePos.x,radY * 180.0f / (float)PI,ePos.z };
 	//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄXŽ²‚Ì‰ñ“]
 	Vector3 rotaVec = { frontVec.x,0,frontVec.z };
-	float length = rotaVec.Length();
-	float radX = std::atan2(-frontVec.y, length);
-	transform_->eulerAngleDegrees_ = { radX * 180.0f / (float)PI ,radY * 180.0f / (float)PI,0 };
+	transform_->eulerAngleDegrees_ = {360.0f,(radY * 180.0f) + 180.0f / (float)PI,360.0f };
+	objectPtr_->GetComponent<Collider>()->GetCollider(0)->rayDir_ = { 0.0f,(radY * 180.0f) + 180.0f / (float)PI,0.0f };
 }
 
 bool IFE::NormalEnemy::RaySight() {
@@ -290,9 +272,11 @@ bool IFE::NormalEnemy::RaySight() {
 	bool inSight = innerProduct > cosHalf && targetDistance < maxDistance;
 
 	//// áŠQ•¨‚ª‚È‚¢‚©‚Ç‚¤‚©‚ð”»’è
-	if (rayDist < targetDistance) {
-		// ƒ^[ƒQƒbƒg‚æ‚è‚àáŠQ•¨‚ª‹ß‚¢ê‡‚ÍŽ‹ŠE‚ªŽÕ‚ç‚ê‚Ä‚¢‚é
-		inSight = false;
+	if (rayDist > 0) {
+		if (rayDist < targetDistance) {
+			// ƒ^[ƒQƒbƒg‚æ‚è‚àáŠQ•¨‚ª‹ß‚¢ê‡‚ÍŽ‹ŠE‚ªŽÕ‚ç‚ê‚Ä‚¢‚é
+			inSight = false;
+		}
 	}
 
 	return inSight;
@@ -305,15 +289,17 @@ void IFE::NormalEnemy::Draw()
 
 void IFE::NormalEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
 {
-	//•Ç‚ª‚ ‚Á‚½ê‡
-	if (myCollider->GetColliderType() == ColliderType::RAY && !hitCollider->objectPtr_->GetComponent<PlayerAction>()) {
-		if (rayDist == 0) {
-			rayDist = myCollider->rayDistance;
+		//•Ç‚ª‚ ‚Á‚½ê‡
+		if (myCollider->GetColliderType() == ColliderType::RAY && hitCollider->GetColliderType() == ColliderType::OBB) {
+			if (hitCollider->objectPtr_->GetObjectName() == "wall_door" || hitCollider->objectPtr_->GetObjectName() == "wall_door1") {
+				if (rayDist == 0) {
+					rayDist = myCollider->rayDistance;
+				}
+				else if (rayDist > myCollider->rayDistance) {
+					rayDist = myCollider->rayDistance;
+				}
+			}
 		}
-		else if (rayDist > myCollider->rayDistance) {
-			rayDist = myCollider->rayDistance;
-		}
-	}
 }
 
 IFE::Vector3 IFE::NormalEnemy::GetPos() {
