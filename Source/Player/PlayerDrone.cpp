@@ -25,7 +25,7 @@ void PlayerDrone::Initialize()
 	objectPtr_->DrawFlag_ = false;
 	droneCamera_ = IFE::CameraManager::Instance()->GetCamera("DroneCamera");
 	transform_->rotation_.x = 0.0f;
-
+	transform_->scale_ = { 0.7f,0.7f,0.7f };
 
 	//プロペラ
 	for (uint8_t i = 0; i < 4; i++)
@@ -35,10 +35,10 @@ void PlayerDrone::Initialize()
 		propeller_[i] = ptr->GetComponent<IFE::Propeller>();
 		propeller_[i]->transform_->parent_ = transform_;
 	}
-	propeller_[0]->objectPtr_->transform_->position_ += {1, 0.1f, 1};
-	propeller_[1]->objectPtr_->transform_->position_ += {-1, 0.1f, 1};
-	propeller_[2]->objectPtr_->transform_->position_ += {1, 0.1f, -1};
-	propeller_[3]->objectPtr_->transform_->position_ += {-1, 0.1f, -1};
+	propeller_[0]->objectPtr_->transform_->position_ += {0.8f, 0.1f, 0.8f};
+	propeller_[1]->objectPtr_->transform_->position_ += {-0.8f, 0.1f, 0.8f};
+	propeller_[2]->objectPtr_->transform_->position_ += {0.8f, 0.1f, -0.8f};
+	propeller_[3]->objectPtr_->transform_->position_ += {-0.8f, 0.1f, -0.8f};
 }
 
 void PlayerDrone::Update()
@@ -56,7 +56,16 @@ void PlayerDrone::Update()
 		//プロペラ回転
 		for (uint8_t i = 0; i < 4; i++)
 		{
+			propeller_[i]->objectPtr_->DrawFlag_ = true;
 			propeller_[i]->Turn();
+		}
+	}
+	else
+	{
+		//プロペラの描画フラグfalse
+		for (uint8_t i = 0; i < 4; i++)
+		{
+			propeller_[i]->objectPtr_->DrawFlag_ = false;
 		}
 	}
 }

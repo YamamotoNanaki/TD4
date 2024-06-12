@@ -2,5 +2,5 @@
 
 void IFE::Propeller::Turn()
 {
-	transform_->eulerAngleDegrees_.y+= 10;
+	transform_->rotation_.y+= 30;
 }
