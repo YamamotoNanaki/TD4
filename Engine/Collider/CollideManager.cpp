@@ -212,7 +212,8 @@ void IFE::CollideManager::CollidersUpdate()
 				OBB OBB(colB->GetColliderPosition(), colB->transform_->matRot_, colB->GetColliderScale());
 				Vector3 inter;
 				Vector3 reject;
-				if (Collision::CheckOBBSphere(OBB, sphere, &inter, &reject))
+				float distance;
+				if (Collision::CheckOBBSphere(OBB, sphere, &inter, &reject, &distance))
 				{
 					colA->interPoint_ = inter;
 					colB->interPoint_ = inter;
@@ -227,10 +228,13 @@ void IFE::CollideManager::CollidersUpdate()
 				Sphere sphere(colB->GetColliderPosition(), Average(colB->GetColliderScale()));
 				Vector3 inter;
 				Vector3 reject;
-				if (Collision::CheckOBBSphere(OBB, sphere, &inter, &reject))
+				float distance;
+				if (Collision::CheckOBBSphere(OBB, sphere, &inter, &reject, &distance))
 				{
 					colA->interPoint_ = inter;
 					colB->interPoint_ = inter;
+					colA->rayDistance = distance;
+					colB->rayDistance = distance;
 					PushBack(colA, colB, reject);
 					OnColliderHit(colA, colB);
 				}
@@ -403,7 +407,7 @@ void IFE::CollideManager::QuerySphere(ColliderCore* c, uint16_t attribute)
 
 			Vector3 tempInter;
 			Vector3 tempReject;
-			if (!Collision::CheckOBBSphere(obb, sphere, &tempInter, &tempReject)) continue;
+			if (!Collision::CheckOBBSphere(obb, sphere, &tempInter, &tempReject, nullptr)) continue;
 			QueryPushBack(c, tempReject);
 		}
 	}

@@ -660,6 +660,76 @@ void IFE::ImguiManager::TextGUI(const std::string& text)
 	ImGui::Text(text.c_str());
 }
 
+void IFE::ImguiManager::TextFloatGUI(const std::string& text, float number)
+{
+	std::string t = text + " : " + std::to_string(number);
+	ImGui::Text(t.c_str());
+}
+
+void IFE::ImguiManager::TextFloat2GUI(const std::string& text, const Float2& number)
+{
+	if (Instance()->NewTreeNode(text))
+	{
+		Instance()->TextFloatGUI("x",number.x);
+		Instance()->TextFloatGUI("y",number.y);
+		Instance()->EndTreeNode();
+	}
+}
+
+void IFE::ImguiManager::TextFloat3GUI(const std::string& text, const Float3& number)
+{
+	if (Instance()->NewTreeNode(text))
+	{
+		Instance()->TextFloatGUI("x", number.x);
+		Instance()->TextFloatGUI("y", number.y);
+		Instance()->TextFloatGUI("z", number.z);
+		Instance()->EndTreeNode();
+	}
+}
+
+void IFE::ImguiManager::TextFloat4GUI(const std::string& text, const Float4& number)
+{
+	if (Instance()->NewTreeNode(text))
+	{
+		Instance()->TextFloatGUI("x", number.x);
+		Instance()->TextFloatGUI("y", number.y);
+		Instance()->TextFloatGUI("z", number.z);
+		Instance()->TextFloatGUI("w", number.w);
+		Instance()->EndTreeNode();
+	}
+}
+
+void IFE::ImguiManager::TextIntGUI(const std::string& text, int number)
+{
+	std::string t = text + " : " + std::to_string(number);
+	ImGui::Text(t.c_str());
+}
+
+void IFE::ImguiManager::TextFloatGUI(float number)
+{
+	TextFloatGUI("float", number);
+}
+
+void IFE::ImguiManager::TextFloat2GUI(const Float2& number)
+{
+	TextFloat2GUI("float2", number);
+}
+
+void IFE::ImguiManager::TextFloat3GUI(const Float3& number)
+{
+	TextFloat3GUI("float3", number);
+}
+
+void IFE::ImguiManager::TextFloat4GUI(const Float4& number)
+{
+	TextFloat4GUI("float4", number);
+}
+
+void IFE::ImguiManager::TextIntGUI(int32_t number)
+{
+	TextIntGUI("int", number);
+}
+
 void IFE::ImguiManager::InputTextGUI(const std::string& label, std::string& text)
 {
 	static char t[256];
