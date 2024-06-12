@@ -89,5 +89,13 @@
             "smooth": true
         },
         "name": "drone_Model"
+    },
+    {
+        "Propeller_Model": {
+            "fileName": "Propeller",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "Propeller_Model"
     }
 ]

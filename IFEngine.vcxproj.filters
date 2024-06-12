@@ -424,11 +424,14 @@
     <ClCompile Include="Source\UI\Over.cpp">
       <Filter>ソース ファイル\Source\UI</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerActionCamera.cpp">
+    <ClCompile Include="Source\Player\PlayerActionCamera.cpp">
       <Filter>ソース ファイル\Source\Player</Filter>
     </ClCompile>
     <ClCompile Include="Source\StageGimmick\DamageEvent.cpp">
       <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player\Propeller.cpp">
+      <Filter>ソース ファイル\Source\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -721,7 +724,7 @@
     <ClInclude Include="Source\Player\PlayerCommonCamera.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerActionCamera.h">
+    <ClInclude Include="Source\Player\PlayerActionCamera.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
     <ClInclude Include="Source\StageGimmick\IEvent.h">
@@ -729,6 +732,9 @@
     </ClInclude>
     <ClInclude Include="Source\StageGimmick\DamageEvent.h">
       <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player\Propeller.h">
+      <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
