@@ -24,7 +24,7 @@ void PlayerDrone::Initialize()
 {
 	objectPtr_->DrawFlag_ = false;
 	droneCamera_ = IFE::CameraManager::Instance()->GetCamera("DroneCamera");
-	transform_->eulerAngleDegrees_.x = 0.0f;
+	transform_->rotation_.x = 0.0f;
 
 
 	//プロペラ
@@ -187,24 +187,24 @@ void PlayerDrone::Rotation()
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
 	{
-		transform_->eulerAngleDegrees_ += { 0, -cameraRotSpeed, 0 };
+		transform_->rotation_ += { 0, -cameraRotSpeed, 0 };
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::RIGHT))
 	{
-		transform_->eulerAngleDegrees_ += { 0, cameraRotSpeed, 0 };
+		transform_->rotation_ += { 0, cameraRotSpeed, 0 };
 	}
 
 	if (IFE::Input::GetKeyPush(IFE::Key::UP))
 	{
-		transform_->eulerAngleDegrees_ += { -cameraRotSpeed, 0, 0 };
+		transform_->rotation_ += { -cameraRotSpeed, 0, 0 };
 	}if (IFE::Input::GetKeyPush(IFE::Key::DOWN))
 	{
-		transform_->eulerAngleDegrees_ += { cameraRotSpeed, 0, 0 };
+		transform_->rotation_ += { cameraRotSpeed, 0, 0 };
 	}
 #pragma endregion キーボード
 
 #pragma region コントローラー
-	transform_->eulerAngleDegrees_ +=
+	transform_->rotation_ +=
 	{
 		-IFE::Input::GetRYAnalog(controllerRange_) * cameraRotSpeed,
 			IFE::Input::GetRXAnalog(controllerRange_)* cameraRotSpeed,
@@ -214,7 +214,7 @@ void PlayerDrone::Rotation()
 
 	//縦回転の限界処理
 	const float maxVerticalRotation = 45.0f;
-	transform_->eulerAngleDegrees_.x = std::clamp(transform_->eulerAngleDegrees_.x, -maxVerticalRotation, maxVerticalRotation);
+	transform_->rotation_.x = std::clamp(transform_->rotation_.x, -maxVerticalRotation, maxVerticalRotation);
 
 	frontVec_ =
 	{
@@ -264,7 +264,7 @@ IFE::Vector3 PlayerDrone::GetPos()
 
 void PlayerDrone::SetRotY(const float rot)
 {
-	transform_->eulerAngleDegrees_.y = rot;
+	transform_->rotation_.y = rot;
 }
 
 IFE::Camera* PlayerDrone::GetDroneCamera()

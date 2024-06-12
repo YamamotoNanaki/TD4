@@ -12,7 +12,7 @@ void IFE::EnemyHp::Initialize()
 	isDead = false;
 	objectPtr_->SetColor({ 1,0,0,1 });
 	objectPtr_->transform_->scale_ = { 2.0f,0.4f,1.0f };
-	objectPtr_->transform_->eulerAngleDegrees_ = { 0, 0, 0 };
+	objectPtr_->transform_->rotation_ = { 0, 0, 0 };
 	objectPtr_->transform_->billbord_ = 2;
 }
 

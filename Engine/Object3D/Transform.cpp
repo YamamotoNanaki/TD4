@@ -57,9 +57,9 @@ void IFE::Transform::UpdateMatrix()
 
 	//////‰ñ“]//////
 
-	Float3 eulerRadians = ConvertToRadians(eulerAngleDegrees_);
-	rotation_ = EulerToQuaternion(eulerRadians);
-	matRot_ = RotateMatrix(rotation_);
+	Float3 eulerRadians = ConvertToRadians(rotation_);
+	rotationQuaternion_ = EulerToQuaternion(eulerRadians);
+	matRot_ = RotateMatrix(rotationQuaternion_);
 
 	//////•½sˆÚ“®//////
 	//ˆÚ“®—Ê‚ğs—ñ‚Éİ’è‚·‚é
@@ -100,11 +100,11 @@ void IFE::Transform::Copy(Component* component)
 	Transform* t = dynamic_cast<Transform*>(component);
 	if (t == nullptr)return;
 	eulerFlag_ = t->eulerFlag_;
-	eulerAngleDegrees_ = t->eulerAngleDegrees_;
+	rotation_ = t->rotation_;
 	billbord_ = t->billbord_;
 	scale_ = t->scale_;
 	position_ = t->position_;
-	rotation_ = t->rotation_;
+	rotationQuaternion_ = t->rotationQuaternion_;
 }
 
 Vector3 IFE::Transform::TransformPoint(const Vector3& p)
@@ -126,17 +126,17 @@ Float3 IFE::Transform::GetLossyScale()
 
 Vector3 IFE::Transform::GetForwardVector()
 {
-	return MultiplyQuaternionAndVector3(rotation_, Vector3(0, 0, 1)).Normalize();
+	return MultiplyQuaternionAndVector3(rotationQuaternion_, Vector3(0, 0, 1)).Normalize();
 }
 
 Vector3 IFE::Transform::GetUpVector()
 {
-	return MultiplyQuaternionAndVector3(rotation_, Vector3(0, 1, 0)).Normalize();
+	return MultiplyQuaternionAndVector3(rotationQuaternion_, Vector3(0, 1, 0)).Normalize();
 }
 
 Vector3 IFE::Transform::GetRightVector()
 {
-	return MultiplyQuaternionAndVector3(rotation_, Vector3(1, 0, 0)).Normalize();
+	return MultiplyQuaternionAndVector3(rotationQuaternion_, Vector3(1, 0, 0)).Normalize();
 }
 
 void IFE::Transform::MovePushBack(Vector3 move)
@@ -178,32 +178,32 @@ void IFE::Transform::ComponentDebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
 	im->DragFloat3GUI(&position_, "position");
-	im->DragFloat3GUI(&eulerAngleDegrees_, "rotation", 1.0f);
-	if (eulerAngleDegrees_.x >= 360)
+	im->DragFloat3GUI(&rotation_, "rotation", 1.0f);
+	if (rotation_.x >= 360)
 	{
-		eulerAngleDegrees_.x -= 360;
+		rotation_.x -= 360;
 	}
-	if (eulerAngleDegrees_.y >= 360)
+	if (rotation_.y >= 360)
 	{
-		eulerAngleDegrees_.y -= 360;
+		rotation_.y -= 360;
 	}
-	if (eulerAngleDegrees_.z >= 360)
+	if (rotation_.z >= 360)
 	{
-		eulerAngleDegrees_.z -= 360;
+		rotation_.z -= 360;
 	}
-	if (eulerAngleDegrees_.x <= 0)
+	if (rotation_.x <= 0)
 	{
-		eulerAngleDegrees_.x += 360;
+		rotation_.x += 360;
 	}
-	if (eulerAngleDegrees_.y <= 0)
+	if (rotation_.y <= 0)
 	{
-		eulerAngleDegrees_.y += 360;
+		rotation_.y += 360;
 	}
-	if (eulerAngleDegrees_.z <= 0)
+	if (rotation_.z <= 0)
 	{
-		eulerAngleDegrees_.z += 360;
+		rotation_.z += 360;
 	}
-	rotation_ = EulerToQuaternion(eulerAngleDegrees_);
+	rotationQuaternion_ = EulerToQuaternion(rotation_);
 	im->DragFloat3GUI(&scale_, "scale");
 	UpdateMatrix();
 }
@@ -211,7 +211,7 @@ void IFE::Transform::OutputComponent(nlohmann::json& j)
 {
 	JsonManager* jm = JsonManager::Instance();
 	jm->OutputFloat3(j["scale"], scale_);
-	jm->OutputFloat3(j["rotation"], eulerAngleDegrees_);
+	jm->OutputFloat3(j["rotation"], rotation_);
 	jm->OutputFloat3(j["position"], position_);
 }
 #endif
@@ -219,7 +219,7 @@ void IFE::Transform::LoadingComponent(nlohmann::json& json)
 {
 	JsonManager* j = JsonManager::Instance();
 	scale_ = j->InputFloat3(json["scale"]);
-	eulerAngleDegrees_ = j->InputFloat3(json["rotation"]);
+	rotation_ = j->InputFloat3(json["rotation"]);
 	position_ = j->InputFloat3(json["position"]);
 	transformBuffer_ = make_unique<ConstBuffer<ConstBufferDataTransform>>();
 	constMapTransform_ = transformBuffer_->GetCBMapObject();

@@ -190,7 +190,13 @@ bool IFE::Collision::CheckOBB(const OBB& box1, const OBB& box2, Vector3* inter, 
 }
 
 bool IFE::Collision::CheckOBBSphere(const OBB& box, const Sphere& sphere, Vector3* inter, Vector3* reject)
-{// OBBの中心から球の中心までのベクトル
+{
+	return CheckOBBSphere(box, sphere, inter, reject, nullptr);
+}
+
+bool IFE::Collision::CheckOBBSphere(const OBB& box, const Sphere& sphere, Vector3* inter, Vector3* reject, float* dis)
+{
+	// OBBの中心から球の中心までのベクトル
 	Vector3 d = sphere.center - box.center;
 
 	// 球の中心をOBBの局所座標系に投影する
@@ -227,6 +233,7 @@ bool IFE::Collision::CheckOBBSphere(const OBB& box, const Sphere& sphere, Vector
 				*reject = -displacement * ((sphere.radius - distance) / distance); // 押し出しベクトル
 			}
 		}
+		if (dis)*dis = distance;
 		return true;
 	}
 

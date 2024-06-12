@@ -17,7 +17,7 @@ private:
 	const float cameraYAdd_ = 7.5f;
 
 	//ターゲットからの距離
-	float distance_ = 15.0f;
+	float distance_ = 5.f;
 
 	const uint16_t controllerRange_ = 10000;
 	bool ColliderHitFlag_ = false;

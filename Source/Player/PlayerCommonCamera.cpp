@@ -23,12 +23,13 @@ void PlayerCommonCamera::Update()
 
 void PlayerCommonCamera::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
 {
-	if (cameraPtr_->cameraName_ == "ActionCamera")
-	{
-		if (hitCollider->objectPtr_->GetObjectName().find("wall") != std::string::npos)
-		{
-			hitCollider->objectPtr_->DrawFlag_ = false;
-		}
-	}
+	//if (cameraPtr_->cameraName_ == "ActionCamera")
+	//{
+	//	if (hitCollider->objectPtr_->GetObjectName().find("wall") != std::string::npos)
+	//	{
+	//		hitCollider->objectPtr_->DrawFlag_ = false;
+	//	}
+	//}
 	myCollider;
+	hitCollider;
 }

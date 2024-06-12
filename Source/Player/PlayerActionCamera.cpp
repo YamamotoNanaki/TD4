@@ -29,10 +29,11 @@ void PlayerActionCamera::Update()
 {
 	if (!ColliderHitFlag_)
 	{
-		float distance = 15.0f;
-		float adjustedTimeValue = 15.0f;
+		float distance = 5.f;
+		float adjustedTimeValue = 5.f;
 		IFE::Complement(distance_, distance, adjustedTimeValue);
 	}
+	ColliderHitFlag_ = false;
 }
 
 void PlayerActionCamera::Draw()
@@ -49,12 +50,11 @@ void PlayerActionCamera::OnColliderHit(IFE::ColliderCore* myCollider, IFE::Colli
 	if (hitCollider->attribute_ == static_cast<uint16_t>(IFE::Attribute::LANDSHAPE))
 	{
 		//“–‚½‚Á‚½‚Æ‚«‚Ì‹——£‚Ì‘ã“ü
-		/*IFE::Vector3 vec = myCollider->interPoint_ - IFE::Vector3(transform_->position_);
-		if (distance_ > vec.Length())
+		if (distance_ > myCollider->rayDistance)
 		{
-			distance_ = vec.Length();
+			distance_ = myCollider->rayDistance;
 			ColliderHitFlag_ = true;
-		}*/
+		}
 	}
 }
 

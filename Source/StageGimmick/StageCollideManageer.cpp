@@ -40,8 +40,8 @@ void StageCollideManageer::Initialize()
 
 void StageCollideManageer::Update()
 {
-	for (auto& itr : stages)
-	{
-		itr->DrawFlag_ = true;
-	}
+	//for (auto& itr : stages)
+	//{
+	//	itr->DrawFlag_ = true;
+	//}
 }
