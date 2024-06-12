@@ -82,6 +82,7 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::EnemyUpdate()
 {
+	objectPtr_->GetComponent<Collider>()->GetCollider(0)->rayDir_ = frontVec;
 	isFound = RaySight();
 	//ó‘Ô‚ðŽæ“¾
 	preState = state;
@@ -240,8 +241,7 @@ void IFE::NormalEnemy::LookAt()
 	transform_->eulerAngleDegrees_ = { ePos.x,radY * 180.0f / (float)PI,ePos.z };
 	//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄXŽ²‚Ì‰ñ“]
 	Vector3 rotaVec = { frontVec.x,0,frontVec.z };
-	transform_->eulerAngleDegrees_ = {360.0f,(radY * 180.0f) + 180.0f / (float)PI,360.0f };
-	objectPtr_->GetComponent<Collider>()->GetCollider(0)->rayDir_ = { 0.0f,(radY * 180.0f) + 180.0f / (float)PI,0.0f };
+	transform_->eulerAngleDegrees_ = { 360.0f,(radY * 180.0f) + 180.0f / (float)PI,360.0f };
 }
 
 bool IFE::NormalEnemy::RaySight() {
@@ -272,11 +272,9 @@ bool IFE::NormalEnemy::RaySight() {
 	bool inSight = innerProduct > cosHalf && targetDistance < maxDistance;
 
 	//// áŠQ•¨‚ª‚È‚¢‚©‚Ç‚¤‚©‚ð”»’è
-	if (rayDist > 0) {
-		if (rayDist < targetDistance) {
-			// ƒ^[ƒQƒbƒg‚æ‚è‚àáŠQ•¨‚ª‹ß‚¢ê‡‚ÍŽ‹ŠE‚ªŽÕ‚ç‚ê‚Ä‚¢‚é
-			inSight = false;
-		}
+	if (rayDist < targetDistance && rayDist > 0) {
+		// ƒ^[ƒQƒbƒg‚æ‚è‚àáŠQ•¨‚ª‹ß‚¢ê‡‚ÍŽ‹ŠE‚ªŽÕ‚ç‚ê‚Ä‚¢‚é
+		inSight = false;
 	}
 
 	return inSight;
@@ -289,17 +287,15 @@ void IFE::NormalEnemy::Draw()
 
 void IFE::NormalEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
 {
-		//•Ç‚ª‚ ‚Á‚½ê‡
-		if (myCollider->GetColliderType() == ColliderType::RAY && hitCollider->GetColliderType() == ColliderType::OBB) {
-			if (hitCollider->objectPtr_->GetObjectName() == "wall_door" || hitCollider->objectPtr_->GetObjectName() == "wall_door1") {
-				if (rayDist == 0) {
-					rayDist = myCollider->rayDistance;
-				}
-				else if (rayDist > myCollider->rayDistance) {
-					rayDist = myCollider->rayDistance;
-				}
-			}
+	//•Ç‚ª‚ ‚Á‚½ê‡
+	if (myCollider->GetColliderType() == ColliderType::RAY && hitCollider->GetColliderType() == ColliderType::OBB) {
+		if (rayDist == 0) {
+			rayDist = myCollider->rayDistance;
 		}
+		else if (rayDist > myCollider->rayDistance) {
+			rayDist = myCollider->rayDistance;
+		}
+	}
 }
 
 IFE::Vector3 IFE::NormalEnemy::GetPos() {
