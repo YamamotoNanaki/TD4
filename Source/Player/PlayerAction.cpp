@@ -101,6 +101,8 @@ void PlayerAction::Move()
 	//¡‰ñ‚ÍYŽ²‚Ì“®‚«‚Í–³‚­‚Ä—Ç‚¢
 	frontVec_.y = 0.0f;
 	rightVec_.y = 0.0f;
+	frontVec_.Normalize();
+	rightVec_.Normalize();
 
 	if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == false)
 	{
