@@ -10,6 +10,8 @@ class PlayerDrone :public IFE::Component
 {
 private:
 
+	bool isDroneSurvival_ = false;
+
 	IFE::Vector3 moveValue_ = {};
 
 	IFE::Vector3 front_ = { 0,0,1 };
@@ -85,4 +87,7 @@ public:
 	void SetRotY(const float rot);
 
 	IFE::Camera* GetDroneCamera();
+
+	void SetIsDroneSurvival(bool flag);
+	bool GetIsDroneSurvival();
 };

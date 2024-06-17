@@ -80,6 +80,7 @@ void PlayerDrone::Finalize()
 
 void PlayerDrone::OnColliderHit(IFE::ColliderCore collider)
 {
+	//isDroneSurvival_ = false;
 }
 
 void PlayerDrone::MoveUpdate()
@@ -279,4 +280,14 @@ void PlayerDrone::SetRotY(const float rot)
 IFE::Camera* PlayerDrone::GetDroneCamera()
 {
 	return droneCamera_;
+}
+
+void PlayerDrone::SetIsDroneSurvival(bool flag)
+{
+	isDroneSurvival_ = flag;
+}
+
+bool PlayerDrone::GetIsDroneSurvival()
+{
+	return isDroneSurvival_;
 }

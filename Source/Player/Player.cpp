@@ -67,13 +67,13 @@ void Player::ChangeMode()
 			auto ptr = IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting");
 			ptr->drawFlag_ = true;
 			ptr->updateFlag_ = true;
-			if (isDrone_ == false)
+			if (drone_->GetIsDroneSurvival() == false)
 			{
 				IFE::Float3 pos = action_->GetPos();
 				pos.y += 3.0f;
 				drone_->SetPos(pos);
 				drone_->SetRotY(action_->GetRotY());
-				isDrone_ = true;
+				drone_->SetIsDroneSurvival(true);
 			}
 		}
 		else

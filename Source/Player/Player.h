@@ -16,7 +16,6 @@ private:
 
 	IFE::UI* ui_ = nullptr;
 
-	bool isDrone_ = false;
 	float droneHighlightingDistance_ = 20;
 
 public:
