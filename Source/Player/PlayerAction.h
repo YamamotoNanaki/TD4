@@ -46,6 +46,11 @@ private:
 
 	const uint16_t controllerRange_ = 10000;
 
+	//実際の方向ベクトル
+	IFE::Vector3 actualFrontVec_ = { 0,0,1.0f };
+	//入力されている方向
+	IFE::Vector3 targetVec_ = { 0,0,0 };
+
 public:
 
 	/// <summary>
@@ -119,4 +124,7 @@ private:
 	/// 攻撃処理
 	/// </summary>
 	void Attack();
+
+	// 目標値に近づける関数
+	void approachTarget(float& current, float target, float step);
 };
