@@ -3,6 +3,7 @@
 #include "Transform.h"
 #include "Collider.h"
 #include "PlayerAction.h"
+#include"PlayerDrone.h"
 
 void IFE::EnemyAttack::Initialize()
 {
@@ -15,6 +16,8 @@ void IFE::EnemyAttack::Initialize()
 		ptr->SetNoPushBackFlag(true);
 		ptr->active_ = false;
 	}
+
+	player_ = IFE::ObjectManager::Instance()->GetObjectPtr("playerObject")->GetComponent<Player>();
 }
 
 void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
@@ -24,6 +27,17 @@ void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::Collide
 	{
 		//“–‚½‚Á‚½Žž‚Ìˆ—
 		hitCollider->objectPtr_->GetComponent<PlayerAction>()->DecHp();
+	}
+
+	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<PlayerDrone>())
+	{
+		//“–‚½‚Á‚½Žž‚Ìˆ—
+		hitCollider->objectPtr_->GetComponent<PlayerDrone>()->SetIsDroneSurvival(false);
+		if (player_->GetMode() == true)
+		{
+			player_->SetMode(false);
+			IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
+		}
 	}
 }
 

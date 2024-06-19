@@ -80,7 +80,7 @@ void PlayerDrone::Finalize()
 
 void PlayerDrone::OnColliderHit(IFE::ColliderCore collider)
 {
-	//isDroneSurvival_ = false;
+	
 }
 
 void PlayerDrone::MoveUpdate()

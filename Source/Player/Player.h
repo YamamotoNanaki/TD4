@@ -31,7 +31,7 @@ public:
 	void OnColliderHit(IFE::ColliderCore collider);
 
 	bool GetMode();
-
+	void SetMode(bool flag);
 
 private:
 

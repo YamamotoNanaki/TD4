@@ -54,6 +54,11 @@ bool Player::GetMode()
 	return modeFlag_;
 }
 
+void Player::SetMode(bool flag)
+{
+	modeFlag_ = flag;
+}
+
 void Player::ChangeMode()
 {
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Y) || IFE::Input::PadTrigger(IFE::PADCODE::Y))
@@ -65,8 +70,8 @@ void Player::ChangeMode()
 			drone_->SetDrawFlag(false);
 			IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
 			auto ptr = IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting");
-			ptr->drawFlag_ = true;
-			ptr->updateFlag_ = true;
+			ptr->drawFlag_ = drone_->GetIsDroneSurvival();
+			ptr->updateFlag_ = drone_->GetIsDroneSurvival();
 			if (drone_->GetIsDroneSurvival() == false)
 			{
 				IFE::Float3 pos = action_->GetPos();
@@ -80,12 +85,12 @@ void Player::ChangeMode()
 		{
 			//アクションモード
 			modeFlag_ = false;
-			drone_->SetDrawFlag(true);
+			drone_->SetDrawFlag(drone_->GetIsDroneSurvival());
 			IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
 		}
-		//UI表示切替
-		ui_->UIChange(modeFlag_);
 	}
+	//UI表示切替(毎フレームやるの良くない)
+	ui_->UIChange(modeFlag_);
 }
 
 #ifdef EditorMode
