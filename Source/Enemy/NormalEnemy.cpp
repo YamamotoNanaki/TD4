@@ -83,6 +83,9 @@ void IFE::NormalEnemy::ChangeState()
 void IFE::NormalEnemy::EnemyUpdate()
 {
 	objectPtr_->GetComponent<Collider>()->GetCollider(0)->rayDir_ = frontVec;
+	if (state != WAIT) {
+		LookAt();
+	}
 	isFound = RaySight();
 	//ó‘Ô‚ðŽæ“¾
 	preState = state;
@@ -157,7 +160,6 @@ void IFE::NormalEnemy::Search()
 	//ƒ|ƒCƒ“ƒg1ˆÈã
 	if (points.size() > 0) {
 		lookfor = points[nextPoint];
-		LookAt();
 		//Œo—R’n“_‚ð•âŠÔ(Œ»óƒ‹[ƒv‚·‚é‚¾‚¯)
 		Vector3 dirVec = points[nextPoint] - transform_->position_;
 		dirVec.Normalize();
@@ -192,7 +194,6 @@ void IFE::NormalEnemy::Chase()
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
 	//player‚Ì•û‚ðŒü‚­
 	lookfor = pPos;
-	LookAt();
 	Vector3 addVec = pPos - ePos;
 	addVec.Normalize();
 	transform_->position_ += (addVec * CHASE_VELO * IFE::IFETime::sDeltaTime_);
@@ -236,6 +237,7 @@ void IFE::NormalEnemy::LookAt()
 {
 	Vector3 ePos = transform_->position_;
 	frontVec = lookfor - ePos;
+	frontVec = frontVec.Normalize();
 	//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
 	float radY = std::atan2(frontVec.x, frontVec.z);
 	transform_->rotation_.y = ((radY * 180.0f) / (float)PI ) + 180.0f;
@@ -243,7 +245,7 @@ void IFE::NormalEnemy::LookAt()
 
 bool IFE::NormalEnemy::RaySight() {
 	//Ž‹ŠE‚Ì‹——£
-	float maxDistance = 25;
+	float maxDistance = 40;
 	//Ž‹–ìŠp
 	float sightAngle = 30;
 	// Ž©g‚ÌˆÊ’u
@@ -266,12 +268,17 @@ bool IFE::NormalEnemy::RaySight() {
 	float innerProduct = selfDir.Dot(targetDir) / targetDistance;
 
 	// Ž‹ŠE”»’è
-	bool inSight = innerProduct > cosHalf && targetDistance < maxDistance;
+	bool inSight = (innerProduct - cosHalf < 0.01f) && targetDistance < maxDistance;
+
 
 	//// áŠQ•¨‚ª‚È‚¢‚©‚Ç‚¤‚©‚ð”»’è
 	if (rayDist < targetDistance && rayDist > 0) {
 		// ƒ^[ƒQƒbƒg‚æ‚è‚àáŠQ•¨‚ª‹ß‚¢ê‡‚ÍŽ‹ŠE‚ªŽÕ‚ç‚ê‚Ä‚¢‚é
 		inSight = false;
+	}
+	if (inSight == true) {
+		int a = 0;
+		a++;
 	}
 
 	return inSight;
@@ -285,12 +292,22 @@ void IFE::NormalEnemy::Draw()
 void IFE::NormalEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
 {
 	//•Ç‚ª‚ ‚Á‚½ê‡
-	if (myCollider->GetColliderType() == ColliderType::RAY && hitCollider->GetColliderType() == ColliderType::OBB) {
-		if (rayDist == 0) {
-			rayDist = myCollider->rayDistance;
+	if (myCollider->GetColliderType() == ColliderType::RAY) {
+		if (hitCollider->objectPtr_->GetObjectName().find("wall") != std::string::npos) {
+			if (rayDist == 0) {
+				rayDist = myCollider->rayDistance;
+			}
+			else if (rayDist > myCollider->rayDistance) {
+				rayDist = myCollider->rayDistance;
+			}
 		}
-		else if (rayDist > myCollider->rayDistance) {
-			rayDist = myCollider->rayDistance;
+		if (hitCollider->objectPtr_->GetObjectName().find("box") != std::string::npos) {
+			if (rayDist == 0) {
+				rayDist = myCollider->rayDistance;
+			}
+			else if (rayDist > myCollider->rayDistance) {
+				rayDist = myCollider->rayDistance;
+			}
 		}
 	}
 }
