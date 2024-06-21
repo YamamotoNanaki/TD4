@@ -70,14 +70,32 @@ void IFE::WindowsAPI::Initialize(int32_t window_width, int32_t window_height, co
 
 	// ウィンドウ表示
 	ShowWindow(hwnd_, SW_SHOW);
-//#ifdef NDEBUG
-//	ShowCursor(false);
-//#endif
+	//#ifdef NDEBUG
+	//	ShowCursor(false);
+	//#endif
 }
 
 void IFE::WindowsAPI::Unregister()
 {
 	UnregisterClass(wnd_.lpszClassName, wnd_.hInstance);
+}
+
+void IFE::WindowsAPI::Update()
+{
+	RECT rect;
+	GetClientRect(hwnd_, &rect);
+	float width = static_cast<float>(rect.right - rect.left);
+	float height = static_cast<float>(rect.bottom - rect.top);
+
+	if (winWidth_ == width && winHeight_ == height)
+	{
+		resize_ = false;
+		return;
+	}
+
+	winWidth_ = int32_t(width);
+	winHeight_ = int32_t(height);
+	resize_ = true;
 }
 
 bool WindowsAPI::Message()

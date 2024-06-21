@@ -1,5 +1,6 @@
 [
     {
+        "DebugCamera": null,
         "Fog": {
             "color": [
                 1.0,
@@ -34,7 +35,8 @@
         },
         "component": [
             "Fog",
-            "TransformCamera"
+            "TransformCamera",
+            "DebugCamera"
         ],
         "name": "initCamera"
     },

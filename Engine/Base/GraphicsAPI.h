@@ -55,6 +55,7 @@ namespace IFE
 		void ExecuteCommand();
 		uint32_t SetNewViewPort(float width, float height, float topX, float topY, float minDepth = 0.0f, float maxDepth = 1.0f);
 		void SetScissorrect(float left, float right, float top, float bottom);
+		void ResizeSwapChain();
 
 		//ÉQÉbÉ^Å[
 	public:

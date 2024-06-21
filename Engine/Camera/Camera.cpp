@@ -102,6 +102,11 @@ void IFE::Camera::DebugUpdate()
 	projection_.Update();
 	transform_->Update();
 	GetComponent<Fog>()->Update();
+	auto dc = GetComponent<DebugCamera>();
+	if (dc)
+	{
+		dc->Update();
+	}
 }
 
 void IFE::Camera::DebugCameraInitialize()

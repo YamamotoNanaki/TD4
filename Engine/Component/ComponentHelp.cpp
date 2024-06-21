@@ -11,6 +11,7 @@
 #include "RectTexture.h"
 #include "Fog.h"
 #include "Animator.h"
+#include "DebugCamera.h"
 #include <typeinfo>
 #include"Player.h"
 #include"PlayerAction.h"
@@ -62,6 +63,8 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<AnimationTexture>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<Fog>(str));
+	if (tmp != nullptr)return tmp;
+	tmp = std::move(GetPtr<DebugCamera>(str));
 	if (tmp != nullptr)return tmp;
 
 	//player

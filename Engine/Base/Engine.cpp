@@ -26,6 +26,8 @@ void IFE::Engine::Run()
 	scene->Initialize();
 	while (true)
 	{
+		window_->Update();
+		gapi_->ResizeSwapChain();
 		Input::Update();
 		scene->Update();
 		gapi_->DrawBefore();

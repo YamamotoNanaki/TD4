@@ -1,7 +1,9 @@
 #include "DebugCamera.h"
+#ifdef EditorMode
 #include "Input.h"
 #include "Transform.h"
 #include "WindowsAPI.h"
+#include "CameraManager.h"
 
 void IFE::DebugCamera::Initialize()
 {
@@ -9,84 +11,117 @@ void IFE::DebugCamera::Initialize()
 	//transformCamera_->eyeTargetUpFlag_ = true;
 	//transformCamera_->eye_ = { 0,400,0 };
 	//transformCamera_->target_ = { 0,0,0 };
+	scaleX = 1.0f / transformCamera_->projectionSize_.x;
+	scaleY = 1.0f / transformCamera_->projectionSize_.y;
 }
 
 void IFE::DebugCamera::Update()
 {
-	//static float scaleX = 1.0f / transformCamera_->projectionSize_.x;
-	//static float scaleY = 1.0f / transformCamera_->projectionSize_.y;
-	//Input* input = Input::Instance();
-	//static bool flag = false;
-	//if (input->GetMouseTrigger(Mouse::Middle))flag = !flag;
-	//if (flag)
-	//{
-	//	static Float2 pos;
-	//	Float2 oldpos = pos;
-	//	pos = input->GetMousePoint();
-	//	Float2 move = { oldpos.x - pos.x,oldpos.y - pos.y };
-	//	bool dirty = false;
-	//	float angleX = 0;
-	//	float angleY = 0;
+	Input* input = Input::Instance();
+	static bool flag = false;
+	if (input->GetMouseTrigger(Mouse::Middle))
+	{
+		flag = !flag;
+		if (flag)
+		{
+			Vector3 forward = transformCamera_->target_ - transformCamera_->eye_;
+			distance = forward.Length();
+			forward.Normalize();
 
-	//	if (input->GetMousePush(Mouse::Left))
-	//	{
-	//		float dy = move.x * scaleY;
-	//		float dx = move.y * scaleX;
+			Vector3 right = Vector3Cross(transformCamera_->up_, forward);
+			right.Normalize();
 
-	//		angleX = -dx * float(M_PI);
-	//		angleY = -dy * float(M_PI);
-	//		dirty = true;
-	//	}
+			Vector3 up = Vector3Cross(forward, right);
+			up.Normalize();
 
-	//	if (input->GetMousePush(Mouse::Right))
-	//	{
-	//		float dx = move.x / 20.0f;
-	//		float dy = move.y / 20.0f;
+			Matrix newMatRot(
+				right.x, right.y, right.z, 0.0f,
+				up.x, up.y, up.z, 0.0f,
+				forward.x, forward.y, forward.z, 0.0f,
+				0.0f, 0.0f, 0.0f, 1.0f
+			);
+			matRot_ = newMatRot;
+		}
+	}
+	if (flag)
+	{
+		Float2 move = input->GetMousePointScalar();
+		int32_t wheel = input->GetMouseWheel();
+		bool dirty = false;
+		float angleX = 0;
+		float angleY = 0;
 
-	//		Vector3 move2 = { -dx, +dy, 0 };
-	//		move2 = Vector3Transform(move2, transformCamera_->matRot_);
+		if (input->GetMousePush(Mouse::Left))
+		{
+			float dy = move.x * scaleY * rotScale / 10;
+			float dx = move.y * scaleX * rotScale / 10;
 
-	//		Float3 eye = transformCamera_->eye_;
-	//		Float3 target = transformCamera_->target_;
+			angleX = -dx * float(M_PI);
+			angleY = -dy * float(M_PI);
+			dirty = true;
+		}
 
-	//		eye.x += move2.x;
-	//		eye.y += move2.y;
-	//		eye.z += move2.z;
+		if (input->GetMousePush(Mouse::Right))
+		{
+			float dx = move.x / (20.5f - moveScale);
+			float dy = move.y / (20.5f - moveScale);
 
-	//		target.x += move2.x;
-	//		target.y += move2.y;
-	//		target.z += move2.z;
+			Vector3 move2 = { -dx, +dy, 0 };
+			move2 = Vector3Transform(move2, matRot_);
 
-	//		transformCamera_->eye_ = eye;
-	//		transformCamera_->target_ = target;
+			Float3 eye = transformCamera_->eye_;
+			Float3 target = transformCamera_->target_;
 
-	//		dirty = true;
-	//	}
+			eye.x += move2.x;
+			eye.y += move2.y;
+			eye.z += move2.z;
 
-	//	if (input->GetMouseWheel() != 0)
-	//	{
-	//		distance -= input->GetMouseWheel() / 10.0f;
-	//		distance = distance > 1.0f ? distance : 1.0f;
-	//		dirty = true;
-	//	}
+			target.x += move2.x;
+			target.y += move2.y;
+			target.z += move2.z;
 
-	//	if (dirty) {
-	//		Matrix newMatRot;
-	//		newMatRot *= MatrixRotationX(-angleX);
-	//		newMatRot *= MatrixRotationY(-angleY);
+			transformCamera_->eye_ = eye;
+			transformCamera_->target_ = target;
 
-	//		transformCamera_->matRot_ = newMatRot * transformCamera_->matRot_;
+			dirty = true;
+		}
+
+		if (wheel != 0)
+		{
+			distance -= wheel / 10.0f;
+			distance = distance > 1.0f ? distance : 1.0f;
+			dirty = true;
+		}
+
+		if (dirty) {
+			Matrix newMatRot;
+			newMatRot *= MatrixRotationX(-angleX);
+			newMatRot *= MatrixRotationY(-angleY);
+
+			matRot_ = newMatRot * matRot_;
 
 
-	//		Vector3 newTargetEye = { 0.0f, 0.0f, -distance };
-	//		Vector3 newUp = { 0.0f, 1.0f, 0.0f };
+			Vector3 newTargetEye = { 0.0f, 0.0f, -distance };
+			Vector3 newUp = { 0.0f, 1.0f, 0.0f };
 
-	//		newTargetEye = Vector3Transform(newTargetEye, transformCamera_->matRot_);
-	//		newUp = Vector3Transform(newUp, transformCamera_->matRot_);
+			newTargetEye = Vector3Transform(newTargetEye, matRot_);
+			newUp = Vector3Transform(newUp, matRot_);
 
-	//		const Float3& newTarget = transformCamera_->target_;
-	//		transformCamera_->eye_ = { newTarget.x + newTargetEye.x, newTarget.y + newTargetEye.y, newTarget.z + newTargetEye.z };
-	//		transformCamera_->up_ = { newUp.x, newUp.y, newUp.z };
-	//	}
-	//}
+			const Float3& newTarget = transformCamera_->target_;
+			transformCamera_->eye_ = { (newTarget.x + newTargetEye.x), (newTarget.y + newTargetEye.y), newTarget.z + newTargetEye.z };
+			transformCamera_->up_ = { newUp.x, newUp.y, newUp.z };
+		}
+	}
+	transformCamera_->Update();
 }
+
+#include "ImguiManager.h"
+
+void IFE::DebugCamera::ComponentDebugGUI()
+{
+	auto im = ImguiManager::Instance();
+	im->DragFloatGUI(&moveScale, "moveScale", 0.05f, 0.25f, 20.f);
+	im->DragFloatGUI(&rotScale, "rotScale", 0.05f, 0.25f, 20.f);
+}
+
+#endif
