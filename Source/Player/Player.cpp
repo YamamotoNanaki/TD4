@@ -7,14 +7,14 @@
 #include"ObjectManager.h"
 #include"CameraManager.h"
 #include"SpriteManager.h"
-#include"PostEffectManager.h"
-#include"EnemyHighlighting.h"
 
 void Player::Initialize()
 {
 	action_ = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>();
 	drone_ = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>();
 	IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
+
+	enemyHilight_ = IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting");
 
 	ui_->UIChange(modeFlag_);
 
@@ -26,13 +26,18 @@ void Player::Update()
 {
 	ChangeMode();
 
+	DroneRecovery();
+
 	if (modeFlag_ == false)
 	{
 		action_->MoveUpdate();
 	}
 	else
 	{
-		drone_->MoveUpdate();
+		if (droneRecoveryFlag_ == false)
+		{
+			drone_->MoveUpdate();
+		}
 	}
 	dynamic_cast<EnemyHighlighting*>(IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting"))->droneHighlightingDistance_ = droneHighlightingDistance_;
 }
@@ -47,6 +52,19 @@ void Player::Finalize()
 
 void Player::OnColliderHit(IFE::ColliderCore collider)
 {
+}
+
+void Player::DroneBreak()
+{
+	drone_->SetIsDroneSurvival(false);
+	enemyHilight_->drawFlag_ = false;
+	enemyHilight_->updateFlag_ = false;
+	if (modeFlag_ == true)
+	{
+		modeFlag_ = false;
+		IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
+	}
+	drone_->SetDrawFlag(false);
 }
 
 bool Player::GetMode()
@@ -65,13 +83,11 @@ void Player::ChangeMode()
 	{
 		if (modeFlag_ == false)
 		{
-			//ドローンモード
+			//アクションからドローンモードへ
 			modeFlag_ = true;
 			drone_->SetDrawFlag(false);
 			IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
-			auto ptr = IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting");
-			ptr->drawFlag_ = drone_->GetIsDroneSurvival();
-			ptr->updateFlag_ = drone_->GetIsDroneSurvival();
+
 			if (drone_->GetIsDroneSurvival() == false)
 			{
 				IFE::Float3 pos = action_->GetPos();
@@ -79,11 +95,13 @@ void Player::ChangeMode()
 				drone_->SetPos(pos);
 				drone_->SetRotY(action_->GetRotY());
 				drone_->SetIsDroneSurvival(true);
+				enemyHilight_->drawFlag_ = true;
+				enemyHilight_->updateFlag_ = true;
 			}
 		}
 		else
 		{
-			//アクションモード
+			//ドローンからアクションモードへ
 			modeFlag_ = false;
 			drone_->SetDrawFlag(drone_->GetIsDroneSurvival());
 			IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
@@ -91,6 +109,24 @@ void Player::ChangeMode()
 	}
 	//UI表示切替(毎フレームやるの良くない)
 	ui_->UIChange(modeFlag_);
+}
+
+void Player::DroneRecovery()
+{
+	if (droneRecoveryFlag_ == false && IFE::Input::PadTrigger(IFE::PADCODE::DOWN))
+	{
+		droneRecoveryFlag_ = true;
+	}
+
+	if (droneRecoveryFlag_ == true)
+	{
+		droneRecoverytime_ += IFE::IFETime::sDeltaTime_;
+		if (droneRecoverytime_ > maxDroneRecoverytime_)
+		{
+			DroneBreak();
+			droneRecoveryFlag_ = false;
+		}
+	}
 }
 
 #ifdef EditorMode

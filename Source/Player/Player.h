@@ -4,6 +4,8 @@
 #include"PlayerAction.h"
 #include"PlayerDrone.h"
 #include"UI.h"
+#include"PostEffectManager.h"
+#include"EnemyHighlighting.h"
 
 class Player :public IFE::Component
 {
@@ -18,6 +20,16 @@ private:
 
 	float droneHighlightingDistance_ = 20;
 
+	IFE::IPostEffect* enemyHilight_;
+
+#pragma region ドローンの回収系
+
+	bool droneRecoveryFlag_ = false;
+	float droneRecoverytime_ = 0.0f;
+	const float maxDroneRecoverytime_ = 300.0f;
+
+#pragma endregion ドローンの回収系
+
 public:
 
 	void Initialize();
@@ -30,12 +42,19 @@ public:
 
 	void OnColliderHit(IFE::ColliderCore collider);
 
+	void DroneBreak();
+
 	bool GetMode();
 	void SetMode(bool flag);
 
 private:
 
 	void ChangeMode();
+
+	/// <summary>
+	/// ドローンの回収処理
+	/// </summary>
+	void DroneRecovery();
 
 #ifdef EditorMode
 	void ComponentDebugGUI()override;

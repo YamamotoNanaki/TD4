@@ -32,12 +32,7 @@ void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::Collide
 	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<PlayerDrone>())
 	{
 		//“–‚½‚Á‚½Žž‚Ìˆ—
-		hitCollider->objectPtr_->GetComponent<PlayerDrone>()->SetIsDroneSurvival(false);
-		if (player_->GetMode() == true)
-		{
-			player_->SetMode(false);
-			IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
-		}
+		player_->DroneBreak();
 	}
 }
 
