@@ -245,9 +245,9 @@ void IFE::NormalEnemy::LookAt()
 
 bool IFE::NormalEnemy::RaySight() {
 	//視界の距離
-	float maxDistance = 40;
+	float maxDistance = 20;
 	//視野角
-	float sightAngle = 30;
+	float sightAngle = 45;
 	// 自身の位置
 	Vector3 ePos = transform_->position_;
 	// ターゲットの位置
