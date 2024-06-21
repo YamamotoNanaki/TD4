@@ -69,6 +69,7 @@ namespace IFE
 		static bool GetMouseTrigger(const Mouse& mouse);
 		static bool GetMouseRelease(const Mouse& mouse);
 		static Float2 GetMousePoint();
+		static Float2 GetMousePointScalar();
 		static int32_t GetMouseWheel();
 		//コントローラーの判定
 		static Float2 GetLAnalog(std::int32_t unresponsive_range = 1000);

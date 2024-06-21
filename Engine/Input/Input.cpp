@@ -239,3 +239,8 @@ float IFE::Input::GetLTrigger(std::int32_t unresponsive_range)
 	}
 	return l;
 }
+
+Float2 IFE::Input::GetMousePointScalar()
+{
+	return Float2(float(sInputInstance_->mouse_.lX), float(sInputInstance_->mouse_.lY));
+}
