@@ -20,7 +20,7 @@ public:
 
 	void Finalize();
 
-	void OnColliderHit(IFE::ColliderCore collider);
+	void OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider);
 
 #ifdef EditorMode
 
@@ -48,6 +48,9 @@ private:
 	int32_t oldscaleSize = 0;
 
 	IFE::Collider* cols_;
+
+	int32_t countHitTimer_ = 0;
+	int32_t hitMaxTime_ = 0;
 
 };
 

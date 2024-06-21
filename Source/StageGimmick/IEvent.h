@@ -15,6 +15,13 @@ namespace IFE {
 		//毎フレーム更新
 		virtual void Update() {};
 
+		virtual bool GetIsEnd() { return isEnd_; };
+
+	protected:
+
+		//このイベントが終わっているか
+		bool isEnd_ = false;
+
 	};
 
 
