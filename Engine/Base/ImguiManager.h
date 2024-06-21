@@ -34,6 +34,7 @@ namespace IFE
 		void Initialize();
 		void StartNewFrame();
 		void Update();
+		void UpdateWindowSize();
 		void Draw();
 		void Demo();
 		void EndGUI();

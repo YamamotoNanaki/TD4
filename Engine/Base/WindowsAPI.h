@@ -17,12 +17,14 @@ namespace IFE
 	public:
 		int32_t winWidth_;
 		int32_t winHeight_;
+		bool resize_ = false;
 
 	public:
 		static WindowsAPI* Instance();
 		static void Finalize();
 		void Initialize(int32_t window_width, int32_t window_height,const LPCWSTR& windowName = L"DirectXGame");
 		void Unregister();
+		void Update();
 		bool Message();
 		HINSTANCE* GetHInstance();
 		HWND* GetHWnd();
