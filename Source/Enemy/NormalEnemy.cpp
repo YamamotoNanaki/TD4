@@ -268,17 +268,16 @@ bool IFE::NormalEnemy::RaySight() {
 	float innerProduct = selfDir.Dot(targetDir) / targetDistance;
 
 	// ‹ŠE”»’è
-	bool inSight = (innerProduct - cosHalf < 0.01f) && targetDistance < maxDistance;
+	bool inSight = (cosHalf - innerProduct < 0.01f) && targetDistance < maxDistance;
 
+	if (innerProduct < 0) {
+		inSight = false;
+	}
 
 	//// áŠQ•¨‚ª‚È‚¢‚©‚Ç‚¤‚©‚ğ”»’è
 	if (rayDist < targetDistance && rayDist > 0) {
 		// ƒ^[ƒQƒbƒg‚æ‚è‚àáŠQ•¨‚ª‹ß‚¢ê‡‚Í‹ŠE‚ªÕ‚ç‚ê‚Ä‚¢‚é
 		inSight = false;
-	}
-	if (inSight == true) {
-		int a = 0;
-		a++;
 	}
 
 	return inSight;
