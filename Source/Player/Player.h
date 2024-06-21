@@ -26,7 +26,7 @@ private:
 
 	bool droneRecoveryFlag_ = false;
 	float droneRecoverytime_ = 0.0f;
-	const float maxDroneRecoverytime_ = 300.0f;
+	const float maxDroneRecoverytime_ = 180.0f;
 
 #pragma endregion ƒhƒ[ƒ“‚Ì‰ñûŒn
 
