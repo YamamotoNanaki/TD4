@@ -38,7 +38,7 @@ namespace IFE {
 		EnemyHp* hpUI = nullptr;
 		EnemyHp* status_ = nullptr;
 		//攻撃判定クラス
-		EnemyAttack* enemyAttack = nullptr;
+		IFE::EnemyAttack* enemyAttack = nullptr;
 		bool isAttack;
 		//レイヒット記憶変数
 		float rayDist;
