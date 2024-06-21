@@ -200,18 +200,26 @@ void PlayerAction::Rotation()
 	float lx = IFE::Input::GetLXAnalog(controllerRange_);
 	float ly = IFE::Input::GetLYAnalog(controllerRange_);
 
+	IFE::Vector2 camerafrontVec = { camera_->GetCamera()->transform_->target_.x - camera_->GetPos().x,camera_->GetCamera()->transform_->target_.z - camera_->GetPos().z };
+	camerafrontVec.Normalize();
+
 	if (lx == 0 || ly == 0)
 	{
 		//方向ベクトルの角度+コントローラーの角度
-		float targetAngle = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(actualFrontVec_.x, actualFrontVec_.z));
-		approachTarget(rotY_, targetAngle, 10.0f);	
+		float targetAngle = IFE::ConvertToDegrees(std::atan2(camerafrontVec.x, camerafrontVec.y) + std::atan2(actualFrontVec_.x, actualFrontVec_.z));
+		approachTarget(rotY_, targetAngle, 10.0f);
+		if (!(lx == 0 && ly == 0))
+		{
+			transform_->rotation_.y = rotY_;
+		}
 	}
 	else
 	{
 		//方向ベクトルの角度+コントローラーの角度
-		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec_.x, frontVec_.z) + std::atan2(actualFrontVec_.x, actualFrontVec_.z));
+		rotY_ = IFE::ConvertToDegrees(std::atan2(camerafrontVec.x, camerafrontVec.y) + std::atan2(actualFrontVec_.x, actualFrontVec_.z));
+		transform_->rotation_.y = rotY_; transform_->rotation_.y = rotY_;
 	}
-	transform_->rotation_.y = rotY_;
+	
 #pragma endregion コントローラー
 }
 
