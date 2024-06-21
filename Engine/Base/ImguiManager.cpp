@@ -100,6 +100,24 @@ void IFE::ImguiManager::Update()
 		copyObjects_.push_back(openObj_);
 	}
 	openObj_ = nullptr;
+
+	UpdateWindowSize();
+}
+
+void IFE::ImguiManager::UpdateWindowSize()
+{
+	if (WindowsAPI::Instance()->resize_)
+	{
+		RECT rect;
+		GetClientRect(*WindowsAPI::Instance()->GetHWnd(), &rect);
+		float width = static_cast<float>(rect.right - rect.left);
+		float height = static_cast<float>(rect.bottom - rect.top);
+
+		// ImGuiに新しいディスプレイサイズを設定
+		ImGuiIO& io = ImGui::GetIO();
+		io.DisplaySize = ImVec2(width, height);
+		io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
+	}
 }
 
 void IFE::ImguiManager::Draw()

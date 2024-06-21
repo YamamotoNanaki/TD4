@@ -4,6 +4,7 @@
 #include "ModelManager.h"
 #include "ObjectManager.h"
 #include "JsonManager.h"
+#include "Player.h"
 
 void LaserWire::Initialize()
 {
@@ -32,6 +33,19 @@ void LaserWire::Update()
 		col->SetOffsetPosition(poss_[i]);
 		col->SetOffsetScale(scales_[i]);
 	}
+
+	if (countHitTimer_ > hitMaxTime_)
+	{
+		//イベントを起動
+	}
+	//起動したイベントのupdate
+
+	if (!isHit_)
+	{
+		countHitTimer_ = 0;
+	}
+
+	isHit_ = false;
 }
 
 void LaserWire::Draw()
@@ -46,9 +60,14 @@ void LaserWire::Finalize()
 
 }
 
-void LaserWire::OnColliderHit(IFE::ColliderCore collider)
+void LaserWire::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
 {
-	isHit_ = true;
+	if (hitCollider->objectPtr_->GetComponent<PlayerAction>())
+	{
+		isHit_ = true;
+		countHitTimer_++;
+	}
+	
 }
 
 #ifdef EditorMode

@@ -57,7 +57,7 @@ void EnemyHighlighting::Update()
 	{
 		itr->Draw();
 	}
-	enemyAnimJuge->SetDrawBlendMode();
+	enemyJuge->SetDrawBlendMode();
 	LightManager::Instance()->Draw(3);
 	CameraManager::Instance()->Draw();
 	cbFalse->GetCBMapObject()->enemy = false;

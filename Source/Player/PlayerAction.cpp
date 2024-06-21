@@ -219,7 +219,7 @@ void PlayerAction::Rotation()
 		rotY_ = IFE::ConvertToDegrees(std::atan2(camerafrontVec.x, camerafrontVec.y) + std::atan2(actualFrontVec_.x, actualFrontVec_.z));
 		transform_->rotation_.y = rotY_; transform_->rotation_.y = rotY_;
 	}
-	
+
 #pragma endregion コントローラー
 }
 

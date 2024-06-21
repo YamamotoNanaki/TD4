@@ -4,6 +4,7 @@
 #include "Debug.h"
 #include "IFETime.h"
 #include "WindowsAPI.h"
+#include <d3dx12.h>
 
 #pragma comment(lib,"d3d12.lib")
 #pragma comment(lib,"dxgi.lib")
@@ -37,6 +38,82 @@ void IFE::GraphicsAPI::UpdateFixFps()
 	}
 	IFETime::Update();
 	reference_ = IFETime::GetNowTime();
+}
+
+void IFE::GraphicsAPI::ResizeSwapChain()
+{
+	if (WindowsAPI::Instance()->resize_)
+	{
+		UINT width = WindowsAPI::Instance()->winWidth_;
+		UINT height = WindowsAPI::Instance()->winHeight_;
+
+		// 既存のRTVとDSVをリリース
+		for (size_t i = 0; i < backBuffers_.size(); ++i)
+		{
+			if (backBuffers_[i])
+			{
+				backBuffers_[i].Reset();
+			}
+		}
+		if (depthBuffer_)
+		{
+			depthBuffer_.Reset();
+		}
+
+		// スワップチェインをリサイズ
+		if (swapchain_)
+		{
+			HRESULT hr = swapchain_->ResizeBuffers(UINT(backBuffers_.size()), width, height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+			if (FAILED(hr))
+			{
+				// リサイズに失敗した場合のエラーハンドリング
+				return;
+			}
+		}
+
+		for (size_t i = 0; i < backBuffers_.size(); i++)
+		{
+			// スワップチェーンからバッファを取得
+			swapchain_->GetBuffer((UINT)i, IID_PPV_ARGS(&backBuffers_[i]));
+			// デスクリプタヒープのハンドルの取得
+			D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = rtvHeaps_->GetCPUDescriptorHandleForHeapStart();
+			// 裏か表かアドレスがずれる
+			rtvHandle.ptr += i * sDevice_->GetDescriptorHandleIncrementSize(rtvHeapDesc_.Type);
+			D3D12_RENDER_TARGET_VIEW_DESC rtvDesc{};
+			rtvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+			rtvDesc.ViewDimension = D3D12_RTV_DIMENSION_TEXTURE2D;
+			// レンダーターゲットビューの生成
+			sDevice_->CreateRenderTargetView(backBuffers_[i].Get(), &rtvDesc, rtvHandle);
+		}
+
+		// 新しいDSVを作成
+		D3D12_RESOURCE_DESC depthStencilDesc = CD3DX12_RESOURCE_DESC::Tex2D(DXGI_FORMAT_D32_FLOAT, width, height, 1, 0, 1, 0, D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL);
+		D3D12_CLEAR_VALUE clearValue = {};
+		clearValue.Format = DXGI_FORMAT_D32_FLOAT;
+		clearValue.DepthStencil.Depth = 1.0f;
+		clearValue.DepthStencil.Stencil = 0;
+
+		auto a = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
+
+		sDevice_->CreateCommittedResource(
+			&a,
+			D3D12_HEAP_FLAG_NONE,
+			&depthStencilDesc,
+			D3D12_RESOURCE_STATE_DEPTH_WRITE,
+			&clearValue,
+			IID_PPV_ARGS(&depthBuffer_)
+		);
+
+		D3D12_DEPTH_STENCIL_VIEW_DESC dsvDesc = {};
+		dsvDesc.Format = DXGI_FORMAT_D32_FLOAT;
+		dsvDesc.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
+		dsvDesc.Flags = D3D12_DSV_FLAG_NONE;
+		sDevice_->CreateDepthStencilView(depthBuffer_.Get(), &dsvDesc, dsvHeap_->GetCPUDescriptorHandleForHeapStart());
+
+		// ビューポートとシザー矩形を更新
+		SetNewViewPort(static_cast<float>(width), static_cast<float>(height), 0, 0);
+		SetScissorrect(0, static_cast<float>(width), 0, static_cast<float>(height));
+	}
 }
 
 GraphicsAPI* IFE::GraphicsAPI::Instance()
