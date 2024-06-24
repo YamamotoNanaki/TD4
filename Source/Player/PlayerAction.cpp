@@ -270,6 +270,8 @@ void PlayerAction::AttackUI()
 	{
 		isAttackUI_ = false;
 	}
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("attackUI")->drawFlag_ = isAttackUI_;
 }
 
 void PlayerAction::approachTarget(float& current, float target, float step)
