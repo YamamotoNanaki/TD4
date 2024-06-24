@@ -69,6 +69,6 @@ void EnemyHighlighting::Update()
 
 void EnemyHighlighting::Draw()
 {
-	tex_[0]->SetTexture(1);
-	tex_[1]->SetTexture(2);
+	tex_[0]->SetTexture(0);
+	tex_[1]->SetTexture(1);
 }

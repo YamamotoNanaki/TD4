@@ -39,7 +39,12 @@ namespace IFE
 		void PostEffectInitialize();
 		void PostEffectUpdate();
 		void PostEffectDraw();
+		void ForcedDraw();
 		void PostEffectDrawBefore();
 		void PostEffectDrawAfter();
+#ifdef EditorMode
+		void DebugGUI();
+		virtual void PostEffectDebugGUI() {};
+#endif
 	};
 }

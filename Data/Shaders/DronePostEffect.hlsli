@@ -1,9 +1,10 @@
-//cbuffer cbuff0 : register(b0)
-//{
-//    float shift;
-//    float contrast;
-//    float brightness;
-//};
+cbuffer cbuff0 : register(b0)
+{
+    float noiseWidth;
+    float noisePower;
+    float noisePosY;
+    bool drone;
+};
 
 // 頂点シェーダーからピクセルシェーダーへのやり取りに使用する構造体
 struct VSOutput

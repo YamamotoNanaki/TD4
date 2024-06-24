@@ -911,7 +911,7 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreateDefaultPostEffectPipeLine(
 	return CreatePostEffectPipeLine("DefaultPEVS", "DefaultPEPS", "defaultPostEffect", 1, 2);
 }
 
-GraphicsPipeline* IFE::GraphicsPipelineManager::CreatePostEffectPipeLine(std::string v, std::string p, std::string name, int16_t inputTexNum, int16_t outputTexNum)
+GraphicsPipeline* IFE::GraphicsPipelineManager::CreatePostEffectPipeLine(std::string v, std::string p, std::string name, int16_t inputTexNum, int16_t outputTexNum, int16_t rootParam)
 {
 	string vs = defaultDirectory_ + v + ".hlsl";
 	ShaderCompile(vs, SHADER_COMPILE_SETTINGS::Vertex);
@@ -922,12 +922,15 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreatePostEffectPipeLine(std::st
 	// デスクリプタレンジ
 	std::vector<CD3DX12_DESCRIPTOR_RANGE> descRangeSRV;
 	descRangeSRV.resize(inputTexNum);
-	rootParams.resize(inputTexNum + 1);
-	rootParams[0].InitAsConstantBufferView(0, 0, D3D12_SHADER_VISIBILITY_ALL);
+	rootParams.resize(inputTexNum + rootParam);
 	for (size_t i = 0; i < inputTexNum; i++)
 	{
 		descRangeSRV[i].Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, UINT(i)); // t0 レジスタ
-		rootParams[i + 1].InitAsDescriptorTable(1, &descRangeSRV[i], D3D12_SHADER_VISIBILITY_ALL);
+		rootParams[i].InitAsDescriptorTable(1, &descRangeSRV[i], D3D12_SHADER_VISIBILITY_ALL);
+	}
+	for (size_t i = 0; i < rootParam;i++)
+	{
+		rootParams[i + inputTexNum].InitAsConstantBufferView(UINT(i), 0, D3D12_SHADER_VISIBILITY_ALL);
 	}
 
 	// 頂点レイアウト
@@ -1014,5 +1017,10 @@ GraphicsPipeline* IFE::GraphicsPipelineManager::CreatePostEffectPipeLine(std::st
 		return nullptr;
 	}
 	return pipelineList_.back().get();
+}
+
+GraphicsPipeline* IFE::GraphicsPipelineManager::CreatePostEffectPipeLine(std::string shaderName, int16_t inputTexNum, int16_t outputTexNum, int16_t rootParam)
+{
+	return CreatePostEffectPipeLine(shaderName + "VS", shaderName + "PS", shaderName, inputTexNum, outputTexNum, rootParam);
 }
 

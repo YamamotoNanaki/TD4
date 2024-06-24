@@ -15,6 +15,7 @@ void Player::Initialize()
 	IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
 
 	enemyHilight_ = IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting");
+	dronePostEffect_ = IFE::PostEffectManager::Instance()->GetPostEffect("DronePostEffect");
 	dynamic_cast<EnemyHighlighting*>(IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting"))->droneHighlightingDistance_ = droneHighlightingDistance_;
 
 	ui_->UIChange(modeFlag_);
@@ -57,7 +58,6 @@ void Player::OnColliderHit(IFE::ColliderCore collider)
 void Player::DroneBreak()
 {
 	drone_->SetIsDroneSurvival(false);
-	enemyHilight_->drawFlag_ = false;
 	enemyHilight_->updateFlag_ = false;
 	if (modeFlag_ == true)
 	{
@@ -95,7 +95,6 @@ void Player::ChangeMode()
 				drone_->SetPos(pos);
 				drone_->SetRotY(action_->GetRotY());
 				drone_->SetIsDroneSurvival(true);
-				enemyHilight_->drawFlag_ = true;
 				enemyHilight_->updateFlag_ = true;
 			}
 		}

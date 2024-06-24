@@ -2,6 +2,7 @@
 
 //å„Ç≈è¡Çπ
 #include "EnemyHighlighting.h"
+#include "DronePostEffect.h"
 
 using namespace IFE;
 
@@ -38,6 +39,9 @@ void IFE::PostEffectManager::Initialize()
 	postEffects.push_back(std::move(std::make_unique<EnemyHighlighting>()));
 	postEffects.back()->SetInitParams(2);
 	postEffects.back()->PostEffectInitialize();
+	postEffects.push_back(std::move(std::make_unique<DronePostEffect>()));
+	postEffects.back()->SetInitParams(2);
+	postEffects.back()->PostEffectInitialize();
 }
 
 void IFE::PostEffectManager::ObjectDrawBefore()
@@ -69,3 +73,16 @@ IPostEffect* IFE::PostEffectManager::GetPostEffect(std::string name)
 	}
 	return nullptr;
 }
+
+#ifdef EditorMode
+#include "ImguiManager.h"
+void IFE::PostEffectManager::DebugGUI()
+{
+	ImguiManager::Instance()->NewGUI("PostEffect");
+	for (auto& itr : postEffects)
+	{
+		itr->DebugGUI();
+	}
+	ImguiManager::Instance()->EndGUI();
+}
+#endif

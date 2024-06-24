@@ -6,6 +6,7 @@
 #include"UI.h"
 #include"PostEffectManager.h"
 #include"EnemyHighlighting.h"
+#include"DronePostEffect.h"
 
 class Player :public IFE::Component
 {
@@ -21,6 +22,7 @@ private:
 	float droneHighlightingDistance_ = 20;
 
 	IFE::IPostEffect* enemyHilight_;
+	IFE::IPostEffect* dronePostEffect_;
 
 #pragma region ƒhƒ[ƒ“‚Ì‰ñûŒn
 

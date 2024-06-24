@@ -89,7 +89,18 @@ void IFE::IPostEffect::PostEffectDraw()
 	if (!drawFlag_)return;
 	ID3D12GraphicsCommandList* cmdList = GraphicsAPI::Instance()->GetCmdList();
 	cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-	//ID3D12Device* device = GraphicsAPI::Instance()->GetDevice();
+	cmdList->IASetVertexBuffers(0, 1, vb_.GetVBView());
+	gp_->SetDrawBlendMode();
+
+	Draw();
+
+	cmdList->DrawInstanced(4, 1, 0, 0);
+}
+
+void IFE::IPostEffect::ForcedDraw()
+{
+	ID3D12GraphicsCommandList* cmdList = GraphicsAPI::Instance()->GetCmdList();
+	cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 	cmdList->IASetVertexBuffers(0, 1, vb_.GetVBView());
 	gp_->SetDrawBlendMode();
 
@@ -155,3 +166,14 @@ void IFE::IPostEffect::PostEffectDrawAfter()
 	}
 	DrawAfter();
 }
+
+#ifdef EditorMode
+#include "ImguiManager.h"
+void IFE::IPostEffect::DebugGUI()
+{
+	if (ImguiManager::Instance()->CollapsingHeaderGUI(name_))
+	{
+		PostEffectDebugGUI();
+	}
+}
+#endif
