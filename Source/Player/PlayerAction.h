@@ -6,6 +6,7 @@
 #include"PlayerHp.h"
 #include"SpriteManager.h"
 #include"PlayerActionCamera.h"
+#include"EnemyManager.h"
 
 class PlayerAction : public IFE::Component
 {
@@ -50,6 +51,10 @@ private:
 	IFE::Vector3 actualFrontVec_ = { 0,0,1.0f };
 	//“ü—Í‚³‚ê‚Ä‚¢‚é•ûŒü
 	IFE::Vector3 targetVec_ = { 0,0,0 };
+
+	IFE::EnemyManager* enemyManager_ = nullptr;
+	IFE::BaseEnemy* closestEnemy = nullptr;
+	bool isAttackUI_ = false;
 
 public:
 
@@ -124,6 +129,8 @@ private:
 	/// UŒ‚ˆ—
 	/// </summary>
 	void Attack();
+
+	void AttackUI();
 
 	// –Ú•W’l‚É‹ß‚Ã‚¯‚éŠÖ”
 	void approachTarget(float& current, float target, float step);

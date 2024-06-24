@@ -8,6 +8,7 @@
 #include "ObjectManager.h"
 #include "ModelManager.h"
 #include"Scene.h"
+#include"Collision.h"
 
 void PlayerAction::Initialize()
 {
@@ -28,6 +29,8 @@ void PlayerAction::Initialize()
 	playerAttack_->transform_->parent_ = transform_;
 	playerAttack_->objectPtr_->transform_->position_ += {0, 0, 2};
 	playerAttack_->SetName("player");
+
+	enemyManager_ = IFE::ObjectManager::Instance()->GetObjectPtr("EnemyManager")->GetComponent<IFE::EnemyManager>();
 }
 
 void PlayerAction::Update()
@@ -225,6 +228,7 @@ void PlayerAction::Rotation()
 
 void PlayerAction::Attack()
 {
+	AttackUI();
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X))
 	{
 		attackFlag_ = true;
@@ -244,6 +248,30 @@ void PlayerAction::Attack()
 	}
 
 	playerAttack_->SetIsAttack(attackFlag_);
+}
+
+void PlayerAction::AttackUI()
+{
+	for (auto& enemys : enemyManager_->GetEnemyList())
+	{
+		float minDistance = 5.0f;
+		float distance = sqrt((enemys->GetPos().x - transform_->position_.x) * (enemys->GetPos().x - transform_->position_.x) + (enemys->GetPos().y - transform_->position_.y) * (enemys->GetPos().y - transform_->position_.y));
+		if (distance < minDistance) {
+			minDistance = distance;
+			closestEnemy = enemys;
+		}
+	}
+
+	if (closestEnemy!=nullptr&&IFE::Collision::CheckCircle({ {transform_->position_.x,transform_->position_.z},5.0f }, { closestEnemy->GetPos(),1.0f }))
+	{
+		isAttackUI_ = true;
+	}
+	else
+	{
+		isAttackUI_ = false;
+	}
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("attackUI")->drawFlag_ = isAttackUI_;
 }
 
 void PlayerAction::approachTarget(float& current, float target, float step)

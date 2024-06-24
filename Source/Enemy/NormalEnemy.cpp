@@ -6,6 +6,8 @@
 #include "ModelManager.h"
 #include "StageCollideManageer.h"
 #include "TextureManager.h"
+#include "PlayerAction.h"
+#include"PlayerDrone.h"
 
 void IFE::NormalEnemy::Initialize()
 {
@@ -86,7 +88,11 @@ void IFE::NormalEnemy::EnemyUpdate()
 	if (state != WAIT) {
 		LookAt();
 	}
-	isFound = RaySight();
+	isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
+	if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetDrawFlag() == true) {
+		isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
+		isChaseDrone = isFound;
+	}
 	//状態を取得
 	preState = state;
 	ChangeState();
@@ -191,24 +197,37 @@ void IFE::NormalEnemy::Chase()
 {
 	//とりあえず追いかける
 	Vector3 ePos = transform_->position_;
-	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	Vector3 target;
+	if (isChaseDrone == false) {
+		target = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	}
+	else {
+		target = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
+	}
 	//playerの方を向く
-	lookfor = pPos;
-	Vector3 addVec = pPos - ePos;
+	lookfor = target;
+	Vector3 addVec = target - ePos;
 	addVec.Normalize();
 	transform_->position_ += (addVec * CHASE_VELO * IFE::IFETime::sDeltaTime_);
 
 	//近づいたら殴る
-	double len = sqrt(pow(ePos.x - pPos.x, 2) + pow(ePos.y - pPos.y, 2) +
-		pow(ePos.z - pPos.z, 2));
+	double len = sqrt(pow(ePos.x - target.x, 2) + pow(ePos.y - target.y, 2) +
+		pow(ePos.z - target.z, 2));
 	if (len <= 5.0) {
 		enemyAttack->objectPtr_->DrawFlag_ = true;
 		state = ATTACK;
 		enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 		isAttack = true;
 	}
-	if (RaySight() == false) {
-		warningTime++;
+	if (isChaseDrone == false) {
+		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
+			warningTime++;
+		}
+	}
+	else {
+		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
+			warningTime++;
+		}
 	}
 	if (warningTime >= 60) {
 		warningTime = 50;
@@ -243,7 +262,7 @@ void IFE::NormalEnemy::LookAt()
 	transform_->rotation_.y = ((radY * 180.0f) / (float)PI ) + 180.0f;
 }
 
-bool IFE::NormalEnemy::RaySight() {
+bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	//視界の距離
 	float maxDistance = 20;
 	//視野角
@@ -251,7 +270,7 @@ bool IFE::NormalEnemy::RaySight() {
 	// 自身の位置
 	Vector3 ePos = transform_->position_;
 	// ターゲットの位置
-	Vector3 targetPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	Vector3 targetPos = pos;
 
 	//俺の正面ベクトル
 	Vector3 selfDir = frontVec;

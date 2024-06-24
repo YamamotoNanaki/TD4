@@ -107,6 +107,7 @@ namespace IFE {
 
 		inline bool GetDroneHitRay() { return droneHit_; }
 		inline float GetDroneHitDistance() { return droneHitDistance_; }
+		IFE::Vector2 GetPos();
 
 	private:
 		/// <summary>

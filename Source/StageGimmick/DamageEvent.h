@@ -14,6 +14,9 @@ public:
 	//毎フレーム更新
 	void Update()override;
 
+	//デバック更新
+	void DebugGUI()override;
+
 	int32_t damage_ = 1;
 
 private:
