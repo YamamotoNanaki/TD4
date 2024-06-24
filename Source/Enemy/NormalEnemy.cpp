@@ -6,6 +6,7 @@
 #include "ModelManager.h"
 #include "StageCollideManageer.h"
 #include "TextureManager.h"
+#include "PlayerAction.h"
 
 void IFE::NormalEnemy::Initialize()
 {

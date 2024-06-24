@@ -1,6 +1,6 @@
 #pragma once
 #include"Component.h"
-#include"Player.h"
+class Player;
 
 namespace IFE {
 	class EnemyAttack :public IFE::Component

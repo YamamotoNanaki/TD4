@@ -2,8 +2,7 @@
 #include "ObjectManager.h"
 #include "Transform.h"
 #include "Collider.h"
-#include "PlayerAction.h"
-#include"PlayerDrone.h"
+#include"Player.h"
 
 void IFE::EnemyAttack::Initialize()
 {

@@ -28,6 +28,8 @@ void PlayerAction::Initialize()
 	playerAttack_->transform_->parent_ = transform_;
 	playerAttack_->objectPtr_->transform_->position_ += {0, 0, 2};
 	playerAttack_->SetName("player");
+
+	enemyManager_ = IFE::ObjectManager::Instance()->GetObjectPtr("EnemyManager")->GetComponent<IFE::EnemyManager>();
 }
 
 void PlayerAction::Update()
@@ -244,6 +246,14 @@ void PlayerAction::Attack()
 	}
 
 	playerAttack_->SetIsAttack(attackFlag_);
+}
+
+void PlayerAction::AttackUI()
+{
+	for (uint32_t i = 0; i < enemyManager_->GetEnemyList().size(); i++)
+	{
+		
+	}
 }
 
 void PlayerAction::approachTarget(float& current, float target, float step)
