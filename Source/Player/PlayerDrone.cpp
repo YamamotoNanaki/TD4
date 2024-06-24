@@ -291,6 +291,3 @@ bool PlayerDrone::GetIsDroneSurvival()
 {
 	return isDroneSurvival_;
 }
-bool PlayerDrone::GetDrawFlag(){
-	return objectPtr_->DrawFlag_;
-}
