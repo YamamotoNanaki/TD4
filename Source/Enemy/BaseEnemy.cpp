@@ -7,6 +7,11 @@
 
 using namespace IFE;
 
+IFE::Vector2 IFE::BaseEnemy::GetPos()
+{
+	return { transform_->position_.x, transform_->position_.z };
+}
+
 void IFE::BaseEnemy::Highlighting()
 {
 	Vector3 dir = ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->transform_->position_ - transform_->position_;

@@ -8,6 +8,7 @@
 #include "ObjectManager.h"
 #include "ModelManager.h"
 #include"Scene.h"
+#include"Collision.h"
 
 void PlayerAction::Initialize()
 {
@@ -227,6 +228,7 @@ void PlayerAction::Rotation()
 
 void PlayerAction::Attack()
 {
+	AttackUI();
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X))
 	{
 		attackFlag_ = true;
@@ -250,9 +252,23 @@ void PlayerAction::Attack()
 
 void PlayerAction::AttackUI()
 {
-	for (uint32_t i = 0; i < enemyManager_->GetEnemyList().size(); i++)
+	for (auto& enemys : enemyManager_->GetEnemyList())
 	{
-		
+		float minDistance = 5.0f;
+		float distance = sqrt((enemys->GetPos().x - transform_->position_.x) * (enemys->GetPos().x - transform_->position_.x) + (enemys->GetPos().y - transform_->position_.y) * (enemys->GetPos().y - transform_->position_.y));
+		if (distance < minDistance) {
+			minDistance = distance;
+			closestEnemy = enemys;
+		}
+	}
+
+	if (closestEnemy!=nullptr&&IFE::Collision::CheckCircle({ {transform_->position_.x,transform_->position_.z},5.0f }, { closestEnemy->GetPos(),1.0f }))
+	{
+		isAttackUI_ = true;
+	}
+	else
+	{
+		isAttackUI_ = false;
 	}
 }
 

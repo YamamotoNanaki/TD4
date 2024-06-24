@@ -53,6 +53,8 @@ private:
 	IFE::Vector3 targetVec_ = { 0,0,0 };
 
 	IFE::EnemyManager* enemyManager_ = nullptr;
+	IFE::BaseEnemy* closestEnemy = nullptr;
+	bool isAttackUI_ = false;
 
 public:
 
