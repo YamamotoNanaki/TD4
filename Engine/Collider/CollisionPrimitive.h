@@ -96,5 +96,10 @@ namespace IFE
 		Cone();
 		Cone(Float3 apex, float radius, float height);
 	};
+
+	struct Circle {
+		Float2 pos;
+		float radisu;
+	};
 }
 

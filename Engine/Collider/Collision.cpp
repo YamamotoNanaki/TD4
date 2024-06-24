@@ -535,14 +535,14 @@ bool IFE::Collision::BoxCollision2D(IFE::Float2 pos1, float r1, IFE::Float2 pos2
 //		(obj1.v2.z > obj2.v1.z) &&
 //		(obj1.v1.z < obj2.v2.z));
 //}
-//
-//bool IF::Collision::CheckCircleXY(const Primitive& Circle1, const Primitive& Circle2)
-//{
-//	return ((Circle2.v1.x - Circle1.v1.x) * (Circle2.v1.x - Circle1.v1.x) +
-//		(Circle2.v1.y - Circle1.v1.y) * (Circle2.v1.y - Circle1.v1.y) <=
-//		(Circle1.f + Circle2.f) * (Circle1.f + Circle2.f));
-//}
-//
+
+bool IFE::Collision::CheckCircle(const Circle& Circle1, const Circle& Circle2)
+{
+	return ((Circle2.pos.x - Circle1.pos.x) * (Circle2.pos.x - Circle1.pos.x) +
+		(Circle2.pos.y - Circle1.pos.y) * (Circle2.pos.y - Circle1.pos.y) <=
+		(Circle1.radisu + Circle2.radisu) * (Circle1.radisu + Circle2.radisu));
+}
+
 //bool IF::Collision::CheckCircleXYAABB(const Primitive& Circle, const Primitive& box)
 //{
 //	Primitive a;

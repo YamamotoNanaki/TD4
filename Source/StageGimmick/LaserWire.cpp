@@ -67,7 +67,7 @@ void LaserWire::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* 
 		isHit_ = true;
 		countHitTimer_++;
 	}
-	
+	myCollider;
 }
 
 #ifdef EditorMode
