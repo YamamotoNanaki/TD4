@@ -24,3 +24,11 @@ void DamageEvent::Update()
 		isEnd_ = true;
 	}
 }
+#ifdef EditorMode
+#include "ImguiManager.h"
+void DamageEvent::DebugGUI()
+{
+	IFE::ImguiManager* gui = IFE::ImguiManager::Instance();
+
+}
+#endif

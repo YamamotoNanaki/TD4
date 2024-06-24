@@ -436,6 +436,9 @@
     <ClCompile Include="Source\PostEffect\DronePostEffect.cpp">
       <Filter>ソース ファイル\Source\PostEffect</Filter>
     </ClCompile>
+    <ClCompile Include="Source\StageGimmick\EventFactory.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -741,6 +744,9 @@
     </ClInclude>
     <ClInclude Include="Source\PostEffect\DronePostEffect.h">
       <Filter>ヘッダー ファイル\Source\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\EventFactory.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

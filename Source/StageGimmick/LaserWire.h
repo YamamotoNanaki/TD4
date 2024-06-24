@@ -2,6 +2,26 @@
 #include "Component.h"
 #include "Object3D.h"
 #include "Collider.h"
+#include "IEvent.h"
+
+//イベントの種類用意はしたけど置き場所に困ってる
+enum EventType
+{
+	damage
+};
+
+struct EventName
+{
+	static std::string EventString(int32_t eventNum) 
+	{
+		if (eventNum == EventType::damage)
+		{
+			return "DamageEvent";
+		}
+
+		return "";
+	}
+};
 
 class LaserWire:public IFE::Component
 {
@@ -51,6 +71,13 @@ private:
 
 	int32_t countHitTimer_ = 0;
 	int32_t hitMaxTime_ = 0;
+
+	IFE::IEvent* event_;
+
+	//いったんイベントの種類を記録するために用意
+	int32_t eventType_ = EventType::damage;
+
+	bool isEventStart = false;
 
 };
 

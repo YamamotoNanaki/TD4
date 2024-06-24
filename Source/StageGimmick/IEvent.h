@@ -15,7 +15,11 @@ namespace IFE {
 		//毎フレーム更新
 		virtual void Update() {};
 
+		//終了フラグ獲得
 		virtual bool GetIsEnd() { return isEnd_; };
+
+		//設定を出す
+		virtual void DebugGUI() {};
 
 	protected:
 

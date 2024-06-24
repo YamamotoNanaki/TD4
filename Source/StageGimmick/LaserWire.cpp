@@ -5,6 +5,7 @@
 #include "ObjectManager.h"
 #include "JsonManager.h"
 #include "Player.h"
+#include "EventFactory.h"
 
 void LaserWire::Initialize()
 {
@@ -19,6 +20,7 @@ void LaserWire::Initialize()
 		addObj->transform_->parent_ = objectPtr_->transform_;
 		objects_.push_back(addObj);
 	}
+	event_ = IFE::EventFactory().CreateEventClass(EventName::EventString(eventType_));
 }
 
 void LaserWire::Update()
@@ -34,11 +36,26 @@ void LaserWire::Update()
 		col->SetOffsetScale(scales_[i]);
 	}
 
-	if (countHitTimer_ > hitMaxTime_)
+	if (countHitTimer_ > hitMaxTime_ && !isEventStart)
 	{
 		//イベントを起動
+		event_->Initialize();
+		isEventStart = true;
 	}
 	//起動したイベントのupdate
+	if (isEventStart)
+	{
+		if (!event_->GetIsEnd())
+		{
+			event_->Update();
+		}
+		//elseにしてないのは終わったらすぐ終わってほしいから
+		if (event_->GetIsEnd())
+		{
+			isEventStart = false;
+			countHitTimer_ = 0;
+		}
+	}
 
 	if (!isHit_)
 	{
@@ -95,9 +112,20 @@ void LaserWire::ComponentDebugGUI()
 		oldposSize = (int32_t)poss_.size();
 		oldscaleSize = (int32_t)scales_.size();
 	}
+
+	int32_t oldEventType = eventType_;
+	//設定したいイベントの番号にする、最大値設定がまだ手動になってる
+	gui->DragIntGUI(&eventType_, "EventType", 1.0f);
 	
+	if (oldEventType != eventType_)
+	{
+		event_ = IFE::EventFactory().CreateEventClass(EventName::EventString(eventType_));
+	}
 	
-	
+	if (event_ != nullptr)
+	{
+		event_->DebugGUI();
+	}
 }
 
 void LaserWire::OutputComponent(nlohmann::json& json)
@@ -107,6 +135,10 @@ void LaserWire::OutputComponent(nlohmann::json& json)
 		IFE::JsonManager::Instance()->OutputFloat3(json["pos"][i], poss_[i]);
 		IFE::JsonManager::Instance()->OutputFloat3(json["scale"][i], scales_[i]);
 	}
+
+	IFE::Float2 output = { (float)eventType_,0 };
+
+	IFE::JsonManager::Instance()->OutputFloat2(json["EventType"], output);
 }
 #endif
 
@@ -132,4 +164,6 @@ void LaserWire::LoadingComponent(nlohmann::json& json)
 		addScale.z = events[2];
 		scales_.push_back(addScale);
 	}
+
+	eventType_ = json["EventType"][0];
 }
