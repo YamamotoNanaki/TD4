@@ -28,7 +28,7 @@ void DamageEvent::Update()
 #include "ImguiManager.h"
 void DamageEvent::DebugGUI()
 {
-	IFE::ImguiManager* gui = IFE::ImguiManager::Instance();
+	//IFE::ImguiManager* gui = IFE::ImguiManager::Instance();
 
 }
 #endif
