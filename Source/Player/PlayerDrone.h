@@ -90,4 +90,5 @@ public:
 
 	void SetIsDroneSurvival(bool flag);
 	bool GetIsDroneSurvival();
+	bool GetDrawFlag();
 };

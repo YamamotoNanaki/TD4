@@ -33,6 +33,7 @@ namespace IFE {
 		int32_t warningTime;
 		//î≠å©
 		bool isFound;
+		bool isChaseDrone;
 		Vector3 lookfor;
 		//hp
 		EnemyHp* hpUI = nullptr;
@@ -94,7 +95,7 @@ namespace IFE {
 		/// <summary>
 		/// éãê¸îªíË
 		/// </summary>
-		bool RaySight();
+		bool RaySight(Vector3 pos);
 
 		/// <summary>
 		/// ï`âÊ
