@@ -12,27 +12,31 @@ IFE::EventFactory::~EventFactory()
 {
 }
 
-IFE::IEvent* IFE::EventFactory::CreateEventClass(const std::string& EventTypeName)
+IFE::EventFactory* IFE::EventFactory::Instance()
+{
+	static EventFactory inst;
+	return &inst;
+}
+
+std::unique_ptr<IFE::IEvent> IFE::EventFactory::CreateEventClass(const std::string& EventTypeName)
 {
 
-	IFE::IEvent* newEvent = nullptr;
+	std::unique_ptr<IFE::IEvent> newEvent = nullptr;
 
 	if (EventTypeName == "DamageEvent")
 	{
-		DamageEvent* addevent = nullptr;
-		newEvent = addevent;
+		newEvent = std::make_unique<DamageEvent>();
+		
 	}
 	else if (EventTypeName == "")
 	{
-		DamageEvent* addevent = nullptr;
-		newEvent = addevent;
+		newEvent = std::make_unique<DamageEvent>();
 	}
 	else
 	{
-		DamageEvent* addevent = nullptr;
-		newEvent = addevent;
+		newEvent = std::make_unique<DamageEvent>();
 	}
 
-	return newEvent;
+	return std::move(newEvent);
 
 }

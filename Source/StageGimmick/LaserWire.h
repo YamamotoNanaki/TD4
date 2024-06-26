@@ -64,15 +64,14 @@ private:
 	IFE::Object3D testobj_[10];
 
 	int32_t oldposSize = 0;
-	int32_t oldrotSize = 0;
 	int32_t oldscaleSize = 0;
 
 	IFE::Collider* cols_;
 
-	int32_t countHitTimer_ = 0;
-	int32_t hitMaxTime_ = 0;
+	float countHitTimer_ = 0;
+	float hitMaxTime_ = 0;
 
-	IFE::IEvent* event_;
+	std::unique_ptr<IFE::IEvent> event_;
 
 	//いったんイベントの種類を記録するために用意
 	int32_t eventType_ = EventType::damage;

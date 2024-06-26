@@ -6,6 +6,7 @@
 #include "JsonManager.h"
 #include "Player.h"
 #include "EventFactory.h"
+#include "IFETime.h"
 
 void LaserWire::Initialize()
 {
@@ -20,7 +21,7 @@ void LaserWire::Initialize()
 		addObj->transform_->parent_ = objectPtr_->transform_;
 		objects_.push_back(addObj);
 	}
-	event_ = IFE::EventFactory().CreateEventClass(EventName::EventString(eventType_));
+	event_ = IFE::EventFactory::Instance()->CreateEventClass(EventName::EventString(eventType_));
 }
 
 void LaserWire::Update()
@@ -31,6 +32,9 @@ void LaserWire::Update()
 		if (col == nullptr)
 		{
 			col = cols_->AddCollider();
+			col->SetColliderType(IFE::ColliderType::OBB);
+			col->SetNoPushBackFlag(false);
+			col->SetPushBackFlag(false);
 		}
 		col->SetOffsetPosition(poss_[i]);
 		col->SetOffsetScale(scales_[i]);
@@ -82,7 +86,7 @@ void LaserWire::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* 
 	if (hitCollider->objectPtr_->GetComponent<PlayerAction>())
 	{
 		isHit_ = true;
-		countHitTimer_++;
+		countHitTimer_+=IFE::IFETime::sDeltaTime_;
 	}
 	myCollider;
 }
@@ -115,7 +119,9 @@ void LaserWire::ComponentDebugGUI()
 
 	int32_t oldEventType = eventType_;
 	//設定したいイベントの番号にする、最大値設定がまだ手動になってる
-	gui->DragIntGUI(&eventType_, "EventType", 1.0f);
+	gui->DragIntGUI(&eventType_, "EventType", 1.0f,0,1);
+	//当たってイベントが起きるまでの時間を設定
+	gui->DragFloatGUI(&hitMaxTime_, "HitTime", 1.0f, 0, 1000);
 	
 	if (oldEventType != eventType_)
 	{
@@ -139,6 +145,11 @@ void LaserWire::OutputComponent(nlohmann::json& json)
 	IFE::Float2 output = { (float)eventType_,0 };
 
 	IFE::JsonManager::Instance()->OutputFloat2(json["EventType"], output);
+
+	IFE::Float2 output2 = { hitMaxTime_,0 };
+
+	IFE::JsonManager::Instance()->OutputFloat2(json["hitMaxTime"], output2);
+
 }
 #endif
 
@@ -166,4 +177,5 @@ void LaserWire::LoadingComponent(nlohmann::json& json)
 	}
 
 	eventType_ = json["EventType"][0];
+	hitMaxTime_ = json["hitMaxTime"][0];
 }
