@@ -107,6 +107,7 @@ void Player::ChangeMode()
 			modeFlag_ = false;
 			drone_->SetDrawFlag(drone_->GetIsDroneSurvival());
 			IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
+			dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;
 		}
 	}
 	//UI•\¦Ø‘Ö(–ˆƒtƒŒ[ƒ€‚â‚é‚Ì—Ç‚­‚È‚¢)
