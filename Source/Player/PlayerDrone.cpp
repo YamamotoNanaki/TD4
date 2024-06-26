@@ -189,6 +189,16 @@ void PlayerDrone::Move()
 	{
 		transform_->position_.y += 0.2f;
 	}
+
+	MoveLimit();
+}
+
+void PlayerDrone::MoveLimit()
+{
+	if (transform_->position_.y > 18.0f)
+	{
+		transform_->position_.y = 18.0f;
+	}
 }
 
 void PlayerDrone::Rotation()
