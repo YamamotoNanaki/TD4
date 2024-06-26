@@ -68,6 +68,8 @@ public:
 	/// ˆÚ“®ˆ—
 	/// </summary>
 	void Move();
+
+	void MoveLimit();
 	/// <summary>
 	/// ‰ñ“]ˆ—
 	/// </summary>
