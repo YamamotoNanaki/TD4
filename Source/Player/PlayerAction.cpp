@@ -108,10 +108,10 @@ void PlayerAction::Move()
 	frontVec_.Normalize();
 	rightVec_.Normalize();
 
-	if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == false)
-	{
-		transform_->position_.y = -4.9f * IFE::IFETime::sDeltaTime_;
-	}
+	//if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == false)
+	//{
+	//	transform_->position_.y = -4.9f * IFE::IFETime::sDeltaTime_;
+	//}
 
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::A))

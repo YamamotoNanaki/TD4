@@ -28,11 +28,18 @@ void IFE::CollideManager::RaycastSystemUpdate()
 			if (Raycast(ray, (uint16_t)Attribute::LANDSHAPE, &itr->groundHit_, itr->GetColliderScale().y * 2 + adsDistance))
 			{
 				itr->onGround_ = true;
-				itr->transform_->position_.y -= (itr->groundHit_.distance - itr->GetColliderScale().y * 2.0f);
+				itr->transform_->position_.y -= (itr->groundHit_.distance - itr->GetColliderScale().y * 2.0f) - 0.1f;
 			}
 			else
 			{
 				itr->onGround_ = false;
+			}
+			ray.start = itr->GetColliderPosition();
+			ray.start.y -= itr->GetColliderScale().y;
+			ray.dir = { 0,1,0 };
+			if (Raycast(ray, (uint16_t)Attribute::LANDSHAPE, &itr->groundHit_, itr->GetColliderScale().y * 2 + adsDistance))
+			{
+				itr->transform_->position_.y += (itr->groundHit_.distance - itr->GetColliderScale().y * 2.0f) - 0.1f;
 			}
 			QuerySphere(itr, (uint16_t)Attribute::LANDSHAPE);
 		}
@@ -59,6 +66,10 @@ void IFE::CollideManager::CollidersUpdate()
 			if ((colA->objectPtr_) && colA->objectPtr_ == colB->objectPtr_)continue;
 			if ((colA->emitterPtr_) && colA->emitterPtr_ == colB->emitterPtr_)continue;
 			if ((colA->cameraPtr_) && colA->cameraPtr_ == colB->cameraPtr_)continue;
+			if (colA->attribute_ == uint16_t(Attribute::ALLIES) && colB->attribute_ == uint16_t(Attribute::LANDSHAPE))continue;
+			if (colB->attribute_ == uint16_t(Attribute::ALLIES) && colA->attribute_ == uint16_t(Attribute::LANDSHAPE))continue;
+			if (colA->attribute_ == uint16_t(Attribute::ENEMYS) && colB->attribute_ == uint16_t(Attribute::LANDSHAPE))continue;
+			if (colB->attribute_ == uint16_t(Attribute::ENEMYS) && colA->attribute_ == uint16_t(Attribute::LANDSHAPE))continue;
 			if (colA->attribute_ == uint16_t(Attribute::LANDSHAPE) && colA->attribute_ == colB->attribute_)continue;
 
 			//‚Æ‚à‚É‹…

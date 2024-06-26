@@ -185,12 +185,12 @@ void PlayerDrone::Move()
 	transform_->UpdateMatrix();
 #pragma endregion
 
-	if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == true)
-	{
-		transform_->position_.y += 0.2f;
-	}
+	//if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == true)
+	//{
+	//	transform_->position_.y += 0.2f;
+	//}
 
-	MoveLimit();
+	//MoveLimit();
 }
 
 void PlayerDrone::MoveLimit()

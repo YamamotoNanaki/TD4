@@ -21,7 +21,7 @@ void IFE::EnemyManager::Initialize()
 			auto com = enemy->objectPtr_->GetComponent<Collider>();
 			auto col0 = com->AddCollider();
 			col0->SetColliderType(ColliderType::RAY);
-			col0->attribute_ = uint16_t(Attribute::ENEMYS);
+			//col0->attribute_ = uint16_t(Attribute::ENEMYS);
 			auto col1 = com->AddCollider();
 			col1->SetColliderType(ColliderType::SPHERE);
 			col1->attribute_ = uint16_t(Attribute::ENEMYS);
