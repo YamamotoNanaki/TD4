@@ -7,6 +7,7 @@
 #include"ObjectManager.h"
 #include"CameraManager.h"
 #include"SpriteManager.h"
+#include"DronePostEffect.h"
 
 void Player::Initialize()
 {
@@ -59,6 +60,7 @@ void Player::DroneBreak()
 {
 	drone_->SetIsDroneSurvival(false);
 	enemyHilight_->updateFlag_ = false;
+	dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;
 	if (modeFlag_ == true)
 	{
 		modeFlag_ = false;
@@ -96,6 +98,7 @@ void Player::ChangeMode()
 				drone_->SetRotY(action_->GetRotY());
 				drone_->SetIsDroneSurvival(true);
 				enemyHilight_->updateFlag_ = true;
+				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = true;
 			}
 		}
 		else
