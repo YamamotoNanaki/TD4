@@ -21,7 +21,11 @@ namespace IFE {
 		//設定を出す
 		virtual void DebugGUI() {};
 
-		virtual void OutputNum() {};
+		//使うギミック側でデータを出したいとき
+		virtual void OutputData(nlohmann::json& json) {};
+
+		//使うギミック側でデータを受け取りたいとき
+		virtual void InputData(nlohmann::json& json) {};
 
 	protected:
 
