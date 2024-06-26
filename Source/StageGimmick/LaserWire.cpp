@@ -22,7 +22,7 @@ void LaserWire::Initialize()
 		addObj->SetColor({ 1.0f,0,0,1.0f });
 		objects_.push_back(addObj);
 	}
-	event_ = IFE::EventFactory::Instance()->CreateEventClass(EventName::EventString(eventType_));
+	
 }
 
 void LaserWire::Update()
@@ -151,6 +151,8 @@ void LaserWire::OutputComponent(nlohmann::json& json)
 
 	IFE::JsonManager::Instance()->OutputFloat2(json["hitMaxTime"], output2);
 
+	event_->OutputData(json);
+
 }
 #endif
 
@@ -179,4 +181,8 @@ void LaserWire::LoadingComponent(nlohmann::json& json)
 
 	eventType_ = json["EventType"][0];
 	hitMaxTime_ = json["hitMaxTime"][0];
+
+	event_ = IFE::EventFactory::Instance()->CreateEventClass(EventName::EventString(eventType_));
+
+	event_->InputData(json);
 }
