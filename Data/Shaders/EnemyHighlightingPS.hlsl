@@ -10,7 +10,7 @@ float4 main(VSOutput input) : SV_TARGET
     float4 texcolor = float4(0, 0, 0, 0);
     if (enemycolor.a == 1)
     {
-        texcolor = float4(1, 0.45f, 0.15f, 1);
+        texcolor = float4(1, 1, 1, 1);
     }
     //float4 player = tex1.Sample(smp, input.uv);
     //if (player.a==1)

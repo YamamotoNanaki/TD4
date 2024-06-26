@@ -3,6 +3,7 @@
 #include "PostEffectManager.h"
 #include "Rand.h"
 #include "IFETime.h"
+#include "TextureManager.h"
 
 using namespace IFE;
 using namespace std;
@@ -79,17 +80,17 @@ void DronePostEffect::Update()
 		maxTimer_ = -1;
 		timer_ = 0;
 	}
-	PostEffectDrawBefore();
-	Sprite::DrawBefore();
-	dp_->ForcedDraw();
-	eh_->ForcedDraw();
-	PostEffectDrawAfter();
+	//PostEffectDrawBefore();
+	//Sprite::DrawBefore();
+	//dp_->ForcedDraw();
+	//eh_->ForcedDraw();
+	//PostEffectDrawAfter();
 }
 
 void DronePostEffect::Draw()
 {
-	tex_[0]->SetTexture(0);
-	tex_[1]->SetTexture(1);
+	TextureManager::Instance()->GetTexture("DefaultPostEffect_Render_0")->SetTexture(0);
+	TextureManager::Instance()->GetTexture("EnemyHighlighting_Render_0")->SetTexture(1);
 	cb_->SetConstBuffView(2);
 }
 
