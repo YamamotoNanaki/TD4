@@ -4,6 +4,7 @@
 #include "Input.h"
 #include "IFETime.h"
 #include"Object3D.h"
+#include"Player.h"
 
 void PlayerActionCamera::Initialize()
 {
@@ -23,14 +24,19 @@ void PlayerActionCamera::CameraInitialize(const IFE::Vector3& playerPos)
 	};
 
 	actionCamera_->transform_->eye_ = transform_->position_;
+	player_ = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction");
 }
 
 void PlayerActionCamera::Update()
 {
+	IFE::Vector3 v = player_->transform_->position_ - transform_->position_;
+	defaultRayDistance_ = v.Length();
+	v.Normalize();
+	objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->rayDir_ = v;
 	if (!ColliderHitFlag_)
 	{
-		float distance = 5.f;
-		float adjustedTimeValue = 5.f;
+		float distance = defaultDistance_;
+		float adjustedTimeValue = defaultDistance_;
 		IFE::Complement(distance_, distance, adjustedTimeValue);
 	}
 	ColliderHitFlag_ = false;
@@ -47,12 +53,14 @@ void PlayerActionCamera::Finalize()
 void PlayerActionCamera::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
 {
 	myCollider;
-	if (hitCollider->attribute_ == static_cast<uint16_t>(IFE::Attribute::LANDSHAPE))
+	if (hitCollider->attribute_ & static_cast<uint16_t>(IFE::Attribute::LANDSHAPE))
 	{
+		float dis = defaultRayDistance_ - myCollider->rayDistanceFar;
+		if (dis <= 0)return;
 		//“–‚½‚Á‚½‚Æ‚«‚Ì‹——£‚Ì‘ã“ü
-		if (distance_ > myCollider->rayDistance)
+		if (distance_ >= dis)
 		{
-			distance_ = myCollider->rayDistance;
+			distance_ = dis;
 			ColliderHitFlag_ = true;
 		}
 	}

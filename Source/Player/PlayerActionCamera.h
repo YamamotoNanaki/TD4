@@ -7,6 +7,7 @@ class PlayerActionCamera:public IFE::Component
 private:
 
 	IFE::Camera* actionCamera_ = nullptr;
+	IFE::Object3D* player_ = nullptr;
 
 	IFE::Vector3 cameraPos_ = {};
 	IFE::Vector2 cameraAngle_ = {};
@@ -18,6 +19,8 @@ private:
 
 	//ターゲットからの距離
 	float distance_ = 5.f;
+	float defaultDistance_ = 5.f;
+	float defaultRayDistance_ = 0;
 
 	const uint16_t controllerRange_ = 10000;
 	bool ColliderHitFlag_ = false;

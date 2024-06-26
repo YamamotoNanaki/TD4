@@ -257,17 +257,20 @@ void IFE::CollideManager::CollidersUpdate()
 				Ray ray(colB->GetColliderPosition(), colB->rayDir_);
 				Vector3 inter;
 				float dis;
+				float disfar;
 				float* hitdis = nullptr;
 				if (colB->rayHittingdistance > 0.f)
 				{
 					hitdis = &colB->rayHittingdistance;
 				}
-				if (Collision::CheckOBBRay(OBB, ray, &dis, hitdis, &inter))
+				if (Collision::CheckOBBRay(OBB, ray, &dis, &disfar, hitdis, &inter))
 				{
 					colA->interPoint_ = inter;
 					colB->interPoint_ = inter;
 					colA->rayDistance = dis;
 					colB->rayDistance = dis;
+					colA->rayDistanceFar = disfar;
+					colB->rayDistanceFar = disfar;
 					OnColliderHit(colA, colB);
 				}
 			}
@@ -278,17 +281,20 @@ void IFE::CollideManager::CollidersUpdate()
 				Ray ray(colA->GetColliderPosition(), colA->rayDir_);
 				Vector3 inter;
 				float dis;
+				float disfar;
 				float* hitdis = nullptr;
 				if (colA->rayHittingdistance > 0.f)
 				{
 					hitdis = &colA->rayHittingdistance;
 				}
-				if (Collision::CheckOBBRay(OBB, ray, &dis, hitdis, &inter))
+				if (Collision::CheckOBBRay(OBB, ray, &dis, &disfar, hitdis, &inter))
 				{
 					colA->interPoint_ = inter;
 					colB->interPoint_ = inter;
 					colA->rayDistance = dis;
 					colB->rayDistance = dis;
+					colA->rayDistanceFar = disfar;
+					colB->rayDistanceFar = disfar;
 					OnColliderHit(colA, colB);
 				}
 			}

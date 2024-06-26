@@ -296,6 +296,11 @@ bool IFE::Collision::CheckOBBTriangle(const OBB& obb, const Triangle& triangle, 
 
 bool IFE::Collision::CheckOBBRay(const OBB& box, const Ray& ray, float* distance, float* rayHittingdistance, Vector3* inter)
 {
+	return CheckOBBRay(box, ray, distance, nullptr, rayHittingdistance, inter);
+}
+
+bool IFE::Collision::CheckOBBRay(const OBB& box, const Ray& ray, float* distance, float* distanceFar, float* rayHittingdistance, Vector3* inter)
+{
 	float tMin = 0.0f; // レイがOBBに入る最小のt値
 	float tMax = std::numeric_limits<float>::max(); // レイがOBBから出る最大のt値
 
@@ -341,6 +346,10 @@ bool IFE::Collision::CheckOBBRay(const OBB& box, const Ray& ray, float* distance
 		if (tHit <= *rayHittingdistance) {
 			*inter = ray.start + ray.dir * tHit; // 衝突地点
 			*distance = tHit; // 衝突までの距離
+			if (distanceFar)
+			{
+				*distanceFar = tMax;
+			}
 			return true;
 		}
 	}
@@ -353,6 +362,10 @@ bool IFE::Collision::CheckOBBRay(const OBB& box, const Ray& ray, float* distance
 
 		*inter = ray.start + ray.dir * tHit; // 衝突地点
 		*distance = tHit; // 衝突までの距離
+		if (distanceFar)
+		{
+			*distanceFar = tMax;
+		}
 		return true;
 	}
 

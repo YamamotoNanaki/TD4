@@ -21,6 +21,7 @@ namespace IFE
 		static bool CheckOBBSphere(const OBB& box, const Sphere& sphere, Vector3* inter = nullptr, Vector3* reject = nullptr, float* distance = nullptr);
 		static bool CheckOBBTriangle(const OBB& box, const Triangle& triangle, Vector3* inter = nullptr, Vector3* reject = nullptr);
 		static bool CheckOBBRay(const OBB& box, const Ray& ray, float* distance = nullptr, float* rayHittingdistance = nullptr, Vector3* inter = nullptr);
+		static bool CheckOBBRay(const OBB& box, const Ray& ray, float* distance = nullptr, float* distanceFar = nullptr, float* rayHittingdistance = nullptr, Vector3* inter = nullptr);
 		static bool CheckOBBRay(const OBB& box, const Ray& ray, float* distance = nullptr, Vector3* inter = nullptr);
 		//static bool CheckAABB(const Primitive& box1, const Primitive& box2);
 		static bool CheckCircle(const Circle& Circle1, const Circle& Circle2);
