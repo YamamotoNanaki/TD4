@@ -41,6 +41,8 @@ private:
 	
 #pragma endregion ƒJƒƒ‰
 
+	IFE::Vector3 camerafrontVec_ = {};
+
 	bool attackFlag_ = false;
 	const uint8_t attackTime_ = 10;
 	uint8_t attackTimer_ = 0;
@@ -134,4 +136,6 @@ private:
 
 	// –Ú•W’l‚É‹ß‚Ã‚¯‚éŠÖ”
 	void approachTarget(float& current, float target, float step);
+
+	void AutoAim();
 };

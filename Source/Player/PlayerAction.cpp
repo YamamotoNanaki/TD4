@@ -75,6 +75,8 @@ void PlayerAction::DecHp()
 
 void PlayerAction::MoveUpdate()
 {
+	camerafrontVec_ = { camera_->GetCamera()->transform_->target_.x - camera_->GetPos().x,0.0f,camera_->GetCamera()->transform_->target_.z - camera_->GetPos().z };
+	camerafrontVec_.Normalize();
 	if (attackFlag_ == false)
 	{
 		Rotation();
@@ -203,13 +205,10 @@ void PlayerAction::Rotation()
 	float lx = IFE::Input::GetLXAnalog(controllerRange_);
 	float ly = IFE::Input::GetLYAnalog(controllerRange_);
 
-	IFE::Vector2 camerafrontVec = { camera_->GetCamera()->transform_->target_.x - camera_->GetPos().x,camera_->GetCamera()->transform_->target_.z - camera_->GetPos().z };
-	camerafrontVec.Normalize();
-
 	if (lx == 0 || ly == 0)
 	{
 		//方向ベクトルの角度+コントローラーの角度
-		float targetAngle = IFE::ConvertToDegrees(std::atan2(camerafrontVec.x, camerafrontVec.y) + std::atan2(actualFrontVec_.x, actualFrontVec_.z));
+		float targetAngle = IFE::ConvertToDegrees(std::atan2(camerafrontVec_.x, camerafrontVec_.z) + std::atan2(actualFrontVec_.x, actualFrontVec_.z));
 		approachTarget(rotY_, targetAngle, 10.0f);
 		if (!(lx == 0 && ly == 0))
 		{
@@ -219,8 +218,8 @@ void PlayerAction::Rotation()
 	else
 	{
 		//方向ベクトルの角度+コントローラーの角度
-		rotY_ = IFE::ConvertToDegrees(std::atan2(camerafrontVec.x, camerafrontVec.y) + std::atan2(actualFrontVec_.x, actualFrontVec_.z));
-		transform_->rotation_.y = rotY_; transform_->rotation_.y = rotY_;
+		rotY_ = IFE::ConvertToDegrees(std::atan2(camerafrontVec_.x, camerafrontVec_.z) + std::atan2(actualFrontVec_.x, actualFrontVec_.z));
+		transform_->rotation_.y = rotY_;
 	}
 
 #pragma endregion コントローラー
@@ -237,6 +236,7 @@ void PlayerAction::Attack()
 
 	if (attackFlag_ == true)
 	{
+		AutoAim();
 		if (attackTimer_ > attackTime_)
 		{
 			attackFlag_ = false;
@@ -253,6 +253,7 @@ void PlayerAction::Attack()
 void PlayerAction::AttackUI()
 {
 	float minDistance = 5.0f;
+	closestEnemy = nullptr;
 	for (auto& enemys : enemyManager_->GetEnemyList())
 	{
 		float distance = sqrt((enemys->GetPos().x - transform_->position_.x) * (enemys->GetPos().x - transform_->position_.x) + (enemys->GetPos().y - transform_->position_.z) * (enemys->GetPos().y - transform_->position_.z));
@@ -284,5 +285,18 @@ void PlayerAction::approachTarget(float& current, float target, float step)
 	}
 	else {
 		current -= step; // 現在値が目標値より大きい場合、減少
+	}
+}
+
+void PlayerAction::AutoAim()
+{
+	if (isAttackUI_ == true)
+	{
+		IFE::Vector3 frontVec = closestEnemy->transform_->position_ - transform_->transform_->position_;
+		frontVec.y = 0.0f;
+		frontVec.Normalize();
+
+		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec.x, frontVec.z));
+		transform_->rotation_.y = rotY_;
 	}
 }
