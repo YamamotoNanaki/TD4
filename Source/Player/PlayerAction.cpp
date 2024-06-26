@@ -252,10 +252,10 @@ void PlayerAction::Attack()
 
 void PlayerAction::AttackUI()
 {
+	float minDistance = 5.0f;
 	for (auto& enemys : enemyManager_->GetEnemyList())
 	{
-		float minDistance = 5.0f;
-		float distance = sqrt((enemys->GetPos().x - transform_->position_.x) * (enemys->GetPos().x - transform_->position_.x) + (enemys->GetPos().y - transform_->position_.y) * (enemys->GetPos().y - transform_->position_.y));
+		float distance = sqrt((enemys->GetPos().x - transform_->position_.x) * (enemys->GetPos().x - transform_->position_.x) + (enemys->GetPos().y - transform_->position_.z) * (enemys->GetPos().y - transform_->position_.z));
 		if (distance < minDistance) {
 			minDistance = distance;
 			closestEnemy = enemys;
