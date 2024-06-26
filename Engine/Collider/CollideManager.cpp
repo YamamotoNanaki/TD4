@@ -66,11 +66,11 @@ void IFE::CollideManager::CollidersUpdate()
 			if ((colA->objectPtr_) && colA->objectPtr_ == colB->objectPtr_)continue;
 			if ((colA->emitterPtr_) && colA->emitterPtr_ == colB->emitterPtr_)continue;
 			if ((colA->cameraPtr_) && colA->cameraPtr_ == colB->cameraPtr_)continue;
-			if (colA->attribute_ == uint16_t(Attribute::ALLIES) && colB->attribute_ == uint16_t(Attribute::LANDSHAPE))continue;
-			if (colB->attribute_ == uint16_t(Attribute::ALLIES) && colA->attribute_ == uint16_t(Attribute::LANDSHAPE))continue;
-			if (colA->attribute_ == uint16_t(Attribute::ENEMYS) && colB->attribute_ == uint16_t(Attribute::LANDSHAPE))continue;
-			if (colB->attribute_ == uint16_t(Attribute::ENEMYS) && colA->attribute_ == uint16_t(Attribute::LANDSHAPE))continue;
-			if (colA->attribute_ == uint16_t(Attribute::LANDSHAPE) && colA->attribute_ == colB->attribute_)continue;
+			if (colA->attribute_ & uint16_t(Attribute::ALLIES) && colB->attribute_ & uint16_t(Attribute::LANDSHAPE))continue;
+			if (colB->attribute_ & uint16_t(Attribute::ALLIES) && colA->attribute_ & uint16_t(Attribute::LANDSHAPE))continue;
+			if (colA->attribute_ & uint16_t(Attribute::ENEMYS) && colB->attribute_ & uint16_t(Attribute::LANDSHAPE))continue;
+			if (colB->attribute_ & uint16_t(Attribute::ENEMYS) && colA->attribute_ & uint16_t(Attribute::LANDSHAPE))continue;
+			if (colA->attribute_ & uint16_t(Attribute::LANDSHAPE) && colA->attribute_ == colB->attribute_)continue;
 
 			//‚Æ‚à‚É‹…
 			if (colA->GetColliderType() == ColliderType::SPHERE && colB->GetColliderType() == ColliderType::SPHERE)

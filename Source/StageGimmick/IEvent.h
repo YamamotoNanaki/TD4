@@ -1,4 +1,5 @@
 #pragma once
+#include "JsonManager.h"
 
 namespace IFE {
 	class IEvent
@@ -22,10 +23,10 @@ namespace IFE {
 		virtual void DebugGUI() {};
 
 		//使うギミック側でデータを出したいとき
-		virtual void OutputData(nlohmann::json& json) {};
+		virtual void OutputData(nlohmann::json& json) { json; };
 
 		//使うギミック側でデータを受け取りたいとき
-		virtual void InputData(nlohmann::json& json) {};
+		virtual void InputData(nlohmann::json& json) { json; };
 
 	protected:
 
