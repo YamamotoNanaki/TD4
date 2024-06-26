@@ -19,6 +19,7 @@ void LaserWire::Initialize()
 		addObj->transform_->rotation_ = transform_->rotation_;
 		addObj->transform_->scale_ = scales_[i];
 		addObj->transform_->parent_ = objectPtr_->transform_;
+		addObj->SetColor({ 1.0f,0,0,1.0f });
 		objects_.push_back(addObj);
 	}
 	event_ = IFE::EventFactory::Instance()->CreateEventClass(EventName::EventString(eventType_));
@@ -33,7 +34,7 @@ void LaserWire::Update()
 		{
 			col = cols_->AddCollider();
 			col->SetColliderType(IFE::ColliderType::OBB);
-			col->SetNoPushBackFlag(false);
+			col->SetNoPushBackFlag(true);
 			col->SetPushBackFlag(false);
 		}
 		col->SetOffsetPosition(poss_[i]);

@@ -21,6 +21,8 @@ namespace IFE {
 		//設定を出す
 		virtual void DebugGUI() {};
 
+		virtual void OutputNum() {};
+
 	protected:
 
 		//このイベントが終わっているか
