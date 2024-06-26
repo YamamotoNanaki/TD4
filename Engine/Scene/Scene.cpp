@@ -146,14 +146,14 @@ void IFE::Scene::Update()
 
 void IFE::Scene::PostEffectDraw()
 {
-	postEffectM_->ObjectDrawBefore();
 	if (loadEnd_)
 	{
+		postEffectM_->ObjectDrawBefore();
 		objM_->Draw();
 		particleM->Draw();
+		postEffectM_->ObjectDrawAfter();
+		postEffectM_->Update();
 	}
-	postEffectM_->ObjectDrawAfter();
-	postEffectM_->Update();
 }
 
 void IFE::Scene::Draw()
@@ -178,6 +178,7 @@ void IFE::Scene::Finalize()
 	ModelManager::Finalize();
 	ParticleManager::Finalize();
 	Sound::Finalize();
+	PostEffectManager::Finalize();
 #ifdef InverseEditorMode
 #else
 	JsonManager::Instance()->SetDebugScene();
@@ -315,7 +316,7 @@ void IFE::Scene::LoadDraw()
 void IFE::Scene::LoadingScene()
 {
 	JsonManager::Instance()->SetSceneName(nextScene_);
-	postEffectM_->Reset();
+	//postEffectM_->Reset();
 	objM_->Reset();
 	spriteM_->Reset();
 	particleM->Reset();
@@ -342,7 +343,7 @@ void IFE::Scene::LoadingScene()
 	cameraM_->AllCameraInitialize();
 #endif
 
-	postEffectM_->Initialize();
+	//postEffectM_->Initialize();
 	//oldPostEffect->LoadingScene();
 	nowScene_ = nextScene_;
 	loadEnd_ = true;

@@ -62,7 +62,7 @@ void IFE::PostEffectManager::Reset()
 
 void IFE::PostEffectManager::Finalize()
 {
-	Reset();
+	Instance()->Reset();
 }
 
 IPostEffect* IFE::PostEffectManager::GetPostEffect(std::string name)

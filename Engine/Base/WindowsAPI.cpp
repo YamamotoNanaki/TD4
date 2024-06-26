@@ -1,4 +1,5 @@
 #include "WindowsAPI.h"
+#include "GraphicsAPI.h"
 //#include "Debug.h"
 #include "imgui_impl_win32.h"
 
@@ -86,7 +87,7 @@ void IFE::WindowsAPI::Update()
 	GetClientRect(hwnd_, &rect);
 	float width = static_cast<float>(rect.right - rect.left);
 	float height = static_cast<float>(rect.bottom - rect.top);
-
+	if (width == 0 && height == 0)return;
 	if (winWidth_ == width && winHeight_ == height)
 	{
 		resize_ = false;

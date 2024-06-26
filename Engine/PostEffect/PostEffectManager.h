@@ -24,7 +24,7 @@ namespace IFE
 		void ObjectDrawBefore();
 		void ObjectDrawAfter();
 		void Reset();
-		void Finalize();
+		static void Finalize();
 		IPostEffect* GetPostEffect(std::string name);
 
 #ifdef EditorMode
