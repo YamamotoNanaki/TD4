@@ -36,8 +36,8 @@ void IFE::EnemyManager::Initialize()
 			enemyList_.push_back(enemy);
 			itr->SetModel(IFE::ModelManager::Instance()->GetModel("normalEnemy"));
 			itr->AddComponent<IFE::Animator>();
+
 			auto anim = itr->GetComponent<IFE::Animator>();
-			//anim->ModelUpdate();
 			anim->SetAnimation("Idle");
 			anim->loop_ = true;
 			continue;
@@ -48,18 +48,21 @@ void IFE::EnemyManager::Initialize()
 			boss->objectPtr_->AddComponentBack<Collider>();
 			auto com = boss->objectPtr_->GetComponent<Collider>();
 			auto col0 = com->AddCollider();
+
 			col0->SetColliderType(ColliderType::RAY);
-			col0->attribute_ = uint16_t(Attribute::ENEMYS);
+			//col0->attribute_ = uint16_t(Attribute::ENEMYS);
+
 			auto col1 = com->AddCollider();
 			col1->SetColliderType(ColliderType::SPHERE);
 			col1->attribute_ = uint16_t(Attribute::ENEMYS);
+
 			col1->SetPushBackFlag(true);
 			col1->SetGroundJudgeFlag(true);
 			enemyList_.push_back(boss);
 			itr->SetModel(IFE::ModelManager::Instance()->GetModel("normalEnemy"));
+
 			itr->AddComponent<IFE::Animator>();
 			auto anim = itr->GetComponent<IFE::Animator>();
-			//anim->ModelUpdate();
 			anim->SetAnimation("Idle");
 			anim->loop_ = true;
 		}
