@@ -37,6 +37,9 @@ private:
 	//終了位置
 	IFE::Float3 doorEndPos_;
 
+	//ドアのサイズ
+	IFE::Float3 doorScele_;
+
 	IFE::Object3D* doorObject_=nullptr;
 
 	//開いているか

@@ -17,6 +17,7 @@ public:
 	//デバック更新
 	void DebugGUI()override;
 
+	//受けるダメージにしたいが今その機能ないんで一応用意しているだけ
 	int32_t damage_ = 1;
 
 private:

@@ -84,6 +84,8 @@ void DoorEvent::DebugGUI()
 	gui->DragFloat3GUI(&doorStartPos_, "doorStartPos", 0.25f, -1000, 1000);
 	gui->DragFloat3GUI(&doorEndPos_, "doorEndPos", 0.25f, -1000, 1000);
 
+	gui->DragFloat3GUI(&doorScele_, "doorScele", 0.25f, -1000, 1000);
+
 	gui->DragFloatGUI(&moveOpenTime_, "moveOpenTime", 1.0f, 0, 1000);
 	gui->DragFloatGUI(&moveCloseTime_, "moveCloseTime", 1.0f, 0, 1000);
 
@@ -94,6 +96,7 @@ void DoorEvent::OutputData(nlohmann::json& json)
 {
 	IFE::JsonManager::Instance()->OutputFloat3(json["doorStartPos"], doorStartPos_);
 	IFE::JsonManager::Instance()->OutputFloat3(json["doorEndPos"], doorEndPos_);
+	IFE::JsonManager::Instance()->OutputFloat3(json["doorScele"], doorScele_);
 
 	IFE::Float2 output = { moveOpenTime_, moveCloseTime_ };
 
@@ -111,6 +114,10 @@ void DoorEvent::InputData(nlohmann::json& json)
 	doorEndPos_.x = json["doorEndPos"][0];
 	doorEndPos_.y = json["doorEndPos"][1];
 	doorEndPos_.z = json["doorEndPos"][2];
+
+	doorScele_.x = json["doorScele"][0];
+	doorScele_.y = json["doorScele"][1];
+	doorScele_.z = json["doorScele"][2];
 
 	moveOpenTime_ = json["moveDoorTime"][0];
 	moveCloseTime_ = json["moveDoorTime"][1];
