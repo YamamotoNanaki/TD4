@@ -128,7 +128,7 @@ void IFE::NormalEnemy::Wait()
 		transform_->rotation_ += (Float3(0, -15, 0) * IFE::IFETime::sDeltaTime_);
 	}
 	///
-	waitTimer += 100 * IFE::IFETime::sDeltaTime_;
+	waitTimer += 50 * IFE::IFETime::sDeltaTime_;
 	if (waitTimer >= WAIT_TIME) {
 		waitTimer = 0;
 		transform_->rotation_ = { 0,0,0 };
