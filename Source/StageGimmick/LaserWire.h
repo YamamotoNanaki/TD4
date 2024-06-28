@@ -8,7 +8,8 @@
 enum EventType
 {
 	damage,
-	door
+	door,
+	EventCount//Å‘å’lAÅŒã‚É‚¨‚¢‚Ä‚­‚¾‚³‚¢
 };
 
 struct EventName
@@ -83,5 +84,8 @@ private:
 
 	bool isEventStart = false;
 
+private:
+	//enum‚©‚çstring‚ğæ“¾‚·‚é‚½‚ß‚ÌŠÖ”
+	std::string EventTypeToString(EventType eventType);
 };
 

@@ -98,6 +98,8 @@ namespace IFE
 		void EndMenu();
 		void MenuItem(const std::string& itemName, bool* flag);
 		bool CollapsingHeaderGUI(const std::string& headerName);
+
+		bool Combo(const std::string& comboName, int32_t& number, std::vector<std::string> items);
 	};
 }
 #endif

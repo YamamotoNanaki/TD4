@@ -1101,6 +1101,18 @@ bool IFE::ImguiManager::CollapsingHeaderGUI(const std::string& headerName)
 	return ImGui::CollapsingHeader(headerName.c_str());
 }
 
+bool IFE::ImguiManager::Combo(const std::string& comboName, int32_t& number, std::vector<std::string> items)
+{
+	std::vector<const char*> tmp;
+
+	for (const auto& item : items)
+	{
+		tmp.push_back(item.c_str());
+	}
+
+	return ImGui::Combo(comboName.c_str(), &number, tmp.data(), int32_t(items.size()));
+}
+
 
 
 #endif

@@ -120,9 +120,18 @@ void LaserWire::ComponentDebugGUI()
 		oldscaleSize = (int32_t)scales_.size();
 	}
 
+	std::vector<std::string>items;
+	items.resize(EventType::EventCount);
+
+	for (size_t i = 0; i < items.size(); i++)
+	{
+		items[i] = EventTypeToString(EventType(i));
+	}
+
 	int32_t oldEventType = eventType_;
 	//設定したいイベントの番号にする、最大値設定がまだ手動になってる
-	gui->DragIntGUI(&eventType_, "EventType", 1.0f,0,1);
+	gui->Combo("event Type", eventType_, items);
+	//gui->DragIntGUI(&eventType_, "EventType", 1.0f,0,1);
 	//当たってイベントが起きるまでの時間を設定
 	gui->DragFloatGUI(&hitMaxTime_, "HitTime", 1.0f, 0, 1000);
 	
@@ -187,4 +196,13 @@ void LaserWire::LoadingComponent(nlohmann::json& json)
 	event_ = IFE::EventFactory::Instance()->CreateEventClass(EventName::EventString(eventType_));
 
 	event_->InputData(json);
+}
+
+std::string LaserWire::EventTypeToString(EventType eventType)
+{
+	switch (eventType) {
+	case EventType::damage:   return "damage";
+	case EventType::door: return "door";
+	default:    return "UNKNOWN";
+	}
 }
