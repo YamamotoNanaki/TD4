@@ -2,6 +2,7 @@
 
 #include "IEvent.h"
 #include "IFEMath.h"
+#include "Object3D.h"
 
 
 class DoorEvent :public IFE::IEvent
@@ -25,6 +26,9 @@ public:
 	//使うギミック側でデータを受け取りたいとき
 	void InputData(nlohmann::json& json)override;
 
+	//開始時の初期化
+	void StartInitialize()override;
+
 private:
 
 	//開始位置
@@ -33,8 +37,13 @@ private:
 	//終了位置
 	IFE::Float3 doorEndPos_;
 
+	IFE::Object3D* doorObject_=nullptr;
+
 	//開いているか
 	bool isOpen_ = false;
+
+	//カウント
+	float moveTimer_ = 0;
 
 	//開く時間
 	float moveOpenTime_ = 1;

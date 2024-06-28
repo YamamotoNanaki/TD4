@@ -28,6 +28,10 @@ namespace IFE {
 		//使うギミック側でデータを受け取りたいとき
 		virtual void InputData(nlohmann::json& json) { json; };
 
+		//開始時の初期化
+		virtual void StartInitialize() {};
+		
+
 	protected:
 
 		//このイベントが終わっているか

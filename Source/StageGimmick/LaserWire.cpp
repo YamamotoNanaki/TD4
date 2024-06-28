@@ -22,6 +22,8 @@ void LaserWire::Initialize()
 		addObj->SetColor({ 1.0f,0,0,1.0f });
 		objects_.push_back(addObj);
 	}
+
+	event_->Initialize();
 	
 }
 
@@ -44,7 +46,7 @@ void LaserWire::Update()
 	if (countHitTimer_ > hitMaxTime_ && !isEventStart)
 	{
 		//イベントを起動
-		event_->Initialize();
+		event_->StartInitialize();
 		isEventStart = true;
 	}
 	//起動したイベントのupdate

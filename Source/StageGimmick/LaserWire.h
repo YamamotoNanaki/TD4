@@ -7,7 +7,8 @@
 //イベントの種類用意はしたけど置き場所に困ってる
 enum EventType
 {
-	damage
+	damage,
+	door
 };
 
 struct EventName
@@ -17,6 +18,10 @@ struct EventName
 		if (eventNum == EventType::damage)
 		{
 			return "DamageEvent";
+		}
+		else if (eventNum == EventType::door)
+		{
+			return "DoorEvent";
 		}
 
 		return "";
