@@ -25,7 +25,7 @@ void IFE::CollideManager::RaycastSystemUpdate()
 			ray.start = itr->GetColliderPosition();
 			ray.start.y += itr->GetColliderScale().y;
 			ray.dir = { 0,-1,0 };
-			if (Raycast(ray, (uint16_t)Attribute::LANDSHAPE, &itr->groundHit_, itr->GetColliderScale().y * 2 + adsDistance))
+			if (Raycast(ray, (uint16_t)Attribute::LANDSHAPE, &itr->groundHit_, itr->GetColliderScale().y * 2.0f + adsDistance))
 			{
 				itr->onGround_ = true;
 				itr->transform_->position_.y -= (itr->groundHit_.distance - itr->GetColliderScale().y * 2.0f) - 0.1f;
@@ -37,9 +37,9 @@ void IFE::CollideManager::RaycastSystemUpdate()
 			ray.start = itr->GetColliderPosition();
 			ray.start.y -= itr->GetColliderScale().y;
 			ray.dir = { 0,1,0 };
-			if (Raycast(ray, (uint16_t)Attribute::LANDSHAPE, &itr->groundHit_, itr->GetColliderScale().y * 2 + adsDistance))
+			if (Raycast(ray, (uint16_t)Attribute::LANDSHAPE, &itr->groundHit_, itr->GetColliderScale().y * 2.0f + adsDistance))
 			{
-				itr->transform_->position_.y += (itr->groundHit_.distance - itr->GetColliderScale().y * 2.0f) - 0.1f;
+				itr->transform_->position_.y += (itr->groundHit_.distance - itr->GetColliderScale().y * 2.0f) - 0.15f;
 			}
 			QuerySphere(itr, (uint16_t)Attribute::LANDSHAPE);
 		}
