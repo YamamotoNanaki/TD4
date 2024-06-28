@@ -43,6 +43,7 @@ namespace IFE
 #else
 		void DebugGUI();
 		void OutputScene();
+		std::string GetTextureGUI();
 #endif
 		void LoadingScene();
 	};

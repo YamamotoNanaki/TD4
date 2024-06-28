@@ -361,6 +361,21 @@ void IFE::TextureManager::OutputScene()
 	}
 	j->Output("Texture");
 }
+
+string IFE::TextureManager::GetTextureGUI()
+{
+	static int32_t returnNum = 0;
+	std::vector<std::string> items;
+
+	for (uint16_t i = 1; i < 1000; i++)
+	{
+		if (tex_[i].free_ == false)continue;
+		items.push_back(tex_[i].texName_);
+	}
+	ImguiManager::Instance()->Combo("texture Name", returnNum, items);
+
+	return items[returnNum];
+}
 #endif
 
 void IFE::TextureManager::LoadingScene()

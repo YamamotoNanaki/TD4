@@ -261,9 +261,8 @@ void IFE::SpriteManager::DebugGUI()
 		if (ImGui::CollapsingHeader("New Sprite"))
 		{
 			static char name[256];
-			static char tex[256];
 			ImGui::InputText("New Sprite Name", name, sizeof(name));
-			ImGui::InputText("Set Texture Name", tex, sizeof(tex));
+			auto tex = TextureManager::Instance()->GetTextureGUI();
 			if (ImGui::Button("Add Sprite"))
 			{
 				if (SearchName(name))
