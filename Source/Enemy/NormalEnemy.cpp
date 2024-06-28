@@ -271,7 +271,7 @@ bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	Vector3 ePos = transform_->position_;
 	// ターゲットの位置
 	Vector3 targetPos = pos;
-	objectPtr_->GetComponent<Collider>()->GetCollider(0)->rayDir_ = pos - ePos;
+	objectPtr_->GetComponent<Collider>()->GetCollider(2)->rayDir_ = Vector3(pos - ePos).Normalize();
 
 	//俺の正面ベクトル
 	Vector3 selfDir = frontVec;

@@ -22,11 +22,17 @@ void IFE::EnemyManager::Initialize()
 			auto col0 = com->AddCollider();
 			col0->SetColliderType(ColliderType::RAY);
 			//col0->attribute_ = uint16_t(Attribute::ENEMYS);
+
 			auto col1 = com->AddCollider();
 			col1->SetColliderType(ColliderType::SPHERE);
 			col1->attribute_ = uint16_t(Attribute::ENEMYS);
 			col1->SetPushBackFlag(true);
 			col1->SetGroundJudgeFlag(true);
+
+			auto col2 = com->AddCollider();
+			col2->SetColliderType(ColliderType::RAY);
+
+
 			enemyList_.push_back(enemy);
 			itr->SetModel(IFE::ModelManager::Instance()->GetModel("normalEnemy"));
 			itr->AddComponent<IFE::Animator>();
