@@ -34,10 +34,10 @@ void DoorEvent::DebugGUI()
 
 void DoorEvent::OutputData(nlohmann::json& json)
 {
-
+	json;
 }
 
 void DoorEvent::InputData(nlohmann::json& json)
 {
-
+	json;
 }

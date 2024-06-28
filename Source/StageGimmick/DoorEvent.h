@@ -19,9 +19,6 @@ public:
 	//デバック更新
 	void DebugGUI()override;
 
-	//設定を出す
-	void DebugGUI()override;
-
 	//使うギミック側でデータを出したいとき
 	void OutputData(nlohmann::json& json)override;
 
