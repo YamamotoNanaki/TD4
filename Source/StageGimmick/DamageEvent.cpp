@@ -20,6 +20,7 @@ void DamageEvent::Update()
 {
 	if (!isEnd_)
 	{
+		//ダメージをうけな！
 		IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->DecHp();
 		isEnd_ = true;
 	}
