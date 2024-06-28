@@ -28,6 +28,7 @@ namespace IFE
 		bool groundJudge_ = false;
 
 		std::unique_ptr<MeshCollider> meshCollider_;
+
 	public:
 		Vector3 interPoint_;
 		uint16_t attribute_ = 0;
@@ -42,6 +43,8 @@ namespace IFE
 		//0以下は距離制限なし
 		float rayHittingdistance = -1;
 
+		//コライダーの番号
+		uint32_t colliderNumber_ = 0;
 	public:
 		void Initialize()override;
 		void Draw()override;

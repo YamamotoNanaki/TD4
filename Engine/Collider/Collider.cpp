@@ -203,22 +203,28 @@ void IFE::ColliderCore::ColliderGUI(uint32_t num)
 
 void IFE::Collider::Initialize()
 {
+	uint32_t i = 0;
 	for (auto& itr : colliderList_)
 	{
 		itr->objectPtr_ = objectPtr_;
 		itr->cameraPtr_ = cameraPtr_;
 		itr->emitterPtr_ = emitterPtr_;
 		itr->transform_ = transform_;
+		itr->colliderNumber_ = i;
 		itr->Initialize();
+		i++;
 	}
 }
 
 void IFE::Collider::Update()
 {
+	uint32_t i = 0;
 	colliderList_.remove_if([](std::unique_ptr<ColliderCore>& itr) {return itr->componentDeleteFlag_; });
 	for (auto& itr : colliderList_)
 	{
 		itr->Update();
+		itr->colliderNumber_ = i;
+		i++;
 	}
 }
 
@@ -230,6 +236,7 @@ ColliderCore* IFE::Collider::AddCollider()
 	temp->emitterPtr_ = emitterPtr_;
 	temp->transform_ = transform_;
 	temp->Initialize();
+	temp->colliderNumber_= uint32_t(colliderList_.size());
 	colliderList_.push_back(std::move(temp));
 	return colliderList_.back().get();
 }
