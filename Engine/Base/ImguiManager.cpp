@@ -527,10 +527,7 @@ bool IFE::ImguiManager::ModelAddGUI(std::string* newObjectName, std::string* new
 int32_t IFE::ImguiManager::GetModelNameGUI(const std::vector<std::string>& names)
 {
 	static int32_t returnnum = 0;
-	for (int32_t i = 0; i < names.size(); i++)
-	{
-		ImGui::RadioButton(names[i].c_str(), &returnnum, i);
-	}
+	Combo("models", returnnum, names);
 	return returnnum;
 }
 
