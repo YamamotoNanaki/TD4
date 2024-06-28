@@ -84,11 +84,10 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::EnemyUpdate()
 {
-	objectPtr_->GetComponent<Collider>()->GetCollider(0)->rayDir_ = frontVec;
 	if (state != WAIT) {
 		LookAt();
 	}
-	isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
+	isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
 	if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
 		isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
 		isChaseDrone = isFound;
@@ -257,6 +256,7 @@ void IFE::NormalEnemy::LookAt()
 	Vector3 ePos = transform_->position_;
 	frontVec = lookfor - ePos;
 	frontVec = frontVec.Normalize();
+	frontVec *= Vector3(1, 0, 1);
 	//カメラ方向に合わせてY軸の回転
 	float radY = std::atan2(frontVec.x, frontVec.z);
 	transform_->rotation_.y = ((radY * 180.0f) / (float)PI ) + 180.0f;
@@ -271,6 +271,7 @@ bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	Vector3 ePos = transform_->position_;
 	// ターゲットの位置
 	Vector3 targetPos = pos;
+	objectPtr_->GetComponent<Collider>()->GetCollider(0)->rayDir_ = pos - ePos;
 
 	//俺の正面ベクトル
 	Vector3 selfDir = frontVec;
@@ -278,20 +279,19 @@ bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	// ターゲットまでの向きと距離計算
 	Vector3 targetDir = targetPos - ePos;
 	float targetDistance = targetDir.Length();
+	targetDir.Normalize();
 
 	// cos(θ/2)を計算
-	float cosHalf = cos(ConvertToRadians(sightAngle / 2 * (float)PI / 180.0f));
+	float cosHalf = cos(ConvertToRadians(sightAngle / 2.0f * (float)PI / 180.0f));
+	cosHalf = std::floor(cosHalf * 0.1f);
 
 	// 自身とターゲットへの向きの内積計算
 	// ターゲットへの向きベクトルを正規化する必要があることに注意
-	float innerProduct = selfDir.Dot(targetDir) / targetDistance;
+	float innerProduct = selfDir.Dot(targetDir) / targetDir.Length();
+	innerProduct = std::floor(innerProduct * 0.1f);
 
 	// 視界判定
-	bool inSight = (cosHalf - innerProduct < 0.01f) && targetDistance < maxDistance;
-
-	if (innerProduct < 0) {
-		inSight = false;
-	}
+	bool inSight = cosHalf <= innerProduct && targetDistance < maxDistance;
 
 	//// 障害物がないかどうかを判定
 	if (rayDist < targetDistance && rayDist > 0) {
@@ -311,15 +311,7 @@ void IFE::NormalEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore
 {
 	//壁があった場合
 	if (myCollider->GetColliderType() == ColliderType::RAY) {
-		if (hitCollider->objectPtr_->GetObjectName().find("wall") != std::string::npos) {
-			if (rayDist == 0) {
-				rayDist = myCollider->rayDistance;
-			}
-			else if (rayDist > myCollider->rayDistance) {
-				rayDist = myCollider->rayDistance;
-			}
-		}
-		if (hitCollider->objectPtr_->GetObjectName().find("box") != std::string::npos) {
+		if (hitCollider->objectPtr_->GetObjectName().find("wall") != std::string::npos|| hitCollider->objectPtr_->GetObjectName().find("box") != std::string::npos) {
 			if (rayDist == 0) {
 				rayDist = myCollider->rayDistance;
 			}
