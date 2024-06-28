@@ -20,16 +20,16 @@ namespace IFE {
 		//メンバ変数
 	private:
 		//待機タイマー
-		int32_t waitTimer;
+		float waitTimer;
 		//経由地点
 		std::vector<Float3> points;
 		//次の場所
 		size_t nextPoint;
 		Vector3 frontVec;
 		//攻撃時間
-		int32_t attackTime;
+		float attackTime;
 		//警戒時間
-		int32_t warningTime;
+		float warningTime;
 		//発見
 		bool isFound;
 		bool isChaseDrone;

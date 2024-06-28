@@ -128,8 +128,8 @@ void IFE::NormalEnemy::Wait()
 		transform_->rotation_ += (Float3(0, -15, 0) * IFE::IFETime::sDeltaTime_);
 	}
 	///
-	waitTimer++;
-	if (waitTimer == WAIT_TIME) {
+	waitTimer += 100 * IFE::IFETime::sDeltaTime_;
+	if (waitTimer >= WAIT_TIME) {
 		waitTimer = 0;
 		transform_->rotation_ = { 0,0,0 };
 		state = SEARCH;
@@ -145,17 +145,17 @@ void IFE::NormalEnemy::Warning()
 {
 	//ˆÙ•Ï‚Ìó‘Ô‚ª‘±‚¢‚½‚ç’ÇÕ‚ÖˆÚs
 	if (isFound == true) {
-		warningTime++;
+		warningTime += 100 * IFE::IFETime::sDeltaTime_;
 	}
 	else {
-		warningTime--;
+		warningTime -= 100 * IFE::IFETime::sDeltaTime_;
 	}
 
-	if (warningTime == 125) {
+	if (warningTime >= 125) {
 		warningTime = 50;
 		state = CHASE;
 	}
-	if (warningTime == 0) {
+	if (warningTime <= 0) {
 		warningTime = 50;
 		state = SEARCH;
 	}
@@ -221,12 +221,12 @@ void IFE::NormalEnemy::Chase()
 	}
 	if (isChaseDrone == false) {
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
-			warningTime++;
+			warningTime += 100 * IFE::IFETime::sDeltaTime_;
 		}
 	}
 	else {
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
-			warningTime++;
+			warningTime += 100 * IFE::IFETime::sDeltaTime_;
 		}
 	}
 	if (warningTime >= 60) {
@@ -237,15 +237,15 @@ void IFE::NormalEnemy::Chase()
 
 void IFE::NormalEnemy::Attack()
 {
-	attackTime++;
+	attackTime += 100 * IFE::IFETime::sDeltaTime_;
 	if (enemyAttack->objectPtr_->DrawFlag_ == false) {
 		isAttack = false;
 	}
-	if (attackTime == 50) {
+	if (attackTime >= 50 && attackTime < 150) {
 		enemyAttack->objectPtr_->DrawFlag_ = false;
 		enemyAttack->objectPtr_->transform_->position_ = { 0, -10, 0 };
 	}
-	else if (attackTime == 150) {
+	else if (attackTime >= 150) {
 		attackTime = 0;
 		state = CHASE;
 	}
