@@ -107,6 +107,7 @@ void IFE::NormalEnemy::EnemyUpdate()
 	}
 
 	rayDist = 0;
+	isChaseDrone = false;
 	//d—Í
 	if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
 	{
