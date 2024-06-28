@@ -162,7 +162,7 @@ void LaserWire::OutputComponent(nlohmann::json& json)
 
 	IFE::JsonManager::Instance()->OutputFloat2(json["hitMaxTime"], output2);
 
-	event_->OutputData(json);
+	event_->OutputData(json["EventSeting"]);
 
 }
 #endif
@@ -195,7 +195,7 @@ void LaserWire::LoadingComponent(nlohmann::json& json)
 
 	event_ = IFE::EventFactory::Instance()->CreateEventClass(EventName::EventString(eventType_));
 
-	event_->InputData(json);
+	event_->InputData(json["EventSeting"]);
 }
 
 std::string LaserWire::EventTypeToString(EventType eventType)
