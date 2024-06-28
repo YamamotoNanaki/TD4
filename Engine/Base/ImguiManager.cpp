@@ -557,8 +557,7 @@ void IFE::ImguiManager::ChangeTextureGUI(const std::function<void(std::string)>&
 {
 	if (ImGui::CollapsingHeader("change texture"))
 	{
-		static char texname[256];
-		ImGui::InputText("texture name", texname, sizeof(texname));
+		auto texname = TextureManager::Instance()->GetTextureGUI();
 		if (ImGui::Button("change"))
 		{
 			std::string s = texname;
