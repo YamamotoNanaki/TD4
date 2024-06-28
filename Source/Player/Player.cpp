@@ -127,6 +127,7 @@ void Player::DroneRecovery()
 		if (droneRecoverytime_ > maxDroneRecoverytime_)
 		{
 			DroneBreak();
+			droneRecoverytime_ = 0.0f;
 			droneRecoveryFlag_ = false;
 		}
 	}
