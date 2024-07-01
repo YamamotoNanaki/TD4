@@ -32,6 +32,25 @@ private:
 
 #pragma endregion ドローンの回収系
 
+#pragma region カメラの変更関連
+
+public:
+	struct CameraChangeParam
+	{
+		//カメラ切替演出かどうかのフラグ
+		bool cameraChange = false;
+		//カメラの切り替えが完了したかのフラグ
+		bool change = false;
+		float cameraChangeTimer = 0;
+		//演出の終了時間
+		float cameraChangeMaxTime = 1.0f;
+		//カメラの実際の切り替えタイミング
+		float changeTime = 0.6f;
+	};
+private:
+	CameraChangeParam ccp_;
+#pragma endregion
+
 public:
 
 	void Initialize();
@@ -48,6 +67,7 @@ public:
 
 	bool GetMode();
 	void SetMode(bool flag);
+	inline CameraChangeParam* GetCameraChangeParam() { return &ccp_; }
 
 private:
 

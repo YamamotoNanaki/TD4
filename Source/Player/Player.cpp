@@ -81,37 +81,52 @@ void Player::SetMode(bool flag)
 
 void Player::ChangeMode()
 {
-	if (IFE::Input::GetKeyTrigger(IFE::Key::Y) || IFE::Input::PadTrigger(IFE::PADCODE::Y))
+	if (!ccp_.cameraChange && IFE::Input::GetKeyTrigger(IFE::Key::Y) || IFE::Input::PadTrigger(IFE::PADCODE::Y))
 	{
-		if (modeFlag_ == false)
+		ccp_.cameraChange = true;
+		ccp_.cameraChangeTimer = 0;
+		ccp_.change = false;
+	}
+	if (ccp_.cameraChange)
+	{
+		ccp_.cameraChangeTimer += IFE::IFETime::sDeltaTime_;
+		if (!ccp_.change && ccp_.cameraChangeTimer >= ccp_.changeTime)
 		{
-			//アクションからドローンモードへ
-			modeFlag_ = true;
-			drone_->SetDrawFlag(false);
-			IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
-
-			if (drone_->GetIsDroneSurvival() == false)
+			ccp_.change = true;
+			if (modeFlag_ == false)
 			{
-				IFE::Float3 pos = action_->GetPos();
-				pos.y += 3.0f;
-				drone_->SetPos(pos);
-				drone_->SetRotY(action_->GetRotY());
-				drone_->SetIsDroneSurvival(true);
-				enemyHilight_->updateFlag_ = true;
-				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = true;
+				//アクションからドローンモードへ
+				modeFlag_ = true;
+				drone_->SetDrawFlag(false);
+				IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
+
+				if (drone_->GetIsDroneSurvival() == false)
+				{
+					IFE::Float3 pos = action_->GetPos();
+					pos.y += 3.0f;
+					drone_->SetPos(pos);
+					drone_->SetRotY(action_->GetRotY());
+					drone_->SetIsDroneSurvival(true);
+					enemyHilight_->updateFlag_ = true;
+					dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = true;
+				}
 			}
+			else
+			{
+				//ドローンからアクションモードへ
+				modeFlag_ = false;
+				drone_->SetDrawFlag(drone_->GetIsDroneSurvival());
+				IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
+				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;
+			}
+			//UI表示切替
+			ui_->UIChange(modeFlag_);
 		}
-		else
+		if (ccp_.cameraChangeTimer >= ccp_.cameraChangeMaxTime)
 		{
-			//ドローンからアクションモードへ
-			modeFlag_ = false;
-			drone_->SetDrawFlag(drone_->GetIsDroneSurvival());
-			IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
-			dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;
+			ccp_.cameraChange = false;
 		}
 	}
-	//UI表示切替(毎フレームやるの良くない)
-	ui_->UIChange(modeFlag_);
 }
 
 void Player::DroneRecovery()

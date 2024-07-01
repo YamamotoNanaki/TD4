@@ -164,9 +164,8 @@ void IFE::ParticleManager::DebugGUI()
 		if (ImGui::CollapsingHeader("New Emitter"))
 		{
 			static char name[256];
-			static char tex[256];
 			ImGui::InputText("New Emitter Name", name, sizeof(name));
-			ImGui::InputText("Set Texture Name", tex, sizeof(tex));
+			auto tex = TextureManager::Instance()->GetTextureGUI();
 			if (ImGui::Button("Add Emitter"))
 			{
 				if (SearchName(name))
