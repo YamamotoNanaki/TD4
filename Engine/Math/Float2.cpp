@@ -56,6 +56,20 @@ Float2& Float2::operator/=(const Float2& f)
 	return *this;
 }
 
+Float2& IFE::Float2::operator+=(float f)
+{
+	x += f;
+	y += f;
+	return *this;
+}
+
+Float2& IFE::Float2::operator-=(float f)
+{
+	x -= f;
+	y -= f;
+	return *this;
+}
+
 Float2& Float2::operator*=(float f)
 {
 	x *= f;

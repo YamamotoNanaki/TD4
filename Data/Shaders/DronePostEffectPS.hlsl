@@ -12,17 +12,17 @@ bool isWhite(float4 color)
 float4 main(VSOutput input) : SV_TARGET
 {
     float4 texcolor;
-    if (drone)
-    {
-        float sb = (noisePosY);
-        if (sb > 1)
-            sb -= 1;
-        float se = sb + noiseWidth;
-        float2 uv = float2(input.uv.x + sin(smoothstep(sb, se, input.uv.y) * 2 * 3.14159) * noisePower, input.uv.y);
-        input.uv = uv;
-    }
+    //if (drone)
+    //{
+        //float sb = (noisePosY);
+        //if (sb > 1)
+        //    sb -= 1;
+        //float se = sb + noiseWidth;
+        //float2 uv = float2(input.uv.x + sin(smoothstep(sb, se, input.uv.y) * 2 * 3.14159) * noisePower, input.uv.y);
+        //input.uv = uv;
+    //}
     texcolor = tex0.Sample(smp, input.uv);
-    
+
     float2 g_TexelSize = { 1.0 / 1920.0, 1.0 / 1080.0 };
     float2 offsets[16] =
     {
@@ -43,10 +43,10 @@ float4 main(VSOutput input) : SV_TARGET
         float2(-2.0 * g_TexelSize.x, 2.0 * g_TexelSize.y),
         float2(2.0 * g_TexelSize.x, 2.0 * g_TexelSize.y)
     };
-    
+
     float4 centerColor = tex1.Sample(smp, input.uv);
     bool isEdge = (centerColor == float4(1, 1, 1, 1));
-    
+
     if (isEdge == true)
     {
         isEdge = false;
@@ -59,12 +59,19 @@ float4 main(VSOutput input) : SV_TARGET
             }
         }
     }
-    
+
     if (isEdge == true)
     {
         texcolor.rgb = float3(1, 0.45f, 0.15f);
     }
     texcolor.a = 1;
-    
+
+    if (drone)
+    {
+        float t = time * -100;
+        float s = sin((input.uv.y) * 1000 + t) / 2 + 0.5f;
+        texcolor *= lerp(0.9f, 1.0f, s);
+    }
+
     return texcolor;
 }

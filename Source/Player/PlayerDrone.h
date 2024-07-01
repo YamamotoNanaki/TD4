@@ -23,7 +23,7 @@ private:
 
 	const uint16_t controllerRange_ = 10000;
 
-	uint8_t time_ = 0;
+	float time_ = 0;
 	float dronePosY_ = 0.0f;
 
 	bool slowSpeedMode_ = false;

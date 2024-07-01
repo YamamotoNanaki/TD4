@@ -649,6 +649,64 @@
             ],
             "name": "attackUI",
             "texture": "key//X.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "DroneRecoveryUI": null,
+            "Transform2D": {
+                "position": [
+                    930.0,
+                    800.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer",
+                "DroneRecoveryUI"
+            ],
+            "name": "droneRecoveryUI",
+            "texture": "white.png"
+        },
+        {
+            "CameraChange": null,
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    0.0,
+                    0.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer",
+                "CameraChange"
+            ],
+            "name": "CameraChange",
+            "texture": "white.png"
         }
     ]
 }

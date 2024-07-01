@@ -16,6 +16,8 @@ namespace IFE
 		Float2& operator-=(const Float2& f);
 		Float2& operator*=(const Float2& f);
 		Float2& operator/=(const Float2& f);
+		Float2& operator+=(float f);
+		Float2& operator-=(float f);
 		Float2& operator*=(float f);
 		Float2& operator/=(float f);
 

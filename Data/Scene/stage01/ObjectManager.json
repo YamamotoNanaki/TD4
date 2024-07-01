@@ -11649,6 +11649,7 @@
     {
         "Collider": null,
         "LaserWire": {
+            "EventSeting": null,
             "EventType": [
                 0.0,
                 0.0

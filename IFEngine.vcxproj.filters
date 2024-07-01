@@ -169,6 +169,12 @@
     <Filter Include="ヘッダー ファイル\Source\PostEffect">
       <UniqueIdentifier>{a9721437-25e9-4ad6-b3d5-ccc2e5912608}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Source\Effect">
+      <UniqueIdentifier>{f5f6e948-d0f9-4688-b0f0-d5d592b2dac7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Source\Effect">
+      <UniqueIdentifier>{55145910-3a1b-4d69-830e-3004f9c9d2d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp">
@@ -441,6 +447,18 @@
     </ClCompile>
     <ClCompile Include="Source\StageGimmick\DoorEvent.cpp">
       <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\DroneRecoveryUI.cpp">
+      <Filter>ソース ファイル\Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageGimmick\DroneKeepoutZoneEvent.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageGimmick\DroneKeepoutZoneObject.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Effect\CameraChange.cpp">
+      <Filter>ソース ファイル\Source\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -753,6 +771,18 @@
     </ClInclude>
     <ClInclude Include="Source\StageGimmick\DoorEvent.h">
       <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\DroneRecoveryUI.h">
+      <Filter>ヘッダー ファイル\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\DroneKeepoutZoneEvent.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\DroneKeepoutZoneObject.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Effect\CameraChange.h">
+      <Filter>ヘッダー ファイル\Source\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
