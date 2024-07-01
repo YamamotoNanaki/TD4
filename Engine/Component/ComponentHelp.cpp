@@ -99,8 +99,8 @@ Component* IFE::StringToComponent(const std::string& str)
 	//Gimmick
 	tmp = std::move(GetPtr<LaserWire>(str));
 	if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<DroneKeepoutZoneObject>(str));
-	//if (tmp != nullptr)return tmp;
+	tmp = std::move(GetPtr<DroneKeepoutZoneObject>(str));
+	if (tmp != nullptr)return tmp;
 
 	tmp = std::move(GetPtr<StageCollideManageer>(str));
 	if (tmp != nullptr)return tmp;
