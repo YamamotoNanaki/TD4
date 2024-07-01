@@ -72,8 +72,12 @@ void IFE::NormalEnemy::ChangeState()
 		Chase();
 		break;
 	case IFE::BaseEnemy::ATTACK:
-
-		Attack();
+		if (isChaseDrone == true) {
+			Shot();
+		}
+		else {
+			Attack();
+		}
 		break;
 	case IFE::BaseEnemy::DEAD:
 		break;
@@ -105,7 +109,6 @@ void IFE::NormalEnemy::EnemyUpdate()
 		enemyAttack->objectPtr_->Destroy();
 		objectPtr_->Destroy();
 	}
-
 	rayDist = 0;
 	isChaseDrone = false;
 	//重力
@@ -213,18 +216,24 @@ void IFE::NormalEnemy::Chase()
 	//近づいたら殴る
 	double len = sqrt(pow(ePos.x - target.x, 2) + pow(ePos.y - target.y, 2) +
 		pow(ePos.z - target.z, 2));
-	if (len <= 5.0) {
-		enemyAttack->objectPtr_->DrawFlag_ = true;
-		state = ATTACK;
-		enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
-		isAttack = true;
-	}
 	if (isChaseDrone == false) {
+		if (len <= 5.0) {
+			enemyAttack->objectPtr_->DrawFlag_ = true;
+			state = ATTACK;
+			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
+			isAttack = true;
+		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
 		}
 	}
 	else {
+		if (len <= 20.0) {
+			enemyAttack->objectPtr_->DrawFlag_ = true;
+			state = ATTACK;
+			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
+			isAttack = true;
+		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
 		}
@@ -247,6 +256,32 @@ void IFE::NormalEnemy::Attack()
 	}
 	else if (attackTime >= 150) {
 		attackTime = 0;
+		state = CHASE;
+	}
+	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
+}
+
+void IFE::NormalEnemy::Shot()
+{
+	attackTime += 100 * IFE::IFETime::sDeltaTime_;
+	if (enemyAttack->objectPtr_->DrawFlag_ == false) {
+		isAttack = false;
+		enemyAttack->SetIsShot(true);
+	}
+	if (attackTime < 100) {
+		//ワールド行列から座標を取得
+		Vector3 worldPos = enemyAttack->transform_->GetWorldPosition();
+		Vector3 dPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
+		Vector3 shotVec = dPos - worldPos;
+		shotVec.Normalize();
+		enemyAttack->transform_->position_ += shotVec;
+		if (attackTime > 80) {
+			enemyAttack->objectPtr_->DrawFlag_ = false;
+		}
+	}
+	else if (attackTime >= 100) {
+		attackTime = 0;
+		enemyAttack->SetIsShot(false);
 		state = CHASE;
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;

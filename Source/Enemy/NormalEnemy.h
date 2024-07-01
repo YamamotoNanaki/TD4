@@ -87,6 +87,11 @@ namespace IFE {
 		void Attack();
 
 		/// <summary>
+		/// Œ‚‚Ä
+		/// </summary>
+		void Shot();
+
+		/// <summary>
 		/// ƒvƒŒƒCƒ„[‚Ì•û‚ğŒü‚©‚¹‚é
 		/// </summary>
 		void LookAt();
