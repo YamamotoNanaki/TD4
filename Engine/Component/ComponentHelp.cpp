@@ -28,6 +28,7 @@
 #include "Clear.h"
 #include "Over.h"
 #include"PlayerActionCamera.h"
+#include"DroneRecoveryUI.h"
 
 using namespace IFE;
 using namespace std;
@@ -101,6 +102,8 @@ Component* IFE::StringToComponent(const std::string& str)
 	//ui
 	tmp = std::move(GetPtr<PlayerHp>(str));
 	if(tmp != nullptr)return tmp;
+	tmp = std::move(GetPtr<DroneRecoveryUI>(str));
+	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<Title>(str));
 	if (tmp != nullptr)return tmp;
 	tmp = std::move(GetPtr<Clear>(str));

@@ -21,6 +21,9 @@ void Player::Initialize()
 
 	ui_->UIChange(modeFlag_);
 
+	auto droneRecoveryUIPtr = IFE::SpriteManager::Instance()->GetSpritePtr("droneRecoveryUI")->GetComponent<DroneRecoveryUI>();
+	droneRecoveryUI_ = droneRecoveryUIPtr;
+
 	transform_->position_ = { 0,0,0 };
 	objectPtr_->DrawFlag_ = false;
 }
@@ -50,6 +53,7 @@ void Player::Draw()
 
 void Player::Finalize()
 {
+	delete droneRecoveryUI_;
 }
 
 void Player::OnColliderHit(IFE::ColliderCore collider)
@@ -116,18 +120,21 @@ void Player::ChangeMode()
 
 void Player::DroneRecovery()
 {
-	if (droneRecoveryFlag_ == false && IFE::Input::PadTrigger(IFE::PADCODE::DOWN))
+	if (droneRecoveryFlag_ == false && (IFE::Input::PadTrigger(IFE::PADCODE::DOWN)|| IFE::Input::GetKeyTrigger(IFE::Key::R)))
 	{
 		droneRecoveryFlag_ = true;
+		droneRecoveryUI_->SetDrawFlag(true);
 	}
 
 	if (droneRecoveryFlag_ == true)
 	{
-		droneRecoverytime_ += /*IFE::IFETime::sDeltaTime_*/1;
+		droneRecoverytime_ += IFE::IFETime::sDeltaTime_;
+		droneRecoveryUI_->Recovery(droneRecoverytime_, maxDroneRecoverytime_);
 		if (droneRecoverytime_ > maxDroneRecoverytime_)
 		{
 			DroneBreak();
 			droneRecoverytime_ = 0.0f;
+			droneRecoveryUI_->SetDrawFlag(false);
 			droneRecoveryFlag_ = false;
 		}
 	}

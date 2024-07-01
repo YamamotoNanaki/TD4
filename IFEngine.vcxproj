@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\UI\DroneRecoveryUI.cpp" />
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp" />
     <ClCompile Include="Engine\Base\Engine.cpp" />
     <ClCompile Include="Engine\Base\ImguiManager.cpp" />
@@ -104,6 +105,7 @@
     <ClCompile Include="Source\UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\UI\DroneRecoveryUI.h" />
     <ClInclude Include="Engine\Base\EditorMode.h" />
     <ClInclude Include="Engine\Base\Compute.h" />
     <ClInclude Include="Engine\Base\ConstBuffer.h" />

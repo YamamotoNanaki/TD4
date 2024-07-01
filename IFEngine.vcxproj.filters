@@ -442,6 +442,9 @@
     <ClCompile Include="Source\StageGimmick\DoorEvent.cpp">
       <Filter>ソース ファイル\Source\StageGimmick</Filter>
     </ClCompile>
+    <ClCompile Include="Source\UI\DroneRecoveryUI.cpp">
+      <Filter>ソース ファイル\Source\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -753,6 +756,9 @@
     </ClInclude>
     <ClInclude Include="Source\StageGimmick\DoorEvent.h">
       <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\DroneRecoveryUI.h">
+      <Filter>ヘッダー ファイル\Source\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
