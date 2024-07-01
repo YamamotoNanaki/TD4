@@ -442,6 +442,12 @@
     <ClCompile Include="Source\StageGimmick\DoorEvent.cpp">
       <Filter>ソース ファイル\Source\StageGimmick</Filter>
     </ClCompile>
+    <ClCompile Include="Source\StageGimmick\DroneKeepoutZoneEvent.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageGimmick\DroneKeepoutZoneObject.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -752,6 +758,12 @@
       <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
     </ClInclude>
     <ClInclude Include="Source\StageGimmick\DoorEvent.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\DroneKeepoutZoneEvent.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\DroneKeepoutZoneObject.h">
       <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
     </ClInclude>
   </ItemGroup>

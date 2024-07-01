@@ -28,6 +28,7 @@
 #include "Clear.h"
 #include "Over.h"
 #include"PlayerActionCamera.h"
+#include "DroneKeepoutZoneObject.h"
 
 using namespace IFE;
 using namespace std;
@@ -93,7 +94,10 @@ Component* IFE::StringToComponent(const std::string& str)
 	tmp = std::move(GetPtr<Boss>(str));
 	if (tmp != nullptr)return tmp;
 
+	//Gimmick
 	tmp = std::move(GetPtr<LaserWire>(str));
+	if (tmp != nullptr)return tmp;
+	tmp = std::move(GetPtr<DroneKeepoutZoneObject>(str));
 	if (tmp != nullptr)return tmp;
 
 	tmp = std::move(GetPtr<StageCollideManageer>(str));

@@ -93,6 +93,8 @@
     <ClCompile Include="Source\PostEffect\EnemyHighlighting.cpp" />
     <ClCompile Include="Source\StageGimmick\DamageEvent.cpp" />
     <ClCompile Include="Source\StageGimmick\DoorEvent.cpp" />
+    <ClCompile Include="Source\StageGimmick\DroneKeepoutZoneEvent.cpp" />
+    <ClCompile Include="Source\StageGimmick\DroneKeepoutZoneObject.cpp" />
     <ClCompile Include="Source\StageGimmick\EventFactory.cpp" />
     <ClCompile Include="Source\StageGimmick\LaserWire.cpp" />
     <ClCompile Include="Source\StageGimmick\StageCollideManageer.cpp" />
@@ -198,6 +200,8 @@
     <ClInclude Include="Source\PostEffect\EnemyHighlighting.h" />
     <ClInclude Include="Source\StageGimmick\DamageEvent.h" />
     <ClInclude Include="Source\StageGimmick\DoorEvent.h" />
+    <ClInclude Include="Source\StageGimmick\DroneKeepoutZoneEvent.h" />
+    <ClInclude Include="Source\StageGimmick\DroneKeepoutZoneObject.h" />
     <ClInclude Include="Source\StageGimmick\EventFactory.h" />
     <ClInclude Include="Source\StageGimmick\IEvent.h" />
     <ClInclude Include="Source\StageGimmick\LaserWire.h" />

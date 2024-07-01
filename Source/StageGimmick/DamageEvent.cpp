@@ -33,3 +33,8 @@ void DamageEvent::DebugGUI()
 
 }
 #endif
+
+void DamageEvent::StartInitialize()
+{
+	isEnd_ = false;
+}

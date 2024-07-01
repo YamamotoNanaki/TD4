@@ -21,6 +21,7 @@ void DoorEvent::Initialize()
 	
 	if (doorObject_ == nullptr)
 	{
+		//ダイスにしてるけどドアのモデルなどができたら置き換えたいっすね
 		doorObject_ = IFE::ObjectManager::Instance()->AddInitialize("doorObj", IFE::ModelManager::Instance()->GetModel("dice"));
 		doorObject_->transform_->position_ = doorStartPos_;
 	}
