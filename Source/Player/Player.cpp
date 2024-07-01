@@ -128,8 +128,8 @@ void Player::DroneRecovery()
 
 	if (droneRecoveryFlag_ == true)
 	{
-		droneRecoverytime_ += IFE::IFETime::sDeltaTime_;
 		droneRecoveryUI_->Recovery(droneRecoverytime_, maxDroneRecoverytime_);
+		droneRecoverytime_ += IFE::IFETime::sDeltaTime_;
 		if (droneRecoverytime_ > maxDroneRecoverytime_)
 		{
 			DroneBreak();
