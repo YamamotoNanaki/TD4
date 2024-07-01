@@ -34,6 +34,7 @@ namespace IFE {
 		bool isFound;
 		bool isChaseDrone;
 		Vector3 lookfor;
+		Vector3 shotVec;
 		//hp
 		EnemyHp* hpUI = nullptr;
 		EnemyHp* status_ = nullptr;
@@ -85,6 +86,11 @@ namespace IFE {
 		/// ‰£‚ê
 		/// </summary>
 		void Attack();
+
+		/// <summary>
+		/// Œ‚‚Ä
+		/// </summary>
+		void Shot();
 
 		/// <summary>
 		/// ƒvƒŒƒCƒ„[‚Ì•û‚ğŒü‚©‚¹‚é
