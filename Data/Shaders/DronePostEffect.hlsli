@@ -1,8 +1,9 @@
 cbuffer cbuff0 : register(b0)
 {
-    float noiseWidth;
-    float noisePower;
-    float noisePosY;
+    //float noiseWidth;
+    //float noisePower;
+    //float noisePosY;
+    float time;
     bool drone;
 };
 
