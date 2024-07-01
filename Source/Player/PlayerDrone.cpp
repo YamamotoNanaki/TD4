@@ -43,8 +43,8 @@ void PlayerDrone::Initialize()
 
 void PlayerDrone::Update()
 {
-	const float maxTime = 120;
-	time_++;
+	const float maxTime = 2.0f;
+	time_+= IFE::IFETime::sDeltaTime_;
 	if (time_ > maxTime)
 	{
 		time_ = 0;

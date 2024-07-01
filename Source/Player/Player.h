@@ -7,6 +7,7 @@
 #include"PostEffectManager.h"
 #include"EnemyHighlighting.h"
 #include"DronePostEffect.h"
+#include"DroneRecoveryUI.h"
 
 class Player :public IFE::Component
 {
@@ -18,6 +19,7 @@ private:
 	PlayerDrone* drone_ = nullptr;
 
 	IFE::UI* ui_ = nullptr;
+	DroneRecoveryUI* droneRecoveryUI_ = nullptr;
 
 	float droneHighlightingDistance_ = 20;
 
@@ -28,7 +30,7 @@ private:
 
 	bool droneRecoveryFlag_ = false;
 	float droneRecoverytime_ = 0.0f;
-	const float maxDroneRecoverytime_ = 180.0f;
+	const float maxDroneRecoverytime_ = 3.0f;
 
 #pragma endregion ÉhÉçÅ[ÉìÇÃâÒé˚ån
 
