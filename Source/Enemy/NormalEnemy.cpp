@@ -26,6 +26,7 @@ void IFE::NormalEnemy::Initialize()
 	hitTime_ = 0;
 	frontVec = { 0,0,0 };
 	lookfor = { 0,0,0 };
+	shotVec = { 0,0,0 };
 	//HPUI
 	if (!hpUI)
 	{
@@ -217,7 +218,7 @@ void IFE::NormalEnemy::Chase()
 	double len = sqrt(pow(ePos.x - target.x, 2) + pow(ePos.y - target.y, 2) +
 		pow(ePos.z - target.z, 2));
 	if (isChaseDrone == false) {
-		if (len <= 5.0) {
+		if (len <= 3.0) {
 			enemyAttack->objectPtr_->DrawFlag_ = true;
 			state = ATTACK;
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
@@ -263,18 +264,20 @@ void IFE::NormalEnemy::Attack()
 
 void IFE::NormalEnemy::Shot()
 {
+	Vector3 worldPos = enemyAttack->transform_->GetWorldPosition();
+	Vector3 dPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
 	attackTime += 100 * IFE::IFETime::sDeltaTime_;
 	if (enemyAttack->objectPtr_->DrawFlag_ == false) {
 		isAttack = false;
 		enemyAttack->SetIsShot(true);
 	}
+	if (attackTime < 10) {
+		shotVec = dPos - worldPos;
+		shotVec.Normalize();
+	}
 	if (attackTime < 100) {
 		//ワールド行列から座標を取得
-		Vector3 worldPos = enemyAttack->transform_->GetWorldPosition();
-		Vector3 dPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
-		Vector3 shotVec = dPos - worldPos;
-		shotVec.Normalize();
-		enemyAttack->transform_->position_ += shotVec;
+		enemyAttack->transform_->position_ += (shotVec * 0.4f);
 		if (attackTime > 80) {
 			enemyAttack->objectPtr_->DrawFlag_ = false;
 		}

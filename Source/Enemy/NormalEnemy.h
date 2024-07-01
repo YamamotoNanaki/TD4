@@ -34,6 +34,7 @@ namespace IFE {
 		bool isFound;
 		bool isChaseDrone;
 		Vector3 lookfor;
+		Vector3 shotVec;
 		//hp
 		EnemyHp* hpUI = nullptr;
 		EnemyHp* status_ = nullptr;
