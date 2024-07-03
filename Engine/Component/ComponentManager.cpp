@@ -75,7 +75,7 @@ void IFE::ComponentManager::CopyValue(ComponentManager* ptr)
 		if (itr)
 		{
 			std::string s = itr->GetComponentName();
-			auto c = StringToComponent(s);
+			auto c = ComponentHelp::StringToComponent(s);
 			c->CopyValue(itr.get());
 			ptr->AddComponentBack<Component>(std::unique_ptr<Component>(c));
 		}
@@ -132,7 +132,7 @@ void IFE::ComponentManager::DebugUpdate()
 
 void IFE::ComponentManager::LoadingScene(nlohmann::json& j, const std::string& comName)
 {
-	auto com = StringToComponent(comName);
+	auto com = ComponentHelp::StringToComponent(comName);
 	com->LoadingScene(j[comName]);
 
 #ifdef InverseEditorMode

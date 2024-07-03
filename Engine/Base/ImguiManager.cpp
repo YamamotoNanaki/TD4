@@ -224,11 +224,10 @@ void IFE::ImguiManager::ComponentGUI(const std::string& objectName, const std::f
 		{
 			if (ImGui::CollapsingHeader(U8("’Ç‰Á")))
 			{
-				static char name[256];
-				ImGui::InputText("add Component", name, sizeof(name));
+				auto name = ComponentHelp::GetComponentList();
 				if (ImGui::Button("Add"))
 				{
-					auto tmp = std::unique_ptr<Component>(std::move(StringToComponent(name)));
+					auto tmp = std::unique_ptr<Component>(std::move(ComponentHelp::StringToComponent(name)));
 					if (tmp != nullptr)
 					{
 						addFunc(std::move(tmp));
@@ -319,11 +318,10 @@ void IFE::ImguiManager::ComponentGUI2D(const std::string& objectName, const std:
 		{
 			if (ImGui::CollapsingHeader(U8("’Ç‰Á")))
 			{
-				static char name[256];
-				ImGui::InputText("add Component", name, sizeof(name));
+				auto name = ComponentHelp::GetComponentList();
 				if (ImGui::Button("Add"))
 				{
-					auto tmp = std::unique_ptr<Component>(std::move(StringToComponent(name)));
+					auto tmp = std::unique_ptr<Component>(std::move(ComponentHelp::StringToComponent(name)));
 					if (tmp != nullptr)
 					{
 						addFunc(std::move(tmp));

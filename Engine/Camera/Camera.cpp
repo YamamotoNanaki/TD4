@@ -145,7 +145,7 @@ void IFE::Camera::ComponentGUI()
 				imgui->InputTextGUI("add Component", name);
 				if (imgui->ButtonGUI("Add"))
 				{
-					auto tmp = std::unique_ptr<Component>(std::move(StringToComponent(name)));
+					auto tmp = std::unique_ptr<Component>(std::move(ComponentHelp::StringToComponent(name)));
 					if (tmp != nullptr)
 					{
 						SetComponent(std::move(tmp));
