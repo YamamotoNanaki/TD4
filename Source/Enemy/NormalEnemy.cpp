@@ -223,17 +223,20 @@ void IFE::NormalEnemy::Chase()
 			state = ATTACK;
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 			isAttack = true;
+			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
 		}
 	}
 	else {
-		if (len <= 20.0) {
+		if (len <= 18.0) {
 			enemyAttack->objectPtr_->DrawFlag_ = true;
 			state = ATTACK;
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 			isAttack = true;
+			enemyAttack->SetIsShot(true);
+			enemyAttack->objectPtr_->transform_->scale_ = { 0.4f,0.4f,0.4f };
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
@@ -267,25 +270,23 @@ void IFE::NormalEnemy::Shot()
 	Vector3 worldPos = enemyAttack->transform_->GetWorldPosition();
 	Vector3 dPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
 	attackTime += 100 * IFE::IFETime::sDeltaTime_;
-	if (enemyAttack->objectPtr_->DrawFlag_ == false) {
-		isAttack = false;
-		enemyAttack->SetIsShot(true);
-	}
-	if (attackTime < 10) {
-		shotVec = dPos - worldPos;
-		shotVec.Normalize();
-	}
-	if (attackTime < 100) {
-		//ワールド行列から座標を取得
-		enemyAttack->transform_->position_ += (shotVec * 0.4f);
-		if (attackTime > 80) {
-			enemyAttack->objectPtr_->DrawFlag_ = false;
+	if (enemyAttack->GetIsShot()) {
+		if (attackTime < 3) {
+			shotVec = dPos - worldPos;
+			shotVec.Normalize();
 		}
+		enemyAttack->transform_->position_ += (shotVec * 0.3f);
 	}
-	else if (attackTime >= 100) {
-		attackTime = 0;
-		enemyAttack->SetIsShot(false);
+	if(enemyAttack->GetIsShot() == false) {
 		state = CHASE;
+		isAttack = false;
+	}
+	else if (attackTime > 100) {
+		state = CHASE;
+		isAttack = false;
+		enemyAttack->objectPtr_->DrawFlag_ = false;
+		enemyAttack->SetIsShot(false);
+		attackTime = 0;
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }

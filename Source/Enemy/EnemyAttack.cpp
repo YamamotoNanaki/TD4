@@ -32,8 +32,19 @@ void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::Collide
 	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<PlayerDrone>())
 	{
 		//“–‚½‚Á‚½Žž‚Ìˆ—
-		player_->DroneBreak();
+		if (isShot == true) {
+			player_->DroneBreak();
+			objectPtr_->DrawFlag_ = false;
+			isShot = false;
+		}
 	}
+	//•Ç‚ª‚ ‚Á‚½ê‡
+	//else if (hitCollider->objectPtr_->GetObjectName().find("wall") != std::string::npos || hitCollider->objectPtr_->GetObjectName().find("box") != std::string::npos) {
+	//	if (isShot == true) {
+	//		isShot = false;
+	//		objectPtr_->DrawFlag_ = false;
+	//	}
+	//}
 }
 
 void IFE::EnemyAttack::Update()

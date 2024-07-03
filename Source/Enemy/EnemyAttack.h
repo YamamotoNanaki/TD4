@@ -33,6 +33,7 @@ namespace IFE {
 		/// </summary>
 		void Finalize();
 		void SetIsShot(bool isShot_) { isShot = isShot_; }
+		bool GetIsShot() { return isShot; }
 
 		void ComponentDebugGUI();
 	};
