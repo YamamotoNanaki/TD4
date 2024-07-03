@@ -71,6 +71,9 @@ void Player::DroneBreak()
 		IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
 	}
 	drone_->SetDrawFlag(false);
+	droneRecoverytime_ = 0.0f;
+	droneRecoveryUI_->SetDrawFlag(false);
+	droneRecoveryFlag_ = false;
 }
 
 bool Player::GetMode()
@@ -148,9 +151,6 @@ void Player::DroneRecovery()
 		if (droneRecoverytime_ > maxDroneRecoverytime_)
 		{
 			DroneBreak();
-			droneRecoverytime_ = 0.0f;
-			droneRecoveryUI_->SetDrawFlag(false);
-			droneRecoveryFlag_ = false;
 		}
 	}
 }
