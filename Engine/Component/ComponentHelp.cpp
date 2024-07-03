@@ -38,10 +38,60 @@ using namespace std;
 template <class T>
 static Component* GetPtr(const string& s);
 
-Component* IFE::StringToComponent(const std::string& str)
-{
-	Component* tmp = nullptr;
+template<typename T>
+static Component* CreateInstance();
 
+void IFE::ComponentHelp::StaticHelpInitialize()
+{
+	//エンジン
+	Register("Transform", &CreateInstance<Transform>);
+	Register("Transform2D", &CreateInstance<Transform2D>);
+	Register("TransformParticle", &CreateInstance<TransformParticle>);
+	Register("TransferGeometryBuffer", &CreateInstance<TransferGeometryBuffer>);
+	Register("ColorBuffer", &CreateInstance<ColorBuffer>);
+	Register("Material", &CreateInstance<Material>);
+	Register("Collider", &CreateInstance<Collider>);
+	Register("Animator", &CreateInstance<Animator>);
+	Register("TransformCamera", &CreateInstance<TransformCamera>);
+	Register("RectTexture", &CreateInstance<RectTexture>);
+	Register("AnimationTexture", &CreateInstance<AnimationTexture>);
+	Register("Fog", &CreateInstance<Fog>);
+	Register("DebugCamera", &CreateInstance<DebugCamera>);
+	//プレイヤー
+	Register("Player", &CreateInstance<Player>);
+	Register("PlayerAction", &CreateInstance<PlayerAction>);
+	Register("PlayerDrone", &CreateInstance<PlayerDrone>);
+	Register("PlayerAttack", &CreateInstance<PlayerAttack>);
+	Register("PlayerCommonCamera", &CreateInstance<PlayerCommonCamera>);
+	Register("PlayerActionCamera", &CreateInstance<PlayerActionCamera>);
+	//エネミー
+	Register("NormalEnemy", &CreateInstance<NormalEnemy>);
+	Register("EnemyHp", &CreateInstance<EnemyHp>);
+	Register("EnemyAttack", &CreateInstance<EnemyAttack>);
+	Register("EnemyManager", &CreateInstance<EnemyManager>);
+	Register("Boss", &CreateInstance<Boss>);
+	//ギミック
+	Register("LaserWire", &CreateInstance<LaserWire>);
+	Register("DroneKeepoutZoneObject", &CreateInstance<DroneKeepoutZoneObject>);
+	Register("StageCollideManageer", &CreateInstance<StageCollideManageer>);
+	//UI
+	Register("PlayerHp", &CreateInstance<PlayerHp>);
+	Register("DroneRecoveryUI", &CreateInstance<DroneRecoveryUI>);
+	Register("Title", &CreateInstance<Title>);
+	Register("Clear", &CreateInstance<Clear>);
+	Register("Over", &CreateInstance<Over>);
+	Register("CameraChange", &CreateInstance<CameraChange>);
+}
+
+Component* IFE::ComponentHelp::StringToComponent(const std::string& str)
+{
+	//auto it = creators_.find(str);
+	//if (it != creators_.end()) {
+	//	return (it->second)();
+	//}
+	//return nullptr;
+
+	Component* tmp = nullptr;
 	//engine
 	tmp = std::move(GetPtr<Transform>(str));
 	if (tmp != nullptr)return tmp;
@@ -146,4 +196,14 @@ static Component* GetPtr(const string& s)
 		return r;
 	}
 	return nullptr;
+}
+
+void IFE::ComponentHelp::Register(const std::string& className, CreateFunc func)
+{
+	creators_[className] = func;
+}
+
+template<typename T>
+Component* CreateInstance() {
+	return new T();
 }

@@ -27,6 +27,21 @@ namespace IFE
 		Float3 ambient_ = { 0.3f,0.3f,0.3f };
 		Float3 diffuse_ = { 0.3f,0.3f,0.3f };
 		Float3 specular_ = { 0.3f,0.3f,0.3f };
+		bool multipleMat_;
+		struct ChildMaterial
+		{
+			std::string name = "";
+			uint32_t meshNum = uint32_t(-1);
+			Float3 ambient = { 0.3f,0.3f,0.3f };
+			Float3 diffuse = { 0.3f,0.3f,0.3f };
+			Float3 specular = { 0.3f,0.3f,0.3f };
+			Texture* tex = nullptr;
+			bool bloom = false;
+			Float4 color = { 1,1,1,1 };
+			float alpha = 1.0f;
+		};
+
+		std::vector<ChildMaterial> childMaterials_;
 	public:
 		Float4 color_ = { 1,1,1,1 };
 		float alpha_ = 1.0f;
@@ -49,11 +64,15 @@ namespace IFE
 		void Copy(Component* component);
 		void SetMaterial(MaterialParams mat);
 		MaterialParams GetMaterial();
+		void MultipleMaterialCheck();
 #ifdef InverseEditorMode
 #else
+		void ChildGUI(ChildMaterial& mat);
 		void ComponentDebugGUI();
 		void OutputComponent(nlohmann::json& json)override;
+		void OutputChild(nlohmann::json& json, ChildMaterial& mat);
 #endif
-		void LoadingComponent(nlohmann::json&json)override;
+		void LoadingComponent(nlohmann::json& json)override;
+		void LoadingChild(nlohmann::json& json);
 	};
 }
