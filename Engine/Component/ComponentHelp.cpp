@@ -85,93 +85,112 @@ void IFE::ComponentHelp::StaticHelpInitialize()
 
 Component* IFE::ComponentHelp::StringToComponent(const std::string& str)
 {
-	//auto it = creators_.find(str);
-	//if (it != creators_.end()) {
-	//	return (it->second)();
-	//}
-	//return nullptr;
-
-	Component* tmp = nullptr;
-	//engine
-	tmp = std::move(GetPtr<Transform>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<Transform2D>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<TransformParticle>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<TransferGeometryBuffer>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<ColorBuffer>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<Material>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<Collider>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<Animator>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<TransformCamera>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<RectTexture>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<AnimationTexture>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<Fog>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<DebugCamera>(str));
-	if (tmp != nullptr)return tmp;
-
-	//player
-	tmp = std::move(GetPtr<Player>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<PlayerAction>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<PlayerDrone>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<PlayerAttack>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<PlayerCommonCamera>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<PlayerActionCamera>(str));
-	if (tmp != nullptr)return tmp;
-
-	//enemy
-	tmp = std::move(GetPtr<NormalEnemy>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<EnemyHp>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<EnemyAttack>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<EnemyManager>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<Boss>(str));
-	if (tmp != nullptr)return tmp;
-
-	//Gimmick
-	tmp = std::move(GetPtr<LaserWire>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<DroneKeepoutZoneObject>(str));
-	if (tmp != nullptr)return tmp;
-
-	tmp = std::move(GetPtr<StageCollideManageer>(str));
-	if (tmp != nullptr)return tmp;
-	//ui
-	tmp = std::move(GetPtr<PlayerHp>(str));
-	if(tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<DroneRecoveryUI>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<Title>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<Clear>(str));
-	if (tmp != nullptr)return tmp;
-	tmp = std::move(GetPtr<Over>(str));
-	if (tmp != nullptr)return tmp;
-
-	//Effect
-	tmp = std::move(GetPtr<CameraChange>(str));
-	if (tmp != nullptr)return tmp;
-
+	auto it = creators_.find(str);
+	if (it != creators_.end())
+	{
+		auto ptr = (it->second)();
+		ptr->SetComponentName(str);
+		return ptr;
+	}
 	return nullptr;
+
+	//Component* tmp = nullptr;
+	////engine
+	//tmp = std::move(GetPtr<Transform>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<Transform2D>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<TransformParticle>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<TransferGeometryBuffer>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<ColorBuffer>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<Material>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<Collider>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<Animator>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<TransformCamera>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<RectTexture>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<AnimationTexture>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<Fog>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<DebugCamera>(str));
+	//if (tmp != nullptr)return tmp;
+
+	////player
+	//tmp = std::move(GetPtr<Player>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<PlayerAction>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<PlayerDrone>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<PlayerAttack>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<PlayerCommonCamera>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<PlayerActionCamera>(str));
+	//if (tmp != nullptr)return tmp;
+
+	////enemy
+	//tmp = std::move(GetPtr<NormalEnemy>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<EnemyHp>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<EnemyAttack>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<EnemyManager>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<Boss>(str));
+	//if (tmp != nullptr)return tmp;
+
+	////Gimmick
+	//tmp = std::move(GetPtr<LaserWire>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<DroneKeepoutZoneObject>(str));
+	//if (tmp != nullptr)return tmp;
+
+	//tmp = std::move(GetPtr<StageCollideManageer>(str));
+	//if (tmp != nullptr)return tmp;
+	////ui
+	//tmp = std::move(GetPtr<PlayerHp>(str));
+	//if(tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<DroneRecoveryUI>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<Title>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<Clear>(str));
+	//if (tmp != nullptr)return tmp;
+	//tmp = std::move(GetPtr<Over>(str));
+	//if (tmp != nullptr)return tmp;
+
+	////Effect
+	//tmp = std::move(GetPtr<CameraChange>(str));
+	//if (tmp != nullptr)return tmp;
+
+	//return nullptr;
 }
+
+#ifdef EditorMode
+#include "ImguiManager.h"
+string IFE::ComponentHelp::GetComponentList()
+{
+	std::vector<std::string>items;
+	for (auto itr : creators_)
+	{
+		items.push_back(itr.first);
+	}
+
+	static int32_t returnNum = 0;
+	ImguiManager::Instance()->Combo("component name", returnNum, items);
+	return items[returnNum];
+}
+#endif
 
 template <class T>
 static Component* GetPtr(const string& s)

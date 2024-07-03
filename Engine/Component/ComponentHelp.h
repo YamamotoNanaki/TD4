@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <unordered_map>
+#include "EditorMode.h"
 
 namespace IFE
 {
@@ -15,5 +16,9 @@ namespace IFE
 	public:
 		static void StaticHelpInitialize();
 		static Component* StringToComponent(const std::string& componentName);
+
+#ifdef EditorMode
+		static std::string GetComponentList();
+#endif
 	};
 }
