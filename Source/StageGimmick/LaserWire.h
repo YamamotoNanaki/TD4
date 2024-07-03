@@ -9,6 +9,7 @@ enum EventType
 {
 	damage,
 	door,
+	DroneKeepoutZone,
 	EventCount//Å‘å’lAÅŒã‚É‚¨‚¢‚Ä‚­‚¾‚³‚¢
 };
 
@@ -23,6 +24,10 @@ struct EventName
 		else if (eventNum == EventType::door)
 		{
 			return "DoorEvent";
+		}
+		else if (eventNum == EventType::DroneKeepoutZone)
+		{
+			return "DroneKeepoutZoneEvent";
 		}
 
 		return "";

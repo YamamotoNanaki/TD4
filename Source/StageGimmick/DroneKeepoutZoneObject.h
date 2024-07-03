@@ -1,9 +1,12 @@
 #pragma once
 #include "Component.h"
+#include "Collider.h"
+#include "CollisionPrimitive.h"
+#include "IFEMath.h"
 
 class DroneKeepoutZoneObject :public IFE::Component
 {
-
+	using Component::Component;
 public:
 
 	void Initialize();
@@ -23,8 +26,16 @@ public:
 #endif
 	void LoadingComponent(nlohmann::json& json)override;
 
+	void ChangeActiveZone(bool flag);
+
+public:
+
+	
 
 private:
+
+	//âüÇµñﬂÇµèàóù
+	void PushBack(IFE::ColliderCore* colA, IFE::ColliderCore* colB, const IFE::Vector3& reject);
 
 	
 };

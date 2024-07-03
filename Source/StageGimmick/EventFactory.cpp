@@ -1,6 +1,7 @@
 #include "EventFactory.h"
 #include "DamageEvent.h"
 #include "DoorEvent.h"
+#include "DroneKeepoutZoneEvent.h"
 
 
 //ƒCƒxƒ“ƒg‚Ìí—Ş’Ç‰Á‚µ‚½‚È‚ç‚±‚±‚É‘‚â‚·
@@ -32,6 +33,11 @@ std::unique_ptr<IFE::IEvent> IFE::EventFactory::CreateEventClass(const std::stri
 	else if (EventTypeName == "DoorEvent")
 	{
 		newEvent = std::make_unique<DoorEvent>();
+
+	}
+	else if (EventTypeName == "DroneKeepoutZoneEvent")
+	{
+		newEvent = std::make_unique<DroneKeepoutZoneEvent>();
 
 	}
 	else if (EventTypeName == "")

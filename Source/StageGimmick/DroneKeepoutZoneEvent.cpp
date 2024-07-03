@@ -3,6 +3,7 @@
 #include "Collider.h"
 #include "ModelManager.h"
 #include "Transform.h"
+#include "DroneKeepoutZoneObject.h"
 
 DroneKeepoutZoneEvent::DroneKeepoutZoneEvent()
 {
@@ -19,6 +20,7 @@ void DroneKeepoutZoneEvent::Initialize()
 	{
 		zoneObject_ = IFE::ObjectManager::Instance()->AddInitialize("zoneObject", IFE::ModelManager::Instance()->GetModel("dice"));
 		zoneObject_->transform_->position_ = pos_;
+		zoneObject_->transform_->scale_ = scele_;
 
 		//適当に黄色っぽい色にしてるけど気になるなら変える
 		zoneObject_->SetColor({ 0.5f,0.7f,0.0f,0.2f });
@@ -32,13 +34,31 @@ void DroneKeepoutZoneEvent::Initialize()
 		c->SetColliderType(IFE::ColliderType::OBB);
 		c->SetPushBackFlag(true);
 	}
+
+	if (!zoneObject_->GetComponent<DroneKeepoutZoneObject>())
+	{
+		zoneObject_->AddComponentBack<DroneKeepoutZoneObject>();
+	}
+	auto com = zoneObject_->GetComponent<DroneKeepoutZoneObject>();
+	com->Initialize();
+
+	isActive_ = !isActive_;
 }
 
 void DroneKeepoutZoneEvent::Update()
 {
 	if (!isEnd_)
 	{
-		
+		auto com = zoneObject_->GetComponent<DroneKeepoutZoneObject>();
+		if (isActive_)
+		{
+			
+			com->ChangeActiveZone(true);
+		}
+		else
+		{
+			com->ChangeActiveZone(false);
+		}
 	}
 }
 #ifdef EditorMode
