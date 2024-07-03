@@ -145,7 +145,7 @@ float4 main(VSOutput input) : SV_TARGET
 
     if (drone)
     {
-        float t = time * -100;
+        float t = time * -150;
         float s = sin((input.uv.y) * 1000 + t) / 2 + 0.5f;
         texcolor *= lerp(0.9f, 1.0f, s);
     }
