@@ -24,25 +24,30 @@ void Player::Initialize()
 	auto droneRecoveryUIPtr = IFE::SpriteManager::Instance()->GetSpritePtr("droneRecoveryUI")->GetComponent<DroneRecoveryUI>();
 	droneRecoveryUI_ = droneRecoveryUIPtr;
 
+	pose_ = IFE::ObjectManager::Instance()->GetObjectPtr("PoseMenu")->GetComponent<PoseMenu>();
+
 	transform_->position_ = { 0,0,0 };
 	objectPtr_->DrawFlag_ = false;
 }
 
 void Player::Update()
 {
-	ChangeMode();
-
-	DroneRecovery();
-
-	if (modeFlag_ == false)
+	if (pose_->GetPoseFlag()==false)
 	{
-		action_->MoveUpdate();
-	}
-	else
-	{
-		if (droneRecoveryFlag_ == false)
+		ChangeMode();
+
+		DroneRecovery();
+
+		if (modeFlag_ == false)
 		{
-			drone_->MoveUpdate();
+			action_->MoveUpdate();
+		}
+		else
+		{
+			if (droneRecoveryFlag_ == false)
+			{
+				drone_->MoveUpdate();
+			}
 		}
 	}
 }

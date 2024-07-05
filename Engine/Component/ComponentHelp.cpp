@@ -31,6 +31,8 @@
 #include"DroneRecoveryUI.h"
 #include "DroneKeepoutZoneObject.h"
 #include"CameraChange.h"
+#include"PoseMenu.h"
+#include"Config.h"
 
 using namespace IFE;
 using namespace std;
@@ -81,6 +83,9 @@ void IFE::ComponentHelp::StaticHelpInitialize()
 	Register("Clear", &CreateInstance<Clear>);
 	Register("Over", &CreateInstance<Over>);
 	Register("CameraChange", &CreateInstance<CameraChange>);
+	//É|Å[ÉY
+	Register("PoseMenu", &CreateInstance<PoseMenu>);
+	Register("Config", &CreateInstance<Config>);
 }
 
 Component* IFE::ComponentHelp::StringToComponent(const std::string& str)

@@ -469,7 +469,7 @@
     <ClCompile Include="Source\Enemy\TrapEnemy.cpp">
       <Filter>ソース ファイル\Source\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Config\Pose.cpp">
+    <ClCompile Include="Source\Config\PoseMenu.cpp">
       <Filter>ソース ファイル\Source\Config</Filter>
     </ClCompile>
     <ClCompile Include="Source\Config\Config.cpp">
@@ -802,7 +802,7 @@
     <ClInclude Include="Source\Enemy\TrapEnemy.h">
       <Filter>ヘッダー ファイル\Source\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Config\Pose.h">
+    <ClInclude Include="Source\Config\PoseMenu.h">
       <Filter>ヘッダー ファイル\Source\Config</Filter>
     </ClInclude>
     <ClInclude Include="Source\Config\Config.h">
