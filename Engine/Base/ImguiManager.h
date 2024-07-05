@@ -26,6 +26,13 @@ namespace IFE
 		~ImguiManager() {}
 		std::vector<Object3D*>copyObjects_;
 		Object3D* openObj_ = nullptr;
+
+	private:
+		uint32_t objectNum;
+		uint32_t spriteNum;
+		int32_t objDraggedIndex;
+		int32_t sprDraggedIndex;
+
 	public:
 		inline static bool componentDeleteFlag_ = false;
 		inline static bool componentAddFlag_ = false;
@@ -34,7 +41,6 @@ namespace IFE
 		void Initialize();
 		void StartNewFrame();
 		void Update();
-		void UpdateWindowSize();
 		void Draw();
 		void Demo();
 		void EndGUI();
@@ -63,7 +69,7 @@ namespace IFE
 		void TextFloat2GUI(const std::string& text,const Float2& number);
 		void TextFloat3GUI(const std::string& text,const Float3& number);
 		void TextFloat4GUI(const std::string& text,const Float4& number);
-		void TextIntGUI(const std::string& text,int number);
+		void TextIntGUI(const std::string& text, int32_t number);
 		void TextFloatGUI(float number);
 		void TextFloat2GUI(const Float2& number);
 		void TextFloat3GUI(const Float3& number);
@@ -100,6 +106,10 @@ namespace IFE
 		bool CollapsingHeaderGUI(const std::string& headerName);
 
 		bool Combo(const std::string& comboName, int32_t& number, std::vector<std::string> items);
+
+	private:
+		void ObjCopy();
+		void UpdateWindowSize();
 	};
 }
 #endif

@@ -11,6 +11,7 @@
 #include "CollideManager.h"
 #include "LightManager.h"
 #include "CameraManager.h"
+#include "IFEList.h"
 #include <regex>
 
 using namespace IFE;
@@ -247,6 +248,16 @@ Object3D* IFE::ObjectManager::Instantiate(const std::string& objectName, const F
 	ptr->transform_->position_ = position;
 	objectList_.push_back(std::move(ptr));
 	return objectList_.back().get();
+}
+
+void IFE::ObjectManager::ObjectSwap(int32_t num1, int32_t num2)
+{
+	List::Swap<unique_ptr<Object3D>>(List::GetIteratorAt(objectList_,num1), List::GetIteratorAt(objectList_, num2));
+}
+
+void IFE::ObjectManager::ObjectMoveElement(int32_t num1, int32_t num2)
+{
+	List::MoveElement<unique_ptr<Object3D>>(objectList_, num1, num2);
 }
 
 std::string IFE::ObjectManager::SetNameNumber(std::string objectName)

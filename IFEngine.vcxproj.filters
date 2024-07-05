@@ -829,6 +829,9 @@
     <ClInclude Include="Source\Config\Config.h">
       <Filter>ヘッダー ファイル\Source\Config</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Util\IFEList.h">
+      <Filter>ヘッダー ファイル\Engine\Util</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Map\MapUI.h">
       <Filter>ヘッダー ファイル\Source\Map</Filter>
     </ClInclude>

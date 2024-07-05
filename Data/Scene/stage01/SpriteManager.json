@@ -707,6 +707,33 @@
             ],
             "name": "CameraChange",
             "texture": "white.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.3921568691730499
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    654.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    192.0,
+                    108.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "BlackBack",
+            "texture": "white.png"
         }
     ]
 }

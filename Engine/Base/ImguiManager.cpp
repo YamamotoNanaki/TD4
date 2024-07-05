@@ -78,7 +78,21 @@ void IFE::ImguiManager::Update()
 			itr->CopyValue(obj);
 		}
 	}
+	ObjCopy();
+	UpdateWindowSize();
 
+	objectNum = 0;
+	spriteNum = 0;
+	// ドラッグが終了したらインデックスをリセット
+	if (ImGui::IsMouseReleased(0))
+	{
+		if(objDraggedIndex != -1)objDraggedIndex = -1;
+		if(sprDraggedIndex != -1)sprDraggedIndex = -1;
+	}
+}
+
+void IFE::ImguiManager::ObjCopy()
+{
 	//オブジェクトのコピーの処理
 	if (!openObj_)return;
 	if ((Input::GetKeyPush(Key::LCONTROL) || Input::GetKeyPush(Key::RCONTROL)) &&
@@ -100,8 +114,6 @@ void IFE::ImguiManager::Update()
 		copyObjects_.push_back(openObj_);
 	}
 	openObj_ = nullptr;
-
-	UpdateWindowSize();
 }
 
 void IFE::ImguiManager::UpdateWindowSize()
@@ -401,6 +413,27 @@ bool IFE::ImguiManager::ObjectGUI(const std::string& name, const bool& flagdelet
 		}
 		ImGui::TreePop();
 	}
+	// ドラッグソースの作成
+	if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID))
+	{
+		ImGui::SetDragDropPayload("DND_TREENODE", &objectNum, sizeof(int32_t));
+		ImGui::Text("Dragging %s", name.c_str());
+		ImGui::EndDragDropSource();
+	}
+	// ドロップターゲットの作成
+	if (ImGui::BeginDragDropTarget())
+	{
+		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_TREENODE"))
+		{
+			int32_t payload_index = *(const int32_t*)payload->Data;
+			if (payload_index != int32_t(objectNum))
+			{
+				ObjectManager::Instance()->ObjectMoveElement(payload_index, objectNum); // ドロップされた位置でノードを入れ替える
+			}
+			ImGui::EndDragDropTarget();
+		}
+	}
+	objectNum++;
 	return false;
 }
 
@@ -682,8 +715,8 @@ void IFE::ImguiManager::TextFloat2GUI(const std::string& text, const Float2& num
 {
 	if (Instance()->NewTreeNode(text))
 	{
-		Instance()->TextFloatGUI("x",number.x);
-		Instance()->TextFloatGUI("y",number.y);
+		Instance()->TextFloatGUI("x", number.x);
+		Instance()->TextFloatGUI("y", number.y);
 		Instance()->EndTreeNode();
 	}
 }
@@ -711,7 +744,7 @@ void IFE::ImguiManager::TextFloat4GUI(const std::string& text, const Float4& num
 	}
 }
 
-void IFE::ImguiManager::TextIntGUI(const std::string& text, int number)
+void IFE::ImguiManager::TextIntGUI(const std::string& text, int32_t number)
 {
 	std::string t = text + " : " + std::to_string(number);
 	ImGui::Text(t.c_str());

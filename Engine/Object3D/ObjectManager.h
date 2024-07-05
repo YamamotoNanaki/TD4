@@ -38,6 +38,8 @@ namespace IFE
 		Object3D* SearchObject(const std::string& name);
 		Object3D* Instantiate(const std::string& objectName, const std::string& newObjectName = "");
 		Object3D* Instantiate(const std::string& objectName, const Float3& position, const std::string& newObjectName = "");
+		void ObjectSwap(int32_t num1, int32_t num2);
+		void ObjectMoveElement(int32_t num1, int32_t num2);
 
 	private:
 		/// <summary>

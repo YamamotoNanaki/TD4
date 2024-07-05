@@ -115,6 +115,7 @@
   <ItemGroup>
     <ClInclude Include="Source\Config\Config.h" />
     <ClInclude Include="Source\Config\PoseMenu.h" />
+    <ClInclude Include="Engine\Util\IFEList.h" />
     <ClInclude Include="Source\Enemy\TrapEnemy.h" />
     <ClInclude Include="Source\Map\MapUI.h" />
     <ClInclude Include="Source\StageGimmick\EnemySpawnEvent.h" />
