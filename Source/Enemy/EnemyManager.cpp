@@ -1,4 +1,5 @@
 #include "EnemyManager.h"
+#include "TrapEnemy.h"
 #include "Object3d.h"
 #include "Transform.h"
 //#include "JsonManager.h"
@@ -86,13 +87,14 @@ void IFE::EnemyManager::Update()
 /// </summary>
 /// <param name="position"></param>
 /// <param name="rotation"></param>
-void IFE::EnemyManager::PopEnemy(Vector3 position, Vector3 rotation)
+void IFE::EnemyManager::PopEnemy(Vector3 position, Vector3 rotation,Vector3 trapPos_)
 {
-	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("NormalEnemy", ModelManager::Instance()->GetModel("normalEnemy"));
-	ptr->AddComponent<NormalEnemy>();
-	NormalEnemy* enemy = ptr->GetComponent<NormalEnemy>();
+	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("TrapEnemy", ModelManager::Instance()->GetModel("normalEnemy"));
+	ptr->AddComponent<TrapEnemy>();
+	TrapEnemy* enemy = ptr->GetComponent<TrapEnemy>();
 	enemy->objectPtr_->transform_->position_ = position;
 	enemy->objectPtr_->transform_->rotation_ = rotation;
+	enemy->SetTrapPos(trapPos_);
 	enemy->objectPtr_->AddComponentBack<Collider>();
 	auto com = enemy->objectPtr_->GetComponent<Collider>();
 	auto col0 = com->AddCollider();
