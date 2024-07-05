@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Enemy\TrapEnemy.cpp" />
+    <ClCompile Include="Source\StageGimmick\EnemySpawnEvent.cpp" />
     <ClCompile Include="Source\UI\DroneRecoveryUI.cpp" />
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp" />
     <ClCompile Include="Engine\Base\Engine.cpp" />
@@ -110,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Enemy\TrapEnemy.h" />
+    <ClInclude Include="Source\StageGimmick\EnemySpawnEvent.h" />
     <ClInclude Include="Source\UI\DroneRecoveryUI.h" />
     <ClInclude Include="Engine\Base\EditorMode.h" />
     <ClInclude Include="Engine\Base\Compute.h" />
