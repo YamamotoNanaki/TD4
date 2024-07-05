@@ -28,6 +28,8 @@ namespace IFE {
 		/// <returns></returns>
 		std::list<BaseEnemy*>& GetEnemyList() { return enemyList_; };
 
+		void PopEnemy(Vector3 position, Vector3 rotation);
+
 		/// <summary>
 		/// èIóπ
 		/// </summary>
