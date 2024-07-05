@@ -58,7 +58,7 @@ namespace IFE
 
 #ifdef InverseEditorMode
 #else
-		virtual void DebugGUI(bool fdelete, bool fmove, std::string* str);
+		virtual void DebugGUI(bool fdelete, std::string* str,bool back);
 		void ComponentGUI();
 		void DebugUpdate();
 		void OutputScene(nlohmann::json& j);

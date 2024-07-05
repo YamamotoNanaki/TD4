@@ -35,6 +35,8 @@ namespace IFE
 		std::list<std::unique_ptr<Sprite>>* GetForegroundList();
 		void Reset();
 		bool SearchName(const std::string& name);
+		void SpriteMoveElementFor(int32_t num1, int32_t num2);
+		void SpriteMoveElementBack(int32_t num1, int32_t num2);
 
 #ifdef InverseEditorMode
 #else

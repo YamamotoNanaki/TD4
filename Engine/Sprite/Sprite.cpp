@@ -217,10 +217,10 @@ bool IFE::Sprite::GetDeleteFlag() const
 #else
 #include "ImguiManager.h"
 
-void IFE::Sprite::DebugGUI(bool fdelete, bool fmove, std::string* str)
+void IFE::Sprite::DebugGUI(bool fdelete, std::string* str, bool back)
 {
 	bool m = false;
-	if (ImguiManager::Instance()->SpriteGUI(spriteName_, fdelete, fmove, &m))
+	if (ImguiManager::Instance()->SpriteGUI(spriteName_, fdelete, back))
 	{
 		deleteFlag_ = true;
 	}

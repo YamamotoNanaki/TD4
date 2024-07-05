@@ -2,6 +2,7 @@
 #ifdef InverseEditorMode
 #else
 #include "ObjectManager.h"
+#include "SpriteManager.h"
 
 #include "imgui.h"
 #include "imgui_impl_dx12.h"
@@ -84,11 +85,11 @@ void IFE::ImguiManager::Update()
 	objectNum = 0;
 	spriteNum = 0;
 	// ドラッグが終了したらインデックスをリセット
-	if (ImGui::IsMouseReleased(0))
-	{
-		if(objDraggedIndex != -1)objDraggedIndex = -1;
-		if(sprDraggedIndex != -1)sprDraggedIndex = -1;
-	}
+	//if (ImGui::IsMouseReleased(0))
+	//{
+	//	if(objDraggedIndex != -1)objDraggedIndex = -1;
+	//	if(sprDraggedIndex != -1)sprDraggedIndex = -1;
+	//}
 }
 
 void IFE::ImguiManager::ObjCopy()
@@ -437,7 +438,7 @@ bool IFE::ImguiManager::ObjectGUI(const std::string& name, const bool& flagdelet
 	return false;
 }
 
-bool IFE::ImguiManager::SpriteGUI(const std::string& name, const bool& flagdelete, const bool& m, bool* moveFlag)
+bool IFE::ImguiManager::SpriteGUI(const std::string& name, const bool& flagdelete, bool back)
 {
 	if (ImGui::TreeNode(name.c_str()))
 	{
@@ -455,13 +456,28 @@ bool IFE::ImguiManager::SpriteGUI(const std::string& name, const bool& flagdelet
 		}
 		ImGui::TreePop();
 	}
-	if (m)
+	// ドラッグソースの作成
+	if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID))
 	{
-		if (ImGui::Button("Prefab and Object Switching"))
+		ImGui::SetDragDropPayload("DND_TREENODE", &spriteNum, sizeof(int32_t));
+		ImGui::Text("Dragging %s", name.c_str());
+		ImGui::EndDragDropSource();
+	}
+	// ドロップターゲットの作成
+	if (ImGui::BeginDragDropTarget())
+	{
+		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_TREENODE"))
 		{
-			*moveFlag = true;
+			int32_t payload_index = *(const int32_t*)payload->Data;
+			if (payload_index != int32_t(spriteNum))
+			{
+				if (back)SpriteManager::Instance()->SpriteMoveElementBack(payload_index, spriteNum);
+				else SpriteManager::Instance()->SpriteMoveElementFor(payload_index, spriteNum); // ドロップされた位置でノードを入れ替える
+			}
+			ImGui::EndDragDropTarget();
 		}
 	}
+	spriteNum++;
 	return false;
 }
 

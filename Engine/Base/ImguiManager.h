@@ -30,8 +30,8 @@ namespace IFE
 	private:
 		uint32_t objectNum;
 		uint32_t spriteNum;
-		int32_t objDraggedIndex;
-		int32_t sprDraggedIndex;
+		//int32_t objDraggedIndex;
+		//int32_t sprDraggedIndex;
 
 	public:
 		inline static bool componentDeleteFlag_ = false;
@@ -48,7 +48,7 @@ namespace IFE
 		void ComponentGUI(const std::string& objectName, const std::function<void(void)>& ComponentFunc, const std::function<void(std::unique_ptr<Component>)>& addFunc, const std::function<void(Component*)>& modelFunc);
 		void ComponentGUI2D(const std::string& objectName, const std::function<void(void)>& ComponentFunc, const std::function<void(std::unique_ptr<Component>)>& addFunc/*, const std::function<void(std::string)>& texFunc*/);
 		bool ObjectGUI(const std::string& objectName, const  bool& flagdelete, const bool& move, bool* moveFlag, Object3D* obj);
-		bool SpriteGUI(const std::string& spriteName, const bool& flagdelete, const bool& m, bool* moveFlag);
+		bool SpriteGUI(const std::string& spriteName, const bool& flagdelete, bool back);
 		bool EmitterGUI(const std::string& spriteName, const bool& flagdelete);
 		bool ObjectAddGUI(std::string* newObjectName, std::string* modelName, const std::function<std::string(void)>& guiFunc);
 		void NewGUI(const std::string& guiName, int32_t flag = 0);

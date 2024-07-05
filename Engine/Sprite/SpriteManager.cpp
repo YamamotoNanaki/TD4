@@ -1,6 +1,7 @@
 #include "SpriteManager.h"
 #include "Transform.h"
 #include "TextureManager.h"
+#include "IFEList.h"
 
 using namespace std;
 using namespace IFE;
@@ -214,6 +215,16 @@ bool IFE::SpriteManager::SearchName(const std::string& name)
 	return false;
 }
 
+void IFE::SpriteManager::SpriteMoveElementFor(int32_t num1, int32_t num2)
+{
+	List::MoveElement<unique_ptr<Sprite>>(foregroundList_, num1, num2);
+}
+
+void IFE::SpriteManager::SpriteMoveElementBack(int32_t num1, int32_t num2)
+{
+	List::MoveElement<unique_ptr<Sprite>>(backgroundList_, num1, num2);
+}
+
 #include "JsonManager.h"
 #ifdef InverseEditorMode
 #else
@@ -224,7 +235,6 @@ void IFE::SpriteManager::DebugGUI()
 	static bool add = false;
 	static bool fdelete = false;
 	static bool back = false;
-	static bool fmove = false;
 	ImGui::Begin("SpriteManager", (bool*)false, ImGuiWindowFlags_MenuBar);
 	if (ImGui::BeginMenuBar())
 	{
@@ -283,7 +293,7 @@ void IFE::SpriteManager::DebugGUI()
 		for (unique_ptr<Sprite>& itr : backgroundList_)
 		{
 			std::string s;
-			itr->DebugGUI(fdelete, fmove, &s);
+			itr->DebugGUI(fdelete, &s, back);
 			if (s != "")
 			{
 				str = s;
@@ -309,7 +319,7 @@ void IFE::SpriteManager::DebugGUI()
 		for (unique_ptr<Sprite>& itr : foregroundList_)
 		{
 			std::string s;
-			itr->DebugGUI(fdelete, fmove, &s);
+			itr->DebugGUI(fdelete, &s, back);
 			if (s != "")
 			{
 				str = s;
