@@ -27,6 +27,10 @@ void IFE::Transform::Draw()
 	{
 		matWorld_ *= parent_->matWorld_;//e‚Ìs—ñ‚ðŠ|‚¯ŽZ‚·‚é
 	}
+	else if(parentWorldMatrix_)
+	{
+		matWorld_ *= *parentWorldMatrix_;
+	}
 	camera_ = CameraManager::sActivCamera_;
 	constMapTransform_->world = matWorld_;
 	if (!camera_)

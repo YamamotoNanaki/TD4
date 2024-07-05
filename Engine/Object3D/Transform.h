@@ -34,6 +34,7 @@ namespace IFE
 		Float3 position_ = { 0,0,0 };
 
 		Transform* parent_ = nullptr;
+		Matrix* parentWorldMatrix_ = nullptr;
 
 	public:
 		void Initialize()override;

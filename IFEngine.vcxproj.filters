@@ -484,6 +484,9 @@
     <ClCompile Include="Source\Config\Config.cpp">
       <Filter>ソース ファイル\Source\Config</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Model\Attach3DModel.cpp">
+      <Filter>ソース ファイル\Engine\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -822,6 +825,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Util\IFEList.h">
       <Filter>ヘッダー ファイル\Engine\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Model\Attach3DModel.h">
+      <Filter>ヘッダー ファイル\Engine\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Model\Attach3DModel.cpp" />
     <ClCompile Include="Source\Config\Config.cpp" />
     <ClCompile Include="Source\Config\PoseMenu.cpp" />
     <ClCompile Include="Source\Enemy\TrapEnemy.cpp" />
@@ -112,6 +113,7 @@
     <ClCompile Include="Source\UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Model\Attach3DModel.h" />
     <ClInclude Include="Source\Config\Config.h" />
     <ClInclude Include="Source\Config\PoseMenu.h" />
     <ClInclude Include="Engine\Util\IFEList.h" />

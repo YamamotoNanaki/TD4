@@ -33,6 +33,7 @@
 #include"CameraChange.h"
 #include"PoseMenu.h"
 #include"Config.h"
+#include"Attach3DModel.h"
 
 using namespace IFE;
 using namespace std;
@@ -59,6 +60,7 @@ void IFE::ComponentHelp::StaticHelpInitialize()
 	Register("AnimationTexture", &CreateInstance<AnimationTexture>);
 	Register("Fog", &CreateInstance<Fog>);
 	Register("DebugCamera", &CreateInstance<DebugCamera>);
+	Register("Attach3DModel", &CreateInstance<Attach3DModel>);
 	//ÉvÉåÉCÉÑÅ[
 	Register("Player", &CreateInstance<Player>);
 	Register("PlayerAction", &CreateInstance<PlayerAction>);

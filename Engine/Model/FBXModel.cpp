@@ -243,6 +243,18 @@ void IFE::FBXModel::SetMaterial(Material* mat)
 	material_ = mat;
 }
 
+Matrix* IFE::FBXModel::GetBoneTransform(std::string boneName)
+{
+	for (auto& bone : bones_)
+	{
+		if (bone.name == boneName)
+		{
+			return &bone.finalMatrix;
+		}
+	}
+	return nullptr;
+}
+
 std::vector<Triangle> IFE::FBXModel::GetMeshColliderTriangle()
 {
 	std::vector<Triangle>triangles;
@@ -298,13 +310,29 @@ bool IFE::FBXModel::ModelGUI(bool deleteFlag)
 	ImguiManager* imgui = ImguiManager::Instance();
 	if (imgui->NewTreeNode(fileName_))
 	{
-		for (unique_ptr<Node>& node : nodes_)
+		uint32_t num = 0;
+		if(imgui->NewTreeNode(U8("ノードとメッシュ")))
 		{
-			uint32_t num = 0;
-			for (auto mesh : node->meshes)
+			for (unique_ptr<Node>& node : nodes_)
 			{
-				mesh->DebugGUI(num++);
+				if (imgui->NewTreeNode(node->name))
+				{
+					for (auto mesh : node->meshes)
+					{
+						mesh->DebugGUI(num++);
+					}
+					imgui->EndTreeNode();
+				}
 			}
+			imgui->EndTreeNode();
+		}
+		if (imgui->NewTreeNode(U8("ボーン")))
+		{
+			for (auto itr : bones_)
+			{
+				imgui->TextGUI(itr.name);
+			}
+			imgui->EndTreeNode();
 		}
 		if (deleteFlag)
 		{

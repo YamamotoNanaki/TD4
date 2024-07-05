@@ -454,6 +454,19 @@ void IFE::ObjectManager::DebugUpdate()
 	}
 }
 
+std::string IFE::ObjectManager::GetObjectNameGUI()
+{
+	std::vector<std::string>items;
+	for (auto& itr : objectList_)
+	{
+		items.push_back(itr->GetObjectName());
+	}
+
+	static int32_t returnNum = 0;
+	ImguiManager::Instance()->Combo("component name", returnNum, items);
+	return items[returnNum];
+}
+
 #endif
 void IFE::ObjectManager::LoadingScene()
 {

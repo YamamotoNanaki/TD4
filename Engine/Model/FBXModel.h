@@ -36,6 +36,7 @@ namespace IFE
 		void SetSettings(const AddModelSettings& setting);
 		void SetSmooth(bool smooth);
 		void SetMaterial(Material* mat);
+		Matrix* GetBoneTransform(std::string boneName);
 
 		std::vector<Triangle> GetMeshColliderTriangle();
 	private:

@@ -54,6 +54,7 @@ namespace IFE
 		void DebugGUI();
 		void OutputScene();
 		void DebugUpdate();
+		std::string GetObjectNameGUI();
 #endif
 		void LoadingScene();
 	};
