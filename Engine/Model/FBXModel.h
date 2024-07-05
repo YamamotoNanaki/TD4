@@ -19,6 +19,7 @@ namespace IFE
 	private:
 		AddModelSettings setting_;
 		bool smooth_;
+		Material* material_ = nullptr;
 
 	public:
 		std::vector<std::unique_ptr<Node>> nodes_{};
@@ -34,6 +35,7 @@ namespace IFE
 		void BoneTransform(float TimeInSeconds, uint8_t animNum);
 		void SetSettings(const AddModelSettings& setting);
 		void SetSmooth(bool smooth);
+		void SetMaterial(Material* mat);
 
 		std::vector<Triangle> GetMeshColliderTriangle();
 	private:

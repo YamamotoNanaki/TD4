@@ -36,18 +36,50 @@ void IFE::Material::Update() {}
 
 void IFE::Material::Draw()
 {
-	constMapMaterial_->alpha = alpha_;
-	constMapMaterial_->color = color_;
-	constMapMaterial_->ambient = ambient_;
-	constMapMaterial_->diffuse = diffuse_;
-	constMapMaterial_->specular = specular_;
-	constMapMaterial_->bloom = bloom_;
-	materialBuffer_->SetConstBuffView(2);
-	if (tex_ == nullptr)
+	if (childMaterials_.size() == 0)
 	{
-		tex_ = TextureManager::Instance()->GetTexture("white.png");
+		constMapMaterial_->alpha = alpha_;
+		constMapMaterial_->color = color_;
+		constMapMaterial_->ambient = ambient_;
+		constMapMaterial_->diffuse = diffuse_;
+		constMapMaterial_->specular = specular_;
+		constMapMaterial_->bloom = bloom_;
+		materialBuffer_->SetConstBuffView(2);
+		if (tex_ == nullptr)
+		{
+			tex_ = TextureManager::Instance()->GetTexture("white.png");
+		}
+		tex_->SetTexture(5);
 	}
-	tex_->SetTexture(5);
+	else
+	{
+		dynamic_cast<FBXModel*>(objectPtr_->GetModel())->SetMaterial(this);
+	}
+}
+
+bool IFE::Material::ChildDraw(std::string name, uint32_t meshNum)
+{
+	if (!this)return false;
+	for (auto& itr : childMaterials_)
+	{
+		if (itr.first.name == name && itr.first.meshNum == meshNum)
+		{
+			itr.first.constMapMaterial_->alpha = itr.first.alpha;
+			itr.first.constMapMaterial_->color = itr.first.color;
+			itr.first.constMapMaterial_->ambient = itr.first.ambient;
+			itr.first.constMapMaterial_->diffuse = itr.first.diffuse;
+			itr.first.constMapMaterial_->specular = itr.first.specular;
+			itr.first.constMapMaterial_->bloom = itr.first.bloom;
+			itr.second->SetConstBuffView(2);
+			if (itr.first.tex == nullptr)
+			{
+				itr.first.tex = TextureManager::Instance()->GetTexture("white.png");
+			}
+			itr.first.tex->SetTexture(5);
+			return true;
+		}
+	}
+	return false;
 }
 
 void IFE::Material::SetTexture(Texture* texture)
@@ -142,13 +174,14 @@ void IFE::Material::MultipleMaterialCheck()
 	if (meshNum == 1)return;
 	if (old)return;
 	multipleMat_ = true;
+	ChildMaterial m;
 	for (auto& node : fbx->nodes_)
 	{
 		size_t i = 0;
 		for (auto mesh : node->meshes)
 		{
-			childMaterials_.push_back({});
-			auto& mat = childMaterials_.back();
+			childMaterials_.push_back({ m,std::move(std::make_unique<ConstBuffer<ConstBufferMaterial>>()) });
+			auto& mat = childMaterials_.back().first;
 			mat.name = node->name;
 			mat.meshNum = uint32_t(i);
 			auto prm = mesh->GetMaterial();
@@ -159,6 +192,7 @@ void IFE::Material::MultipleMaterialCheck()
 			mat.diffuse = prm.diffuse;
 			mat.color = prm.color;
 			mat.tex = prm.tex;
+			mat.constMapMaterial_ = childMaterials_.back().second->GetCBMapObject();
 			i++;
 		}
 	}
@@ -211,7 +245,7 @@ void IFE::Material::ComponentDebugGUI()
 	{
 		for (auto& itr : childMaterials_)
 		{
-			ChildGUI(itr);
+			ChildGUI(itr.first);
 		}
 	}
 }
@@ -228,10 +262,9 @@ void IFE::Material::OutputComponent(nlohmann::json& j)
 	j["multipleMat"] = multipleMat_;
 	if (multipleMat_)
 	{
-		size_t i = 0;
-		for (auto itr : childMaterials_)
+		for (size_t i = 0; childMaterials_.size(); i++)
 		{
-			OutputChild(j["child"][i], itr);
+			OutputChild(j["child"][i], childMaterials_[i].first);
 			i++;
 		}
 	}
@@ -275,8 +308,9 @@ void IFE::Material::LoadingComponent(nlohmann::json& json)
 void IFE::Material::LoadingChild(nlohmann::json& json)
 {
 	JsonManager* j = JsonManager::Instance();
-	childMaterials_.push_back({});
-	auto& mat = childMaterials_.back();
+	ChildMaterial m;
+	childMaterials_.push_back({ m,std::move(std::make_unique<ConstBuffer<ConstBufferMaterial>>()) });
+	auto& mat = childMaterials_.back().first;
 
 	mat.color = j->InputFloat4(json["color"]);
 	mat.ambient = j->InputFloat3(json["ambient"]);
@@ -286,4 +320,5 @@ void IFE::Material::LoadingChild(nlohmann::json& json)
 	mat.bloom = json["bloom"];
 	mat.name = json["name"];
 	mat.meshNum = json["meshNum"];
+	mat.constMapMaterial_ = childMaterials_.back().second->GetCBMapObject();
 }

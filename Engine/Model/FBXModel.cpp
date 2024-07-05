@@ -5,6 +5,8 @@
 #include "ImguiManager.h"
 #include "JsonManager.h"
 #include "CollisionPrimitive.h"
+#include "Material.h"
+#include "Object3D.h"
 #include <cassert>
 
 using namespace IFE;
@@ -25,9 +27,12 @@ void IFE::FBXModel::Draw()
 {
 	for (unique_ptr<Node>& node : nodes_)
 	{
+		uint32_t i = 0;
 		for (auto mesh : node->meshes)
 		{
-			mesh->Draw();
+			if (material_)mesh->MeshDraw(material_, node->name, i);
+			else mesh->Draw();
+			i++;
 		}
 	}
 }
@@ -231,6 +236,11 @@ void IFE::FBXModel::SetSettings(const AddModelSettings& s)
 void IFE::FBXModel::SetSmooth(bool smooth)
 {
 	smooth_ = smooth;
+}
+
+void IFE::FBXModel::SetMaterial(Material* mat)
+{
+	material_ = mat;
 }
 
 std::vector<Triangle> IFE::FBXModel::GetMeshColliderTriangle()

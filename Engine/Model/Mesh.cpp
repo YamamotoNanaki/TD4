@@ -25,9 +25,37 @@ void IFE::Mesh::Draw()
 	{
 		commandList->IASetVertexBuffers(0, 1, vt_.GetVBView());
 	}
+
 	if (material_)
 	{
 		material_->Draw();
+	}
+	//インデックスバッファの設定
+	commandList->IASetIndexBuffer(ib_.GetIBView());
+
+	//描画コマンド
+	commandList->DrawIndexedInstanced((UINT)ib_.GetSize(), 1, 0, 0, 0);
+}
+
+void IFE::Mesh::MeshDraw(Material* mat, std::string str, uint32_t num)
+{
+	static ID3D12GraphicsCommandList* commandList = GraphicsAPI::Instance()->GetCmdList();
+	//頂点バッファの設定
+	if (vb_.GetSize() > 0)
+	{
+		commandList->IASetVertexBuffers(0, 1, vb_.GetVBView());
+	}
+	if (vt_.GetSize() > 0)
+	{
+		commandList->IASetVertexBuffers(0, 1, vt_.GetVBView());
+	}
+
+	if (!mat->ChildDraw(str, num))
+	{
+		if (material_)
+		{
+			material_->Draw();
+		}
 	}
 	//インデックスバッファの設定
 	commandList->IASetIndexBuffer(ib_.GetIBView());
