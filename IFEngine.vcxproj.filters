@@ -790,6 +790,9 @@
     <ClInclude Include="Source\Enemy\TrapEnemy.h">
       <Filter>ヘッダー ファイル\Source\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Util\IFEList.h">
+      <Filter>ヘッダー ファイル\Engine\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Shaders\Particle.hlsli">

@@ -128,6 +128,70 @@
         "prefab": false
     },
     {
+        "EnemyManager": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "EnemyManager"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "EnemyManager",
+        "prefab": false
+    },
+    {
         "Collider": {
             "content": [
                 {
@@ -11083,70 +11147,6 @@
         "drawFlag": true,
         "model": "dice_Model",
         "name": "normalEnemy1",
-        "prefab": false
-    },
-    {
-        "EnemyManager": null,
-        "Material": {
-            "ambient": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "bloom": false,
-            "color": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-            ],
-            "diffuse": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "multipleMat": false,
-            "specular": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "terxtureName": "white.png"
-        },
-        "TransferGeometryBuffer": {
-            "explosion": 0.0,
-            "gravity": 0.0,
-            "lightFlag": true,
-            "polygonSize": 1.0,
-            "rotation": 0.0,
-            "toonFlag": false
-        },
-        "Transform": {
-            "position": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "rotation": [
-                360.0,
-                360.0,
-                360.0
-            ],
-            "scale": [
-                1.0,
-                1.0,
-                1.0
-            ]
-        },
-        "component": [
-            "Transform",
-            "TransferGeometryBuffer",
-            "Material",
-            "EnemyManager"
-        ],
-        "drawFlag": false,
-        "model": "dice_Model",
-        "name": "EnemyManager",
         "prefab": false
     },
     {
