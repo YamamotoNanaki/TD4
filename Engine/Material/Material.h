@@ -6,6 +6,7 @@
 #include "Component.h"
 #include <string>
 #include <memory>
+#include <utility>
 
 namespace IFE
 {
@@ -39,9 +40,10 @@ namespace IFE
 			bool bloom = false;
 			Float4 color = { 1,1,1,1 };
 			float alpha = 1.0f;
+			ConstBufferMaterial* constMapMaterial_ = nullptr;
 		};
 
-		std::vector<ChildMaterial> childMaterials_;
+		std::vector<std::pair<ChildMaterial, std::unique_ptr<ConstBuffer<ConstBufferMaterial>>>> childMaterials_;
 	public:
 		Float4 color_ = { 1,1,1,1 };
 		float alpha_ = 1.0f;
@@ -56,6 +58,7 @@ namespace IFE
 		void SetDefaultParameter();
 		void Update();
 		void Draw();
+		bool ChildDraw(std::string name, uint32_t meshNum);
 		void SetTexture(Texture* texture);
 		Float4 GetColor();
 		void SetColor(const Float4& color);

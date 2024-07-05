@@ -175,6 +175,12 @@
     <Filter Include="ヘッダー ファイル\Source\Effect">
       <UniqueIdentifier>{55145910-3a1b-4d69-830e-3004f9c9d2d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Source\Config">
+      <UniqueIdentifier>{19e20959-1842-4900-afe8-eb5092cafb21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Source\Config">
+      <UniqueIdentifier>{d3efe2f9-f639-4575-822a-25de78c8898b}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ヘッダー ファイル\Source\StageGimmick\Event">
       <UniqueIdentifier>{4a71d974-11bb-4434-9842-03ae43472bd1}</UniqueIdentifier>
     </Filter>
@@ -471,6 +477,12 @@
     </ClCompile>
     <ClCompile Include="Source\StageGimmick\EnemySpawnEvent.cpp">
       <Filter>ソース ファイル\Source\StageGimmick\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Config\Pose.cpp">
+      <Filter>ソース ファイル\Source\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Config\Config.cpp">
+      <Filter>ソース ファイル\Source\Config</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -801,6 +813,12 @@
     </ClInclude>
     <ClInclude Include="Source\StageGimmick\EnemySpawnEvent.h">
       <Filter>ヘッダー ファイル\Source\StageGimmick\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Config\Pose.h">
+      <Filter>ヘッダー ファイル\Source\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Config\Config.h">
+      <Filter>ヘッダー ファイル\Source\Config</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

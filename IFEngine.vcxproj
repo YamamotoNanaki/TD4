@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Config\Config.cpp" />
+    <ClCompile Include="Source\Config\Pose.cpp" />
     <ClCompile Include="Source\Enemy\TrapEnemy.cpp" />
     <ClCompile Include="Source\StageGimmick\EnemySpawnEvent.cpp" />
     <ClCompile Include="Source\UI\DroneRecoveryUI.cpp" />
@@ -110,6 +112,8 @@
     <ClCompile Include="Source\UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Config\Config.h" />
+    <ClInclude Include="Source\Config\Pose.h" />
     <ClInclude Include="Source\Enemy\TrapEnemy.h" />
     <ClInclude Include="Source\StageGimmick\EnemySpawnEvent.h" />
     <ClInclude Include="Source\UI\DroneRecoveryUI.h" />
