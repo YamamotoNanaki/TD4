@@ -11,7 +11,7 @@ enum class PoseSelect
 	CONFIG
 };
 
-class Pose :public IFE::Component
+class PoseMenu :public IFE::Component
 {
 private:
 
@@ -20,6 +20,8 @@ private:
 
 public:
 
+	PoseMenu();
+	~PoseMenu();
 	/// <summary>
 	/// ‰Šú‰»
 	/// </summary>
@@ -34,5 +36,7 @@ public:
 	/// I—¹
 	/// </summary>
 	void Finalize();
+
+	bool GetPoseFlag();
 };
 

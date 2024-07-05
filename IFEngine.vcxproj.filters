@@ -478,7 +478,7 @@
     <ClCompile Include="Source\StageGimmick\EnemySpawnEvent.cpp">
       <Filter>ソース ファイル\Source\StageGimmick\Event</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Config\Pose.cpp">
+    <ClCompile Include="Source\Config\PoseMenu.cpp">
       <Filter>ソース ファイル\Source\Config</Filter>
     </ClCompile>
     <ClCompile Include="Source\Config\Config.cpp">
@@ -814,7 +814,7 @@
     <ClInclude Include="Source\StageGimmick\EnemySpawnEvent.h">
       <Filter>ヘッダー ファイル\Source\StageGimmick\Event</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Config\Pose.h">
+    <ClInclude Include="Source\Config\PoseMenu.h">
       <Filter>ヘッダー ファイル\Source\Config</Filter>
     </ClInclude>
     <ClInclude Include="Source\Config\Config.h">

@@ -9,7 +9,7 @@ namespace IFE {
 	private:
 		//hp
 		const int8_t MAX_HP = 100;
-		const int8_t HIT_COOLTIME = 15;
+		const int8_t HIT_COOLTIME = 1;
 		//ƒƒ“ƒo•Ï”
 	protected:
 		//ó‘Ô
@@ -33,7 +33,7 @@ namespace IFE {
 		int8_t hp_;
 		int8_t decHp_;
 		bool isHit_;
-		int8_t hitTime_;
+		float hitTime_;
 
 
 		//HighlightingŠÖ˜A‚Ì•Ï”

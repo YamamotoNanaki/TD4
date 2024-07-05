@@ -1,11 +1,19 @@
-#include "Pose.h"
+#include "PoseMenu.h"
 #include "Input.h"
 
-void Pose::Initialize()
+PoseMenu::PoseMenu()
 {
 }
 
-void Pose::Update()
+PoseMenu::~PoseMenu()
+{
+}
+
+void PoseMenu::Initialize()
+{
+}
+
+void PoseMenu::Update()
 {
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Esc) || IFE::Input::PadTrigger(IFE::PADCODE::START))
 	{
@@ -20,4 +28,13 @@ void Pose::Update()
 	{
 		IFE::IFETime::sTimeScale_ = 1.0f;
 	}
+}
+
+void PoseMenu::Finalize()
+{
+}
+
+bool PoseMenu::GetPoseFlag()
+{
+	return poseFlag_;
 }
