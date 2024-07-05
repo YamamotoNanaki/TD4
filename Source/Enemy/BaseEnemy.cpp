@@ -38,8 +38,8 @@ void IFE::BaseEnemy::Update()
 {
 	//hitcool
 	if (isHit_ == true) {
-		hitTime_-= IFE::IFETime::sDeltaTime_;
-		if (hitTime_ == 0) {
+		hitTime_-= IFE::IFETime::sDeltaTime_ * 3.5f;
+		if (hitTime_ <= 0) {
 			isHit_ = false;
 		}
 	}
