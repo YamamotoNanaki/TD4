@@ -26,15 +26,6 @@ void DroneKeepoutZoneEvent::Initialize()
 		zoneObject_->SetColor({ 0.5f,0.7f,0.0f,0.2f });
 	}
 
-	if (!zoneObject_->GetComponent<IFE::Collider>())
-	{
-		zoneObject_->AddComponentBack<IFE::Collider>();
-		auto col = zoneObject_->GetComponent<IFE::Collider>();
-		auto c = col->AddCollider();
-		c->SetColliderType(IFE::ColliderType::OBB);
-		c->SetPushBackFlag(true);
-	}
-
 	if (!zoneObject_->GetComponent<DroneKeepoutZoneObject>())
 	{
 		zoneObject_->AddComponentBack<DroneKeepoutZoneObject>();
@@ -42,7 +33,7 @@ void DroneKeepoutZoneEvent::Initialize()
 	auto com = zoneObject_->GetComponent<DroneKeepoutZoneObject>();
 	com->Initialize();
 
-	isActive_ = !isActive_;
+	
 }
 
 void DroneKeepoutZoneEvent::Update()
@@ -59,6 +50,8 @@ void DroneKeepoutZoneEvent::Update()
 		{
 			com->ChangeActiveZone(false);
 		}
+
+		isEnd_ = true;
 	}
 }
 #ifdef EditorMode
@@ -94,4 +87,5 @@ void DroneKeepoutZoneEvent::InputData(nlohmann::json& json)
 void DroneKeepoutZoneEvent::StartInitialize()
 {
 	isEnd_ = false;
+	isActive_ = !isActive_;
 }
