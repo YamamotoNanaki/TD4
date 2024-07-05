@@ -1,5 +1,6 @@
 #include "PoseMenu.h"
 #include "Input.h"
+#include"SpriteManager.h"
 
 PoseMenu::PoseMenu()
 {
@@ -11,6 +12,7 @@ PoseMenu::~PoseMenu()
 
 void PoseMenu::Initialize()
 {
+	IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = false;
 }
 
 void PoseMenu::Update()
@@ -18,6 +20,7 @@ void PoseMenu::Update()
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Esc) || IFE::Input::PadTrigger(IFE::PADCODE::START))
 	{
 		poseFlag_ = !poseFlag_;
+		IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = poseFlag_;
 	}
 
 	if (poseFlag_ == true)
