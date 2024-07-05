@@ -1,4 +1,5 @@
 #include "EnemyManager.h"
+#include "TrapEnemy.h"
 #include "Object3d.h"
 #include "Transform.h"
 //#include "JsonManager.h"
@@ -79,6 +80,41 @@ void IFE::EnemyManager::Update()
 {
 	objectPtr_->DrawFlag_ = false;
 	if (enemyList_.size() != 0)enemyList_.remove_if([](BaseEnemy* ne) {return ne->objectPtr_->GetDeleteFlag(); });
+}
+
+/// <summary>
+/// ‚Æ‚è‚ ‚¦‚¸o‚·‚¾‚¯(‚Ü‚¾œpœj‚Í‚µ‚È‚¢)
+/// </summary>
+/// <param name="position"></param>
+/// <param name="rotation"></param>
+void IFE::EnemyManager::PopEnemy(Vector3 position, Vector3 rotation,Vector3 trapPos_)
+{
+	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("TrapEnemy", ModelManager::Instance()->GetModel("normalEnemy"));
+	ptr->AddComponent<TrapEnemy>();
+	TrapEnemy* enemy = ptr->GetComponent<TrapEnemy>();
+	enemy->objectPtr_->transform_->position_ = position;
+	enemy->objectPtr_->transform_->rotation_ = rotation;
+	enemy->SetTrapPos(trapPos_);
+	enemy->objectPtr_->AddComponentBack<Collider>();
+	auto com = enemy->objectPtr_->GetComponent<Collider>();
+	auto col0 = com->AddCollider();
+	col0->SetColliderType(ColliderType::RAY);
+
+	auto col1 = com->AddCollider();
+	col1->SetColliderType(ColliderType::SPHERE);
+	col1->attribute_ = uint16_t(Attribute::ENEMYS);
+	col1->SetPushBackFlag(true);
+	col1->SetGroundJudgeFlag(true);
+
+	auto col2 = com->AddCollider();
+	col2->SetColliderType(ColliderType::RAY);
+
+	enemyList_.push_back(enemy);
+	ptr->AddComponent<IFE::Animator>();
+
+	auto anim = ptr->GetComponent<IFE::Animator>();
+	anim->SetAnimation("Idle");
+	anim->loop_ = true;
 }
 
 #ifdef EditorMode

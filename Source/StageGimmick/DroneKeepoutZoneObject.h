@@ -35,7 +35,7 @@ public:
 private:
 
 	//‰Ÿ‚µ–ß‚µˆ—
-	void PushBack(IFE::ColliderCore* colA, IFE::ColliderCore* colB, const IFE::Vector3& reject);
+	void PushBack(IFE::ColliderCore* HitCol, const IFE::Vector3& reject);
 
 	
 };

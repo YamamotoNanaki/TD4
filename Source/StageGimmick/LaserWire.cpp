@@ -107,15 +107,13 @@ void LaserWire::ComponentDebugGUI()
 
 	if (oldposSize != poss_.size())
 	{
-		rots_.resize(poss_.size());
 		scales_.resize(poss_.size());
 		oldposSize = (int32_t)poss_.size();
 		oldscaleSize = (int32_t)scales_.size();
 	}
 	if (oldscaleSize != scales_.size())
 	{
-		/*poss_.resize(scales_.size());
-		rots_.resize(scales_.size());*/
+		poss_.resize(scales_.size());
 		oldposSize = (int32_t)poss_.size();
 		oldscaleSize = (int32_t)scales_.size();
 	}

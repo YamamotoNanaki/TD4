@@ -74,6 +74,7 @@ void Player::DroneBreak()
 	droneRecoverytime_ = 0.0f;
 	droneRecoveryUI_->SetDrawFlag(false);
 	droneRecoveryFlag_ = false;
+	IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = false;
 }
 
 bool Player::GetMode()
@@ -116,6 +117,7 @@ void Player::ChangeMode()
 					drone_->SetIsDroneSurvival(true);
 					enemyHilight_->updateFlag_ = true;
 					dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = true;
+					IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = true;
 				}
 			}
 			else
@@ -124,7 +126,7 @@ void Player::ChangeMode()
 				modeFlag_ = false;
 				drone_->SetDrawFlag(drone_->GetIsDroneSurvival());
 				IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
-				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;
+				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;				
 			}
 			//UI•\Ž¦Ø‘Ö
 			ui_->UIChange(modeFlag_);

@@ -460,6 +460,9 @@
     <ClCompile Include="Source\Effect\CameraChange.cpp">
       <Filter>ソース ファイル\Source\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Enemy\TrapEnemy.cpp">
+      <Filter>ソース ファイル\Source\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -783,6 +786,9 @@
     </ClInclude>
     <ClInclude Include="Source\Effect\CameraChange.h">
       <Filter>ヘッダー ファイル\Source\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enemy\TrapEnemy.h">
+      <Filter>ヘッダー ファイル\Source\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

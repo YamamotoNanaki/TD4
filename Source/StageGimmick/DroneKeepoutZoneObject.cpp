@@ -12,11 +12,14 @@ void DroneKeepoutZoneObject::Initialize()
 		auto col = objectPtr_->GetComponent<IFE::Collider>();
 		auto c = col->AddCollider();
 		c->SetColliderType(IFE::ColliderType::OBB);
-		c->SetNoPushBackFlag(false);
+		c->SetNoPushBackFlag(true);
 		c->SetPushBackFlag(false);
 		c->SetOffsetPosition(transform_->position_);
 		c->SetOffsetScale(transform_->position_);
+		col->GetCollider(0)->active_ = false;
 	}
+	
+	objectPtr_->DrawFlag_ = false;
 }
 
 void DroneKeepoutZoneObject::Update()
@@ -39,7 +42,7 @@ void DroneKeepoutZoneObject::OnColliderHit(IFE::ColliderCore* myCollider, IFE::C
 	if (hitCollider->GetObjectPtr()->GetComponent<PlayerDrone>())
 	{
 		//‰Ÿ‚µ–ß‚µˆ—‚ð‘‚­
-		//PushBack(myCollider,hitCollider)
+		PushBack(hitCollider, hitCollider->reject_);
 	}
 	myCollider;
 	hitCollider;
@@ -65,43 +68,19 @@ void DroneKeepoutZoneObject::LoadingComponent(nlohmann::json& json)
 }
 
 
-void DroneKeepoutZoneObject::PushBack(IFE::ColliderCore* colA, IFE::ColliderCore* colB, const IFE::Vector3& reject)
+void DroneKeepoutZoneObject::PushBack(IFE::ColliderCore* HitCol, const IFE::Vector3& reject)
 {
 	// ’n–Ê”»’è‚µ‚«‚¢’l
 	static const float threshold = cosf(IFE::ConvertToRadians(30.0f));
 	static const IFE::Vector3 up = { 0,1,0 };
-	if (colA->GetNoPushBackFlag() || colB->GetNoPushBackFlag())
+	
+	IFE::Vector3 rejectDir = Vector3Normalize(reject);
+	float cos = Vector3Dot(rejectDir, up);
+	if (-threshold < cos && cos < threshold)
 	{
-		return;
+		HitCol->transform_->MovePushBack(reject * 2);
 	}
-	if (colA->GetPushBackFlag() && colB->GetPushBackFlag())
-	{
-		IFE::Vector3 rejectDir = Vector3Normalize(reject);
-		float cos = Vector3Dot(rejectDir, up);
-		if (-threshold < cos && cos < threshold)
-		{
-			colA->transform_->MovePushBack(reject);
-			colB->transform_->MovePushBack(-reject);
-		}
-	}
-	else if (colA->GetPushBackFlag())
-	{
-		IFE::Vector3 rejectDir = Vector3Normalize(reject);
-		float cos = Vector3Dot(rejectDir, up);
-		if (-threshold < cos && cos < threshold)
-		{
-			colA->transform_->MovePushBack(reject * 2);
-		}
-	}
-	else if (colB->GetPushBackFlag())
-	{
-		IFE::Vector3 rejectDir = Vector3Normalize(reject);
-		float cos = Vector3Dot(rejectDir, up);
-		if (-threshold < cos && cos < threshold)
-		{
-			colB->transform_->MovePushBack(-reject * 2);
-		}
-	}
+	
 }
 
 void DroneKeepoutZoneObject::ChangeActiveZone(bool flag)
