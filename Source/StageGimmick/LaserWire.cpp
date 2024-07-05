@@ -23,6 +23,8 @@ void LaserWire::Initialize()
 		objects_.push_back(addObj);
 	}
 
+	if(event_==nullptr)event_ = IFE::EventFactory::Instance()->CreateEventClass(EventName::EventString(eventType_));
+
 	event_->Initialize();
 	
 }
@@ -74,9 +76,7 @@ void LaserWire::Update()
 
 void LaserWire::Draw()
 {
-#ifdef EditorMode
-	
-#endif
+
 }
 
 void LaserWire::Finalize()
@@ -203,6 +203,7 @@ std::string LaserWire::EventTypeToString(EventType eventType)
 	switch (eventType) {
 	case EventType::damage:   return "damage";
 	case EventType::door: return "door";
+	case EventType::DroneKeepoutZone: return "droneKeepoutZone";
 	default:    return "UNKNOWN";
 	}
 }

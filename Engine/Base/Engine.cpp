@@ -2,6 +2,7 @@
 #include "Input.h"
 #include "Scene.h"
 #include "Rand.h"
+#include "ComponentHelp.h"
 
 
 using namespace IFE;
@@ -18,6 +19,7 @@ void IFE::Engine::Initialize()
 	gapi_->Initialize(*WindowsAPI::Instance()->GetHWnd());
 	Input::Initalize();
 	IFERand::Initialize();
+	ComponentHelp::StaticHelpInitialize();
 }
 
 void IFE::Engine::Run()

@@ -2,6 +2,9 @@
 #include "ImguiManager.h"
 #include "TextureManager.h"
 #include "JsonManager.h"
+#include "Object3D.h"
+#include "FBXModel.h"
+#include "Mesh.h"
 
 using namespace std;
 using namespace IFE;
@@ -10,6 +13,8 @@ void IFE::Material::Initialize()
 {
 	materialBuffer_ = make_unique<ConstBuffer<ConstBufferMaterial>>();
 	constMapMaterial_ = materialBuffer_->GetCBMapObject();
+
+	MultipleMaterialCheck();
 }
 
 void IFE::Material::SetDefaultParameter()
@@ -107,8 +112,79 @@ MaterialParams IFE::Material::GetMaterial()
 	return m;
 }
 
+void IFE::Material::MultipleMaterialCheck()
+{
+	auto old = multipleMat_;
+	multipleMat_ = false;
+	if (!objectPtr_)return;
+	auto fbx = dynamic_cast<FBXModel*>(objectPtr_->GetModel());
+
+	if (!fbx)return;
+
+	uint32_t meshNum = 0;
+	for (auto& node : fbx->nodes_)
+	{
+		if (node->meshes.size() == 0)continue;
+		for (size_t i = 0; i < node->meshes.size(); i++);
+		{
+			meshNum++;
+			if (meshNum > 1)
+			{
+				break;
+			}
+		}
+		if (meshNum > 1)
+		{
+			break;
+		}
+	}
+
+	if (meshNum == 1)return;
+	if (old)return;
+	multipleMat_ = true;
+	for (auto& node : fbx->nodes_)
+	{
+		size_t i = 0;
+		for (auto mesh : node->meshes)
+		{
+			childMaterials_.push_back({});
+			auto& mat = childMaterials_.back();
+			mat.name = node->name;
+			mat.meshNum = uint32_t(i);
+			auto prm = mesh->GetMaterial();
+			mat.alpha = prm.alpha;
+			mat.bloom = prm.bloom;
+			mat.ambient = prm.ambient;
+			mat.specular = prm.specular;
+			mat.diffuse = prm.diffuse;
+			mat.color = prm.color;
+			mat.tex = prm.tex;
+			i++;
+		}
+	}
+}
+
 #ifdef InverseEditorMode
 #else
+void IFE::Material::ChildGUI(ChildMaterial& mat)
+{
+	ImguiManager* im = ImguiManager::Instance();
+	string s = mat.name + to_string(mat.meshNum);
+	if (im->NewTreeNode(s))
+	{
+		std::function<void(std::string)> guiFunc2 = [&](std::string textureName)
+			{
+				mat.tex = TextureManager::Instance()->GetTexture(textureName);
+			};
+		im->CheckBoxGUI(&mat.bloom, "bllom");
+		im->ColorEdit4GUI(&mat.color, "color");
+		im->DragFloat3GUI(&mat.ambient, "ambient");
+		im->DragFloat3GUI(&mat.diffuse, "diffuse");
+		im->DragFloat3GUI(&mat.specular, "specular");
+		im->ChangeTextureGUI(guiFunc2);
+		im->EndTreeNode();
+	}
+}
 void IFE::Material::ComponentDebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
@@ -116,12 +192,28 @@ void IFE::Material::ComponentDebugGUI()
 		{
 			tex_ = TextureManager::Instance()->GetTexture(textureName);
 		};
-	im->CheckBoxGUI(&bloom_, "bllom");
-	im->ColorEdit4GUI(&color_, "color");
-	im->DragFloat3GUI(&ambient_, "ambient");
-	im->DragFloat3GUI(&diffuse_, "diffuse");
-	im->DragFloat3GUI(&specular_, "specular");
-	im->ChangeTextureGUI(guiFunc2);
+
+	if (im->ButtonGUI(U8("複数マテリアルかどうか確認する")))
+	{
+		MultipleMaterialCheck();
+	}
+
+	if (!multipleMat_)
+	{
+		im->CheckBoxGUI(&bloom_, "bllom");
+		im->ColorEdit4GUI(&color_, "color");
+		im->DragFloat3GUI(&ambient_, "ambient");
+		im->DragFloat3GUI(&diffuse_, "diffuse");
+		im->DragFloat3GUI(&specular_, "specular");
+		im->ChangeTextureGUI(guiFunc2);
+	}
+	else
+	{
+		for (auto& itr : childMaterials_)
+		{
+			ChildGUI(itr);
+		}
+	}
 }
 
 void IFE::Material::OutputComponent(nlohmann::json& j)
@@ -133,6 +225,28 @@ void IFE::Material::OutputComponent(nlohmann::json& j)
 	jm->OutputFloat3(j["specular"], specular_);
 	j["terxtureName"] = tex_->texName_;
 	j["bloom"] = bloom_;
+	j["multipleMat"] = multipleMat_;
+	if (multipleMat_)
+	{
+		size_t i = 0;
+		for (auto itr : childMaterials_)
+		{
+			OutputChild(j["child"][i], itr);
+			i++;
+		}
+	}
+}
+void IFE::Material::OutputChild(nlohmann::json& json, ChildMaterial& mat)
+{
+	JsonManager* jm = JsonManager::Instance();
+	jm->OutputFloat4(json["color"], mat.color);
+	jm->OutputFloat3(json["ambient"], mat.ambient);
+	jm->OutputFloat3(json["diffuse"], mat.diffuse);
+	jm->OutputFloat3(json["specular"], mat.specular);
+	json["terxtureName"] = mat.tex->texName_;
+	json["bloom"] = mat.bloom;
+	json["name"] = mat.name;
+	json["meshNum"] = mat.meshNum;
 }
 #endif
 
@@ -147,4 +261,29 @@ void IFE::Material::LoadingComponent(nlohmann::json& json)
 	materialBuffer_ = make_unique<ConstBuffer<ConstBufferMaterial>>();
 	constMapMaterial_ = materialBuffer_->GetCBMapObject();
 	bloom_ = json["bloom"];
+	multipleMat_ = json["multipleMat"];
+
+	if (multipleMat_)
+	{
+		for (auto& itr : json["child"])
+		{
+			LoadingChild(itr);
+		}
+	}
+}
+
+void IFE::Material::LoadingChild(nlohmann::json& json)
+{
+	JsonManager* j = JsonManager::Instance();
+	childMaterials_.push_back({});
+	auto& mat = childMaterials_.back();
+
+	mat.color = j->InputFloat4(json["color"]);
+	mat.ambient = j->InputFloat3(json["ambient"]);
+	mat.diffuse = j->InputFloat3(json["diffuse"]);
+	mat.specular = j->InputFloat3(json["specular"]);
+	mat.tex = TextureManager::Instance()->GetTexture(json["terxtureName"]);
+	mat.bloom = json["bloom"];
+	mat.name = json["name"];
+	mat.meshNum = json["meshNum"];
 }
