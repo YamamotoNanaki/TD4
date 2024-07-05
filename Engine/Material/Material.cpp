@@ -172,8 +172,9 @@ void IFE::Material::MultipleMaterialCheck()
 	}
 
 	if (meshNum == 1)return;
-	if (old)return;
 	multipleMat_ = true;
+	if (old)return;
+	childMaterials_.clear();
 	ChildMaterial m;
 	for (auto& node : fbx->nodes_)
 	{
