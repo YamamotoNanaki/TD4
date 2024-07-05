@@ -8,6 +8,7 @@
 #include"EnemyHighlighting.h"
 #include"DronePostEffect.h"
 #include"DroneRecoveryUI.h"
+#include"PoseMenu.h"
 
 class Player :public IFE::Component
 {
@@ -52,6 +53,8 @@ public:
 private:
 	CameraChangeParam ccp_;
 #pragma endregion
+
+	PoseMenu* pose_ = nullptr;
 
 public:
 

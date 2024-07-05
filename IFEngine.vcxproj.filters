@@ -175,6 +175,18 @@
     <Filter Include="ヘッダー ファイル\Source\Effect">
       <UniqueIdentifier>{55145910-3a1b-4d69-830e-3004f9c9d2d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Source\Config">
+      <UniqueIdentifier>{19e20959-1842-4900-afe8-eb5092cafb21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Source\Config">
+      <UniqueIdentifier>{d3efe2f9-f639-4575-822a-25de78c8898b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Source\StageGimmick\Event">
+      <UniqueIdentifier>{4a71d974-11bb-4434-9842-03ae43472bd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Source\StageGimmick\Event">
+      <UniqueIdentifier>{f3884fd0-f57d-4265-87e8-b3af9350d0fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp">
@@ -433,35 +445,44 @@
     <ClCompile Include="Source\Player\PlayerActionCamera.cpp">
       <Filter>ソース ファイル\Source\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Source\StageGimmick\DamageEvent.cpp">
-      <Filter>ソース ファイル\Source\StageGimmick</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Player\Propeller.cpp">
       <Filter>ソース ファイル\Source\Player</Filter>
     </ClCompile>
     <ClCompile Include="Source\PostEffect\DronePostEffect.cpp">
       <Filter>ソース ファイル\Source\PostEffect</Filter>
     </ClCompile>
-    <ClCompile Include="Source\StageGimmick\EventFactory.cpp">
-      <Filter>ソース ファイル\Source\StageGimmick</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StageGimmick\DoorEvent.cpp">
-      <Filter>ソース ファイル\Source\StageGimmick</Filter>
-    </ClCompile>
     <ClCompile Include="Source\UI\DroneRecoveryUI.cpp">
       <Filter>ソース ファイル\Source\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StageGimmick\DroneKeepoutZoneEvent.cpp">
-      <Filter>ソース ファイル\Source\StageGimmick</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StageGimmick\DroneKeepoutZoneObject.cpp">
-      <Filter>ソース ファイル\Source\StageGimmick</Filter>
     </ClCompile>
     <ClCompile Include="Source\Effect\CameraChange.cpp">
       <Filter>ソース ファイル\Source\Effect</Filter>
     </ClCompile>
     <ClCompile Include="Source\Enemy\TrapEnemy.cpp">
       <Filter>ソース ファイル\Source\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageGimmick\DamageEvent.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageGimmick\DoorEvent.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageGimmick\DroneKeepoutZoneEvent.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageGimmick\DroneKeepoutZoneObject.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageGimmick\EventFactory.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageGimmick\EnemySpawnEvent.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Config\PoseMenu.cpp">
+      <Filter>ソース ファイル\Source\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Config\Config.cpp">
+      <Filter>ソース ファイル\Source\Config</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -757,38 +778,47 @@
     <ClInclude Include="Source\Player\PlayerActionCamera.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StageGimmick\IEvent.h">
-      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StageGimmick\DamageEvent.h">
-      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Player\Propeller.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
     <ClInclude Include="Source\PostEffect\DronePostEffect.h">
       <Filter>ヘッダー ファイル\Source\PostEffect</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StageGimmick\EventFactory.h">
-      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StageGimmick\DoorEvent.h">
-      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
-    </ClInclude>
     <ClInclude Include="Source\UI\DroneRecoveryUI.h">
       <Filter>ヘッダー ファイル\Source\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StageGimmick\DroneKeepoutZoneEvent.h">
-      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StageGimmick\DroneKeepoutZoneObject.h">
-      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
     </ClInclude>
     <ClInclude Include="Source\Effect\CameraChange.h">
       <Filter>ヘッダー ファイル\Source\Effect</Filter>
     </ClInclude>
     <ClInclude Include="Source\Enemy\TrapEnemy.h">
       <Filter>ヘッダー ファイル\Source\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\DamageEvent.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\DoorEvent.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\DroneKeepoutZoneEvent.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\DroneKeepoutZoneObject.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\EventFactory.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\IEvent.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\EnemySpawnEvent.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Config\PoseMenu.h">
+      <Filter>ヘッダー ファイル\Source\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Config\Config.h">
+      <Filter>ヘッダー ファイル\Source\Config</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Util\IFEList.h">
       <Filter>ヘッダー ファイル\Engine\Util</Filter>

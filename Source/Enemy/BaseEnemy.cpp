@@ -4,6 +4,7 @@
 #include "transform.h"
 #include "ObjectManager.h"
 #include "PlayerDrone.h"
+#include "IFETime.h"
 
 using namespace IFE;
 
@@ -37,7 +38,7 @@ void IFE::BaseEnemy::Update()
 {
 	//hitcool
 	if (isHit_ == true) {
-		hitTime_--;
+		hitTime_-= IFE::IFETime::sDeltaTime_;
 		if (hitTime_ == 0) {
 			isHit_ = false;
 		}

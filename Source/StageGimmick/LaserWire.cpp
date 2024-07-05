@@ -26,6 +26,7 @@ void LaserWire::Initialize()
 	if(event_==nullptr)event_ = IFE::EventFactory::Instance()->CreateEventClass(EventName::EventString(eventType_));
 
 	event_->Initialize();
+	event_->InputTransform(*transform_);
 	
 }
 
@@ -127,9 +128,9 @@ void LaserWire::ComponentDebugGUI()
 	}
 
 	int32_t oldEventType = eventType_;
-	//設定したいイベントの番号にする、最大値設定がまだ手動になってる
+	//設定したいイベントの番号にする
 	gui->Combo("event Type", eventType_, items);
-	//gui->DragIntGUI(&eventType_, "EventType", 1.0f,0,1);
+	
 	//当たってイベントが起きるまでの時間を設定
 	gui->DragFloatGUI(&hitMaxTime_, "HitTime", 1.0f, 0, 1000);
 	
@@ -202,6 +203,7 @@ std::string LaserWire::EventTypeToString(EventType eventType)
 	case EventType::damage:   return "damage";
 	case EventType::door: return "door";
 	case EventType::DroneKeepoutZone: return "droneKeepoutZone";
+	case EventType::EnemySpawn: return "EnemySpawn";
 	default:    return "UNKNOWN";
 	}
 }
