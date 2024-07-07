@@ -463,7 +463,7 @@ std::string IFE::ObjectManager::GetObjectNameGUI()
 	}
 
 	static int32_t returnNum = 0;
-	ImguiManager::Instance()->Combo("component name", returnNum, items);
+	ImguiManager::Instance()->Combo(U8("オブジェクト名"), returnNum, items);
 	return items[returnNum];
 }
 

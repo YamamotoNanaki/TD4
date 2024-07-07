@@ -25,13 +25,13 @@ void IFE::Transform::Draw()
 	UpdateMatrix();
 
 	Matrix mat = matWorld_;
+	if (parentWorldMatrix_)
+	{
+		mat *= *parentWorldMatrix_;
+	}
 	if (parent_)
 	{
 		mat *= parent_->matWorld_;//e‚Ìs—ñ‚ðŠ|‚¯ŽZ‚·‚é
-	}
-	if(parentWorldMatrix_)
-	{
-		mat *= *parentWorldMatrix_;
 	}
 	camera_ = CameraManager::sActivCamera_;
 	constMapTransform_->world = mat;

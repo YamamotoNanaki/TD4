@@ -15,7 +15,8 @@ void IFE::Attach3DModel::Update()
 		SetTransform();
 		if (!parentTransform_)
 		{
-			transform_->parentWorldMatrix_ = nullptr;
+			transform_->SetAttach3DParent(nullptr);
+			parentTransform_ = nullptr;
 		}
 	}
 }
@@ -27,7 +28,7 @@ void IFE::Attach3DModel::SetTransform()
 	auto model_ = dynamic_cast<FBXModel*>(ptr->GetModel());
 	if (!model_ || boneName_ == "")return;
 	parentTransform_ = model_->GetBoneTransform(boneName_);
-	transform_->parentWorldMatrix_ = parentTransform_;
+	transform_->SetAttach3DParent(parentTransform_);
 	transform_->parent_ = ptr->transform_;
 }
 

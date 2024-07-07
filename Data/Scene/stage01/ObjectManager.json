@@ -425,7 +425,7 @@
     },
     {
         "Attach3DModel": {
-            "boneName": "Head",
+            "boneName": "Shoulder.R",
             "parentName": "normalEnemy"
         },
         "Material": {
