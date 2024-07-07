@@ -187,6 +187,12 @@
     <Filter Include="ソース ファイル\Source\StageGimmick\Event">
       <UniqueIdentifier>{f3884fd0-f57d-4265-87e8-b3af9350d0fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Source\Map">
+      <UniqueIdentifier>{f69cc511-bb34-4419-b149-88c4038bdaad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Source\Map">
+      <UniqueIdentifier>{cd3ef3b4-188a-484f-aa08-9b3fcdac760c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp">
@@ -483,6 +489,9 @@
     </ClCompile>
     <ClCompile Include="Source\Config\Config.cpp">
       <Filter>ソース ファイル\Source\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Map\MapUI.cpp">
+      <Filter>ソース ファイル\Source\Map</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Model\Attach3DModel.cpp">
       <Filter>ソース ファイル\Engine\Model</Filter>
@@ -825,6 +834,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Util\IFEList.h">
       <Filter>ヘッダー ファイル\Engine\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Map\MapUI.h">
+      <Filter>ヘッダー ファイル\Source\Map</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Model\Attach3DModel.h">
       <Filter>ヘッダー ファイル\Engine\Model</Filter>
