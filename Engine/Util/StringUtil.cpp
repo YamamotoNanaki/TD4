@@ -2,6 +2,7 @@
 #include "Debug.h"
 #include <windows.h>
 #include <vector>
+#include <algorithm>
 
 std::wstring StringToWString(const std::string& oString)
 {
@@ -24,4 +25,11 @@ std::wstring StringToWString(const std::string& oString)
 
 	// •ÏŠ·Œ‹‰Ê‚ð•Ô‚·
 	return(oRet);
+}
+
+std::string ToLower(const std::string& str)
+{
+	std::string lowerStr = str;
+	std::transform(lowerStr.begin(), lowerStr.end(), lowerStr.begin(), [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+	return lowerStr;
 }

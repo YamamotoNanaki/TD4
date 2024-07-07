@@ -1,4 +1,5 @@
 #include "ComponentHelp.h"
+#include "StringUtil.h"
 #include "Component.h"
 #include "Transform.h"
 #include "TransferGeometryBuffer.h"
@@ -185,13 +186,39 @@ Component* IFE::ComponentHelp::StringToComponent(const std::string& str)
 
 #ifdef EditorMode
 #include "ImguiManager.h"
+
+std::vector<std::string> IFE::ComponentHelp::GetRegisteredClasses()
+{
+	// Collect all keys (class names) from the unordered_map
+	std::vector<std::string> classNames;
+	for (const auto& pair : creators_) {
+		classNames.push_back(pair.first);
+	}
+
+	// Sort the class names
+	std::sort(classNames.begin(), classNames.end());
+
+	return classNames;
+}
+
+std::vector<std::string> IFE::ComponentHelp::SearchClasses(const std::string& partialName)
+{
+	std::vector<std::string> matches;
+	std::string lowerPartialName = ToLower(partialName);
+	for (const auto& pair : creators_) {
+		if (ToLower(pair.first).find(lowerPartialName) != std::string::npos) {
+			matches.push_back(pair.first);
+		}
+	}
+	std::sort(matches.begin(), matches.end());
+	return matches;
+}
+
 string IFE::ComponentHelp::GetComponentList()
 {
-	std::vector<std::string>items;
-	for (auto itr : creators_)
-	{
-		items.push_back(itr.first);
-	}
+	static std::string search;
+	ImguiManager::Instance()->InputTextGUI(U8("åüçı"), search);
+	std::vector<std::string>items = ComponentHelp::SearchClasses(search);
 
 	static int32_t returnNum = 0;
 	ImguiManager::Instance()->Combo("component name", returnNum, items);
