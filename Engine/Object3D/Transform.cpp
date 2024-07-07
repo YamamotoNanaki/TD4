@@ -23,16 +23,18 @@ void IFE::Transform::Update()
 void IFE::Transform::Draw()
 {
 	UpdateMatrix();
+
+	Matrix mat = matWorld_;
 	if (parent_)
 	{
-		matWorld_ *= parent_->matWorld_;//e‚Ìs—ñ‚ðŠ|‚¯ŽZ‚·‚é
+		mat *= parent_->matWorld_;//e‚Ìs—ñ‚ðŠ|‚¯ŽZ‚·‚é
 	}
-	else if(parentWorldMatrix_)
+	if(parentWorldMatrix_)
 	{
-		matWorld_ *= *parentWorldMatrix_;
+		mat *= *parentWorldMatrix_;
 	}
 	camera_ = CameraManager::sActivCamera_;
-	constMapTransform_->world = matWorld_;
+	constMapTransform_->world = mat;
 	if (!camera_)
 	{
 		camera_ = CameraManager::sActivCamera_;

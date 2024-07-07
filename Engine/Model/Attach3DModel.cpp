@@ -28,11 +28,11 @@ void IFE::Attach3DModel::SetTransform()
 	if (!model_ || boneName_ == "")return;
 	parentTransform_ = model_->GetBoneTransform(boneName_);
 	transform_->parentWorldMatrix_ = parentTransform_;
+	transform_->parent_ = ptr->transform_;
 }
 
 void IFE::Attach3DModel::LoadingComponent(nlohmann::json& json)
 {
-	json;
 	boneName_ = json["boneName"];
 	parentName_ = json["parentName"];
 }
@@ -54,6 +54,7 @@ void IFE::Attach3DModel::ComponentDebugGUI()
 		{
 			boneName_ = bone;
 			parentName_ = parent;
+			SetTransform();
 		}
 		im->EndTreeNode();
 	}
