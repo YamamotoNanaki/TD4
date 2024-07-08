@@ -30,7 +30,9 @@ void MapUI::Initialize()
 			objectPos_.push_back({ 0,0 });
 			objectRot_.push_back(0.0f);
 
-			mapSprite_.push_back(IFE::SpriteManager::Instance()->AddInitialize(std::string("map"+count),""));
+			IFE::Sprite* add = IFE::SpriteManager::Instance()->AddInitialize(std::string("map"), "white");
+
+			mapSprite_.push_back(add);
 			count++;
 		}
 		

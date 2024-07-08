@@ -33,6 +33,7 @@
 #include"CameraChange.h"
 #include"PoseMenu.h"
 #include"Config.h"
+#include "MapUI.h"
 
 using namespace IFE;
 using namespace std;
@@ -83,6 +84,7 @@ void IFE::ComponentHelp::StaticHelpInitialize()
 	Register("Clear", &CreateInstance<Clear>);
 	Register("Over", &CreateInstance<Over>);
 	Register("CameraChange", &CreateInstance<CameraChange>);
+	Register("MapUI", &CreateInstance<MapUI>);
 	//É|Å[ÉY
 	Register("PoseMenu", &CreateInstance<PoseMenu>);
 	Register("Config", &CreateInstance<Config>);
