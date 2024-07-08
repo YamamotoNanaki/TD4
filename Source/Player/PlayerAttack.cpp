@@ -3,6 +3,7 @@
 #include "Transform.h"
 #include "Collider.h"
 #include"NormalEnemy.h"
+#include "TrapEnemy.h"
 #include "Boss.h"
 
 void PlayerAttack::Initialize()
@@ -43,6 +44,23 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 			{
 				//“–‚½‚Á‚½Žž‚Ìˆ—
 				hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->OneShot();
+			}
+		}
+	}
+	//trapEnemy
+	if (isAttack_ == true && (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()))
+	{
+		if (hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetIsHit() == false)
+		{
+			if (hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetBack() == false)
+			{
+				//“–‚½‚Á‚½Žž‚Ìˆ—
+				hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->DecHp();
+			}
+			else
+			{
+				//“–‚½‚Á‚½Žž‚Ìˆ—
+				hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->OneShot();
 			}
 		}
 	}

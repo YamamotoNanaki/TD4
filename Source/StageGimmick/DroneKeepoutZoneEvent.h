@@ -38,5 +38,8 @@ private:
 	//‹Ö~ƒ][ƒ“‚Ì–{‘Ì
 	IFE::Object3D* zoneObject_ = nullptr;
 
+	//‹N“®‚µ‚Ä‚¢‚é‚©
+	bool isActive_ = false;
+
 
 };

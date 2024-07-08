@@ -42,6 +42,7 @@ namespace IFE
 		//当たり判定の距離
 		//0以下は距離制限なし
 		float rayHittingdistance = -1;
+		Vector3 reject_;
 
 		//コライダーの番号
 		uint32_t colliderNumber_ = 0;

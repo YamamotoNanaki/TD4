@@ -26,6 +26,7 @@ namespace IFE
 	public:
 		void Initialize()override;
 		void Draw()override;
+		void MeshDraw(Material* mat, std::string str, uint32_t num);
 		void Update()override;
 		VertexBuffer<VertexBone>* GetVertexBone();
 		VertexBuffer<Vertex>* GetVertex();

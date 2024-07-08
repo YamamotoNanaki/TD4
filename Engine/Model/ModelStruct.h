@@ -3,6 +3,7 @@
 #include <string>
 #include "IFEMath.h"
 #include "Quaternion.h"
+#include "Material.h"
 
 namespace IFE
 {

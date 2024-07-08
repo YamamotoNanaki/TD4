@@ -435,6 +435,8 @@ void IFE::CollideManager::PushBack(ColliderCore* colA, ColliderCore* colB, const
 	// ’n–Ê”»’è‚µ‚«‚¢’l
 	static const float threshold = cosf(ConvertToRadians(30.0f));
 	static const Vector3 up = { 0,1,0 };
+	colA->reject_ = reject;
+	colB->reject_ = -reject;
 	if (colA->GetNoPushBackFlag() || colB->GetNoPushBackFlag())
 	{
 		return;

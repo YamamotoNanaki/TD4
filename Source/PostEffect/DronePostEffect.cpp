@@ -112,14 +112,14 @@ void DronePostEffect::PostEffectDebugGUI()
 	//static float noiseWidth = 0;
 	//static float noisePower = 0;
 	//static float noisePosY = 0;
-	//static bool drone = false;
+	static bool drone = false;
 	//im->DragFloatGUI(&noiseWidth, "noiseWidth", 0.01f, 0, 1);
 	//im->DragFloatGUI(&noisePower, "noisePower", 0.01f);
 	//im->DragFloatGUI(&noisePosY, "noisePosY", 0.01f, 0, 1);
-	im->CheckBoxGUI(&droneFlag_, "drone flag");
+	im->CheckBoxGUI(&drone, "drone flag");
 	//buff_->noiseWidth = noiseWidth;
 	//buff_->noisePower = noisePower;
 	//buff_->noisePosY = noisePosY;
-	buff_->drone = droneFlag_;
+	buff_->drone = drone;
 }
 #endif

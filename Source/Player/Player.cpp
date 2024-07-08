@@ -24,25 +24,30 @@ void Player::Initialize()
 	auto droneRecoveryUIPtr = IFE::SpriteManager::Instance()->GetSpritePtr("droneRecoveryUI")->GetComponent<DroneRecoveryUI>();
 	droneRecoveryUI_ = droneRecoveryUIPtr;
 
+	pose_ = IFE::ObjectManager::Instance()->GetObjectPtr("PoseMenu")->GetComponent<PoseMenu>();
+
 	transform_->position_ = { 0,0,0 };
 	objectPtr_->DrawFlag_ = false;
 }
 
 void Player::Update()
 {
-	ChangeMode();
-
-	DroneRecovery();
-
-	if (modeFlag_ == false)
+	if (pose_->GetPoseFlag()==false)
 	{
-		action_->MoveUpdate();
-	}
-	else
-	{
-		if (droneRecoveryFlag_ == false)
+		ChangeMode();
+
+		DroneRecovery();
+
+		if (modeFlag_ == false)
 		{
-			drone_->MoveUpdate();
+			action_->MoveUpdate();
+		}
+		else
+		{
+			if (droneRecoveryFlag_ == false)
+			{
+				drone_->MoveUpdate();
+			}
 		}
 	}
 }
@@ -71,6 +76,10 @@ void Player::DroneBreak()
 		IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
 	}
 	drone_->SetDrawFlag(false);
+	droneRecoverytime_ = 0.0f;
+	droneRecoveryUI_->SetDrawFlag(false);
+	droneRecoveryFlag_ = false;
+	IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = false;
 }
 
 bool Player::GetMode()
@@ -113,6 +122,7 @@ void Player::ChangeMode()
 					drone_->SetIsDroneSurvival(true);
 					enemyHilight_->updateFlag_ = true;
 					dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = true;
+					IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = true;
 				}
 			}
 			else
@@ -121,7 +131,7 @@ void Player::ChangeMode()
 				modeFlag_ = false;
 				drone_->SetDrawFlag(drone_->GetIsDroneSurvival());
 				IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
-				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;
+				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;				
 			}
 			//UI•\Ž¦Ø‘Ö
 			ui_->UIChange(modeFlag_);
@@ -148,9 +158,6 @@ void Player::DroneRecovery()
 		if (droneRecoverytime_ > maxDroneRecoverytime_)
 		{
 			DroneBreak();
-			droneRecoverytime_ = 0.0f;
-			droneRecoveryUI_->SetDrawFlag(false);
-			droneRecoveryFlag_ = false;
 		}
 	}
 }
