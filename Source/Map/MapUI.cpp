@@ -33,7 +33,7 @@ void MapUI::Update()
 
 void MapUI::Draw()
 {
-	uint8_t count = 0;
+	//uint8_t count = 0;
 	//カメラのangleYの取得(正面ベクトルから取得)
 	//float angle = -(atan2(IFE::CameraManager::Instance()->GetCamera("ActionCamera")-> , cameraFrontVec_.x) + myMath::AX_PIF / 2);
 
