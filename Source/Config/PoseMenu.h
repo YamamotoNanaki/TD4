@@ -23,6 +23,8 @@ private:
 
 	float oldLAnalog_ = 0.0f;
 
+	bool configFlag_ = false;
+
 public:
 
 	PoseMenu();
@@ -44,10 +46,17 @@ public:
 
 	bool GetPoseFlag();
 
+	bool GetCofigFlag();
+	void SetConfigFlag(bool flag);
+
 private:
 
 	void PoseChange();
 
 	void PoseSelect();
+
+	void Select();
+
+	void Reset();
 };
 
