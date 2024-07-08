@@ -110,4 +110,6 @@ void PoseMenu::Reset()
 	selectFlag_ = PoseSelectFlag::RETURNTITLE;
 	selectNum_ = 0;
 	oldLAnalog_ = 0.0f;
+	poseFlag_ = false;
+	configFlag_ = false;
 }
