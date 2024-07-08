@@ -27,6 +27,7 @@ namespace IFE
 	private:
 		void ParseNodeRecursive(const aiScene* scene, aiNode* node, Node* targetParent = nullptr);
 		Mesh* ProcessMesh(const aiScene* scene, aiMesh* mesh);
+		void SetBoneHierarchy(aiNode* node, Bone* parentBone);
 	public:
 		FBXModel* FBXLoad(const std::string& fileName, const std::string& fileType = ".fbx", bool smooth = false);
 	};

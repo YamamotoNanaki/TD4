@@ -2,7 +2,7 @@
 #include <cmath>
 #include <cfloat>
 #include <cassert>
-#include <cfloat>
+#include <stdexcept>
 
 using namespace IFE;
 
@@ -88,6 +88,24 @@ Matrix& IFE::Matrix::operator/=(float s)
 {
 	*this = *this / s;
 	return *this;
+}
+
+Float4 IFE::Matrix::operator[](size_t row)
+{
+	if (row < 0 || row >= 4) {
+		throw std::out_of_range("Index out of range");
+	}
+
+	return Float4(m[row][0], m[row][1], m[row][2], m[row][3]);
+}
+
+const Float4 IFE::Matrix::operator[](size_t row) const
+{
+	if (row < 0 || row >= 4) {
+		throw std::out_of_range("Index out of range");
+	}
+
+	return Float4(m[row][0], m[row][1], m[row][2], m[row][3]);
 }
 
 void IFE::Matrix::SetX(float x, float y, float z, float w)

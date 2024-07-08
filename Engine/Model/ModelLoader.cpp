@@ -232,6 +232,24 @@ Mesh* IFE::ModelLoader::ProcessMesh(const aiScene* scene, aiMesh* mesh)
 	}
 }
 
+void IFE::ModelLoader::SetBoneHierarchy(aiNode* node, Bone* parentBone)
+{
+	std::string nodeName(node->mName.data);
+
+	auto it = std::find_if(bones_.begin(), bones_.end(), [&](const Bone& b) {
+		return b.name == nodeName;
+		});
+
+	if (it != bones_.end()) {
+		it->parent = parentBone;
+		parentBone = &(*it);  // 更新して子ノードに伝える
+	}
+
+	for (unsigned int i = 0; i < node->mNumChildren; i++) {
+		SetBoneHierarchy(node->mChildren[i], parentBone);
+	}
+}
+
 FBXModel* IFE::ModelLoader::FBXLoad(const std::string& fileName, const std::string& fileType, bool smooth)
 {
 	Assimp::Importer importer;
@@ -310,6 +328,8 @@ FBXModel* IFE::ModelLoader::FBXLoad(const std::string& fileName, const std::stri
 		}
 		animations_.push_back(a);
 	}
+
+	SetBoneHierarchy(scene->mRootNode,nullptr);//ボーンの親設定
 
 	FBXModel* fbx = new FBXModel;
 	for (std::unique_ptr<Node>& node : nodes_)

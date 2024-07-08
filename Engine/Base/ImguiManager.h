@@ -68,12 +68,14 @@ namespace IFE
 		void TextFloatGUI(const std::string& text,float number);
 		void TextFloat2GUI(const std::string& text,const Float2& number);
 		void TextFloat3GUI(const std::string& text,const Float3& number);
-		void TextFloat4GUI(const std::string& text,const Float4& number);
+		void TextFloat4GUI(const std::string& text, const Float4& number);
+		void TextMatrixGUI(const std::string& text,const Matrix& mat);
 		void TextIntGUI(const std::string& text, int32_t number);
 		void TextFloatGUI(float number);
 		void TextFloat2GUI(const Float2& number);
 		void TextFloat3GUI(const Float3& number);
 		void TextFloat4GUI(const Float4& number);
+		void TextMatrixGUI(const Matrix& mat);
 		void TextIntGUI(int32_t number);
 		void InputTextGUI(const std::string& label, std::string& text);
 		void DragIntGUI(int32_t* i, const std::string& label, float speed = 1, int32_t min = 0, int32_t max = 0);

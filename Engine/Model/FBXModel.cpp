@@ -243,13 +243,13 @@ void IFE::FBXModel::SetMaterial(Material* mat)
 	material_ = mat;
 }
 
-Matrix* IFE::FBXModel::GetBoneTransform(std::string boneName)
+Bone* IFE::FBXModel::GetBone(std::string boneName)
 {
 	for (auto& bone : bones_)
 	{
 		if (bone.name == boneName)
 		{
-			return &bone.finalMatrix;
+			return &bone;
 		}
 	}
 	return nullptr;
@@ -331,6 +331,18 @@ bool IFE::FBXModel::ModelGUI(bool deleteFlag)
 			for (auto itr : bones_)
 			{
 				imgui->TextGUI(itr.name);
+			}
+			imgui->EndTreeNode();
+		}
+		if (imgui->NewTreeNode(U8("アニメーション")))
+		{
+			for (auto itr : animations_)
+			{
+				imgui->TextGUI(itr.name);
+			}
+			if (animations_.size() == 0)
+			{
+				imgui->TextGUI("no anim");
 			}
 			imgui->EndTreeNode();
 		}

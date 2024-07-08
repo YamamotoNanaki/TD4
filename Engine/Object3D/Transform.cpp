@@ -4,9 +4,17 @@
 #include "CameraManager.h"
 #include "Object3D.h"
 #include "Sprite.h"
+#include "ModelStruct.h"
 
 using namespace IFE;
 using namespace std;
+
+void IFE::Transform::ParentBoneMatrix(Matrix& mat, Bone* bone)
+{
+	if (!bone)return;
+	mat *= bone->finalMatrix;
+	ParentBoneMatrix(mat, bone->parent);
+}
 
 void IFE::Transform::Initialize()
 {
@@ -25,10 +33,7 @@ void IFE::Transform::Draw()
 	UpdateMatrix();
 
 	Matrix mat = matWorld_;
-	if (parentWorldMatrix_)
-	{
-		mat *= *parentWorldMatrix_;
-	}
+	ParentBoneMatrix(mat, parentBone_);
 	if (parent_)
 	{
 		mat *= parent_->matWorld_;//e‚Ìs—ñ‚ðŠ|‚¯ŽZ‚·‚é
@@ -443,7 +448,7 @@ void IFE::TransformParticle::ComponentDebugGUI()
 	if (eulerAngleDegrees_.x >= 360)
 	{
 		eulerAngleDegrees_.x -= 360;
-}
+	}
 	if (eulerAngleDegrees_.y >= 360)
 	{
 		eulerAngleDegrees_.y -= 360;

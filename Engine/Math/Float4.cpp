@@ -1,5 +1,6 @@
 #include "Float4.h"
 #include <assert.h>
+#include <stdexcept>
 
 using namespace IFE;
 
@@ -112,4 +113,26 @@ Float4 IFE::Float4::operator=(float f)
 	z = f;
 	w = f;
 	return *this;
+}
+
+float& IFE::Float4::operator[](size_t index)
+{
+	switch (index) {
+	case 0: return x;
+	case 1: return y;
+	case 2: return z;
+	case 3: return w;
+	default: throw std::out_of_range("Index out of range");
+	}
+}
+
+const float& IFE::Float4::operator[](size_t index) const
+{
+	switch (index) {
+	case 0: return x;
+	case 1: return y;
+	case 2: return z;
+	case 3: return w;
+	default: throw std::out_of_range("Index out of range");
+	}
 }

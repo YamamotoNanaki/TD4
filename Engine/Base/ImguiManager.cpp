@@ -543,20 +543,23 @@ bool IFE::ImguiManager::ModelAddGUI(std::string* newObjectName, std::string* new
 {
 	if (ImGui::CollapsingHeader("New Model"))
 	{
-		static char name[256];
-		ImGui::InputText("New Model Name", name, sizeof(name));
-		*newObjectName = name;
+		Instance()->InputTextGUI("New Model Name", *newObjectName);
 
 		ImGui::Checkbox("smooth", smooth);
 
-		int32_t num = (int32_t)*settings;
-		ImGui::RadioButton("Load .obj", &num, (int32_t)AddModelSettings::LoadOBJ);
-		ImGui::RadioButton("Load .gltf", &num, (int32_t)AddModelSettings::LoadGLTF);
-		ImGui::RadioButton("Primitiv Cube", &num, (int32_t)AddModelSettings::CreateCube);
-		ImGui::RadioButton("Primitiv Square", &num, (int32_t)AddModelSettings::CreateSquare);
-		ImGui::RadioButton("Primitiv Triangle", &num, (int32_t)AddModelSettings::CreateTriangle);
-		ImGui::RadioButton("Primitiv Circle", &num, (int32_t)AddModelSettings::CreateCircle);
-		ImGui::RadioButton("Primitiv Sphere", &num, (int32_t)AddModelSettings::CreateSphere);
+		int32_t num = *settings;
+		if (num > 1)num -= 98;
+		std::vector<std::string>items;
+		items.push_back("LoadOBJ");
+		items.push_back("LoadGLTF");
+		items.push_back("CreateCube");
+		items.push_back("CreateSquare");
+		items.push_back("CreateTriangle");
+		items.push_back("CreateCircle");
+		items.push_back("CreateSphere");
+
+		Instance()->Combo("option", num, items);
+		if (num > 1)num += 98;
 
 		*settings = (uint16_t)num;
 
@@ -760,6 +763,23 @@ void IFE::ImguiManager::TextFloat4GUI(const std::string& text, const Float4& num
 	}
 }
 
+void IFE::ImguiManager::TextMatrixGUI(const std::string& text, const Matrix& mat)
+{
+	if (Instance()->NewTreeNode(text))
+	{
+		std::string s;
+		s = "m[0]:[0]" + std::to_string(mat[0][0]) + ",[1]" + std::to_string(mat[0][1]) + ",[2]" + std::to_string(mat[0][2]) + ",[3]" + std::to_string(mat[0][3]);
+		Instance()->TextGUI(s);
+		s = "m[1]:[0]" + std::to_string(mat[1][0]) + ",[1]" + std::to_string(mat[1][1]) + ",[2]" + std::to_string(mat[1][2]) + ",[3]" + std::to_string(mat[1][3]);
+		Instance()->TextGUI(s);
+		s = "m[2]:[0]" + std::to_string(mat[2][0]) + ",[1]" + std::to_string(mat[2][1]) + ",[2]" + std::to_string(mat[2][2]) + ",[3]" + std::to_string(mat[2][3]);
+		Instance()->TextGUI(s);
+		s = "m[3]:[0]" + std::to_string(mat[3][0]) + ",[1]" + std::to_string(mat[3][1]) + ",[2]" + std::to_string(mat[3][2]) + ",[3]" + std::to_string(mat[3][3]);
+		Instance()->TextGUI(s);
+		Instance()->EndTreeNode();
+	}
+}
+
 void IFE::ImguiManager::TextIntGUI(const std::string& text, int32_t number)
 {
 	std::string t = text + " : " + std::to_string(number);
@@ -784,6 +804,11 @@ void IFE::ImguiManager::TextFloat3GUI(const Float3& number)
 void IFE::ImguiManager::TextFloat4GUI(const Float4& number)
 {
 	TextFloat4GUI("float4", number);
+}
+
+void IFE::ImguiManager::TextMatrixGUI(const Matrix& mat)
+{
+	TextMatrixGUI("matrix", mat);
 }
 
 void IFE::ImguiManager::TextIntGUI(int32_t number)

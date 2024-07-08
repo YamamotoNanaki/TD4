@@ -24,5 +24,8 @@ namespace IFE
 		Float4 operator=(const Float4& f);
 		Float4 operator=(float* f);
 		Float4 operator=(float f);
+
+		float& operator[](size_t index);
+		const float& operator[](size_t index)const;
 	};
 };

@@ -12,7 +12,7 @@ namespace IFE
 	{
 		Default, Billboard, YBillboard
 	};
-
+	struct Bone;
 	class Transform : public Component
 	{
 		using Component::Component;
@@ -22,7 +22,7 @@ namespace IFE
 
 		Float3 lossyScale_;
 		Quaternion rotationQuaternion_;
-		Matrix* parentWorldMatrix_ = nullptr;
+		Bone* parentBone_ = nullptr;
 	public:
 		bool eulerFlag_ = false;
 		Float3 rotation_;
@@ -35,6 +35,9 @@ namespace IFE
 		Float3 position_ = { 0,0,0 };
 
 		Transform* parent_ = nullptr;
+
+	private:
+		void ParentBoneMatrix(Matrix& mat, Bone* bone);
 
 	public:
 		void Initialize()override;
@@ -49,7 +52,7 @@ namespace IFE
 		Vector3 GetUpVector();
 		Vector3 GetRightVector();
 		void MovePushBack(Vector3 move);
-		inline void SetAttach3DParent(Matrix* mat) { parentWorldMatrix_ = mat; }
+		inline void SetAttach3DParent(Bone* mat) { parentBone_ = mat; }
 
 		/// <summary>
 		///ƒ[ƒ‹ƒhÀ•W‚ğæ“¾‚·‚é

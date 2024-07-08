@@ -8,12 +8,14 @@ namespace IFE
 	class Attach3DModel : public Component
 	{
 		std::string boneName_;
-		Matrix* parentTransform_;
+		Bone* parentBone_;
 		std::string parentName_;
+
+	private:
+		void SetTransform();
 	public:
 		void Initialize();
 		void Update();
-		void SetTransform();
 
 		void LoadingComponent(nlohmann::json& json);
 #ifdef EditorMode

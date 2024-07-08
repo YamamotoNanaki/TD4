@@ -1,5 +1,6 @@
 #pragma once
 #include "Vector3.h"
+#include "Float4.h"
 
 namespace IFE
 {
@@ -22,6 +23,8 @@ namespace IFE
 		Matrix& operator*=(const Matrix& m);
 		Matrix& operator*=(float s);
 		Matrix& operator/=(float s);
+		Float4 operator[](size_t row);
+		const Float4 operator[](size_t row) const;
 
 		void SetX(float x, float y, float z, float w);
 		void SetY(float x, float y, float z, float w);

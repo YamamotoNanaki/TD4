@@ -10,13 +10,13 @@ void IFE::Attach3DModel::Initialize()
 
 void IFE::Attach3DModel::Update()
 {
-	if (!parentTransform_)
+	if (!parentBone_)
 	{
 		SetTransform();
-		if (!parentTransform_)
+		if (!parentBone_)
 		{
 			transform_->SetAttach3DParent(nullptr);
-			parentTransform_ = nullptr;
+			parentBone_ = nullptr;
 		}
 	}
 }
@@ -27,8 +27,8 @@ void IFE::Attach3DModel::SetTransform()
 	if (!ptr)return;
 	auto model_ = dynamic_cast<FBXModel*>(ptr->GetModel());
 	if (!model_ || boneName_ == "")return;
-	parentTransform_ = model_->GetBoneTransform(boneName_);
-	transform_->SetAttach3DParent(parentTransform_);
+	parentBone_ = model_->GetBone(boneName_);
+	transform_->SetAttach3DParent(parentBone_);
 	transform_->parent_ = ptr->transform_;
 }
 
@@ -47,16 +47,29 @@ void IFE::Attach3DModel::ComponentDebugGUI()
 	static std::string parent;
 	im->TextGUI(U8("ボーン : " + boneName_));
 	im->TextGUI(U8("親オブジェクト : " + parentName_));
-	if (im->NewTreeNode(U8("変更")))
+	if (im->NewTreeNode(U8("ボーン変更")))
 	{
 		im->InputTextGUI("boneName", bone);
-		parent = ObjectManager::Instance()->GetObjectNameGUI();
 		if (im->ButtonGUI("Change"))
 		{
 			boneName_ = bone;
+			SetTransform();
+		}
+		im->EndTreeNode();
+	}
+	if (im->NewTreeNode(U8("親オブジェクト変更")))
+	{
+		parent = ObjectManager::Instance()->GetObjectNameGUI();
+		if (im->ButtonGUI("Change"))
+		{
 			parentName_ = parent;
 			SetTransform();
 		}
+		im->EndTreeNode();
+	}
+	if (parentBone_ && im->NewTreeNode(U8("確認用")))
+	{
+		im->TextMatrixGUI(parentBone_->finalMatrix);
 		im->EndTreeNode();
 	}
 }
