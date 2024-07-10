@@ -84,18 +84,18 @@
     },
     {
         "drone_Model": {
-            "fileName": "Drone",
+            "fileName": "drone",
             "settings": 0,
             "smooth": true
         },
         "name": "drone_Model"
     },
     {
-        "Propeller_Model": {
-            "fileName": "Propeller",
+        "name": "propeller_Model",
+        "propeller_Model": {
+            "fileName": "propeller",
             "settings": 0,
-            "smooth": false
-        },
-        "name": "Propeller_Model"
+            "smooth": true
+        }
     }
 ]
