@@ -1,6 +1,6 @@
 # Blender v3.1.2 OBJ File: 'drone.blend'
 # www.blender.org
-mtllib Propeller.mtl
+mtllib propeller.mtl
 o 円柱
 v 0.000000 -0.108972 -0.020000
 v 0.000000 0.165340 -0.020000

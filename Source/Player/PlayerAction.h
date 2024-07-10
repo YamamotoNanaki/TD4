@@ -7,6 +7,7 @@
 #include"SpriteManager.h"
 #include"PlayerActionCamera.h"
 #include"EnemyManager.h"
+#include"Animator.h"
 
 class PlayerAction : public IFE::Component
 {
@@ -57,6 +58,8 @@ private:
 	IFE::EnemyManager* enemyManager_ = nullptr;
 	IFE::BaseEnemy* closestEnemy = nullptr;
 	bool isAttackUI_ = false;
+
+	IFE::Animator* ani_ = nullptr;
 
 public:
 

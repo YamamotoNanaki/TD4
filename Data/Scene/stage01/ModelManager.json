@@ -84,18 +84,26 @@
     },
     {
         "drone_Model": {
-            "fileName": "Drone",
+            "fileName": "drone",
             "settings": 0,
             "smooth": true
         },
         "name": "drone_Model"
     },
     {
-        "Propeller_Model": {
-            "fileName": "Propeller",
+        "propeller_Model": {
+            "fileName": "propeller",
             "settings": 0,
             "smooth": false
         },
-        "name": "Propeller_Model"
+        "name": "propeller_Model"
+    },
+    {
+        "player_animation_Model": {
+            "fileName": "playerMotion",
+            "settings": 1,
+            "smooth": true
+        },
+        "name": "player_animation_Model"
     }
 ]

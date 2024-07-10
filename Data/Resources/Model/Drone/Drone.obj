@@ -1,6 +1,6 @@
 # Blender 4.1.1
 # www.blender.org
-mtllib Drone.mtl
+mtllib drone.mtl
 o Plane
 v 0.961887 0.000000 -0.801572
 v 0.914932 0.000000 -0.688213

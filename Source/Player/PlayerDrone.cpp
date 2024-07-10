@@ -30,7 +30,7 @@ void PlayerDrone::Initialize()
 	//ƒvƒƒyƒ‰
 	for (uint8_t i = 0; i < 4; i++)
 	{
-		auto ptr = IFE::ObjectManager::Instance()->AddInitialize("Propeller", IFE::ModelManager::Instance()->GetModel("Propeller"));
+		auto ptr = IFE::ObjectManager::Instance()->AddInitialize("propeller", IFE::ModelManager::Instance()->GetModel("propeller"));
 		ptr->AddComponent < IFE::Propeller >();
 		propeller_[i] = ptr->GetComponent<IFE::Propeller>();
 		propeller_[i]->transform_->parent_ = transform_;

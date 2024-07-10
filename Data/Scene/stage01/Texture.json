@@ -36,6 +36,8 @@
         "defaultResult.png",
         "Title.png",
         "GameClear.png",
-        "GameOver.png"
+        "GameOver.png",
+        "enemy.png",
+        "helmet.png"
     ]
 }
