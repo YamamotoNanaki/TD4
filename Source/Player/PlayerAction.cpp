@@ -31,6 +31,9 @@ void PlayerAction::Initialize()
 	playerAttack_->SetName("player");
 
 	enemyManager_ = IFE::ObjectManager::Instance()->GetObjectPtr("EnemyManager")->GetComponent<IFE::EnemyManager>();
+
+	ani_ = objectPtr_->GetComponent<IFE::Animator>();
+	ani_->SetAnimation("idle");
 }
 
 void PlayerAction::Update()

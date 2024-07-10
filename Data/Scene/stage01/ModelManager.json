@@ -95,6 +95,17 @@
         "propeller_Model": {
             "fileName": "propeller",
             "settings": 0,
+            "smooth": false
+        },
+        "name": "Propeller_Model"
+    },
+    {
+        "name": "player_animation_Model",
+        "player_animation_Model": {
+            "fileName": "playerMotion",
+            "settings": 1,
+            "smooth": true
+        }
             "smooth": true
         }
     }

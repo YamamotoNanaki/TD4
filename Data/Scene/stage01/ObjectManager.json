@@ -192,6 +192,7 @@
         "prefab": false
     },
     {
+        "Animator": null,
         "Collider": {
             "content": [
                 {
@@ -260,10 +261,11 @@
             "TransferGeometryBuffer",
             "Material",
             "PlayerAction",
-            "Collider"
+            "Collider",
+            "Animator"
         ],
         "drawFlag": true,
-        "model": "dice_Model",
+        "model": "player_animation_Model",
         "name": "PlayerAction",
         "prefab": false
     },
