@@ -1,6 +1,6 @@
 # Blender v3.1.2 OBJ File: 'Gun.blend'
 # www.blender.org
-mtllib Gun.mtl
+mtllib gun.mtl
 o 円柱.001
 v 0.003019 0.150017 0.768100
 v 0.003019 0.150017 0.787679
