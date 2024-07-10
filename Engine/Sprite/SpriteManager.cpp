@@ -2,6 +2,7 @@
 #include "Transform.h"
 #include "TextureManager.h"
 #include "IFEList.h"
+#include <regex>
 
 using namespace std;
 using namespace IFE;
@@ -79,7 +80,7 @@ Sprite* IFE::SpriteManager::AddInitialize(const std::string& spriteName, const s
 {
 	std::unique_ptr<Sprite> ptr = make_unique<Sprite>();
 	ptr->SPRITEInitialize();
-	ptr->spriteName_ = spriteName;
+	ptr->spriteName_ = SetNameNumber(spriteName);
 	ptr->SetTexture(textureName);
 	foregroundList_.push_back(std::move(ptr));
 	return foregroundList_.back().get();
@@ -89,7 +90,7 @@ Sprite* IFE::SpriteManager::AddInitializePushFront(const std::string& spriteName
 {
 	std::unique_ptr<Sprite> ptr = make_unique<Sprite>();
 	ptr->SPRITEInitialize();
-	ptr->spriteName_ = spriteName;
+	ptr->spriteName_ = SetNameNumber(spriteName);
 	ptr->SetTexture(textureName);
 	foregroundList_.push_front(std::move(ptr));
 	return foregroundList_.front().get();
@@ -98,7 +99,7 @@ Sprite* IFE::SpriteManager::AddInitializePushFront(const std::string& spriteName
 Sprite* IFE::SpriteManager::Add(const std::string& spriteName)
 {
 	std::unique_ptr<Sprite> ptr = make_unique<Sprite>();
-	ptr->spriteName_ = spriteName;
+	ptr->spriteName_ = SetNameNumber(spriteName);
 	foregroundList_.push_back(std::move(ptr));
 	return foregroundList_.back().get();
 }
@@ -106,7 +107,7 @@ Sprite* IFE::SpriteManager::Add(const std::string& spriteName)
 Sprite* IFE::SpriteManager::AddBackGround(const std::string& spriteName)
 {
 	std::unique_ptr<Sprite> ptr = make_unique<Sprite>();
-	ptr->spriteName_ = spriteName;
+	ptr->spriteName_ = SetNameNumber(spriteName);
 	backgroundList_.push_back(std::move(ptr));
 	return backgroundList_.back().get();
 }
@@ -223,6 +224,19 @@ void IFE::SpriteManager::SpriteMoveElementFor(int32_t num1, int32_t num2)
 void IFE::SpriteManager::SpriteMoveElementBack(int32_t num1, int32_t num2)
 {
 	List::MoveElement<unique_ptr<Sprite>>(backgroundList_, num1, num2);
+}
+
+std::string IFE::SpriteManager::SetNameNumber(std::string spriteName)
+{
+	string objectN = std::regex_replace(spriteName, regex("\\d"), "");
+	string name = objectN;
+	uint32_t num = 0;
+	while (SearchName(name))
+	{
+		num++;
+		name = objectN + to_string(num);
+	}
+	return name;
 }
 
 #include "JsonManager.h"

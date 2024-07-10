@@ -197,6 +197,7 @@ void IFE::Sprite::SetTexture(const std::string& texName)
 
 void IFE::Sprite::LoadingScene(nlohmann::json& j)
 {
+	JsonManager::GetData<uint8_t>(j, "order",order_);
 	for (auto& com : j["component"])
 	{
 		ComponentManager::LoadingScene(j, com);
@@ -255,6 +256,7 @@ void IFE::Sprite::OutputScene(nlohmann::json& j)
 {
 	j["name"] = spriteName_;
 	j["texture"] = tex_->texName_;
+	j["order"] = order_;
 	uint32_t i = 0;
 	for (auto& com : componentList_)
 	{

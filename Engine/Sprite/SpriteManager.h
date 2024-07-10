@@ -5,6 +5,7 @@
 #include <list>
 #include <memory>
 #include "EditorMode.h"
+#include <string>
 
 namespace IFE
 {
@@ -37,6 +38,11 @@ namespace IFE
 		bool SearchName(const std::string& name);
 		void SpriteMoveElementFor(int32_t num1, int32_t num2);
 		void SpriteMoveElementBack(int32_t num1, int32_t num2);
+
+	private:
+		std::string SetNameNumber(std::string spriteName);
+
+	public:
 
 #ifdef InverseEditorMode
 #else

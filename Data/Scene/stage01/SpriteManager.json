@@ -25,6 +25,7 @@
                 "ColorBuffer"
             ],
             "name": "flame",
+            "order": 0,
             "texture": "Flame.png"
         },
         {
@@ -52,6 +53,7 @@
                 "ColorBuffer"
             ],
             "name": "B",
+            "order": 0,
             "texture": "key//B.png"
         },
         {
@@ -79,6 +81,7 @@
                 "ColorBuffer"
             ],
             "name": "X",
+            "order": 0,
             "texture": "key//X.png"
         },
         {
@@ -106,6 +109,7 @@
                 "ColorBuffer"
             ],
             "name": "RT",
+            "order": 0,
             "texture": "key//RT.png"
         },
         {
@@ -133,6 +137,7 @@
                 "ColorBuffer"
             ],
             "name": "LT",
+            "order": 0,
             "texture": "key//LT.png"
         },
         {
@@ -160,6 +165,7 @@
                 "ColorBuffer"
             ],
             "name": "Pause",
+            "order": 0,
             "texture": "key//Pause.png"
         },
         {
@@ -187,6 +193,7 @@
                 "ColorBuffer"
             ],
             "name": "RStick",
+            "order": 0,
             "texture": "key//RStick.png"
         },
         {
@@ -214,6 +221,7 @@
                 "ColorBuffer"
             ],
             "name": "LStickNormal",
+            "order": 0,
             "texture": "key//LStickNormal.png"
         },
         {
@@ -241,6 +249,7 @@
                 "ColorBuffer"
             ],
             "name": "CameraMove",
+            "order": 0,
             "texture": "text//CameraMove.png"
         },
         {
@@ -268,6 +277,7 @@
                 "ColorBuffer"
             ],
             "name": "CharaMove",
+            "order": 0,
             "texture": "text//CharaMove.png"
         },
         {
@@ -295,6 +305,7 @@
                 "ColorBuffer"
             ],
             "name": "Down",
+            "order": 0,
             "texture": "text//Down.png"
         },
         {
@@ -322,6 +333,7 @@
                 "ColorBuffer"
             ],
             "name": "ModeChangeDrone",
+            "order": 0,
             "texture": "text//ModeChangeDrone.png"
         },
         {
@@ -349,6 +361,7 @@
                 "ColorBuffer"
             ],
             "name": "Sneak",
+            "order": 0,
             "texture": "text//Sneak.png"
         },
         {
@@ -376,6 +389,7 @@
                 "ColorBuffer"
             ],
             "name": "SpeedChange",
+            "order": 0,
             "texture": "text//SpeedChange.png"
         },
         {
@@ -403,6 +417,7 @@
                 "ColorBuffer"
             ],
             "name": "Up",
+            "order": 0,
             "texture": "text//Up.png"
         },
         {
@@ -430,6 +445,7 @@
                 "ColorBuffer"
             ],
             "name": "Y",
+            "order": 0,
             "texture": "key//Y.png"
         },
         {
@@ -457,6 +473,7 @@
                 "ColorBuffer"
             ],
             "name": "ModeChangeNormal",
+            "order": 0,
             "texture": "text//ModeChangeNormal.png"
         },
         {
@@ -484,6 +501,7 @@
                 "ColorBuffer"
             ],
             "name": "YDrone",
+            "order": 0,
             "texture": "key//YDrone.png"
         },
         {
@@ -511,6 +529,7 @@
                 "ColorBuffer"
             ],
             "name": "Attack",
+            "order": 0,
             "texture": "Text//Attack.png"
         },
         {
@@ -538,6 +557,7 @@
                 "ColorBuffer"
             ],
             "name": "PauseTextDrone",
+            "order": 0,
             "texture": "Text//PauseTextDrone.png"
         },
         {
@@ -565,6 +585,7 @@
                 "ColorBuffer"
             ],
             "name": "PauseDrone",
+            "order": 0,
             "texture": "Key//PauseDrone.png"
         },
         {
@@ -592,6 +613,7 @@
                 "ColorBuffer"
             ],
             "name": "PauseText",
+            "order": 0,
             "texture": "text//PauseText.png"
         },
         {
@@ -621,6 +643,7 @@
                 "PlayerHp"
             ],
             "name": "playerHp",
+            "order": 0,
             "texture": "green.png"
         },
         {
@@ -648,6 +671,7 @@
                 "ColorBuffer"
             ],
             "name": "attackUI",
+            "order": 0,
             "texture": "key//X.png"
         },
         {
@@ -677,6 +701,7 @@
                 "DroneRecoveryUI"
             ],
             "name": "droneRecoveryUI",
+            "order": 0,
             "texture": "white.png"
         },
         {
@@ -706,6 +731,7 @@
                 "CameraChange"
             ],
             "name": "CameraChange",
+            "order": 0,
             "texture": "white.png"
         },
         {
@@ -733,6 +759,7 @@
                 "ColorBuffer"
             ],
             "name": "BlackBack",
+            "order": 0,
             "texture": "white.png"
         }
     ]

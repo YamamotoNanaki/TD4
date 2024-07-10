@@ -55,6 +55,14 @@ void IFE::JsonManager::InputVectorFloat3(nlohmann::json& json, std::vector<Float
 	}
 }
 
+//std::optional<nlohmann::json> IFE::JsonManager::GetData(const nlohmann::json& json, const std::string& key)
+//{
+//	if (json.contains(key)) {
+//		return std::optional<nlohmann::json>(json.at(key));
+//	}
+//	return std::nullopt;
+//}
+
 void IFE::JsonManager::Input(const std::string& filename)
 {
 	JsonReset();

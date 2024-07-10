@@ -23,6 +23,7 @@ namespace IFE
 
 	public:
 		void Initialize()override;
+		void DebugInitialize()override;
 		void Update()override;
 		void Draw()override;
 		float GetEndTime();

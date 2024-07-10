@@ -11,6 +11,14 @@ void IFE::Animator::Initialize()
 	model_ = dynamic_cast<FBXModel*>(objectPtr_->model_);
 }
 
+void IFE::Animator::DebugInitialize()
+{
+	skinBuffer_ = std::make_unique<ConstBuffer<ConstBufferDataSkin>>();
+	constMapSkin_ = skinBuffer_->GetCBMapObject();
+	objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("3dAnim");
+	model_ = dynamic_cast<FBXModel*>(objectPtr_->model_);
+}
+
 void IFE::Animator::Update()
 {
 	if (!animFlag_)return;

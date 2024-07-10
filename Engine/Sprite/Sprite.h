@@ -35,6 +35,7 @@ namespace IFE
 		bool drawFlag_ = true;
 		bool isActive_ = true;
 		Transform2D* transform_ = nullptr;
+		uint8_t order_ = 0;
 
 	public:
 		Sprite();

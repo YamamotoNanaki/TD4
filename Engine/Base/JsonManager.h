@@ -1,9 +1,11 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <type_traits>
 #include "IFEMath.h"
 #include "nlohmann/json.hpp"
 #include "EditorMode.h"
+#include "Util.h"
 
 namespace IFE
 {
@@ -39,6 +41,18 @@ namespace IFE
 		Float3 InputFloat3(const nlohmann::json& json);
 		Float4 InputFloat4(const nlohmann::json& json);
 		void InputVectorFloat3(nlohmann::json& json, std::vector<Float3>& v);
+		/// <summary>
+		/// データ取得関数
+		/// データがあるかの確認もします
+		/// </summary>
+		/// <typeparam name="T">基本型+std::string</typeparam>
+		/// <param name="json">json</param>
+		/// <param name="key">key</param>
+		/// <param name="data">書き換えたい変数</param>
+		/// <returns>成功:true 失敗:false</returns>
+		template <class T>
+		typename std::enable_if<IS_BASIC_TYPE(T) || std::is_same<T, std::string>::value, bool>::type
+			static GetData(const nlohmann::json& json, const std::string& key, T& data);
 
 		void Input(const std::string& filename);
 		void JsonReset();
@@ -63,6 +77,16 @@ namespace IFE
 		void MakeSceneDirectry();
 		void SetInitScene();
 		void SetDebugScene();
+
 #endif
 	};
+	template<class T>
+	inline typename std::enable_if<IS_BASIC_TYPE(T) || std::is_same<T, std::string>::value, bool>::type JsonManager::GetData(const nlohmann::json& json, const std::string& key, T& data)
+	{
+		if (json.contains(key)) {
+			data = T(json[key]);
+			return true;
+		}
+		return false;
+	}
 }
