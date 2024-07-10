@@ -31,6 +31,16 @@ void IFE::WindowsAPI::Initialize(int32_t window_width, int32_t window_height, co
 
 	// ウィンドウクラスをOSに登録
 	RegisterClassEx(&wnd_);
+
+	// 現在のカーソル位置を取得
+	POINT pt;
+	GetCursorPos(&pt);
+	// 現在のモニターの情報を取得
+	HMONITOR hMonitor = MonitorFromPoint(pt, MONITOR_DEFAULTTONEAREST);
+	MONITORINFO mi = {};
+	mi.cbSize = sizeof(MONITORINFO);
+	GetMonitorInfo(hMonitor, &mi);
+
 	// ウィンドウサイズ{ X座標 Y座標 横幅 縦幅 }
 	RECT wrc = { 0, 0, window_width, window_height };
 	winWidth_ = window_width;
@@ -60,8 +70,8 @@ void IFE::WindowsAPI::Initialize(int32_t window_width, int32_t window_height, co
 	hwnd_ = CreateWindow(wnd_.lpszClassName, // クラス名
 		windowName,			        // タイトルバーの文字
 		WS_OVERLAPPEDWINDOW,        // 標準的なウィンドウスタイル
-		CW_USEDEFAULT,              // 表示X座標（OSに任せる）
-		CW_USEDEFAULT,              // 表示Y座標（OSに任せる）
+		mi.rcMonitor.left,
+		mi.rcMonitor.top,
 		wrc.right - wrc.left,       // ウィンドウ横幅
 		wrc.bottom - wrc.top,   // ウィンドウ縦幅
 		nullptr,                // 親ウィンドウハンドル

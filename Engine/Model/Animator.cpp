@@ -103,5 +103,11 @@ void IFE::Animator::ComponentDebugGUI()
 		}
 		imgui->EndTreeNode();
 	}
+	if (imgui->NewTreeNode(U8("デバッグ用パラメータ")))
+	{
+		imgui->TextGUI(U8("タイマー : ") + std::to_string(animTimer_));
+		imgui->DragFloatGUI(&animSpeed_, U8("スピード"));
+		imgui->EndTreeNode();
+	}
 }
 #endif

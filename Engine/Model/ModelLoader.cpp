@@ -341,6 +341,8 @@ FBXModel* IFE::ModelLoader::FBXLoad(const std::string& fileName, const std::stri
 	fbx->SetSmooth(smooth);
 
 	nodes_.clear();
+	bones_.clear();
+	animations_.clear();
 
 	fbx->fileName_ = filename_;
 	return fbx;
