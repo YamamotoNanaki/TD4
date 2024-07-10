@@ -33,7 +33,7 @@ void PlayerAction::Initialize()
 	enemyManager_ = IFE::ObjectManager::Instance()->GetObjectPtr("EnemyManager")->GetComponent<IFE::EnemyManager>();
 
 	ani_ = objectPtr_->GetComponent<IFE::Animator>();
-	ani_->SetAnimation("idle");
+	ani_->SetAnimation("walk");
 }
 
 void PlayerAction::Update()
