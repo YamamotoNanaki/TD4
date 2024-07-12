@@ -41,14 +41,12 @@ namespace IFE
 		void ObjectSwap(int32_t num1, int32_t num2);
 		void ObjectMoveElement(int32_t num1, int32_t num2);
 
-	private:
 		/// <summary>
 		/// 共通するオブジェクトの名前があった場合番号を自動的につける関数
 		/// </summary>
 		/// <returns></returns>
 		std::string SetNameNumber(std::string objectName);
 
-	public:
 #ifdef InverseEditorMode
 #else
 		void DebugGUI();
