@@ -253,6 +253,7 @@ void IFE::Scene::SceneTransitionIn()
 			{
 				spriteM_->AddInitialize("fade", "white");
 				fade = spriteM_->GetSpritePtr("fade");
+				fade->order_ = uint8_t(-1);
 				fade->GetComponent<Transform2D>()->position2D_ = Float2((float)WindowsAPI::Instance()->winWidth_ / 2, (float)WindowsAPI::Instance()->winHeight_ / 2);
 				fade->GetComponent<Transform2D>()->scale2D_ = Float2(20, 11);
 			}
@@ -287,6 +288,7 @@ void IFE::Scene::SceneTransitionOut()
 			{
 				spriteM_->AddInitialize("fade", "white");
 				fade = spriteM_->GetSpritePtr("fade");
+				fade->order_ = uint8_t(-1);
 				fade->GetComponent<Transform2D>()->position2D_ = Float2((float)WindowsAPI::Instance()->winWidth_ / 2, (float)WindowsAPI::Instance()->winHeight_ / 2);
 				fade->GetComponent<Transform2D>()->scale2D_ = Float2(20, 11);
 			}
@@ -347,7 +349,7 @@ void IFE::Scene::LoadingScene()
 	//oldPostEffect->LoadingScene();
 	nowScene_ = nextScene_;
 	loadEnd_ = true;
-}
+	}
 
 void IFE::Scene::AsyncLoad()
 {

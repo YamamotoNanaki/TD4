@@ -58,9 +58,7 @@ Float3 IFE::ColliderCore::GetColliderPosition()
 	if (objectPtr_ && !transform_)transform_ = objectPtr_->transform_;
 	if (objectPtr_ && transform_->parent_)
 	{
-		pos.x = transform_->matWorld_.m[3][0];
-		pos.y = transform_->matWorld_.m[3][1];
-		pos.z = transform_->matWorld_.m[3][2];
+		pos = transform_->parent_->position_;
 	}
 	return  pos + offsetPosition_;
 }
@@ -70,6 +68,7 @@ Float3 IFE::ColliderCore::GetColliderScale()
 	if (!parentScale_)
 	{
 		GetParentParms();
+		if (!parentScale_)return offsetScale_;
 	}
 	return *parentScale_ + offsetScale_;
 }

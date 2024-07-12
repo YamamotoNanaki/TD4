@@ -28,6 +28,7 @@ void EnemyHighlighting::Initialize()
 
 void EnemyHighlighting::Update()
 {
+	if (!ObjectManager::Instance()->GetObjectPtr("EnemyManager"))return;
 	auto em = ObjectManager::Instance()->GetObjectPtr("EnemyManager")->GetComponent<EnemyManager>();
 	if (em->GetEnemyList().size() == 0)return;
 	PostEffectDrawBefore();
@@ -57,11 +58,8 @@ void EnemyHighlighting::Update()
 	{
 		itr->Draw();
 	}
-	enemyJuge->SetDrawBlendMode();
-	LightManager::Instance()->Draw(3);
-	CameraManager::Instance()->Draw();
 	cbFalse->GetCBMapObject()->enemy = false;
-	cbFalse->SetConstBuffView(6);
+	cbFalse->SetConstBuffView(7);
 	playerAction->Draw();
 	playerDrone->Draw();
 	PostEffectDrawAfter();

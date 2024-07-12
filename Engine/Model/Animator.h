@@ -17,7 +17,7 @@ namespace IFE
 		uint8_t animNum_ = 0;
 	public:
 		float animSpeed_ = 1.f;
-		bool loop_ = false;
+		bool loop_ = true;
 		bool animEnd_ = false;
 		bool animFlag_ = true;
 

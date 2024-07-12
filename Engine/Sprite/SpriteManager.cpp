@@ -53,24 +53,37 @@ void IFE::SpriteManager::Update()
 
 void IFE::SpriteManager::ForeDraw()
 {
-	Sprite* fade = nullptr;
 	Sprite::DrawBefore();
+
+	list<Sprite*>sprList;
 	for (unique_ptr<Sprite>& itr : foregroundList_)
 	{
-		if (itr->spriteName_ == "fade")
-		{
-			fade = itr.get();
-			continue;
-		}
+		if (!itr->isActive_)continue;
+		if (!itr->drawFlag_)continue;
+		sprList.push_back(itr.get());
+	}
+
+	sprList.sort([](const Sprite* sprA, const Sprite* sprB) {return sprA->order_ > sprB->order_; });
+	for (auto& itr : sprList)
+	{
 		itr->Draw();
 	}
-	if (fade)fade->Draw();
 }
 
 void IFE::SpriteManager::BackDraw()
 {
 	Sprite::DrawBefore();
+
+	list<Sprite*>sprList;
 	for (unique_ptr<Sprite>& itr : backgroundList_)
+	{
+		if (!itr->isActive_)continue;
+		if (!itr->drawFlag_)continue;
+		sprList.push_back(itr.get());
+	}
+
+	sprList.sort([](const Sprite* sprA, const Sprite* sprB) {return sprA->order_ > sprB->order_; });
+	for (auto& itr : sprList)
 	{
 		itr->Draw();
 	}
