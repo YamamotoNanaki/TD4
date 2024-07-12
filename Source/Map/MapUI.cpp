@@ -21,18 +21,18 @@ void MapUI::Initialize()
 	IFE::ObjectManager* objm = IFE::ObjectManager::Instance();
 	auto& list = objm->GetObjList();
 	spritePtr_->drawFlag_ = false;
-	
+
 	for (auto& itr : list)
 	{
 		if (itr->GetObjectName().find("PlayerAction") != std::string::npos)
 		{
 			playerObj_ = itr.get();
 		}
-		
+
 	}
 }
 
-static void SpriteEnemyDelete(const std::vector<std::pair<IFE::Sprite*,std::string>>& vec, const std::list<IFE::BaseEnemy*>& lst)
+static void SpriteEnemyDelete(std::vector<std::pair<IFE::Sprite*, std::string>>& vec, const std::list<IFE::BaseEnemy*>& lst)
 {
 	std::unordered_set<std::string> setLst;
 	for (const auto& item : lst)
@@ -40,16 +40,19 @@ static void SpriteEnemyDelete(const std::vector<std::pair<IFE::Sprite*,std::stri
 		setLst.insert(item->objectPtr_->GetObjectName());
 	}
 
-	std::vector<IFE::Sprite*> deleteElements;
+	std::vector<std::pair<IFE::Sprite*, std::string>> comonElements;
 	for (const auto& item : vec)
 	{
-		if (setLst.find(item.second) == setLst.end())
+		if (setLst.find(item.second) != setLst.end())
 		{
-			deleteElements.push_back(item.first);
+			comonElements.push_back(item);
+		}
+		else
+		{
+			item.first->Destroy();
 		}
 	}
-
-	for (size_t i = 0; i < deleteElements.size(); i++)deleteElements[i]->Destroy();
+	std::swap(vec, comonElements);
 }
 
 void MapUI::Update()
@@ -89,7 +92,7 @@ void MapUI::Update()
 
 			mapSprite_[count]->transform_->position2D_ = { transform2D_->position2D_.x + difference.x * cosf(angle) + difference.y * sinf(angle),transform2D_->position2D_.y + difference.y * cosf(angle) - difference.x * sinf(angle) };
 			mapSprite_[count]->transform_->rotation2D_ = /*itr->objectPtr_->transform_->rotation_.y - */(float)IFE::PI / 2 - angle;
-			mapSprite_[count]->transform_->scale2D_ = { itr->objectPtr_->transform_->scale_.x/100,itr->objectPtr_->transform_->scale_.z / 100 };
+			mapSprite_[count]->transform_->scale2D_ = { itr->objectPtr_->transform_->scale_.x / 100,itr->objectPtr_->transform_->scale_.z / 100 };
 
 			//“G‚ªoŒ»‚µ‚Ä‚¢‚é‚©‚ÂƒŒ[ƒ_[‚Ì“à‘¤‚Ì”ÍˆÍ“à‚É‚¢‚é‚È‚ç
 			if (transform2D_->scale2D_.x >= length && transform2D_->scale2D_.y >= length)
@@ -105,7 +108,7 @@ void MapUI::Update()
 				itr->objectPtr_->transform_->position_.z - playerObj_->transform_->position_.z };
 
 			//Ž©‹@‚Æ“G‚Æ‚Ì‹——£‚ÌŽZo
-			float length = sqrt(difference.x * difference.x+ difference.y * difference.y);
+			float length = sqrt(difference.x * difference.x + difference.y * difference.y);
 
 			//mapSprite_[count]->drawFlag_ = false;
 
@@ -120,15 +123,15 @@ void MapUI::Update()
 			}
 			enemyCount++;
 		}
-		
+
 	}
-	
-	
+
+
 }
 
 void MapUI::Draw()
 {
-	
+
 }
 
 void MapUI::Finalize()
@@ -138,7 +141,7 @@ void MapUI::Finalize()
 
 void MapUI::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
 {
-	
+
 	myCollider;
 	hitCollider;
 }
