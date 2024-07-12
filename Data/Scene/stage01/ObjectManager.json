@@ -427,8 +427,8 @@
     },
     {
         "Attach3DModel": {
-            "boneName": "Shoulder.R",
-            "parentName": "normalEnemy"
+            "boneName": "weapon",
+            "parentName": "PlayerAction"
         },
         "Material": {
             "ambient": [
@@ -476,9 +476,9 @@
                 360.0
             ],
             "scale": [
-                0.20000000298023224,
-                0.20000000298023224,
-                0.20000000298023224
+                1.0,
+                1.0,
+                1.0
             ]
         },
         "component": [

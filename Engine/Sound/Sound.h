@@ -35,10 +35,12 @@ namespace IFE
 			float volume = 50;
 			IXAudio2SourceVoice* pSourceVoice = nullptr;
 			std::vector<BYTE> pBuffer;
-			uint32_t bufferSize;
+			uint32_t bufferSize = 0;
 			std::string name;
 			bool free = false;
+			bool isPlaying = false;
 		};
+
 	private:
 		Microsoft::WRL::ComPtr<IXAudio2> xAudio_;
 		IXAudio2MasteringVoice* masterVoice_;
@@ -48,6 +50,7 @@ namespace IFE
 	public:
 		void Initialize();
 		uint16_t LoadWave(const std::string& wave);
+		uint16_t LoadMP3(const std::string& mp3);
 		uint16_t GetSoundNum(const std::string& wave);
 		void SoundUnLoad(uint16_t soundNum);
 		void AllUnLoad();
@@ -57,6 +60,8 @@ namespace IFE
 		void SetVolume(std::string soundName, std::int32_t volume);
 		void SoundPlay(std::string soundName, bool roop = true, bool stop = false);
 		void StopSound(std::string soundName);
+		bool GetPlayStatus(std::string soundName);
+		bool GetPlayStatus(uint16_t soundNum);
 		void AllStop();
 		static Sound* Instance();
 		static void Finalize();

@@ -17,6 +17,7 @@ void IFE::Attach3DModel::Update()
 		{
 			transform_->SetAttach3DParent(nullptr);
 			parentBone_ = nullptr;
+			transform_->parent_ = nullptr;
 		}
 	}
 }

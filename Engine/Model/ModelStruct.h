@@ -22,7 +22,7 @@ namespace IFE
 		std::string name;
 		Matrix invInitPose;
 		Matrix finalMatrix;
-		Bone* parent;
+		Bone* parent = nullptr;
 		Bone(const std::string& name)
 		{
 			this->name = name;

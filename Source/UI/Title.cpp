@@ -7,15 +7,15 @@ using namespace IFE;
 
 void Title::Initialize()
 {
-	IFE::Sound::Instance()->LoadWave("title");
+	IFE::Sound::Instance()->LoadMP3("title");
 	IFE::Sound::Instance()->SetVolume("title",50);
+	IFE::Sound::Instance()->SoundPlay("title", true, true);
 }
 
 void Title::Update()
 {
 	if (Input::PadTrigger(PADCODE::ALL) || Input::GetKeyTrigger(Key::Space))
 	{
-		IFE::Sound::Instance()->SoundPlay("title", false, true);
 		Scene::Instance()->SetNextScene("stage01");
 	}
 }

@@ -1,6 +1,12 @@
 #include "Sound.h"
+#include "StringUtil.h"
 #include "Debug.h"
 #include <cassert>
+#include <mfapi.h>
+#include <mfidl.h>
+#include <mfreadwrite.h>
+#include <mfobjects.h>
+#include <mfmediaengine.h>
 
 #pragma comment(lib,"xaudio2.lib")
 
@@ -12,6 +18,8 @@ void IFE::Sound::Initialize()
 	assert(SUCCEEDED(result) && "サウンドの初期化に失敗しました");
 	result = xAudio_->CreateMasteringVoice(&masterVoice_);
 	assert(SUCCEEDED(result) && "サウンドの初期化に失敗しました");
+	result = MFStartup(MF_VERSION);
+	assert(SUCCEEDED(result) && "WindowsMediaFoundationの初期化に失敗しました");
 }
 
 uint16_t IFE::Sound::LoadWave(const std::string& filename)
@@ -19,7 +27,7 @@ uint16_t IFE::Sound::LoadWave(const std::string& filename)
 	for (uint16_t i = 0; i < Sound::sMAX_SOUND_; i++)
 	{
 		if (soundDatas_[i].free == false)continue;
-		if (soundDatas_[i].name == filename)return i;
+		if (soundDatas_[i].name == filename + "_w")return i;
 	}
 	std::string name = "Data/Sound/";
 	name += filename + ".wav";
@@ -77,7 +85,105 @@ uint16_t IFE::Sound::LoadWave(const std::string& filename)
 	soundDatas_[num].pBuffer = std::move(byteBuff);
 	soundDatas_[num].bufferSize = data.size;
 	soundDatas_[num].free = true;
-	soundDatas_[num].name = filename;
+	soundDatas_[num].name = filename + "_w";
+
+	return num;
+}
+
+uint16_t IFE::Sound::LoadMP3(const std::string& mp3)
+{
+	for (uint16_t i = 0; i < Sound::sMAX_SOUND_; i++)
+	{
+		if (soundDatas_[i].free == false)continue;
+		if (soundDatas_[i].name == mp3 + "_m")return i;
+	}
+	std::string name = "Data/Sound/";
+	name += mp3 + ".mp3";
+
+	uint16_t num = 0xffff;
+	for (uint16_t i = 0; i < Sound::sMAX_SOUND_; i++)
+	{
+		if (soundDatas_[i].free == false)
+		{
+			num = i;
+			break;
+		}
+	}
+
+	if (num == -1)assert(0 && "SoundDataの空きがありません");
+
+
+	IMFSourceReader* pReader = NULL;
+	HRESULT hr = MFCreateSourceReaderFromURL(StringToWString(name).c_str(), NULL, &pReader);
+	if (FAILED(hr)) {
+		return 0xffff;
+	}
+
+	IMFMediaType* pAudioType = NULL;
+	hr = MFCreateMediaType(&pAudioType);
+	if (SUCCEEDED(hr)) {
+		pAudioType->SetGUID(MF_MT_MAJOR_TYPE, MFMediaType_Audio);
+		pAudioType->SetGUID(MF_MT_SUBTYPE, MFAudioFormat_PCM);
+		hr = pReader->SetCurrentMediaType((DWORD)MF_SOURCE_READER_FIRST_AUDIO_STREAM, NULL, pAudioType);
+		pAudioType->Release();
+	}
+
+	if (FAILED(hr)) {
+		pReader->Release();
+		return 0xffff;
+	}
+
+	SoundData& soundData = soundDatas_[num];
+
+	IMFMediaType* pOutputType = NULL;
+	hr = pReader->GetCurrentMediaType((DWORD)MF_SOURCE_READER_FIRST_AUDIO_STREAM, &pOutputType);
+	if (SUCCEEDED(hr)) {
+		UINT32 cbFormat = 0;
+		WAVEFORMATEX* pwfx = NULL;
+
+		hr = MFCreateWaveFormatExFromMFMediaType(pOutputType, &pwfx, &cbFormat);
+		if (SUCCEEDED(hr)) {
+			soundData.wfex = *pwfx;
+			CoTaskMemFree(pwfx);
+		}
+		pOutputType->Release();
+	}
+
+	if (FAILED(hr)) {
+		pReader->Release();
+		return 0xffff;
+	}
+
+	IMFSample* pSample = NULL;
+	IMFMediaBuffer* pBuffer = NULL;
+
+	while (true) {
+		DWORD dwFlags = 0;
+		hr = pReader->ReadSample(DWORD(MF_SOURCE_READER_FIRST_AUDIO_STREAM), 0, NULL, &dwFlags, NULL, &pSample);
+		if (FAILED(hr) || dwFlags & MF_SOURCE_READERF_ENDOFSTREAM) {
+			break;
+		}
+		if (pSample) {
+			hr = pSample->ConvertToContiguousBuffer(&pBuffer);
+			if (SUCCEEDED(hr)) {
+				BYTE* pAudioData = NULL;
+				DWORD cbBuffer = 0;
+				hr = pBuffer->Lock(&pAudioData, NULL, &cbBuffer);
+				if (SUCCEEDED(hr)) {
+					soundData.pBuffer.insert(soundData.pBuffer.end(), pAudioData, pAudioData + cbBuffer);
+				}
+				pBuffer->Unlock();
+				pBuffer->Release();
+			}
+			pSample->Release();
+		}
+	}
+
+	soundData.bufferSize = static_cast<uint32_t>(soundData.pBuffer.size());
+	pReader->Release();
+
+	soundDatas_[num].free = true;
+	soundDatas_[num].name = mp3 + "_m";
 
 	return num;
 }
@@ -86,7 +192,7 @@ uint16_t IFE::Sound::GetSoundNum(const std::string& wave)
 {
 	for (uint16_t i = 0; i < sMAX_SOUND_; i++)
 	{
-		if (wave == soundDatas_[i].name)
+		if (wave == soundDatas_[i].name || wave + "_m" == soundDatas_[i].name || wave + "_w" == soundDatas_[i].name)
 		{
 			return i;
 		}
@@ -130,6 +236,7 @@ void IFE::Sound::SoundPlay(uint16_t soundNum, bool roop, bool stop)
 	soundDatas_[soundNum].pSourceVoice->SetVolume(soundDatas_[soundNum].volume);
 	result = soundDatas_[soundNum].pSourceVoice->SubmitSourceBuffer(&buf);
 	result = soundDatas_[soundNum].pSourceVoice->Start();
+	soundDatas_[soundNum].isPlaying = true;
 }
 
 Sound* IFE::Sound::Instance()
@@ -185,6 +292,19 @@ void IFE::Sound::StopSound(std::string soundName)
 	soundDatas_[soundNum].pSourceVoice->Stop();
 #endif
 	soundDatas_[soundNum].pSourceVoice = nullptr;
+	soundDatas_[soundNum].isPlaying = false;
+}
+
+bool IFE::Sound::GetPlayStatus(std::string soundName)
+{
+	uint16_t soundNum = GetSoundNum(soundName);
+	if (soundNum == uint16_t(-1))return false;
+	return GetPlayStatus(soundNum);
+}
+
+bool IFE::Sound::GetPlayStatus(uint16_t soundNum)
+{
+	return soundDatas_[soundNum].isPlaying;
 }
 
 void IFE::Sound::AllStop()
