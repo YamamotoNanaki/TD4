@@ -267,6 +267,9 @@ void PlayerAction::Attack()
 	{
 		if (attackTimer_ > maxAttackTime_- IFE::IFETime::sDeltaTime_)
 		{
+			if (isAttack_ == false) {
+				IFE::Sound::Instance()->SoundPlay("attack", false, true);
+			}
 			isAttack_ = true;
 			playerAttack_->objectPtr_->DrawFlag_ = true;
 		}
