@@ -243,7 +243,6 @@ void PlayerAction::Attack()
 	AutoAim();
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X))
 	{
-		IFE::Sound::Instance()->SoundPlay("attack", false, true);
 		if (playerAttack_->GetIsBackAttack() == false)
 		{
 			ani_->SetAnimation("backKnifeAttack");//’ÊíUŒ‚ƒ‚[ƒVƒ‡ƒ“‚É•Ï‚¦‚é
