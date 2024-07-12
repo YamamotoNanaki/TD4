@@ -26,8 +26,6 @@ void PlayerAction::Initialize()
 	ptr->AddComponent<PlayerAttack>();
 
 	playerAttack_ = ptr->GetComponent<PlayerAttack>();
-	playerAttack_->transform_->parent_ = transform_;
-	playerAttack_->objectPtr_->transform_->position_ += {0, 0, 2};
 	playerAttack_->SetName("player");
 
 	enemyManager_ = IFE::ObjectManager::Instance()->GetObjectPtr("EnemyManager")->GetComponent<IFE::EnemyManager>();
@@ -231,6 +229,7 @@ void PlayerAction::Rotation()
 void PlayerAction::Attack()
 {
 	AttackUI();
+	AutoAim();
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X))
 	{
 		if (playerAttack_->GetIsBackAttack() == false)
@@ -247,7 +246,6 @@ void PlayerAction::Attack()
 
 	if (attackFlag_ == true)
 	{
-		AutoAim();
 		if (attackTimer_ > attackTime_)
 		{
 			attackFlag_ = false;
@@ -274,9 +272,16 @@ void PlayerAction::AttackUI()
 		}
 	}
 
-	if (closestEnemy!=nullptr&&IFE::Collision::CheckCircle({ {transform_->position_.x,transform_->position_.z},5.0f }, { closestEnemy->GetPos(),1.0f }))
+	if (attackFlag_ == false)
 	{
-		isAttackUI_ = true;
+		if (closestEnemy != nullptr && IFE::Collision::CheckCircle({ {transform_->position_.x,transform_->position_.z},5.0f }, { closestEnemy->GetPos(),1.0f }))
+		{
+			isAttackUI_ = true;
+		}
+		else
+		{
+			isAttackUI_ = false;
+		}
 	}
 	else
 	{
@@ -304,10 +309,18 @@ void PlayerAction::AutoAim()
 	if (isAttackUI_ == true)
 	{
 		IFE::Vector3 frontVec = closestEnemy->transform_->position_ - transform_->transform_->position_;
+		playerAttack_->objectPtr_->transform_->position_ =
+		{	transform_->position_.x + frontVec.x,
+			transform_->position_.y + frontVec.y,
+			transform_->position_.z + frontVec.z
+		};
 		frontVec.y = 0.0f;
 		frontVec.Normalize();
 
-		rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec.x, frontVec.z));
-		transform_->rotation_.y = rotY_;
+		if (attackFlag_ == true)
+		{
+			rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec.x, frontVec.z));
+			transform_->rotation_.y = rotY_;
+		}
 	}
 }
