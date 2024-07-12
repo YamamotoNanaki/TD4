@@ -49,6 +49,7 @@ void Player::Update()
 				drone_->MoveUpdate();
 			}
 		}
+		oldIsDamageFlag_ = action_->GetIsHit();
 	}
 }
 
@@ -94,7 +95,7 @@ void Player::SetMode(bool flag)
 
 void Player::ChangeMode()
 {
-	if (!ccp_.cameraChange && IFE::Input::GetKeyTrigger(IFE::Key::Y) || IFE::Input::PadTrigger(IFE::PADCODE::Y))
+	if ((!ccp_.cameraChange && IFE::Input::GetKeyTrigger(IFE::Key::Y) || IFE::Input::PadTrigger(IFE::PADCODE::Y)) || (modeFlag_ == true && oldIsDamageFlag_ == false && action_->GetIsHit() == true))
 	{
 		ccp_.cameraChange = true;
 		ccp_.cameraChangeTimer = 0;
@@ -112,6 +113,7 @@ void Player::ChangeMode()
 				modeFlag_ = true;
 				drone_->SetDrawFlag(false);
 				IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
+				action_->SetAnimation("drone");
 
 				if (drone_->GetIsDroneSurvival() == false)
 				{
@@ -131,6 +133,7 @@ void Player::ChangeMode()
 				modeFlag_ = false;
 				drone_->SetDrawFlag(drone_->GetIsDroneSurvival());
 				IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
+				action_->SetAnimation("walk");//待機モーションに変える
 				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;				
 			}
 			//UI表示切替
