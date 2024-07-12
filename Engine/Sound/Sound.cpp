@@ -221,7 +221,7 @@ void IFE::Sound::AllUnLoad()
 
 void IFE::Sound::SoundPlay(uint16_t soundNum, bool roop, bool stop)
 {
-	if(stop)StopSound(soundNum);
+	if (stop)StopSound(soundNum);
 	HRESULT result;
 	result = xAudio_.Get()->CreateSourceVoice(&soundDatas_[soundNum].pSourceVoice, &soundDatas_[soundNum].wfex);
 	assert(SUCCEEDED(result));
@@ -293,6 +293,58 @@ void IFE::Sound::StopSound(std::string soundName)
 #endif
 	soundDatas_[soundNum].pSourceVoice = nullptr;
 	soundDatas_[soundNum].isPlaying = false;
+}
+
+//void IFE::Sound::SoundChangeSpeedAndPitch(std::string soundName, float speed)
+//{
+//	uint16_t soundNum = GetSoundNum(soundName);
+//	if (soundNum == uint16_t(-1))return;
+//	SoundChangeSpeedAndPitch(soundNum, speed);
+//}
+//
+//void IFE::Sound::SoundChangeSpeedAndPitch(uint16_t soundNum, float speed)
+//{
+//#ifdef _DEBUG
+//	HRESULT result = soundDatas_[soundNum].pSourceVoice->SetFrequencyRatio(speed);
+//	assert(SUCCEEDED(result) && "サウンド変更失敗");
+//#else
+//	soundDatas_[soundNum].pSourceVoice->SetFrequencyRatio(speed);
+//#endif
+//}
+
+void IFE::Sound::SoundChangeSpeed(std::string soundName, float speed)
+{
+	uint16_t soundNum = GetSoundNum(soundName);
+	if (soundNum == uint16_t(-1))return;
+	SoundChangeSpeed(soundNum, speed);
+}
+
+void IFE::Sound::SoundChangeSpeed(uint16_t soundNum, float speed)
+{
+#ifdef _DEBUG
+	HRESULT result = soundDatas_[soundNum].pSourceVoice->SetFrequencyRatio(speed);
+	assert(SUCCEEDED(result) && "サウンド変更失敗");
+#else
+	soundDatas_[soundNum].pSourceVoice->SetFrequencyRatio(speed);
+#endif
+}
+
+void IFE::Sound::SoundChangePitch(std::string soundName, int16_t pitch)
+{
+	uint16_t soundNum = GetSoundNum(soundName);
+	if (soundNum == uint16_t(-1))return;
+	SoundChangePitch(soundName, pitch);
+}
+
+void IFE::Sound::SoundChangePitch(uint16_t soundNum, int16_t pitch)
+{
+	float semitoneDown = std::pow(2.0f, pitch / 12.0f);
+#ifdef _DEBUG
+	HRESULT result = soundDatas_[soundNum].pSourceVoice->SetFrequencyRatio(semitoneDown);
+	assert(SUCCEEDED(result) && "サウンド変更失敗");
+#else
+	soundDatas_[soundNum].pSourceVoice->SetFrequencyRatio(semitoneDown);
+#endif
 }
 
 bool IFE::Sound::GetPlayStatus(std::string soundName)
