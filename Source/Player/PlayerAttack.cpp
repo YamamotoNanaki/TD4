@@ -20,8 +20,8 @@ void PlayerAttack::Initialize()
 
 void PlayerAttack::Update()
 {
-	auto playerCol = objectPtr_->GetComponent<IFE::Collider>();
-	playerCol->GetCollider(0)->active_ = isAttack_;
+	/*auto playerCol = objectPtr_->GetComponent<IFE::Collider>();
+	playerCol->GetCollider(0)->active_ = isAttack_;*/
 }
 
 void PlayerAttack::Finalize()
@@ -31,19 +31,32 @@ void PlayerAttack::Finalize()
 void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
 {
 	myCollider;
-	if (isAttack_ == true && (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()))
+
+	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>())
 	{
-		if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetIsHit() == false)
+		if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetBack() == false)
 		{
-			if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetBack() == false)
+			isBackAttack_ = false;
+		}
+		else
+		{
+			isBackAttack_ = true;
+		}
+
+		if (isAttack_ == true)
+		{
+			if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetIsHit() == false)
 			{
-				//“–‚½‚Á‚½Žž‚Ìˆ—
-				hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->DecHp();
-			}
-			else
-			{
-				//“–‚½‚Á‚½Žž‚Ìˆ—
-				hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->OneShot();
+				if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetBack() == false)
+				{
+					//“–‚½‚Á‚½Žž‚Ìˆ—
+					hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->DecHp();
+				}
+				else
+				{
+					//“–‚½‚Á‚½Žž‚Ìˆ—
+					hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->OneShot();
+				}
 			}
 		}
 	}
@@ -101,4 +114,9 @@ void PlayerAttack::SetIsAttack(bool flag)
 const bool PlayerAttack::GetIsAttack()
 {
 	return isAttack_;
+}
+
+bool PlayerAttack::GetIsBackAttack()
+{
+	return isBackAttack_;
 }
