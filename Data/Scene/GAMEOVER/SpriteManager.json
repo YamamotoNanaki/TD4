@@ -27,6 +27,7 @@
                 "Over"
             ],
             "name": "GameOver",
+            "order": 0,
             "texture": "GameOver.png"
         }
     ]

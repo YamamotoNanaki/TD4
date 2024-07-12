@@ -78,6 +78,7 @@ void PlayerAction::DecHp()
 		hp_--;
 		hitTime_ = HIT_COOLTIME;
 		isHit_ = true;
+		ani_->SetAnimation("damage");
 	}
 }
 
@@ -122,6 +123,8 @@ void PlayerAction::Move()
 	//{
 	//	transform_->position_.y = -4.9f * IFE::IFETime::sDeltaTime_;
 	//}
+
+	IsWalk();
 
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::A))
@@ -270,7 +273,6 @@ void PlayerAction::Attack()
 			isAttack_ = false;
 			attackTimer_ = 0;
 			playerAttack_->objectPtr_->DrawFlag_ = false;
-			ani_->SetAnimation("walk");//待機モーションに変える
 		}
 
 		attackTimer_+= IFE::IFETime::sDeltaTime_;
@@ -343,4 +345,26 @@ void PlayerAction::AutoAim()
 			transform_->rotation_.y = rotY_;
 		}
 	}
+}
+
+void PlayerAction::IsWalk()
+{
+	if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D)|| IFE::Input::GetLAnalog().x!= 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+	{
+		isWalk_ = true;
+	}
+	else
+	{
+		isWalk_ = false;
+	}
+
+	if (oldIsWalk_ == false && isWalk_ == true)
+	{
+		ani_->SetAnimation("walk");
+	}
+	if (oldIsWalk_ == true && isWalk_ == false)
+	{
+		ani_->SetAnimation("damage");//待機モーション
+	}
+	oldIsWalk_ = isWalk_;
 }
