@@ -64,7 +64,7 @@ void PlayerAction::Draw()
 
 void PlayerAction::Finalize()
 {
-	delete playerAttack_;
+
 }
 
 void PlayerAction::DecHp()
@@ -233,6 +233,14 @@ void PlayerAction::Attack()
 	AttackUI();
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X))
 	{
+		if (playerAttack_->GetIsBackAttack() == false)
+		{
+			ani_->SetAnimation("walk");
+		}
+		else
+		{
+			ani_->SetAnimation("backKnifeAttack");
+		}
 		attackFlag_ = true;
 		playerAttack_->objectPtr_->DrawFlag_ = true;
 	}
