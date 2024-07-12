@@ -3,9 +3,10 @@
 #include "SpriteManager.h"
 #include "CameraManager.h"
 #include "Transform.h"
-#include "SpriteManager.h"
 #include "ColorBuffer.h"
 #include "PlayerAction.h"
+#include <unordered_set>
+#include <algorithm>
 
 MapUI::MapUI()
 {
@@ -31,6 +32,26 @@ void MapUI::Initialize()
 	}
 }
 
+static void SpriteEnemyDelete(const std::vector<std::pair<IFE::Sprite*,std::string>>& vec, const std::list<IFE::BaseEnemy*>& lst)
+{
+	std::unordered_set<std::string> setLst;
+	for (const auto& item : lst)
+	{
+		setLst.insert(item->objectPtr_->GetObjectName());
+	}
+
+	std::vector<IFE::Sprite*> deleteElements;
+	for (const auto& item : vec)
+	{
+		if (setLst.find(item.second) == setLst.end())
+		{
+			deleteElements.push_back(item.first);
+		}
+	}
+
+	for (size_t i = 0; i < deleteElements.size(); i++)deleteElements[i]->Destroy();
+}
+
 void MapUI::Update()
 {
 	if (!IsInit_)
@@ -38,7 +59,10 @@ void MapUI::Update()
 		StartInit();
 	}
 
-	
+	IFE::ObjectManager* objm = IFE::ObjectManager::Instance();
+	auto& list = objm->GetObjList();
+
+	SpriteEnemyDelete(enemySprite_, objm->GetObjectPtr("EnemyManager")->GetComponent<IFE::EnemyManager>()->GetEnemyList());
 
 	uint8_t count = 0;
 	uint8_t enemyCount = 0;
@@ -47,9 +71,6 @@ void MapUI::Update()
 	frontVec.Normalize();
 	//カメラのangleYの取得(正面ベクトルから取得)
 	float angle = -(atan2(frontVec.z, frontVec.x) + (float)IFE::PI / 2);
-
-	IFE::ObjectManager* objm = IFE::ObjectManager::Instance();
-	auto& list = objm->GetObjList();
 
 	playerSprite_->transform_->position2D_ = { transform2D_->position2D_.x ,transform2D_->position2D_.y };
 	playerSprite_->transform_->scale2D_ = { 0.1f ,0.1f };
