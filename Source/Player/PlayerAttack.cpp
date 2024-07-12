@@ -77,13 +77,11 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 			{
 				//“–‚½‚Á‚½Žž‚Ìˆ—
 				hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->DecHp();
-				IFE::Sound::Instance()->SoundPlay("attackHit", false, true);
 			}
 			else
 			{
 				//“–‚½‚Á‚½Žž‚Ìˆ—
 				hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->OneShot();
-				IFE::Sound::Instance()->SoundPlay("backstab", false, true);
 			}
 		}
 	}

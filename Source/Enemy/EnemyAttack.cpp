@@ -30,7 +30,6 @@ void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::Collide
 	{
 		//“–‚½‚Á‚½Žž‚Ìˆ—
 		hitCollider->objectPtr_->GetComponent<PlayerAction>()->DecHp();
-		IFE::Sound::Instance()->SoundPlay("attackHit", false, true);
 
 	}
 
