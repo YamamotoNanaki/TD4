@@ -63,7 +63,7 @@ void IFE::SpriteManager::ForeDraw()
 		sprList.push_back(itr.get());
 	}
 
-	sprList.sort([](const Sprite* sprA, const Sprite* sprB) {return sprA->order_ > sprB->order_; });
+	sprList.sort([](const Sprite* sprA, const Sprite* sprB) {return sprA->order_ < sprB->order_; });
 	for (auto& itr : sprList)
 	{
 		itr->Draw();
@@ -82,7 +82,7 @@ void IFE::SpriteManager::BackDraw()
 		sprList.push_back(itr.get());
 	}
 
-	sprList.sort([](const Sprite* sprA, const Sprite* sprB) {return sprA->order_ > sprB->order_; });
+	sprList.sort([](const Sprite* sprA, const Sprite* sprB) {return sprA->order_ < sprB->order_; });
 	for (auto& itr : sprList)
 	{
 		itr->Draw();

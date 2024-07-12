@@ -58,6 +58,10 @@ Float3 IFE::ColliderCore::GetColliderPosition()
 	if (objectPtr_ && !transform_)transform_ = objectPtr_->transform_;
 	if (objectPtr_ && transform_->parent_)
 	{
+		if (transform_->parent_->objectPtr_->GetObjectName() == "PlayerAttack")
+		{
+			int a = 0; a++;
+		}
 		pos = transform_->parent_->position_;
 	}
 	return  pos + offsetPosition_;
