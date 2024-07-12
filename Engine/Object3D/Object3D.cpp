@@ -215,6 +215,8 @@ Float4 IFE::Object3D::GetColor255()
 
 #ifdef InverseEditorMode
 #else
+#include "ObjectManager.h"
+
 void IFE::Object3D::DebugGUI(bool fdelete, bool fmove, std::string* str)
 {
 	bool m = false;
@@ -237,6 +239,15 @@ void IFE::Object3D::ComponentGUI()
 	std::function<void(void)> es = [&]()
 		{
 			ImguiManager::Instance()->CheckBoxGUI(&DrawFlag_, "Draw Flag");
+			if (ImguiManager::Instance()->NewTreeNode(U8("オブジェクト名変更")))
+			{
+				static string str;
+				ImguiManager::Instance()->InputTextGUI(U8("変更後の名前"), str);
+				if (ImguiManager::Instance()->ButtonGUI(U8("変更")))
+				{
+					objectName_ = IFE::ObjectManager::Instance()->SetNameNumber(str);
+				}
+			}
 		};
 	std::function<void(void)>f = [&]()
 		{

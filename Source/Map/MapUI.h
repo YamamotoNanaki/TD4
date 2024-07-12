@@ -3,6 +3,7 @@
 #include "IFEMath.h"
 #include "Object3D.h"
 #include "Sprite.h"
+#include "utility"
 
 class MapUI:public IFE::Component
 {
@@ -28,6 +29,10 @@ public:
 	void LoadingComponent(nlohmann::json& json)override;
 
 private:
+	//ゲーム開始時のみの初期化
+	void StartInit();
+
+private:
 
 	IFE::Object3D* playerObj_ = nullptr;
 
@@ -35,6 +40,14 @@ private:
 	std::vector<float> objectRot_;
 
 	std::vector<IFE::Sprite*> mapSprite_;
+	std::vector<std::pair<IFE::Sprite*,std::string>> enemySprite_;
+
+	
+
+	IFE::Sprite* playerSprite_;
+
+	//画像の生成などゲーム開始時に起きてほしいことのためのフラグ(Initializeでやらないのはエディタで生成したときにInitializeが呼ばれるため)
+	bool IsInit_ = false;
 
 };
 

@@ -302,15 +302,8 @@ void IFE::SpriteManager::DebugGUI()
 			auto tex = TextureManager::Instance()->GetTextureGUI();
 			if (ImGui::Button("Add Sprite"))
 			{
-				if (SearchName(name))
-				{
-					ImGui::Text("error : an object with the same name exists");
-				}
-				else
-				{
-					AddInitialize(name, tex);
-					ImGui::Text("success");
-				}
+				AddInitialize(name, tex);
+				ImGui::Text("success");
 			}
 		}
 	}

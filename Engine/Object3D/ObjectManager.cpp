@@ -354,10 +354,6 @@ void IFE::ObjectManager::DebugGUI()
 				{
 					im->TextGUI("error : no name has been set");
 				}
-				else if (SearchName(name))
-				{
-					im->TextGUI("error : an object with the same name exists");
-				}
 				else
 				{
 					AddInitialize(name, ModelManager::Instance()->GetModel(model));

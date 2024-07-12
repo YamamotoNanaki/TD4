@@ -137,10 +137,6 @@ void PlayerAction::Move()
 	{
 		transform_->position_ -= frontVec_ * speed * IFE::IFETime::sDeltaTime_;
 	}
-	//if (IFE::Input::GetKeyPush(IFE::Key::W)|| IFE::Input::GetKeyPush(IFE::Key::A)||
-	//	IFE::Input::GetKeyPush(IFE::Key::S)|| IFE::Input::GetKeyPush(IFE::Key::D)) {
-	//	IFE::Sound::Instance()->SoundPlay("walk", false, true);
-	//}
 #pragma endregion キーボード
 
 #pragma region コントローラー
@@ -246,28 +242,40 @@ void PlayerAction::Attack()
 		IFE::Sound::Instance()->SoundPlay("attack", false, true);
 		if (playerAttack_->GetIsBackAttack() == false)
 		{
-			ani_->SetAnimation("walk");
+			ani_->SetAnimation("backKnifeAttack");//通常攻撃モーションに変える
 		}
 		else
 		{
 			ani_->SetAnimation("backKnifeAttack");
 		}
-		attackFlag_ = true;
-		playerAttack_->objectPtr_->DrawFlag_ = true;
+
+		if (attackFlag_ == false)
+		{
+			attackFlag_ = true;
+		}
 	}
 
 	if (attackFlag_ == true)
 	{
-		if (attackTimer_ > attackTime_)
+		if (attackTimer_ > maxAttackTime_- IFE::IFETime::sDeltaTime_)
+		{
+			isAttack_ = true;
+			playerAttack_->objectPtr_->DrawFlag_ = true;
+		}
+
+		if (attackTimer_ > maxAttackAnimationTime_)
 		{
 			attackFlag_ = false;
+			isAttack_ = false;
 			attackTimer_ = 0;
 			playerAttack_->objectPtr_->DrawFlag_ = false;
+			ani_->SetAnimation("walk");//待機モーションに変える
 		}
-		attackTimer_++;
+
+		attackTimer_+= IFE::IFETime::sDeltaTime_;
 	}
 
-	playerAttack_->SetIsAttack(attackFlag_);
+	playerAttack_->SetIsAttack(isAttack_);
 }
 
 void PlayerAction::AttackUI()

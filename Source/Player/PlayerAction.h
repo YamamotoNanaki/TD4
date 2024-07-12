@@ -45,8 +45,10 @@ private:
 	IFE::Vector3 camerafrontVec_ = {};
 
 	bool attackFlag_ = false;
-	const uint8_t attackTime_ = 10;
-	uint8_t attackTimer_ = 0;
+	bool isAttack_ = false;
+	const float maxAttackTime_ = 0.8f;
+	const float maxAttackAnimationTime_ = 1.0f;
+	float attackTimer_ = 0;
 
 	const uint16_t controllerRange_ = 10000;
 
