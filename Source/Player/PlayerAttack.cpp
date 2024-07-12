@@ -5,6 +5,7 @@
 #include"NormalEnemy.h"
 #include "TrapEnemy.h"
 #include "Boss.h"
+#include "Sound.h"
 
 void PlayerAttack::Initialize()
 {
@@ -16,6 +17,11 @@ void PlayerAttack::Initialize()
 		auto ptr = objectPtr_->GetComponent<IFE::Collider>()->AddCollider();
 		ptr->SetNoPushBackFlag(true);
 	}
+	IFE::Sound::Instance()->LoadWave("attackHit");
+	IFE::Sound::Instance()->SetVolume("attackHit", 50);
+	IFE::Sound::Instance()->LoadWave("backstab");
+	IFE::Sound::Instance()->SetVolume("backstab", 50);
+
 }
 
 void PlayerAttack::Update()
@@ -51,11 +57,13 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 				{
 					//“–‚½‚Á‚½Žž‚Ìˆ—
 					hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->DecHp();
+					IFE::Sound::Instance()->SoundPlay("attackHit", false, true);
 				}
 				else
 				{
 					//“–‚½‚Á‚½Žž‚Ìˆ—
 					hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->OneShot();
+					IFE::Sound::Instance()->SoundPlay("backstab", false, true);
 				}
 			}
 		}
@@ -69,11 +77,13 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 			{
 				//“–‚½‚Á‚½Žž‚Ìˆ—
 				hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->DecHp();
+				IFE::Sound::Instance()->SoundPlay("attackHit", false, true);
 			}
 			else
 			{
 				//“–‚½‚Á‚½Žž‚Ìˆ—
 				hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->OneShot();
+				IFE::Sound::Instance()->SoundPlay("backstab", false, true);
 			}
 		}
 	}
@@ -86,11 +96,13 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 			{
 				//“–‚½‚Á‚½Žž‚Ìˆ—
 				hitCollider->objectPtr_->GetComponent<IFE::Boss>()->DecHp();
+				IFE::Sound::Instance()->SoundPlay("attack", false, true);
 			}
 			else
 			{
 				//“–‚½‚Á‚½Žž‚Ìˆ—
 				hitCollider->objectPtr_->GetComponent<IFE::Boss>()->OneShot();
+				IFE::Sound::Instance()->SoundPlay("backstab", false, true);
 			}
 		}
 	}

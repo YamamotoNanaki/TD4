@@ -1,6 +1,7 @@
 #pragma once
 #include"Component.h"
 #include"IFEMath.h"
+#include "Animator.h"
 
 namespace IFE {
 	class BaseEnemy :public IFE::Component
@@ -34,6 +35,8 @@ namespace IFE {
 		int8_t decHp_;
 		bool isHit_;
 		float hitTime_;
+		//アニメーション
+		IFE::Animator* ani_ = nullptr;
 
 
 		//Highlighting関連の変数

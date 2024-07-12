@@ -5,6 +5,7 @@
 #include "ObjectManager.h"
 #include "PlayerDrone.h"
 #include "IFETime.h"
+#include "Sound.h"
 
 using namespace IFE;
 
@@ -32,6 +33,13 @@ void IFE::BaseEnemy::Highlighting()
 
 	hitObject_ = nullptr;
 	hitDistance_ = 0;
+
+	ani_ = objectPtr_->GetComponent<IFE::Animator>();
+
+	IFE::Sound::Instance()->LoadWave("attack");
+	IFE::Sound::Instance()->SetVolume("attack", 50);
+	IFE::Sound::Instance()->LoadWave("gun");
+	IFE::Sound::Instance()->SetVolume("gun", 70);
 }
 
 void IFE::BaseEnemy::Update()
@@ -49,6 +57,7 @@ void IFE::BaseEnemy::Update()
 
 void IFE::BaseEnemy::DecHp()
 {
+	ani_->SetAnimation("damage");
 	if (isHit_ == false) {
 		hp_ -= 25;
 		decHp_ = 25;
@@ -59,6 +68,7 @@ void IFE::BaseEnemy::DecHp()
 
 void IFE::BaseEnemy::OneShot()
 {
+	ani_->SetAnimation("downFront");
 	if (isHit_ == false) {
 		hp_ -= hp_;
 		decHp_ = hp_;

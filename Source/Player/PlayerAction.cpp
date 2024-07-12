@@ -9,6 +9,7 @@
 #include "ModelManager.h"
 #include"Scene.h"
 #include"Collision.h"
+#include "Sound.h"
 
 void PlayerAction::Initialize()
 {
@@ -32,6 +33,11 @@ void PlayerAction::Initialize()
 
 	ani_ = objectPtr_->GetComponent<IFE::Animator>();
 	ani_->SetAnimation("walk");
+	//sound
+	IFE::Sound::Instance()->LoadWave("walk");
+	IFE::Sound::Instance()->SetVolume("walk", 50);
+	IFE::Sound::Instance()->LoadWave("attack");
+	IFE::Sound::Instance()->SetVolume("attack", 50);
 }
 
 void PlayerAction::Update()
@@ -131,6 +137,10 @@ void PlayerAction::Move()
 	{
 		transform_->position_ -= frontVec_ * speed * IFE::IFETime::sDeltaTime_;
 	}
+	//if (IFE::Input::GetKeyPush(IFE::Key::W)|| IFE::Input::GetKeyPush(IFE::Key::A)||
+	//	IFE::Input::GetKeyPush(IFE::Key::S)|| IFE::Input::GetKeyPush(IFE::Key::D)) {
+	//	IFE::Sound::Instance()->SoundPlay("walk", false, true);
+	//}
 #pragma endregion キーボード
 
 #pragma region コントローラー
@@ -143,6 +153,7 @@ void PlayerAction::Move()
 		approachTarget(actualFrontVec_.z, targetVec_.z, 0.05f);
 		transform_->position_ -= actualFrontVec_.x * rightVec_ * speed * IFE::IFETime::sDeltaTime_;
 		transform_->position_ += actualFrontVec_.z * frontVec_ * speed * IFE::IFETime::sDeltaTime_;
+		IFE::Sound::Instance()->SoundPlay("walk", false, true);
 	}
 #pragma endregion
 }
@@ -232,6 +243,7 @@ void PlayerAction::Attack()
 	AutoAim();
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X))
 	{
+		IFE::Sound::Instance()->SoundPlay("attack", false, true);
 		if (playerAttack_->GetIsBackAttack() == false)
 		{
 			ani_->SetAnimation("walk");
@@ -252,7 +264,6 @@ void PlayerAction::Attack()
 			attackTimer_ = 0;
 			playerAttack_->objectPtr_->DrawFlag_ = false;
 		}
-
 		attackTimer_++;
 	}
 

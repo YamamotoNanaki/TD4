@@ -6,5 +6,7 @@ class Title : public IFE::Component
 public:
 	void Initialize();
 	void Update();
+private:
+	bool isNext;
 };
 

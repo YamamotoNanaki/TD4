@@ -22,7 +22,6 @@ void IFE::EnemyManager::Initialize()
 			auto com = enemy->objectPtr_->GetComponent<Collider>();
 			auto col0 = com->AddCollider();
 			col0->SetColliderType(ColliderType::RAY);
-			//col0->attribute_ = uint16_t(Attribute::ENEMYS);
 
 			auto col1 = com->AddCollider();
 			col1->SetColliderType(ColliderType::SPHERE);
@@ -35,11 +34,11 @@ void IFE::EnemyManager::Initialize()
 
 
 			enemyList_.push_back(enemy);
-			itr->SetModel(IFE::ModelManager::Instance()->GetModel("normalEnemy"));
+			itr->SetModel(IFE::ModelManager::Instance()->GetModel("enemyMotion"));
 			itr->AddComponent<IFE::Animator>();
 
 			auto anim = itr->GetComponent<IFE::Animator>();
-			anim->SetAnimation("Idle");
+			anim->SetAnimation("walk");
 			anim->loop_ = true;
 			continue;
 		}
@@ -51,7 +50,6 @@ void IFE::EnemyManager::Initialize()
 			auto col0 = com->AddCollider();
 
 			col0->SetColliderType(ColliderType::RAY);
-			//col0->attribute_ = uint16_t(Attribute::ENEMYS);
 
 			auto col1 = com->AddCollider();
 			col1->SetColliderType(ColliderType::SPHERE);
@@ -60,11 +58,11 @@ void IFE::EnemyManager::Initialize()
 			col1->SetPushBackFlag(true);
 			col1->SetGroundJudgeFlag(true);
 			enemyList_.push_back(boss);
-			itr->SetModel(IFE::ModelManager::Instance()->GetModel("normalEnemy"));
+			itr->SetModel(IFE::ModelManager::Instance()->GetModel("enemyMotion"));
 
 			itr->AddComponent<IFE::Animator>();
 			auto anim = itr->GetComponent<IFE::Animator>();
-			anim->SetAnimation("Idle");
+			anim->SetAnimation("walk");
 			anim->loop_ = true;
 		}
 	}
@@ -89,7 +87,7 @@ void IFE::EnemyManager::Update()
 /// <param name="rotation"></param>
 void IFE::EnemyManager::PopEnemy(Vector3 position, Vector3 rotation,Vector3 trapPos_)
 {
-	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("TrapEnemy", ModelManager::Instance()->GetModel("normalEnemy"));
+	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("TrapEnemy", ModelManager::Instance()->GetModel("enemyMotion"));
 	ptr->AddComponent<TrapEnemy>();
 	TrapEnemy* enemy = ptr->GetComponent<TrapEnemy>();
 	enemy->objectPtr_->transform_->position_ = position;
@@ -113,7 +111,7 @@ void IFE::EnemyManager::PopEnemy(Vector3 position, Vector3 rotation,Vector3 trap
 	ptr->AddComponent<IFE::Animator>();
 
 	auto anim = ptr->GetComponent<IFE::Animator>();
-	anim->SetAnimation("Idle");
+	anim->SetAnimation("walk");
 	anim->loop_ = true;
 }
 

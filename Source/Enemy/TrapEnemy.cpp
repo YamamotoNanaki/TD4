@@ -8,6 +8,7 @@
 #include "TextureManager.h"
 #include "PlayerAction.h"
 #include"PlayerDrone.h"
+#include "Sound.h"
 
 void IFE::TrapEnemy::Initialize()
 {
@@ -47,34 +48,37 @@ void IFE::TrapEnemy::ChangeState()
 {
 	if (hp_ == 0) {
 		state = DEAD;
+		ani_->SetAnimation("downFront");
 	}
-	//UŒ‚‚ÍÅ—Dæ
-	switch (state)
-	{
-	case IFE::BaseEnemy::WARNING:
-		//Œx‰úó‘Ô‚ÌUI‚É•ÏX
-		status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("eye"));
-		status_->objectPtr_->DrawFlag_ = true;
-		Warning();
-		break;
-	case IFE::BaseEnemy::CHASE:
-		//’ÇÕó‘Ô‚ÌUI‚É•ÏX
-		status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("exclamation"));
-		status_->objectPtr_->DrawFlag_ = true;
-		Chase();
-		break;
-	case IFE::BaseEnemy::ATTACK:
-		if (isChaseDrone == true) {
-			Shot();
+	else if (hp_ > 0) {
+		//UŒ‚‚ÍÅ—Dæ
+		switch (state)
+		{
+		case IFE::BaseEnemy::WARNING:
+			//Œx‰úó‘Ô‚ÌUI‚É•ÏX
+			status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("eye"));
+			status_->objectPtr_->DrawFlag_ = true;
+			Warning();
+			break;
+		case IFE::BaseEnemy::CHASE:
+			//’ÇÕó‘Ô‚ÌUI‚É•ÏX
+			status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("exclamation"));
+			status_->objectPtr_->DrawFlag_ = true;
+			Chase();
+			break;
+		case IFE::BaseEnemy::ATTACK:
+			if (isChaseDrone == true) {
+				Shot();
+			}
+			else {
+				Attack();
+			}
+			break;
+		case IFE::BaseEnemy::DEAD:
+			break;
+		default:
+			break;
 		}
-		else {
-			Attack();
-		}
-		break;
-	case IFE::BaseEnemy::DEAD:
-		break;
-	default:
-		break;
 	}
 }
 
@@ -121,6 +125,7 @@ void IFE::TrapEnemy::Warning()
 	if (warningTime >= 125) {
 		warningTime = 50;
 		state = CHASE;
+		ani_->SetAnimation("walk");
 	}
 	if (warningTime <= 0) {
 		hpUI->objectPtr_->Destroy();
@@ -170,6 +175,8 @@ void IFE::TrapEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 			isAttack = true;
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
+			IFE::Sound::Instance()->SoundPlay("attack", false, true);
+			ani_->SetAnimation("gunAttack");
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
@@ -183,6 +190,8 @@ void IFE::TrapEnemy::Chase()
 			isAttack = true;
 			enemyAttack->SetIsShot(true);
 			enemyAttack->objectPtr_->transform_->scale_ = { 0.4f,0.4f,0.4f };
+			IFE::Sound::Instance()->SoundPlay("gun", false, true);
+			ani_->SetAnimation("gunAttack");
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
@@ -191,6 +200,7 @@ void IFE::TrapEnemy::Chase()
 	if (warningTime >= 150) {
 		warningTime = 50;
 		state = WARNING;
+		ani_->SetAnimation("search");
 	}
 }
 
@@ -207,6 +217,7 @@ void IFE::TrapEnemy::Attack()
 	else if (attackTime >= 150) {
 		attackTime = 0;
 		state = CHASE;
+		ani_->SetAnimation("walk");
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
@@ -226,10 +237,12 @@ void IFE::TrapEnemy::Shot()
 	if (enemyAttack->GetIsShot() == false) {
 		state = CHASE;
 		isAttack = false;
+		ani_->SetAnimation("walk");
 	}
 	else if (attackTime > 100) {
 		state = CHASE;
 		isAttack = false;
+		ani_->SetAnimation("walk");
 		enemyAttack->objectPtr_->DrawFlag_ = false;
 		enemyAttack->SetIsShot(false);
 		attackTime = 0;
