@@ -49,6 +49,7 @@ namespace IFE
 
 	public:
 		void Initialize();
+		void Update();
 		uint16_t LoadWave(const std::string& wave);
 		uint16_t LoadMP3(const std::string& mp3);
 		uint16_t GetSoundNum(const std::string& wave);

@@ -22,6 +22,21 @@ void IFE::Sound::Initialize()
 	assert(SUCCEEDED(result) && "WindowsMediaFoundation‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½");
 }
 
+void IFE::Sound::Update()
+{
+	XAUDIO2_VOICE_STATE state;
+	for (uint16_t i = 0; i < sMAX_SOUND_; i++)
+	{
+		if (soundDatas_[i].free == false)continue;
+		if (!soundDatas_[i].pSourceVoice)continue;
+		soundDatas_[i].pSourceVoice->GetState(&state);
+		if (state.BuffersQueued > 0)
+		{
+			soundDatas_[i].isPlaying = true;
+		}
+	}
+}
+
 uint16_t IFE::Sound::LoadWave(const std::string& filename)
 {
 	for (uint16_t i = 0; i < Sound::sMAX_SOUND_; i++)
