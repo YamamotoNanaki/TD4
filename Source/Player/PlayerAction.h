@@ -62,6 +62,8 @@ private:
 	bool isAttackUI_ = false;
 
 	IFE::Animator* ani_ = nullptr;
+	bool isWalk_ = false;
+	bool oldIsWalk_ = false;
 
 public:
 
@@ -143,4 +145,6 @@ private:
 	void approachTarget(float& current, float target, float step);
 
 	void AutoAim();
+
+	void IsWalk();
 };
