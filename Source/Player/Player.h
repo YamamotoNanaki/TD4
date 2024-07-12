@@ -52,6 +52,7 @@ public:
 	};
 private:
 	CameraChangeParam ccp_;
+	bool oldIsDamageFlag_ = false;
 #pragma endregion
 
 	PoseMenu* pose_ = nullptr;

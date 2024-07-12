@@ -183,6 +183,11 @@ const float PlayerAction::GetRotY()
 	return rotY_;
 }
 
+void PlayerAction::SetAnimation(std::string name)
+{
+	ani_->SetAnimation(name);
+}
+
 void PlayerAction::Rotation()
 {
 #pragma region キーボード

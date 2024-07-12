@@ -122,6 +122,8 @@ public:
 	//Getter
 	bool GetIsHit() { return isHit_; }
 
+	void SetAnimation(std::string name);
+
 private:
 
 	/// <summary>
