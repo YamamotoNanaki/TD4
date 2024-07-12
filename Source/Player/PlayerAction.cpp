@@ -32,7 +32,7 @@ void PlayerAction::Initialize()
 	enemyManager_ = IFE::ObjectManager::Instance()->GetObjectPtr("EnemyManager")->GetComponent<IFE::EnemyManager>();
 
 	ani_ = objectPtr_->GetComponent<IFE::Animator>();
-	ani_->SetAnimation("walk");
+	ani_->SetAnimation("walk");//‘Ò‹@ƒ‚[ƒVƒ‡ƒ“‚É•Ï‚¦‚é
 	//sound
 	IFE::Sound::Instance()->LoadWave("walk");
 	IFE::Sound::Instance()->SetVolume("walk", 50);
