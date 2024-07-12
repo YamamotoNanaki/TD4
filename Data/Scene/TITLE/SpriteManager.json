@@ -27,6 +27,7 @@
                 "Title"
             ],
             "name": "Title",
+            "order": 0,
             "texture": "Title.png"
         }
     ]

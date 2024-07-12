@@ -5,16 +5,17 @@
 
 using namespace IFE;
 
-//void Title::Initialize()
-//{
-//	//IFE::Sound::Instance()->LoadWave("title");
-//}
+void Title::Initialize()
+{
+	IFE::Sound::Instance()->LoadWave("title");
+	IFE::Sound::Instance()->SetVolume("title",50);
+}
 
 void Title::Update()
 {
 	if (Input::PadTrigger(PADCODE::ALL) || Input::GetKeyTrigger(Key::Space))
 	{
-	/*	IFE::Sound::Instance()->SoundPlay(0, false, true);*/
+		IFE::Sound::Instance()->SoundPlay("title", false, true);
 		Scene::Instance()->SetNextScene("stage01");
 	}
 }
