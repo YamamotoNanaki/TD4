@@ -105,5 +105,13 @@
             "settings": 1,
             "smooth": true
         }
+    },
+    {
+        "enemyMotion_Model": {
+            "fileName": "enemyMotion",
+            "settings": 1,
+            "smooth": false
+        },
+        "name": "enemyMotion_Model"
     }
 ]

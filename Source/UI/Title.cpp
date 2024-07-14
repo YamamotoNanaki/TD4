@@ -2,20 +2,26 @@
 #include "input.h"
 #include "Scene.h"
 #include "Sound.h"
+#include "Over.h"
 
 using namespace IFE;
 
 void Title::Initialize()
 {
 	IFE::Sound::Instance()->LoadWave("title");
-	IFE::Sound::Instance()->SetVolume("title", 50);
+	IFE::Sound::Instance()->SetVolume("title",50);
+	isNext = false;
 }
 
 void Title::Update()
 {
-	if (Input::PadTrigger(PADCODE::ALL) || Input::GetKeyTrigger(Key::Space))
-	{
-		IFE::Sound::Instance()->SoundPlay("title", false, true);
-		Scene::Instance()->SetNextScene("stage01");
-	}
+		if (Input::PadTrigger(PADCODE::ALL) || Input::GetKeyTrigger(Key::Space))
+		{
+			if (!isNext) {
+				IFE::Sound::Instance()->SoundPlay("title", false, true);
+			}
+			isNext = true;
+			IFE::ObjectManager::Instance()->GetObjectPtr("Over")->GetComponent<Over>()->SetIsNext(false);
+			Scene::Instance()->SetNextScene("stage01");
+		}
 }
