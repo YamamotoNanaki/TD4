@@ -113,19 +113,19 @@ void MapUI::Update()
 			//©‹@‚Æ“G‚Æ‚Ì‹——£‚ÌZo
 			float length = sqrt(difference.x * difference.x + difference.y * difference.y);
 
-			//mapSprite_[count]->drawFlag_ = false;
+			enemySprite_[enemyCount].first->drawFlag_ = false;
 
 			enemySprite_[enemyCount].first->transform_->position2D_ = { transform2D_->position2D_.x + difference.x/* * cosf(angle) + difference.y * sinf(angle)*/,transform2D_->position2D_.y + difference.y /** cosf(angle) - difference.x * sinf(angle)*/ };
 			//enemySprite_[enemyCount].first->transform_->rotation2D_ = (itr->objectPtr_->transform_->rotation_.z - (float)IFE::PI / 2 - angle);
 			enemySprite_[enemyCount].first->transform_->scale2D_ = { itr->objectPtr_->transform_->scale_.x / 20,itr->objectPtr_->transform_->scale_.z / 20 };
 
-			//“G‚ªoŒ»‚µ‚Ä‚¢‚é‚©‚ÂƒŒ[ƒ_[‚Ì“à‘¤‚Ì”ÍˆÍ“à‚É‚¢‚é‚È‚ç
-			if (transform2D_->scale2D_.x >= length && transform2D_->scale2D_.y >= length)
+			//ˆê’è‹——£“à‚É‚¢‚é‚È‚ç
+			if (20 >= length)
 			{
 				enemySprite_[enemyCount].first->drawFlag_ = true;
 				
 			}
-			mapSprite_[count]->order_ = 1;
+			enemySprite_[enemyCount].first->order_ = 1;
 			enemyCount++;
 		}
 
