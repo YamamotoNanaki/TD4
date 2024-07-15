@@ -3,6 +3,7 @@
 #include "Transform.h"
 #include "Collider.h"
 #include"Player.h"
+#include "Sound.h"
 
 void IFE::EnemyAttack::Initialize()
 {
@@ -18,6 +19,8 @@ void IFE::EnemyAttack::Initialize()
 	}
 
 	player_ = IFE::ObjectManager::Instance()->GetObjectPtr("playerObject")->GetComponent<Player>();
+	IFE::Sound::Instance()->LoadWave("attackHit");
+	IFE::Sound::Instance()->SetVolume("attackHit", 50);
 }
 
 void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
@@ -27,6 +30,7 @@ void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::Collide
 	{
 		//“–‚½‚Á‚½Žž‚Ìˆ—
 		hitCollider->objectPtr_->GetComponent<PlayerAction>()->DecHp();
+
 	}
 
 	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<PlayerDrone>())
@@ -36,15 +40,9 @@ void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::Collide
 			player_->DroneBreak();
 			objectPtr_->DrawFlag_ = false;
 			isShot = false;
+
 		}
 	}
-	//•Ç‚ª‚ ‚Á‚½ê‡
-	//else if (hitCollider->objectPtr_->GetObjectName().find("wall") != std::string::npos || hitCollider->objectPtr_->GetObjectName().find("box") != std::string::npos) {
-	//	if (isShot == true) {
-	//		isShot = false;
-	//		objectPtr_->DrawFlag_ = false;
-	//	}
-	//}
 }
 
 void IFE::EnemyAttack::Update()

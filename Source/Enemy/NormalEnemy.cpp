@@ -8,6 +8,7 @@
 #include "TextureManager.h"
 #include "PlayerAction.h"
 #include"PlayerDrone.h"
+#include "Sound.h"
 
 void IFE::NormalEnemy::Initialize()
 {
@@ -48,42 +49,45 @@ void IFE::NormalEnemy::ChangeState()
 {
 	if (hp_ == 0) {
 		state = DEAD;
+		ani_->SetAnimation("downFront");
 	}
-	//UŒ‚‚ÍÅ—Dæ
-	switch (state)
-	{
-	case IFE::BaseEnemy::WAIT:
-		status_->objectPtr_->DrawFlag_ = false;
-		Wait();
-		break;
-	case IFE::BaseEnemy::SEARCH:
-		status_->objectPtr_->DrawFlag_ = false;
-		Search();
-		break;
-	case IFE::BaseEnemy::WARNING:
-		//Œx‰úó‘Ô‚ÌUI‚É•ÏX
-		status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("eye"));
-		status_->objectPtr_->DrawFlag_ = true;
-		Warning();
-		break;
-	case IFE::BaseEnemy::CHASE:
-		//’ÇÕó‘Ô‚ÌUI‚É•ÏX
-		status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("exclamation"));
-		status_->objectPtr_->DrawFlag_ = true;
-		Chase();
-		break;
-	case IFE::BaseEnemy::ATTACK:
-		if (isChaseDrone == true) {
-			Shot();
+	else if (hp_ > 0) {
+		//UŒ‚‚ÍÅ—Dæ
+		switch (state)
+		{
+		case IFE::BaseEnemy::WAIT:
+			status_->objectPtr_->DrawFlag_ = false;
+			Wait();
+			break;
+		case IFE::BaseEnemy::SEARCH:
+			status_->objectPtr_->DrawFlag_ = false;
+			Search();
+			break;
+		case IFE::BaseEnemy::WARNING:
+			//Œx‰úó‘Ô‚ÌUI‚É•ÏX
+			status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("eye"));
+			status_->objectPtr_->DrawFlag_ = true;
+			Warning();
+			break;
+		case IFE::BaseEnemy::CHASE:
+			//’ÇÕó‘Ô‚ÌUI‚É•ÏX
+			status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("exclamation"));
+			status_->objectPtr_->DrawFlag_ = true;
+			Chase();
+			break;
+		case IFE::BaseEnemy::ATTACK:
+			if (isChaseDrone == true) {
+				Shot();
+			}
+			else {
+				Attack();
+			}
+			break;
+		case IFE::BaseEnemy::DEAD:
+			break;
+		default:
+			break;
 		}
-		else {
-			Attack();
-		}
-		break;
-	case IFE::BaseEnemy::DEAD:
-		break;
-	default:
-		break;
 	}
 }
 
@@ -137,11 +141,13 @@ void IFE::NormalEnemy::Wait()
 		waitTimer = 0;
 		transform_->rotation_ = { 0,0,0 };
 		state = SEARCH;
+		ani_->SetAnimation("walk");
 	}
 
 	//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
 	if (isFound == true) {
 		state = WARNING;
+		ani_->SetAnimation("search");
 	}
 }
 
@@ -158,10 +164,12 @@ void IFE::NormalEnemy::Warning()
 	if (warningTime >= 125) {
 		warningTime = 50;
 		state = CHASE;
+		ani_->SetAnimation("Walk");
 	}
 	if (warningTime <= 0) {
 		warningTime = 50;
 		state = SEARCH;
+		ani_->SetAnimation("walk");
 	}
 }
 
@@ -183,10 +191,14 @@ void IFE::NormalEnemy::Search()
 		if (len <= 0.1) {
 			if (nextPoint == points.size() - 1) {
 				nextPoint = 0;
+				state = WAIT;
 			}
 			else {
 				nextPoint++;
 				state = WAIT;
+			}
+			if (ani_ != nullptr) {
+				ani_->SetAnimation("search");
 			}
 		}
 	}
@@ -194,6 +206,7 @@ void IFE::NormalEnemy::Search()
 	//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
 	if (isFound == true) {
 		state = WARNING;
+		ani_->SetAnimation("search");
 	}
 }
 
@@ -224,6 +237,8 @@ void IFE::NormalEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 			isAttack = true;
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
+			IFE::Sound::Instance()->SoundPlay("attack", false, true);
+			ani_->SetAnimation("gunAttack");
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
@@ -237,6 +252,8 @@ void IFE::NormalEnemy::Chase()
 			isAttack = true;
 			enemyAttack->SetIsShot(true);
 			enemyAttack->objectPtr_->transform_->scale_ = { 0.4f,0.4f,0.4f };
+			IFE::Sound::Instance()->SoundPlay("gun", false, true);
+			ani_->SetAnimation("gunAttack");
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
@@ -245,6 +262,7 @@ void IFE::NormalEnemy::Chase()
 	if (warningTime >= 60) {
 		warningTime = 50;
 		state = WARNING;
+		ani_->SetAnimation("search");
 	}
 }
 
@@ -261,6 +279,7 @@ void IFE::NormalEnemy::Attack()
 	else if (attackTime >= 150) {
 		attackTime = 0;
 		state = CHASE;
+		ani_->SetAnimation("walk");
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
@@ -280,10 +299,12 @@ void IFE::NormalEnemy::Shot()
 	if(enemyAttack->GetIsShot() == false) {
 		state = CHASE;
 		isAttack = false;
+		ani_->SetAnimation("walk");
 	}
 	else if (attackTime > 100) {
 		state = CHASE;
 		isAttack = false;
+		ani_->SetAnimation("walk");
 		enemyAttack->objectPtr_->DrawFlag_ = false;
 		enemyAttack->SetIsShot(false);
 		attackTime = 0;

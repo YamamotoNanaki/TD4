@@ -9,6 +9,7 @@
 #include "ModelManager.h"
 #include"Scene.h"
 #include"Collision.h"
+#include "Sound.h"
 
 void PlayerAction::Initialize()
 {
@@ -32,6 +33,11 @@ void PlayerAction::Initialize()
 
 	ani_ = objectPtr_->GetComponent<IFE::Animator>();
 	ani_->SetAnimation("walk");//‘Ò‹@ƒ‚[ƒVƒ‡ƒ“‚É•Ï‚¦‚é
+	//sound
+	IFE::Sound::Instance()->LoadWave("walk");
+	IFE::Sound::Instance()->SetVolume("walk", 50);
+	IFE::Sound::Instance()->LoadWave("attack");
+	IFE::Sound::Instance()->SetVolume("attack", 50);
 }
 
 void PlayerAction::Update()
@@ -68,6 +74,7 @@ void PlayerAction::Finalize()
 void PlayerAction::DecHp()
 {
 	if (isHit_ == false) {
+		IFE::Sound::Instance()->SoundPlay("attackHit", false, true);
 		hp_--;
 		hitTime_ = HIT_COOLTIME;
 		isHit_ = true;
@@ -146,6 +153,7 @@ void PlayerAction::Move()
 		approachTarget(actualFrontVec_.z, targetVec_.z, 0.05f);
 		transform_->position_ -= actualFrontVec_.x * rightVec_ * speed * IFE::IFETime::sDeltaTime_;
 		transform_->position_ += actualFrontVec_.z * frontVec_ * speed * IFE::IFETime::sDeltaTime_;
+		IFE::Sound::Instance()->SoundPlay("walk", false, true);
 	}
 #pragma endregion
 }
@@ -173,6 +181,11 @@ const IFE::Vector3 PlayerAction::GetFrontVec()
 const float PlayerAction::GetRotY()
 {
 	return rotY_;
+}
+
+void PlayerAction::SetAnimation(std::string name)
+{
+	ani_->SetAnimation(name);
 }
 
 void PlayerAction::Rotation()
@@ -254,6 +267,9 @@ void PlayerAction::Attack()
 	{
 		if (attackTimer_ > maxAttackTime_- IFE::IFETime::sDeltaTime_)
 		{
+			if (isAttack_ == false) {
+				IFE::Sound::Instance()->SoundPlay("attack", false, true);
+			}
 			isAttack_ = true;
 			playerAttack_->objectPtr_->DrawFlag_ = true;
 		}
