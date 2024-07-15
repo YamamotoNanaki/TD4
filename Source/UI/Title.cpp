@@ -21,7 +21,6 @@ void Title::Update()
 				IFE::Sound::Instance()->SoundPlay("title", false, true);
 			}
 			isNext = true;
-			IFE::ObjectManager::Instance()->GetObjectPtr("Over")->GetComponent<Over>()->SetIsNext(false);
 			Scene::Instance()->SetNextScene("stage01");
 		}
 }

@@ -82,7 +82,6 @@ void PlayerAction::Finalize()
 void PlayerAction::DecHp()
 {
 	if (isHit_ == false) {
-		IFE::Sound::Instance()->SoundPlay("attackHit", false, true);
 		hp_--;
 		hitTime_ = HIT_COOLTIME;
 		isHit_ = true;
