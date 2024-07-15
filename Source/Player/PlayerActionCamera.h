@@ -15,10 +15,10 @@ private:
 	//補間時間調整値
 	const float adjustedTimeValue_ = 15.0f;
 	//カメラのY座標調節値
-	const float cameraYAdd_ = 4.0f;
+	const float cameraYAdd_ = 3.0f;
 
 	//ターゲットからの距離
-	float distance_ = 5.f;
+	float distance_ = 4.0f;
 	float defaultDistance_ = 5.f;
 	float defaultRayDistance_ = 0;
 

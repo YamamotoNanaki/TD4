@@ -33,6 +33,9 @@ void PlayerAction::Initialize()
 
 	ani_ = objectPtr_->GetComponent<IFE::Animator>();
 	ani_->SetAnimation("walk");//‘Ò‹@ƒ‚[ƒVƒ‡ƒ“‚É•Ï‚¦‚é
+
+	moveSpeed_ = normalMoveSpeed_;
+
 	//sound
 	IFE::Sound::Instance()->LoadWave("walk");
 	IFE::Sound::Instance()->SetVolume("walk", 4);
