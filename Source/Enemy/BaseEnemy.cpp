@@ -37,9 +37,9 @@ void IFE::BaseEnemy::Highlighting()
 	ani_ = objectPtr_->GetComponent<IFE::Animator>();
 
 	IFE::Sound::Instance()->LoadWave("attack");
-	IFE::Sound::Instance()->SetVolume("attack", 50);
+	IFE::Sound::Instance()->SetVolume("attack", 25);
 	IFE::Sound::Instance()->LoadWave("gun");
-	IFE::Sound::Instance()->SetVolume("gun", 70);
+	IFE::Sound::Instance()->SetVolume("gun", 50);
 }
 
 void IFE::BaseEnemy::Update()

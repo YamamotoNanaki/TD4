@@ -35,9 +35,9 @@ void PlayerAction::Initialize()
 	ani_->SetAnimation("walk");//‘Ò‹@ƒ‚[ƒVƒ‡ƒ“‚É•Ï‚¦‚é
 	//sound
 	IFE::Sound::Instance()->LoadWave("walk");
-	IFE::Sound::Instance()->SetVolume("walk", 50);
+	IFE::Sound::Instance()->SetVolume("walk", 4);
 	IFE::Sound::Instance()->LoadWave("attack");
-	IFE::Sound::Instance()->SetVolume("attack", 50);
+	IFE::Sound::Instance()->SetVolume("attack", 25);
 }
 
 void PlayerAction::Update()
@@ -153,7 +153,9 @@ void PlayerAction::Move()
 		approachTarget(actualFrontVec_.z, targetVec_.z, 0.05f);
 		transform_->position_ -= actualFrontVec_.x * rightVec_ * speed * IFE::IFETime::sDeltaTime_;
 		transform_->position_ += actualFrontVec_.z * frontVec_ * speed * IFE::IFETime::sDeltaTime_;
-		IFE::Sound::Instance()->SoundPlay("walk", false, true);
+		if (IFE::Sound::Instance()->GetPlayStatus("walk") == false) {
+			IFE::Sound::Instance()->SoundPlay("walk", false, true);
+		}
 	}
 #pragma endregion
 }
