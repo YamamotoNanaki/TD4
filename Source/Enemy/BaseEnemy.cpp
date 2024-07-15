@@ -72,7 +72,6 @@ void IFE::BaseEnemy::DecHp()
 {
 	ani_->SetAnimation("damage");
 	if (isHit_ == false) {
-		IFE::Sound::Instance()->SoundPlay("attackHit", false, true);
 		hp_ -= 25;
 		decHp_ = 25;
 		hitTime_ = HIT_COOLTIME;
@@ -84,7 +83,6 @@ void IFE::BaseEnemy::OneShot()
 {
 	ani_->SetAnimation("downFront");
 	if (isHit_ == false) {
-		IFE::Sound::Instance()->SoundPlay("backstab", false, true);
 		hp_ -= hp_;
 		decHp_ = hp_;
 		hitTime_ = HIT_COOLTIME;
