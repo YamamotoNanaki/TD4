@@ -44,6 +44,10 @@ private:
 
 	IFE::Vector3 camerafrontVec_ = {};
 
+	const float normalMoveSpeed_ = 10.0f;
+	const float crouchMoveSpeed_ = 5.0f;
+	float moveSpeed_ = 0.0f;
+
 	bool attackFlag_ = false;
 	bool isAttack_ = false;
 	const float maxAttackTime_ = 0.8f;
@@ -64,6 +68,13 @@ private:
 	IFE::Animator* ani_ = nullptr;
 	bool isWalk_ = false;
 	bool oldIsWalk_ = false;
+
+	bool crouchFlag_ = false;
+	bool crouchAnimationFlag_ = false;
+	float crouchAnimationTimer_ = 0.0f;
+	const float maxCrouchTime_ = 0.67f;
+
+	const float slowSpeed_ = 0.3f;
 
 public:
 
@@ -149,4 +160,7 @@ private:
 	void AutoAim();
 
 	void IsWalk();
+
+	void Crouch();
+	void CrouchAnimation();
 };

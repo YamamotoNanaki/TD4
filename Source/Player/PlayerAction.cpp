@@ -53,6 +53,14 @@ void PlayerAction::Update()
 		hitTime_ -= IFE::IFETime::sDeltaTime_;
 		if (hitTime_ <= 0) {
 			isHit_ = false;
+			if (crouchFlag_ == false)
+			{
+				ani_->SetAnimation("damage");//待機
+			}
+			else
+			{
+				ani_->SetAnimation("damage");//しゃがみ待機
+			}
 		}
 	}
 
@@ -78,7 +86,14 @@ void PlayerAction::DecHp()
 		hp_--;
 		hitTime_ = HIT_COOLTIME;
 		isHit_ = true;
-		ani_->SetAnimation("damage");
+		if (crouchFlag_ == false)
+		{
+			ani_->SetAnimation("damage");
+		}
+		else
+		{
+			ani_->SetAnimation("damage");//しゃがみくらいアニメーション
+		}
 	}
 }
 
@@ -86,24 +101,29 @@ void PlayerAction::MoveUpdate()
 {
 	camerafrontVec_ = { camera_->GetCamera()->transform_->target_.x - camera_->GetPos().x,0.0f,camera_->GetCamera()->transform_->target_.z - camera_->GetPos().z };
 	camerafrontVec_.Normalize();
-	if (attackFlag_ == false)
+	if (crouchAnimationFlag_ == false)
 	{
-		Rotation();
-		Move();
-		objectPtr_->SetColor({ 1,1,1,1 });
+		if (attackFlag_ == false)
+		{
+			Rotation();
+			Move();
+			Crouch();
+			objectPtr_->SetColor({ 1,1,1,1 });
+		}
+		else
+		{
+			objectPtr_->SetColor({ 1,0,0,1 });
+		}
+		//攻撃のUI等の兼ね合いで個別記入
+		Attack();
 	}
-	else
-	{
-		objectPtr_->SetColor({ 1,0,0,1 });
-	}
-	Attack();
+	CrouchAnimation();
+
 	camera_->CameraUpdate(transform_->position_);
 }
 
 void PlayerAction::Move()
 {
-	const float speed = 10.0f;
-
 	//正面ベクトルの作成
 	frontVec_ = transform_->position_ - camera_->GetPos();
 	frontVec_.Normalize();
@@ -119,27 +139,22 @@ void PlayerAction::Move()
 	frontVec_.Normalize();
 	rightVec_.Normalize();
 
-	//if (objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_ == false)
-	//{
-	//	transform_->position_.y = -4.9f * IFE::IFETime::sDeltaTime_;
-	//}
-
 	IsWalk();
 
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::A))
 	{
-		transform_->position_ += rightVec_ * speed * IFE::IFETime::sDeltaTime_;
+		transform_->position_ += rightVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::D))
 	{
-		transform_->position_ -= rightVec_ * speed * IFE::IFETime::sDeltaTime_;
+		transform_->position_ -= rightVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
 	}if (IFE::Input::GetKeyPush(IFE::Key::W))
 	{
-		transform_->position_ += frontVec_ * speed * IFE::IFETime::sDeltaTime_;
+		transform_->position_ += frontVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
 	}if (IFE::Input::GetKeyPush(IFE::Key::S))
 	{
-		transform_->position_ -= frontVec_ * speed * IFE::IFETime::sDeltaTime_;
+		transform_->position_ -= frontVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
 	}
 #pragma endregion キーボード
 
@@ -151,8 +166,8 @@ void PlayerAction::Move()
 	{
 		approachTarget(actualFrontVec_.x, targetVec_.x, 0.05f);
 		approachTarget(actualFrontVec_.z, targetVec_.z, 0.05f);
-		transform_->position_ -= actualFrontVec_.x * rightVec_ * speed * IFE::IFETime::sDeltaTime_;
-		transform_->position_ += actualFrontVec_.z * frontVec_ * speed * IFE::IFETime::sDeltaTime_;
+		transform_->position_ -= actualFrontVec_.x * rightVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
+		transform_->position_ += actualFrontVec_.z * frontVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
 		IFE::Sound::Instance()->SoundPlay("walk", false, true);
 	}
 #pragma endregion
@@ -246,20 +261,35 @@ void PlayerAction::Attack()
 {
 	AttackUI();
 	AutoAim();
-	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X))
+	if (attackFlag_ == false)
 	{
-		if (playerAttack_->GetIsBackAttack() == false)
+		if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X))
 		{
-			ani_->SetAnimation("backKnifeAttack");//通常攻撃モーションに変える
-		}
-		else
-		{
-			ani_->SetAnimation("backKnifeAttack");
-		}
+			if (crouchFlag_ == false)
+			{
+				if (playerAttack_->GetIsBackAttack() == false)
+				{
+					ani_->SetAnimation("backKnifeAttack");//通常攻撃モーションに変える
+				}
+				else
+				{
+					ani_->SetAnimation("backKnifeAttack");
+				}
+			}
+			else
+			{
+				if (playerAttack_->GetIsBackAttack() == false)
+				{
+					ani_->SetAnimation("backKnifeAttack");//しゃがみ通常攻撃モーションに変える
+				}
+				else
+				{
+					ani_->SetAnimation("backKnifeAttack");//しゃがみワンパン攻撃モーションに変える
+				}
+			}
 
-		if (attackFlag_ == false)
-		{
 			attackFlag_ = true;
+			IFE::IFETime::sTimeScale_ = slowSpeed_;
 		}
 	}
 
@@ -280,6 +310,7 @@ void PlayerAction::Attack()
 			isAttack_ = false;
 			attackTimer_ = 0;
 			playerAttack_->objectPtr_->DrawFlag_ = false;
+			IFE::IFETime::sTimeScale_ = 1.0f;
 		}
 
 		attackTimer_+= IFE::IFETime::sDeltaTime_;
@@ -367,11 +398,59 @@ void PlayerAction::IsWalk()
 
 	if (oldIsWalk_ == false && isWalk_ == true)
 	{
-		ani_->SetAnimation("walk");
+		if (crouchFlag_ == false)
+		{
+			ani_->SetAnimation("walk");
+		}
+		else
+		{
+			ani_->SetAnimation("squatwalk");
+		}
 	}
 	if (oldIsWalk_ == true && isWalk_ == false)
 	{
-		ani_->SetAnimation("damage");//待機モーション
+		if (crouchFlag_ == false)
+		{
+			//ani_->SetAnimation("damage");//待機モーション
+		}
+		else
+		{
+			//ani_->SetAnimation("damage");//しゃがみ待機モーション
+		}
 	}
 	oldIsWalk_ = isWalk_;
+}
+
+void PlayerAction::Crouch()
+{
+	if (IFE::Input::GetKeyTrigger(IFE::Key::LSHIFT) || IFE::Input::PadTrigger(IFE::PADCODE::B))
+	{
+		crouchAnimationFlag_ = true;
+		if (crouchFlag_ == false)
+		{
+			moveSpeed_ = crouchMoveSpeed_;
+			ani_->SetAnimation("squat");//しゃがみ
+		}
+		else
+		{
+			moveSpeed_ = normalMoveSpeed_;
+			ani_->SetAnimation("standUp");//立ち
+		}
+	}
+}
+
+void PlayerAction::CrouchAnimation()
+{
+	if (crouchAnimationFlag_ == true)
+	{
+		if (crouchAnimationTimer_ > maxCrouchTime_)
+		{
+			crouchAnimationTimer_ = 0.0f;
+			crouchFlag_ = !crouchFlag_;
+			ani_->SetAnimation("damage");//待機モーション
+			crouchAnimationFlag_ = false;
+		}
+
+		crouchAnimationTimer_ += IFE::IFETime::sDeltaTime_;
+	}
 }
