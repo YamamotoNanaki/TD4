@@ -44,6 +44,7 @@ void IFE::Scene::Initialize()
 void IFE::Scene::Update()
 {
 	SceneChange();
+	Sound::Instance()->Update();
 	if (loadEnd_)
 	{
 		CollideManager::Instance()->Reset();
@@ -113,6 +114,7 @@ void IFE::Scene::Initialize()
 void IFE::Scene::Update()
 {
 	SceneChange();
+	Sound::Instance()->Update();
 	if (loadEnd_)
 	{
 		gui_.StartNewFrame();

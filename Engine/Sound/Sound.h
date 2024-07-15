@@ -61,20 +61,21 @@ namespace IFE
 		void SetVolume(std::string soundName, std::int32_t volume);
 		void SoundPlay(std::string soundName, bool roop = true, bool stop = false);
 		void StopSound(std::string soundName);
-		
-		////変更スピードに合わせてピッチが変わる
-		//void SoundChangeSpeedAndPitch(std::string soundName,float speed);
-		////変更スピードに合わせてピッチが変わる
-		//void SoundChangeSpeedAndPitch(uint16_t soundNum, float speed);
-		
-		//元のピッチのままスピードが変わる(デフォルト1)
-		void SoundChangeSpeed(std::string soundName, float speed);
-		//元のピッチのままスピードが変わる(デフォルト1)
-		void SoundChangeSpeed(uint16_t soundNum, float speed);
-		//元のスピードのままピッチが変わる(デフォルト0、12で1オクターブ)
-		void SoundChangePitch(std::string soundName, int16_t pitch);
-		//元のスピードのままピッチが変わる(デフォルト0、12で1オクターブ)
-		void SoundChangePitch(uint16_t soundNum, int16_t pitch);
+
+		//変更スピードに合わせてピッチが変わる
+		void SoundChangeSpeedAndPitch(std::string soundName,float speed);
+		//変更スピードに合わせてピッチが変わる
+		void SoundChangeSpeedAndPitch(uint16_t soundNum, float speed);
+
+		////元のピッチのままスピードが変わる(デフォルト1)
+		//void SoundChangeSpeed(std::string soundName, float speed);
+		////元のピッチのままスピードが変わる(デフォルト1)
+		//void SoundChangeSpeed(uint16_t soundNum, float speed);
+		////元のスピードのままピッチが変わる(デフォルト0、12で1オクターブ)
+		//void SoundChangePitch(std::string soundName, int16_t pitch);
+		////元のスピードのままピッチが変わる(デフォルト0、12で1オクターブ)
+		//void SoundChangePitch(uint16_t soundNum, int16_t pitch);
+
 		bool GetPlayStatus(std::string soundName);
 		bool GetPlayStatus(uint16_t soundNum);
 		void AllStop();
