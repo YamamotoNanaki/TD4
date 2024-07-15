@@ -21,6 +21,10 @@ void IFE::EnemyAttack::Initialize()
 	player_ = IFE::ObjectManager::Instance()->GetObjectPtr("playerObject")->GetComponent<Player>();
 	IFE::Sound::Instance()->LoadWave("attackHit");
 	IFE::Sound::Instance()->SetVolume("attackHit", 30);
+	IFE::Sound::Instance()->LoadMP3("droneBreak");
+	IFE::Sound::Instance()->SetVolume("droneBreak", 10);
+	IFE::Sound::Instance()->LoadMP3("droneShock");
+	IFE::Sound::Instance()->SetVolume("droneShock", 30);
 }
 
 void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
@@ -38,6 +42,8 @@ void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::Collide
 	{
 		//“–‚½‚Á‚½Žž‚Ìˆ—
 		if (isShot == true) {
+			IFE::Sound::Instance()->SoundPlay("droneBreak", false, true);
+			IFE::Sound::Instance()->SoundPlay("droneShock", false, true);
 			player_->DroneBreak();
 			objectPtr_->DrawFlag_ = false;
 			isShot = false;

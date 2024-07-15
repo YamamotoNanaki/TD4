@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "EventFactory.h"
 #include "IFETime.h"
+#include "Sound.h"
 
 void LaserWire::Initialize()
 {
@@ -27,6 +28,8 @@ void LaserWire::Initialize()
 
 	event_->Initialize();
 	event_->InputTransform(*transform_);
+	IFE::Sound::Instance()->LoadMP3("shockDam");
+	IFE::Sound::Instance()->SetVolume("shockDam", 30);
 	
 }
 
@@ -91,6 +94,9 @@ void LaserWire::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* 
 	{
 		isHit_ = true;
 		countHitTimer_+=IFE::IFETime::sDeltaTime_;
+		if (IFE::Sound::Instance()->GetPlayStatus("shockDam") == false) {
+			IFE::Sound::Instance()->SoundPlay("shockDam", false, true);
+		}
 	}
 	myCollider;
 }

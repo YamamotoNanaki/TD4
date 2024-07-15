@@ -144,16 +144,28 @@ void PlayerAction::Move()
 	if (IFE::Input::GetKeyPush(IFE::Key::A))
 	{
 		transform_->position_ += rightVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
+		if (IFE::Sound::Instance()->GetPlayStatus("walk") == false) {
+			IFE::Sound::Instance()->SoundPlay("walk", false, true);
+		}
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::D))
 	{
 		transform_->position_ -= rightVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
+		if (IFE::Sound::Instance()->GetPlayStatus("walk") == false) {
+			IFE::Sound::Instance()->SoundPlay("walk", false, true);
+		}
 	}if (IFE::Input::GetKeyPush(IFE::Key::W))
 	{
 		transform_->position_ += frontVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
+		if (IFE::Sound::Instance()->GetPlayStatus("walk") == false) {
+			IFE::Sound::Instance()->SoundPlay("walk", false, true);
+		}
 	}if (IFE::Input::GetKeyPush(IFE::Key::S))
 	{
 		transform_->position_ -= frontVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
+		if (IFE::Sound::Instance()->GetPlayStatus("walk") == false) {
+			IFE::Sound::Instance()->SoundPlay("walk", false, true);
+		}
 	}
 #pragma endregion キーボード
 

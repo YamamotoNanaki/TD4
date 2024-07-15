@@ -8,6 +8,7 @@
 #include"CameraManager.h"
 #include"SpriteManager.h"
 #include"DronePostEffect.h"
+#include "Sound.h"
 
 void Player::Initialize()
 {
@@ -28,6 +29,10 @@ void Player::Initialize()
 
 	transform_->position_ = { 0,0,0 };
 	objectPtr_->DrawFlag_ = false;
+	IFE::Sound::Instance()->LoadMP3("droneChange");
+	IFE::Sound::Instance()->SetVolume("droneChange", 20);
+	IFE::Sound::Instance()->LoadMP3("droneClose");
+	IFE::Sound::Instance()->SetVolume("droneClose", 20);
 }
 
 void Player::Update()
@@ -97,6 +102,12 @@ void Player::ChangeMode()
 {
 	if ((!ccp_.cameraChange && IFE::Input::GetKeyTrigger(IFE::Key::Y) || IFE::Input::PadTrigger(IFE::PADCODE::Y)) || (modeFlag_ == true && oldIsDamageFlag_ == false && action_->GetIsHit() == true))
 	{
+		if (modeFlag_) {
+			IFE::Sound::Instance()->SoundPlay("droneClose", false, true);
+		}
+		else {
+			IFE::Sound::Instance()->SoundPlay("droneChange", false, true);
+		}
 		ccp_.cameraChange = true;
 		ccp_.cameraChangeTimer = 0;
 		ccp_.change = false;
