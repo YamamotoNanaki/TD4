@@ -36,7 +36,7 @@ namespace IFE
 		float GetEndTime();
 		~Animator();
 
-		void SetAnimation(std::string animName, bool interpolation = true, float interpolationMaxTimer = 1);
+		void SetAnimation(std::string animName, bool interpolation = true, float interpolationMaxTimer = 0.3);
 		std::string GetAnimation();
 
 		void ModelUpdate();
