@@ -1,6 +1,6 @@
 #include "IFEMath.h"
 #include <cassert>
-#include <cstdint>
+#include <cmath>
 
 using namespace IFE;
 
@@ -274,12 +274,24 @@ float IFE::SimpleHarmonicMotion(float time, float amplitude, float period)
 
 float IFE::Vector3Max(const Vector3& vec)
 {
-	return fmaxf(vec.x, fmaxf(vec.y,vec.z));
+	return fmaxf(vec.x, fmaxf(vec.y, vec.z));
 }
 
 float IFE::Vector3Min(const Vector3& vec)
 {
 	return fminf(vec.x, fminf(vec.y, vec.z));
+}
+
+Matrix IFE::Lerp(const Matrix& mat, float timer, float maxTime)
+{
+	timer = std::min(std::max(0.f, maxTime), 1.f) / maxTime;
+	return mat * timer;
+}
+
+Matrix IFE::Lerp(const Matrix& mat1, const Matrix& mat2, float timer, float maxTime)
+{
+	timer = std::min(std::max(0.f, maxTime), 1.f) / maxTime;
+	return mat1 * (1 - timer) + mat2 * timer;
 }
 
 int32_t IFE::Int2::operator=(const int32_t& i)

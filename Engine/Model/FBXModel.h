@@ -32,7 +32,7 @@ namespace IFE
 		void Initialize()override;
 		void Update()override {};
 		void Draw()override;
-		void BoneTransform(float TimeInSeconds, uint8_t animNum);
+		void BoneTransform(float TimeInSeconds, uint8_t animNum,bool interpolation, float oldTimeInSeconds, uint8_t oldAnimNum,float larpTime);
 		void SetSettings(const AddModelSettings& setting);
 		void SetSmooth(bool smooth);
 		void SetMaterial(Material* mat);
@@ -40,7 +40,7 @@ namespace IFE
 
 		std::vector<Triangle> GetMeshColliderTriangle();
 	private:
-		void ReadNodeHeirarchy(float AnimationTime, Node* pNode, uint8_t animNum);
+		void ReadNodeHeirarchy(float AnimationTime, Node* pNode, uint8_t animNum, bool interpolation, float oldAnimationTime, uint8_t oldAnimNum, float larpTime);
 
 	public:
 #ifdef InverseEditorMode

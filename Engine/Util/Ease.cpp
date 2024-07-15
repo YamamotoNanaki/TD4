@@ -61,6 +61,14 @@ IFE::Float3 IFE::LerpFloat3(const Float3& startPos, const Float3& endPos, float 
 			 Lerp(startPos.y, endPos.y, maxTime, time),
 			 Lerp(startPos.z, endPos.z, maxTime, time) };
 }
+//
+//IFE::Float4 IFE::LerpFloat4(const IFE::Float4& startPos, const IFE::Float4& endPos, float maxTime, float time)
+//{
+//	return { Lerp(startPos.x, endPos.x, maxTime, time),
+//			 Lerp(startPos.y, endPos.y, maxTime, time),
+//			 Lerp(startPos.z, endPos.z, maxTime, time),
+//			 Lerp(startPos.w, endPos.w, maxTime, time) };
+//}
 
 float IFE::InOutQuad(float startPos, float endPos, float maxTime, float time) {
 	time /= maxTime / 2;

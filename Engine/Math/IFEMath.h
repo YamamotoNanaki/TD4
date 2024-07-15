@@ -99,4 +99,9 @@ namespace IFE
 
 	float Vector3Max(const Vector3& vec);
 	float Vector3Min(const Vector3& vec);
+
+	//元の行列をtimer0のとき0倍、timer1のとき1倍の値にする関数
+	Matrix Lerp(const Matrix& mat, float timer,float maxTime);
+	//timer0のときmat0、timer1のときmat1の値にする関数
+	Matrix Lerp(const Matrix& mat0,const Matrix& mat1, float timer,float maxTime);
 };

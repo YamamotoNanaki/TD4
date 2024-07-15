@@ -2,6 +2,7 @@
 #include "IFEMath.h"
 #include "IFETime.h"
 #include "Float3.h"
+//#include "Float4.h"
 
 namespace IFE
 {
@@ -26,6 +27,7 @@ namespace IFE
 	IFE::Float3 LerpFloat3(const IFE::Float3& startPos, const IFE::Float3& endPos, const IFE::FrameCountTime& timer);
 	IFE::Float3 OutQuadFloat3(const IFE::Float3& startPos, const IFE::Float3& endPos, float maxTime, float time);
 	IFE::Float3 LerpFloat3(const IFE::Float3& startPos, const IFE::Float3& endPos, float maxTime, float time);
+	//IFE::Float4 LerpFloat4(const IFE::Float4& startPos, const IFE::Float4& endPos, float maxTime, float time);
 
 	float InOutQuad(float startPos, float endPos, float maxTime, float time);
 	IFE::Float3 InOutQuad(const IFE::Float3& startPos, const IFE::Float3& endPos, float maxTime, float time);
