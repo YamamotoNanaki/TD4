@@ -168,7 +168,9 @@ void PlayerAction::Move()
 		approachTarget(actualFrontVec_.z, targetVec_.z, 0.05f);
 		transform_->position_ -= actualFrontVec_.x * rightVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
 		transform_->position_ += actualFrontVec_.z * frontVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
-		IFE::Sound::Instance()->SoundPlay("walk", false, true);
+		if (IFE::Sound::Instance()->GetPlayStatus("walk") == false) {
+			IFE::Sound::Instance()->SoundPlay("walk", false, true);
+		}
 	}
 #pragma endregion
 }
