@@ -38,7 +38,7 @@ void IFE::EnemyManager::Initialize()
 			itr->AddComponent<IFE::Animator>();
 
 			auto anim = itr->GetComponent<IFE::Animator>();
-			anim->SetAnimation("walk");
+			anim->SetAnimation("walk",false);
 			anim->loop_ = true;
 			continue;
 		}
@@ -62,7 +62,7 @@ void IFE::EnemyManager::Initialize()
 
 			itr->AddComponent<IFE::Animator>();
 			auto anim = itr->GetComponent<IFE::Animator>();
-			anim->SetAnimation("walk");
+			anim->SetAnimation("walk",false);
 			anim->loop_ = true;
 		}
 	}
@@ -111,7 +111,7 @@ void IFE::EnemyManager::PopEnemy(Vector3 position, Vector3 rotation,Vector3 trap
 	ptr->AddComponent<IFE::Animator>();
 
 	auto anim = ptr->GetComponent<IFE::Animator>();
-	anim->SetAnimation("walk");
+	anim->SetAnimation("walk",false);
 	anim->loop_ = true;
 }
 
