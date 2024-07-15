@@ -101,6 +101,14 @@ namespace IFE {
 		void OnColliderHit(ColliderCore* mycol, ColliderCore* hitcol)final override;
 
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="current"></param>
+		/// <param name="target"></param>
+		/// <param name="step"></param>
+		void ApproachTarget(float& current, float target, float step);
+
+		/// <summary>
 		/// コライダーの処理
 		/// 自動で呼ばれます
 		/// </summary>

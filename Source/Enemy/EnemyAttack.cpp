@@ -20,7 +20,7 @@ void IFE::EnemyAttack::Initialize()
 
 	player_ = IFE::ObjectManager::Instance()->GetObjectPtr("playerObject")->GetComponent<Player>();
 	IFE::Sound::Instance()->LoadWave("attackHit");
-	IFE::Sound::Instance()->SetVolume("attackHit", 50);
+	IFE::Sound::Instance()->SetVolume("attackHit", 30);
 }
 
 void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider)
@@ -30,6 +30,7 @@ void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::Collide
 	{
 		//“–‚½‚Á‚½Žž‚Ìˆ—
 		hitCollider->objectPtr_->GetComponent<PlayerAction>()->DecHp();
+		IFE::Sound::Instance()->SoundPlay("attackHit", false, true);
 
 	}
 

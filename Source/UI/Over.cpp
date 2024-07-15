@@ -15,7 +15,6 @@ void Over::Update()
 	if (Input::PadTrigger(PADCODE::ALL) || Input::GetKeyTrigger(Key::Space))
 	{
 		Scene::Instance()->SetNextScene("title");
-	/*	IFE::ObjectManager::Instance()->GetObjectPtr("Title")->GetComponent<Title>()->SetIsNext(false);*/
 		isNext = true;
 	}
 }
