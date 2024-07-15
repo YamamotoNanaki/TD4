@@ -164,8 +164,8 @@ void PlayerAction::Move()
 
 	if (targetVec_.x != 0 || targetVec_.z != 0)
 	{
-		approachTarget(actualFrontVec_.x, targetVec_.x, 0.05f);
-		approachTarget(actualFrontVec_.z, targetVec_.z, 0.05f);
+		ApproachTarget(actualFrontVec_.x, targetVec_.x, 0.05f);
+		ApproachTarget(actualFrontVec_.z, targetVec_.z, 0.05f);
 		transform_->position_ -= actualFrontVec_.x * rightVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
 		transform_->position_ += actualFrontVec_.z * frontVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
 		if (IFE::Sound::Instance()->GetPlayStatus("walk") == false) {
@@ -243,7 +243,7 @@ void PlayerAction::Rotation()
 	{
 		//方向ベクトルの角度+コントローラーの角度
 		float targetAngle = IFE::ConvertToDegrees(std::atan2(camerafrontVec_.x, camerafrontVec_.z) + std::atan2(actualFrontVec_.x, actualFrontVec_.z));
-		approachTarget(rotY_, targetAngle, 10.0f);
+		ApproachTarget(rotY_, targetAngle, 10.0f);
 		if (!(lx == 0 && ly == 0))
 		{
 			transform_->rotation_.y = rotY_;
@@ -353,7 +353,7 @@ void PlayerAction::AttackUI()
 	IFE::SpriteManager::Instance()->GetSpritePtr("attackUI")->drawFlag_ = isAttackUI_;
 }
 
-void PlayerAction::approachTarget(float& current, float target, float step)
+void PlayerAction::ApproachTarget(float& current, float target, float step)
 {
 	if (std::abs(current - target) < step) {
 		current = target; // 目標値にほぼ達した場合、目標値に設定

@@ -55,6 +55,19 @@ void IFE::BaseEnemy::Update()
 	Highlighting();
 }
 
+void IFE::BaseEnemy::ApproachTarget(float& current, float target, float step)
+{
+	if (std::abs(current - target) < step) {
+		current = target; // 目標値にほぼ達した場合、目標値に設定
+	}
+	else if (current < target) {
+		current += step; // 現在値が目標値より小さい場合、増加
+	}
+	else {
+		current -= step; // 現在値が目標値より大きい場合、減少
+	}
+}
+
 void IFE::BaseEnemy::DecHp()
 {
 	ani_->SetAnimation("damage");

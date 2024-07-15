@@ -155,7 +155,7 @@ private:
 	void AttackUI();
 
 	// –Ú•W’l‚É‹ß‚Ã‚¯‚éŠÖ”
-	void approachTarget(float& current, float target, float step);
+	void ApproachTarget(float& current, float target, float step);
 
 	void AutoAim();
 
