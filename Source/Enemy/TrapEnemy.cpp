@@ -258,7 +258,7 @@ void IFE::TrapEnemy::LookAt()
 	frontVec *= Vector3(1, 0, 1);
 	//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
 	float radY = std::atan2(frontVec.x, frontVec.z);
-	transform_->rotation_.y = ((radY * 180.0f) / (float)PI) + 180.0f;
+	transform_->rotation_.y = ((radY * 180.0f) / (float)PI);
 }
 
 bool IFE::TrapEnemy::RaySight(Vector3 pos) {
