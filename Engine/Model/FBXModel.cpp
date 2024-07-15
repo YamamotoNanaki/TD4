@@ -189,15 +189,15 @@ void IFE::FBXModel::ReadNodeHeirarchy(float AnimationTime, Node* pNode, uint8_t 
 			{
 				Vector3 oldScaling;
 				CalcInterpolatedScaling(oldScaling, oldAnimationTime, pOldNodeAnim);
-				ScalingM = Lerp(MatrixScaling(Scaling.x, Scaling.y, Scaling.z),MatrixScaling(oldScaling.x, oldScaling.y, oldScaling.z), larpTime, 1);
+				ScalingM = Lerp(MatrixScaling(oldScaling.x, oldScaling.y, oldScaling.z),MatrixScaling(Scaling.x, Scaling.y, Scaling.z), larpTime, 1);
 
 				Quaternion oldRotationQ;
 				CalcInterpolatedRotation(oldRotationQ, oldAnimationTime, pOldNodeAnim);
-				RotationM = RotateMatrix(SLerp(RotationQ, oldRotationQ, larpTime));
+				RotationM = RotateMatrix(SLerp(oldRotationQ, RotationQ, larpTime));
 
 				Vector3 oldTranslation;
 				CalcInterpolatedPosition(oldTranslation, oldAnimationTime, pOldNodeAnim);
-				TranslationM = Lerp(MatrixTranslation(Translation.x, Translation.y, Translation.z),MatrixTranslation(oldTranslation.x, oldTranslation.y, oldTranslation.z), larpTime, 1);
+				TranslationM = Lerp(MatrixTranslation(oldTranslation.x, oldTranslation.y, oldTranslation.z),MatrixTranslation(Translation.x, Translation.y, Translation.z), larpTime, 1);
 			}
 			else
 			{
