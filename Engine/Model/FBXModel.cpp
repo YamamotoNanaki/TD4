@@ -154,7 +154,7 @@ static void CalcInterpolatedPosition(Vector3& Out, float AnimationTime, const No
 	Out = Start + Factor * Delta;
 }
 
-void FBXModel::ReadNodeHeirarchy(float AnimationTime, Node* pNode, uint8_t animNum)
+void IFE::FBXModel::ReadNodeHeirarchy(float AnimationTime, Node* pNode, uint8_t animNum, bool interpolation, float oldAnimationTime, uint8_t oldAnimNum, float larpTime)
 {
 	string NodeName = pNode->name;
 
@@ -169,18 +169,49 @@ void FBXModel::ReadNodeHeirarchy(float AnimationTime, Node* pNode, uint8_t animN
 		Vector3 Scaling;
 		CalcInterpolatedScaling(Scaling, AnimationTime, pNodeAnim);
 		Matrix ScalingM;
-		ScalingM = MatrixScaling(Scaling.x, Scaling.y, Scaling.z);
 
 		// 回転を補間し、回転変換行列を生成する
 		Quaternion RotationQ;
 		CalcInterpolatedRotation(RotationQ, AnimationTime, pNodeAnim);
-		Matrix RotationM = RotateMatrix(RotationQ);
+		Matrix RotationM;
 
 		// 移動を補間し、移動変換行列を生成する
 		Vector3 Translation;
 		CalcInterpolatedPosition(Translation, AnimationTime, pNodeAnim);
 		Matrix TranslationM;
-		TranslationM = MatrixTranslation(Translation.x, Translation.y, Translation.z);
+
+		if (interpolation)
+		{
+			const Animation* pOldAnimation = &animations_[oldAnimNum];
+
+			const NodeAnim* pOldNodeAnim = FindNodeAnim(pOldAnimation, NodeName);
+			if (pOldNodeAnim)
+			{
+				Vector3 oldScaling;
+				CalcInterpolatedScaling(oldScaling, oldAnimationTime, pOldNodeAnim);
+				ScalingM = Lerp(MatrixScaling(Scaling.x, Scaling.y, Scaling.z),MatrixScaling(oldScaling.x, oldScaling.y, oldScaling.z), larpTime, 1);
+
+				Quaternion oldRotationQ;
+				CalcInterpolatedRotation(oldRotationQ, oldAnimationTime, pOldNodeAnim);
+				RotationM = RotateMatrix(SLerp(RotationQ, oldRotationQ, larpTime));
+
+				Vector3 oldTranslation;
+				CalcInterpolatedPosition(oldTranslation, oldAnimationTime, pOldNodeAnim);
+				TranslationM = Lerp(MatrixTranslation(Translation.x, Translation.y, Translation.z),MatrixTranslation(oldTranslation.x, oldTranslation.y, oldTranslation.z), larpTime, 1);
+			}
+			else
+			{
+				ScalingM = MatrixScaling(Scaling.x, Scaling.y, Scaling.z);
+				TranslationM = MatrixTranslation(Translation.x, Translation.y, Translation.z);
+				RotationM = RotateMatrix(RotationQ);
+			}
+		}
+		else
+		{
+			ScalingM = MatrixScaling(Scaling.x, Scaling.y, Scaling.z);
+			RotationM = RotateMatrix(RotationQ);
+			TranslationM = MatrixTranslation(Translation.x, Translation.y, Translation.z);
+		}
 
 		// これら上記の変換を合成する
 		NodeTransformation = ScalingM * RotationM * TranslationM;
@@ -214,7 +245,7 @@ void FBXModel::ReadNodeHeirarchy(float AnimationTime, Node* pNode, uint8_t animN
 	}
 }
 
-void FBXModel::BoneTransform(float TimeInSeconds, uint8_t animNum)
+void IFE::FBXModel::BoneTransform(float TimeInSeconds, uint8_t animNum, bool interpolatio_, float oldTimeInSeconds, uint8_t oldAnimNum, float larpTime)
 {
 	Matrix Identity;
 
@@ -222,9 +253,18 @@ void FBXModel::BoneTransform(float TimeInSeconds, uint8_t animNum)
 		(float)animations_[animNum].ticksPerSecond : 25.0f;
 	float TimeInTicks = TimeInSeconds * TicksPerSecond;
 	float AnimationTime = (float)fmod(TimeInTicks, animations_[animNum].duration);
+	float oldAnimationTime = 0.f;
+
+	if (interpolatio_)
+	{
+		TicksPerSecond = (float)animations_[oldAnimNum].ticksPerSecond != 0 ?
+			(float)animations_[oldAnimNum].ticksPerSecond : 25.0f;
+		TimeInTicks = oldTimeInSeconds * TicksPerSecond;
+		oldAnimationTime = (float)fmod(TimeInTicks, animations_[oldAnimNum].duration);
+	}
 
 	for (uint32_t i = 0; i < nodes_.size(); i++) {
-		ReadNodeHeirarchy(AnimationTime, nodes_[i].get(), animNum);
+		ReadNodeHeirarchy(AnimationTime, nodes_[i].get(), animNum, interpolatio_, oldAnimationTime, oldAnimNum, larpTime);
 	}
 }
 
@@ -282,10 +322,10 @@ std::vector<Triangle> IFE::FBXModel::GetMeshColliderTriangle()
 			}
 			start += triangleNum;
 		}
-	}
+		}
 
 	return triangles;
-}
+	}
 
 #ifdef InverseEditorMode
 #else
@@ -311,7 +351,7 @@ bool IFE::FBXModel::ModelGUI(bool deleteFlag)
 	if (imgui->NewTreeNode(fileName_))
 	{
 		uint32_t num = 0;
-		if(imgui->NewTreeNode(U8("ノードとメッシュ")))
+		if (imgui->NewTreeNode(U8("ノードとメッシュ")))
 		{
 			for (unique_ptr<Node>& node : nodes_)
 			{

@@ -23,7 +23,38 @@ void IFE::Animator::Update()
 {
 	if (!animFlag_)return;
 	if (animNum_ > model_->animations_.size())animNum_ = oldAnimNum_;
-	if (oldAnimNum_ != animNum_)animTimer_ = 0;
+	if (oldAnimNum_ != animNum_)
+	{
+		if (interpolation_)
+		{
+			interpolationAnimNum_ = oldAnimNum_;
+			lerpTimer_ = 0;
+			oldAnimTimer_ = animTimer_;
+			oldLoop_ = loop_;
+			oldAnimSpeed_ = animSpeed_;
+		}
+		animTimer_ = 0;
+	}
+	if (interpolation_)
+	{
+		lerpTimer_ += IFETime::sDeltaTime_;
+		oldAnimTimer_ += oldAnimSpeed_ * IFETime::sDeltaTime_;
+		if (oldAnimTimer_ >= model_->animations_[interpolationAnimNum_].endTime)
+		{
+			if (oldLoop_)
+			{
+				oldAnimTimer_ -= (float)model_->animations_[interpolationAnimNum_].endTime;
+			}
+			else
+			{
+				oldAnimTimer_ = (float)model_->animations_[interpolationAnimNum_].endTime - FLT_EPSILON;
+			}
+		}
+		if (lerpTimer_ >= interpolationMaxTimer_)
+		{
+			interpolation_ = false;
+		}
+	}
 	animTimer_ += animSpeed_ * IFETime::sDeltaTime_;
 	animEnd_ = false;
 	if (animTimer_ >= model_->animations_[animNum_].endTime)
@@ -43,7 +74,13 @@ void IFE::Animator::Update()
 
 void IFE::Animator::Draw()
 {
-	model_->BoneTransform(animTimer_, animNum_);
+	static bool f = false;
+	if (f && !interpolation_)
+	{
+		int a = 0; a++;
+	}
+	f = interpolation_;
+	model_->BoneTransform(animTimer_, animNum_, interpolation_, oldAnimTimer_, interpolationAnimNum_, lerpTimer_ / interpolationMaxTimer_);
 	for (int i = 0; i < model_->bones_.size(); i++)
 	{
 		constMapSkin_->bones[i] = model_->bones_[i].finalMatrix;
@@ -61,7 +98,7 @@ IFE::Animator::~Animator()
 	objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("3dNormal");
 }
 
-void IFE::Animator::SetAnimation(std::string animName)
+void IFE::Animator::SetAnimation(std::string animName, bool interpolation, float interpolationMaxTimer)
 {
 	uint8_t i = 0;
 	for (auto& anim : model_->animations_)
@@ -69,6 +106,8 @@ void IFE::Animator::SetAnimation(std::string animName)
 		if (anim.name == animName)
 		{
 			animNum_ = i;
+			interpolation_ = interpolation;
+			interpolationMaxTimer_ = interpolationMaxTimer;
 			break;
 		}
 		i++;
