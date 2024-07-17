@@ -274,7 +274,6 @@ void PlayerAction::Attack()
 				if (playerAttack_->GetIsBackAttack() == false)
 				{
 					ani_->SetAnimation("backKnifeAttack");//’ÊíUŒ‚ƒ‚[ƒVƒ‡ƒ“‚É•Ï‚¦‚é
-					slowFlag_ = true;
 				}
 				else
 				{
