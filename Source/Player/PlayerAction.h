@@ -163,4 +163,9 @@ private:
 
 	void Crouch();
 	void CrouchAnimation();
+
+#ifdef EditorMode
+	bool cheatFlag_ = false;
+	void ComponentDebugGUI()override;
+#endif
 };

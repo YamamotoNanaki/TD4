@@ -84,6 +84,9 @@ void PlayerAction::Finalize()
 
 void PlayerAction::DecHp()
 {
+#ifdef EditorMode
+	if (cheatFlag_)return;
+#endif
 	if (isHit_ == false) {
 		hp_--;
 		hitTime_ = HIT_COOLTIME;
@@ -470,3 +473,12 @@ void PlayerAction::CrouchAnimation()
 		crouchAnimationTimer_ += IFE::IFETime::sDeltaTime_;
 	}
 }
+
+#ifdef EditorMode
+#include "ImguiManager.h"
+void PlayerAction::ComponentDebugGUI()
+{
+	IFE::ImguiManager::Instance()->CheckBoxGUI(&cheatFlag_, U8("É`Å[Ég"));
+}
+
+#endif

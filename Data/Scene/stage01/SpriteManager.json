@@ -761,6 +761,36 @@
             "name": "BlackBack",
             "order": 0,
             "texture": "white.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "MapUI": null,
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    540.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer",
+                "MapUI"
+            ],
+            "name": "map",
+            "order": 0,
+            "texture": "white.png"
         }
     ]
 }
