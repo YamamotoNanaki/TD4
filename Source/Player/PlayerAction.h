@@ -72,7 +72,7 @@ private:
 	bool crouchFlag_ = false;
 	bool crouchAnimationFlag_ = false;
 	float crouchAnimationTimer_ = 0.0f;
-	const float maxCrouchTime_ = 0.67f;
+	const float maxCrouchTime_ = 0.2f;
 
 
 	//ÉXÉçÅ[ä÷òA

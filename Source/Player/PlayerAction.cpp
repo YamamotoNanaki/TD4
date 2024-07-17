@@ -59,10 +59,18 @@ void PlayerAction::Update()
 			if (crouchFlag_ == false)
 			{
 				ani_->SetAnimation("standBy");
+				if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+				{
+					ani_->SetAnimation("walk");
+				}
 			}
 			else
 			{
 				ani_->SetAnimation("squatStandBy");
+				if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+				{
+					ani_->SetAnimation("squatWalk");
+				}
 			}
 		}
 	}
@@ -331,10 +339,18 @@ void PlayerAction::Attack()
 			if (crouchFlag_ == false)
 			{
 				ani_->SetAnimation("standBy");
+				if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+				{
+					ani_->SetAnimation("walk");
+				}
 			}
 			else
 			{
 				ani_->SetAnimation("squatStandBy");
+				if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+				{
+					ani_->SetAnimation("squatWalk");
+				}
 			}
 		}
 
@@ -452,18 +468,18 @@ void PlayerAction::IsWalk()
 		}
 		else
 		{
-			ani_->SetAnimation("squatwalk");
+			ani_->SetAnimation("squatWalk");
 		}
 	}
 	if (oldIsWalk_ == true && isWalk_ == false)
 	{
 		if (crouchFlag_ == false)
 		{
-			ani_->SetAnimation("standBy");//待機モーション
+			ani_->SetAnimation("standBy");
 		}
 		else
 		{
-			//ani_->SetAnimation("damage");//しゃがみ待機モーション
+			ani_->SetAnimation("squatStandBy");
 		}
 	}
 	oldIsWalk_ = isWalk_;
@@ -495,7 +511,22 @@ void PlayerAction::CrouchAnimation()
 		{
 			crouchAnimationTimer_ = 0.0f;
 			crouchFlag_ = !crouchFlag_;
-			ani_->SetAnimation("standBy");
+			if (crouchFlag_ == false)
+			{
+				ani_->SetAnimation("standBy");
+				if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+				{
+					ani_->SetAnimation("walk");
+				}
+			}
+			else
+			{
+				ani_->SetAnimation("squatStandBy");
+				if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+				{
+					ani_->SetAnimation("squatWalk");
+				}
+			}
 			crouchAnimationFlag_ = false;
 		}
 

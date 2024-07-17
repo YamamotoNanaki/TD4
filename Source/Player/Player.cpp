@@ -174,10 +174,13 @@ void Player::ChangeMode()
 
 void Player::DroneRecovery()
 {
-	if (droneRecoveryFlag_ == false && (IFE::Input::PadTrigger(IFE::PADCODE::DOWN)|| IFE::Input::GetKeyTrigger(IFE::Key::R)))
+	if (drone_->GetIsDroneSurvival() == true)
 	{
-		droneRecoveryFlag_ = true;
-		droneRecoveryUI_->SetDrawFlag(true);
+		if (droneRecoveryFlag_ == false && (IFE::Input::PadTrigger(IFE::PADCODE::DOWN) || IFE::Input::GetKeyTrigger(IFE::Key::R)))
+		{
+			droneRecoveryFlag_ = true;
+			droneRecoveryUI_->SetDrawFlag(true);
+		}
 	}
 
 	if (droneRecoveryFlag_ == true)
