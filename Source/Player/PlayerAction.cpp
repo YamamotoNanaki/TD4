@@ -32,7 +32,7 @@ void PlayerAction::Initialize()
 	enemyManager_ = IFE::ObjectManager::Instance()->GetObjectPtr("EnemyManager")->GetComponent<IFE::EnemyManager>();
 
 	ani_ = objectPtr_->GetComponent<IFE::Animator>();
-	ani_->SetAnimation("[保留アクション]");//待機モーションに変える
+	ani_->SetAnimation("standBy");//待機モーションに変える
 
 	moveSpeed_ = normalMoveSpeed_;
 
@@ -58,11 +58,11 @@ void PlayerAction::Update()
 			isHit_ = false;
 			if (crouchFlag_ == false)
 			{
-				ani_->SetAnimation("damage");//待機
+				ani_->SetAnimation("standBy");
 			}
 			else
 			{
-				ani_->SetAnimation("squatStandBy");//しゃがみ待機
+				ani_->SetAnimation("squatStandBy");
 			}
 		}
 	}
@@ -97,7 +97,7 @@ void PlayerAction::DecHp()
 		}
 		else
 		{
-			ani_->SetAnimation("damage");//しゃがみくらいアニメーション
+			ani_->SetAnimation("squatDamage");
 		}
 	}
 }
@@ -288,7 +288,7 @@ void PlayerAction::Attack()
 			{
 				if (playerAttack_->GetIsBackAttack() == false)
 				{
-					ani_->SetAnimation("backKnifeAttack");//通常攻撃モーションに変える
+					ani_->SetAnimation("knifeAttack");
 				}
 				else
 				{
@@ -300,11 +300,11 @@ void PlayerAction::Attack()
 			{
 				if (playerAttack_->GetIsBackAttack() == false)
 				{
-					ani_->SetAnimation("backKnifeAttack");//しゃがみ通常攻撃モーションに変える
+					ani_->SetAnimation("squatKnifeAttack");
 				}
 				else
 				{
-					ani_->SetAnimation("backKnifeAttack");//しゃがみワンパン攻撃モーションに変える
+					ani_->SetAnimation("squatKnifeAttack");//しゃがみワンパン攻撃モーションに変える
 					slowFlag_ = true;
 				}
 			}
@@ -334,6 +334,14 @@ void PlayerAction::Attack()
 			IFE::IFETime::sTimeScale_ = 1.0f;
 			slowEaseTime_ = 0;
 			nowGameTimeScale_ = 1;
+			if (crouchFlag_ == false)
+			{
+				ani_->SetAnimation("standBy");
+			}
+			else
+			{
+				ani_->SetAnimation("squatStandBy");
+			}
 		}
 
 		attackTimer_ += IFE::IFETime::sDeltaTime_;
@@ -457,7 +465,7 @@ void PlayerAction::IsWalk()
 	{
 		if (crouchFlag_ == false)
 		{
-			ani_->SetAnimation("[保留アクション]");//待機モーション
+			ani_->SetAnimation("standBy");//待機モーション
 		}
 		else
 		{
@@ -493,7 +501,7 @@ void PlayerAction::CrouchAnimation()
 		{
 			crouchAnimationTimer_ = 0.0f;
 			crouchFlag_ = !crouchFlag_;
-			ani_->SetAnimation("damage");//待機モーション
+			ani_->SetAnimation("standBy");
 			crouchAnimationFlag_ = false;
 		}
 
