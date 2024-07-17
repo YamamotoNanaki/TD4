@@ -69,6 +69,10 @@ void IFE::BaseEnemy::SetSound()
 	IFE::Sound::Instance()->SetVolume("attack", 60);
 	IFE::Sound::Instance()->LoadWave("gun");
 	IFE::Sound::Instance()->SetVolume("gun", 60);
+	//IFE::Sound::Instance()->LoadMP3("what");
+	//IFE::Sound::Instance()->SetVolume("what", 60);
+	//IFE::Sound::Instance()->LoadMP3("found");
+	//IFE::Sound::Instance()->SetVolume("found", 60);
 	/*IFE::Sound::Instance()->LoadWave("walk");
 	IFE::Sound::Instance()->SetVolume("walk", 4);*/
 }
@@ -76,7 +80,12 @@ void IFE::BaseEnemy::SetSound()
 void IFE::BaseEnemy::DecHp()
 {
 	if (isHit_ == false) {
-		ani_->SetAnimation("damage");
+		if (hp_ > 0) {
+			ani_->SetAnimation("damage");
+		}
+		else if(hp_ <= 0) {
+			ani_->SetAnimation("downBack");
+		}
 		hp_ -= 25;
 		decHp_ = 25;
 		hitTime_ = HIT_COOLTIME;

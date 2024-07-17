@@ -38,7 +38,7 @@ void PlayerAction::Initialize()
 
 	//sound
 	IFE::Sound::Instance()->LoadWave("walk");
-	IFE::Sound::Instance()->SetVolume("walk", 255);
+	IFE::Sound::Instance()->SetVolume("walk", 60);
 	IFE::Sound::Instance()->LoadWave("attack");
 	IFE::Sound::Instance()->SetVolume("attack", 60);
 }
