@@ -42,8 +42,8 @@ namespace IFE
 	/// <param name="startPoint">開始位置</param>
 	/// <param name="endPoint">終了位置</param>
 	/// <param name="maxTime">合計時間</param>
-	/// <returns>double</returns>
-	double EaseOutQuint(double time, const double startPoint, const double endPoint, const double maxTime);
+	/// <returns>float</returns>
+	float EaseOutQuint(float time, const float startPoint, const float endPoint, const float maxTime);
 
 	float EaseOutBounce(float startPos, float endPos, float maxTime, float time);
 
@@ -71,6 +71,6 @@ namespace IFE
 	/// <param name="startPoint">開始位置</param>
 	/// <param name="endPoint">終了位置</param>
 	/// <param name="maxTime">合計時間</param>
-	/// <returns>double</returns>
-	double EaseOutCirc(double time, const double startPoint, const double endPoint, const double maxTime);
+	/// <returns>float</returns>
+	float EaseOutCirc(float time, const float startPoint, const float endPoint, const float maxTime);
 }

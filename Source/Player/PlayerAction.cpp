@@ -274,11 +274,13 @@ void PlayerAction::Attack()
 				if (playerAttack_->GetIsBackAttack() == false)
 				{
 					ani_->SetAnimation("backKnifeAttack");//通常攻撃モーションに変える
+					slowFlag_ = true;
 				}
 				else
 				{
 					ani_->SetAnimation("backKnifeAttack");
-					IFE::IFETime::sTimeScale_ = slowSpeed_;
+					slowFlag_ = true;
+					//IFE::IFETime::sTimeScale_ = slowSpeed_;
 				}
 			}
 			else
@@ -290,7 +292,8 @@ void PlayerAction::Attack()
 				else
 				{
 					ani_->SetAnimation("backKnifeAttack");//しゃがみワンパン攻撃モーションに変える
-					IFE::IFETime::sTimeScale_ = slowSpeed_;
+					slowFlag_ = true;
+					//IFE::IFETime::sTimeScale_ = slowSpeed_;
 				}
 			}
 
@@ -300,7 +303,7 @@ void PlayerAction::Attack()
 
 	if (attackFlag_ == true)
 	{
-		if (attackTimer_ > maxAttackTime_- IFE::IFETime::sDeltaTime_)
+		if (attackTimer_ > maxAttackTime_ - IFE::IFETime::sDeltaTime_)
 		{
 			if (isAttack_ == false) {
 				IFE::Sound::Instance()->SoundPlay("attack", false, true);
@@ -315,13 +318,39 @@ void PlayerAction::Attack()
 			isAttack_ = false;
 			attackTimer_ = 0;
 			playerAttack_->objectPtr_->DrawFlag_ = false;
+			slowFlag_ = false;
 			IFE::IFETime::sTimeScale_ = 1.0f;
+			slowEaseTime_ = 0;
+			nowGameTimeScale_ = 1;
 		}
 
-		attackTimer_+= IFE::IFETime::sDeltaTime_;
+		attackTimer_ += IFE::IFETime::sDeltaTime_;
 	}
 
 	playerAttack_->SetIsAttack(isAttack_);
+	SlowMotion();
+}
+
+void PlayerAction::SlowMotion()
+{
+	if (slowFlag_)
+	{
+		if (attackTimer_ >= 0.6 && slowEaseTime_< 0.3)
+		{
+			slowEaseTime_ += min(IFE::IFETime::sNoScaleDeltaTime_, 0.3f);
+			nowGameTimeScale_ = IFE::EaseOutCirc(slowEaseTime_, 1, minSlowSpeed_, 0.3f);
+		}
+		else if (attackTimer_ >= 0.8 && slowEaseTime_ < 0.5)
+		{
+			slowEaseTime_ += IFE::IFETime::sNoScaleDeltaTime_;
+			nowGameTimeScale_ = IFE::EaseOutCirc(slowEaseTime_ - 0.3f, minSlowSpeed_, 1, 0.2f);
+		}
+		else
+		{
+			nowGameTimeScale_ = minSlowSpeed_;
+		}
+		IFE::IFETime::sTimeScale_ = nowGameTimeScale_;
+	}
 }
 
 void PlayerAction::AttackUI()
@@ -375,7 +404,7 @@ void PlayerAction::AutoAim()
 	{
 		IFE::Vector3 frontVec = closestEnemy->transform_->position_ - transform_->transform_->position_;
 		playerAttack_->objectPtr_->transform_->position_ =
-		{	transform_->position_.x + frontVec.x,
+		{ transform_->position_.x + frontVec.x,
 			transform_->position_.y + frontVec.y,
 			transform_->position_.z + frontVec.z
 		};
@@ -392,7 +421,7 @@ void PlayerAction::AutoAim()
 
 void PlayerAction::IsWalk()
 {
-	if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D)|| IFE::Input::GetLAnalog().x!= 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+	if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
 	{
 		isWalk_ = true;
 	}
