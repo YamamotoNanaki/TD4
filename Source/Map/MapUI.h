@@ -21,6 +21,8 @@ public:
 
 	void OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider);
 
+	void SetIsMapRot(bool flag) { isMapRot_ = flag; };
+
 #ifdef EditorMode
 
 	void ComponentDebugGUI()override;
@@ -31,6 +33,11 @@ public:
 private:
 	//ゲーム開始時のみの初期化
 	void StartInit();
+
+	//マップ回転時の更新
+	void RotationMapUpdate();
+	//マップ固定時の更新
+	void FixedMapUpdate();
 
 private:
 
@@ -48,6 +55,9 @@ private:
 
 	//画像の生成などゲーム開始時に起きてほしいことのためのフラグ(Initializeでやらないのはエディタで生成したときにInitializeが呼ばれるため)
 	bool IsInit_ = false;
+
+	//マップが回転するか
+	bool isMapRot_ = true;
 
 };
 
