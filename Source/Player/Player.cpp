@@ -30,9 +30,15 @@ void Player::Initialize()
 	transform_->position_ = { 0,0,0 };
 	objectPtr_->DrawFlag_ = false;
 	IFE::Sound::Instance()->LoadMP3("droneChange");
-	IFE::Sound::Instance()->SetVolume("droneChange", 20);
+	IFE::Sound::Instance()->SetVolume("droneChange", 80);
 	IFE::Sound::Instance()->LoadMP3("droneClose");
-	IFE::Sound::Instance()->SetVolume("droneClose", 20);
+	IFE::Sound::Instance()->SetVolume("droneClose", 80);
+	IFE::Sound::Instance()->LoadMP3("drone");
+	IFE::Sound::Instance()->SetVolume("drone", 50);
+	IFE::Sound::Instance()->LoadMP3("droneRecovery");
+	IFE::Sound::Instance()->SetVolume("droneRecovery", 60);
+	IFE::Sound::Instance()->LoadMP3("droneBack");
+	IFE::Sound::Instance()->SetVolume("droneBack", 120);
 }
 
 void Player::Update()
@@ -46,11 +52,17 @@ void Player::Update()
 		if (modeFlag_ == false)
 		{
 			action_->MoveUpdate();
+			if (!droneRecoveryFlag_ && IFE::Sound::Instance()->GetPlayStatus("droneRecovery")) {
+				IFE::Sound::Instance()->StopSound("droneRecovery");
+			}
 		}
 		else
 		{
 			if (droneRecoveryFlag_ == false)
 			{
+				if (!IFE::Sound::Instance()->GetPlayStatus("drone")) {
+					IFE::Sound::Instance()->SoundPlay("drone", false, true);
+				}
 				drone_->MoveUpdate();
 			}
 		}
@@ -73,6 +85,9 @@ void Player::OnColliderHit(IFE::ColliderCore collider)
 
 void Player::DroneBreak()
 {
+	if (IFE::Sound::Instance()->GetPlayStatus("drone")) {
+		IFE::Sound::Instance()->StopSound("drone");
+	}
 	drone_->SetIsDroneSurvival(false);
 	enemyHilight_->updateFlag_ = false;
 	dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;
@@ -170,10 +185,14 @@ void Player::DroneRecovery()
 
 	if (droneRecoveryFlag_ == true)
 	{
+		if (!IFE::Sound::Instance()->GetPlayStatus("droneRecovery")) {
+			IFE::Sound::Instance()->SoundPlay("droneRecovery", false, true);
+		}
 		droneRecoveryUI_->Recovery(droneRecoverytime_, maxDroneRecoverytime_);
 		droneRecoverytime_ += IFE::IFETime::sDeltaTime_;
 		if (droneRecoverytime_ > maxDroneRecoverytime_)
 		{
+			IFE::Sound::Instance()->SoundPlay("droneBack", false, false);
 			DroneBreak();
 		}
 	}

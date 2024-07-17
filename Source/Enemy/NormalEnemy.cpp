@@ -43,13 +43,13 @@ void IFE::NormalEnemy::Initialize()
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyAttack", ModelManager::Instance()->GetModel("dice"));
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
+	SetSound();
 }
 
 void IFE::NormalEnemy::ChangeState()
 {
 	if (hp_ == 0) {
 		state = DEAD;
-		ani_->SetAnimation("downFront");
 	}
 	else if (hp_ > 0) {
 		//UŒ‚‚ÍÅ—Dæ
@@ -60,6 +60,9 @@ void IFE::NormalEnemy::ChangeState()
 			Wait();
 			break;
 		case IFE::BaseEnemy::SEARCH:
+			/*if (!IFE::Sound::Instance()->GetPlayStatus("walk")) {
+				IFE::Sound::Instance()->SoundPlay("walk", false, true);
+			}*/
 			status_->objectPtr_->DrawFlag_ = false;
 			Search();
 			break;
@@ -70,6 +73,9 @@ void IFE::NormalEnemy::ChangeState()
 			Warning();
 			break;
 		case IFE::BaseEnemy::CHASE:
+			/*if (!IFE::Sound::Instance()->GetPlayStatus("walk")) {
+				IFE::Sound::Instance()->SoundPlay("walk", false, true);
+			}*/
 			//’ÇÕó‘Ô‚ÌUI‚É•ÏX
 			status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("exclamation"));
 			status_->objectPtr_->DrawFlag_ = true;
@@ -147,6 +153,7 @@ void IFE::NormalEnemy::Wait()
 	//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
 	if (isFound == true) {
 		state = WARNING;
+		/*IFE::Sound::Instance()->SoundPlay("what", false, true);*/
 		ani_->SetAnimation("search");
 	}
 }
@@ -164,6 +171,7 @@ void IFE::NormalEnemy::Warning()
 	if (warningTime >= 125) {
 		warningTime = 50;
 		state = CHASE;
+		/*IFE::Sound::Instance()->SoundPlay("found", false, true);*/
 		ani_->SetAnimation("Walk");
 	}
 	if (warningTime <= 0) {
@@ -206,6 +214,7 @@ void IFE::NormalEnemy::Search()
 	//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
 	if (isFound == true) {
 		state = WARNING;
+		/*IFE::Sound::Instance()->SoundPlay("what", false, true);*/
 		ani_->SetAnimation("search");
 	}
 }
@@ -238,7 +247,7 @@ void IFE::NormalEnemy::Chase()
 			isAttack = true;
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
 			IFE::Sound::Instance()->SoundPlay("attack", false, true);
-			ani_->SetAnimation("gunAttack");
+			ani_->SetAnimation("knifeAttack");
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
@@ -262,6 +271,7 @@ void IFE::NormalEnemy::Chase()
 	if (warningTime >= 60) {
 		warningTime = 50;
 		state = WARNING;
+		/*IFE::Sound::Instance()->SoundPlay("what", false, true);*/
 		ani_->SetAnimation("search");
 	}
 }

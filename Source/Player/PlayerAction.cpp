@@ -38,9 +38,9 @@ void PlayerAction::Initialize()
 
 	//sound
 	IFE::Sound::Instance()->LoadWave("walk");
-	IFE::Sound::Instance()->SetVolume("walk", 4);
+	IFE::Sound::Instance()->SetVolume("walk", 60);
 	IFE::Sound::Instance()->LoadWave("attack");
-	IFE::Sound::Instance()->SetVolume("attack", 25);
+	IFE::Sound::Instance()->SetVolume("attack", 60);
 }
 
 void PlayerAction::Update()
@@ -158,26 +158,20 @@ void PlayerAction::Move()
 	if (IFE::Input::GetKeyPush(IFE::Key::A))
 	{
 		transform_->position_ += rightVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
-		if (IFE::Sound::Instance()->GetPlayStatus("walk") == false) {
-			IFE::Sound::Instance()->SoundPlay("walk", false, true);
-		}
 	}
 	if (IFE::Input::GetKeyPush(IFE::Key::D))
 	{
 		transform_->position_ -= rightVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
-		if (IFE::Sound::Instance()->GetPlayStatus("walk") == false) {
-			IFE::Sound::Instance()->SoundPlay("walk", false, true);
-		}
 	}if (IFE::Input::GetKeyPush(IFE::Key::W))
 	{
 		transform_->position_ += frontVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
-		if (IFE::Sound::Instance()->GetPlayStatus("walk") == false) {
-			IFE::Sound::Instance()->SoundPlay("walk", false, true);
-		}
 	}if (IFE::Input::GetKeyPush(IFE::Key::S))
 	{
 		transform_->position_ -= frontVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
-		if (IFE::Sound::Instance()->GetPlayStatus("walk") == false) {
+	}
+	if (IFE::Input::GetKeyPush(IFE::Key::W)|| IFE::Input::GetKeyPush(IFE::Key::A)||
+		IFE::Input::GetKeyPush(IFE::Key::S)|| IFE::Input::GetKeyPush(IFE::Key::D)) {
+		if (!IFE::Sound::Instance()->GetPlayStatus("walk")) {
 			IFE::Sound::Instance()->SoundPlay("walk", false, true);
 		}
 	}

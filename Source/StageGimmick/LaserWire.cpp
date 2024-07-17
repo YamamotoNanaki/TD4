@@ -29,7 +29,7 @@ void LaserWire::Initialize()
 	event_->Initialize();
 	event_->InputTransform(*transform_);
 	IFE::Sound::Instance()->LoadMP3("shockDam");
-	IFE::Sound::Instance()->SetVolume("shockDam", 30);
+	IFE::Sound::Instance()->SetVolume("shockDam", 80);
 	
 }
 

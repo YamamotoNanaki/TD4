@@ -908,7 +908,7 @@ ID3DBlob* IFE::GraphicsPipelineManager::GetBlob(uint8_t num)
 
 GraphicsPipeline* IFE::GraphicsPipelineManager::CreateDefaultPostEffectPipeLine()
 {
-	return CreatePostEffectPipeLine("DefaultPEVS", "DefaultPEPS", "defaultPostEffect", 1, 2);
+	return CreatePostEffectPipeLine("DefaultPEVS", "DefaultPEPS", "defaultPostEffect", 2, 2);
 }
 
 GraphicsPipeline* IFE::GraphicsPipelineManager::CreatePostEffectPipeLine(std::string v, std::string p, std::string name, int16_t inputTexNum, int16_t outputTexNum, int16_t rootParam)
