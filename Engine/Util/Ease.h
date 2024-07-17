@@ -63,4 +63,14 @@ namespace IFE
 	float EaseInBack(float startPos, float endPos, const FrameCountTime& timer);
 	float EaseInBack2(float startPos, float endPos, const FrameCountTime& timer);
 	float EaseOutBounce(float startPos, float endPos, const FrameCountTime& timer);
+
+	/// <summary>
+	/// EaseOutCirc
+	/// </summary>
+	/// <param name="time">時間</param>
+	/// <param name="startPoint">開始位置</param>
+	/// <param name="endPoint">終了位置</param>
+	/// <param name="maxTime">合計時間</param>
+	/// <returns>double</returns>
+	double EaseOutCirc(double time, const double startPoint, const double endPoint, const double maxTime);
 }

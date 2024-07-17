@@ -278,6 +278,7 @@ void PlayerAction::Attack()
 				else
 				{
 					ani_->SetAnimation("backKnifeAttack");
+					IFE::IFETime::sTimeScale_ = slowSpeed_;
 				}
 			}
 			else
@@ -289,11 +290,11 @@ void PlayerAction::Attack()
 				else
 				{
 					ani_->SetAnimation("backKnifeAttack");//‚µ‚á‚ª‚İƒƒ“ƒpƒ“UŒ‚ƒ‚[ƒVƒ‡ƒ“‚É•Ï‚¦‚é
+					IFE::IFETime::sTimeScale_ = slowSpeed_;
 				}
 			}
 
 			attackFlag_ = true;
-			IFE::IFETime::sTimeScale_ = slowSpeed_;
 		}
 	}
 
