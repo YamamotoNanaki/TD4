@@ -70,10 +70,11 @@ void MapUI::Update()
 	uint8_t count = 0;
 	uint8_t enemyCount = 0;
 
-	//IFE::Vector3 frontVec = IFE::CameraManager::Instance()->GetCamera("ActionCamera")->transform_->target_ - IFE::CameraManager::Instance()->GetCamera("ActionCamera")->transform_->eye_;
-	//frontVec.Normalize();
+	IFE::Vector3 frontVec = IFE::CameraManager::Instance()->GetCamera("ActionCamera")->transform_->target_ - IFE::CameraManager::Instance()->GetCamera("ActionCamera")->transform_->eye_;
+	frontVec.Normalize();
 	//カメラのangleYの取得(正面ベクトルから取得)
-	//float angle = -(atan2(frontVec.z, frontVec.x) + (float)IFE::PI / 2);
+	float angle = -(atan2(frontVec.z, frontVec.x) + (float)IFE::PI / 2);
+	float degrees = IFE::ConvertToDegrees(-angle);
 
 	playerSprite_->transform_->position2D_ = { transform2D_->position2D_.x ,transform2D_->position2D_.y };
 	playerSprite_->transform_->scale2D_ = { 0.1f ,0.1f };
@@ -91,15 +92,15 @@ void MapUI::Update()
 
 			//mapSprite_[count]->drawFlag_ = false;
 
-			mapSprite_[count]->transform_->position2D_ = { transform2D_->position2D_.x + difference.x /** cosf(angle) + difference.y * sinf(angle)*/,transform2D_->position2D_.y + difference.y/* * cosf(angle) - difference.x * sinf(angle)*/ };
-			//mapSprite_[count]->transform_->rotation2D_ = itr->objectPtr_->transform_->rotation_.y - (float)IFE::PI / 2 - angle;
+			mapSprite_[count]->transform_->position2D_ = { transform2D_->position2D_.x + difference.x * cosf(angle) + difference.y * sinf(angle),transform2D_->position2D_.y + difference.y * cosf(angle) - difference.x * sinf(angle) };
+			mapSprite_[count]->transform_->rotation2D_ = itr->objectPtr_->transform_->rotation_.y + degrees;
 			mapSprite_[count]->transform_->scale2D_ = { itr->objectPtr_->transform_->scale_.x / 50,itr->objectPtr_->transform_->scale_.z / 50 };
 
 			//敵が出現しているかつレーダーの内側の範囲内にいるなら
 			if (transform2D_->scale2D_.x >= length && transform2D_->scale2D_.y >= length)
 			{
 				mapSprite_[count]->drawFlag_ = true;
-				
+
 			}
 			mapSprite_[count]->order_ = 0;
 			count++;
@@ -115,15 +116,15 @@ void MapUI::Update()
 
 			enemySprite_[enemyCount].first->drawFlag_ = false;
 
-			enemySprite_[enemyCount].first->transform_->position2D_ = { transform2D_->position2D_.x + difference.x/* * cosf(angle) + difference.y * sinf(angle)*/,transform2D_->position2D_.y + difference.y /** cosf(angle) - difference.x * sinf(angle)*/ };
-			//enemySprite_[enemyCount].first->transform_->rotation2D_ = (itr->objectPtr_->transform_->rotation_.z - (float)IFE::PI / 2 - angle);
+			enemySprite_[enemyCount].first->transform_->position2D_ = { transform2D_->position2D_.x + difference.x * cosf(angle) + difference.y * sinf(angle),transform2D_->position2D_.y + difference.y * cosf(angle) - difference.x * sinf(angle) };
+			enemySprite_[enemyCount].first->transform_->rotation2D_ = (itr->objectPtr_->transform_->rotation_.y + degrees);
 			enemySprite_[enemyCount].first->transform_->scale2D_ = { itr->objectPtr_->transform_->scale_.x / 20,itr->objectPtr_->transform_->scale_.z / 20 };
 
 			//一定距離内にいるなら
 			if (20 >= length)
 			{
 				enemySprite_[enemyCount].first->drawFlag_ = true;
-				
+
 			}
 			enemySprite_[enemyCount].first->order_ = 1;
 			enemyCount++;
@@ -155,6 +156,7 @@ void MapUI::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitC
 #include "ImguiManager.h"
 void MapUI::ComponentDebugGUI()
 {
+	if (!playerObj_)return;
 	IFE::ImguiManager* gui = IFE::ImguiManager::Instance();
 	gui->DragFloat3GUI(&playerObj_->transform_->position_, "points", 0.25f, -1000, 1000);
 }

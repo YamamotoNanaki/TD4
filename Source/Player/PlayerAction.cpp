@@ -32,7 +32,7 @@ void PlayerAction::Initialize()
 	enemyManager_ = IFE::ObjectManager::Instance()->GetObjectPtr("EnemyManager")->GetComponent<IFE::EnemyManager>();
 
 	ani_ = objectPtr_->GetComponent<IFE::Animator>();
-	ani_->SetAnimation("walk");//待機モーションに変える
+	ani_->SetAnimation("standBy");//待機モーションに変える
 
 	moveSpeed_ = normalMoveSpeed_;
 
@@ -58,11 +58,11 @@ void PlayerAction::Update()
 			isHit_ = false;
 			if (crouchFlag_ == false)
 			{
-				ani_->SetAnimation("damage");//待機
+				ani_->SetAnimation("standBy");
 			}
 			else
 			{
-				ani_->SetAnimation("damage");//しゃがみ待機
+				ani_->SetAnimation("squatStandBy");
 			}
 		}
 	}
@@ -84,6 +84,9 @@ void PlayerAction::Finalize()
 
 void PlayerAction::DecHp()
 {
+#ifdef EditorMode
+	if (cheatFlag_)return;
+#endif
 	if (isHit_ == false) {
 		hp_--;
 		hitTime_ = HIT_COOLTIME;
@@ -94,7 +97,7 @@ void PlayerAction::DecHp()
 		}
 		else
 		{
-			ani_->SetAnimation("damage");//しゃがみくらいアニメーション
+			ani_->SetAnimation("squatDamage");
 		}
 	}
 }
@@ -279,33 +282,34 @@ void PlayerAction::Attack()
 			{
 				if (playerAttack_->GetIsBackAttack() == false)
 				{
-					ani_->SetAnimation("backKnifeAttack");//通常攻撃モーションに変える
+					ani_->SetAnimation("knifeAttack");
 				}
 				else
 				{
 					ani_->SetAnimation("backKnifeAttack");
+					slowFlag_ = true;
 				}
 			}
 			else
 			{
 				if (playerAttack_->GetIsBackAttack() == false)
 				{
-					ani_->SetAnimation("backKnifeAttack");//しゃがみ通常攻撃モーションに変える
+					ani_->SetAnimation("squatKnifeAttack");
 				}
 				else
 				{
-					ani_->SetAnimation("backKnifeAttack");//しゃがみワンパン攻撃モーションに変える
+					ani_->SetAnimation("squatKnifeAttack");//しゃがみワンパン攻撃モーションに変える
+					slowFlag_ = true;
 				}
 			}
 
 			attackFlag_ = true;
-			IFE::IFETime::sTimeScale_ = slowSpeed_;
 		}
 	}
 
 	if (attackFlag_ == true)
 	{
-		if (attackTimer_ > maxAttackTime_- IFE::IFETime::sDeltaTime_)
+		if (attackTimer_ > maxAttackTime_ - IFE::IFETime::sDeltaTime_)
 		{
 			if (isAttack_ == false) {
 				IFE::Sound::Instance()->SoundPlay("attack", false, true);
@@ -320,13 +324,47 @@ void PlayerAction::Attack()
 			isAttack_ = false;
 			attackTimer_ = 0;
 			playerAttack_->objectPtr_->DrawFlag_ = false;
+			slowFlag_ = false;
 			IFE::IFETime::sTimeScale_ = 1.0f;
+			slowEaseTime_ = 0;
+			nowGameTimeScale_ = 1;
+			if (crouchFlag_ == false)
+			{
+				ani_->SetAnimation("standBy");
+			}
+			else
+			{
+				ani_->SetAnimation("squatStandBy");
+			}
 		}
 
-		attackTimer_+= IFE::IFETime::sDeltaTime_;
+		attackTimer_ += IFE::IFETime::sDeltaTime_;
 	}
 
 	playerAttack_->SetIsAttack(isAttack_);
+	SlowMotion();
+}
+
+void PlayerAction::SlowMotion()
+{
+	if (slowFlag_)
+	{
+		if (attackTimer_ >= 0.6 && slowEaseTime_< 0.3)
+		{
+			slowEaseTime_ += min(IFE::IFETime::sNoScaleDeltaTime_, 0.3f);
+			nowGameTimeScale_ = IFE::EaseOutCirc(slowEaseTime_, 1, minSlowSpeed_, 0.3f);
+		}
+		else if (attackTimer_ >= 0.8 && slowEaseTime_ < 0.5)
+		{
+			slowEaseTime_ += IFE::IFETime::sNoScaleDeltaTime_;
+			nowGameTimeScale_ = IFE::EaseOutCirc(slowEaseTime_ - 0.3f, minSlowSpeed_, 1, 0.2f);
+		}
+		else
+		{
+			nowGameTimeScale_ = minSlowSpeed_;
+		}
+		IFE::IFETime::sTimeScale_ = nowGameTimeScale_;
+	}
 }
 
 void PlayerAction::AttackUI()
@@ -380,7 +418,7 @@ void PlayerAction::AutoAim()
 	{
 		IFE::Vector3 frontVec = closestEnemy->transform_->position_ - transform_->transform_->position_;
 		playerAttack_->objectPtr_->transform_->position_ =
-		{	transform_->position_.x + frontVec.x,
+		{ transform_->position_.x + frontVec.x,
 			transform_->position_.y + frontVec.y,
 			transform_->position_.z + frontVec.z
 		};
@@ -397,7 +435,7 @@ void PlayerAction::AutoAim()
 
 void PlayerAction::IsWalk()
 {
-	if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D)|| IFE::Input::GetLAnalog().x!= 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+	if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
 	{
 		isWalk_ = true;
 	}
@@ -421,7 +459,7 @@ void PlayerAction::IsWalk()
 	{
 		if (crouchFlag_ == false)
 		{
-			//ani_->SetAnimation("damage");//待機モーション
+			ani_->SetAnimation("standBy");//待機モーション
 		}
 		else
 		{
@@ -457,10 +495,19 @@ void PlayerAction::CrouchAnimation()
 		{
 			crouchAnimationTimer_ = 0.0f;
 			crouchFlag_ = !crouchFlag_;
-			ani_->SetAnimation("damage");//待機モーション
+			ani_->SetAnimation("standBy");
 			crouchAnimationFlag_ = false;
 		}
 
 		crouchAnimationTimer_ += IFE::IFETime::sDeltaTime_;
 	}
 }
+
+#ifdef EditorMode
+#include "ImguiManager.h"
+void PlayerAction::ComponentDebugGUI()
+{
+	IFE::ImguiManager::Instance()->CheckBoxGUI(&cheatFlag_, U8("チート"));
+}
+
+#endif

@@ -74,7 +74,13 @@ private:
 	float crouchAnimationTimer_ = 0.0f;
 	const float maxCrouchTime_ = 0.67f;
 
-	const float slowSpeed_ = 0.3f;
+
+	//スロー関連
+
+	const float minSlowSpeed_ = 0.3f;
+	float nowGameTimeScale_;
+	float slowEaseTime_;
+	bool slowFlag_ = false;
 
 public:
 
@@ -152,6 +158,8 @@ private:
 	/// </summary>
 	void Attack();
 
+	void SlowMotion();
+
 	void AttackUI();
 
 	// 目標値に近づける関数
@@ -163,4 +171,9 @@ private:
 
 	void Crouch();
 	void CrouchAnimation();
+
+#ifdef EditorMode
+	bool cheatFlag_ = false;
+	void ComponentDebugGUI()override;
+#endif
 };

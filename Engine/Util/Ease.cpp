@@ -142,6 +142,14 @@ float IFE::EaseOutBounce(float startPos, float endPos, const FrameCountTime& tim
 	return EaseOutBounce(startPos, endPos, (float)timer.GetEndTime(), (float)timer.NowTime());
 }
 
+float IFE::EaseOutCirc(float time, const float startPoint, const float endPoint, const float maxTime)
+{
+	float x = time / maxTime;
+	float v = sqrt(1.0f - pow(x - 1.0f, 2.0f));
+	float ret = (endPoint - startPoint) * v + startPoint;
+	return ret;
+}
+
 float IFE::EaseInBack(float startPos, float endPos, float maxTime, float time) {
 	time /= maxTime;
 	float change = endPos - startPos;
@@ -156,11 +164,11 @@ float IFE::EaseInBack2(float startPos, float endPos, float maxTime, float time) 
 	float c3 = c1 + 0.8f;
 	return change * (c3 * time * time * time - c1 * time * time) + startPos;
 }
-double IFE::EaseOutQuint(double time, const double startPoint, const double endPoint, const double maxTime)
+float IFE::EaseOutQuint(float time, const float startPoint, const float endPoint, const float maxTime)
 {
-	double x = time / maxTime;
-	double v = 1.0f - pow(1.0f - x, 5.0f);
-	double ret = (endPoint - startPoint) * v + startPoint;
+	float x = time / maxTime;
+	float v = 1.0f - pow(1.0f - x, 5.0f);
+	float ret = (endPoint - startPoint) * v + startPoint;
 	return ret;
 }
 float IFE::EaseOutBounce(float startPos, float endPos, float maxTime, float time) {
