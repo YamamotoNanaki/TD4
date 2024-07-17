@@ -254,6 +254,7 @@ void MapUI::FixedMapUpdate()
 			//mapSprite_[count]->drawFlag_ = false;
 
 			mapSprite_[count]->transform_->position2D_ = { transform2D_->position2D_.x + difference.x,transform2D_->position2D_.y + difference.y};
+			mapSprite_[count]->transform_->rotation2D_ = 0;
 			mapSprite_[count]->transform_->scale2D_ = { itr->objectPtr_->transform_->scale_.x / 50,itr->objectPtr_->transform_->scale_.z / 50 };
 
 			//敵が出現しているかつレーダーの内側の範囲内にいるなら
