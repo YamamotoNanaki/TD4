@@ -74,7 +74,7 @@ void MapUI::Update()
 	frontVec.Normalize();
 	//カメラのangleYの取得(正面ベクトルから取得)
 	float angle = -(atan2(frontVec.z, frontVec.x) + (float)IFE::PI / 2);
-	float degrees = IFE::ConvertToDegrees(- angle);
+	float degrees = IFE::ConvertToDegrees(-angle);
 
 	playerSprite_->transform_->position2D_ = { transform2D_->position2D_.x ,transform2D_->position2D_.y };
 	playerSprite_->transform_->scale2D_ = { 0.1f ,0.1f };
