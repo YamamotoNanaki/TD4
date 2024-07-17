@@ -62,7 +62,7 @@ void PlayerAction::Update()
 			}
 			else
 			{
-				ani_->SetAnimation("damage");//‚µ‚á‚ª‚Ý‘Ò‹@
+				ani_->SetAnimation("squatStandBy");//‚µ‚á‚ª‚Ý‘Ò‹@
 			}
 		}
 	}
