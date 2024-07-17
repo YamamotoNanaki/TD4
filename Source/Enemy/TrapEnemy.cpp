@@ -42,6 +42,7 @@ void IFE::TrapEnemy::Initialize()
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyAttack", ModelManager::Instance()->GetModel("dice"));
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
+	SetSound();
 }
 
 void IFE::TrapEnemy::ChangeState()

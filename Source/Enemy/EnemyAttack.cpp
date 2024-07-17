@@ -20,7 +20,7 @@ void IFE::EnemyAttack::Initialize()
 
 	player_ = IFE::ObjectManager::Instance()->GetObjectPtr("playerObject")->GetComponent<Player>();
 	IFE::Sound::Instance()->LoadWave("attackHit");
-	IFE::Sound::Instance()->SetVolume("attackHit", 30);
+	IFE::Sound::Instance()->SetVolume("attackHit", 20);
 	IFE::Sound::Instance()->LoadMP3("droneBreak");
 	IFE::Sound::Instance()->SetVolume("droneBreak", 10);
 	IFE::Sound::Instance()->LoadMP3("droneShock");

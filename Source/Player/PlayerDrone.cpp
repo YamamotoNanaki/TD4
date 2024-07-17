@@ -5,6 +5,7 @@
 #include"Transform.h"
 #include"CameraManager.h"
 #include"IFETime.h"
+#include "Sound.h"
 
 void PlayerDrone::SpeedZero(float& speed, float decelerationSpeed)
 {
