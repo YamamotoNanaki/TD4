@@ -18,9 +18,9 @@ void PlayerAttack::Initialize()
 		ptr->SetNoPushBackFlag(true);
 	}
 	IFE::Sound::Instance()->LoadWave("attackHit");
-	IFE::Sound::Instance()->SetVolume("attackHit", 20);
+	IFE::Sound::Instance()->SetVolume("attackHit", 30);
 	IFE::Sound::Instance()->LoadWave("backstab");
-	IFE::Sound::Instance()->SetVolume("backstab", 50);
+	IFE::Sound::Instance()->SetVolume("backstab", 80);
 
 }
 

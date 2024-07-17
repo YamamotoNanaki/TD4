@@ -50,7 +50,7 @@ void IFE::NormalEnemy::ChangeState()
 {
 	if (hp_ == 0) {
 		state = DEAD;
-		/*ani_->SetAnimation("downFront");*/
+		ani_->SetAnimation("downFront");
 	}
 	else if (hp_ > 0) {
 		//UŒ‚‚ÍÅ—Dæ
@@ -154,7 +154,7 @@ void IFE::NormalEnemy::Wait()
 	//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
 	if (isFound == true) {
 		state = WARNING;
-		/*ani_->SetAnimation("search");*/
+		ani_->SetAnimation("search");
 	}
 }
 
@@ -205,7 +205,7 @@ void IFE::NormalEnemy::Search()
 				state = WAIT;
 			}
 			if (ani_ != nullptr) {
-				/*ani_->SetAnimation("search");*/
+				ani_->SetAnimation("search");
 			}
 		}
 	}
@@ -213,7 +213,7 @@ void IFE::NormalEnemy::Search()
 	//‘OƒtƒŒ[ƒ€‚É“G‚ðŒ©‚Â‚¯‚Ä‚¢‚½‚È‚çŒx‰ú‘Ì§‚É
 	if (isFound == true) {
 		state = WARNING;
-		/*ani_->SetAnimation("search");*/
+		ani_->SetAnimation("search");
 	}
 }
 
@@ -269,7 +269,7 @@ void IFE::NormalEnemy::Chase()
 	if (warningTime >= 60) {
 		warningTime = 50;
 		state = WARNING;
-		/*ani_->SetAnimation("search");*/
+		ani_->SetAnimation("search");
 	}
 }
 

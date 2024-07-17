@@ -66,11 +66,11 @@ void IFE::BaseEnemy::ApproachTarget(float& current, float target, float step)
 void IFE::BaseEnemy::SetSound()
 {
 	IFE::Sound::Instance()->LoadWave("attack");
-	IFE::Sound::Instance()->SetVolume("attack", 25);
+	IFE::Sound::Instance()->SetVolume("attack", 60);
 	IFE::Sound::Instance()->LoadWave("gun");
-	IFE::Sound::Instance()->SetVolume("gun", 50);
-	IFE::Sound::Instance()->LoadWave("walk");
-	IFE::Sound::Instance()->SetVolume("walk", 4);
+	IFE::Sound::Instance()->SetVolume("gun", 60);
+	/*IFE::Sound::Instance()->LoadWave("walk");
+	IFE::Sound::Instance()->SetVolume("walk", 4);*/
 }
 
 void IFE::BaseEnemy::DecHp()
