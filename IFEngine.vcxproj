@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Model\Attach3DModel.cpp" />
+    <ClCompile Include="Engine\PostEffect\RadialBlurPE.cpp" />
     <ClCompile Include="Source\Config\Config.cpp" />
     <ClCompile Include="Source\Config\PoseMenu.cpp" />
     <ClCompile Include="Source\Enemy\TrapEnemy.cpp" />
@@ -115,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Model\Attach3DModel.h" />
+    <ClInclude Include="Engine\PostEffect\RadialBlurPE.h" />
     <ClInclude Include="Source\Config\Config.h" />
     <ClInclude Include="Source\Config\PoseMenu.h" />
     <ClInclude Include="Engine\Util\IFEList.h" />
@@ -236,10 +238,13 @@
     <None Include="Data\Shaders\EnemyHighlighting.hlsli" />
     <None Include="Data\Shaders\EnemyJudge.hlsli" />
     <None Include="Data\Shaders\EnemyJudgeAnim.hlsli" />
+    <None Include="Data\Shaders\Gaussian.hlsli" />
     <None Include="Data\Shaders\Model.hlsli" />
     <None Include="Data\Shaders\ModelAnim.hlsli" />
+    <None Include="Data\Shaders\Noise.hlsli" />
     <None Include="Data\Shaders\Particle.hlsli" />
     <None Include="Data\Shaders\PostEffect.hlsli" />
+    <None Include="Data\Shaders\RadialBlur.hlsli" />
     <None Include="Data\Shaders\Sprite.hlsli" />
     <None Include="Data\Shaders\Util.hlsli" />
   </ItemGroup>
@@ -381,6 +386,18 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\RadialBlurPS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\RadialBlurVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="Data\Shaders\SpritePS.hlsl">
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
