@@ -72,9 +72,15 @@ private:
 	bool crouchFlag_ = false;
 	bool crouchAnimationFlag_ = false;
 	float crouchAnimationTimer_ = 0.0f;
-	const float maxCrouchTime_ = 0.67f;
+	const float maxCrouchTime_ = 0.2f;
 
-	const float slowSpeed_ = 0.3f;
+
+	//ÉXÉçÅ[ä÷òA
+
+	const float minSlowSpeed_ = 0.3f;
+	float nowGameTimeScale_;
+	float slowEaseTime_;
+	bool slowFlag_ = false;
 
 public:
 
@@ -151,6 +157,8 @@ private:
 	/// çUåÇèàóù
 	/// </summary>
 	void Attack();
+
+	void SlowMotion();
 
 	void AttackUI();
 

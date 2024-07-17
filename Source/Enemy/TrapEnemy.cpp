@@ -42,13 +42,13 @@ void IFE::TrapEnemy::Initialize()
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyAttack", ModelManager::Instance()->GetModel("dice"));
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
+	SetSound();
 }
 
 void IFE::TrapEnemy::ChangeState()
 {
 	if (hp_ == 0) {
 		state = DEAD;
-		ani_->SetAnimation("downFront");
 	}
 	else if (hp_ > 0) {
 		//UŒ‚‚ÍÅ—Dæ
@@ -176,7 +176,7 @@ void IFE::TrapEnemy::Chase()
 			isAttack = true;
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
 			IFE::Sound::Instance()->SoundPlay("attack", false, true);
-			ani_->SetAnimation("gunAttack");
+			ani_->SetAnimation("knifeAttack");
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;

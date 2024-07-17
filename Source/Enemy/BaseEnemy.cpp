@@ -35,11 +35,6 @@ void IFE::BaseEnemy::Highlighting()
 	hitDistance_ = 0;
 
 	ani_ = objectPtr_->GetComponent<IFE::Animator>();
-
-	IFE::Sound::Instance()->LoadWave("attack");
-	IFE::Sound::Instance()->SetVolume("attack", 25);
-	IFE::Sound::Instance()->LoadWave("gun");
-	IFE::Sound::Instance()->SetVolume("gun", 50);
 }
 
 void IFE::BaseEnemy::Update()
@@ -68,10 +63,29 @@ void IFE::BaseEnemy::ApproachTarget(float& current, float target, float step)
 	}
 }
 
+void IFE::BaseEnemy::SetSound()
+{
+	IFE::Sound::Instance()->LoadWave("attack");
+	IFE::Sound::Instance()->SetVolume("attack", 60);
+	IFE::Sound::Instance()->LoadWave("gun");
+	IFE::Sound::Instance()->SetVolume("gun", 60);
+	//IFE::Sound::Instance()->LoadMP3("what");
+	//IFE::Sound::Instance()->SetVolume("what", 60);
+	//IFE::Sound::Instance()->LoadMP3("found");
+	//IFE::Sound::Instance()->SetVolume("found", 60);
+	/*IFE::Sound::Instance()->LoadWave("walk");
+	IFE::Sound::Instance()->SetVolume("walk", 4);*/
+}
+
 void IFE::BaseEnemy::DecHp()
 {
-	ani_->SetAnimation("damage");
 	if (isHit_ == false) {
+		if (hp_ > 0) {
+			ani_->SetAnimation("damage");
+		}
+		else if(hp_ <= 0) {
+			ani_->SetAnimation("downBack");
+		}
 		hp_ -= 25;
 		decHp_ = 25;
 		hitTime_ = HIT_COOLTIME;
@@ -81,8 +95,8 @@ void IFE::BaseEnemy::DecHp()
 
 void IFE::BaseEnemy::OneShot()
 {
-	ani_->SetAnimation("downFront");
 	if (isHit_ == false) {
+		ani_->SetAnimation("downFront");
 		hp_ -= hp_;
 		decHp_ = hp_;
 		hitTime_ = HIT_COOLTIME;

@@ -74,6 +74,8 @@ namespace IFE {
 		/// </summary>
 		virtual void Finalize() = 0;
 
+		void SetSound();
+
 		/// <summary>
 		/// ‘Ì—ÍŒ¸­
 		/// </summary>
