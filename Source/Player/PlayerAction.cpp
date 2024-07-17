@@ -32,7 +32,7 @@ void PlayerAction::Initialize()
 	enemyManager_ = IFE::ObjectManager::Instance()->GetObjectPtr("EnemyManager")->GetComponent<IFE::EnemyManager>();
 
 	ani_ = objectPtr_->GetComponent<IFE::Animator>();
-	ani_->SetAnimation("walk");//待機モーションに変える
+	ani_->SetAnimation("[保留アクション]");//待機モーションに変える
 
 	moveSpeed_ = normalMoveSpeed_;
 
@@ -294,7 +294,6 @@ void PlayerAction::Attack()
 				{
 					ani_->SetAnimation("backKnifeAttack");
 					slowFlag_ = true;
-					//IFE::IFETime::sTimeScale_ = slowSpeed_;
 				}
 			}
 			else
@@ -307,7 +306,6 @@ void PlayerAction::Attack()
 				{
 					ani_->SetAnimation("backKnifeAttack");//しゃがみワンパン攻撃モーションに変える
 					slowFlag_ = true;
-					//IFE::IFETime::sTimeScale_ = slowSpeed_;
 				}
 			}
 
@@ -459,7 +457,7 @@ void PlayerAction::IsWalk()
 	{
 		if (crouchFlag_ == false)
 		{
-			//ani_->SetAnimation("damage");//待機モーション
+			ani_->SetAnimation("[保留アクション]");//待機モーション
 		}
 		else
 		{
