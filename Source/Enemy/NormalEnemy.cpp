@@ -339,7 +339,7 @@ bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	//視界の距離
 	float maxDistance = 20;
 	//視野角
-	float sightAngle = 45;
+	float sightAngle = 90;
 	// 自身の位置
 	Vector3 ePos = transform_->position_;
 	// ターゲットの位置
@@ -356,12 +356,14 @@ bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 
 	// cos(θ/2)を計算
 	float cosHalf = cos(ConvertToRadians(sightAngle / 2.0f * (float)PI / 180.0f));
-	cosHalf = std::floor(cosHalf * 0.1f);
+	cosHalf *= 10;
+	cosHalf = std::floor(cosHalf);
 
 	// 自身とターゲットへの向きの内積計算
 	// ターゲットへの向きベクトルを正規化する必要があることに注意
 	float innerProduct = selfDir.Dot(targetDir) / targetDir.Length();
-	innerProduct = std::floor(innerProduct * 0.1f);
+	innerProduct *= 10;
+	innerProduct = std::floor(innerProduct);
 
 	// 視界判定
 	bool inSight = cosHalf <= innerProduct && targetDistance < maxDistance;
