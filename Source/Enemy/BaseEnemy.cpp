@@ -9,7 +9,7 @@
 
 using namespace IFE;
 
-IFE::Vector2 IFE::BaseEnemy::GetPos()
+const IFE::Vector2 IFE::BaseEnemy::GetPos()
 {
 	return { transform_->position_.x, transform_->position_.z };
 }
@@ -130,4 +130,9 @@ void IFE::BaseEnemy::OnColliderHit(ColliderCore* mycol, ColliderCore* hitcol)
 		}
 	}
 	EnemyOnColliderHit(mycol, hitcol);
+}
+
+
+void  IFE::BaseEnemy::SetMotion(std::string name) {
+	ani_->SetAnimation(name);
 }

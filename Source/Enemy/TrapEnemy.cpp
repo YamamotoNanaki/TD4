@@ -19,6 +19,7 @@ void IFE::TrapEnemy::Initialize()
 	rayDist = 0.0f;
 	isFound = false;
 	isAttack = false;
+	isOneShot = false;
 	warningTime = 50;
 	hp_ = 100;
 	decHp_ = 0;
@@ -47,10 +48,10 @@ void IFE::TrapEnemy::Initialize()
 
 void IFE::TrapEnemy::ChangeState()
 {
-	if (hp_ == 0) {
+	if (hp_ <= 0 && state != DEAD) {
 		state = DEAD;
 	}
-	else if (hp_ > 0) {
+	if (hp_ > 0) {
 		//攻撃は最優先
 		switch (state)
 		{
@@ -250,6 +251,16 @@ void IFE::TrapEnemy::Shot()
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
 
+void IFE::TrapEnemy::Killed() {
+	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
+	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
+	transform_->position_ = pPos + addVec;
+	transform_->rotation_ = rot;
+	status_->objectPtr_->DrawFlag_ = false;
+	ani_->SetAnimation("standBy");
+}
+
 void IFE::TrapEnemy::LookAt()
 {
 	Vector3 ePos = transform_->position_;
@@ -258,7 +269,8 @@ void IFE::TrapEnemy::LookAt()
 	frontVec *= Vector3(1, 0, 1);
 	//カメラ方向に合わせてY軸の回転
 	float radY = std::atan2(frontVec.x, frontVec.z);
-	transform_->rotation_.y = ((radY * 180.0f) / (float)PI);
+	float targetAngle = ((radY * 180.0f) / (float)PI);
+	ApproachTarget(transform_->rotation_.y, targetAngle, 1.0f);
 }
 
 bool IFE::TrapEnemy::RaySight(Vector3 pos) {
@@ -282,12 +294,14 @@ bool IFE::TrapEnemy::RaySight(Vector3 pos) {
 
 	// cos(θ/2)を計算
 	float cosHalf = cos(ConvertToRadians(sightAngle / 2.0f * (float)PI / 180.0f));
-	cosHalf = std::floor(cosHalf * 0.1f);
+	cosHalf *= 10;
+	cosHalf = std::floor(cosHalf);
 
 	// 自身とターゲットへの向きの内積計算
 	// ターゲットへの向きベクトルを正規化する必要があることに注意
 	float innerProduct = selfDir.Dot(targetDir) / targetDir.Length();
-	innerProduct = std::floor(innerProduct * 0.1f);
+	innerProduct *= 10;
+	innerProduct = std::floor(innerProduct);
 
 	// 視界判定
 	bool inSight = cosHalf <= innerProduct && targetDistance < maxDistance;
@@ -321,12 +335,12 @@ void IFE::TrapEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* 
 	}
 }
 
-IFE::Vector3 IFE::TrapEnemy::GetPos() {
+const IFE::Vector3 IFE::TrapEnemy::GetPos() {
 	Vector3 temp = transform_->position_;
 	return temp;
 }
 
-bool IFE::TrapEnemy::GetBack()
+const bool IFE::TrapEnemy::GetBack()
 {
 	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
 	float result = pFront.Dot(frontVec);

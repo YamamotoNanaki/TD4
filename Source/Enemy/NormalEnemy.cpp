@@ -19,6 +19,7 @@ void IFE::NormalEnemy::Initialize()
 	attackTime = 0;
 	rayDist = 0.0f;
 	isFound = false;
+	isOneShot = false;
 	isAttack = false;
 	warningTime = 50;
 	hp_ = 100;
@@ -48,10 +49,10 @@ void IFE::NormalEnemy::Initialize()
 
 void IFE::NormalEnemy::ChangeState()
 {
-	if (hp_ == 0) {
+	if (hp_ <= 0 && state != DEAD) {
 		state = DEAD;
 	}
-	else if (hp_ > 0) {
+	if (hp_ > 0 &&  !isOneShot) {
 		//攻撃は最優先
 		switch (state)
 		{
@@ -131,16 +132,6 @@ void IFE::NormalEnemy::EnemyUpdate()
 
 void IFE::NormalEnemy::Wait()
 {
-	///周りを見渡す処理
-	if (waitTimer < 50) {
-		transform_->rotation_ += (Float3(0, -15, 0) * IFE::IFETime::sDeltaTime_);
-	}
-	else if (waitTimer < 150) {
-		transform_->rotation_ += (Float3(0, 15, 0) * IFE::IFETime::sDeltaTime_);
-	}
-	else if (waitTimer < WAIT_TIME) {
-		transform_->rotation_ += (Float3(0, -15, 0) * IFE::IFETime::sDeltaTime_);
-	}
 	///
 	waitTimer += 50 * IFE::IFETime::sDeltaTime_;
 	if (waitTimer >= WAIT_TIME) {
@@ -204,9 +195,6 @@ void IFE::NormalEnemy::Search()
 			else {
 				nextPoint++;
 				state = WAIT;
-			}
-			if (ani_ != nullptr) {
-				ani_->SetAnimation("search");
 			}
 		}
 	}
@@ -322,6 +310,16 @@ void IFE::NormalEnemy::Shot()
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
 
+void IFE::NormalEnemy::Killed() {
+	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
+	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
+	transform_->position_ = pPos + addVec.Normalize();
+	transform_->rotation_ = rot;
+	status_->objectPtr_->DrawFlag_ = false;
+	ani_->SetAnimation("standBy");
+}
+
 void IFE::NormalEnemy::LookAt()
 {
 	Vector3 ePos = transform_->position_;
@@ -331,14 +329,14 @@ void IFE::NormalEnemy::LookAt()
 	//カメラ方向に合わせてY軸の回転
 	float radY = std::atan2(frontVec.x, frontVec.z);
 	float targetAngle = ((radY * 180.0f) / (float)PI);
-	ApproachTarget(transform_->rotation_.y, targetAngle, 10.0f);
+	ApproachTarget(transform_->rotation_.y, targetAngle, 1.0f);
 }
 
 bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	//視界の距離
 	float maxDistance = 20;
 	//視野角
-	float sightAngle = 45;
+	float sightAngle = 90;
 	// 自身の位置
 	Vector3 ePos = transform_->position_;
 	// ターゲットの位置
@@ -355,12 +353,14 @@ bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 
 	// cos(θ/2)を計算
 	float cosHalf = cos(ConvertToRadians(sightAngle / 2.0f * (float)PI / 180.0f));
-	cosHalf = std::floor(cosHalf * 0.1f);
+	cosHalf *= 10;
+	cosHalf = std::floor(cosHalf);
 
 	// 自身とターゲットへの向きの内積計算
 	// ターゲットへの向きベクトルを正規化する必要があることに注意
 	float innerProduct = selfDir.Dot(targetDir) / targetDir.Length();
-	innerProduct = std::floor(innerProduct * 0.1f);
+	innerProduct *= 10;
+	innerProduct = std::floor(innerProduct);
 
 	// 視界判定
 	bool inSight = cosHalf <= innerProduct && targetDistance < maxDistance;
@@ -394,12 +394,12 @@ void IFE::NormalEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore
 	}
 }
 
-IFE::Vector3 IFE::NormalEnemy::GetPos() {
+const IFE::Vector3 IFE::NormalEnemy::GetPos() {
 	Vector3 temp = transform_->position_;
 	return temp;
 }
 
-bool IFE::NormalEnemy::GetBack()
+const bool IFE::NormalEnemy::GetBack()
 {
 	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
 	float result = pFront.Dot(frontVec);

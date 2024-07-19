@@ -11,10 +11,13 @@ void Over::Initialize()
 	isNext = false;
 	IFE::Sound::Instance()->LoadWave("title");
 	IFE::Sound::Instance()->SetVolume("title", 50);
+	//IFE::Sound::Instance()->LoadWave("over");
+	//IFE::Sound::Instance()->SetVolume("over", 50);
 }
 
 void Over::Update()
 {
+	/*IFE::Sound::Instance()->SoundPlay("over", true, false);*/
 	if (Input::PadTrigger(PADCODE::ALL) || Input::GetKeyTrigger(Key::Space))
 	{
 		if (!isNext) {

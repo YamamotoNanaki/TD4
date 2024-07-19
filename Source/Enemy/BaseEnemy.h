@@ -34,6 +34,7 @@ namespace IFE {
 		int8_t hp_;
 		int8_t decHp_;
 		bool isHit_;
+		bool isOneShot;
 		float hitTime_;
 		//アニメーション
 		IFE::Animator* ani_ = nullptr;
@@ -120,8 +121,10 @@ namespace IFE {
 
 		inline bool GetDroneHitRay() { return droneHit_; }
 		inline float GetDroneHitDistance() { return droneHitDistance_; }
-		IFE::Vector2 GetPos();
-
+		const IFE::Vector2 GetPos();
+		const bool GetIsOneShot() { return isOneShot; }
+		void SetisOneShot(bool isOne) { isOneShot = isOne; }
+		void SetMotion(std::string name);
 	private:
 		/// <summary>
 		/// ドローンに光らせるための処理

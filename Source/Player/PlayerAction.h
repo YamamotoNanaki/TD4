@@ -134,6 +134,8 @@ public:
 
 	const IFE::Vector3 GetFrontVec();
 
+	const IFE::Vector3 GetRot();
+
 	const float GetRotY();
 
 	//Getter

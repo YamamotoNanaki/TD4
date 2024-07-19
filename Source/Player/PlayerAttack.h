@@ -9,6 +9,7 @@ private:
 	std::string name_ = "";
 	bool isAttack_ = false;
 	bool isBackAttack_ = false;
+	bool attackFlag_ = false;
 
 public:
 
@@ -34,6 +35,8 @@ public:
 	std::string GetName();
 
 	void SetIsAttack(bool flag);
+
+	void SetAttackFlag(bool atk);
 
 	const bool GetIsAttack();
 

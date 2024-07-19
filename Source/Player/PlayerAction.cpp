@@ -214,6 +214,11 @@ const IFE::Vector3 PlayerAction::GetFrontVec()
 	return frontVec_;
 }
 
+const IFE::Vector3 PlayerAction::GetRot()
+{
+	return transform_->rotation_;
+}
+
 const float PlayerAction::GetRotY()
 {
 	return rotY_;
@@ -310,8 +315,8 @@ void PlayerAction::Attack()
 					slowFlag_ = true;
 				}
 			}
-
 			attackFlag_ = true;
+			playerAttack_->SetAttackFlag(attackFlag_);
 		}
 	}
 
@@ -329,6 +334,7 @@ void PlayerAction::Attack()
 		if (attackTimer_ > maxAttackAnimationTime_)
 		{
 			attackFlag_ = false;
+			playerAttack_->SetAttackFlag(attackFlag_);
 			isAttack_ = false;
 			attackTimer_ = 0;
 			playerAttack_->objectPtr_->DrawFlag_ = false;
@@ -434,7 +440,7 @@ void PlayerAction::AutoAim()
 	{
 		IFE::Vector3 frontVec = closestEnemy->transform_->position_ - transform_->transform_->position_;
 		playerAttack_->objectPtr_->transform_->position_ =
-		{ transform_->position_.x + frontVec.x,
+		{	transform_->position_.x + frontVec.x,
 			transform_->position_.y + frontVec.y,
 			transform_->position_.z + frontVec.z
 		};
@@ -446,6 +452,14 @@ void PlayerAction::AutoAim()
 			rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec.x, frontVec.z));
 			transform_->rotation_.y = rotY_;
 		}
+	}
+	else
+	{
+		playerAttack_->objectPtr_->transform_->position_ =
+		{ transform_->position_.x + frontVec_.x,
+			transform_->position_.y + frontVec_.y,
+			transform_->position_.z + frontVec_.z
+		};
 	}
 }
 
