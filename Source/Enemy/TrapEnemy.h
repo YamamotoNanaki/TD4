@@ -81,6 +81,11 @@ namespace IFE {
 		void Shot();
 
 		/// <summary>
+		/// 
+		/// </summary>
+		void Killed();
+
+		/// <summary>
 		/// ƒvƒŒƒCƒ„[‚Ì•û‚ğŒü‚©‚¹‚é
 		/// </summary>
 		void LookAt();
@@ -108,11 +113,11 @@ namespace IFE {
 
 
 		///-----Getter-----///
-		Vector3 GetPos();
-		bool GetBack();
-		bool GetIsAttack() { return isAttack; }
-		bool GetIsHit() { return isHit_; }
-		bool GetIsFound() { return isFound; }
+		const Vector3 GetPos();
+		const bool GetBack();
+		const bool GetIsAttack() { return isAttack; }
+		const bool GetIsHit() { return isHit_; }
+		const bool GetIsFound() { return isFound; }
 
 		void SetTrapPos(Vector3 tp) { trapPos = tp; }
 

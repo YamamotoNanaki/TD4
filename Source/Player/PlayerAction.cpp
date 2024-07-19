@@ -214,6 +214,11 @@ const IFE::Vector3 PlayerAction::GetFrontVec()
 	return frontVec_;
 }
 
+const IFE::Vector3 PlayerAction::GetRot()
+{
+	return transform_->rotation_;
+}
+
 const float PlayerAction::GetRotY()
 {
 	return rotY_;
@@ -310,8 +315,8 @@ void PlayerAction::Attack()
 					slowFlag_ = true;
 				}
 			}
-
 			attackFlag_ = true;
+			playerAttack_->SetAttackFlag(attackFlag_);
 		}
 	}
 
@@ -329,6 +334,7 @@ void PlayerAction::Attack()
 		if (attackTimer_ > maxAttackAnimationTime_)
 		{
 			attackFlag_ = false;
+			playerAttack_->SetAttackFlag(attackFlag_);
 			isAttack_ = false;
 			attackTimer_ = 0;
 			playerAttack_->objectPtr_->DrawFlag_ = false;

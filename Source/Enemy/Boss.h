@@ -29,6 +29,8 @@ namespace IFE {
 		/// <param name="collider"></param>
 		void EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)override;
 
+		void Killed();
+
 		/// <summary>
 		/// •`‰æ
 		/// </summary>

@@ -49,10 +49,10 @@ void IFE::NormalEnemy::Initialize()
 
 void IFE::NormalEnemy::ChangeState()
 {
-	if (hp_ == 0) {
+	if (hp_ <= 0 && state != DEAD) {
 		state = DEAD;
 	}
-	else if (hp_ > 0) {
+	if (hp_ > 0 &&  !isOneShot) {
 		//UŒ‚‚ÍÅ—Dæ
 		switch (state)
 		{
@@ -132,16 +132,6 @@ void IFE::NormalEnemy::EnemyUpdate()
 
 void IFE::NormalEnemy::Wait()
 {
-	///ü‚è‚ğŒ©“n‚·ˆ—
-	if (waitTimer < 50) {
-		transform_->rotation_ += (Float3(0, -15, 0) * IFE::IFETime::sDeltaTime_);
-	}
-	else if (waitTimer < 150) {
-		transform_->rotation_ += (Float3(0, 15, 0) * IFE::IFETime::sDeltaTime_);
-	}
-	else if (waitTimer < WAIT_TIME) {
-		transform_->rotation_ += (Float3(0, -15, 0) * IFE::IFETime::sDeltaTime_);
-	}
 	///
 	waitTimer += 50 * IFE::IFETime::sDeltaTime_;
 	if (waitTimer >= WAIT_TIME) {
@@ -205,9 +195,6 @@ void IFE::NormalEnemy::Search()
 			else {
 				nextPoint++;
 				state = WAIT;
-			}
-			if (ani_ != nullptr) {
-				ani_->SetAnimation("search");
 			}
 		}
 	}
@@ -323,6 +310,16 @@ void IFE::NormalEnemy::Shot()
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
 
+void IFE::NormalEnemy::Killed() {
+	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
+	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
+	transform_->position_ = pPos + addVec;
+	transform_->rotation_ = rot;
+	status_->objectPtr_->DrawFlag_ = false;
+	ani_->SetAnimation("standBy");
+}
+
 void IFE::NormalEnemy::LookAt()
 {
 	Vector3 ePos = transform_->position_;
@@ -332,7 +329,7 @@ void IFE::NormalEnemy::LookAt()
 	//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄY²‚Ì‰ñ“]
 	float radY = std::atan2(frontVec.x, frontVec.z);
 	float targetAngle = ((radY * 180.0f) / (float)PI);
-	ApproachTarget(transform_->rotation_.y, targetAngle, 10.0f);
+	ApproachTarget(transform_->rotation_.y, targetAngle, 1.0f);
 }
 
 bool IFE::NormalEnemy::RaySight(Vector3 pos) {
@@ -397,12 +394,12 @@ void IFE::NormalEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore
 	}
 }
 
-IFE::Vector3 IFE::NormalEnemy::GetPos() {
+const IFE::Vector3 IFE::NormalEnemy::GetPos() {
 	Vector3 temp = transform_->position_;
 	return temp;
 }
 
-bool IFE::NormalEnemy::GetBack()
+const bool IFE::NormalEnemy::GetBack()
 {
 	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
 	float result = pFront.Dot(frontVec);

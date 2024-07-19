@@ -121,9 +121,10 @@ namespace IFE {
 
 		inline bool GetDroneHitRay() { return droneHit_; }
 		inline float GetDroneHitDistance() { return droneHitDistance_; }
-		IFE::Vector2 GetPos();
-		bool GetIsOneShot() { return isOneShot; }
+		const IFE::Vector2 GetPos();
+		const bool GetIsOneShot() { return isOneShot; }
 		void SetisOneShot(bool isOne) { isOneShot = isOne; }
+		void SetMotion(std::string name);
 	private:
 		/// <summary>
 		/// ƒhƒ[ƒ“‚ÉŒõ‚ç‚¹‚é‚½‚ß‚Ìˆ—

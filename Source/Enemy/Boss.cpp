@@ -49,6 +49,15 @@ bool IFE::Boss::GetBack()
 	return false;
 }
 
+void IFE::Boss::Killed() {
+	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
+	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
+	transform_->position_ = pPos + addVec;
+	transform_->rotation_ = rot;
+	ani_->SetAnimation("standBy");
+}
+
 #ifdef EditorMode
 void IFE::Boss::ComponentDebugGUI()
 {

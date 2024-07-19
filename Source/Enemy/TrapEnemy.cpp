@@ -48,10 +48,10 @@ void IFE::TrapEnemy::Initialize()
 
 void IFE::TrapEnemy::ChangeState()
 {
-	if (hp_ == 0) {
+	if (hp_ <= 0 && state != DEAD) {
 		state = DEAD;
 	}
-	else if (hp_ > 0) {
+	if (hp_ > 0) {
 		//UŒ‚‚ÍÅ—Dæ
 		switch (state)
 		{
@@ -251,6 +251,16 @@ void IFE::TrapEnemy::Shot()
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
 
+void IFE::TrapEnemy::Killed() {
+	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
+	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
+	transform_->position_ = pPos + addVec;
+	transform_->rotation_ = rot;
+	status_->objectPtr_->DrawFlag_ = false;
+	ani_->SetAnimation("standBy");
+}
+
 void IFE::TrapEnemy::LookAt()
 {
 	Vector3 ePos = transform_->position_;
@@ -259,7 +269,8 @@ void IFE::TrapEnemy::LookAt()
 	frontVec *= Vector3(1, 0, 1);
 	//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
 	float radY = std::atan2(frontVec.x, frontVec.z);
-	transform_->rotation_.y = ((radY * 180.0f) / (float)PI);
+	float targetAngle = ((radY * 180.0f) / (float)PI);
+	ApproachTarget(transform_->rotation_.y, targetAngle, 1.0f);
 }
 
 bool IFE::TrapEnemy::RaySight(Vector3 pos) {
@@ -324,12 +335,12 @@ void IFE::TrapEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* 
 	}
 }
 
-IFE::Vector3 IFE::TrapEnemy::GetPos() {
+const IFE::Vector3 IFE::TrapEnemy::GetPos() {
 	Vector3 temp = transform_->position_;
 	return temp;
 }
 
-bool IFE::TrapEnemy::GetBack()
+const bool IFE::TrapEnemy::GetBack()
 {
 	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
 	float result = pFront.Dot(frontVec);
