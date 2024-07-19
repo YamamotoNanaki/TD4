@@ -14,6 +14,14 @@ const IFE::Vector2 IFE::BaseEnemy::GetPos()
 	return { transform_->position_.x, transform_->position_.z };
 }
 
+const bool IFE::BaseEnemy::GetIsOneShot()
+{
+	if (state == DEAD) {
+		return true;
+	}
+	return isOneShot;
+}
+
 void IFE::BaseEnemy::Highlighting()
 {
 	Vector3 dir = ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->transform_->position_ - transform_->position_;
@@ -132,6 +140,16 @@ void IFE::BaseEnemy::OnColliderHit(ColliderCore* mycol, ColliderCore* hitcol)
 	EnemyOnColliderHit(mycol, hitcol);
 }
 
+
+void IFE::BaseEnemy::SetisOneShot(bool isOne)
+{
+	if (state != DEAD) {
+		isOneShot = isOne;
+	}
+	else {
+		isOneShot = false;
+	}
+}
 
 void  IFE::BaseEnemy::SetMotion(std::string name) {
 	ani_->SetAnimation(name);

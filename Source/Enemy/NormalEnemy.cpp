@@ -50,9 +50,16 @@ void IFE::NormalEnemy::Initialize()
 void IFE::NormalEnemy::ChangeState()
 {
 	if (hp_ <= 0 && state != DEAD) {
+		if (isOneShot) {
+			isOneShot = false;
+			ani_->SetAnimation("downFront", false);
+		}
+		else {
+			ani_->SetAnimation("downBack", false);
+		}
 		state = DEAD;
 	}
-	if (hp_ > 0 &&  !isOneShot) {
+	if (!isOneShot) {
 		//UŒ‚‚ÍÅ—Dæ
 		switch (state)
 		{
@@ -91,6 +98,13 @@ void IFE::NormalEnemy::ChangeState()
 			}
 			break;
 		case IFE::BaseEnemy::DEAD:
+			deadTime += 100 * IFE::IFETime::sDeltaTime_;
+			if (deadTime >= 150) {
+				hpUI->objectPtr_->Destroy();
+				status_->objectPtr_->Destroy();
+				enemyAttack->objectPtr_->Destroy();
+				objectPtr_->Destroy();
+			}
 			break;
 		default:
 			break;
@@ -100,33 +114,33 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::EnemyUpdate()
 {
-	if (state != WAIT) {
-		LookAt();
+	if (state != DEAD) {
+		if (state != WAIT) {
+			LookAt();
+		}
+		isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
+		if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
+			isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
+			isChaseDrone = isFound;
+		}
+		//ó‘Ô‚ðŽæ“¾
+		preState = state;
+		//hp•\Ž¦
+		hpUI->Update(transform_->position_, hp_, decHp_);
+		status_->IconUpdate(transform_->position_);
+		rayDist = 0;
+		isChaseDrone = false;
+		//d—Í
+		if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
+		{
+			transform_->position_.y -= 4.9f * IFETime::sDeltaTime_;
+		}
 	}
-	isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
-	if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
-		isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
-		isChaseDrone = isFound;
-	}
-	//ó‘Ô‚ðŽæ“¾
-	preState = state;
 	ChangeState();
-	//hp•\Ž¦
-	hpUI->Update(transform_->position_, hp_, decHp_);
-	status_->IconUpdate(transform_->position_);
 	//Ž€–S
+
 	if (hpUI->GetIsDead() == true) {
-		hpUI->objectPtr_->Destroy();
-		status_->objectPtr_->Destroy();
-		enemyAttack->objectPtr_->Destroy();
-		objectPtr_->Destroy();
-	}
-	rayDist = 0;
-	isChaseDrone = false;
-	//d—Í
-	if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
-	{
-		transform_->position_.y -= 4.9f * IFETime::sDeltaTime_;
+		hpUI->objectPtr_->DrawFlag_ = false;
 	}
 }
 
@@ -294,7 +308,7 @@ void IFE::NormalEnemy::Shot()
 		}
 		enemyAttack->transform_->position_ += (shotVec * 0.3f);
 	}
-	if(enemyAttack->GetIsShot() == false) {
+	if (enemyAttack->GetIsShot() == false) {
 		state = CHASE;
 		isAttack = false;
 		ani_->SetAnimation("walk");
@@ -314,10 +328,10 @@ void IFE::NormalEnemy::Killed() {
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
 	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
 	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
-	transform_->position_ = pPos + addVec.Normalize();
+	transform_->position_ = pPos + addVec;
 	transform_->rotation_ = rot;
 	status_->objectPtr_->DrawFlag_ = false;
-	ani_->SetAnimation("standBy");
+	ani_->SetAnimation("standBy",false);
 }
 
 void IFE::NormalEnemy::LookAt()
@@ -383,7 +397,7 @@ void IFE::NormalEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore
 {
 	//•Ç‚ª‚ ‚Á‚½ê‡
 	if (myCollider->GetColliderType() == ColliderType::RAY) {
-		if (hitCollider->objectPtr_->GetObjectName().find("wall") != std::string::npos|| hitCollider->objectPtr_->GetObjectName().find("box") != std::string::npos) {
+		if (hitCollider->objectPtr_->GetObjectName().find("wall") != std::string::npos || hitCollider->objectPtr_->GetObjectName().find("box") != std::string::npos) {
 			if (rayDist == 0) {
 				rayDist = myCollider->rayDistance;
 			}
