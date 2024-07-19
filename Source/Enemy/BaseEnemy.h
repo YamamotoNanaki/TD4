@@ -7,10 +7,11 @@ namespace IFE {
 	class BaseEnemy :public IFE::Component
 	{
 		using Component::Component;
-	private:
+	protected:
 		//hp
 		const int8_t MAX_HP = 100;
 		const int8_t HIT_COOLTIME = 1;
+		const float MAX_DEADTIME = 10.0f;
 		//ÉÅÉìÉoïœêî
 	protected:
 		//èÛë‘
@@ -33,6 +34,7 @@ namespace IFE {
 		//hp
 		int8_t hp_;
 		int8_t decHp_;
+		float deadTime= 0;
 		bool isHit_;
 		bool isOneShot;
 		float hitTime_;
@@ -122,8 +124,8 @@ namespace IFE {
 		inline bool GetDroneHitRay() { return droneHit_; }
 		inline float GetDroneHitDistance() { return droneHitDistance_; }
 		const IFE::Vector2 GetPos();
-		const bool GetIsOneShot() { return isOneShot; }
-		void SetisOneShot(bool isOne) { isOneShot = isOne; }
+		const bool GetIsOneShot();
+		void SetisOneShot(bool isOne);
 		void SetMotion(std::string name);
 	private:
 		/// <summary>
