@@ -535,6 +535,9 @@
     <ClCompile Include="Engine\PostEffect\RadialBlurPE.cpp">
       <Filter>ソース ファイル\Engine\PostEffect</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Particle\IFEEffekseerManager.cpp">
+      <Filter>ソース ファイル\Engine\Particle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -882,6 +885,9 @@
     </ClInclude>
     <ClInclude Include="Engine\PostEffect\RadialBlurPE.h">
       <Filter>ヘッダー ファイル\Engine\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Particle\IFEEffekseerManager.h">
+      <Filter>ヘッダー ファイル\Engine\Particle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

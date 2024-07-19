@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Model\Attach3DModel.cpp" />
+    <ClCompile Include="Engine\Particle\IFEEffekseerManager.cpp" />
     <ClCompile Include="Engine\PostEffect\RadialBlurPE.cpp" />
     <ClCompile Include="Source\Config\Config.cpp" />
     <ClCompile Include="Source\Config\PoseMenu.cpp" />
@@ -116,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Model\Attach3DModel.h" />
+    <ClInclude Include="Engine\Particle\IFEEffekseerManager.h" />
     <ClInclude Include="Engine\PostEffect\RadialBlurPE.h" />
     <ClInclude Include="Source\Config\Config.h" />
     <ClInclude Include="Source\Config\PoseMenu.h" />
@@ -492,15 +494,14 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Source;$(ProjectDir)Engine;$(ProjectDir)Engine\Collider;$(ProjectDir)External\imgui;$(ProjectDir)External\imGuizmo;$(ProjectDir)Engine\Material;$(ProjectDir)Engine\Component;$(ProjectDir)External\Assimp\include;$(ProjectDir)Engine\Sound;$(ProjectDir)Engine\Light;$(ProjectDir)Engine\Texture;$(ProjectDir)Engine\Camera;$(ProjectDir)Engine\Object3D;$(ProjectDir)Engine\Scene;$(ProjectDir)Engine\Input;$(ProjectDir)Engine\Util;$(ProjectDir)Engine\GraphicsPipeline;$(ProjectDir)Engine\Model;$(ProjectDir)Engine\Math;$(ProjectDir)Engine\Sprite;$(ProjectDir)Engine\Particle;$(ProjectDir)Engine\Base;$(ProjectDir)Engine\PostEffect;$(ProjectDir)External;$(ProjectDir)Source\Enemy;$(ProjectDir)Source\Player;$(ProjectDir)Source\StageGimmick;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Source;$(ProjectDir)Engine;$(ProjectDir)Engine\Collider;$(ProjectDir)External\imgui;$(ProjectDir)External\imGuizmo;$(ProjectDir)Engine\Material;$(ProjectDir)Engine\Component;$(ProjectDir)External\Assimp\include;$(ProjectDir)Engine\Sound;$(ProjectDir)Engine\Light;$(ProjectDir)Engine\Texture;$(ProjectDir)Engine\Camera;$(ProjectDir)Engine\Object3D;$(ProjectDir)Engine\Scene;$(ProjectDir)Engine\Input;$(ProjectDir)Engine\Util;$(ProjectDir)Engine\GraphicsPipeline;$(ProjectDir)Engine\Model;$(ProjectDir)Engine\Math;$(ProjectDir)Engine\Sprite;$(ProjectDir)Engine\Particle;$(ProjectDir)Engine\Base;$(ProjectDir)Engine\PostEffect;$(ProjectDir)External;$(ProjectDir)Source\Enemy;$(ProjectDir)Source\Player;$(ProjectDir)Source\UI;$(ProjectDir)Source\PostEffect;$(ProjectDir)Source\Effect;$(ProjectDir)Source\Config;$(ProjectDir)Source\Map;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Source;$(ProjectDir)Engine;$(ProjectDir)Engine\Collider;$(ProjectDir)External\imgui;$(ProjectDir)External\imGuizmo;$(ProjectDir)Engine\Material;$(ProjectDir)Engine\Component;$(ProjectDir)External\Assimp\include;$(ProjectDir)Engine\Sound;$(ProjectDir)Engine\Light;$(ProjectDir)Engine\Texture;$(ProjectDir)Engine\Camera;$(ProjectDir)Engine\Object3D;$(ProjectDir)Engine\Scene;$(ProjectDir)Engine\Input;$(ProjectDir)Engine\Util;$(ProjectDir)Engine\GraphicsPipeline;$(ProjectDir)Engine\Model;$(ProjectDir)Engine\Math;$(ProjectDir)Engine\Sprite;$(ProjectDir)Engine\Particle;$(ProjectDir)Engine\Base;$(ProjectDir)Engine\PostEffect;$(ProjectDir)External;$(ProjectDir)Source\Enemy;$(ProjectDir)Source\Player;$(ProjectDir)Source\UI;$(ProjectDir)Source\PostEffect;$(ProjectDir)Source\Effect;$(ProjectDir)Source\Config;$(ProjectDir)Source\Map;$(ProjectDir)External\Effekseer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Debug\assimp-vc143-mtd.lib;mfplat.lib;
-mfreadwrite.lib
-;mfuuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Debug\assimp-vc143-mtd.lib;mfplat.lib;$(ProjectDir)External\Effekseer\libs\Debug\Effekseer.lib;mfreadwrite.lib;$(ProjectDir)External\Effekseer\libs\Debug\EffekseerRendererDX12.lib;mfuuid.lib;$(ProjectDir)External\Effekseer\libs\Release\Effekseer.lib;$(ProjectDir)External\Effekseer\libs\Release\EffekseerRendererDX12.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
     </Link>
     <PostBuildEvent>
@@ -519,7 +520,7 @@ mfreadwrite.lib
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Source;$(ProjectDir)Engine;$(ProjectDir)Engine\Collider;$(ProjectDir)External\imgui;$(ProjectDir)External\imGuizmo;$(ProjectDir)Engine\Material;$(ProjectDir)Engine\Component;$(ProjectDir)External\Assimp\include;$(ProjectDir)Engine\Sound;$(ProjectDir)Engine\Light;$(ProjectDir)Engine\Texture;$(ProjectDir)Engine\Camera;$(ProjectDir)Engine\Object3D;$(ProjectDir)Engine\Scene;$(ProjectDir)Engine\Input;$(ProjectDir)Engine\Util;$(ProjectDir)Engine\GraphicsPipeline;$(ProjectDir)Engine\Model;$(ProjectDir)Engine\Math;$(ProjectDir)Engine\Sprite;$(ProjectDir)Engine\Particle;$(ProjectDir)Engine\Base;$(ProjectDir)Engine\PostEffect;$(ProjectDir)External;$(ProjectDir)Source\Enemy;$(ProjectDir)Source\Player;$(ProjectDir)Source\StageGimmick;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Source;$(ProjectDir)Engine;$(ProjectDir)Engine\Collider;$(ProjectDir)External\imgui;$(ProjectDir)External\imGuizmo;$(ProjectDir)Engine\Material;$(ProjectDir)Engine\Component;$(ProjectDir)External\Assimp\include;$(ProjectDir)Engine\Sound;$(ProjectDir)Engine\Light;$(ProjectDir)Engine\Texture;$(ProjectDir)Engine\Camera;$(ProjectDir)Engine\Object3D;$(ProjectDir)Engine\Scene;$(ProjectDir)Engine\Input;$(ProjectDir)Engine\Util;$(ProjectDir)Engine\GraphicsPipeline;$(ProjectDir)Engine\Model;$(ProjectDir)Engine\Math;$(ProjectDir)Engine\Sprite;$(ProjectDir)Engine\Particle;$(ProjectDir)Engine\Base;$(ProjectDir)Engine\PostEffect;$(ProjectDir)External;$(ProjectDir)Source\Enemy;$(ProjectDir)Source\Player;$(ProjectDir)Source\UI;$(ProjectDir)Source\PostEffect;$(ProjectDir)Source\Effect;$(ProjectDir)Source\Config;$(ProjectDir)Source\Map;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Source;$(ProjectDir)Engine;$(ProjectDir)Engine\Collider;$(ProjectDir)External\imgui;$(ProjectDir)External\imGuizmo;$(ProjectDir)Engine\Material;$(ProjectDir)Engine\Component;$(ProjectDir)External\Assimp\include;$(ProjectDir)Engine\Sound;$(ProjectDir)Engine\Light;$(ProjectDir)Engine\Texture;$(ProjectDir)Engine\Camera;$(ProjectDir)Engine\Object3D;$(ProjectDir)Engine\Scene;$(ProjectDir)Engine\Input;$(ProjectDir)Engine\Util;$(ProjectDir)Engine\GraphicsPipeline;$(ProjectDir)Engine\Model;$(ProjectDir)Engine\Math;$(ProjectDir)Engine\Sprite;$(ProjectDir)Engine\Particle;$(ProjectDir)Engine\Base;$(ProjectDir)Engine\PostEffect;$(ProjectDir)External;$(ProjectDir)Source\Enemy;$(ProjectDir)Source\Player;$(ProjectDir)Source\UI;$(ProjectDir)Source\PostEffect;$(ProjectDir)Source\Effect;$(ProjectDir)Source\Config;$(ProjectDir)Source\Map;$(ProjectDir)External\Effekseer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
