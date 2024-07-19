@@ -4,8 +4,6 @@
 
 class DronePostEffect :public IFE::IPostEffect
 {
-	IPostEffect* eh_;
-	IPostEffect* dp_;
 
 	struct DroneCameraPE{
 		//float noiseWidth;

@@ -26,6 +26,7 @@ namespace IFE
 		void Reset();
 		static void Finalize();
 		IPostEffect* GetPostEffect(std::string name);
+		inline IPostEffect* GetDefaultPE() { return defaultPE; };
 
 #ifdef EditorMode
 		void DebugGUI();

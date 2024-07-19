@@ -2,6 +2,7 @@
 
 //Œã‚ÅÁ‚¹
 #include "EnemyHighlighting.h"
+#include "RadialBlurPE.h"
 #include "DronePostEffect.h"
 
 using namespace IFE;
@@ -16,10 +17,7 @@ void IFE::PostEffectManager::Draw()
 {
 	for (auto& itr : postEffects)
 	{
-		if (itr->drawFlag_)
-		{
-			itr->PostEffectDraw();
-		}
+		itr->PostEffectDraw();
 	}
 }
 
@@ -35,10 +33,16 @@ void IFE::PostEffectManager::Initialize()
 {
 	postEffects.push_back(std::move(std::make_unique<DefaultPostEffect>()));
 	defaultPE = postEffects.front().get();
+	defaultPE->SetInitParams(2);
 	defaultPE->PostEffectInitialize();
+
+	postEffects.push_back(std::move(std::make_unique<RadialBlurPE>()));
+	postEffects.back()->PostEffectInitialize();
+
 	postEffects.push_back(std::move(std::make_unique<EnemyHighlighting>()));
 	postEffects.back()->SetInitParams(2);
 	postEffects.back()->PostEffectInitialize();
+
 	postEffects.push_back(std::move(std::make_unique<DronePostEffect>()));
 	postEffects.back()->SetInitParams(2);
 	postEffects.back()->PostEffectInitialize();

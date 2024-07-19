@@ -434,7 +434,7 @@ void PlayerAction::AutoAim()
 	{
 		IFE::Vector3 frontVec = closestEnemy->transform_->position_ - transform_->transform_->position_;
 		playerAttack_->objectPtr_->transform_->position_ =
-		{ transform_->position_.x + frontVec.x,
+		{	transform_->position_.x + frontVec.x,
 			transform_->position_.y + frontVec.y,
 			transform_->position_.z + frontVec.z
 		};
@@ -446,6 +446,14 @@ void PlayerAction::AutoAim()
 			rotY_ = IFE::ConvertToDegrees(std::atan2(frontVec.x, frontVec.z));
 			transform_->rotation_.y = rotY_;
 		}
+	}
+	else
+	{
+		playerAttack_->objectPtr_->transform_->position_ =
+		{ transform_->position_.x + frontVec_.x,
+			transform_->position_.y + frontVec_.y,
+			transform_->position_.z + frontVec_.z
+		};
 	}
 }
 
