@@ -114,6 +114,9 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::EnemyUpdate()
 {
+	if (hpUI->GetIsDead() == true) {
+		hpUI->objectPtr_->DrawFlag_ = false;
+	}
 	if (state != DEAD) {
 		if (state != WAIT) {
 			LookAt();
@@ -138,10 +141,6 @@ void IFE::NormalEnemy::EnemyUpdate()
 	}
 	ChangeState();
 	//Ž€–S
-
-	if (hpUI->GetIsDead() == true) {
-		hpUI->objectPtr_->DrawFlag_ = false;
-	}
 }
 
 void IFE::NormalEnemy::Wait()
