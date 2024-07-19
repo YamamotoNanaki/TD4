@@ -47,7 +47,7 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 		else
 		{
 			isBackAttack_ = true;
-			if (attackFlag_) {
+			if (attackFlag_ && hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetIsOneShot() == false) {
 				hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->SetisOneShot(true);
 				hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->Killed();
 
@@ -83,7 +83,7 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 		else
 		{
 			isBackAttack_ = true;
-			if (attackFlag_) {
+			if (attackFlag_ && hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetIsOneShot() == false) {
 				hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->SetisOneShot(true);
 				hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->Killed();
 
@@ -119,7 +119,7 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 		else
 		{
 			isBackAttack_ = true;
-			if (attackFlag_) {
+			if (attackFlag_ && hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetIsOneShot() == false) {
 				hitCollider->objectPtr_->GetComponent<IFE::Boss>()->SetisOneShot(true);
 				hitCollider->objectPtr_->GetComponent<IFE::Boss>()->Killed();
 

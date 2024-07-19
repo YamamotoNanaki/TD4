@@ -314,7 +314,7 @@ void IFE::NormalEnemy::Killed() {
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
 	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
 	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
-	transform_->position_ = pPos + addVec;
+	transform_->position_ = pPos + addVec.Normalize();
 	transform_->rotation_ = rot;
 	status_->objectPtr_->DrawFlag_ = false;
 	ani_->SetAnimation("standBy");
