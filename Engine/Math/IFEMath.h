@@ -97,6 +97,15 @@ namespace IFE
 	/// <returns></returns>
 	float SimpleHarmonicMotion(float time, float amplitude = 10.0f, float period = 60.0f);
 
+	/// <summary>
+	/// ‰~‰^“®‚ğ‚µ‚½’l‚ğ•Ô‚·(•¡‘f””Å)
+	/// </summary>
+	/// <param name="CenterPoint">’†S“_</param>
+	/// <param name="radius">’†S“_‚©‚ç‚Ì”¼Œa</param>
+	/// <param name="angle">Šp“x</param>
+	/// <returns></returns>
+	Vector2 CircularMotion(Vector2 CenterPoint, float radius, float angle);
+
 	float Vector3Max(const Vector3& vec);
 	float Vector3Min(const Vector3& vec);
 

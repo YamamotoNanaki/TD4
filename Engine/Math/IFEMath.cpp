@@ -272,6 +272,16 @@ float IFE::SimpleHarmonicMotion(float time, float amplitude, float period)
 	return amplitude * sinf(2 * static_cast<float>(PI) * time / period);
 }
 
+Vector2 IFE::CircularMotion(Vector2 CenterPoint, float radius, float angle)
+{
+	Vector2 position;
+
+	position.x = CenterPoint.x + radius * cosf(angle);
+	position.y = CenterPoint.y + radius * sinf(angle);
+
+	return position;
+}
+
 float IFE::Vector3Max(const Vector3& vec)
 {
 	return fmaxf(vec.x, fmaxf(vec.y, vec.z));

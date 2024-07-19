@@ -17,9 +17,9 @@ private:
 
 	bool poseFlag_ = false;
 	PoseSelectFlag selectFlag_ = PoseSelectFlag::RETURNGAME;
-	uint8_t selectNum_ = 0;
-	uint8_t minSelectNum_ = 0;
-	uint8_t maxSelectNum_ = 2;
+	int8_t selectNum_ = 0;
+	int8_t minSelectNum_ = 0;
+	int8_t maxSelectNum_ = 2;
 
 	float oldLAnalog_ = 0.0f;
 
