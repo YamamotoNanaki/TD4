@@ -19,6 +19,7 @@ void IFE::NormalEnemy::Initialize()
 	attackTime = 0;
 	rayDist = 0.0f;
 	isFound = false;
+	isOneShot = false;
 	isAttack = false;
 	warningTime = 50;
 	hp_ = 100;

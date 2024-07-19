@@ -19,6 +19,7 @@ void IFE::TrapEnemy::Initialize()
 	rayDist = 0.0f;
 	isFound = false;
 	isAttack = false;
+	isOneShot = false;
 	warningTime = 50;
 	hp_ = 100;
 	decHp_ = 0;
