@@ -37,36 +37,24 @@ void Title::Update()
 		}
 		else
 		{
-			distanse_ = IFE::EaseInOutQuart(animationTime_, 120.0f, 0.1f, maxAnimationTime_);
-			camera_->transform_->eye_.y = IFE::EaseInOutBack(animationTime_, 0.0f, 120.0f, maxAnimationTime_);
-			if (beforeEaseAngle_ >= PI / 2)
-			{
-				cameraAngle_ = IFE::EaseInOutQuart(animationTime_, beforeEaseAngle_, static_cast<float>(PI) * 3 / 2, maxAnimationTime_);
-			}
-			else
-			{
-				cameraAngle_ = IFE::EaseInOutQuart(animationTime_, beforeEaseAngle_, static_cast<float>(-PI) / 2, maxAnimationTime_);
-			}
-
-			if (animationTime_ > maxAnimationTime_)
-			{
-				titleSelectFlag_ = TitleSelect::SELECT;
-			}
-
-			animationTime_ += IFE::IFETime::sDeltaTime_;
+			ToSelectAnimation();
 		}
 		break;
 	case TitleSelect::SELECT:
-		if (Input::PadTrigger(PADCODE::B) || Input::GetKeyTrigger(Key::Esc))
+		CameraRot();
+		if (animationFlag_ == false)
 		{
-			camera_->transform_->eye_ = { 0.0f,5.0f,-120.0f };
-			camera_->transform_->target_ = { 0.0f,20.0f,20.0f };
-			cameraAngle_ = static_cast<float>(-PI) / 2;
-			distanse_ = 120.0f;
-			animationFlag_ = false;
-			animationTime_ = 0.0f;
-			titleSelectFlag_ = TitleSelect::TITLE;
+			if (Input::PadTrigger(PADCODE::B) || Input::GetKeyTrigger(Key::Esc))
+			{
+				animationFlag_ = true;
+			}
 		}
+
+		if (animationFlag_ == true)
+		{
+			BackTitleAnimation();
+		}
+
 		Select();
 		break;
 	case TitleSelect::SELECT2:
@@ -80,9 +68,9 @@ void Title::Update()
 
 void Title::CameraRot()
 {
-	if (animationFlag_ == false)
+	if (animationFlag_ == false&& titleSelectFlag_==TitleSelect::TITLE)
 	{
-		cameraAngle_ += 0.1f * IFE::IFETime::sDeltaTime_ * 5.0f;
+		cameraAngle_ += 0.1f * IFE::IFETime::sDeltaTime_;
 
 		if (cameraAngle_ >= 2*PI)
 		{
@@ -93,9 +81,53 @@ void Title::CameraRot()
 	camera_->transform_->eye_ =
 	{
 		CircularMotion({0.0f,20.0f},distanse_,cameraAngle_).x,
-		5.0f,
+		camera_->transform_->eye_.y,
 		CircularMotion({0.0f,20.0f},distanse_,cameraAngle_).y
 	};
+}
+
+void Title::ToSelectAnimation()
+{
+	distanse_ = IFE::EaseInOutQuart(animationTime_, 120.0f, 0.1f, maxAnimationTime_);
+	camera_->transform_->eye_.y = IFE::EaseInOutBack(animationTime_, 5.0f, 120.0f, maxAnimationTime_);
+	if (beforeEaseAngle_ >= PI / 2)
+	{
+		cameraAngle_ = IFE::EaseInOutQuart(animationTime_, beforeEaseAngle_, static_cast<float>(PI) * 3 / 2, maxAnimationTime_);
+	}
+	else
+	{
+		cameraAngle_ = IFE::EaseInOutQuart(animationTime_, beforeEaseAngle_, static_cast<float>(-PI) / 2, maxAnimationTime_);
+	}
+
+	if (animationTime_ > maxAnimationTime_)
+	{
+		animationFlag_ = false;
+		animationTime_ = 0.0f;
+		cameraAngle_ = static_cast<float>(-PI) / 2;
+		titleSelectFlag_ = TitleSelect::SELECT;
+	}
+	else
+	{
+		animationTime_ += IFE::IFETime::sDeltaTime_;
+	}
+}
+
+void Title::BackTitleAnimation()
+{
+	distanse_ = IFE::EaseInOutQuart(animationTime_, 0.1f, 120.0f, maxAnimationTime_);
+	camera_->transform_->eye_.y = IFE::EaseInOutQuart(animationTime_, 120.0f, 5.0f, maxAnimationTime_);
+
+	if (animationTime_ > maxAnimationTime_)
+	{
+		animationFlag_ = false;
+		animationTime_ = 0.0f;
+		cameraAngle_ = static_cast<float>(-PI) / 2;
+		titleSelectFlag_ = TitleSelect::TITLE;
+	}
+	else
+	{
+		animationTime_ += IFE::IFETime::sDeltaTime_;
+	}
 }
 
 void Title::Select()
@@ -164,4 +196,6 @@ void Title::SelectCheck()
 void Title::ImGUI()
 {
 	IFE::ImguiManager::Instance()->TextIntGUI(stageNum_);
+	IFE::ImguiManager::Instance()->TextFloat3GUI(camera_->transform_->eye_);
+	IFE::ImguiManager::Instance()->TextFloat3GUI(camera_->transform_->target_);
 }

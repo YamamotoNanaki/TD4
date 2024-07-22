@@ -41,6 +41,9 @@ private:
 
 	void CameraRot();
 
+	void ToSelectAnimation();
+	void BackTitleAnimation();
+
 	void Select();
 	void SelectCheck();
 
