@@ -48,7 +48,7 @@ void PlayerAction::Update()
 	//hitcool
 	if (isHit_ == true)
 	{
-		if (hp_ > 0)
+		if (hp_ >= 0)
 		{
 			playerHp_->ScaleCalc(hp_, 1, hitTime_, HIT_COOLTIME);
 		}
@@ -99,13 +99,30 @@ void PlayerAction::DecHp()
 		hp_--;
 		hitTime_ = HIT_COOLTIME;
 		isHit_ = true;
-		if (crouchFlag_ == false)
+		if (hp_ > 0)
 		{
-			ani_->SetAnimation("damage");
+			if (crouchFlag_ == false)
+			{
+				ani_->SetAnimation("damage");
+			}
+			else
+			{
+				ani_->SetAnimation("squatDamage");
+			}
 		}
 		else
 		{
-			ani_->SetAnimation("squatDamage");
+			if (crouchFlag_ == false)
+			{
+				//if(“G‚ª‘O‚É‚¢‚é‚©‚Ç‚¤‚©)
+				ani_->SetAnimation("downBack");
+				//else
+				//ani_->SetAnimation("downfront");
+			}
+			else
+			{
+				ani_->SetAnimation("squatDamage");//‚µ‚á‚ª‚İ€–Sƒ‚[ƒVƒ‡ƒ“
+			}
 		}
 	}
 }

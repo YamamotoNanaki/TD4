@@ -68,11 +68,11 @@ void Title::Update()
 
 void Title::CameraRot()
 {
-	if (animationFlag_ == false&& titleSelectFlag_==TitleSelect::TITLE)
+	if (animationFlag_ == false && titleSelectFlag_ == TitleSelect::TITLE)
 	{
 		cameraAngle_ += 0.1f * IFE::IFETime::sDeltaTime_;
 
-		if (cameraAngle_ >= 2*PI)
+		if (cameraAngle_ >= 2 * PI)
 		{
 			cameraAngle_ = 0.0f;
 		}
@@ -133,11 +133,11 @@ void Title::BackTitleAnimation()
 void Title::Select()
 {
 	int32_t range = 10000;
-	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_ > -0.5f && IFE::Input::GetLXAnalog(range) <-0.5f)
+	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_ > -0.5f && IFE::Input::GetLXAnalog(range) < -0.5f)
 	{
 		stageNum_--;
 	}
-	else if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_ <0.5f && IFE::Input::GetLXAnalog(range) >0.5f)
+	else if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_ < 0.5f && IFE::Input::GetLXAnalog(range) >0.5f)
 	{
 		stageNum_++;
 	}
@@ -186,7 +186,7 @@ void Title::SelectCheck()
 			}
 			isNext = true;
 
-			Scene::Instance()->SetNextScene("stage0"+std::to_string(stageNum_));
+			Scene::Instance()->SetNextScene("stage0" + std::to_string(stageNum_));
 		}
 	}
 
@@ -196,6 +196,14 @@ void Title::SelectCheck()
 void Title::ImGUI()
 {
 	IFE::ImguiManager::Instance()->TextIntGUI(stageNum_);
-	IFE::ImguiManager::Instance()->TextFloat3GUI(camera_->transform_->eye_);
-	IFE::ImguiManager::Instance()->TextFloat3GUI(camera_->transform_->target_);
+	std::string a;
+	if (checkFlag_ == true)
+	{
+		a = "ステージに進む";
+	}
+	else
+	{
+		a = "ステージ選択に戻る";
+	}
+	IFE::ImguiManager::Instance()->TextGUI(a);
 }
