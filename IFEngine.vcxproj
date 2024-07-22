@@ -436,6 +436,9 @@
     <ProjectReference Include="External\Effekseer\Effekseer\Effekseer.vcxproj">
       <Project>{a86d83f5-e2f6-3368-b0c1-12804d6967b3}</Project>
     </ProjectReference>
+    <ProjectReference Include="External\Effekseer\LLGI\LLGI.vcxproj">
+      <Project>{c2794814-d9b8-3f2b-b7a5-23f8c7312568}</Project>
+    </ProjectReference>
     <ProjectReference Include="External\ImGuizmo\ImGuizmo.vcxproj">
       <Project>{6d401c0c-ee73-4528-81ee-a1e6256e37f5}</Project>
     </ProjectReference>
@@ -507,7 +510,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Debug\assimp-vc143-mtd.lib;mfplat.lib;$(ProjectDir)External\Effekseer\Debug\Effekseer.lib;mfreadwrite.lib;$(ProjectDir)External\Effekseer\Debug\EffekseerRendererDX12.lib;mfuuid.lib;$(ProjectDir)External\Effekseer\Release\Effekseer.lib;$(ProjectDir)External\Effekseer\Release\EffekseerRendererDX12.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Debug\assimp-vc143-mtd.lib;mfplat.lib;$(ProjectDir)External\Effekseer\Debug\Effekseer.lib;mfreadwrite.lib;$(ProjectDir)External\Effekseer\Debug\EffekseerRendererDX12.lib;mfuuid.lib;$(ProjectDir)External\Effekseer\Debug\LLGI.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
     </Link>
     <PostBuildEvent>
@@ -535,9 +538,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Release\assimp-vc143-mt.lib;mfplat.lib;
-mfreadwrite.lib
-;mfuuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Release\assimp-vc143-mt.lib;mfplat.lib;$(ProjectDir)External\Effekseer\Release\Effekseer.lib;mfreadwrite.lib;$(ProjectDir)External\Effekseer\Release\EffekseerRendererDX12.lib;mfuuid.lib;$(ProjectDir)External\Effekseer\Release\LLGI.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
     </Link>
     <PostBuildEvent>
