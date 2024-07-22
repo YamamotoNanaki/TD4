@@ -25,7 +25,6 @@ namespace IFE {
 		std::vector<Float3> points;
 		//Ÿ‚ÌêŠ
 		size_t nextPoint;
-		Vector3 frontVec;
 		//UŒ‚ŠÔ
 		float attackTime;
 		//Œx‰úŠÔ
@@ -126,7 +125,6 @@ namespace IFE {
 
 		///-----Getter-----///
 		const Vector3 GetPos();
-		const bool GetBack();
 		const bool GetIsAttack() { return isAttack; }
 		const bool GetIsHit() { return isHit_; }
 		const bool GetIsFound() { return isFound; }

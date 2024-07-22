@@ -6,6 +6,7 @@
 #include "PlayerDrone.h"
 #include "IFETime.h"
 #include "Sound.h"
+#include "PlayerAction.h"
 
 using namespace IFE;
 
@@ -153,4 +154,15 @@ void IFE::BaseEnemy::SetisOneShot(bool isOne)
 
 void  IFE::BaseEnemy::SetMotion(std::string name) {
 	ani_->SetAnimation(name);
+}
+
+const bool IFE::BaseEnemy::GetBack()
+{
+	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
+	float result = pFront.Dot(frontVec);
+	//+‚È‚çŒã‚ë
+	if (result > 0) {
+		return true;
+	}
+	return false;
 }

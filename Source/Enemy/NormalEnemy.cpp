@@ -249,6 +249,7 @@ void IFE::NormalEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
 			IFE::Sound::Instance()->SoundPlay("attack", false, true);
 			ani_->SetAnimation("knifeAttack");
+			enemyAttack->SetIsFront(GetBack());
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
@@ -410,17 +411,6 @@ void IFE::NormalEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore
 const IFE::Vector3 IFE::NormalEnemy::GetPos() {
 	Vector3 temp = transform_->position_;
 	return temp;
-}
-
-const bool IFE::NormalEnemy::GetBack()
-{
-	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
-	float result = pFront.Dot(frontVec);
-	//+‚È‚çŒã‚ë
-	if (result > 0) {
-		return true;
-	}
-	return false;
 }
 
 void IFE::NormalEnemy::Finalize()

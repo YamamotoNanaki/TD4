@@ -49,9 +49,16 @@ void IFE::TrapEnemy::Initialize()
 void IFE::TrapEnemy::ChangeState()
 {
 	if (hp_ <= 0 && state != DEAD) {
+		if (isOneShot) {
+			isOneShot = false;
+			ani_->SetAnimation("downFront", false);
+		}
+		else {
+			ani_->SetAnimation("downBack", false);
+		}
 		state = DEAD;
 	}
-	if (hp_ > 0) {
+	if (!isOneShot) {
 		//UŒ‚‚ÍÅ—Dæ
 		switch (state)
 		{
@@ -76,6 +83,13 @@ void IFE::TrapEnemy::ChangeState()
 			}
 			break;
 		case IFE::BaseEnemy::DEAD:
+			deadTime += 100 * IFE::IFETime::sDeltaTime_;
+			if (deadTime >= 150) {
+				hpUI->objectPtr_->Destroy();
+				status_->objectPtr_->Destroy();
+				enemyAttack->objectPtr_->Destroy();
+				objectPtr_->Destroy();
+			}
 			break;
 		default:
 			break;
@@ -85,32 +99,32 @@ void IFE::TrapEnemy::ChangeState()
 
 void IFE::TrapEnemy::EnemyUpdate()
 {
-	LookAt();
-	isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
-	if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
-		isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
-		isChaseDrone = isFound;
-	}
-	//ó‘Ô‚ðŽæ“¾
-	preState = state;
-	ChangeState();
-	//hp•\Ž¦
-	hpUI->Update(transform_->position_, hp_, decHp_);
-	status_->IconUpdate(transform_->position_);
-	//Ž€–S
 	if (hpUI->GetIsDead() == true) {
-		hpUI->objectPtr_->Destroy();
-		status_->objectPtr_->Destroy();
-		enemyAttack->objectPtr_->Destroy();
-		objectPtr_->Destroy();
+		hpUI->objectPtr_->DrawFlag_ = false;
 	}
-	rayDist = 0;
-	isChaseDrone = false;
-	//d—Í
-	if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
-	{
-		transform_->position_.y -= 4.9f * IFETime::sDeltaTime_;
+	if (state != DEAD) {
+		if (state != WAIT) {
+			LookAt();
+		}
+		isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
+		if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
+			isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
+			isChaseDrone = isFound;
+		}
+		//ó‘Ô‚ðŽæ“¾
+		preState = state;
+		//hp•\Ž¦
+		hpUI->Update(transform_->position_, hp_, decHp_);
+		status_->IconUpdate(transform_->position_);
+		rayDist = 0;
+		isChaseDrone = false;
+		//d—Í
+		if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
+		{
+			transform_->position_.y -= 4.9f * IFETime::sDeltaTime_;
+		}
 	}
+	ChangeState();
 }
 
 void IFE::TrapEnemy::Warning()
@@ -193,6 +207,7 @@ void IFE::TrapEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->scale_ = { 0.4f,0.4f,0.4f };
 			IFE::Sound::Instance()->SoundPlay("gun", false, true);
 			ani_->SetAnimation("gunAttack");
+			enemyAttack->SetIsFront(GetBack());
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
@@ -338,17 +353,6 @@ void IFE::TrapEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* 
 const IFE::Vector3 IFE::TrapEnemy::GetPos() {
 	Vector3 temp = transform_->position_;
 	return temp;
-}
-
-const bool IFE::TrapEnemy::GetBack()
-{
-	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
-	float result = pFront.Dot(frontVec);
-	//+‚È‚çŒã‚ë
-	if (result > 0) {
-		return true;
-	}
-	return false;
 }
 
 void IFE::TrapEnemy::Finalize()

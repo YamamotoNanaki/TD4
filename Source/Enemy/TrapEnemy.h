@@ -18,7 +18,6 @@ namespace IFE {
 		std::vector<Float3> points;
 		//Ÿ‚ÌêŠ
 		Vector3 trapPos;
-		Vector3 frontVec;
 		//UŒ‚ŠÔ
 		float attackTime;
 		//Œx‰úŠÔ
@@ -114,7 +113,6 @@ namespace IFE {
 
 		///-----Getter-----///
 		const Vector3 GetPos();
-		const bool GetBack();
 		const bool GetIsAttack() { return isAttack; }
 		const bool GetIsHit() { return isHit_; }
 		const bool GetIsFound() { return isFound; }

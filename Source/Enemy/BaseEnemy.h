@@ -31,6 +31,7 @@ namespace IFE {
 		};
 		State state;
 		State preState;
+		Vector3 frontVec;
 		//hp
 		int8_t hp_;
 		int8_t decHp_;
@@ -127,6 +128,7 @@ namespace IFE {
 		const bool GetIsOneShot();
 		void SetisOneShot(bool isOne);
 		void SetMotion(std::string name);
+		const bool GetBack();
 	private:
 		/// <summary>
 		/// ƒhƒ[ƒ“‚ÉŒõ‚ç‚¹‚é‚½‚ß‚Ìˆ—
