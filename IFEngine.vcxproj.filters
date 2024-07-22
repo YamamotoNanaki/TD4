@@ -229,6 +229,9 @@
     <Filter Include="シェーダーファイル\Engine\RadialBlur">
       <UniqueIdentifier>{032fc544-0dbe-428e-ab74-0a494e7c0772}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Source\Scene">
+      <UniqueIdentifier>{034380c2-6c3a-40cf-b397-d708cac51382}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp">
@@ -475,15 +478,6 @@
     <ClCompile Include="Source\PostEffect\EnemyHighlighting.cpp">
       <Filter>ソース ファイル\Source\PostEffect</Filter>
     </ClCompile>
-    <ClCompile Include="Source\UI\Title.cpp">
-      <Filter>ソース ファイル\Source\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UI\Clear.cpp">
-      <Filter>ソース ファイル\Source\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UI\Over.cpp">
-      <Filter>ソース ファイル\Source\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Player\PlayerActionCamera.cpp">
       <Filter>ソース ファイル\Source\Player</Filter>
     </ClCompile>
@@ -534,6 +528,15 @@
     </ClCompile>
     <ClCompile Include="Engine\PostEffect\RadialBlurPE.cpp">
       <Filter>ソース ファイル\Engine\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\Title.cpp">
+      <Filter>ソース ファイル\Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\Clear.cpp">
+      <Filter>ソース ファイル\Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\Over.cpp">
+      <Filter>ソース ファイル\Engine\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -814,15 +817,6 @@
     <ClInclude Include="Source\PostEffect\EnemyHighlighting.h">
       <Filter>ヘッダー ファイル\Source\PostEffect</Filter>
     </ClInclude>
-    <ClInclude Include="Source\UI\Title.h">
-      <Filter>ヘッダー ファイル\Source\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UI\Clear.h">
-      <Filter>ヘッダー ファイル\Source\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UI\Over.h">
-      <Filter>ヘッダー ファイル\Source\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Player\PlayerCommonCamera.h">
       <Filter>ヘッダー ファイル\Source\Player</Filter>
     </ClInclude>
@@ -882,6 +876,15 @@
     </ClInclude>
     <ClInclude Include="Engine\PostEffect\RadialBlurPE.h">
       <Filter>ヘッダー ファイル\Engine\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\Clear.h">
+      <Filter>ヘッダー ファイル\Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\Over.h">
+      <Filter>ヘッダー ファイル\Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\Title.h">
+      <Filter>ヘッダー ファイル\Source\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
