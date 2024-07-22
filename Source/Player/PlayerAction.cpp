@@ -115,7 +115,7 @@ void PlayerAction::DecHp(bool isBack_)
 			if (crouchFlag_ == false)
 			{
 				//“G‚ª³–Ê
-				if (!isBack_)
+				if (isBack_)
 				{
 					ani_->SetAnimation("downBack");
 				}
