@@ -90,7 +90,7 @@ void PlayerAction::Finalize()
 
 }
 
-void PlayerAction::DecHp()
+void PlayerAction::DecHp(bool isBack_)
 {
 #ifdef EditorMode
 	if (cheatFlag_)return;
@@ -114,10 +114,14 @@ void PlayerAction::DecHp()
 		{
 			if (crouchFlag_ == false)
 			{
-				//if(“G‚ª‘O‚É‚¢‚é‚©‚Ç‚¤‚©)
-				ani_->SetAnimation("downBack");
-				//else
-				//ani_->SetAnimation("downfront");
+				//“G‚ª³–Ê
+				if (!isBack_) {
+					ani_->SetAnimation("downBack");
+				}
+				//“G‚ªŒã‚ë
+				else {
+					ani_->SetAnimation("downfront");
+				}
 			}
 			else
 			{

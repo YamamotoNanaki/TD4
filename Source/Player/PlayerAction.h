@@ -107,7 +107,7 @@ public:
 	/// <summary>
 	/// 体力減少
 	/// </summary>
-	void DecHp();
+	void DecHp(bool isBack_);
 
 	/// <summary>
 	/// Playerクラスで呼ぶ操作全般更新処理
