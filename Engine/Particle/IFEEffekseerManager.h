@@ -1,9 +1,9 @@
 #pragma once
 
-#pragma warning(push, 0) 
+#pragma warning(push, 0)
 #include <Effekseer.h>
 #include <EffekseerRendererDX12.h>
-#pragma warning(pop) 
+#pragma warning(pop)
 
 namespace IFE
 {

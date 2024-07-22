@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A86D83F5-E2F6-3368-B0C1-12804D6967B3}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>Effekseer</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)..\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effekseer.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effekseer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)..\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effekseer.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effekseer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4267;4456;4458;4715</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4267;4456;4458;4715</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="$(ProjectDir)..\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule $(ProjectDir)..CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SE:/EffekseerForCpp170e -BE:/EffekseerForCpp170e/build --check-stamp-file $(ProjectDir)..CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Internal\CheckSourceCompiles.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)..\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule $(ProjectDir)..CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SE:/EffekseerForCpp170e -BE:/EffekseerForCpp170e/build --check-stamp-file $(ProjectDir)..CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Internal\CheckSourceCompiles.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)..\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer.Modules.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer.SIMD.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Backend\GraphicsDevice.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Base.Pre.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Base.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Client.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.ClientImplemented.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Color.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Curve.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.CurveLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.DefaultEffectLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.DefaultFile.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Effect.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectImplemented.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNode.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeModel.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeRibbon.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeRing.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeRoot.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeSprite.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeTrack.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.FCurves.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.File.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Instance.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceChunk.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceContainer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceGlobal.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceGroup.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InternalScript.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InternalStruct.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.IntrusiveList.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Manager.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.ManagerImplemented.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.MaterialLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Math.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Matrix43.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Matrix44.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Random.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.RectF.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Resource.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.ResourceManager.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Server.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.ServerImplemented.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Setting.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Socket.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.SoundLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.TextureLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Vector2D.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Vector3D.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.WorkerThread.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\ForceField\ForceFields.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\IO\Effekseer.EfkEfcFactory.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Material\Effekseer.CompiledMaterial.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Material\Effekseer.MaterialCompiler.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Material\Effekseer.MaterialFile.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\Model.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\ModelLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\ProceduralModelGenerator.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\ProceduralModelParameter.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\SplineGenerator.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Noise\CurlNoise.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Noise\PerlinNoise.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\AllTypeColor.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\AlphaCutoff.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\CustomData.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\DynamicParameter.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Easing.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Effekseer.Parameters.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Rotation.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Scaling.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\SpawnMethod.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Translation.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\UV.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Renderer\Effekseer.ModelRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Renderer\Effekseer.ParticleRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Renderer\Effekseer.RibbonRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Renderer\Effekseer.RingRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Renderer\Effekseer.SpriteRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Renderer\Effekseer.TrackRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Utils\BinaryVersion.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Utils\Compatiblity.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Utils\Effekseer.BinaryReader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Utils\Effekseer.CustomAllocator.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Utils\Profiler.h" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Client.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Color.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.CurveLoader.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.DefaultEffectLoader.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.DefaultFile.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Effect.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNode.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeModel.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeRibbon.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeRing.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeRoot.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeSprite.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeTrack.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.FCurves.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Instance.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceChunk.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceContainer.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceGlobal.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceGroup.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InternalScript.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Manager.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Matrix43.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Matrix44.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Random.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.RectF.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Resource.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.ResourceManager.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Setting.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Server.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Socket.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Vector2D.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Vector3D.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.WorkerThread.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Material\Effekseer.MaterialFile.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Material\Effekseer.CompiledMaterial.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Material\Effekseer.MaterialCompiler.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\IO\Effekseer.EfkEfcFactory.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Easing.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Effekseer.Parameters.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Rotation.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Utils\Effekseer.CustomAllocator.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\SIMD\Mat43f.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\SIMD\Mat44f.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\SIMD\Utils.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Noise\CurlNoise.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\ForceField\ForceFields.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\ProceduralModelGenerator.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\Model.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\ModelLoader.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\SplineGenerator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\EffekseerForCpp170e\build\ZERO_CHECK.vcxproj">
+      <Project>{E2A3FA7E-225C-3025-9423-0957415A6F6B}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

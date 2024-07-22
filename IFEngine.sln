@@ -15,6 +15,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlibstatic", "External\Assi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IFEngine", "IFEngine.vcxproj", "{6BAA7D17-2F95-4305-BD82-529F0D6CEA6A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EffekseerRendererDX12", "External\Effekseer\EffekseerRendererDX12\EffekseerRendererDX12.vcxproj", "{17D4A4B7-3E94-3241-9B87-23D92A44B232}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Effekseer", "External\Effekseer\Effekseer\Effekseer.vcxproj", "{A86D83F5-E2F6-3368-B0C1-12804D6967B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -45,6 +49,14 @@ Global
 		{6BAA7D17-2F95-4305-BD82-529F0D6CEA6A}.Debug|x64.Build.0 = Debug|x64
 		{6BAA7D17-2F95-4305-BD82-529F0D6CEA6A}.Release|x64.ActiveCfg = Release|x64
 		{6BAA7D17-2F95-4305-BD82-529F0D6CEA6A}.Release|x64.Build.0 = Release|x64
+		{17D4A4B7-3E94-3241-9B87-23D92A44B232}.Debug|x64.ActiveCfg = Debug|x64
+		{17D4A4B7-3E94-3241-9B87-23D92A44B232}.Debug|x64.Build.0 = Debug|x64
+		{17D4A4B7-3E94-3241-9B87-23D92A44B232}.Release|x64.ActiveCfg = Release|x64
+		{17D4A4B7-3E94-3241-9B87-23D92A44B232}.Release|x64.Build.0 = Release|x64
+		{A86D83F5-E2F6-3368-B0C1-12804D6967B3}.Debug|x64.ActiveCfg = Debug|x64
+		{A86D83F5-E2F6-3368-B0C1-12804D6967B3}.Debug|x64.Build.0 = Debug|x64
+		{A86D83F5-E2F6-3368-B0C1-12804D6967B3}.Release|x64.ActiveCfg = Release|x64
+		{A86D83F5-E2F6-3368-B0C1-12804D6967B3}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

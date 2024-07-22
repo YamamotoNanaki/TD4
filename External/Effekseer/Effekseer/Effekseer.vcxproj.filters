@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Client.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Color.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.CurveLoader.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.DefaultEffectLoader.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.DefaultFile.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Effect.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNode.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeModel.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeRibbon.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeRing.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeRoot.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeSprite.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeTrack.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.FCurves.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Instance.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceChunk.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceContainer.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceGlobal.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceGroup.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InternalScript.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Manager.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Matrix43.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Matrix44.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Random.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.RectF.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Resource.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.ResourceManager.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Setting.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Server.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Socket.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Vector2D.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Vector3D.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.WorkerThread.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Material\Effekseer.MaterialFile.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Material\Effekseer.CompiledMaterial.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Material\Effekseer.MaterialCompiler.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\IO\Effekseer.EfkEfcFactory.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Easing.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Effekseer.Parameters.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Rotation.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Utils\Effekseer.CustomAllocator.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\SIMD\Mat43f.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\SIMD\Mat44f.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\SIMD\Utils.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Noise\CurlNoise.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\ForceField\ForceFields.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\ProceduralModelGenerator.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\Model.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\ModelLoader.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\SplineGenerator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer.Modules.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer.SIMD.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Backend\GraphicsDevice.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Base.Pre.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Base.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Client.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.ClientImplemented.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Color.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Curve.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.CurveLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.DefaultEffectLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.DefaultFile.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Effect.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectImplemented.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNode.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeModel.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeRibbon.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeRing.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeRoot.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeSprite.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.EffectNodeTrack.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.FCurves.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.File.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Instance.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceChunk.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceContainer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceGlobal.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InstanceGroup.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InternalScript.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.InternalStruct.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.IntrusiveList.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Manager.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.ManagerImplemented.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.MaterialLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Math.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Matrix43.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Matrix44.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Random.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.RectF.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Resource.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.ResourceManager.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Server.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.ServerImplemented.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Setting.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Socket.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.SoundLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.TextureLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Vector2D.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.Vector3D.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Effekseer.WorkerThread.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\ForceField\ForceFields.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\IO\Effekseer.EfkEfcFactory.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Material\Effekseer.CompiledMaterial.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Material\Effekseer.MaterialCompiler.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Material\Effekseer.MaterialFile.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\Model.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\ModelLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\ProceduralModelGenerator.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\ProceduralModelParameter.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Model\SplineGenerator.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Noise\CurlNoise.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Noise\PerlinNoise.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\AllTypeColor.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\AlphaCutoff.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\CustomData.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\DynamicParameter.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Easing.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Effekseer.Parameters.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Rotation.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Scaling.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\SpawnMethod.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\Translation.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Parameter\UV.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Renderer\Effekseer.ModelRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Renderer\Effekseer.ParticleRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Renderer\Effekseer.RibbonRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Renderer\Effekseer.RingRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Renderer\Effekseer.SpriteRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Renderer\Effekseer.TrackRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Utils\BinaryVersion.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Utils\Compatiblity.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Utils\Effekseer.BinaryReader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Utils\Effekseer.CustomAllocator.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\Effekseer\Effekseer\Utils\Profiler.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="$(ProjectDir)..\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Effekseer">
+      <UniqueIdentifier>{6D41F5CB-C05E-3717-8DB4-98C614533D1F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effekseer\Backend">
+      <UniqueIdentifier>{2015EC84-E15E-314D-B556-1FD54E68CACF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effekseer\ForceField">
+      <UniqueIdentifier>{9DCFDEF3-4494-31CA-9234-697C47C9BEBC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effekseer\IO">
+      <UniqueIdentifier>{B1E8D25F-3777-3AA8-AD69-E7BF906B8DEF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effekseer\Material">
+      <UniqueIdentifier>{AC7A1629-FACC-34D7-970F-8E8D2AE699C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effekseer\Model">
+      <UniqueIdentifier>{5EF2D8F2-0A17-30B1-A69B-8EB4FE161B21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effekseer\Noise">
+      <UniqueIdentifier>{05A2F689-7905-31D8-9C77-D4422F96D02D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effekseer\Parameter">
+      <UniqueIdentifier>{1BE39859-AFBF-3FF7-AEC3-B7A22DB735B3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effekseer\Renderer">
+      <UniqueIdentifier>{F64E2C99-46D2-309A-82D7-23D2E5D2B2A2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effekseer\SIMD">
+      <UniqueIdentifier>{3F85A3B9-9A90-333D-BE0B-899826639814}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effekseer\Utils">
+      <UniqueIdentifier>{40B9EB02-FBC5-39FE-B54B-FF62B15DB3AD}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.CommonUtils.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.DDSTextureLoader.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.IndexBufferBase.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.ModelRendererBase.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.PngTextureLoader.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.RenderStateBase.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.Renderer.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.Renderer_Impl.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.RibbonRendererBase.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.RingRendererBase.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.SpriteRendererBase.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.TGATextureLoader.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.TrackRendererBase.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.VertexBufferBase.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\ModelLoader.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererCommon\TextureLoader.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\EffekseerRendererDX12.Renderer.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerMaterialCompiler\DirectX12\EffekseerMaterialCompilerDX12.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerMaterialCompiler\HLSLGenerator\ShaderGenerator.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerMaterialCompiler\Common\ShaderGeneratorCommon.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\Common.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.DeviceObject.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.IndexBuffer.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.MaterialLoader.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.ModelRenderer.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.RenderState.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.Renderer.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.Shader.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.VertexBuffer.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\GraphicsDevice.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.CommonUtils.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.DDSTextureLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.IndexBufferBase.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.ModelRendererBase.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.PngTextureLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.RenderStateBase.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.Renderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.Renderer_Impl.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.RibbonRendererBase.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.RingRendererBase.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.ShaderBase.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.SpriteRendererBase.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.StandardRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.TGATextureLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.TrackRendererBase.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\EffekseerRenderer.VertexBufferBase.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\ModelLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererCommon\TextureLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\EffekseerRendererDX12.Base.Pre.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\EffekseerRendererDX12.Base.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\EffekseerRendererDX12.Renderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\ad_model_distortion_ps.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\ad_model_distortion_vs.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\ad_model_lit_ps.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\ad_model_lit_vs.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\ad_model_unlit_ps.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\ad_model_unlit_vs.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\ad_sprite_distortion_vs.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\ad_sprite_lit_vs.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\ad_sprite_unlit_vs.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\model_distortion_ps.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\model_distortion_vs.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\model_lit_ps.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\model_lit_vs.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\model_unlit_ps.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\model_unlit_vs.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\sprite_distortion_vs.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\sprite_lit_vs.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRenderer\ShaderHeader\sprite_unlit_vs.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererDX12\EffekseerRendererDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerMaterialCompiler\DirectX12\EffekseerMaterialCompilerDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerMaterialCompiler\HLSLGenerator\ShaderGenerator.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerMaterialCompiler\Common\ShaderGeneratorCommon.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\Common.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.Base.Pre.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.Base.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.DeviceObject.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.IndexBuffer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.MaterialLoader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.ModelRenderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.RenderState.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.Renderer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.RendererImplemented.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.Shader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\EffekseerRendererLLGI.VertexBuffer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\EffekseerRendererLLGI\GraphicsDevice.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="$(ProjectDir)..\Include\EffekseerRendererDX12\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="..">
+      <UniqueIdentifier>{D6CA50A6-DE41-32CA-8616-DD81ADC158E3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\EffekseerMaterialCompiler">
+      <UniqueIdentifier>{5514E0AB-0278-3CD3-AD08-CD3FB43C6D2B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\EffekseerMaterialCompiler\Common">
+      <UniqueIdentifier>{741969BD-0916-320F-A0F7-C9E47E6A7594}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\EffekseerMaterialCompiler\DirectX12">
+      <UniqueIdentifier>{42C734D4-0088-39B7-A325-872C4C4C2F04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\EffekseerMaterialCompiler\HLSLGenerator">
+      <UniqueIdentifier>{1B98C9ED-6740-3C26-90C7-DA4E76AA1DA4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EffekseerRenderer">
+      <UniqueIdentifier>{F2953F49-4E28-31AB-949A-C19E12A6B5FC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EffekseerRendererCommon">
+      <UniqueIdentifier>{3CF2618F-C596-31EF-8374-53034018486E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EffekseerRendererLLGI">
+      <UniqueIdentifier>{D9613F76-AD9D-33EA-8B8E-A7EE5A11BFD4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EffekseerRenderer\ShaderHeader">
+      <UniqueIdentifier>{BCD9E9A6-B393-3B2B-BF37-B9A6EC2A4CBA}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
