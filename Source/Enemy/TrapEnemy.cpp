@@ -207,7 +207,7 @@ void IFE::TrapEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->scale_ = { 0.4f,0.4f,0.4f };
 			IFE::Sound::Instance()->SoundPlay("gun", false, true);
 			ani_->SetAnimation("gunAttack");
-			enemyAttack->SetIsFront(GetBack());
+			enemyAttack->SetIsBack(GetBack());
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;

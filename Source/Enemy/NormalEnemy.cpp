@@ -249,7 +249,7 @@ void IFE::NormalEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
 			IFE::Sound::Instance()->SoundPlay("attack", false, true);
 			ani_->SetAnimation("knifeAttack");
-			enemyAttack->SetIsFront(GetBack());
+			enemyAttack->SetIsBack(GetBack());
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
