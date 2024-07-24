@@ -11,6 +11,7 @@
 #include "SpriteManager.h"
 #include "ParticleManager.h"
 #include "PostEffectManager.h"
+#include "IFEEffekseerManager.h"
 //#include "OldPostEffect.h"
 #include "EditorMode.h"
 
@@ -29,6 +30,7 @@ namespace IFE
 		SpriteManager* spriteM_ = SpriteManager::Instance();
 		ParticleManager* particleM = ParticleManager::Instance();
 		PostEffectManager* postEffectM_ = PostEffectManager::Instance();
+		IFEEffekseerManager* effekseerM_ = IFEEffekseerManager::Instance();
 
 		std::string nowScene_;
 		std::string nextScene_;

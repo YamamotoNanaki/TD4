@@ -1,5 +1,6 @@
 #include "Float3.h"
 #include <assert.h>
+#include <stdexcept>
 
 using namespace IFE;
 
@@ -127,6 +128,26 @@ bool IFE::Float3::operator==(const Float3& f)
 bool IFE::Float3::operator!=(const Float3& f)
 {
 	return !(*this == f);
+}
+
+float& IFE::Float3::operator[](size_t index)
+{
+	switch (index) {
+	case 0: return x;
+	case 1: return y;
+	case 2: return z;
+	default: throw std::out_of_range("Index out of range");
+	}
+}
+
+const float& IFE::Float3::operator[](size_t index) const
+{
+	switch (index) {
+	case 0: return x;
+	case 1: return y;
+	case 2: return z;
+	default: throw std::out_of_range("Index out of range");
+	}
 }
 
 Float3 IFE::operator/(const Float3& f, float s)
