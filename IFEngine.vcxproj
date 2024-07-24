@@ -18,6 +18,8 @@
     <ClCompile Include="Source\Enemy\TrapEnemy.cpp" />
     <ClCompile Include="Source\Map\MapUI.cpp" />
     <ClCompile Include="Source\StageGimmick\EnemySpawnEvent.cpp" />
+    <ClCompile Include="Source\StageGimmick\IEvent.cpp" />
+    <ClCompile Include="Source\StageGimmick\SwitchObject.cpp" />
     <ClCompile Include="Source\UI\DroneRecoveryUI.cpp" />
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp" />
     <ClCompile Include="Engine\Base\Engine.cpp" />
@@ -123,6 +125,7 @@
     <ClInclude Include="Source\Enemy\TrapEnemy.h" />
     <ClInclude Include="Source\Map\MapUI.h" />
     <ClInclude Include="Source\StageGimmick\EnemySpawnEvent.h" />
+    <ClInclude Include="Source\StageGimmick\SwitchObject.h" />
     <ClInclude Include="Source\UI\DroneRecoveryUI.h" />
     <ClInclude Include="Engine\Base\EditorMode.h" />
     <ClInclude Include="Engine\Base\Compute.h" />
