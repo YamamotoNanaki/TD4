@@ -11,6 +11,16 @@
 
 void LaserWire::Initialize()
 {
+
+	if (!objectPtr_->GetComponent<IFE::Collider>())
+	{
+		objectPtr_->AddComponentBack<IFE::Collider>();
+		auto col = objectPtr_->GetComponent<IFE::Collider>();
+		auto c = col->AddCollider();
+		c->SetColliderType(IFE::ColliderType::OBB);
+		c->SetNoPushBackFlag(false);
+		c->SetPushBackFlag(false);
+	}
 	cols_ = objectPtr_->GetComponent<IFE::Collider>();
 	objects_.clear();
 	for (int32_t i = 0; i < poss_.size(); i++)
@@ -35,47 +45,56 @@ void LaserWire::Initialize()
 
 void LaserWire::Update()
 {
-	for (int16_t i = 0; i < poss_.size(); i++)
+	if (isActive_)
 	{
-		auto col = cols_->GetCollider(i);
-		if (col == nullptr)
+		for (int16_t i = 0; i < poss_.size(); i++)
 		{
-			col = cols_->AddCollider();
-			col->SetColliderType(IFE::ColliderType::OBB);
-			col->SetNoPushBackFlag(true);
-			col->SetPushBackFlag(false);
+			auto col = cols_->GetCollider(i);
+			if (col == nullptr)
+			{
+				col = cols_->AddCollider();
+				col->SetColliderType(IFE::ColliderType::OBB);
+				col->SetNoPushBackFlag(true);
+				col->SetPushBackFlag(false);
+			}
+			col->SetOffsetPosition(poss_[i]);
+			col->SetOffsetScale(scales_[i]);
 		}
-		col->SetOffsetPosition(poss_[i]);
-		col->SetOffsetScale(scales_[i]);
-	}
 
-	if (countHitTimer_ > hitMaxTime_ && !isEventStart)
-	{
-		//イベントを起動
-		event_->StartInitialize();
-		isEventStart = true;
-	}
-	//起動したイベントのupdate
-	if (isEventStart)
-	{
-		if (!event_->GetIsEnd())
+		if (countHitTimer_ > hitMaxTime_ && !isEventStart)
 		{
-			event_->Update();
+			//イベントを起動
+			event_->StartInitialize();
+			isEventStart = true;
 		}
-		//elseにしてないのは終わったらすぐ終わってほしいから
-		if (event_->GetIsEnd())
+		//起動したイベントのupdate
+		if (isEventStart)
 		{
-			isEventStart = false;
+			if (!event_->GetIsEnd())
+			{
+				event_->Update();
+			}
+			//elseにしてないのは終わったらすぐ終わってほしいから
+			if (event_->GetIsEnd())
+			{
+				isEventStart = false;
+				countHitTimer_ = 0;
+			}
+		}
+
+		if (!isHit_)
+		{
 			countHitTimer_ = 0;
 		}
-	}
 
-	if (!isHit_)
+		isHit_ = false;
+	}
+	else
 	{
-		countHitTimer_ = 0;
-	}
+		isHit_ = false;
 
-	isHit_ = false;
+		
+	}
 }
 
 void LaserWire::Draw()
@@ -111,6 +130,8 @@ void LaserWire::ComponentDebugGUI()
 	gui->DragVectorFloat3GUI(poss_, "pos", {0,0,0}, 0.25f, -1000, 1000);
 	gui->DragVectorFloat3GUI(scales_, "scale", {0,0,0}, 0.25f, 1, 1000);
 	
+	gui->CheckBoxGUI(&testflag_, "isActive");
+	SetIsActive(testflag_);
 
 	if (oldposSize != poss_.size())
 	{
@@ -159,7 +180,7 @@ void LaserWire::OutputComponent(nlohmann::json& json)
 		IFE::JsonManager::Instance()->OutputFloat3(json["scale"][i], scales_[i]);
 	}
 
-	IFE::Float2 output = { (float)eventType_,0 };
+	IFE::Float2 output = { (float)eventType_,(float)isActive_ };
 
 	IFE::JsonManager::Instance()->OutputFloat2(json["EventType"], output);
 
@@ -196,6 +217,8 @@ void LaserWire::LoadingComponent(nlohmann::json& json)
 	}
 
 	eventType_ = json["EventType"][0];
+	float a = json["EventType"][1];
+	isActive_ = a;
 	hitMaxTime_ = json["hitMaxTime"][0];
 
 	event_ = IFE::EventFactory::Instance()->CreateEventClass(EventName::EventString(eventType_));
@@ -203,13 +226,44 @@ void LaserWire::LoadingComponent(nlohmann::json& json)
 	event_->InputData(json["EventSeting"]);
 }
 
-std::string LaserWire::EventTypeToString(EventType eventType)
+void LaserWire::SetIsActive(bool flag)
 {
-	switch (eventType) {
-	case EventType::damage:   return "damage";
-	case EventType::door: return "door";
-	case EventType::DroneKeepoutZone: return "droneKeepoutZone";
-	case EventType::EnemySpawn: return "EnemySpawn";
-	default:    return "UNKNOWN";
+	cols_ = objectPtr_->GetComponent<IFE::Collider>();
+	if (flag)
+	{
+		for (int16_t i = 0; i < poss_.size(); i++)
+		{
+			auto col = cols_->GetCollider(i);
+
+			if (col == nullptr)
+			{
+				break;
+			}
+			col->active_ = true;
+		}
+
+		for (auto obj : objects_)
+		{
+			obj->DrawFlag_ = true;
+		}
 	}
+	else
+	{
+		for (int16_t i = 0; i < poss_.size(); i++)
+		{
+			auto col = cols_->GetCollider(i);
+			if (col == nullptr)
+			{
+				break;
+			}
+			col->active_ = false;
+		}
+
+		for (auto obj : objects_)
+		{
+			obj->DrawFlag_ = false;
+		}
+	}
+
+	isActive_ = flag;
 }

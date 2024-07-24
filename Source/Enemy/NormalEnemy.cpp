@@ -249,6 +249,8 @@ void IFE::NormalEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
 			IFE::Sound::Instance()->SoundPlay("attack", false, true);
 			ani_->SetAnimation("knifeAttack");
+			frontVec = target - ePos;
+			frontVec = frontVec.Normalize();
 			enemyAttack->SetIsBack(GetBack());
 			float radY = std::atan2(frontVec.x, frontVec.z);
 			float targetAngle = ((radY * 180.0f) / (float)PI);

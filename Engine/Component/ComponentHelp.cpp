@@ -36,6 +36,7 @@
 #include"Config.h"
 #include "MapUI.h"
 #include"Attach3DModel.h"
+#include "SwitchObject.h"
 
 using namespace IFE;
 using namespace std;
@@ -80,6 +81,7 @@ void IFE::ComponentHelp::StaticHelpInitialize()
 	Register("LaserWire", &CreateInstance<LaserWire>);
 	Register("DroneKeepoutZoneObject", &CreateInstance<DroneKeepoutZoneObject>);
 	Register("StageCollideManageer", &CreateInstance<StageCollideManageer>);
+	Register("GimmickSwitchObject", &CreateInstance<SwitchObject>);
 	//UI
 	Register("PlayerHp", &CreateInstance<PlayerHp>);
 	Register("DroneRecoveryUI", &CreateInstance<DroneRecoveryUI>);

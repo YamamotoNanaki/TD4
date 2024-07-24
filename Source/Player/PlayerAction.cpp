@@ -75,6 +75,15 @@ void PlayerAction::Update()
 		}
 	}
 
+	if (ani_->GetAnimation() == "walk")
+	{
+		ani_->animSpeed_ = 2.0f;
+	}
+	else
+	{
+		ani_->animSpeed_ = 1.0f;
+	}
+
 	if (hp_ <= 0)
 	{
 		IFE::Scene::Instance()->SetNextScene("GAMEOVER");
@@ -114,15 +123,15 @@ void PlayerAction::DecHp(bool isBack_)
 		{
 			if (crouchFlag_ == false)
 			{
-				//“G‚ª³–Ê
+				//“G‚ªŒã‚ë
 				if (isBack_)
 				{
-					ani_->SetAnimation("downBack");
+					ani_->SetAnimation("downFront");
 				}
-				//“G‚ªŒã‚ë
+				//“G‚ª‘O
 				else
 				{
-					ani_->SetAnimation("downFront");
+					ani_->SetAnimation("downBack");
 				}
 			}
 			else
@@ -429,19 +438,20 @@ void PlayerAction::AttackUI()
 	{
 		if (closestEnemy != nullptr && IFE::Collision::CheckCircle({ {transform_->position_.x,transform_->position_.z},5.0f }, { closestEnemy->GetPos(),1.0f }))
 		{
-			isAttackUI_ = true;
+			isXBottonUI_ = true;
 		}
 		else
 		{
-			isAttackUI_ = false;
+			isXBottonUI_ = false;
+			playerAttack_->SetIsBackAttack(false);
 		}
 	}
 	else
 	{
-		isAttackUI_ = false;
+		isXBottonUI_ = false;
 	}
 
-	IFE::SpriteManager::Instance()->GetSpritePtr("attackUI")->drawFlag_ = isAttackUI_;
+	IFE::SpriteManager::Instance()->GetSpritePtr("attackUI")->drawFlag_ = isXBottonUI_;
 }
 
 void PlayerAction::ApproachTarget(float& current, float target, float step)
@@ -459,7 +469,7 @@ void PlayerAction::ApproachTarget(float& current, float target, float step)
 
 void PlayerAction::AutoAim()
 {
-	if (isAttackUI_ == true)
+	if (isXBottonUI_ == true)
 	{
 		IFE::Vector3 frontVec = closestEnemy->transform_->position_ - transform_->transform_->position_;
 		playerAttack_->objectPtr_->transform_->position_ =
@@ -569,6 +579,11 @@ void PlayerAction::CrouchAnimation()
 
 		crouchAnimationTimer_ += IFE::IFETime::sDeltaTime_;
 	}
+}
+
+void PlayerAction::SetIsXBottonUI(bool flag)
+{
+	isXBottonUI_ = flag;
 }
 
 #ifdef EditorMode

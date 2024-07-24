@@ -4,7 +4,7 @@
 #include "Collider.h"
 #include "IEvent.h"
 
-class LaserWire:public IFE::Component
+class SwitchObject :public IFE::Component
 {
 public:
 
@@ -23,6 +23,8 @@ public:
 
 	void OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCore* hitCollider);
 
+	bool GetIsHit() { return isHit_; };
+
 	void SetIsActive(bool flag);
 
 #ifdef EditorMode
@@ -35,19 +37,9 @@ public:
 
 private:
 
-	IFE::Float3 pos_;
+	//当たり判定のtransform
+	IFE::Float3 scale_ = { 1,1,1 };
 
-	std::vector<IFE::Float3> poss_;
-	std::vector<IFE::Float3> rots_;
-	std::vector<IFE::Float3> scales_;
-
-	std::vector<IFE::Object3D*> objects_;
-
-	//テストで置く描画用のオブジェクトなんかいい感じに追加する方法あるなら直す
-	IFE::Object3D testobj_[10];
-
-	int32_t oldposSize = 0;
-	int32_t oldscaleSize = 0;
 
 	IFE::Collider* cols_;
 
@@ -61,12 +53,14 @@ private:
 
 	bool isEventStart = false;
 
+	//スイッチが起動したか
+	bool isSwitchObject_ = false;
+
 	//ギミックが動いているか
 	bool isActive_ = true;
 
 	bool testflag_ = true;
 
 private:
-	
-};
 
+};

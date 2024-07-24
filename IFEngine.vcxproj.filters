@@ -538,6 +538,12 @@
     <ClCompile Include="Source\UI\Over.cpp">
       <Filter>ソース ファイル\Engine\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\StageGimmick\SwitchObject.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageGimmick\IEvent.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -885,6 +891,9 @@
     </ClInclude>
     <ClInclude Include="Source\UI\Title.h">
       <Filter>ヘッダー ファイル\Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\SwitchObject.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -11813,7 +11813,7 @@
             "EventSeting": null,
             "EventType": [
                 0.0,
-                0.0
+                1.0
             ],
             "hitMaxTime": [
                 0.0,
@@ -11959,6 +11959,87 @@
         "drawFlag": false,
         "model": "dice_Model",
         "name": "PoseMenu",
+        "prefab": false
+    },
+    {
+        "Collider": null,
+        "GimmickSwitchObject": {
+            "EventSeting": null,
+            "EventType": [
+                0.0,
+                1.0
+            ],
+            "collisionScale": [
+                5.0,
+                1.0,
+                5.0
+            ],
+            "hitMaxTime": [
+                0.0,
+                0.0
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                2.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider",
+            "GimmickSwitchObject"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "switchTest",
         "prefab": false
     }
 ]

@@ -2,6 +2,44 @@
 #include "JsonManager.h"
 #include "Transform.h"
 
+//イベントの種類用意はしたけど置き場所に困ってる
+enum EventType
+{
+	damage,
+	door,
+	DroneKeepoutZone,
+	EnemySpawn,
+	EventCount//最大値、最後においてください
+};
+
+struct EventName
+{
+	static std::string EventString(int32_t eventNum)
+	{
+		if (eventNum == EventType::damage)
+		{
+			return "DamageEvent";
+		}
+		else if (eventNum == EventType::door)
+		{
+			return "DoorEvent";
+		}
+		else if (eventNum == EventType::DroneKeepoutZone)
+		{
+			return "DroneKeepoutZoneEvent";
+		}
+		else if (eventNum == EventType::EnemySpawn)
+		{
+			return "EnemySpawnEvent";
+		}
+
+		return "";
+	}
+};
+
+//enumからstringを取得するための関数
+std::string EventTypeToString(EventType eventType);
+
 namespace IFE {
 	class IEvent
 	{
