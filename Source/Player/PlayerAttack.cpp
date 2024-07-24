@@ -172,6 +172,11 @@ bool PlayerAttack::GetIsBackAttack()
 	return isBackAttack_;
 }
 
+void PlayerAttack::SetIsBackAttack(bool flag)
+{
+	isBackAttack_ = flag;
+}
+
 void PlayerAttack::SetAttackFlag(bool atk) {
 	attackFlag_ = atk;
 }
