@@ -90,6 +90,8 @@ namespace IFE {
 		/// </summary>
 		void OneShot();
 
+		const int8_t GetHP() { return hp_; }
+
 		/// <summary>
 		/// 更新処理
 		/// BaseEnemyクラスの軽傷を行っている場合呼び出せません

@@ -46,11 +46,16 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 		}
 		else
 		{
-			isBackAttack_ = true;
-			if (attackFlag_ && hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetIsOneShot() == false) {
-				hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->SetisOneShot(true);
-				hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->Killed();
+			if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetHP() > 0) {
+				isBackAttack_ = true;
+				if (attackFlag_ && hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetIsOneShot() == false) {
+					hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->SetisOneShot(true);
+					hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->Killed();
 
+				}
+			}
+			else {
+				isBackAttack_ = false;
 			}
 		}
 
