@@ -242,7 +242,6 @@ void IFE::NormalEnemy::Chase()
 		pow(ePos.z - target.z, 2));
 	if (isChaseDrone == false) {
 		if (len <= 3.0) {
-			enemyAttack->objectPtr_->DrawFlag_ = true;
 			state = ATTACK;
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 			isAttack = true;
@@ -289,11 +288,8 @@ void IFE::NormalEnemy::Chase()
 void IFE::NormalEnemy::Attack()
 {
 	attackTime += 100 * IFE::IFETime::sDeltaTime_;
-	if (enemyAttack->objectPtr_->DrawFlag_ == false) {
-		isAttack = false;
-	}
 	if (attackTime >= 50 && attackTime < 150) {
-		enemyAttack->objectPtr_->DrawFlag_ = false;
+		isAttack = false;
 		enemyAttack->objectPtr_->transform_->position_ = { 0, -10, 0 };
 	}
 	else if (attackTime >= 150) {
