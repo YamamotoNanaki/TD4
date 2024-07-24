@@ -41,4 +41,5 @@ public:
 	const bool GetIsAttack();
 
 	bool GetIsBackAttack();
+	void SetIsBackAttack(bool flag);
 };

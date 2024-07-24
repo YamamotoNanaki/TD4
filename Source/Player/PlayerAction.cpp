@@ -75,6 +75,15 @@ void PlayerAction::Update()
 		}
 	}
 
+	if (ani_->GetAnimation() == "walk")
+	{
+		ani_->animSpeed_ = 2.0f;
+	}
+	else
+	{
+		ani_->animSpeed_ = 1.0f;
+	}
+
 	if (hp_ <= 0)
 	{
 		IFE::Scene::Instance()->SetNextScene("GAMEOVER");
@@ -434,6 +443,7 @@ void PlayerAction::AttackUI()
 		else
 		{
 			isXBottonUI_ = false;
+			playerAttack_->SetIsBackAttack(false);
 		}
 	}
 	else
