@@ -122,7 +122,7 @@ void PlayerAction::DecHp(bool isBack_)
 				//“G‚ªŒã‚ë
 				else
 				{
-					ani_->SetAnimation("downfront");
+					ani_->SetAnimation("downFront");
 				}
 			}
 			else
