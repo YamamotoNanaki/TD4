@@ -10,6 +10,7 @@ namespace IFE {
 	private:
 		Player* player_;
 		bool isShot;
+		bool isBack;
 
 		//ÉÅÉìÉoä÷êî
 	public:
@@ -33,7 +34,9 @@ namespace IFE {
 		/// </summary>
 		void Finalize();
 		void SetIsShot(bool isShot_) { isShot = isShot_; }
+		void SetIsBack(bool isBack_) { isBack = isBack_; }
 		bool GetIsShot() { return isShot; }
+		bool GetIsBack() { return isBack; }
 
 		void ComponentDebugGUI();
 	};

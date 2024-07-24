@@ -6,12 +6,21 @@
 #include "PlayerDrone.h"
 #include "IFETime.h"
 #include "Sound.h"
+#include "PlayerAction.h"
 
 using namespace IFE;
 
-IFE::Vector2 IFE::BaseEnemy::GetPos()
+const IFE::Vector2 IFE::BaseEnemy::GetPos()
 {
 	return { transform_->position_.x, transform_->position_.z };
+}
+
+const bool IFE::BaseEnemy::GetIsOneShot()
+{
+	if (state == DEAD) {
+		return true;
+	}
+	return isOneShot;
 }
 
 void IFE::BaseEnemy::Highlighting()
@@ -130,4 +139,30 @@ void IFE::BaseEnemy::OnColliderHit(ColliderCore* mycol, ColliderCore* hitcol)
 		}
 	}
 	EnemyOnColliderHit(mycol, hitcol);
+}
+
+
+void IFE::BaseEnemy::SetisOneShot(bool isOne)
+{
+	if (state != DEAD) {
+		isOneShot = isOne;
+	}
+	else {
+		isOneShot = false;
+	}
+}
+
+void  IFE::BaseEnemy::SetMotion(std::string name) {
+	ani_->SetAnimation(name);
+}
+
+const bool IFE::BaseEnemy::GetBack()
+{
+	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
+	float result = pFront.Dot(frontVec);
+	//+‚È‚çŒã‚ë
+	if (result > 0) {
+		return true;
+	}
+	return false;
 }

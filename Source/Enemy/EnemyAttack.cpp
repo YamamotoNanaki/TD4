@@ -33,8 +33,10 @@ void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::Collide
 	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<PlayerAction>())
 	{
 		//“–‚½‚Á‚½Žž‚Ìˆ—
-		hitCollider->objectPtr_->GetComponent<PlayerAction>()->DecHp();
-		IFE::Sound::Instance()->SoundPlay("attackHit", false, true);
+		hitCollider->objectPtr_->GetComponent<PlayerAction>()->DecHp(isBack);
+		if (IFE::Sound::Instance()->GetPlayStatus("attackHit") == false) {
+			IFE::Sound::Instance()->SoundPlay("attackHit", false, true);
+		}
 
 	}
 

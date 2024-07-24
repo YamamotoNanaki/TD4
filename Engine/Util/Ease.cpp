@@ -150,6 +150,26 @@ float IFE::EaseOutCirc(float time, const float startPoint, const float endPoint,
 	return ret;
 }
 
+float IFE::EaseInOutBack(float time, const float startPoint, const float endPoint, const float maxTime)
+{
+	float x = time / maxTime;
+	const float c1 = 1.70158f;
+	const float c2 = c1 * 1.525f;
+	float v = x < 0.5f
+		? (pow(2.0f * x, 2.0f) * ((c2 + 1.0f) * 2.0f * x - c2)) / 2.0f
+		: (pow(2.0f * x - 2.0f, 2.0f) * ((c2 + 1.0f) * (x * 2.0f - 2.0f) + c2) + 2.0f) / 2.0f;
+	float ret = (endPoint - startPoint) * v + startPoint;
+	return ret;
+}
+
+float IFE::EaseInOutQuart(float time, const float startPoint, const float endPoint, const float maxTime)
+{
+	float x = time / maxTime;
+	float v = x < 0.5f ? 8.0f * x * x * x * x : 1.0f - pow(-2.0f * x + 2.0f, 4.0f) / 2.0f;
+	float ret = (endPoint - startPoint) * v + startPoint;
+	return ret;
+}
+
 float IFE::EaseInBack(float startPos, float endPos, float maxTime, float time) {
 	time /= maxTime;
 	float change = endPos - startPos;

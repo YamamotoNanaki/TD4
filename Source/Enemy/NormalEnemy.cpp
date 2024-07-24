@@ -19,6 +19,7 @@ void IFE::NormalEnemy::Initialize()
 	attackTime = 0;
 	rayDist = 0.0f;
 	isFound = false;
+	isOneShot = false;
 	isAttack = false;
 	warningTime = 50;
 	hp_ = 100;
@@ -48,10 +49,17 @@ void IFE::NormalEnemy::Initialize()
 
 void IFE::NormalEnemy::ChangeState()
 {
-	if (hp_ == 0) {
+	if (hp_ <= 0 && state != DEAD) {
+		if (isOneShot) {
+			isOneShot = false;
+			ani_->SetAnimation("downFront", false);
+		}
+		else {
+			ani_->SetAnimation("downBack", false);
+		}
 		state = DEAD;
 	}
-	else if (hp_ > 0) {
+	if (!isOneShot) {
 		//攻撃は最優先
 		switch (state)
 		{
@@ -90,6 +98,13 @@ void IFE::NormalEnemy::ChangeState()
 			}
 			break;
 		case IFE::BaseEnemy::DEAD:
+			deadTime += 100 * IFE::IFETime::sDeltaTime_;
+			if (deadTime >= 150) {
+				hpUI->objectPtr_->Destroy();
+				status_->objectPtr_->Destroy();
+				enemyAttack->objectPtr_->Destroy();
+				objectPtr_->Destroy();
+			}
 			break;
 		default:
 			break;
@@ -99,48 +114,37 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::EnemyUpdate()
 {
-	if (state != WAIT) {
-		LookAt();
-	}
-	isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
-	if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
-		isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
-		isChaseDrone = isFound;
-	}
-	//状態を取得
-	preState = state;
-	ChangeState();
-	//hp表示
-	hpUI->Update(transform_->position_, hp_, decHp_);
-	status_->IconUpdate(transform_->position_);
-	//死亡
 	if (hpUI->GetIsDead() == true) {
-		hpUI->objectPtr_->Destroy();
-		status_->objectPtr_->Destroy();
-		enemyAttack->objectPtr_->Destroy();
-		objectPtr_->Destroy();
+		hpUI->objectPtr_->DrawFlag_ = false;
 	}
-	rayDist = 0;
-	isChaseDrone = false;
-	//重力
-	if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
-	{
-		transform_->position_.y -= 4.9f * IFETime::sDeltaTime_;
+	if (state != DEAD) {
+		if (state != WAIT) {
+			LookAt();
+		}
+		isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
+		if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
+			isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
+			isChaseDrone = isFound;
+		}
+		//状態を取得
+		preState = state;
+		//hp表示
+		hpUI->Update(transform_->position_, hp_, decHp_);
+		status_->IconUpdate(transform_->position_);
+		rayDist = 0;
+		isChaseDrone = false;
+		//重力
+		if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
+		{
+			transform_->position_.y -= 4.9f * IFETime::sDeltaTime_;
+		}
 	}
+	ChangeState();
+	//死亡
 }
 
 void IFE::NormalEnemy::Wait()
 {
-	///周りを見渡す処理
-	if (waitTimer < 50) {
-		transform_->rotation_ += (Float3(0, -15, 0) * IFE::IFETime::sDeltaTime_);
-	}
-	else if (waitTimer < 150) {
-		transform_->rotation_ += (Float3(0, 15, 0) * IFE::IFETime::sDeltaTime_);
-	}
-	else if (waitTimer < WAIT_TIME) {
-		transform_->rotation_ += (Float3(0, -15, 0) * IFE::IFETime::sDeltaTime_);
-	}
 	///
 	waitTimer += 50 * IFE::IFETime::sDeltaTime_;
 	if (waitTimer >= WAIT_TIME) {
@@ -205,9 +209,6 @@ void IFE::NormalEnemy::Search()
 				nextPoint++;
 				state = WAIT;
 			}
-			if (ani_ != nullptr) {
-				ani_->SetAnimation("search");
-			}
 		}
 	}
 
@@ -248,6 +249,7 @@ void IFE::NormalEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
 			IFE::Sound::Instance()->SoundPlay("attack", false, true);
 			ani_->SetAnimation("knifeAttack");
+			enemyAttack->SetIsBack(GetBack());
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
@@ -306,7 +308,7 @@ void IFE::NormalEnemy::Shot()
 		}
 		enemyAttack->transform_->position_ += (shotVec * 0.3f);
 	}
-	if(enemyAttack->GetIsShot() == false) {
+	if (enemyAttack->GetIsShot() == false) {
 		state = CHASE;
 		isAttack = false;
 		ani_->SetAnimation("walk");
@@ -322,6 +324,16 @@ void IFE::NormalEnemy::Shot()
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
 
+void IFE::NormalEnemy::Killed() {
+	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
+	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
+	transform_->position_ = pPos + addVec;
+	transform_->rotation_ = rot;
+	status_->objectPtr_->DrawFlag_ = false;
+	ani_->SetAnimation("standBy",false);
+}
+
 void IFE::NormalEnemy::LookAt()
 {
 	Vector3 ePos = transform_->position_;
@@ -331,14 +343,14 @@ void IFE::NormalEnemy::LookAt()
 	//カメラ方向に合わせてY軸の回転
 	float radY = std::atan2(frontVec.x, frontVec.z);
 	float targetAngle = ((radY * 180.0f) / (float)PI);
-	ApproachTarget(transform_->rotation_.y, targetAngle, 10.0f);
+	ApproachTarget(transform_->rotation_.y, targetAngle, 1.0f);
 }
 
 bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	//視界の距離
 	float maxDistance = 20;
 	//視野角
-	float sightAngle = 45;
+	float sightAngle = 90;
 	// 自身の位置
 	Vector3 ePos = transform_->position_;
 	// ターゲットの位置
@@ -355,12 +367,14 @@ bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 
 	// cos(θ/2)を計算
 	float cosHalf = cos(ConvertToRadians(sightAngle / 2.0f * (float)PI / 180.0f));
-	cosHalf = std::floor(cosHalf * 0.1f);
+	cosHalf *= 10;
+	cosHalf = std::floor(cosHalf);
 
 	// 自身とターゲットへの向きの内積計算
 	// ターゲットへの向きベクトルを正規化する必要があることに注意
 	float innerProduct = selfDir.Dot(targetDir) / targetDir.Length();
-	innerProduct = std::floor(innerProduct * 0.1f);
+	innerProduct *= 10;
+	innerProduct = std::floor(innerProduct);
 
 	// 視界判定
 	bool inSight = cosHalf <= innerProduct && targetDistance < maxDistance;
@@ -383,7 +397,7 @@ void IFE::NormalEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore
 {
 	//壁があった場合
 	if (myCollider->GetColliderType() == ColliderType::RAY) {
-		if (hitCollider->objectPtr_->GetObjectName().find("wall") != std::string::npos|| hitCollider->objectPtr_->GetObjectName().find("box") != std::string::npos) {
+		if (hitCollider->objectPtr_->GetObjectName().find("wall") != std::string::npos || hitCollider->objectPtr_->GetObjectName().find("box") != std::string::npos) {
 			if (rayDist == 0) {
 				rayDist = myCollider->rayDistance;
 			}
@@ -394,20 +408,9 @@ void IFE::NormalEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore
 	}
 }
 
-IFE::Vector3 IFE::NormalEnemy::GetPos() {
+const IFE::Vector3 IFE::NormalEnemy::GetPos() {
 	Vector3 temp = transform_->position_;
 	return temp;
-}
-
-bool IFE::NormalEnemy::GetBack()
-{
-	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
-	float result = pFront.Dot(frontVec);
-	//+なら後ろ
-	if (result > 0) {
-		return true;
-	}
-	return false;
 }
 
 void IFE::NormalEnemy::Finalize()

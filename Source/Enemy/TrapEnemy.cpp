@@ -19,6 +19,7 @@ void IFE::TrapEnemy::Initialize()
 	rayDist = 0.0f;
 	isFound = false;
 	isAttack = false;
+	isOneShot = false;
 	warningTime = 50;
 	hp_ = 100;
 	decHp_ = 0;
@@ -47,10 +48,17 @@ void IFE::TrapEnemy::Initialize()
 
 void IFE::TrapEnemy::ChangeState()
 {
-	if (hp_ == 0) {
+	if (hp_ <= 0 && state != DEAD) {
+		if (isOneShot) {
+			isOneShot = false;
+			ani_->SetAnimation("downFront", false);
+		}
+		else {
+			ani_->SetAnimation("downBack", false);
+		}
 		state = DEAD;
 	}
-	else if (hp_ > 0) {
+	if (!isOneShot) {
 		//攻撃は最優先
 		switch (state)
 		{
@@ -75,6 +83,13 @@ void IFE::TrapEnemy::ChangeState()
 			}
 			break;
 		case IFE::BaseEnemy::DEAD:
+			deadTime += 100 * IFE::IFETime::sDeltaTime_;
+			if (deadTime >= 150) {
+				hpUI->objectPtr_->Destroy();
+				status_->objectPtr_->Destroy();
+				enemyAttack->objectPtr_->Destroy();
+				objectPtr_->Destroy();
+			}
 			break;
 		default:
 			break;
@@ -84,32 +99,32 @@ void IFE::TrapEnemy::ChangeState()
 
 void IFE::TrapEnemy::EnemyUpdate()
 {
-	LookAt();
-	isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
-	if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
-		isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
-		isChaseDrone = isFound;
-	}
-	//状態を取得
-	preState = state;
-	ChangeState();
-	//hp表示
-	hpUI->Update(transform_->position_, hp_, decHp_);
-	status_->IconUpdate(transform_->position_);
-	//死亡
 	if (hpUI->GetIsDead() == true) {
-		hpUI->objectPtr_->Destroy();
-		status_->objectPtr_->Destroy();
-		enemyAttack->objectPtr_->Destroy();
-		objectPtr_->Destroy();
+		hpUI->objectPtr_->DrawFlag_ = false;
 	}
-	rayDist = 0;
-	isChaseDrone = false;
-	//重力
-	if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
-	{
-		transform_->position_.y -= 4.9f * IFETime::sDeltaTime_;
+	if (state != DEAD) {
+		if (state != WAIT) {
+			LookAt();
+		}
+		isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
+		if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
+			isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
+			isChaseDrone = isFound;
+		}
+		//状態を取得
+		preState = state;
+		//hp表示
+		hpUI->Update(transform_->position_, hp_, decHp_);
+		status_->IconUpdate(transform_->position_);
+		rayDist = 0;
+		isChaseDrone = false;
+		//重力
+		if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
+		{
+			transform_->position_.y -= 4.9f * IFETime::sDeltaTime_;
+		}
 	}
+	ChangeState();
 }
 
 void IFE::TrapEnemy::Warning()
@@ -192,6 +207,7 @@ void IFE::TrapEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->scale_ = { 0.4f,0.4f,0.4f };
 			IFE::Sound::Instance()->SoundPlay("gun", false, true);
 			ani_->SetAnimation("gunAttack");
+			enemyAttack->SetIsBack(GetBack());
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
@@ -250,6 +266,16 @@ void IFE::TrapEnemy::Shot()
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
 
+void IFE::TrapEnemy::Killed() {
+	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
+	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
+	transform_->position_ = pPos + addVec;
+	transform_->rotation_ = rot;
+	status_->objectPtr_->DrawFlag_ = false;
+	ani_->SetAnimation("standBy");
+}
+
 void IFE::TrapEnemy::LookAt()
 {
 	Vector3 ePos = transform_->position_;
@@ -258,7 +284,8 @@ void IFE::TrapEnemy::LookAt()
 	frontVec *= Vector3(1, 0, 1);
 	//カメラ方向に合わせてY軸の回転
 	float radY = std::atan2(frontVec.x, frontVec.z);
-	transform_->rotation_.y = ((radY * 180.0f) / (float)PI);
+	float targetAngle = ((radY * 180.0f) / (float)PI);
+	ApproachTarget(transform_->rotation_.y, targetAngle, 1.0f);
 }
 
 bool IFE::TrapEnemy::RaySight(Vector3 pos) {
@@ -282,12 +309,14 @@ bool IFE::TrapEnemy::RaySight(Vector3 pos) {
 
 	// cos(θ/2)を計算
 	float cosHalf = cos(ConvertToRadians(sightAngle / 2.0f * (float)PI / 180.0f));
-	cosHalf = std::floor(cosHalf * 0.1f);
+	cosHalf *= 10;
+	cosHalf = std::floor(cosHalf);
 
 	// 自身とターゲットへの向きの内積計算
 	// ターゲットへの向きベクトルを正規化する必要があることに注意
 	float innerProduct = selfDir.Dot(targetDir) / targetDir.Length();
-	innerProduct = std::floor(innerProduct * 0.1f);
+	innerProduct *= 10;
+	innerProduct = std::floor(innerProduct);
 
 	// 視界判定
 	bool inSight = cosHalf <= innerProduct && targetDistance < maxDistance;
@@ -321,20 +350,9 @@ void IFE::TrapEnemy::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* 
 	}
 }
 
-IFE::Vector3 IFE::TrapEnemy::GetPos() {
+const IFE::Vector3 IFE::TrapEnemy::GetPos() {
 	Vector3 temp = transform_->position_;
 	return temp;
-}
-
-bool IFE::TrapEnemy::GetBack()
-{
-	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
-	float result = pFront.Dot(frontVec);
-	//+なら後ろ
-	if (result > 0) {
-		return true;
-	}
-	return false;
 }
 
 void IFE::TrapEnemy::Finalize()

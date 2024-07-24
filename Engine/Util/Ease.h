@@ -75,4 +75,24 @@ namespace IFE
 	/// <param name="maxTime">合計時間</param>
 	/// <returns>float</returns>
 	float EaseOutCirc(float time, const float startPoint, const float endPoint, const float maxTime);
+
+	/// <summary>
+	/// EaseInOutBack
+	/// </summary>
+	/// <param name="time">時間</param>
+	/// <param name="startPoint">開始位置</param>
+	/// <param name="endPoint">終了位置</param>
+	/// <param name="maxTime">合計時間</param>
+	/// <returns>double</returns>
+	float EaseInOutBack(float time, const float startPoint, const float endPoint, const float maxTime);
+
+	/// <summary>
+	/// EaseInOutQuart
+	/// </summary>
+	/// <param name="time">時間</param>
+	/// <param name="startPoint">開始位置</param>
+	/// <param name="endPoint">終了位置</param>
+	/// <param name="maxTime">合計時間</param>
+	/// <returns>double</returns>
+	float EaseInOutQuart(float time, const float startPoint, const float endPoint, const float maxTime);
 }

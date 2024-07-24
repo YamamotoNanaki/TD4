@@ -39,9 +39,20 @@ private:
 	//マップ固定時の更新
 	void FixedMapUpdate();
 
+	//範囲内にいるか
+	bool AABB(IFE::Float2 pos1, IFE::Float2 scale1, IFE::Float2 pos2, IFE::Float2 scale2);
+
+	//AABBじゃ無理だった
+	bool OBB(IFE::Vector2 pos1, IFE::Float2 scale1, IFE::Vector2 pos2, IFE::Float2 scale2,float angle1,float angle2);
+
+	//OBBのおまけ
+	float GetProjectionRadius(IFE::Float2 scale, IFE::Vector2 Axis, IFE::Vector2 AxisX, IFE::Vector2 AxisY);
+
 private:
 
 	IFE::Object3D* playerObj_ = nullptr;
+	IFE::Object3D* playerActionObj_ = nullptr;
+	IFE::Object3D* playerDroneObj_ = nullptr;
 
 	std::vector<IFE::Float2> objectPos_;
 	std::vector<float> objectRot_;

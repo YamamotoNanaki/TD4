@@ -107,7 +107,7 @@ public:
 	/// <summary>
 	/// 体力減少
 	/// </summary>
-	void DecHp();
+	void DecHp(bool isBack_ = false);
 
 	/// <summary>
 	/// Playerクラスで呼ぶ操作全般更新処理
@@ -133,6 +133,8 @@ public:
 	const bool GetAttackFlag();
 
 	const IFE::Vector3 GetFrontVec();
+
+	const IFE::Vector3 GetRot();
 
 	const float GetRotY();
 

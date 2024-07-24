@@ -47,6 +47,11 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 		else
 		{
 			isBackAttack_ = true;
+			if (attackFlag_ && hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetIsOneShot() == false) {
+				hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->SetisOneShot(true);
+				hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->Killed();
+
+			}
 		}
 
 		if (isAttack_ == true)
@@ -69,38 +74,74 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 		}
 	}
 	//trapEnemy
-	if (isAttack_ == true && (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()))
+	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>())
 	{
-		if (hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetIsHit() == false)
+		if (hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetBack() == false)
 		{
-			if (hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetBack() == false)
-			{
-				//“–‚½‚Á‚½Žž‚Ìˆ—
-				hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->DecHp();
+			isBackAttack_ = false;
+		}
+		else
+		{
+			isBackAttack_ = true;
+			if (attackFlag_ && hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetIsOneShot() == false) {
+				hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->SetisOneShot(true);
+				hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->Killed();
+
 			}
-			else
+		}
+
+		if (isAttack_ == true)
+		{
+			if (hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetIsHit() == false)
 			{
-				//“–‚½‚Á‚½Žž‚Ìˆ—
-				hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->OneShot();
+				if (hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetBack() == false)
+				{
+					//“–‚½‚Á‚½Žž‚Ìˆ—
+					hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->DecHp();
+					IFE::Sound::Instance()->SoundPlay("attackHit", false, true);
+				}
+				else
+				{
+					//“–‚½‚Á‚½Žž‚Ìˆ—
+					hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->OneShot();
+					IFE::Sound::Instance()->SoundPlay("backstab", false, true);
+				}
 			}
 		}
 	}
 	//boss
-	if (isAttack_ == true && (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<IFE::Boss>()))
+	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<IFE::Boss>())
 	{
-		if (hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetIsHit() == false)
+		if (hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetBack() == false)
 		{
-			if (hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetBack() == false)
-			{
-				//“–‚½‚Á‚½Žž‚Ìˆ—
-				hitCollider->objectPtr_->GetComponent<IFE::Boss>()->DecHp();
-				IFE::Sound::Instance()->SoundPlay("attack", false, true);
+			isBackAttack_ = false;
+		}
+		else
+		{
+			isBackAttack_ = true;
+			if (attackFlag_ && hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetIsOneShot() == false) {
+				hitCollider->objectPtr_->GetComponent<IFE::Boss>()->SetisOneShot(true);
+				hitCollider->objectPtr_->GetComponent<IFE::Boss>()->Killed();
+
 			}
-			else
+		}
+
+		if (isAttack_ == true)
+		{
+			if (hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetIsHit() == false)
 			{
-				//“–‚½‚Á‚½Žž‚Ìˆ—
-				hitCollider->objectPtr_->GetComponent<IFE::Boss>()->OneShot();
-				IFE::Sound::Instance()->SoundPlay("backstab", false, true);
+				if (hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetBack() == false)
+				{
+					//“–‚½‚Á‚½Žž‚Ìˆ—
+					hitCollider->objectPtr_->GetComponent<IFE::Boss>()->DecHp();
+					IFE::Sound::Instance()->SoundPlay("attackHit", false, true);
+				}
+				else
+				{
+					//“–‚½‚Á‚½Žž‚Ìˆ—
+					hitCollider->objectPtr_->GetComponent<IFE::Boss>()->OneShot();
+					IFE::Sound::Instance()->SoundPlay("backstab", false, true);
+				}
 			}
 		}
 	}
@@ -129,4 +170,8 @@ const bool PlayerAttack::GetIsAttack()
 bool PlayerAttack::GetIsBackAttack()
 {
 	return isBackAttack_;
+}
+
+void PlayerAttack::SetAttackFlag(bool atk) {
+	attackFlag_ = atk;
 }
