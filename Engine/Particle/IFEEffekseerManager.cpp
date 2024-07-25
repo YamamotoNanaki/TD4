@@ -54,7 +54,7 @@ void IFE::IFEEffekseerManager::Initialize()
 
 IFE::IFEEffekseer* IFE::IFEEffekseerManager::Add(std::string name)
 {
-	std::u16string s = u"Data/Resources/Effekseer/" + StringToU16String(name) + u".efkefc";
+	std::u16string s = u"Data/Resources/Effekseer/" + StringToU16String(name);
 
 	auto effect = Effekseer::Effect::Create(efkManager_, s.c_str());
 	if (!effect.Get())return nullptr;
@@ -148,7 +148,7 @@ void IFE::IFEEffekseerManager::DebugGUI()
 	if (im->CollapsingHeaderGUI(U8("追加")))
 	{
 		static std::string n;
-		im->TextGUI(U8("拡張子はいらないです"));
+		im->TextGUI(U8("拡張子必要"));
 		im->InputTextGUI(U8("エフェクト名"), n);
 
 		if (im->ButtonGUI(U8("生成")))
