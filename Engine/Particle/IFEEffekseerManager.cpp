@@ -22,20 +22,13 @@ void IFE::IFEEffekseerManager::Initialize()
 	// Effekseerのオブジェクトはスマートポインタで管理される。変数がなくなると自動的に削除される。
 
 	// エフェクトのマネージャーの作成
-	efkManager_ = ::Effekseer::Manager::Create(8000);
-
-	// 描画デバイスの作成
-	auto graphicsDevice = ::EffekseerRendererDX12::CreateGraphicsDevice(gapi->GetDevice(), gapi->GetCommandQueue(), 3);
+	efkManager_ = ::Effekseer::Manager::Create(10000);
 
 	// エフェクトのレンダラーの作成
-	auto format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	efkRenderer_ = ::EffekseerRendererDX12::Create(graphicsDevice, &format, 1, DXGI_FORMAT_UNKNOWN, false, 8000);
+	auto format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+	efkRenderer_ = ::EffekseerRendererDX12::Create(gapi->GetDevice(), gapi->GetCommandQueue(), 3, &format, 1, DXGI_FORMAT_D32_FLOAT, false, 10000);
 
-	// メモリプールの作成
-	efkMemoryPool_ = EffekseerRenderer::CreateSingleFrameMemoryPool(efkRenderer_->GetGraphicsDevice());
-
-	// コマンドリストの作成
-	efkCommandList_ = EffekseerRenderer::CreateCommandList(efkRenderer_->GetGraphicsDevice(), efkMemoryPool_);
+	efkManager_->SetCoordinateSystem(Effekseer::CoordinateSystem::LH);
 
 	// 描画モジュールの設定
 	efkManager_->SetSpriteRenderer(efkRenderer_->CreateSpriteRenderer());
@@ -50,6 +43,13 @@ void IFE::IFEEffekseerManager::Initialize()
 	efkManager_->SetModelLoader(efkRenderer_->CreateModelLoader());
 	efkManager_->SetMaterialLoader(efkRenderer_->CreateMaterialLoader());
 	efkManager_->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
+
+	// メモリプールの作成
+	efkMemoryPool_ = EffekseerRenderer::CreateSingleFrameMemoryPool(efkRenderer_->GetGraphicsDevice());
+
+	// コマンドリストの作成
+	efkCommandList_ = EffekseerRenderer::CreateCommandList(efkRenderer_->GetGraphicsDevice(), efkMemoryPool_);
+	efkRenderer_->SetCommandList(efkCommandList_);
 }
 
 IFE::IFEEffekseer* IFE::IFEEffekseerManager::Add(std::string name)
@@ -68,6 +68,7 @@ IFE::IFEEffekseer* IFE::IFEEffekseerManager::Add(std::string name)
 
 void IFE::IFEEffekseerManager::Update()
 {
+	efkMemoryPool_->NewFrame();
 	efkManager_->Update();
 
 	effekList_.remove_if([&](std::unique_ptr<IFEEffekseer>& effek) {
@@ -84,6 +85,8 @@ void IFE::IFEEffekseerManager::Update()
 
 void IFE::IFEEffekseerManager::Draw()
 {
+	EffekseerRendererDX12::BeginCommandList(efkCommandList_, GraphicsAPI::Instance()->GetCmdList());
+
 	// レンダラーの時間を更新
 	efkRenderer_->SetTime(IFETime::sTime_);
 
@@ -91,10 +94,15 @@ void IFE::IFEEffekseerManager::Draw()
 	efkRenderer_->SetCameraMatrix(FromIFEToEffekseerMatrix(CameraManager::sActivCamera_->GetView()->Get()));
 	efkRenderer_->SetProjectionMatrix(FromIFEToEffekseerMatrix(CameraManager::sActivCamera_->GetProjection()->Get()));
 
-
 	efkRenderer_->BeginRendering();
-	efkManager_->Draw();
+	Effekseer::Manager::DrawParameter drawParameter;
+	drawParameter.ZNear = 0.0f;
+	drawParameter.ZFar = 1.0f;
+	drawParameter.ViewProjectionMatrix = efkRenderer_->GetCameraProjectionMatrix();
+	efkManager_->Draw(drawParameter);
 	efkRenderer_->EndRendering();
+
+	EffekseerRendererDX12::EndCommandList(efkCommandList_);
 }
 
 void IFE::IFEEffekseerManager::Reset()
