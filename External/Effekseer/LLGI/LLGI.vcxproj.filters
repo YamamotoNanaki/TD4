@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.Buffer.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.CommandList.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.Compiler.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.Graphics.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.PipelineState.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.Platform.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.Texture.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\PC\LLGI.CreatePC.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\Win\LLGI.WindowWin.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.BaseDX12.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.BufferDX12.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.CommandListDX12.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.CompilerDX12.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.DescriptorHeapDX12.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.GraphicsDX12.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.PipelineStateDX12.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.PlatformDX12.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.RenderPassDX12.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.RenderPassPipelineStateDX12.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.ShaderDX12.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.SingleFrameMemoryPoolDX12.cpp" />
+    <ClCompile Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.TextureDX12.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.Base.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.Buffer.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.CommandList.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.Compiler.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.Graphics.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.PipelineState.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.Platform.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.Shader.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\LLGI.Texture.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\Win\LLGI.WindowWin.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.BaseDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.BufferDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.CommandListDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.CompilerDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.DescriptorHeapDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.GraphicsDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.PipelineStateDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.PlatformDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.RenderPassDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.RenderPassPipelineStateDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.ShaderDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.SingleFrameMemoryPoolDX12.h" />
+    <ClInclude Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\DX12\LLGI.TextureDX12.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="$(ProjectDir)..\Include\3rdParty\LLGI\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Base">
+      <UniqueIdentifier>{C10CADD9-0AA9-3567-9F1E-886625CC941C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DX12">
+      <UniqueIdentifier>{D82E0A41-8B33-3B32-B6C1-2DB6A1AD49EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PC">
+      <UniqueIdentifier>{744E1E6D-48CA-35C3-A19F-866488CD1F24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Win">
+      <UniqueIdentifier>{B9F0CF38-DA3F-3C0B-8275-BC8054242D4F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -28,7 +28,7 @@ private:
 	uint8_t hp_ = 10;
 	bool isHit_ = false;
 	float hitTime_;
-	const int8_t HIT_COOLTIME = 1;
+	const float HIT_COOLTIME = 0.833333f;
 
 	//PlayerHp
 	IFE::PlayerHp* playerHp_ = nullptr;
@@ -81,6 +81,10 @@ private:
 	float nowGameTimeScale_;
 	float slowEaseTime_;
 	bool slowFlag_ = false;
+
+	//Ž€–SŠÖ˜A
+	bool deathAnimationFlag_ = false;
+	float dethaAnimationTime_ = 0.0f;
 
 public:
 

@@ -41,7 +41,7 @@ private:
 	IFE::Float3 scale_ = { 1,1,1 };
 
 
-	IFE::Collider* cols_;
+	IFE::Collider* cols_=nullptr;
 
 	float countHitTimer_ = 0;
 	float hitMaxTime_ = 0;
