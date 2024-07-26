@@ -9,6 +9,7 @@ enum EventType
 	door,
 	DroneKeepoutZone,
 	EnemySpawn,
+	GimmickSwitch,
 	EventCount//Å‘å’lAÅŒã‚É‚¨‚¢‚Ä‚­‚¾‚³‚¢
 };
 
@@ -31,6 +32,10 @@ struct EventName
 		else if (eventNum == EventType::EnemySpawn)
 		{
 			return "EnemySpawnEvent";
+		}
+		else if (eventNum == EventType::GimmickSwitch)
+		{
+			return "GimmickSwitchEvent";
 		}
 
 		return "";
