@@ -80,7 +80,7 @@ void GimmickSwitchEvent::DebugGUI()
 
 	}
 
-	IFE::ImguiManager* gui = IFE::ImguiManager::Instance();
+	/*IFE::ImguiManager* gui = IFE::ImguiManager::Instance();*/
 	//gui->DragFloat3GUI(&spawnPos_, "spawnPos", 0.25f, -1000, 1000);
 
 }
