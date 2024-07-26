@@ -38,8 +38,8 @@ void IFE::IFEEffekseer::Update()
 		return;
 	}
 
-	playList_.remove_if([&](Effekseer::Handle handle) {
-		return !manager_->Exists(handle); });
+	playList_.remove_if([&](std::pair<Effekseer::Handle,Float3*> h) {
+		return !manager_->Exists(h.first); });
 
 	for (auto itr : playList_)
 	{
