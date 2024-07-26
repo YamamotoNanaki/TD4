@@ -87,6 +87,26 @@ void LaserWire::Update()
 			countHitTimer_ = 0;
 		}
 
+		IFE::ObjectManager* objm = IFE::ObjectManager::Instance();
+		auto& list = objm->GetObjList();
+
+		for (auto& itr : list)
+		{
+			if (itr->GetObjectName() == "playerObject")
+			{
+				IFE::Float4 color = { 1.0f,0.0f,0.0f,0.2f };
+				if (itr->objectPtr_->GetComponent<Player>()->GetMode())
+				{
+					color.w = 1.0f;
+				}
+
+				for (auto obj : objects_)
+				{
+					obj->SetColor(color);
+				}
+			}
+		}
+
 		isHit_ = false;
 	}
 	else
