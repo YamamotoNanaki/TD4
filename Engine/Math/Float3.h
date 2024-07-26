@@ -28,6 +28,9 @@ namespace IFE
 		bool operator==(const Float3& f);
 		bool operator!=(const Float3& f);
 
+		float& operator[](size_t index);
+		const float& operator[](size_t index)const;
+
 		static Float3 zero() { return Float3(0, 0, 0); };
 		//virtual ~Float3() {};
 	};

@@ -34,10 +34,8 @@ void IFE::Scene::Initialize()
 	lightM_->Initialize();
 	sound_->Initialize();
 	cameraM_->Initialize();
+	effekseerM_->Initialize();
 	SceneInit();
-	objM_->Initialize();
-	spriteM_->Initialize();
-	particleM->Initialize();
 	cameraM_->AllCameraInitialize();
 }
 
@@ -54,6 +52,7 @@ void IFE::Scene::Update()
 		cameraM_->Update();
 		lightM_->Update();
 		CollideManager::Instance()->CollidersUpdate();
+		effekseerM_->Update();
 		PostEffectDraw();
 	}
 	else
@@ -70,6 +69,7 @@ void IFE::Scene::PostEffectDraw()
 		objM_->Draw();
 		particleM->Draw();
 	}
+	effekseerM_->Draw();
 	postEffectM_->ObjectDrawAfter();
 	postEffectM_->Update();
 }
@@ -107,8 +107,8 @@ void IFE::Scene::Initialize()
 	sound_->Initialize();
 	gui_.Initialize();
 	cameraM_->Initialize();
+	effekseerM_->Initialize();
 	SceneInit();
-	particleM->Initialize();
 }
 
 void IFE::Scene::Update()
@@ -137,6 +137,7 @@ void IFE::Scene::Update()
 			particleM->DebugUpdate();
 			cameraM_->DebugUpdate();
 		}
+		effekseerM_->Update();
 		lightM_->Update();
 		PostEffectDraw();
 	}
@@ -153,6 +154,7 @@ void IFE::Scene::PostEffectDraw()
 		postEffectM_->ObjectDrawBefore();
 		objM_->Draw();
 		particleM->Draw();
+		effekseerM_->Draw();
 		postEffectM_->ObjectDrawAfter();
 		postEffectM_->Update();
 	}
@@ -221,6 +223,7 @@ void IFE::Scene::SceneInit()
 	cameraM_->Reset();
 	lightM_->Reset();
 	postEffectM_->Reset();
+	effekseerM_->Reset();
 	tex_->LoadingScene();
 	modelM_->LoadingScene();
 	objM_->LoadingScene();
@@ -229,6 +232,7 @@ void IFE::Scene::SceneInit()
 	cameraM_->LoadingScene();
 	lightM_->LoadingScene();
 	postEffectM_->Initialize();
+	effekseerM_->Loading();
 
 #ifdef InverseEditorMode
 	objM_->Initialize();
@@ -326,11 +330,13 @@ void IFE::Scene::LoadingScene()
 	particleM->Reset();
 	cameraM_->Reset();
 	lightM_->Reset();
+	effekseerM_->Reset();
 	objM_->LoadingScene();
 	spriteM_->LoadingScene();
 	particleM->LoadingScene();
 	lightM_->LoadingScene();
 	cameraM_->LoadingScene();
+	effekseerM_->Loading();
 
 #ifdef EditorMode
 	if (debug_)
@@ -351,7 +357,7 @@ void IFE::Scene::LoadingScene()
 	//oldPostEffect->LoadingScene();
 	nowScene_ = nextScene_;
 	loadEnd_ = true;
-	}
+}
 
 void IFE::Scene::AsyncLoad()
 {
@@ -373,6 +379,7 @@ void IFE::Scene::OutputScene()
 	cameraM_->OutputScene();
 	//oldPostEffect->OutputScene();
 	lightM_->OutputScene();
+	effekseerM_->Output();
 }
 #include "imgui.h"
 #include "Input.h"
@@ -476,6 +483,7 @@ void IFE::Scene::DebugGUI()
 	particleM->DebugGUI();
 	lightM_->DebugGUI();
 	postEffectM_->DebugGUI();
+	effekseerM_->DebugGUI();
 }
 
 bool IFE::Scene::SceneCheck(const std::string& sceneName)

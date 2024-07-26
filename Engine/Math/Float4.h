@@ -27,5 +27,7 @@ namespace IFE
 
 		float& operator[](size_t index);
 		const float& operator[](size_t index)const;
+
+		void ToArray(float arr[4]);
 	};
 };

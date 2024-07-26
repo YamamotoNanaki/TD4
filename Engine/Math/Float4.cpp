@@ -136,3 +136,11 @@ const float& IFE::Float4::operator[](size_t index) const
 	default: throw std::out_of_range("Index out of range");
 	}
 }
+
+void IFE::Float4::ToArray(float arr[4])
+{
+	arr[0] = x;
+	arr[1] = y;
+	arr[2] = z;
+	arr[3] = w;
+}

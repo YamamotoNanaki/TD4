@@ -550,6 +550,12 @@
     <ClCompile Include="Source\StageGimmick\GimmickTouch.cpp">
       <Filter>ソース ファイル\Source\StageGimmick</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Particle\IFEEffekseerManager.cpp">
+      <Filter>ソース ファイル\Engine\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Particle\IFEEffekseer.cpp">
+      <Filter>ソース ファイル\Engine\Particle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -906,6 +912,12 @@
     </ClInclude>
     <ClInclude Include="Source\StageGimmick\GimmickTouch.h">
       <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Particle\IFEEffekseerManager.h">
+      <Filter>ヘッダー ファイル\Engine\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Particle\IFEEffekseer.h">
+      <Filter>ヘッダー ファイル\Engine\Particle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
