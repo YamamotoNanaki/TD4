@@ -282,6 +282,11 @@ const IFE::Vector3 PlayerAction::GetFrontVec()
 	return frontVec_;
 }
 
+const IFE::Vector3 PlayerAction::GetActualFrontVec()
+{
+	return actualFrontVec_;
+}
+
 const IFE::Vector3 PlayerAction::GetRot()
 {
 	return transform_->rotation_;

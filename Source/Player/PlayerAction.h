@@ -142,6 +142,7 @@ public:
 	const bool GetAttackFlag();
 
 	const IFE::Vector3 GetFrontVec();
+	const IFE::Vector3 GetActualFrontVec();
 
 	const IFE::Vector3 GetRot();
 
