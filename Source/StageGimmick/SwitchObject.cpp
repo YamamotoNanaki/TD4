@@ -29,6 +29,7 @@ void SwitchObject::Initialize()
 		c->SetColliderType(IFE::ColliderType::OBB);
 		c->SetNoPushBackFlag(true);
 		c->SetPushBackFlag(false);
+		cols_ = objectPtr_->GetComponent<IFE::Collider>();
 	}
 
 	if (event_ == nullptr)event_ = IFE::EventFactory::Instance()->CreateEventClass(EventName::EventString(eventType_));
@@ -187,4 +188,8 @@ void SwitchObject::LoadingComponent(nlohmann::json& json)
 void SwitchObject::SetIsActive(bool flag)
 {
 	isActive_ = flag;
+	if (cols_ != nullptr)
+	{
+		cols_->GetCollider(0)->active_ = flag;
+	}
 }
