@@ -244,7 +244,6 @@ void IFE::NormalEnemy::Chase()
 		if (len <= 3.0) {
 			state = ATTACK;
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
-			isAttack = true;
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
 			IFE::Sound::Instance()->SoundPlay("attack", false, true);
 			ani_->SetAnimation("knifeAttack");
@@ -288,12 +287,13 @@ void IFE::NormalEnemy::Chase()
 void IFE::NormalEnemy::Attack()
 {
 	attackTime += 100 * IFE::IFETime::sDeltaTime_;
-	if (attackTime >= 50 && attackTime < 150) {
-		isAttack = false;
-		enemyAttack->objectPtr_->transform_->position_ = { 0, -10, 0 };
+	if (attackTime >= 100 && !isAttack) {
+		isAttack = true;
 	}
-	else if (attackTime >= 150) {
+	
+	if (attackTime >= 200) {
 		attackTime = 0;
+		isAttack = false;
 		state = CHASE;
 		ani_->SetAnimation("walk");
 	}
