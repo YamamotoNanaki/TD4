@@ -37,6 +37,7 @@
 #include "MapUI.h"
 #include"Attach3DModel.h"
 #include "SwitchObject.h"
+#include "GimmickTouch.h"
 
 using namespace IFE;
 using namespace std;
@@ -82,6 +83,7 @@ void IFE::ComponentHelp::StaticHelpInitialize()
 	Register("DroneKeepoutZoneObject", &CreateInstance<DroneKeepoutZoneObject>);
 	Register("StageCollideManageer", &CreateInstance<StageCollideManageer>);
 	Register("GimmickSwitchObject", &CreateInstance<SwitchObject>);
+	Register("GimmickTouch", &CreateInstance<GimmickTouch>);
 	//UI
 	Register("PlayerHp", &CreateInstance<PlayerHp>);
 	Register("DroneRecoveryUI", &CreateInstance<DroneRecoveryUI>);
