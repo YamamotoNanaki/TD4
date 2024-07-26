@@ -45,48 +45,58 @@ void PlayerAction::Initialize()
 
 void PlayerAction::Update()
 {
-	//hitcool
-	if (isHit_ == true)
+	if (ani_->GetAnimation() == "damage"|| ani_->GetAnimation() == "squatDamage"||ani_->GetAnimation() == "downFront"|| ani_->GetAnimation() == "downBack")
 	{
-		if (hp_ >= 0)
+		ani_->loop_ = false;
+	}
+
+	if (deathAnimationFlag_ == false)
+	{
+		//hitcool
+		if (isHit_ == true)
 		{
 			playerHp_->ScaleCalc(hp_, 1, hitTime_, HIT_COOLTIME);
+			hitTime_ -= IFE::IFETime::sDeltaTime_;
+			if (hitTime_ <= 0) {
+				isHit_ = false;
+
+				if (hp_ <= 0)
+				{
+					deathAnimationFlag_ = true;
+				}
+				else
+				{
+					if (crouchFlag_ == false)
+					{
+						ani_->SetAnimation("standBy");
+						if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+						{
+							ani_->SetAnimation("walk");
+						}
+					}
+					else
+					{
+						ani_->SetAnimation("squatStandBy");
+						if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+						{
+							ani_->SetAnimation("squatWalk");
+						}
+					}
+				}
+			}
 		}
 
-		hitTime_ -= IFE::IFETime::sDeltaTime_;
-		if (hitTime_ <= 0) {
-			isHit_ = false;
-			if (crouchFlag_ == false)
+		if (hp_ > 0)
+		{
+			if (ani_->GetAnimation() == "walk")
 			{
-				ani_->SetAnimation("standBy");
-				if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
-				{
-					ani_->SetAnimation("walk");
-				}
+				ani_->animSpeed_ = 2.0f;
 			}
 			else
 			{
-				ani_->SetAnimation("squatStandBy");
-				if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
-				{
-					ani_->SetAnimation("squatWalk");
-				}
+				ani_->animSpeed_ = 1.0f;
 			}
 		}
-	}
-
-	if (ani_->GetAnimation() == "walk")
-	{
-		ani_->animSpeed_ = 2.0f;
-	}
-	else
-	{
-		ani_->animSpeed_ = 1.0f;
-	}
-
-	if (hp_ <= 0)
-	{
-		IFE::Scene::Instance()->SetNextScene("GAMEOVER");
 	}
 }
 
@@ -105,7 +115,10 @@ void PlayerAction::DecHp(bool isBack_)
 	if (cheatFlag_)return;
 #endif
 	if (isHit_ == false) {
-		hp_--;
+		if (hp_ > 0)
+		{
+			hp_--;
+		}
 		hitTime_ = HIT_COOLTIME;
 		isHit_ = true;
 		if (hp_ > 0)
@@ -144,27 +157,30 @@ void PlayerAction::DecHp(bool isBack_)
 
 void PlayerAction::MoveUpdate()
 {
-	camerafrontVec_ = { camera_->GetCamera()->transform_->target_.x - camera_->GetPos().x,0.0f,camera_->GetCamera()->transform_->target_.z - camera_->GetPos().z };
-	camerafrontVec_.Normalize();
-	if (crouchAnimationFlag_ == false)
+	if (deathAnimationFlag_ == false)
 	{
-		if (attackFlag_ == false)
+		camerafrontVec_ = { camera_->GetCamera()->transform_->target_.x - camera_->GetPos().x,0.0f,camera_->GetCamera()->transform_->target_.z - camera_->GetPos().z };
+		camerafrontVec_.Normalize();
+		if (crouchAnimationFlag_ == false)
 		{
-			Rotation();
-			Move();
-			Crouch();
-			objectPtr_->SetColor({ 1,1,1,1 });
+			if (attackFlag_ == false)
+			{
+				Rotation();
+				Move();
+				Crouch();
+				objectPtr_->SetColor({ 1,1,1,1 });
+			}
+			else
+			{
+				objectPtr_->SetColor({ 1,0,0,1 });
+			}
+			//UŒ‚‚ÌUI“™‚ÌŒ“‚Ë‡‚¢‚ÅŒÂ•Ê‹L“ü
+			Attack();
 		}
-		else
-		{
-			objectPtr_->SetColor({ 1,0,0,1 });
-		}
-		//UŒ‚‚ÌUI“™‚ÌŒ“‚Ë‡‚¢‚ÅŒÂ•Ê‹L“ü
-		Attack();
-	}
-	CrouchAnimation();
+		CrouchAnimation();
 
-	camera_->CameraUpdate(transform_->position_);
+		camera_->CameraUpdate(transform_->position_);
+	}
 }
 
 void PlayerAction::Move()
