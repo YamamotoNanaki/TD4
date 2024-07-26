@@ -85,6 +85,9 @@ private:
 	//死亡関連
 	bool deathAnimationFlag_ = false;
 	float dethaAnimationTime_ = 0.0f;
+	bool deathFadeAnimationFlag_ = false;
+	float deathFadeAnimationTime_ = 0.0f;
+	const float maxDeathFadeAnimationTime_ = 1.0f;
 
 public:
 
@@ -117,6 +120,8 @@ public:
 	/// Playerクラスで呼ぶ操作全般更新処理
 	/// </summary>
 	void MoveUpdate();
+
+	void Fade();
 
 	/// <summary>
 	/// positionの取得
