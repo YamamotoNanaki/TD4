@@ -75,14 +75,16 @@ void GimmickTouch::Update()
 			countHitTimer_ = 0;
 		}
 
+		oldIsHit_ = isHit_;
 		isHit_ = false;
 	}
 	else
 	{
+		oldIsHit_ = isHit_;
 		isHit_ = false;
 	}
 
-	oldIsHit_ = isHit_;
+	
 }
 
 void GimmickTouch::Draw()

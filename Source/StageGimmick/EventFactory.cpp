@@ -3,6 +3,7 @@
 #include "DoorEvent.h"
 #include "DroneKeepoutZoneEvent.h"
 #include "EnemySpawnEvent.h"
+#include "GimmickSwitchEvent.h"
 
 
 //ƒCƒxƒ“ƒg‚Ìí—Ş’Ç‰Á‚µ‚½‚È‚ç‚±‚±‚É‘‚â‚·
@@ -44,6 +45,11 @@ std::unique_ptr<IFE::IEvent> IFE::EventFactory::CreateEventClass(const std::stri
 	else if (EventTypeName == "EnemySpawnEvent")
 	{
 		newEvent = std::make_unique<EnemySpawnEvent>();
+
+	}
+	else if (EventTypeName == "GimmickSwitchEvent")
+	{
+		newEvent = std::make_unique<GimmickSwitchEvent>();
 
 	}
 	else if (EventTypeName == "")
