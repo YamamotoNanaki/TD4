@@ -42,6 +42,27 @@ std::u16string StringToU16String(const std::string& oString)
     return oRet;
 }
 
+bool MatchesPrefix(const std::string& filename, const std::string& prefix)
+{
+    // ファイル名の最後の'.'の位置を取得
+    size_t dotPosition = filename.find_last_of('.');
+
+    // '.'が見つからない場合、ファイル名全体をチェック
+    if (dotPosition == std::string::npos) {
+        dotPosition = filename.length();
+    }
+
+    // プレフィックスの長さを取得
+    size_t prefixLength = prefix.length();
+
+    // ファイル名がプレフィックスで始まるかどうかを確認
+    if (filename.compare(0, prefixLength, prefix) == 0) {
+        return true;
+    }
+
+    return false;
+}
+
 std::string ToLower(const std::string& str)
 {
 	std::string lowerStr = str;

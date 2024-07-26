@@ -36,6 +36,7 @@ namespace IFE
 		void Draw();
 		void Reset();
 		void Finalize();
+		IFEEffekseer* GetEffekseer(std::string name);
 
 		void Loading();
 	private:

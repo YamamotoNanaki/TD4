@@ -1,6 +1,7 @@
 #pragma once
 #include <list>
 #include <string>
+#include <utility>
 #include "IFEMath.h"
 #include "EditorMode.h"
 
@@ -15,7 +16,7 @@ namespace IFE
 	{
 		Effekseer::EffectRef effect_;
 		std::list<Effekseer::Handle>* handles_;
-		std::list<Effekseer::Handle> playList_;
+		std::list<std::pair<Effekseer::Handle, Float3*>> playList_;
 		::Effekseer::ManagerRef manager_;
 		bool deleteFlag_ = false;
 		bool destroyFlag_ = false;
@@ -35,11 +36,19 @@ namespace IFE
 		/// <param name="rotation">回転、度数法</param>
 		/// <param name="scale">スケール</param>
 		void Play(IFE::Float3 position = { 0,0,0 }, IFE::Float3 rotation = { 0,0,0 }, IFE::Float3 scale = { 1,1,1 });
+		/// <summary>
+		/// ポジションに追従するエフェクトを再生する関数
+		/// </summary>
+		/// <param name="position">追従するポジション</param>
+		/// <param name="rotation">回転、度数法</param>
+		/// <param name="scale">スケール</param>
+		void Play(IFE::Float3* position, IFE::Float3 rotation = { 0,0,0 }, IFE::Float3 scale = { 1,1,1 });
 		void Update();
-		void Draw();
 		void Initiaize(::Effekseer::ManagerRef manager, Effekseer::EffectRef effect, std::list<Effekseer::Handle>* handle);
 		void Destroy();
 		inline bool GetDeleteFlag() { return deleteFlag_; };
+		uint32_t GetPlayNum() { return uint32_t(playList_.size()); };
+		void SetPosition(uint32_t num, IFE::Float3 position);
 
 #ifdef EditorMode
 		void DebugGUI();

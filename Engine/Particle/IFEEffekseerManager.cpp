@@ -4,6 +4,7 @@
 #include "StringUtil.h"
 #include "IFETime.h"
 #include "CameraManager.h"
+#include "JsonManager.h"
 
 #pragma comment (lib,"EffekseerRendererDX12.lib")
 #pragma comment (lib,"Effekseer.lib")
@@ -116,8 +117,32 @@ void IFE::IFEEffekseerManager::Finalize()
 	Reset();
 }
 
+IFE::IFEEffekseer* IFE::IFEEffekseerManager::GetEffekseer(std::string name)
+{
+	for (auto& itr : effekList_)
+	{
+		if (MatchesPrefix(itr->name_, name))
+		{
+			return itr.get();
+		}
+	}
+	return nullptr;
+}
+
 void IFE::IFEEffekseerManager::Loading()
 {
+	JsonManager* jm = JsonManager::Instance();
+	jm->Input("EffekserManager");
+	nlohmann::json js = jm->GetJsonData();
+	for (auto& j : js)
+	{
+		std::string name;
+		if (!jm->GetData(j, "name", name))continue;
+
+		auto e = Add(name);
+		jm->GetData(j, "offset", e->timeOffset_);
+		jm->GetData(j, "scaleFlag", e->timeScaleFlag_);
+	}
 }
 
 Effekseer::Matrix44 IFE::IFEEffekseerManager::FromIFEToEffekseerMatrix(Matrix mat)
@@ -135,12 +160,23 @@ Effekseer::Vector3D IFE::IFEEffekseerManager::FromIFEToEffekseerVector3(Vector3 
 	return Effekseer::Vector3D(vec.x, vec.y, vec.z);
 }
 
-void IFE::IFEEffekseerManager::Output()
-{
-}
-
 #ifdef EditorMode
 #include "ImguiManager.h"
+void IFE::IFEEffekseerManager::Output()
+{
+	JsonManager* jm = JsonManager::Instance();
+	nlohmann::json& j = jm->GetJsonData();
+	uint32_t i = 0;
+	for (auto& itr : effekList_)
+	{
+		j[i]["name"] = itr->name_;
+		j[i]["offset"] = itr->timeOffset_;
+		j[i]["scaleFlag"] = itr->timeScaleFlag_;
+		i++;
+	}
+	jm->Output("EffekserManager");
+}
+
 void IFE::IFEEffekseerManager::DebugGUI()
 {
 	ImguiManager* im = ImguiManager::Instance();
