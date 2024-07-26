@@ -123,15 +123,15 @@ void PlayerAction::DecHp(bool isBack_)
 		{
 			if (crouchFlag_ == false)
 			{
-				//“G‚ª³–Ê
+				//“G‚ªŒã‚ë
 				if (isBack_)
 				{
-					ani_->SetAnimation("downBack");
+					ani_->SetAnimation("downFront");
 				}
-				//“G‚ªŒã‚ë
+				//“G‚ª‘O
 				else
 				{
-					ani_->SetAnimation("downFront");
+					ani_->SetAnimation("downBack");
 				}
 			}
 			else
@@ -360,7 +360,9 @@ void PlayerAction::Attack()
 				IFE::Sound::Instance()->SoundPlay("attack", false, true);
 			}
 			isAttack_ = true;
+#ifdef DEBUG
 			playerAttack_->objectPtr_->DrawFlag_ = true;
+#endif // DEBUG
 		}
 
 		if (attackTimer_ > maxAttackAnimationTime_)
@@ -369,7 +371,9 @@ void PlayerAction::Attack()
 			playerAttack_->SetAttackFlag(attackFlag_);
 			isAttack_ = false;
 			attackTimer_ = 0;
+#ifdef DEBUG
 			playerAttack_->objectPtr_->DrawFlag_ = false;
+#endif // DEBUG
 			slowFlag_ = false;
 			IFE::IFETime::sTimeScale_ = 1.0f;
 			slowEaseTime_ = 0;
