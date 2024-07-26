@@ -27,6 +27,7 @@
                 "Clear"
             ],
             "name": "GameClear",
+            "order": 0,
             "texture": "GameClear.png"
         }
     ]

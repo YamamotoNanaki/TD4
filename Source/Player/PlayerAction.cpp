@@ -302,6 +302,11 @@ void PlayerAction::SetAnimation(std::string name)
 	ani_->SetAnimation(name);
 }
 
+void PlayerAction::SetIsWalk(bool flag)
+{
+	isWalk_ = flag;
+}
+
 void PlayerAction::Rotation()
 {
 #pragma region キーボード

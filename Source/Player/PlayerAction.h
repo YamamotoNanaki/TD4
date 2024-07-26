@@ -155,6 +155,8 @@ public:
 
 	uint8_t GetHP() { return hp_; }
 
+	void SetIsWalk(bool flag);
+
 private:
 
 	/// <summary>
