@@ -538,6 +538,18 @@
     <ClCompile Include="Source\UI\Over.cpp">
       <Filter>ソース ファイル\Engine\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\StageGimmick\SwitchObject.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageGimmick\IEvent.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageGimmick\GimmickSwitchEvent.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageGimmick\GimmickTouch.cpp">
+      <Filter>ソース ファイル\Source\StageGimmick</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Particle\IFEEffekseerManager.cpp">
       <Filter>ソース ファイル\Engine\Particle</Filter>
     </ClCompile>
@@ -891,6 +903,15 @@
     </ClInclude>
     <ClInclude Include="Source\UI\Title.h">
       <Filter>ヘッダー ファイル\Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\SwitchObject.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\GimmickSwitchEvent.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageGimmick\GimmickTouch.h">
+      <Filter>ヘッダー ファイル\Source\StageGimmick</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Particle\IFEEffekseerManager.h">
       <Filter>ヘッダー ファイル\Engine\Particle</Filter>

@@ -35,6 +35,7 @@ void IFE::EnemyAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::Collide
 		//“–‚½‚Á‚½Žž‚Ìˆ—
 		hitCollider->objectPtr_->GetComponent<PlayerAction>()->DecHp(isBack);
 		if (IFE::Sound::Instance()->GetPlayStatus("attackHit") == false) {
+			transform_->position_ = { 0, -10, 0 };
 			IFE::Sound::Instance()->SoundPlay("attackHit", false, true);
 		}
 

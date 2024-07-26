@@ -185,13 +185,15 @@ void IFE::TrapEnemy::Chase()
 		pow(ePos.z - target.z, 2));
 	if (isChaseDrone == false) {
 		if (len <= 3.0) {
-			enemyAttack->objectPtr_->DrawFlag_ = true;
 			state = ATTACK;
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
-			isAttack = true;
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
 			IFE::Sound::Instance()->SoundPlay("attack", false, true);
 			ani_->SetAnimation("knifeAttack");
+			enemyAttack->SetIsBack(GetBack());
+			float radY = std::atan2(frontVec.x, frontVec.z);
+			float targetAngle = ((radY * 180.0f) / (float)PI);
+			transform_->rotation_.y = targetAngle;
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
@@ -207,7 +209,9 @@ void IFE::TrapEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->scale_ = { 0.4f,0.4f,0.4f };
 			IFE::Sound::Instance()->SoundPlay("gun", false, true);
 			ani_->SetAnimation("gunAttack");
-			enemyAttack->SetIsBack(GetBack());
+			float radY = std::atan2(frontVec.x, frontVec.z);
+			float targetAngle = ((radY * 180.0f) / (float)PI);
+			transform_->rotation_.y = targetAngle;
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
@@ -223,15 +227,13 @@ void IFE::TrapEnemy::Chase()
 void IFE::TrapEnemy::Attack()
 {
 	attackTime += 100 * IFE::IFETime::sDeltaTime_;
-	if (enemyAttack->objectPtr_->DrawFlag_ == false) {
-		isAttack = false;
+	if (attackTime >= 100 && !isAttack) {
+		isAttack = true;
 	}
-	if (attackTime >= 50 && attackTime < 150) {
-		enemyAttack->objectPtr_->DrawFlag_ = false;
-		enemyAttack->objectPtr_->transform_->position_ = { 0, -10, 0 };
-	}
-	else if (attackTime >= 150) {
+
+	if (attackTime >= 200) {
 		attackTime = 0;
+		isAttack = false;
 		state = CHASE;
 		ani_->SetAnimation("walk");
 	}
@@ -282,10 +284,12 @@ void IFE::TrapEnemy::LookAt()
 	frontVec = lookfor - ePos;
 	frontVec = frontVec.Normalize();
 	frontVec *= Vector3(1, 0, 1);
-	//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
-	float radY = std::atan2(frontVec.x, frontVec.z);
-	float targetAngle = ((radY * 180.0f) / (float)PI);
-	ApproachTarget(transform_->rotation_.y, targetAngle, 1.0f);
+	if (state != ATTACK) {
+		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
+		float radY = std::atan2(frontVec.x, frontVec.z);
+		float targetAngle = ((radY * 180.0f) / (float)PI);
+		ApproachTarget(transform_->rotation_.y, targetAngle, 1.0f);
+	}
 }
 
 bool IFE::TrapEnemy::RaySight(Vector3 pos) {

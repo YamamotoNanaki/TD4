@@ -35,6 +35,7 @@ namespace IFE
 		///// <param name="num">Šm”F‚·‚é”š</param>
 		///// <returns>–â‘è‚ª‚ ‚éê‡true</returns>
 		//bool ErrorCheck(const nlohmann::json& json,int32_t num);
+
 		void SetSceneName(const std::string& sceneName);
 		static JsonManager* Instance();
 		Float2 InputFloat2(const nlohmann::json& json);

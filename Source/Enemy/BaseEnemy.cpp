@@ -159,9 +159,9 @@ void  IFE::BaseEnemy::SetMotion(std::string name) {
 const bool IFE::BaseEnemy::GetBack()
 {
 	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
-	float result = pFront.Dot(frontVec);
-	//+‚È‚çŒã‚ë
-	if (result > 0) {
+	float result = pFront.Dot(-frontVec);
+	float judge = 0.9f;
+	if (result < judge) {
 		return true;
 	}
 	return false;

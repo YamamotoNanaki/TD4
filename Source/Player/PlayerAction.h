@@ -63,7 +63,7 @@ private:
 
 	IFE::EnemyManager* enemyManager_ = nullptr;
 	IFE::BaseEnemy* closestEnemy = nullptr;
-	bool isAttackUI_ = false;
+	bool isXBottonUI_ = false;
 
 	IFE::Animator* ani_ = nullptr;
 	bool isWalk_ = false;
@@ -173,6 +173,8 @@ private:
 
 	void Crouch();
 	void CrouchAnimation();
+
+	void SetIsXBottonUI(bool flag);
 
 #ifdef EditorMode
 	bool cheatFlag_ = false;
