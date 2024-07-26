@@ -34,6 +34,7 @@ namespace IFE
 		void Update()override;
 		void Draw()override;
 		float GetEndTime();
+		void SetAnimTime(float animTime_);
 		~Animator();
 
 		void SetAnimation(std::string animName, bool interpolation = true, float interpolationMaxTimer = 0.3);

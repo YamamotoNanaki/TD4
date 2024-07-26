@@ -93,6 +93,11 @@ float IFE::Animator::GetEndTime()
 	return model_->animations_[animNum_].endTime;
 }
 
+void IFE::Animator::SetAnimTime(float animTime_)
+{
+	animTimer_ = animTime_;
+}
+
 IFE::Animator::~Animator()
 {
 	objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("3dNormal");

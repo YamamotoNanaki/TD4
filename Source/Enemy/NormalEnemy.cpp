@@ -98,8 +98,8 @@ void IFE::NormalEnemy::ChangeState()
 			}
 			break;
 		case IFE::BaseEnemy::DEAD:
-			deadTime += 100 * IFE::IFETime::sDeltaTime_;
-			if (deadTime >= 150) {
+			deadTime += IFE::IFETime::sDeltaTime_;
+			if (deadTime >= 2.0f) {
 				hpUI->objectPtr_->Destroy();
 				status_->objectPtr_->Destroy();
 				enemyAttack->objectPtr_->Destroy();
@@ -154,10 +154,9 @@ void IFE::NormalEnemy::EnemyUpdate()
 void IFE::NormalEnemy::Wait()
 {
 	///
-	waitTimer += 50 * IFE::IFETime::sDeltaTime_;
+	waitTimer += IFE::IFETime::sDeltaTime_;
 	if (waitTimer >= WAIT_TIME) {
 		waitTimer = 0;
-		transform_->rotation_ = { 0,0,0 };
 		state = SEARCH;
 		ani_->SetAnimation("walk");
 	}
@@ -174,20 +173,20 @@ void IFE::NormalEnemy::Warning()
 {
 	//ˆÙ•Ï‚Ìó‘Ô‚ª‘±‚¢‚½‚ç’ÇÕ‚ÖˆÚs
 	if (isFound == true) {
-		warningTime += 100 * IFE::IFETime::sDeltaTime_;
+		warningTime += IFE::IFETime::sDeltaTime_;
 	}
 	else {
-		warningTime -= 100 * IFE::IFETime::sDeltaTime_;
+		warningTime -= IFE::IFETime::sDeltaTime_;
 	}
 
-	if (warningTime >= 125) {
-		warningTime = 50;
+	if (warningTime >= 1.0f) {
+		warningTime = 0.5f;
 		state = CHASE;
 		/*IFE::Sound::Instance()->SoundPlay("found", false, true);*/
 		ani_->SetAnimation("Walk");
 	}
 	if (warningTime <= 0) {
-		warningTime = 50;
+		warningTime = 0.5f;
 		state = SEARCH;
 		ani_->SetAnimation("walk");
 	}
@@ -224,7 +223,7 @@ void IFE::NormalEnemy::Search()
 	if (isFound == true) {
 		state = WARNING;
 		/*IFE::Sound::Instance()->SoundPlay("what", false, true);*/
-		ani_->SetAnimation("search");
+		ani_->SetAnimation("walk");
 	}
 }
 
@@ -254,10 +253,11 @@ void IFE::NormalEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
 			IFE::Sound::Instance()->SoundPlay("attack", false, true);
+			ani_->loop_ = false;
 			ani_->SetAnimation("knifeAttack");
 			frontVec = target - ePos;
 			frontVec = frontVec.Normalize();
-			enemyAttack->SetIsBack(GetBack());
+			enemyAttack->SetIsBack(GetBack(0.9f));
 			float radY = std::atan2(frontVec.x, frontVec.z);
 			float targetAngle = ((radY * 180.0f) / (float)PI);
 			transform_->rotation_.y = targetAngle;
@@ -294,15 +294,15 @@ void IFE::NormalEnemy::Chase()
 
 void IFE::NormalEnemy::Attack()
 {
-	attackTime += 100 * IFE::IFETime::sDeltaTime_;
-	if (attackTime >= 100 && !isAttack) {
+	attackTime += IFE::IFETime::sDeltaTime_;
+	if (attackTime > 0.8f - IFE::IFETime::sDeltaTime_) {
 		isAttack = true;
 	}
 	
-	if (attackTime >= 200) {
+	if (attackTime > 2.0f) {
 		attackTime = 0;
 		isAttack = false;
-		state = CHASE;
+		state = SEARCH;
 		ani_->SetAnimation("walk");
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
@@ -337,10 +337,11 @@ void IFE::NormalEnemy::Shot()
 }
 
 void IFE::NormalEnemy::Killed() {
+	objectPtr_->GetComponent<Collider>()->GetCollider(1)->SetNoPushBackFlag(true);
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
-	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
+	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetActualFrontVec();
 	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
-	transform_->position_ = pPos + addVec;
+	transform_->position_ = pPos + (addVec);
 	transform_->rotation_ = rot;
 	status_->objectPtr_->DrawFlag_ = false;
 	ani_->SetAnimation("standBy",false);
@@ -352,11 +353,11 @@ void IFE::NormalEnemy::LookAt()
 	frontVec = lookfor - ePos;
 	frontVec = frontVec.Normalize();
 	frontVec *= Vector3(1, 0, 1);
-	if (state != ATTACK) {
+	if (state == CHASE || state == SEARCH || state == WARNING) {
 		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
 		float radY = std::atan2(frontVec.x, frontVec.z);
 		float targetAngle = ((radY * 180.0f) / (float)PI);
-		ApproachTarget(transform_->rotation_.y, targetAngle, 1.0f);
+		ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
 	}
 }
 

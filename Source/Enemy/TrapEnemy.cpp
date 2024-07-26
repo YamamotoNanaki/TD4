@@ -195,7 +195,7 @@ void IFE::TrapEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
 			IFE::Sound::Instance()->SoundPlay("attack", false, true);
 			ani_->SetAnimation("knifeAttack");
-			enemyAttack->SetIsBack(GetBack());
+			enemyAttack->SetIsBack(GetBack(0.9f));
 			float radY = std::atan2(frontVec.x, frontVec.z);
 			float targetAngle = ((radY * 180.0f) / (float)PI);
 			transform_->rotation_.y = targetAngle;

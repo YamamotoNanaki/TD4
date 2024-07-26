@@ -40,7 +40,7 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 
 	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>())
 	{
-		if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetBack() == false)
+		if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetBack(0) == false)
 		{
 			isBackAttack_ = false;
 		}
@@ -51,7 +51,6 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 				if (attackFlag_ && hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetIsOneShot() == false) {
 					hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->SetisOneShot(true);
 					hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->Killed();
-
 				}
 			}
 			else {
@@ -63,7 +62,7 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 		{
 			if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetIsHit() == false)
 			{
-				if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetBack() == false)
+				if (hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->GetBack(0) == false)
 				{
 					//“–‚½‚Á‚½Žž‚Ìˆ—
 					hitCollider->objectPtr_->GetComponent<IFE::NormalEnemy>()->DecHp();
@@ -81,7 +80,7 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 	//trapEnemy
 	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>())
 	{
-		if (hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetBack() == false)
+		if (hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetBack(0) == false)
 		{
 			isBackAttack_ = false;
 		}
@@ -99,7 +98,7 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 		{
 			if (hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetIsHit() == false)
 			{
-				if (hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetBack() == false)
+				if (hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->GetBack(0) == false)
 				{
 					//“–‚½‚Á‚½Žž‚Ìˆ—
 					hitCollider->objectPtr_->GetComponent<IFE::TrapEnemy>()->DecHp();
