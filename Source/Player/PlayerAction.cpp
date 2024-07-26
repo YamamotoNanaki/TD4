@@ -10,6 +10,7 @@
 #include"Scene.h"
 #include"Collision.h"
 #include "Sound.h"
+#include"ColorBuffer.h"
 
 void PlayerAction::Initialize()
 {
@@ -49,8 +50,12 @@ void PlayerAction::Update()
 	{
 		ani_->loop_ = false;
 	}
+	else
+	{
+		ani_->loop_ = true;
+	}
 
-	if (deathAnimationFlag_ == false)
+	if (deathAnimationFlag_ == false&& ani_->animEnd_ == false)
 	{
 		//hitcool
 		if (isHit_ == true)
@@ -98,6 +103,11 @@ void PlayerAction::Update()
 			}
 		}
 	}
+
+	if (ani_->animEnd_ == true)
+	{
+		Fade();
+	}
 }
 
 void PlayerAction::Draw()
@@ -125,7 +135,7 @@ void PlayerAction::DecHp(bool isBack_)
 		{
 			if (crouchFlag_ == false)
 			{
-				ani_->SetAnimation("damage");
+				ani_->SetAnimation("damage",false);
 			}
 			else
 			{
@@ -181,6 +191,16 @@ void PlayerAction::MoveUpdate()
 
 		camera_->CameraUpdate(transform_->position_);
 	}
+}
+
+void PlayerAction::Fade()
+{
+	if (deathFadeAnimationTime_ < maxDeathFadeAnimationTime_)
+	{
+		IFE::SpriteManager::Instance()->GetSpritePtr("fade")->GetComponent<IFE::ColorBuffer>()->SetAlpha(IFE::EaseInBack(0.0f, 0.75f, maxDeathFadeAnimationTime_, deathFadeAnimationTime_));
+	}
+
+	deathFadeAnimationTime_ += IFE::IFETime::sDeltaTime_;
 }
 
 void PlayerAction::Move()
@@ -260,6 +280,11 @@ const bool PlayerAction::GetAttackFlag()
 const IFE::Vector3 PlayerAction::GetFrontVec()
 {
 	return frontVec_;
+}
+
+const IFE::Vector3 PlayerAction::GetActualFrontVec()
+{
+	return actualFrontVec_;
 }
 
 const IFE::Vector3 PlayerAction::GetRot()
