@@ -125,6 +125,11 @@ void IFE::TrapEnemy::EnemyUpdate()
 		}
 	}
 	ChangeState();
+	if (state != DEAD) {
+		if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetHP() == 0) {
+			state = SEARCH;
+		}
+	}
 }
 
 void IFE::TrapEnemy::Warning()

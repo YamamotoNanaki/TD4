@@ -143,6 +143,8 @@ public:
 
 	void SetAnimation(std::string name);
 
+	uint8_t GetHP() { return hp_; }
+
 private:
 
 	/// <summary>
