@@ -38,18 +38,18 @@ void IFE::Animator::Update()
 	if (interpolation_)
 	{
 		lerpTimer_ += IFETime::sDeltaTime_;
-		oldAnimTimer_ += oldAnimSpeed_ * IFETime::sDeltaTime_;
-		if (oldAnimTimer_ >= model_->animations_[interpolationAnimNum_].endTime)
-		{
-			if (oldLoop_)
-			{
-				oldAnimTimer_ -= (float)model_->animations_[interpolationAnimNum_].endTime;
-			}
-			else
-			{
-				oldAnimTimer_ = (float)model_->animations_[interpolationAnimNum_].endTime - FLT_EPSILON;
-			}
-		}
+		//oldAnimTimer_ += oldAnimSpeed_ * IFETime::sDeltaTime_;
+		//if (oldAnimTimer_ >= model_->animations_[interpolationAnimNum_].endTime)
+		//{
+		//	if (oldLoop_)
+		//	{
+		//		oldAnimTimer_ -= (float)model_->animations_[interpolationAnimNum_].endTime;
+		//	}
+		//	else
+		//	{
+		//		oldAnimTimer_ = (float)model_->animations_[interpolationAnimNum_].endTime - FLT_EPSILON;
+		//	}
+		//}
 		if (lerpTimer_ >= interpolationMaxTimer_)
 		{
 			interpolation_ = false;

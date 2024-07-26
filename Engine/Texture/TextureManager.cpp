@@ -247,8 +247,8 @@ Texture* IFE::TextureManager::CreateRanderTexture(const std::string& texname)
 	ScratchImage scratchImg{};
 	HRESULT result;
 	auto device = GraphicsAPI::GetDevice();
-	uint32_t w = WindowsAPI::Instance()->winWidth_;
-	uint32_t h = WindowsAPI::Instance()->winHeight_;
+	uint32_t w = 1920;
+	uint32_t h = 1080;
 
 	uint16_t num = 200;
 	for (uint16_t i = 200; i < 1000; i++)

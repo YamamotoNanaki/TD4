@@ -1,4 +1,5 @@
 #include "PostEffectManager.h"
+#include "ComponentHelp.h"
 
 //Œã‚ÅÁ‚¹
 #include "EnemyHighlighting.h"
@@ -11,6 +12,14 @@ PostEffectManager* IFE::PostEffectManager::Instance()
 {
 	static PostEffectManager inst;
 	return &inst;
+}
+
+void IFE::PostEffectManager::Add(std::string name, uint16_t num = 1)
+{
+	auto ptr = IPostEffectHelp::StringToPostEffect(name);
+	ptr->SetInitParams(num);
+	ptr->PostEffectInitialize();
+	postEffects.push_back(std::make_unique<IPostEffect>(ptr));
 }
 
 void IFE::PostEffectManager::Draw()
@@ -35,17 +44,6 @@ void IFE::PostEffectManager::Initialize()
 	defaultPE = postEffects.front().get();
 	defaultPE->SetInitParams(2);
 	defaultPE->PostEffectInitialize();
-
-	postEffects.push_back(std::move(std::make_unique<RadialBlurPE>()));
-	postEffects.back()->PostEffectInitialize();
-
-	postEffects.push_back(std::move(std::make_unique<EnemyHighlighting>()));
-	postEffects.back()->SetInitParams(2);
-	postEffects.back()->PostEffectInitialize();
-
-	postEffects.push_back(std::move(std::make_unique<DronePostEffect>()));
-	postEffects.back()->SetInitParams(2);
-	postEffects.back()->PostEffectInitialize();
 }
 
 void IFE::PostEffectManager::ObjectDrawBefore()
@@ -78,15 +76,60 @@ IPostEffect* IFE::PostEffectManager::GetPostEffect(std::string name)
 	return nullptr;
 }
 
+void IFE::PostEffectManager::Loading()
+{
+	JsonManager* jm = JsonManager::Instance();
+	jm->Input("EffekserManager");
+	nlohmann::json js = jm->GetJsonData();
+	for (auto& j : js)
+	{
+		std::string name;
+		if (!jm->GetData(j, "name", name))continue;
+
+		int16_t num;
+		if (!jm->GetData(j, "initParam", num))continue;
+
+		auto ptr = IPostEffectHelp::StringToPostEffect(name);
+		ptr->SetInitParams(num);
+		ptr->PostEffectInitialize();
+	}
+}
+
 #ifdef EditorMode
 #include "ImguiManager.h"
+
+void IFE::PostEffectManager::Output()
+{
+	JsonManager* jm = JsonManager::Instance();
+	nlohmann::json& j = jm->GetJsonData();
+	uint32_t i = 0;
+	for (auto& itr : postEffects)
+	{
+		j[i]["name"] = itr->name_;
+		j[i]["initParam"] = itr->GetTexSize();
+		i++;
+	}
+	jm->Output("EffekserManager");
+}
+
 void IFE::PostEffectManager::DebugGUI()
 {
-	ImguiManager::Instance()->NewGUI("PostEffect");
+	auto gui = ImguiManager::Instance();
+	gui->NewGUI("PostEffect");
+	if (gui->CollapsingHeaderGUI(U8("’Ç‰Á")))
+	{
+		auto s = IPostEffectHelp::GetComponentList();
+		int32_t num;
+		gui->DragIntGUI(&num, "output texture num", 1, 1);
+		if (gui->ButtonGUI("Add"))
+		{
+			Add(s, uint16_t(num));
+		}
+	}
 	for (auto& itr : postEffects)
 	{
 		itr->DebugGUI();
 	}
-	ImguiManager::Instance()->EndGUI();
+	gui->EndGUI();
 }
 #endif

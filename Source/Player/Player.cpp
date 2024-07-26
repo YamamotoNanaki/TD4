@@ -43,7 +43,7 @@ void Player::Initialize()
 
 void Player::Update()
 {
-	if (pose_->GetPoseFlag()==false)
+	if (pose_->GetPoseFlag() == false)
 	{
 		ChangeMode();
 
@@ -115,6 +115,8 @@ void Player::SetMode(bool flag)
 
 void Player::ChangeMode()
 {
+	if (action_->GetAttackFlag())return;
+
 	if ((!ccp_.cameraChange && IFE::Input::GetKeyTrigger(IFE::Key::Y) || IFE::Input::PadTrigger(IFE::PADCODE::Y)) || (modeFlag_ == true && oldIsDamageFlag_ == false && action_->GetIsHit() == true))
 	{
 		if (modeFlag_) {
@@ -141,6 +143,7 @@ void Player::ChangeMode()
 				IFE::CameraManager::Instance()->SetActiveCamera("DroneCamera");
 				action_->SetAnimation("drone");
 
+				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = true;
 				if (drone_->GetIsDroneSurvival() == false)
 				{
 					IFE::Float3 pos = action_->GetPos();
@@ -149,7 +152,6 @@ void Player::ChangeMode()
 					drone_->SetRotY(action_->GetRotY());
 					drone_->SetIsDroneSurvival(true);
 					enemyHilight_->updateFlag_ = true;
-					dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = true;
 					IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = true;
 				}
 			}
@@ -160,7 +162,7 @@ void Player::ChangeMode()
 				drone_->SetDrawFlag(drone_->GetIsDroneSurvival());
 				IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
 				action_->SetAnimation("walk");//待機モーションに変える
-				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;				
+				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;
 			}
 			//UI表示切替
 			ui_->UIChange(modeFlag_);
