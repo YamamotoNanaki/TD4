@@ -28,7 +28,7 @@ private:
 	uint8_t hp_ = 10;
 	bool isHit_ = false;
 	float hitTime_;
-	const int8_t HIT_COOLTIME = 1;
+	const float HIT_COOLTIME = 0.833333f;
 
 	//PlayerHp
 	IFE::PlayerHp* playerHp_ = nullptr;
@@ -82,6 +82,13 @@ private:
 	float slowEaseTime_;
 	bool slowFlag_ = false;
 
+	//Ž€–SŠÖ˜A
+	bool deathAnimationFlag_ = false;
+	float dethaAnimationTime_ = 0.0f;
+	bool deathFadeAnimationFlag_ = false;
+	float deathFadeAnimationTime_ = 0.0f;
+	const float maxDeathFadeAnimationTime_ = 1.0f;
+
 public:
 
 	/// <summary>
@@ -114,6 +121,8 @@ public:
 	/// </summary>
 	void MoveUpdate();
 
+	void Fade();
+
 	/// <summary>
 	/// position‚ÌŽæ“¾
 	/// </summary>
@@ -133,6 +142,7 @@ public:
 	const bool GetAttackFlag();
 
 	const IFE::Vector3 GetFrontVec();
+	const IFE::Vector3 GetActualFrontVec();
 
 	const IFE::Vector3 GetRot();
 
@@ -142,6 +152,10 @@ public:
 	bool GetIsHit() { return isHit_; }
 
 	void SetAnimation(std::string name);
+
+	uint8_t GetHP() { return hp_; }
+
+	void SetIsWalk(bool flag);
 
 private:
 

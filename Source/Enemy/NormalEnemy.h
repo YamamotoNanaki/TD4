@@ -12,7 +12,7 @@ namespace IFE {
 		using BaseEnemy::BaseEnemy;
 	private:
 		//ü‚è‚ğŒ©“n‚·ŠÔ
-		const int32_t WAIT_TIME = 200;
+		const float WAIT_TIME = 1.0f;
 		//’TõˆÚ“®‘¬“x
 		const float SEARCH_VELO = 2.5f;
 		//’ÇÕ‘¬“x

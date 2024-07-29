@@ -56,6 +56,9 @@ void GimmickSwitchEvent::Update()
 		{
 			selectGimmickObject_->GetComponent<SwitchObject>()->SetIsActive(isSwitch_);
 		}
+
+		isSwitch_ = !isSwitch_;
+		isEnd_ = true;
 	}
 }
 #ifdef EditorMode
@@ -80,8 +83,11 @@ void GimmickSwitchEvent::DebugGUI()
 
 	}
 
-	//IFE::ImguiManager* gui = IFE::ImguiManager::Instance();
-	//gui->DragFloat3GUI(&spawnPos_, "spawnPos", 0.25f, -1000, 1000);
+	IFE::ImguiManager* gui = IFE::ImguiManager::Instance();
+	int32_t selectNum = 0;
+	gui->Combo("selectObject", selectNum, selectGimmickNames);
+	selectGimmickName_ = selectGimmickNames[selectNum];
+	gui->CheckBoxGUI(&isSwitch_, "InitialSwitch");
 
 }
 #endif
