@@ -28,7 +28,7 @@ void IFE::RadialBlurPE::Update()
 
 void IFE::RadialBlurPE::Initialize()
 {
-	name_ = "RadialBlur";
+	name_ = "RadialBlurPE";
 	gp_ = GraphicsPipelineManager::Instance()->CreatePostEffectPipeLine("RadialBlur", 1, 1, 1);
 	drawFlag_ = false;
 	updateFlag_ = true;

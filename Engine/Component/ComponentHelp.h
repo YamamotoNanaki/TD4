@@ -26,4 +26,25 @@ namespace IFE
 		static std::string GetComponentList();
 #endif
 	};
+
+	class IPostEffect;
+	class IPostEffectHelp
+	{
+		using CreateFunc = IPostEffect * (*)();
+		inline static std::unordered_map<std::string, CreateFunc> creators_;
+	private:
+		static void Register(const std::string& className, CreateFunc func);
+
+	public:
+		static void StaticHelpInitialize();
+		static IPostEffect* StringToPostEffect(const std::string& componentName);
+
+#ifdef EditorMode
+	private:
+		static std::vector<std::string> GetRegisteredClasses();
+		static std::vector<std::string> SearchClasses(const std::string& partialName);
+	public:
+		static std::string GetComponentList();
+#endif
+	};
 }

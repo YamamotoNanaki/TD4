@@ -11,7 +11,10 @@ using namespace std;
 
 void IFE::Transform::ParentBoneMatrix(Matrix& mat, Bone* bone)
 {
-	if (!bone)return;
+	if (!bone)
+	{
+		return;
+	}
 	mat *= bone->finalMatrix;
 	ParentBoneMatrix(mat, bone->parent);
 }

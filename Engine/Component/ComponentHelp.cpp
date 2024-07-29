@@ -1,6 +1,9 @@
 #include "ComponentHelp.h"
 #include "StringUtil.h"
 #include "Component.h"
+#include "IPostEffect.h"
+#include "DefaultPostEffect.h"
+#include "RadialBlurPE.h"
 #include "Transform.h"
 #include "TransferGeometryBuffer.h"
 #include "AnimationTexture.h"
@@ -38,6 +41,8 @@
 #include"Attach3DModel.h"
 #include "SwitchObject.h"
 #include "GimmickTouch.h"
+#include "DronePostEffect.h"
+#include "EnemyHighlighting.h"
 
 using namespace IFE;
 using namespace std;
@@ -97,6 +102,20 @@ void IFE::ComponentHelp::StaticHelpInitialize()
 	Register("Config", &CreateInstance<Config>);
 }
 
+template<typename T>
+static IPostEffect* CreatePostEffectInstance()
+{
+	return new T();
+}
+
+void IFE::IPostEffectHelp::StaticHelpInitialize()
+{
+	Register("DefaultPostEffect", &CreatePostEffectInstance<DefaultPostEffect>);
+	Register("RadialBlurPE", &CreatePostEffectInstance<RadialBlurPE>);
+	Register("DronePostEffect", &CreatePostEffectInstance<DronePostEffect>);
+	Register("EnemyHighlighting", &CreatePostEffectInstance<EnemyHighlighting>);
+}
+
 Component* IFE::ComponentHelp::StringToComponent(const std::string& str)
 {
 	auto it = creators_.find(str);
@@ -107,87 +126,6 @@ Component* IFE::ComponentHelp::StringToComponent(const std::string& str)
 		return ptr;
 	}
 	return nullptr;
-
-	//Component* tmp = nullptr;
-	////engine
-	//tmp = std::move(GetPtr<Transform>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<Transform2D>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<TransformParticle>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<TransferGeometryBuffer>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<ColorBuffer>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<Material>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<Collider>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<Animator>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<TransformCamera>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<RectTexture>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<AnimationTexture>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<Fog>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<DebugCamera>(str));
-	//if (tmp != nullptr)return tmp;
-
-	////player
-	//tmp = std::move(GetPtr<Player>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<PlayerAction>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<PlayerDrone>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<PlayerAttack>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<PlayerCommonCamera>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<PlayerActionCamera>(str));
-	//if (tmp != nullptr)return tmp;
-
-	////enemy
-	//tmp = std::move(GetPtr<NormalEnemy>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<EnemyHp>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<EnemyAttack>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<EnemyManager>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<Boss>(str));
-	//if (tmp != nullptr)return tmp;
-
-	////Gimmick
-	//tmp = std::move(GetPtr<LaserWire>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<DroneKeepoutZoneObject>(str));
-	//if (tmp != nullptr)return tmp;
-
-	//tmp = std::move(GetPtr<StageCollideManageer>(str));
-	//if (tmp != nullptr)return tmp;
-	////ui
-	//tmp = std::move(GetPtr<PlayerHp>(str));
-	//if(tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<DroneRecoveryUI>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<Title>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<Clear>(str));
-	//if (tmp != nullptr)return tmp;
-	//tmp = std::move(GetPtr<Over>(str));
-	//if (tmp != nullptr)return tmp;
-
-	////Effect
-	//tmp = std::move(GetPtr<CameraChange>(str));
-	//if (tmp != nullptr)return tmp;
-
-	//return nullptr;
 }
 
 #ifdef EditorMode
@@ -230,6 +168,44 @@ string IFE::ComponentHelp::GetComponentList()
 	ImguiManager::Instance()->Combo("component name", returnNum, items);
 	return items[returnNum];
 }
+
+std::vector<std::string> IFE::IPostEffectHelp::GetRegisteredClasses()
+{
+	// Collect all keys (class names) from the unordered_map
+	std::vector<std::string> classNames;
+	for (const auto& pair : creators_) {
+		classNames.push_back(pair.first);
+	}
+
+	// Sort the class names
+	std::sort(classNames.begin(), classNames.end());
+
+	return classNames;
+}
+
+std::vector<std::string> IFE::IPostEffectHelp::SearchClasses(const std::string& partialName)
+{
+	std::vector<std::string> matches;
+	std::string lowerPartialName = ToLower(partialName);
+	for (const auto& pair : creators_) {
+		if (ToLower(pair.first).find(lowerPartialName) != std::string::npos) {
+			matches.push_back(pair.first);
+		}
+	}
+	std::sort(matches.begin(), matches.end());
+	return matches;
+}
+
+std::string IFE::IPostEffectHelp::GetComponentList()
+{
+	static std::string search;
+	ImguiManager::Instance()->InputTextGUI(U8("åüçı"), search);
+	std::vector<std::string>items = IPostEffectHelp::SearchClasses(search);
+
+	static int32_t returnNum = 0;
+	ImguiManager::Instance()->Combo("posteffect name", returnNum, items);
+	return items[returnNum];
+}
 #endif
 
 template <class T>
@@ -262,7 +238,23 @@ void IFE::ComponentHelp::Register(const std::string& className, CreateFunc func)
 	creators_[className] = func;
 }
 
+void IFE::IPostEffectHelp::Register(const std::string& className, CreateFunc func)
+{
+	creators_[className] = func;
+}
+
 template<typename T>
 Component* CreateInstance() {
 	return new T();
+}
+
+IPostEffect* IFE::IPostEffectHelp::StringToPostEffect(const std::string& componentName)
+{
+	auto it = creators_.find(componentName);
+	if (it != creators_.end())
+	{
+		auto ptr = (it->second)();
+		return ptr;
+	}
+	return nullptr;
 }

@@ -43,6 +43,7 @@ namespace IFE
 		void PostEffectDrawBefore();
 		void PostEffectDrawAfter();
 #ifdef EditorMode
+		inline int16_t GetTexSize() { return texSize_; };
 		void DebugGUI();
 		virtual void PostEffectDebugGUI() {};
 #endif

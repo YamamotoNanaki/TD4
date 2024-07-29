@@ -232,6 +232,7 @@ void IFE::Scene::SceneInit()
 	cameraM_->LoadingScene();
 	lightM_->LoadingScene();
 	postEffectM_->Initialize();
+	postEffectM_->Loading();
 	effekseerM_->Loading();
 
 #ifdef InverseEditorMode
@@ -331,12 +332,15 @@ void IFE::Scene::LoadingScene()
 	cameraM_->Reset();
 	lightM_->Reset();
 	effekseerM_->Reset();
+	postEffectM_->Reset();
 	objM_->LoadingScene();
 	spriteM_->LoadingScene();
 	particleM->LoadingScene();
 	lightM_->LoadingScene();
 	cameraM_->LoadingScene();
 	effekseerM_->Loading();
+	postEffectM_->Initialize();
+	postEffectM_->Loading();
 
 #ifdef EditorMode
 	if (debug_)
@@ -380,6 +384,7 @@ void IFE::Scene::OutputScene()
 	//oldPostEffect->OutputScene();
 	lightM_->OutputScene();
 	effekseerM_->Output();
+	postEffectM_->Output();
 }
 #include "imgui.h"
 #include "Input.h"

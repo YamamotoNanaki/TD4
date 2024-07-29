@@ -15,7 +15,6 @@ void IFE::DefaultPostEffect::Initialize()
 {
 	name_ = "DefaultPostEffect";
 	gp_ = GraphicsPipelineManager::Instance()->CreateDefaultPostEffectPipeLine();
-	drawFlag_ = false;
 }
 
 void IFE::DefaultPostEffect::DrawBefore()

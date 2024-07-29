@@ -1,5 +1,11 @@
-{
-    "FFocus": 0.03999999910593033,
-    "FocusDepth": 0.07999999821186066,
-    "NFocus": 0.029999999329447746
-}
+[
+    {
+        "name": "RadialBlurPE"
+    },
+    {
+        "name": "EnemyHighlighting"
+    },
+    {
+        "name": "DronePostEffect"
+    }
+]

@@ -22,8 +22,8 @@ void IFE::IPostEffect::PostEffectInitialize()
 	HRESULT result;
 
 	ID3D12Device* device = GraphicsAPI::Instance()->GetDevice();
-	uint32_t w = WindowsAPI::Instance()->winWidth_;
-	uint32_t h = WindowsAPI::Instance()->winHeight_;
+	uint32_t w = 1920;
+	uint32_t h = 1080;
 
 	Sprite::Initialize();
 
@@ -128,8 +128,8 @@ void IFE::IPostEffect::PostEffectDrawBefore()
 
 	cmdList->OMSetRenderTargets(texSize_, rtvH.data(), false, &dsvH);
 
-	auto w = WindowsAPI::Instance()->winWidth_;
-	auto h = WindowsAPI::Instance()->winHeight_;
+	int32_t w = 1920;
+	int32_t h = 1080;
 
 	std::vector<CD3DX12_VIEWPORT> viewport;
 	std::vector<CD3DX12_RECT> rect;

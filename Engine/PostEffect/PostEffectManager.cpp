@@ -1,4 +1,5 @@
 #include "PostEffectManager.h"
+#include "ComponentHelp.h"
 
 //Œã‚ÅÁ‚¹
 #include "EnemyHighlighting.h"
@@ -13,9 +14,17 @@ PostEffectManager* IFE::PostEffectManager::Instance()
 	return &inst;
 }
 
+void IFE::PostEffectManager::Add(std::string name, uint16_t num = 1)
+{
+	auto ptr = IPostEffectHelp::StringToPostEffect(name);
+	ptr->SetInitParams(num);
+	ptr->PostEffectInitialize();
+	postEffects_.push_back(std::move(std::unique_ptr<IPostEffect>(std::move(ptr))));
+}
+
 void IFE::PostEffectManager::Draw()
 {
-	for (auto& itr : postEffects)
+	for (auto& itr : postEffects_)
 	{
 		itr->PostEffectDraw();
 	}
@@ -23,7 +32,7 @@ void IFE::PostEffectManager::Draw()
 
 void IFE::PostEffectManager::Update()
 {
-	for (auto& itr : postEffects)
+	for (auto& itr : postEffects_)
 	{
 		itr->PostEffectUpdate();
 	}
@@ -31,21 +40,10 @@ void IFE::PostEffectManager::Update()
 
 void IFE::PostEffectManager::Initialize()
 {
-	postEffects.push_back(std::move(std::make_unique<DefaultPostEffect>()));
-	defaultPE = postEffects.front().get();
+	postEffects_.push_back(std::move(std::make_unique<DefaultPostEffect>()));
+	defaultPE = postEffects_.front().get();
 	defaultPE->SetInitParams(2);
 	defaultPE->PostEffectInitialize();
-
-	postEffects.push_back(std::move(std::make_unique<RadialBlurPE>()));
-	postEffects.back()->PostEffectInitialize();
-
-	postEffects.push_back(std::move(std::make_unique<EnemyHighlighting>()));
-	postEffects.back()->SetInitParams(2);
-	postEffects.back()->PostEffectInitialize();
-
-	postEffects.push_back(std::move(std::make_unique<DronePostEffect>()));
-	postEffects.back()->SetInitParams(2);
-	postEffects.back()->PostEffectInitialize();
 }
 
 void IFE::PostEffectManager::ObjectDrawBefore()
@@ -60,7 +58,7 @@ void IFE::PostEffectManager::ObjectDrawAfter()
 
 void IFE::PostEffectManager::Reset()
 {
-	postEffects.clear();
+	postEffects_.clear();
 	defaultPE = nullptr;
 }
 
@@ -71,22 +69,63 @@ void IFE::PostEffectManager::Finalize()
 
 IPostEffect* IFE::PostEffectManager::GetPostEffect(std::string name)
 {
-	for (auto& itr : postEffects)
+	for (auto& itr : postEffects_)
 	{
 		if (itr->name_ == name)return itr.get();
 	}
 	return nullptr;
 }
 
+void IFE::PostEffectManager::Loading()
+{
+	JsonManager* jm = JsonManager::Instance();
+	jm->Input("PostEffectManager");
+	nlohmann::json js = jm->GetJsonData();
+	for (auto& j : js)
+	{
+		std::string name;
+		if (!jm->GetData(j, "name", name))continue;
+
+		auto ptr = IPostEffectHelp::StringToPostEffect(name);
+		if (!ptr)continue;
+		ptr->PostEffectInitialize();
+		postEffects_.push_back(std::move(std::unique_ptr<IPostEffect>(std::move(ptr))));
+	}
+}
+
 #ifdef EditorMode
 #include "ImguiManager.h"
+
+void IFE::PostEffectManager::Output()
+{
+	JsonManager* jm = JsonManager::Instance();
+	nlohmann::json& j = jm->GetJsonData();
+	uint32_t i = 0;
+	for (auto& itr : postEffects_)
+	{
+		if (itr->name_ == "DefaultPostEffect")continue;
+		j[i]["name"] = itr->name_;
+		i++;
+	}
+	jm->Output("PostEffectManager");
+}
+
 void IFE::PostEffectManager::DebugGUI()
 {
-	ImguiManager::Instance()->NewGUI("PostEffect");
-	for (auto& itr : postEffects)
+	auto gui = ImguiManager::Instance();
+	gui->NewGUI("PostEffect");
+	if (gui->CollapsingHeaderGUI(U8("’Ç‰Á")))
+	{
+		auto s = IPostEffectHelp::GetComponentList();
+		if (gui->ButtonGUI("Add"))
+		{
+			Add(s);
+		}
+	}
+	for (auto& itr : postEffects_)
 	{
 		itr->DebugGUI();
 	}
-	ImguiManager::Instance()->EndGUI();
+	gui->EndGUI();
 }
 #endif

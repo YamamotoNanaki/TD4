@@ -20,6 +20,7 @@ void IFE::Engine::Initialize()
 	Input::Initalize();
 	IFERand::Initialize();
 	ComponentHelp::StaticHelpInitialize();
+	IPostEffectHelp::StaticHelpInitialize();
 }
 
 void IFE::Engine::Run()

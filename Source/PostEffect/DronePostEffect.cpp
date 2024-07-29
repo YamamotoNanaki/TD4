@@ -17,6 +17,7 @@ void DronePostEffect::Initialize()
 	buff_->drone = false;
 	updateFlag_ = true;
 	droneFlag_ = false;
+	PostEffectManager::Instance()->GetDefaultPE()->drawFlag_ = false;
 }
 
 void DronePostEffect::Update()
@@ -32,7 +33,7 @@ void DronePostEffect::Update()
 	buff_->time = IFETime::sTime_;
 	PostEffectDrawBefore();
 	Sprite::DrawBefore();
-	PostEffectManager::Instance()->GetPostEffect("RadialBlur")->ForcedDraw();
+	PostEffectManager::Instance()->GetPostEffect("RadialBlurPE")->ForcedDraw();
 	PostEffectDrawAfter();
 }
 

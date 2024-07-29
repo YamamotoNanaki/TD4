@@ -9,8 +9,8 @@ namespace IFE
 {
 	class PostEffectManager
 	{
-		std::list<std::unique_ptr<IPostEffect>>postEffects;
-		IPostEffect* defaultPE;
+		std::list<std::unique_ptr<IPostEffect>>postEffects_;
+		IPostEffect* defaultPE = nullptr;
 	public:
 		PostEffectManager() {}
 		PostEffectManager(const PostEffectManager&) {}
@@ -18,6 +18,7 @@ namespace IFE
 		~PostEffectManager() {}
 		static PostEffectManager* Instance();
 
+		void Add(std::string name,uint16_t initParm);
 		void Draw();
 		void Update();
 		void Initialize();
@@ -28,7 +29,9 @@ namespace IFE
 		IPostEffect* GetPostEffect(std::string name);
 		inline IPostEffect* GetDefaultPE() { return defaultPE; };
 
+		void Loading();
 #ifdef EditorMode
+		void Output();
 		void DebugGUI();
 #endif
 	};
