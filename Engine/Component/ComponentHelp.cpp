@@ -43,6 +43,7 @@
 #include "GimmickTouch.h"
 #include "DronePostEffect.h"
 #include "EnemyHighlighting.h"
+#include "Blood.h"
 
 using namespace IFE;
 using namespace std;
@@ -100,6 +101,8 @@ void IFE::ComponentHelp::StaticHelpInitialize()
 	//ポーズ
 	Register("PoseMenu", &CreateInstance<PoseMenu>);
 	Register("Config", &CreateInstance<Config>);
+	//エフェクト
+	Register("Blood", &CreateInstance<Blood>);
 }
 
 template<typename T>

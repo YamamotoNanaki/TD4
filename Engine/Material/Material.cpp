@@ -60,6 +60,7 @@ void IFE::Material::Draw()
 bool IFE::Material::ChildDraw(std::string name, uint32_t meshNum)
 {
 	if (!this)return false;
+	if (childMaterials_.size() == 0)return false;
 	for (auto& itr : childMaterials_)
 	{
 		if (itr.first.name == name && itr.first.meshNum == meshNum)

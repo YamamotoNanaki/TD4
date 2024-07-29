@@ -12,21 +12,27 @@ void IFE::IFEEffekseer::Play(IFE::Float3 position, IFE::Float3 rotation, IFE::Fl
 	if (timeScaleFlag_)manager_->SetSpeed(h, IFETime::sTimeScale_ * timeOffset_);
 	else manager_->SetSpeed(h, timeOffset_);
 
-	playList_.push_back(std::make_pair(h, nullptr));
+	playList_.push_back(std::make_pair(h, TransformEffek()));
 	handles_->push_back(h);
 }
 
-void IFE::IFEEffekseer::Play(IFE::Float3* position, IFE::Float3 rotation, IFE::Float3 scale)
+void IFE::IFEEffekseer::Play(IFE::Float3* position, IFE::Float3* rotation, IFE::Float3* scale, Float3 startpos, Float3 startrot, Float3 startsca)
 {
 	Effekseer::Handle h = manager_->Play(effect_, 0, 0, 0);
 
-	manager_->SetLocation(h, position->x, position->y, position->z);
-	manager_->SetRotation(h, ConvertToRadians(rotation[0]), ConvertToRadians(rotation[1]), ConvertToRadians(rotation[2]));
-	manager_->SetScale(h, scale[0], scale[1], scale[2]);
+	if(position)manager_->SetLocation(h, position->x, position->y, position->z);
+	else manager_->SetLocation(h, startpos[0], startpos[1], startpos[2]);
+	if(rotation)manager_->SetRotation(h, ConvertToRadians(rotation->x), ConvertToRadians(rotation->y), ConvertToRadians(rotation->z));
+	else manager_->SetRotation(h, ConvertToRadians(startrot[0]), ConvertToRadians(startrot[1]), ConvertToRadians(startrot[2]));
+	if(scale)manager_->SetScale(h, scale->x, scale->y, scale->z);
+	else manager_->SetScale(h, startsca[0], startsca[1], startsca[2]);
 
 	if (timeScaleFlag_)manager_->SetSpeed(h, IFETime::sTimeScale_ * timeOffset_);
 	else manager_->SetSpeed(h, timeOffset_);
-	playList_.push_back(std::make_pair(h, nullptr));
+
+	TransformEffek tra = { position,rotation,scale };
+
+	playList_.push_back(std::make_pair(h, tra));
 	handles_->push_back(h);
 }
 
@@ -38,18 +44,20 @@ void IFE::IFEEffekseer::Update()
 		return;
 	}
 
-	playList_.remove_if([&](std::pair<Effekseer::Handle,Float3*> h) {
+	playList_.remove_if([&](std::pair<Effekseer::Handle, TransformEffek> h) {
 		return !manager_->Exists(h.first); });
 
-	for (auto itr : playList_)
+	for (auto& itr : playList_)
 	{
 		if (timeScaleFlag_)
 		{
 			manager_->SetSpeed(itr.first, IFETime::sTimeScale_ * timeOffset_);
 		}
-		if (itr.second)
+		if (itr.second.GetMoveFlag())
 		{
-			manager_->SetLocation(itr.first, itr.second->x, itr.second->y, itr.second->z);
+			if(itr.second.pos)manager_->SetLocation(itr.first, itr.second.pos->x, itr.second.pos->y, itr.second.pos->z);
+			if (itr.second.rot)SetRota(itr.first, *itr.second.rot);
+			if(itr.second.sca)manager_->SetScale(itr.first, itr.second.sca->x, itr.second.sca->y, itr.second.sca->z);
 		}
 	}
 }
@@ -111,3 +119,8 @@ void IFE::IFEEffekseer::DebugGUI()
 
 }
 #endif
+
+void IFE::IFEEffekseer::SetRota(Effekseer::Handle h, const Float3& rota)
+{
+	manager_->SetRotation(h, ConvertToRadians(rota[0]), ConvertToRadians(rota[1]), ConvertToRadians(rota[2]));
+}

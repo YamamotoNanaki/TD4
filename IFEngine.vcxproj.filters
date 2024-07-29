@@ -559,6 +559,9 @@
     <ClCompile Include="Source\UI\Clear.cpp">
       <Filter>ソース ファイル\Source\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Blood.cpp">
+      <Filter>ソース ファイル\Source\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -921,6 +924,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Particle\IFEEffekseer.h">
       <Filter>ヘッダー ファイル\Engine\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Blood.h">
+      <Filter>ヘッダー ファイル\Source\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

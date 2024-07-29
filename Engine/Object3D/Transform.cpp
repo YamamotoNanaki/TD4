@@ -15,8 +15,8 @@ void IFE::Transform::ParentBoneMatrix(Matrix& mat, Bone* bone)
 	{
 		return;
 	}
-	mat *= bone->finalMatrix;
 	ParentBoneMatrix(mat, bone->parent);
+	mat *= bone->finalMatrix;
 }
 
 void IFE::Transform::Initialize()
@@ -164,6 +164,7 @@ Vector3 Transform::GetWorldPosition()
 	Matrix rMat = matWorld_;
 	if (parent_)
 	{
+		ParentBoneMatrix(rMat, parentBone_);
 		parent_->UpdateMatrix();
 		rMat *= parent_->matWorld_;//e‚Ìs—ñ‚ğŠ|‚¯Z‚·‚é
 	}

@@ -14,9 +14,19 @@ namespace IFE
 {
 	class IFEEffekseer
 	{
+		struct TransformEffek
+		{
+			Float3* pos = nullptr;
+			Float3* rot = nullptr;
+			Float3* sca = nullptr;
+			inline bool GetMoveFlag()
+			{
+				return pos || rot || sca;
+			}
+		};
 		Effekseer::EffectRef effect_;
 		std::list<Effekseer::Handle>* handles_;
-		std::list<std::pair<Effekseer::Handle, Float3*>> playList_;
+		std::list<std::pair<Effekseer::Handle, TransformEffek>> playList_;
 		::Effekseer::ManagerRef manager_;
 		bool deleteFlag_ = false;
 		bool destroyFlag_ = false;
@@ -37,12 +47,15 @@ namespace IFE
 		/// <param name="scale">スケール</param>
 		void Play(IFE::Float3 position = { 0,0,0 }, IFE::Float3 rotation = { 0,0,0 }, IFE::Float3 scale = { 1,1,1 });
 		/// <summary>
-		/// ポジションに追従するエフェクトを再生する関数
+		/// 追従するエフェクトを再生する関数
 		/// </summary>
 		/// <param name="position">追従するポジション</param>
-		/// <param name="rotation">回転、度数法</param>
-		/// <param name="scale">スケール</param>
-		void Play(IFE::Float3* position, IFE::Float3 rotation = { 0,0,0 }, IFE::Float3 scale = { 1,1,1 });
+		/// <param name="rotation">追従する回転、度数法</param>
+		/// <param name="scale">追従するスケール</param>
+		/// <param name="startpos">posがnullの時のpos</param>
+		/// <param name="startrot">rotがnullの時のrot</param>
+		/// <param name="startsca">scaがnullの時のsca</param>
+		void Play(IFE::Float3* position, IFE::Float3* rotation, IFE::Float3* scale, Float3 startpos = {0,0,0},Float3 startrot = { 0,0,0 },Float3 startsca = { 1,1,1 });
 		void Update();
 		void Initiaize(::Effekseer::ManagerRef manager, Effekseer::EffectRef effect, std::list<Effekseer::Handle>* handle);
 		void Destroy();
@@ -53,5 +66,8 @@ namespace IFE
 #ifdef EditorMode
 		void DebugGUI();
 #endif
+
+	private:
+		void SetRota(Effekseer::Handle h, const Float3& rota);
 	};
 }
