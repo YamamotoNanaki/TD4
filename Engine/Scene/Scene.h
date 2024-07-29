@@ -20,7 +20,7 @@ namespace IFE
 	class Scene final
 	{
 	private:
-		GraphicsPipelineManager* gp_=GraphicsPipelineManager::Instance();
+		GraphicsPipelineManager* gp_ = GraphicsPipelineManager::Instance();
 		TextureManager* tex_ = TextureManager::Instance();
 		LightManager* lightM_ = LightManager::Instance();
 		Sound* sound_ = Sound::Instance();
@@ -48,6 +48,7 @@ namespace IFE
 		void PostEffectDraw();
 		void Draw();
 		void SetNextScene(const std::string& nextScene);
+		inline std::string GetNowScene() { return nowScene_; };
 
 	public:
 		static Scene* Instance();
