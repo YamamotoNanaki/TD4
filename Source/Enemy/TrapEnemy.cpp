@@ -295,11 +295,11 @@ void IFE::TrapEnemy::LookAt()
 	frontVec = lookfor - ePos;
 	frontVec = frontVec.Normalize();
 	frontVec *= Vector3(1, 0, 1);
-	if (state != ATTACK) {
+	if (state == CHASE || state == SEARCH || state == WARNING || isOneShot == false) {
 		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
 		float radY = std::atan2(frontVec.x, frontVec.z);
 		float targetAngle = ((radY * 180.0f) / (float)PI);
-		ApproachTarget(transform_->rotation_.y, targetAngle, 1.0f);
+		ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
 	}
 }
 

@@ -111,8 +111,8 @@ void IFE::BaseEnemy::OneShot()
 {
 	if (isHit_ == false) {
 		ani_->SetAnimation("downFront");
-		hp_ -= hp_;
 		decHp_ = hp_;
+		hp_ -= hp_;
 		hitTime_ = HIT_COOLTIME;
 		isHit_ = true;
 	}

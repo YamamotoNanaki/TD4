@@ -38,7 +38,7 @@ namespace IFE {
 		float deadTime= 0;
 		bool isHit_;
 		bool isOneShot;
-		bool isKilled = false;
+		bool isDead = false;
 		float hitTime_;
 		//アニメーション
 		IFE::Animator* ani_ = nullptr;
