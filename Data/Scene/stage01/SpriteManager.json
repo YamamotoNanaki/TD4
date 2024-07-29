@@ -801,6 +801,7 @@
                     0.016200006008148193
                 ]
             },
+            "DeathAnimation": null,
             "Transform2D": {
                 "position": [
                     960.0,
@@ -814,7 +815,8 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer"
+                "ColorBuffer",
+                "DeathAnimation"
             ],
             "name": "fade",
             "order": 0,

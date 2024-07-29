@@ -43,6 +43,7 @@
 #include "GimmickTouch.h"
 #include "DronePostEffect.h"
 #include "EnemyHighlighting.h"
+#include"DeathAnimation.h"
 
 using namespace IFE;
 using namespace std;
@@ -100,6 +101,8 @@ void IFE::ComponentHelp::StaticHelpInitialize()
 	//ƒ|[ƒY
 	Register("PoseMenu", &CreateInstance<PoseMenu>);
 	Register("Config", &CreateInstance<Config>);
+	//€‚ñ‚¾Œã‚Ìˆ—
+	Register("DeathAnimation", &CreateInstance<DeathAnimation>);
 }
 
 template<typename T>

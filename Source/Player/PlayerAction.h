@@ -8,6 +8,7 @@
 #include"PlayerActionCamera.h"
 #include"EnemyManager.h"
 #include"Animator.h"
+#include"DeathAnimation.h"
 
 class PlayerAction : public IFE::Component
 {
@@ -82,12 +83,8 @@ private:
 	float slowEaseTime_;
 	bool slowFlag_ = false;
 
-	//死亡関連
 	bool deathAnimationFlag_ = false;
-	float dethaAnimationTime_ = 0.0f;
-	bool deathFadeAnimationFlag_ = false;
-	float deathFadeAnimationTime_ = 0.0f;
-	const float maxDeathFadeAnimationTime_ = 1.0f;
+	DeathAnimation* deathAnimation_ = nullptr;
 
 public:
 
@@ -120,8 +117,6 @@ public:
 	/// Playerクラスで呼ぶ操作全般更新処理
 	/// </summary>
 	void MoveUpdate();
-
-	void Fade();
 
 	/// <summary>
 	/// positionの取得
