@@ -68,7 +68,7 @@ void DeathAnimation::Select()
 		}
 		else
 		{
-			//IFE::Scene::Instance()->SetNextScene(IFE::Scene::Instance()->GetSceneName());
+			IFE::Scene::Instance()->SetNextScene(IFE::Scene::Instance()->GetSceneName());
 		}
 	}
 

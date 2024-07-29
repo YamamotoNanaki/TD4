@@ -48,7 +48,7 @@ void PlayerAction::Initialize()
 
 void PlayerAction::Update()
 {
-	if (ani_->GetAnimation() == "damage"|| ani_->GetAnimation() == "squatDamage"||ani_->GetAnimation() == "downFront"|| ani_->GetAnimation() == "downBack")
+	if (ani_->GetAnimation() == "damage" || ani_->GetAnimation() == "squatDamage" || ani_->GetAnimation() == "downFront" || ani_->GetAnimation() == "downBack")
 	{
 		ani_->loop_ = false;
 	}
@@ -57,7 +57,7 @@ void PlayerAction::Update()
 		ani_->loop_ = true;
 	}
 
-	if (deathAnimationFlag_ == false&& ani_->animEnd_ == false)
+	if (deathAnimationFlag_ == false && ani_->animEnd_ == false)
 	{
 		//hitcool
 		if (isHit_ == true)
@@ -106,7 +106,7 @@ void PlayerAction::Update()
 		}
 	}
 
-	if ((ani_->GetAnimation() == "downFront" || ani_->GetAnimation() == "downBack") && ani_->animEnd_ == true)
+	if (hp_ <= 0.8f && ani_->animEnd_ == true)
 	{
 		deathAnimation_->SetDeathAnimationFlag(true);
 	}
@@ -137,7 +137,7 @@ void PlayerAction::DecHp(bool isBack_)
 		{
 			if (crouchFlag_ == false)
 			{
-				ani_->SetAnimation("damage",false);
+				ani_->SetAnimation("damage", false);
 			}
 			else
 			{
@@ -229,8 +229,8 @@ void PlayerAction::Move()
 	{
 		transform_->position_ -= frontVec_ * moveSpeed_ * IFE::IFETime::sDeltaTime_;
 	}
-	if (IFE::Input::GetKeyPush(IFE::Key::W)|| IFE::Input::GetKeyPush(IFE::Key::A)||
-		IFE::Input::GetKeyPush(IFE::Key::S)|| IFE::Input::GetKeyPush(IFE::Key::D)) {
+	if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) ||
+		IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D)) {
 		if (!IFE::Sound::Instance()->GetPlayStatus("walk")) {
 			IFE::Sound::Instance()->SoundPlay("walk", false, true);
 		}
@@ -418,7 +418,7 @@ void PlayerAction::Attack()
 			nowGameTimeScale_ = 1;
 			if (crouchFlag_ == false)
 			{
-				if ((IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)||IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D))
+				if ((IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f) || IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D))
 				{
 					ani_->SetAnimation("walk");
 				}
@@ -429,7 +429,7 @@ void PlayerAction::Attack()
 			}
 			else
 			{
-				if ((IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)||IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D))
+				if ((IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f) || IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D))
 				{
 					ani_->SetAnimation("squatWalk");
 				}
@@ -451,7 +451,7 @@ void PlayerAction::SlowMotion()
 {
 	if (slowFlag_)
 	{
-		if (attackTimer_ >= 0.6 && slowEaseTime_< 0.3)
+		if (attackTimer_ >= 0.6 && slowEaseTime_ < 0.3)
 		{
 			slowEaseTime_ += min(IFE::IFETime::sNoScaleDeltaTime_, 0.3f);
 			nowGameTimeScale_ = IFE::EaseOutCirc(slowEaseTime_, 1, minSlowSpeed_, 0.3f);
@@ -521,7 +521,7 @@ void PlayerAction::AutoAim()
 	{
 		IFE::Vector3 frontVec = closestEnemy->transform_->position_ - transform_->transform_->position_;
 		playerAttack_->objectPtr_->transform_->position_ =
-		{	transform_->position_.x + frontVec.x,
+		{ transform_->position_.x + frontVec.x,
 			transform_->position_.y + frontVec.y,
 			transform_->position_.z + frontVec.z
 		};
