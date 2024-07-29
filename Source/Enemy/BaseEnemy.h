@@ -131,6 +131,7 @@ namespace IFE {
 		inline float GetDroneHitDistance() { return droneHitDistance_; }
 		const IFE::Vector2 GetPos();
 		const bool GetIsOneShot();
+		const bool GetIsDead() { return isDead; }
 		void SetisOneShot(bool isOne);
 		void SetMotion(std::string name);
 		const bool GetBack(float judge);

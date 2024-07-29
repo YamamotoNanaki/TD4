@@ -150,14 +150,12 @@ void IFE::NormalEnemy::EnemyUpdate()
 		{
 			transform_->position_.y -= 4.9f * IFETime::sDeltaTime_;
 		}
-		if (IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetHP() == 0) {
-			state = SEARCH;
-		}
 	}
 	ChangeState();
 	if (state != DEAD) {
 		if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetHP() == 0) {
 			state = SEARCH;
+			ani_->SetAnimation("walk",false);
 		}
 	}
 	//Ž€–S

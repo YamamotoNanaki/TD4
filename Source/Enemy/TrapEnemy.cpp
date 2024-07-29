@@ -12,7 +12,7 @@
 
 void IFE::TrapEnemy::Initialize()
 {
-	state = CHASE;
+	state = SEARCH;
 	preState = state;
 	trapPos = { 0,0,0 };
 	attackTime = 0;
@@ -48,7 +48,8 @@ void IFE::TrapEnemy::Initialize()
 
 void IFE::TrapEnemy::ChangeState()
 {
-	if (hp_ <= 0 && state != DEAD) {
+	if (hpUI->GetIsDead() == true && state != DEAD) {
+		ani_->loop_ = false;
 		if (isOneShot) {
 			isOneShot = false;
 			ani_->SetAnimation("downFront", false);
@@ -58,49 +59,68 @@ void IFE::TrapEnemy::ChangeState()
 		}
 		state = DEAD;
 	}
-	if (!isOneShot) {
-		//UŒ‚‚ÍÅ—Dæ
-		switch (state)
-		{
-		case IFE::BaseEnemy::WARNING:
+	//UŒ‚‚ÍÅ—Dæ
+	switch (state)
+	{
+	case IFE::BaseEnemy::SEARCH:
+		if (!isOneShot) {
+			/*if (!IFE::Sound::Instance()->GetPlayStatus("walk")) {
+			IFE::Sound::Instance()->SoundPlay("walk", false, true);
+			}*/
+			status_->objectPtr_->DrawFlag_ = false;
+			Search();
+		}
+		break;
+	case IFE::BaseEnemy::WARNING:
+		if (!isOneShot) {
 			//Œx‰úó‘Ô‚ÌUI‚É•ÏX
 			status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("eye"));
 			status_->objectPtr_->DrawFlag_ = true;
 			Warning();
-			break;
-		case IFE::BaseEnemy::CHASE:
+		}
+		break;
+	case IFE::BaseEnemy::CHASE:
+		if (!isOneShot) {
+			/*if (!IFE::Sound::Instance()->GetPlayStatus("walk")) {
+			 IFE::Sound::Instance()->SoundPlay("walk", false, true);
+			}*/
 			//’ÇÕó‘Ô‚ÌUI‚É•ÏX
 			status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("exclamation"));
 			status_->objectPtr_->DrawFlag_ = true;
 			Chase();
-			break;
-		case IFE::BaseEnemy::ATTACK:
+		}
+		break;
+	case IFE::BaseEnemy::ATTACK:
+		if (!isOneShot) {
 			if (isChaseDrone == true) {
 				Shot();
 			}
 			else {
 				Attack();
 			}
-			break;
-		case IFE::BaseEnemy::DEAD:
-			deadTime += 100 * IFE::IFETime::sDeltaTime_;
-			if (deadTime >= 150) {
+		}
+		break;
+	case IFE::BaseEnemy::DEAD:
+		deadTime += IFE::IFETime::sDeltaTime_;
+		if (deadTime >= 2.0f) {
+			if (!isDead) {
 				hpUI->objectPtr_->Destroy();
 				status_->objectPtr_->Destroy();
 				enemyAttack->objectPtr_->Destroy();
-				objectPtr_->Destroy();
+				isDead = true;
+				objectPtr_->GetComponent<Collider>()->GetCollider(1)->active_ = false;
 			}
-			break;
-		default:
-			break;
 		}
+		break;
+	default:
+		break;
 	}
 }
 
 void IFE::TrapEnemy::EnemyUpdate()
 {
-	if (hpUI->GetIsDead() == true) {
-		hpUI->objectPtr_->DrawFlag_ = false;
+	if (hp_ <= 0) {
+		status_->objectPtr_->DrawFlag_ = false;
 	}
 	if (state != DEAD) {
 		if (state != WAIT) {
@@ -128,6 +148,7 @@ void IFE::TrapEnemy::EnemyUpdate()
 	if (state != DEAD) {
 		if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetHP() == 0) {
 			state = SEARCH;
+			ani_->SetAnimation("walk", false);
 		}
 	}
 }
