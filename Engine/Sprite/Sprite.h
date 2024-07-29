@@ -18,7 +18,7 @@ namespace IFE
 		bool deleteFlag_ = false;
 		static GraphicsPipeline* gp_;
 
-	protected:
+	public:
 		//oldPostEffect—p ‰¼‚Éprotected
 		VertexBuffer<Vertex2D> vb_;
 
@@ -59,7 +59,7 @@ namespace IFE
 
 #ifdef InverseEditorMode
 #else
-		virtual void DebugGUI(bool fdelete, std::string* str,bool back);
+		virtual void DebugGUI(bool fdelete, std::string* str, bool back);
 		void ComponentGUI();
 		void DebugUpdate();
 		void OutputScene(nlohmann::json& j);

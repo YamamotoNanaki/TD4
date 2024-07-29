@@ -9,8 +9,8 @@ namespace IFE
 {
 	class PostEffectManager
 	{
-		std::list<std::unique_ptr<IPostEffect>>postEffects;
-		IPostEffect* defaultPE;
+		std::list<std::unique_ptr<IPostEffect>>postEffects_;
+		IPostEffect* defaultPE = nullptr;
 	public:
 		PostEffectManager() {}
 		PostEffectManager(const PostEffectManager&) {}

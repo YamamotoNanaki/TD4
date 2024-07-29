@@ -19,12 +19,12 @@ void IFE::PostEffectManager::Add(std::string name, uint16_t num = 1)
 	auto ptr = IPostEffectHelp::StringToPostEffect(name);
 	ptr->SetInitParams(num);
 	ptr->PostEffectInitialize();
-	postEffects.push_back(std::make_unique<IPostEffect>(ptr));
+	postEffects_.push_back(std::move(std::unique_ptr<IPostEffect>(std::move(ptr))));
 }
 
 void IFE::PostEffectManager::Draw()
 {
-	for (auto& itr : postEffects)
+	for (auto& itr : postEffects_)
 	{
 		itr->PostEffectDraw();
 	}
@@ -32,7 +32,7 @@ void IFE::PostEffectManager::Draw()
 
 void IFE::PostEffectManager::Update()
 {
-	for (auto& itr : postEffects)
+	for (auto& itr : postEffects_)
 	{
 		itr->PostEffectUpdate();
 	}
@@ -40,8 +40,8 @@ void IFE::PostEffectManager::Update()
 
 void IFE::PostEffectManager::Initialize()
 {
-	postEffects.push_back(std::move(std::make_unique<DefaultPostEffect>()));
-	defaultPE = postEffects.front().get();
+	postEffects_.push_back(std::move(std::make_unique<DefaultPostEffect>()));
+	defaultPE = postEffects_.front().get();
 	defaultPE->SetInitParams(2);
 	defaultPE->PostEffectInitialize();
 }
@@ -58,7 +58,7 @@ void IFE::PostEffectManager::ObjectDrawAfter()
 
 void IFE::PostEffectManager::Reset()
 {
-	postEffects.clear();
+	postEffects_.clear();
 	defaultPE = nullptr;
 }
 
@@ -69,7 +69,7 @@ void IFE::PostEffectManager::Finalize()
 
 IPostEffect* IFE::PostEffectManager::GetPostEffect(std::string name)
 {
-	for (auto& itr : postEffects)
+	for (auto& itr : postEffects_)
 	{
 		if (itr->name_ == name)return itr.get();
 	}
@@ -79,19 +79,17 @@ IPostEffect* IFE::PostEffectManager::GetPostEffect(std::string name)
 void IFE::PostEffectManager::Loading()
 {
 	JsonManager* jm = JsonManager::Instance();
-	jm->Input("EffekserManager");
+	jm->Input("PostEffectManager");
 	nlohmann::json js = jm->GetJsonData();
 	for (auto& j : js)
 	{
 		std::string name;
 		if (!jm->GetData(j, "name", name))continue;
 
-		int16_t num;
-		if (!jm->GetData(j, "initParam", num))continue;
-
 		auto ptr = IPostEffectHelp::StringToPostEffect(name);
-		ptr->SetInitParams(num);
+		if (!ptr)continue;
 		ptr->PostEffectInitialize();
+		postEffects_.push_back(std::move(std::unique_ptr<IPostEffect>(std::move(ptr))));
 	}
 }
 
@@ -103,13 +101,13 @@ void IFE::PostEffectManager::Output()
 	JsonManager* jm = JsonManager::Instance();
 	nlohmann::json& j = jm->GetJsonData();
 	uint32_t i = 0;
-	for (auto& itr : postEffects)
+	for (auto& itr : postEffects_)
 	{
+		if (itr->name_ == "DefaultPostEffect")continue;
 		j[i]["name"] = itr->name_;
-		j[i]["initParam"] = itr->GetTexSize();
 		i++;
 	}
-	jm->Output("EffekserManager");
+	jm->Output("PostEffectManager");
 }
 
 void IFE::PostEffectManager::DebugGUI()
@@ -119,14 +117,12 @@ void IFE::PostEffectManager::DebugGUI()
 	if (gui->CollapsingHeaderGUI(U8("’Ç‰Á")))
 	{
 		auto s = IPostEffectHelp::GetComponentList();
-		int32_t num;
-		gui->DragIntGUI(&num, "output texture num", 1, 1);
 		if (gui->ButtonGUI("Add"))
 		{
-			Add(s, uint16_t(num));
+			Add(s);
 		}
 	}
-	for (auto& itr : postEffects)
+	for (auto& itr : postEffects_)
 	{
 		itr->DebugGUI();
 	}

@@ -12,6 +12,7 @@ using namespace std;
 
 void EnemyHighlighting::Initialize()
 {
+	SetInitParams(2);
 	name_ = "EnemyHighlighting";
 	gp_ = GraphicsPipelineManager::Instance()->CreatePostEffectPipeLine("EnemyHighlightingVS", "EnemyHighlightingPS", "EnemyHighlighting", 2, 1);
 	enemyJuge = GraphicsPipelineManager::Instance()->CreateObjectGraphicsPipeLine("EnemyJudgeVS", "EnemyJudgeGS", "EnemyJudgePS", "EnemyJudge", 1, 1, 2);

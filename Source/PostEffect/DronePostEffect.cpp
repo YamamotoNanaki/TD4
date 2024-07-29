@@ -17,6 +17,7 @@ void DronePostEffect::Initialize()
 	buff_->drone = false;
 	updateFlag_ = true;
 	droneFlag_ = false;
+	PostEffectManager::Instance()->GetDefaultPE()->drawFlag_ = false;
 }
 
 void DronePostEffect::Update()

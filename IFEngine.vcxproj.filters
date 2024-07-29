@@ -232,6 +232,9 @@
     <Filter Include="ヘッダー ファイル\Source\Scene">
       <UniqueIdentifier>{034380c2-6c3a-40cf-b397-d708cac51382}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Source\Scene">
+      <UniqueIdentifier>{f768ab6c-a13c-424c-8d3e-676c72bf760f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp">
@@ -529,15 +532,6 @@
     <ClCompile Include="Engine\PostEffect\RadialBlurPE.cpp">
       <Filter>ソース ファイル\Engine\PostEffect</Filter>
     </ClCompile>
-    <ClCompile Include="Source\UI\Title.cpp">
-      <Filter>ソース ファイル\Engine\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UI\Clear.cpp">
-      <Filter>ソース ファイル\Engine\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UI\Over.cpp">
-      <Filter>ソース ファイル\Engine\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\StageGimmick\SwitchObject.cpp">
       <Filter>ソース ファイル\Source\StageGimmick</Filter>
     </ClCompile>
@@ -555,6 +549,15 @@
     </ClCompile>
     <ClCompile Include="Engine\Particle\IFEEffekseer.cpp">
       <Filter>ソース ファイル\Engine\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\Title.cpp">
+      <Filter>ソース ファイル\Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\Over.cpp">
+      <Filter>ソース ファイル\Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\Clear.cpp">
+      <Filter>ソース ファイル\Source\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

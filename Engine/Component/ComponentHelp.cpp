@@ -2,6 +2,7 @@
 #include "StringUtil.h"
 #include "Component.h"
 #include "IPostEffect.h"
+#include "DefaultPostEffect.h"
 #include "RadialBlurPE.h"
 #include "Transform.h"
 #include "TransferGeometryBuffer.h"
@@ -109,6 +110,7 @@ static IPostEffect* CreatePostEffectInstance()
 
 void IFE::IPostEffectHelp::StaticHelpInitialize()
 {
+	Register("DefaultPostEffect", &CreatePostEffectInstance<DefaultPostEffect>);
 	Register("RadialBlurPE", &CreatePostEffectInstance<RadialBlurPE>);
 	Register("DronePostEffect", &CreatePostEffectInstance<DronePostEffect>);
 	Register("EnemyHighlighting", &CreatePostEffectInstance<EnemyHighlighting>);
