@@ -23,7 +23,7 @@ void PlayerAction::Initialize()
 	playerHp_ = hpPtr;
 	playerHp_->SetHp(hp_);
 
-	auto deathPtr = IFE::SpriteManager::Instance()->GetSpritePtr("fade")->GetComponent<DeathAnimation>();
+	auto deathPtr = IFE::SpriteManager::Instance()->GetSpritePtr("gameOverFade")->GetComponent<DeathAnimation>();
 	deathAnimation_ = deathPtr;
 
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("PlayerAttack", IFE::ModelManager::Instance()->GetModel("dice"));
@@ -106,7 +106,7 @@ void PlayerAction::Update()
 		}
 	}
 
-	if (hp_ <= 0.8f && ani_->animEnd_ == true)
+	if (hp_ <= 0)
 	{
 		deathAnimation_->SetDeathAnimationFlag(true);
 	}

@@ -818,7 +818,7 @@
                 "ColorBuffer",
                 "DeathAnimation"
             ],
-            "name": "fade",
+            "name": "gameOverFade",
             "order": 0,
             "texture": "white.png"
         }

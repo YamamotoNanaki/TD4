@@ -5,6 +5,7 @@
 
 void DeathAnimation::Initialize()
 {
+	spritePtr_->order_ = 254;
 }
 
 void DeathAnimation::Update()
@@ -38,7 +39,7 @@ void DeathAnimation::Fade()
 	{
 		if (deathFadeAnimationTime_ < maxDeathFadeAnimationTime_)
 		{
-			IFE::SpriteManager::Instance()->GetSpritePtr("fade")->GetComponent<IFE::ColorBuffer>()->SetAlpha(IFE::EaseInBack(0.0f, 0.75f, maxDeathFadeAnimationTime_, deathFadeAnimationTime_));
+			IFE::SpriteManager::Instance()->GetSpritePtr("gameOverFade")->GetComponent<IFE::ColorBuffer>()->SetAlpha(IFE::EaseInBack(0.0f, 0.75f, maxDeathFadeAnimationTime_, deathFadeAnimationTime_));
 		}
 		else
 		{

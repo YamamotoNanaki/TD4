@@ -15,7 +15,7 @@ private:
 	float dethaAnimationTime_ = 0.0f;
 	bool deathFadeAnimationFlag_ = false;
 	float deathFadeAnimationTime_ = 0.0f;
-	const float maxDeathFadeAnimationTime_ = 1.0f;
+	const float maxDeathFadeAnimationTime_ = 2.0f;
 
 	//‘I‘ð
 	bool isContinue_ = true;
