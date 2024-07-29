@@ -48,7 +48,7 @@ namespace IFE
 		void PostEffectDraw();
 		void Draw();
 		void SetNextScene(const std::string& nextScene);
-		inline std::string GetNowScene() { return nowScene_; };
+		inline std::string GetSceneName() { return nowScene_; };
 
 	public:
 		static Scene* Instance();
