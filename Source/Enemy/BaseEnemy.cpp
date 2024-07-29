@@ -72,6 +72,11 @@ void IFE::BaseEnemy::ApproachTarget(float& current, float target, float step)
 	}
 }
 
+float IFE::BaseEnemy::GetLen()
+{
+	return 0.0f;
+}
+
 void IFE::BaseEnemy::SetSound()
 {
 	IFE::Sound::Instance()->LoadWave("attack");

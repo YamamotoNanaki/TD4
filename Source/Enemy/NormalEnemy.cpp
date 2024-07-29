@@ -252,7 +252,6 @@ void IFE::NormalEnemy::Chase()
 			state = ATTACK;
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
-			IFE::Sound::Instance()->SoundPlay("attack", false, true);
 			ani_->loop_ = false;
 			ani_->SetAnimation("knifeAttack");
 			frontVec = target - ePos;
@@ -295,6 +294,9 @@ void IFE::NormalEnemy::Chase()
 void IFE::NormalEnemy::Attack()
 {
 	attackTime += IFE::IFETime::sDeltaTime_;
+	if (attackTime > 0.6 && attackTime < 0.8f) {
+		IFE::Sound::Instance()->SoundPlay("attack", false, true);
+	}
 	if (attackTime > 0.8f - IFE::IFETime::sDeltaTime_) {
 		isAttack = true;
 	}
@@ -343,6 +345,7 @@ void IFE::NormalEnemy::Killed() {
 	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
 	transform_->position_ = pPos + (addVec);
 	transform_->rotation_ = rot;
+	isKilled = true;
 	status_->objectPtr_->DrawFlag_ = false;
 	ani_->SetAnimation("standBy",false);
 }
@@ -353,7 +356,7 @@ void IFE::NormalEnemy::LookAt()
 	frontVec = lookfor - ePos;
 	frontVec = frontVec.Normalize();
 	frontVec *= Vector3(1, 0, 1);
-	if (state == CHASE || state == SEARCH || state == WARNING) {
+	if (state == CHASE || state == SEARCH || state == WARNING || isKilled == false) {
 		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄY²‚Ì‰ñ“]
 		float radY = std::atan2(frontVec.x, frontVec.z);
 		float targetAngle = ((radY * 180.0f) / (float)PI);

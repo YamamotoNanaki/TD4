@@ -38,6 +38,7 @@ namespace IFE {
 		float deadTime= 0;
 		bool isHit_;
 		bool isOneShot;
+		bool isKilled = false;
 		float hitTime_;
 		//アニメーション
 		IFE::Animator* ani_ = nullptr;
@@ -115,6 +116,8 @@ namespace IFE {
 		/// <param name="target"></param>
 		/// <param name="step"></param>
 		void ApproachTarget(float& current, float target, float step);
+
+		float GetLen();
 
 		/// <summary>
 		/// コライダーの処理

@@ -193,8 +193,10 @@ void IFE::TrapEnemy::Chase()
 			state = ATTACK;
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
-			IFE::Sound::Instance()->SoundPlay("attack", false, true);
+			ani_->loop_ = false;
 			ani_->SetAnimation("knifeAttack");
+			frontVec = target - ePos;
+			frontVec = frontVec.Normalize();
 			enemyAttack->SetIsBack(GetBack(0.9f));
 			float radY = std::atan2(frontVec.x, frontVec.z);
 			float targetAngle = ((radY * 180.0f) / (float)PI);
@@ -222,24 +224,28 @@ void IFE::TrapEnemy::Chase()
 			warningTime += 100 * IFE::IFETime::sDeltaTime_;
 		}
 	}
-	if (warningTime >= 150) {
+	if (warningTime >= 60) {
 		warningTime = 50;
 		state = WARNING;
+		/*IFE::Sound::Instance()->SoundPlay("what", false, true);*/
 		ani_->SetAnimation("search");
 	}
 }
 
 void IFE::TrapEnemy::Attack()
 {
-	attackTime += 100 * IFE::IFETime::sDeltaTime_;
-	if (attackTime >= 100 && !isAttack) {
+	attackTime += IFE::IFETime::sDeltaTime_;
+	if (attackTime > 0.6 && attackTime < 0.8f) {
+		IFE::Sound::Instance()->SoundPlay("attack", false, true);
+	}
+	if (attackTime > 0.8f - IFE::IFETime::sDeltaTime_) {
 		isAttack = true;
 	}
 
-	if (attackTime >= 200) {
+	if (attackTime > 2.0f) {
 		attackTime = 0;
 		isAttack = false;
-		state = CHASE;
+		state = SEARCH;
 		ani_->SetAnimation("walk");
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
