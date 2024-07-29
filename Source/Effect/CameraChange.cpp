@@ -43,6 +43,7 @@ void CameraChange::Add()
 	s->transform_->scale2D_ = { 0,0 };
 	s->transform_->position2D_ = { x,y };
 	s->transform_->rotation2D_ = 45;
+	s->order_ = 253;
 	sprite_.push_back(s);
 }
 
@@ -61,7 +62,6 @@ void CameraChange::UpdateEnd()
 	{
 		sprite_[i]->Destroy();
 	}
-	sprite_.resize(1);
 	sprite_[0]->transform_->scale2D_ = { float(WindowsAPI::Instance()->winWidth_ / 2),float(WindowsAPI::Instance()->winHeight_ / 2) };
 	sprite_[0]->transform_->position2D_ = { float(WindowsAPI::Instance()->winWidth_ / 2),float(WindowsAPI::Instance()->winHeight_ / 2) };
 	sprite_[0]->transform_->rotation2D_ = 0;

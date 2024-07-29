@@ -49,7 +49,7 @@ void IFE::NormalEnemy::Initialize()
 
 void IFE::NormalEnemy::ChangeState()
 {
-	if (hpUI->GetIsDead() == true && state != DEAD) {
+	if ((!hpUI || hpUI->GetIsDead() == true) && state != DEAD) {
 		ani_->loop_ = false;
 		if (isOneShot) {
 			isOneShot = false;
@@ -114,6 +114,9 @@ void IFE::NormalEnemy::ChangeState()
 				hpUI->objectPtr_->Destroy();
 				status_->objectPtr_->Destroy();
 				enemyAttack->objectPtr_->Destroy();
+				hpUI = nullptr;
+				status_ = nullptr;
+				enemyAttack = nullptr;
 				isDead = true;
 				objectPtr_->GetComponent<Collider>()->GetCollider(1)->active_ = false;
 			}
@@ -126,9 +129,9 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::EnemyUpdate()
 {
-	if (hp_ <= 0) {
-		status_->objectPtr_->DrawFlag_ = false;
-	}
+	//if (hp_ <= 0) {
+	//	status_->objectPtr_->DrawFlag_ = false;
+	//}
 	if (state != DEAD) {
 		if (state != WAIT) {
 			LookAt();
