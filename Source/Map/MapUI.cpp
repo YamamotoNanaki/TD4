@@ -254,27 +254,30 @@ void MapUI::RotationMapUpdate()
 		}
 		else if (itr->GetObjectName().find("normalEnemy") != std::string::npos)
 		{
-			//Ž©‹@‚Æ“G‚Æ‚ÌˆÊ’u‚Ì·
-			IFE::Vector2 difference = { pos.x - itr->objectPtr_->transform_->position_.x,
-				itr->objectPtr_->transform_->position_.z - pos.y };
+			if (!itr->GetComponent<IFE::NormalEnemy>()->GetIsDead()) {
+				//Ž©‹@‚Æ“G‚Æ‚ÌˆÊ’u‚Ì·
+				IFE::Vector2 difference = { pos.x - itr->objectPtr_->transform_->position_.x,
+					itr->objectPtr_->transform_->position_.z - pos.y };
 
-			//Ž©‹@‚Æ“G‚Æ‚Ì‹——£‚ÌŽZo
-			float length = sqrt(difference.x * difference.x + difference.y * difference.y);
+				//Ž©‹@‚Æ“G‚Æ‚Ì‹——£‚ÌŽZo
+				float length = sqrt(difference.x * difference.x + difference.y * difference.y);
 
-			enemySprite_[enemyCount].first->drawFlag_ = false;
+				enemySprite_[enemyCount].first->drawFlag_ = false;
 
-			enemySprite_[enemyCount].first->transform_->position2D_ = { transform2D_->position2D_.x + difference.x * cosf(angle) + difference.y * sinf(angle),transform2D_->position2D_.y + difference.y * cosf(angle) - difference.x * sinf(angle) };
-			enemySprite_[enemyCount].first->transform_->rotation2D_ = (itr->objectPtr_->transform_->rotation_.y + degrees);
-			enemySprite_[enemyCount].first->transform_->scale2D_ = { itr->objectPtr_->transform_->scale_.x / 20,itr->objectPtr_->transform_->scale_.z / 20 };
+				enemySprite_[enemyCount].first->transform_->position2D_ = { transform2D_->position2D_.x + difference.x * cosf(angle) + difference.y * sinf(angle),transform2D_->position2D_.y + difference.y * cosf(angle) - difference.x * sinf(angle) };
+				enemySprite_[enemyCount].first->transform_->rotation2D_ = (itr->objectPtr_->transform_->rotation_.y + degrees);
+				enemySprite_[enemyCount].first->transform_->scale2D_ = { itr->objectPtr_->transform_->scale_.x / 20,itr->objectPtr_->transform_->scale_.z / 20 };
 
-			//ˆê’è‹——£“à‚É‚¢‚é‚È‚ç
-			if (20 >= length)
-			{
-				enemySprite_[enemyCount].first->drawFlag_ = true;
+				//ˆê’è‹——£“à‚É‚¢‚é‚È‚ç
+				if (20 >= length)
+				{
+					enemySprite_[enemyCount].first->drawFlag_ = true;
 
+				}
+				enemySprite_[enemyCount].first->order_ = 1;
+				enemyCount++;
 			}
-			enemySprite_[enemyCount].first->order_ = 1;
-			enemyCount++;
+			
 		}
 
 	}

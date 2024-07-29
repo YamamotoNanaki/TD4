@@ -49,7 +49,8 @@ void IFE::NormalEnemy::Initialize()
 
 void IFE::NormalEnemy::ChangeState()
 {
-	if (hp_ <= 0 && state != DEAD) {
+	if (hpUI->GetIsDead() == true && state != DEAD) {
+		ani_->loop_ = false;
 		if (isOneShot) {
 			isOneShot = false;
 			ani_->SetAnimation("downFront", false);
@@ -59,63 +60,74 @@ void IFE::NormalEnemy::ChangeState()
 		}
 		state = DEAD;
 	}
-	if (!isOneShot) {
-		//UŒ‚‚ÍÅ—Dæ
-		switch (state)
-		{
-		case IFE::BaseEnemy::WAIT:
-			status_->objectPtr_->DrawFlag_ = false;
+	//UŒ‚‚ÍÅ—Dæ
+	switch (state)
+	{
+	case IFE::BaseEnemy::WAIT:
+		if (!isOneShot) {
+		  status_->objectPtr_->DrawFlag_ = false;
 			Wait();
-			break;
-		case IFE::BaseEnemy::SEARCH:
+		}
+		break;
+	case IFE::BaseEnemy::SEARCH:
+		if (!isOneShot) {
 			/*if (!IFE::Sound::Instance()->GetPlayStatus("walk")) {
-				IFE::Sound::Instance()->SoundPlay("walk", false, true);
+			IFE::Sound::Instance()->SoundPlay("walk", false, true);
 			}*/
 			status_->objectPtr_->DrawFlag_ = false;
 			Search();
-			break;
-		case IFE::BaseEnemy::WARNING:
+		}
+		break;
+	case IFE::BaseEnemy::WARNING:
+		if (!isOneShot) {
 			//Œx‰úó‘Ô‚ÌUI‚É•ÏX
 			status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("eye"));
 			status_->objectPtr_->DrawFlag_ = true;
 			Warning();
-			break;
-		case IFE::BaseEnemy::CHASE:
+		}
+		break;
+	case IFE::BaseEnemy::CHASE:
+		if (!isOneShot) {
 			/*if (!IFE::Sound::Instance()->GetPlayStatus("walk")) {
-				IFE::Sound::Instance()->SoundPlay("walk", false, true);
+			 IFE::Sound::Instance()->SoundPlay("walk", false, true);
 			}*/
 			//’ÇÕó‘Ô‚ÌUI‚É•ÏX
 			status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("exclamation"));
 			status_->objectPtr_->DrawFlag_ = true;
 			Chase();
-			break;
-		case IFE::BaseEnemy::ATTACK:
+		}
+		break;
+	case IFE::BaseEnemy::ATTACK:
+		if (!isOneShot) {
 			if (isChaseDrone == true) {
 				Shot();
 			}
 			else {
 				Attack();
 			}
-			break;
-		case IFE::BaseEnemy::DEAD:
-			deadTime += IFE::IFETime::sDeltaTime_;
-			if (deadTime >= 2.0f) {
+		}
+		break;
+	case IFE::BaseEnemy::DEAD:
+		deadTime += IFE::IFETime::sDeltaTime_;
+		if (deadTime >= 2.0f) {
+			if (!isDead) {
 				hpUI->objectPtr_->Destroy();
 				status_->objectPtr_->Destroy();
 				enemyAttack->objectPtr_->Destroy();
-				objectPtr_->Destroy();
+				isDead = true;
+				objectPtr_->GetComponent<Collider>()->GetCollider(1)->active_ = false;
 			}
-			break;
-		default:
-			break;
 		}
+		break;
+	default:
+		break;
 	}
 }
 
 void IFE::NormalEnemy::EnemyUpdate()
 {
-	if (hpUI->GetIsDead() == true) {
-		hpUI->objectPtr_->DrawFlag_ = false;
+	if (hp_ <= 0) {
+		status_->objectPtr_->DrawFlag_ = false;
 	}
 	if (state != DEAD) {
 		if (state != WAIT) {
@@ -138,14 +150,12 @@ void IFE::NormalEnemy::EnemyUpdate()
 		{
 			transform_->position_.y -= 4.9f * IFETime::sDeltaTime_;
 		}
-		if (IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetHP() == 0) {
-			state = SEARCH;
-		}
 	}
 	ChangeState();
 	if (state != DEAD) {
 		if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetHP() == 0) {
 			state = SEARCH;
+			ani_->SetAnimation("walk",false);
 		}
 	}
 	//€–S
@@ -179,7 +189,7 @@ void IFE::NormalEnemy::Warning()
 		warningTime -= IFE::IFETime::sDeltaTime_;
 	}
 
-	if (warningTime >= 1.0f) {
+	if (warningTime >= 0.8f) {
 		warningTime = 0.5f;
 		state = CHASE;
 		/*IFE::Sound::Instance()->SoundPlay("found", false, true);*/
@@ -252,7 +262,6 @@ void IFE::NormalEnemy::Chase()
 			state = ATTACK;
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
-			IFE::Sound::Instance()->SoundPlay("attack", false, true);
 			ani_->loop_ = false;
 			ani_->SetAnimation("knifeAttack");
 			frontVec = target - ePos;
@@ -295,10 +304,13 @@ void IFE::NormalEnemy::Chase()
 void IFE::NormalEnemy::Attack()
 {
 	attackTime += IFE::IFETime::sDeltaTime_;
+	if (attackTime > 0.6 && attackTime < 0.8f) {
+		IFE::Sound::Instance()->SoundPlay("attack", false, true);
+	}
 	if (attackTime > 0.8f - IFE::IFETime::sDeltaTime_) {
 		isAttack = true;
 	}
-	
+
 	if (attackTime > 2.0f) {
 		attackTime = 0;
 		isAttack = false;
@@ -344,7 +356,7 @@ void IFE::NormalEnemy::Killed() {
 	transform_->position_ = pPos + (addVec);
 	transform_->rotation_ = rot;
 	status_->objectPtr_->DrawFlag_ = false;
-	ani_->SetAnimation("standBy",false);
+	ani_->SetAnimation("standBy", false);
 }
 
 void IFE::NormalEnemy::LookAt()
@@ -353,7 +365,7 @@ void IFE::NormalEnemy::LookAt()
 	frontVec = lookfor - ePos;
 	frontVec = frontVec.Normalize();
 	frontVec *= Vector3(1, 0, 1);
-	if (state == CHASE || state == SEARCH || state == WARNING) {
+	if (state == CHASE || state == SEARCH || state == WARNING || isOneShot == false) {
 		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄY²‚Ì‰ñ“]
 		float radY = std::atan2(frontVec.x, frontVec.z);
 		float targetAngle = ((radY * 180.0f) / (float)PI);

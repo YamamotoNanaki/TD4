@@ -10,7 +10,6 @@
 #include"Scene.h"
 #include"Collision.h"
 #include "Sound.h"
-#include"ColorBuffer.h"
 
 void PlayerAction::Initialize()
 {
@@ -23,6 +22,9 @@ void PlayerAction::Initialize()
 	auto hpPtr = IFE::SpriteManager::Instance()->GetSpritePtr("playerHp")->GetComponent<IFE::PlayerHp>();
 	playerHp_ = hpPtr;
 	playerHp_->SetHp(hp_);
+
+	auto deathPtr = IFE::SpriteManager::Instance()->GetSpritePtr("fade")->GetComponent<DeathAnimation>();
+	deathAnimation_ = deathPtr;
 
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("PlayerAttack", IFE::ModelManager::Instance()->GetModel("dice"));
 	ptr->AddComponent<PlayerAttack>();
@@ -104,9 +106,9 @@ void PlayerAction::Update()
 		}
 	}
 
-	if (ani_->animEnd_ == true)
+	if ((ani_->GetAnimation() == "downFront" || ani_->GetAnimation() == "downBack") && ani_->animEnd_ == true)
 	{
-		Fade();
+		deathAnimation_->SetDeathAnimationFlag(true);
 	}
 }
 
@@ -191,16 +193,6 @@ void PlayerAction::MoveUpdate()
 
 		camera_->CameraUpdate(transform_->position_);
 	}
-}
-
-void PlayerAction::Fade()
-{
-	if (deathFadeAnimationTime_ < maxDeathFadeAnimationTime_)
-	{
-		IFE::SpriteManager::Instance()->GetSpritePtr("fade")->GetComponent<IFE::ColorBuffer>()->SetAlpha(IFE::EaseInBack(0.0f, 0.75f, maxDeathFadeAnimationTime_, deathFadeAnimationTime_));
-	}
-
-	deathFadeAnimationTime_ += IFE::IFETime::sDeltaTime_;
 }
 
 void PlayerAction::Move()

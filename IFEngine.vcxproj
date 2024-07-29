@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DeathAnimation.cpp" />
     <ClCompile Include="Blood.cpp" />
     <ClCompile Include="Engine\Model\Attach3DModel.cpp" />
     <ClCompile Include="Engine\Particle\IFEEffekseer.cpp" />
@@ -122,6 +123,7 @@
     <ClCompile Include="Source\UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DeathAnimation.h" />
     <ClInclude Include="Blood.h" />
     <ClInclude Include="Engine\Model\Attach3DModel.h" />
     <ClInclude Include="Engine\Particle\IFEEffekseer.h" />

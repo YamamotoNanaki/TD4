@@ -51,6 +51,9 @@ void Player::Update()
 
 		if (modeFlag_ == false)
 		{
+			if (IFE::Sound::Instance()->GetPlayStatus("drone")) {
+				IFE::Sound::Instance()->StopSound("drone");
+			}
 			action_->MoveUpdate();
 			if (!droneRecoveryFlag_ && IFE::Sound::Instance()->GetPlayStatus("droneRecovery")) {
 				IFE::Sound::Instance()->StopSound("droneRecovery");

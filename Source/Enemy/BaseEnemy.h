@@ -38,6 +38,7 @@ namespace IFE {
 		float deadTime= 0;
 		bool isHit_;
 		bool isOneShot;
+		bool isDead = false;
 		float hitTime_;
 		//アニメーション
 		IFE::Animator* ani_ = nullptr;
@@ -116,6 +117,8 @@ namespace IFE {
 		/// <param name="step"></param>
 		void ApproachTarget(float& current, float target, float step);
 
+		float GetLen();
+
 		/// <summary>
 		/// コライダーの処理
 		/// 自動で呼ばれます
@@ -128,6 +131,7 @@ namespace IFE {
 		inline float GetDroneHitDistance() { return droneHitDistance_; }
 		const IFE::Vector2 GetPos();
 		const bool GetIsOneShot();
+		const bool GetIsDead() { return isDead; }
 		void SetisOneShot(bool isOne);
 		void SetMotion(std::string name);
 		const bool GetBack(float judge);
