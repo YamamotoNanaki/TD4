@@ -11,10 +11,17 @@ private:
 
 	//Ž€–SŠÖ˜A
 	bool deathAnimationFlag_ = false;
+	bool deathAnimationEndFlag_ = false;
 	float dethaAnimationTime_ = 0.0f;
 	bool deathFadeAnimationFlag_ = false;
 	float deathFadeAnimationTime_ = 0.0f;
 	const float maxDeathFadeAnimationTime_ = 1.0f;
+
+	//‘I‘ð
+	bool isContinue_ = true;
+
+	const uint16_t controllerRange_ = 10000;
+	float oldLAnalog_ = 0.0f;
 
 public:
 
@@ -43,4 +50,6 @@ public:
 private:
 
 	void Fade();
+
+	void Select();
 };

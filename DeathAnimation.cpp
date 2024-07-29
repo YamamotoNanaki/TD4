@@ -1,5 +1,7 @@
 #include "DeathAnimation.h"
 #include"ColorBuffer.h"
+#include "Input.h"
+#include"Scene.h"
 
 void DeathAnimation::Initialize()
 {
@@ -7,7 +9,14 @@ void DeathAnimation::Initialize()
 
 void DeathAnimation::Update()
 {
-	Fade();
+	if (deathAnimationEndFlag_ == false)
+	{
+		Fade();
+	}
+	else
+	{
+		Select();
+	}
 }
 
 void DeathAnimation::Draw()
@@ -31,7 +40,37 @@ void DeathAnimation::Fade()
 		{
 			IFE::SpriteManager::Instance()->GetSpritePtr("fade")->GetComponent<IFE::ColorBuffer>()->SetAlpha(IFE::EaseInBack(0.0f, 0.75f, maxDeathFadeAnimationTime_, deathFadeAnimationTime_));
 		}
+		else
+		{
+			deathAnimationEndFlag_ = true;
+		}
 
 		deathFadeAnimationTime_ += IFE::IFETime::sDeltaTime_;
 	}
+}
+
+void DeathAnimation::Select()
+{
+	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_ > -0.5f && IFE::Input::GetLXAnalog(controllerRange_) < -0.5f)
+	{
+		isContinue_ = true;
+	}
+	else if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_ < 0.5f && IFE::Input::GetLXAnalog(controllerRange_) >0.5f)
+	{
+		isContinue_ = false;
+	}
+
+	if (IFE::Input::PadTrigger(IFE::PADCODE::A) || IFE::Input::GetKeyTrigger(IFE::Key::Space))
+	{
+		if (isContinue_ == false)
+		{
+			IFE::Scene::Instance()->SetNextScene("TITLE");
+		}
+		else
+		{
+			//IFE::Scene::Instance()->SetNextScene(IFE::Scene::Instance()->GetSceneName());
+		}
+	}
+
+	oldLAnalog_ = IFE::Input::GetLXAnalog(controllerRange_);
 }
