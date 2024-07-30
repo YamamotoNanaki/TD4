@@ -57,12 +57,12 @@ void EnemyHighlighting::Update()
 	cb->SetConstBuffView(7);
 	for (auto& itr : objList)
 	{
-		itr->Draw();
+		itr->Draw(false);
 	}
 	cbFalse->GetCBMapObject()->enemy = false;
 	cbFalse->SetConstBuffView(7);
-	playerAction->Draw();
-	playerDrone->Draw();
+	playerAction->Draw(false);
+	playerDrone->Draw(false);
 	PostEffectDrawAfter();
 }
 

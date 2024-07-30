@@ -7,6 +7,7 @@
 #include "IFETime.h"
 #include "Sound.h"
 #include "PlayerAction.h"
+#include "StringUtil.h"
 
 using namespace IFE;
 
@@ -126,18 +127,21 @@ void IFE::BaseEnemy::OnColliderHit(ColliderCore* mycol, ColliderCore* hitcol)
 		{
 			if (hitcol->objectPtr_)
 			{
-				if (!hitObject_)
+				if (Contains(hitcol->objectPtr_->GetObjectName(), "wall") || Contains(hitcol->objectPtr_->GetObjectName(), "Player"))
 				{
-					hitObject_ = hitcol->objectPtr_;
-					hitDistance_ = mycol->rayDistance;
-				}
-				else if (hitObject_->GetObjectName() != "PlayerDrone");
-				else
-				{
-					if (hitDistance_ > mycol->rayDistance)
+					if (!hitObject_)
 					{
 						hitObject_ = hitcol->objectPtr_;
 						hitDistance_ = mycol->rayDistance;
+					}
+					else if (hitObject_->GetObjectName() != "PlayerDrone");
+					else
+					{
+						if (hitDistance_ > mycol->rayDistance)
+						{
+							hitObject_ = hitcol->objectPtr_;
+							hitDistance_ = mycol->rayDistance;
+						}
 					}
 				}
 			}
