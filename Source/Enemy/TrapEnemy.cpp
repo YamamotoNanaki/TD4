@@ -318,12 +318,7 @@ void IFE::TrapEnemy::LookAt()
 		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
 		float radY = std::atan2(frontVec.x, frontVec.z);
 		float targetAngle = ((radY * 180.0f) / (float)PI);
-		if (state == CHASE) {
-			ApproachTarget(transform_->rotation_.y, targetAngle, 10.0f);
-		}
-		else {
-			ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
-		}
+		ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
 	}
 }
 

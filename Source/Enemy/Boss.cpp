@@ -276,7 +276,7 @@ void IFE::Boss::Chase()
 			warningTime += IFE::IFETime::sDeltaTime_;
 		}
 	}
-	else if(isChaseDrone || attackNum == 1) {
+	else if (isChaseDrone || attackNum == 1) {
 		if (len <= 18.0) {
 			enemyAttack->objectPtr_->DrawFlag_ = true;
 			state = ATTACK;
@@ -373,12 +373,7 @@ void IFE::Boss::LookAt()
 		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
 		float radY = std::atan2(frontVec.x, frontVec.z);
 		float targetAngle = ((radY * 180.0f) / (float)PI);
-		if (state != CHASE) {
-			ApproachTarget(transform_->rotation_.y, targetAngle, 10.0f);
-		}
-		else {
-			ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
-		}
+		ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
 	}
 }
 
