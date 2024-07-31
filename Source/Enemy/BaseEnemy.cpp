@@ -176,7 +176,6 @@ const bool IFE::BaseEnemy::GetBack(float judge)
 {
 	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
 	float result = pFront.Dot(-frontVec);
-	 judge = 0.9f;
 	if (result < judge) {
 		return true;
 	}

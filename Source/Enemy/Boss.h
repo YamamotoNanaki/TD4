@@ -13,9 +13,9 @@ namespace IFE {
 		//周りを見渡す時間
 		const float WAIT_TIME = 1.0f;
 		//探索時移動速度
-		const float SEARCH_VELO = 2.5f;
+		const float SEARCH_VELO = 3.0f;
 		//追跡時速度
-		const float CHASE_VELO = 5.0f;
+		const float CHASE_VELO = 7.0f;
 		//メンバ変数
 	private:
 		//待機タイマー
