@@ -66,7 +66,7 @@ void IFE::NormalEnemy::ChangeState()
 	{
 	case IFE::BaseEnemy::WAIT:
 		if (!isOneShot) {
-		  status_->objectPtr_->DrawFlag_ = false;
+			status_->objectPtr_->DrawFlag_ = false;
 			Wait();
 		}
 		break;
@@ -156,7 +156,7 @@ void IFE::NormalEnemy::EnemyUpdate()
 	if (state != DEAD) {
 		if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetHP() == 0) {
 			state = SEARCH;
-			ani_->SetAnimation("walk",false);
+			ani_->SetAnimation("walk", false);
 		}
 		isChaseDrone = false;
 		rayDist = 0;
@@ -317,6 +317,10 @@ void IFE::NormalEnemy::Attack()
 		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos())) {
 			state = CHASE;
 		}
+		else {
+			state = SEARCH;
+		}
+		ani_->loop_ = true;
 		ani_->SetAnimation("walk");
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
@@ -371,12 +375,7 @@ void IFE::NormalEnemy::LookAt()
 		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
 		float radY = std::atan2(frontVec.x, frontVec.z);
 		float targetAngle = ((radY * 180.0f) / (float)PI);
-		if (state == CHASE) {
-			ApproachTarget(transform_->rotation_.y, targetAngle, 10.0f);
-		}
-		else {
-			ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
-		}
+		ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
 	}
 }
 

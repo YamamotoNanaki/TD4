@@ -87,10 +87,15 @@ void IFE::Boss::ChangeState()
 			break;
 		case IFE::BaseEnemy::ATTACK:
 			if (isChaseDrone == true) {
-				Shot();
+				Shot(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
 			}
 			else {
-				Attack();
+				if (attackNum == 0) {
+					Attack();
+				}
+				else {
+					Shot(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
+				}
 			}
 			break;
 		case IFE::BaseEnemy::DEAD:
@@ -177,6 +182,15 @@ void IFE::Boss::Warning()
 	}
 
 	if (warningTime >= 1.0f) {
+		std::random_device seed_gen;
+		std::mt19937_64 engine(seed_gen());
+		std::uniform_real_distribution<float>dist(-1, 1);
+		if (dist(engine) > 0) {
+			attackNum = 0;
+		}
+		else {
+			attackNum = 1;
+		}
 		warningTime = 0.5f;
 		state = CHASE;
 		/*IFE::Sound::Instance()->SoundPlay("found", false, true);*/
@@ -244,7 +258,7 @@ void IFE::Boss::Chase()
 	//‹ß‚Ã‚¢‚½‚ç‰£‚é
 	double len = sqrt(pow(ePos.x - target.x, 2) + pow(ePos.y - target.y, 2) +
 		pow(ePos.z - target.z, 2));
-	if (isChaseDrone == false) {
+	if (!isChaseDrone && attackNum == 0) {
 		if (len <= 3.0) {
 			state = ATTACK;
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
@@ -253,24 +267,16 @@ void IFE::Boss::Chase()
 			frontVec = target - ePos;
 			frontVec = frontVec.Normalize();
 			enemyAttack->SetIsBack(GetBack(0.9f));
+			ani_->SetAnimation("knifeAttack");
 			float radY = std::atan2(frontVec.x, frontVec.z);
 			float targetAngle = ((radY * 180.0f) / (float)PI);
 			transform_->rotation_.y = targetAngle;
-			std::random_device seed_gen;
-			std::mt19937_64 engine(seed_gen());
-			std::uniform_real_distribution<float>dist(-1,1);
-			if (dist(engine) > 0) {
-				attackNum = 0;
-			}
-			else {
-				attackNum = 1;
-			}
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
 			warningTime += IFE::IFETime::sDeltaTime_;
 		}
 	}
-	else {
+	else if (isChaseDrone || attackNum == 1) {
 		if (len <= 18.0) {
 			enemyAttack->objectPtr_->DrawFlag_ = true;
 			state = ATTACK;
@@ -298,70 +304,60 @@ void IFE::Boss::Chase()
 
 void IFE::Boss::Attack()
 {
-	switch (attackNum)
-	{
-	case 0:
-		attackTime += IFE::IFETime::sDeltaTime_;
-		if (attackTime > 0.6 && attackTime < 0.8f) {
-			IFE::Sound::Instance()->SoundPlay("attack", false, true);
-		}
-		if (attackTime > 0.8f - IFE::IFETime::sDeltaTime_) {
-			isAttack = true;
-		}
-
-		if (attackTime > 2.0f) {
-			attackTime = 0;
-			isAttack = false;
-			state = SEARCH;
-			ani_->SetAnimation("walk");
-		}
-		enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
-		break;
-	case 1:
-		attackTime += IFE::IFETime::sDeltaTime_;
-		if (attackTime > 0.6 && attackTime < 0.8f) {
-			IFE::Sound::Instance()->SoundPlay("attack", false, true);
-		}
-		if (attackTime > 0.8f - IFE::IFETime::sDeltaTime_) {
-			isAttack = true;
-		}
-
-		if (attackTime > 2.0f) {
-			attackTime = 0;
-			isAttack = false;
-			state = SEARCH;
-			ani_->SetAnimation("walk");
-		}
-	/*	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyAttack", ModelManager::Instance()->GetModel("dice"));
-		ptr->AddComponent<EnemyAttack>();
-		EnemyAttack* enemyAttack_0 = ptr->GetComponent<EnemyAttack>();*/
-		break;
+	attackTime += IFE::IFETime::sDeltaTime_;
+	if (attackTime > 0.6 && attackTime < 0.8f) {
+		IFE::Sound::Instance()->SoundPlay("attack", false, true);
 	}
+	if (attackTime > 0.8f - IFE::IFETime::sDeltaTime_) {
+		isAttack = true;
+	}
+
+	if (attackTime > 2.0f) {
+		attackTime = 0;
+		isAttack = false;
+		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos())) {
+			state = WARNING;
+		}
+		else {
+			state = SEARCH;
+		}
+		ani_->SetAnimation("search");
+	}
+	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
 
-void IFE::Boss::Shot()
+void IFE::Boss::Shot(Vector3 target_)
 {
 	Vector3 worldPos = enemyAttack->transform_->GetWorldPosition();
-	Vector3 dPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
-	attackTime += 100 * IFE::IFETime::sDeltaTime_;
+	Vector3 dPos = target_;
+	attackTime += IFE::IFETime::sDeltaTime_;
 	if (enemyAttack->GetIsShot()) {
-		if (attackTime < 3) {
+		if (attackTime < 1.0f) {
 			shotVec = dPos - worldPos;
 			shotVec.Normalize();
+			enemyAttack->objectPtr_->DrawFlag_ = false;
 		}
-		enemyAttack->transform_->position_ += (shotVec * 0.3f);
+		else {
+			enemyAttack->objectPtr_->DrawFlag_ = true;
+			enemyAttack->transform_->position_ += (shotVec);
+		}
 	}
 	if (enemyAttack->GetIsShot() == false) {
-		state = CHASE;
+		state = WARNING;
 		isAttack = false;
-		ani_->SetAnimation("walk");
+		ani_->SetAnimation("search");
 	}
-	else if (attackTime > 100) {
+	else if (attackTime > 5.0f) {
 		enemyAttack->objectPtr_->DrawFlag_ = false;
 		enemyAttack->SetIsShot(false);
-		state = CHASE;
+		if (!ChaseLen(target_)) {
+			state = CHASE;
+		}
+		else {
+			state = SEARCH;
+		}
 		isAttack = false;
-		ani_->SetAnimation("walk");
+		ani_->SetAnimation("search");
 		attackTime = 0;
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
@@ -377,12 +373,7 @@ void IFE::Boss::LookAt()
 		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
 		float radY = std::atan2(frontVec.x, frontVec.z);
 		float targetAngle = ((radY * 180.0f) / (float)PI);
-		if (state != CHASE) {
-			ApproachTarget(transform_->rotation_.y, targetAngle, 10.0f);
-		}
-		else {
-			ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
-		}
+		ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
 	}
 }
 
