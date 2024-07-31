@@ -88,7 +88,7 @@ namespace IFE {
 		/// <summary>
 		/// Œ‚‚Ä
 		/// </summary>
-		void Shot();
+		void Shot(Vector3 target_);
 
 		/// <summary>
 		/// ƒvƒŒƒCƒ„[‚Ì•û‚ğŒü‚©‚¹‚é
