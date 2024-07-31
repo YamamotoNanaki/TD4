@@ -59,20 +59,10 @@ namespace IFE {
 		virtual ~BaseEnemy() = default;
 
 		/// <summary>
-		/// ‰Šú‰»
-		/// </summary>
-		virtual void Initialize() = 0;
-
-		/// <summary>
 		/// XVˆ—
 		/// ©“®‚ÅŒÄ‚Î‚ê‚Ü‚·
 		/// </summary>
 		virtual void EnemyUpdate() = 0;
-
-		/// <summary>
-		/// •`‰æ
-		/// </summary>
-		virtual void Draw() = 0;
 
 		/// <summary>
 		/// I—¹
@@ -141,9 +131,5 @@ namespace IFE {
 		/// </summary>
 		void Highlighting();
 
-#ifdef EditorMode
-	public:
-		virtual void ComponentDebugGUI() = 0;
-#endif
 	};
 }
