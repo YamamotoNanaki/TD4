@@ -41,6 +41,8 @@
         "helmet.png",
         "Knife.png",
         "text//default//restart.png",
-        "text//default//returnTitle.png"
+        "text//default//returnTitle.png",
+        "text//default//gameLogo.png",
+        "text//default//pressAButton.png"
     ]
 }

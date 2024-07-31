@@ -76,6 +76,10 @@ bool IFE::BaseEnemy::ChaseLen(Vector3 target)
 
 void IFE::BaseEnemy::ApproachTarget(float& current, float target, float step)
 {
+	if (std::abs(current - target) > 180)
+	{
+		target -= 180;
+	}
 	if (std::abs(current - target) < step) {
 		current = target; // 目標値にほぼ達した場合、目標値に設定
 	}
