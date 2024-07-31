@@ -282,23 +282,23 @@ Quaternion IFE::EulerToQuaternion(const Float3& euler)
 	return ret;
 }
 
-Float3 IFE::QuaternionToEuler(const Quaternion& q)
-{
-	float q0q0 = q.x * q.x;
-	float q0q1 = q.x * q.y;
-	float q0q2 = q.x * q.z;
-	float q0q3 = q.x * q.w;
-	float q1q1 = q.y * q.y;
-	float q1q2 = q.y * q.z;
-	float q1q3 = q.y * q.w;
-	float q2q2 = q.z * q.z;
-	float q2q3 = q.z * q.w;
-	float q3q3 = q.w * q.w;
-	float roll = atan2(2.0f * (q2q3 + q0q1), q0q0 - q1q1 - q2q2 + q3q3);
-	float pitch = asin(2.0f * (q0q2 - q1q3));
-	float yaw = atan2(2.0f * (q1q2 + q0q3), q0q0 + q1q1 - q2q2 - q3q3);
-	return Float3(roll, pitch, yaw);
-}
+//Float3 IFE::QuaternionToEuler(const Quaternion& q)
+//{
+//	float q0q0 = q.x * q.x;
+//	float q0q1 = q.x * q.y;
+//	float q0q2 = q.x * q.z;
+//	float q0q3 = q.x * q.w;
+//	float q1q1 = q.y * q.y;
+//	float q1q2 = q.y * q.z;
+//	float q1q3 = q.y * q.w;
+//	float q2q2 = q.z * q.z;
+//	float q2q3 = q.z * q.w;
+//	float q3q3 = q.w * q.w;
+//	float roll = atan2(2.0f * (q2q3 + q0q1), q0q0 - q1q1 - q2q2 + q3q3);
+//	float pitch = asin(2.0f * (q0q2 - q1q3));
+//	float yaw = atan2(2.0f * (q1q2 + q0q3), q0q0 + q1q1 - q2q2 - q3q3);
+//	return Float3(roll, pitch, yaw);
+//}
 
 Vector3 IFE::MultiplyQuaternionAndVector3(const Quaternion& rotation, const Vector3& point)
 {

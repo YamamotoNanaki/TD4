@@ -4,6 +4,7 @@
 #include "ConstStruct.h"
 #include "Camera.h"
 #include "Quaternion.h"
+#include "Animator.h"
 #include <memory>
 
 namespace IFE
@@ -12,7 +13,6 @@ namespace IFE
 	{
 		Default, Billboard, YBillboard
 	};
-	struct Bone;
 	class Transform : public Component
 	{
 		using Component::Component;
@@ -22,7 +22,7 @@ namespace IFE
 
 		Float3 lossyScale_;
 		Quaternion rotationQuaternion_;
-		Bone* parentBone_ = nullptr;
+		Animator::AnimMat* parentBone_ = nullptr;
 	public:
 		bool eulerFlag_ = false;
 		Float3 rotation_;
@@ -37,7 +37,7 @@ namespace IFE
 		Transform* parent_ = nullptr;
 
 	private:
-		void ParentBoneMatrix(Matrix& mat, Bone* bone);
+		void ParentBoneMatrix(Matrix& mat, Animator::AnimMat* bone);
 
 	public:
 		void Initialize()override;
@@ -52,12 +52,13 @@ namespace IFE
 		Vector3 GetUpVector();
 		Vector3 GetRightVector();
 		void MovePushBack(Vector3 move);
-		inline void SetAttach3DParent(Bone* mat) { parentBone_ = mat; }
+		inline void SetAttach3DParent(Animator::AnimMat* mat) { parentBone_ = mat; }
 
 		/// <summary>
 		///ワールド座標を取得する
 		/// </summary>
 		Vector3 GetWorldPosition();
+		Vector3 GetWorldRotation();
 
 		/// <summary>
 		///ワールド座標を代入する

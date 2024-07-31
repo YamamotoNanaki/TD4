@@ -9,14 +9,32 @@ void IFE::Animator::Initialize()
 	constMapSkin_ = skinBuffer_->GetCBMapObject();
 	objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("3dAnim");
 	model_ = dynamic_cast<FBXModel*>(objectPtr_->model_);
+	animMats_.resize(model_->bones_.size());
+	for (int i = 0; i < animMats_.size(); i++)
+	{
+		animMats_[i].mat = model_->bones_[i].finalMatrix;
+		animMats_[i].name = model_->bones_[i].name;
+		if(model_->bones_[i].parent)animMats_[i].parentName = model_->bones_[i].parent->name;
+	}
+	for (size_t i = 0; i < animMats_.size(); i++)
+	{
+		if (animMats_[i].parentName != "")
+		{
+			for (size_t j = 0; j < animMats_.size(); j++)
+			{
+				if (animMats_[i].parentName == animMats_[j].name)
+				{
+					animMats_[i].parent = &animMats_[j];
+					break;
+				}
+			}
+		}
+	}
 }
 
 void IFE::Animator::DebugInitialize()
 {
-	skinBuffer_ = std::make_unique<ConstBuffer<ConstBufferDataSkin>>();
-	constMapSkin_ = skinBuffer_->GetCBMapObject();
-	objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("3dAnim");
-	model_ = dynamic_cast<FBXModel*>(objectPtr_->model_);
+	Initialize();
 }
 
 void IFE::Animator::Update()
@@ -74,16 +92,10 @@ void IFE::Animator::Update()
 
 void IFE::Animator::Draw()
 {
-	static bool f = false;
-	if (f && !interpolation_)
-	{
-		int a = 0; a++;
-	}
-	f = interpolation_;
 	model_->BoneTransform(animTimer_, animNum_, interpolation_, oldAnimTimer_, interpolationAnimNum_, lerpTimer_ / interpolationMaxTimer_);
 	for (int i = 0; i < model_->bones_.size(); i++)
 	{
-		constMapSkin_->bones[i] = model_->bones_[i].finalMatrix;
+		constMapSkin_->bones[i] = animMats_[i].mat = model_->bones_[i].finalMatrix;
 	}
 	skinBuffer_->SetConstBuffView(6);
 }
@@ -96,6 +108,18 @@ float IFE::Animator::GetEndTime()
 void IFE::Animator::SetAnimTime(float animTime_)
 {
 	animTimer_ = animTime_;
+}
+
+IFE::Animator::AnimMat* IFE::Animator::GetBone(std::string name)
+{
+	for (auto& bone : animMats_)
+	{
+		if (bone.name == name)
+		{
+			return &bone;
+		}
+	}
+	return nullptr;
 }
 
 IFE::Animator::~Animator()

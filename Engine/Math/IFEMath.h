@@ -113,4 +113,8 @@ namespace IFE
 	Matrix Lerp(const Matrix& mat, float timer,float maxTime);
 	//timer0‚Ì‚Æ‚«mat0Atimer1‚Ì‚Æ‚«mat1‚Ì’l‚É‚·‚éŠÖ”
 	Matrix Lerp(const Matrix& mat0,const Matrix& mat1, float timer,float maxTime);
+
+	Quaternion MatrixToQuaternion(const Matrix& matrix);
+
+	Vector3 QuaternionToEulerAngles(const Quaternion& q);
 };

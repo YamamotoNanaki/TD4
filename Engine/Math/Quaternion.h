@@ -50,7 +50,7 @@ namespace IFE
 	Quaternion MakeAxisAngle(const Vector3& axis, float angle);
 
 	Quaternion EulerToQuaternion(const Float3& eulerDegrees);
-	Float3 QuaternionToEuler(const Quaternion& q);
+	//Float3 QuaternionToEuler(const Quaternion& q);
 
 	Vector3 MultiplyQuaternionAndVector3(const Quaternion& rotation, const Vector3& point);
 	Quaternion DirectionToDirection(const Vector3& u, const Vector3& v);

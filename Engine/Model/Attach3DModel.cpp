@@ -22,15 +22,38 @@ void IFE::Attach3DModel::Update()
 	}
 }
 
+void IFE::Attach3DModel::Set(Object3D* obj, std::string bone)
+{
+	boneName_ = bone;
+	SetTransform(obj);
+}
+
+void IFE::Attach3DModel::SetParent(Object3D* obj)
+{
+	SetTransform(obj);
+}
+
+void IFE::Attach3DModel::SetBorn(std::string bone)
+{
+	boneName_ = bone;
+	SetTransform();
+}
+
 void IFE::Attach3DModel::SetTransform()
 {
 	auto ptr = ObjectManager::Instance()->GetObjectPtr(parentName_);
-	if (!ptr)return;
-	auto model_ = dynamic_cast<FBXModel*>(ptr->GetModel());
-	if (!model_ || boneName_ == "")return;
-	parentBone_ = model_->GetBone(boneName_);
+	SetTransform(ptr);
+}
+
+void IFE::Attach3DModel::SetTransform(Object3D* obj)
+{
+	if (!obj)return;
+	auto animator_ = dynamic_cast<Animator*>(obj->GetComponent<Animator>());
+	if (!animator_ || boneName_ == "")return;
+	parentName_ = obj->GetObjectName();
+	parentBone_ = animator_->GetBone(boneName_);
 	transform_->SetAttach3DParent(parentBone_);
-	transform_->parent_ = ptr->transform_;
+	transform_->parent_ = obj->transform_;
 }
 
 void IFE::Attach3DModel::LoadingComponent(nlohmann::json& json)
@@ -70,7 +93,7 @@ void IFE::Attach3DModel::ComponentDebugGUI()
 	}
 	if (parentBone_ && im->NewTreeNode(U8("Šm”F—p")))
 	{
-		im->TextMatrixGUI(parentBone_->finalMatrix);
+		im->TextMatrixGUI(parentBone_->mat);
 		im->EndTreeNode();
 	}
 }

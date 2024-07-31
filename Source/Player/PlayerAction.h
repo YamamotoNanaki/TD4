@@ -152,6 +152,8 @@ public:
 
 	void SetIsWalk(bool flag);
 
+	bool* GetIsAttackPtr() { return &isAttack_; };
+
 private:
 
 	/// <summary>
