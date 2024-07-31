@@ -134,10 +134,12 @@ void IFE::NormalEnemy::EnemyUpdate()
 		if (state != WAIT) {
 			LookAt();
 		}
-		isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
-		if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
-			isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
-			isChaseDrone = isFound;
+		if (state != CHASE) {
+			isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
+			if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
+				isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
+				isChaseDrone = isFound;
+			}
 		}
 		//ó‘Ô‚ðŽæ“¾
 		preState = state;
@@ -248,6 +250,10 @@ void IFE::NormalEnemy::Chase()
 	else {
 		target = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
 	}
+	//‹ß‚­‚É‚¢‚é‚©”»’è
+	if (ChaseLen(target)) {
+		warningTime += IFE::IFETime::sDeltaTime_;
+	}
 	//player‚Ì•û‚ðŒü‚­
 	lookfor = target;
 	Vector3 addVec = target - ePos;
@@ -271,9 +277,6 @@ void IFE::NormalEnemy::Chase()
 			float targetAngle = ((radY * 180.0f) / (float)PI);
 			transform_->rotation_.y = targetAngle;
 		}
-		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
-			warningTime += IFE::IFETime::sDeltaTime_;
-		}
 	}
 	else {
 		if (len <= 18.0) {
@@ -288,9 +291,6 @@ void IFE::NormalEnemy::Chase()
 			float radY = std::atan2(frontVec.x, frontVec.z);
 			float targetAngle = ((radY * 180.0f) / (float)PI);
 			transform_->rotation_.y = targetAngle;
-		}
-		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
-			warningTime += IFE::IFETime::sDeltaTime_;
 		}
 	}
 	if (warningTime >= 2.0f) {
@@ -314,7 +314,9 @@ void IFE::NormalEnemy::Attack()
 	if (attackTime > 2.0f) {
 		attackTime = 0;
 		isAttack = false;
-		state = SEARCH;
+		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos())) {
+			state = CHASE;
+		}
 		ani_->SetAnimation("walk");
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;

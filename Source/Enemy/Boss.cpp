@@ -8,6 +8,7 @@
 #include "PlayerAction.h"
 #include "Scene.h"
 #include "PlayerDrone.h"
+#include <random>
 
 void IFE::Boss::Initialize()
 {
@@ -28,9 +29,6 @@ void IFE::Boss::Initialize()
 	frontVec = { 0,0,0 };
 	lookfor = { 0,0,0 };
 	shotVec = { 0,0,0 };
-	/*std::random_device seed_gen;
-	std::mt19937_64 engine(seed_gen());
-	std::uniform_real_distribution<float>dist(x, y);*/
 	//HPUI
 	if (!hpUI)
 	{
@@ -252,13 +250,21 @@ void IFE::Boss::Chase()
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 			enemyAttack->objectPtr_->transform_->scale_ = { 1,1,1 };
 			ani_->loop_ = false;
-			ani_->SetAnimation("knifeAttack");
 			frontVec = target - ePos;
 			frontVec = frontVec.Normalize();
 			enemyAttack->SetIsBack(GetBack(0.9f));
 			float radY = std::atan2(frontVec.x, frontVec.z);
 			float targetAngle = ((radY * 180.0f) / (float)PI);
 			transform_->rotation_.y = targetAngle;
+			std::random_device seed_gen;
+			std::mt19937_64 engine(seed_gen());
+			std::uniform_real_distribution<float>dist(-1,1);
+			if (dist(engine) > 0) {
+				attackNum = 0;
+			}
+			else {
+				attackNum = 1;
+			}
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
 			warningTime += IFE::IFETime::sDeltaTime_;
@@ -292,21 +298,45 @@ void IFE::Boss::Chase()
 
 void IFE::Boss::Attack()
 {
-	attackTime += IFE::IFETime::sDeltaTime_;
-	if (attackTime > 0.6 && attackTime < 0.8f) {
-		IFE::Sound::Instance()->SoundPlay("attack", false, true);
-	}
-	if (attackTime > 0.8f - IFE::IFETime::sDeltaTime_) {
-		isAttack = true;
-	}
+	switch (attackNum)
+	{
+	case 0:
+		attackTime += IFE::IFETime::sDeltaTime_;
+		if (attackTime > 0.6 && attackTime < 0.8f) {
+			IFE::Sound::Instance()->SoundPlay("attack", false, true);
+		}
+		if (attackTime > 0.8f - IFE::IFETime::sDeltaTime_) {
+			isAttack = true;
+		}
 
-	if (attackTime > 2.0f) {
-		attackTime = 0;
-		isAttack = false;
-		state = SEARCH;
-		ani_->SetAnimation("walk");
+		if (attackTime > 2.0f) {
+			attackTime = 0;
+			isAttack = false;
+			state = SEARCH;
+			ani_->SetAnimation("walk");
+		}
+		enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
+		break;
+	case 1:
+		attackTime += IFE::IFETime::sDeltaTime_;
+		if (attackTime > 0.6 && attackTime < 0.8f) {
+			IFE::Sound::Instance()->SoundPlay("attack", false, true);
+		}
+		if (attackTime > 0.8f - IFE::IFETime::sDeltaTime_) {
+			isAttack = true;
+		}
+
+		if (attackTime > 2.0f) {
+			attackTime = 0;
+			isAttack = false;
+			state = SEARCH;
+			ani_->SetAnimation("walk");
+		}
+	/*	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyAttack", ModelManager::Instance()->GetModel("dice"));
+		ptr->AddComponent<EnemyAttack>();
+		EnemyAttack* enemyAttack_0 = ptr->GetComponent<EnemyAttack>();*/
+		break;
 	}
-	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
 
 void IFE::Boss::Shot()

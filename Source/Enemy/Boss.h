@@ -31,6 +31,7 @@ namespace IFE {
 		//”­Œ©
 		bool isFound;
 		bool isChaseDrone;
+		uint8_t attackNum;
 		Vector3 lookfor;
 		Vector3 shotVec;
 		//hp

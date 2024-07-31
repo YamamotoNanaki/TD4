@@ -61,6 +61,19 @@ void IFE::BaseEnemy::Update()
 	Highlighting();
 }
 
+bool IFE::BaseEnemy::ChaseLen(Vector3 target)
+{
+	Vector3 ePos = transform_->position_;
+
+	//‹ß‚Ã‚¢‚½‚ç‰£‚é
+	double len = sqrt(pow(ePos.x - target.x, 2) + pow(ePos.y - target.y, 2) +
+		pow(ePos.z - target.z, 2));
+	if (len >= 10.0f) {
+		return true;
+	}
+	return false;
+}
+
 void IFE::BaseEnemy::ApproachTarget(float& current, float target, float step)
 {
 	if (std::abs(current - target) > 180)
