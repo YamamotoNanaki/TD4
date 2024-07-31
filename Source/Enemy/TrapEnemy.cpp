@@ -44,8 +44,6 @@ void IFE::TrapEnemy::Initialize()
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
 	SetSound();
-	ani_ = objectPtr_->GetComponent<IFE::Animator>();
-	ani_->SetAnimation("standBy");//待機モーションに変える
 }
 
 void IFE::TrapEnemy::ChangeState()
@@ -157,22 +155,26 @@ void IFE::TrapEnemy::Warning()
 {
 	//異変の状態が続いたら追跡へ移行
 	if (isFound == true) {
-		warningTime += 100 * IFE::IFETime::sDeltaTime_;
+		warningTime += IFE::IFETime::sDeltaTime_;
 	}
 	else {
-		warningTime -= 100 * IFE::IFETime::sDeltaTime_;
+		warningTime -=IFE::IFETime::sDeltaTime_;
 	}
 
-	if (warningTime >= 125) {
-		warningTime = 50;
+	if (warningTime >= 0.9f) {
+		warningTime = 0.5f;
 		state = CHASE;
 		ani_->SetAnimation("walk");
 	}
 	if (warningTime <= 0) {
-		hpUI->objectPtr_->Destroy();
-		status_->objectPtr_->Destroy();
-		enemyAttack->objectPtr_->Destroy();
-		objectPtr_->Destroy();
+		color.w -= 0.05f;
+		objectPtr_->SetColor(color);
+		if (color.w == 0) {
+			hpUI->objectPtr_->Destroy();
+			status_->objectPtr_->Destroy();
+			enemyAttack->objectPtr_->Destroy();
+			objectPtr_->Destroy();
+		}
 	}
 }
 
