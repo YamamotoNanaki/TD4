@@ -1,11 +1,6 @@
 #include "PostEffectManager.h"
 #include "ComponentHelp.h"
 
-//å„Ç≈è¡Çπ
-#include "EnemyHighlighting.h"
-#include "RadialBlurPE.h"
-#include "DronePostEffect.h"
-
 using namespace IFE;
 
 PostEffectManager* IFE::PostEffectManager::Instance()

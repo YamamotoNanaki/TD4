@@ -8,6 +8,7 @@
 #include "Sound.h"
 #include "PlayerAction.h"
 #include "StringUtil.h"
+#include "Blood.h"
 
 using namespace IFE;
 
@@ -116,6 +117,8 @@ void IFE::BaseEnemy::OneShot()
 		hp_ -= hp_;
 		hitTime_ = HIT_COOLTIME;
 		isHit_ = true;
+		auto blood = ObjectManager::Instance()->GetObjectPtr("Blood");
+		if (blood)blood->GetComponent<Blood>()->Play(this);
 	}
 }
 

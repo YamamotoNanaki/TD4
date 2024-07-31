@@ -304,6 +304,68 @@ Matrix IFE::Lerp(const Matrix& mat1, const Matrix& mat2, float timer, float maxT
 	return mat1 * (1 - timer) + mat2 * timer;
 }
 
+Quaternion IFE::MatrixToQuaternion(const Matrix& matrix)
+{
+	Quaternion q;
+	float trace = matrix[0][0] + matrix[1][1] + matrix[2][2];
+
+	if (trace > 0) {
+		float s = 0.5f / std::sqrt(trace + 1.0f);
+		q.w = 0.25f / s;
+		q.x = (matrix[2][1] - matrix[1][2]) * s;
+		q.y = (matrix[0][2] - matrix[2][0]) * s;
+		q.z = (matrix[1][0] - matrix[0][1]) * s;
+	}
+	else {
+		if (matrix[0][0] > matrix[1][1] && matrix[0][0] > matrix[2][2]) {
+			float s = 2.0f * std::sqrt(1.0f + matrix[0][0] - matrix[1][1] - matrix[2][2]);
+			q.w = (matrix[2][1] - matrix[1][2]) / s;
+			q.x = 0.25f * s;
+			q.y = (matrix[0][1] + matrix[1][0]) / s;
+			q.z = (matrix[0][2] + matrix[2][0]) / s;
+		}
+		else if (matrix[1][1] > matrix[2][2]) {
+			float s = 2.0f * std::sqrt(1.0f + matrix[1][1] - matrix[0][0] - matrix[2][2]);
+			q.w = (matrix[0][2] - matrix[2][0]) / s;
+			q.x = (matrix[0][1] + matrix[1][0]) / s;
+			q.y = 0.25f * s;
+			q.z = (matrix[1][2] + matrix[2][1]) / s;
+		}
+		else {
+			float s = 2.0f * std::sqrt(1.0f + matrix[2][2] - matrix[0][0] - matrix[1][1]);
+			q.w = (matrix[1][0] - matrix[0][1]) / s;
+			q.x = (matrix[0][2] + matrix[2][0]) / s;
+			q.y = (matrix[1][2] + matrix[2][1]) / s;
+			q.z = 0.25f * s;
+		}
+	}
+	return q;
+}
+
+Vector3 IFE::QuaternionToEulerAngles(const Quaternion& q)
+{
+	Vector3 eulerAngles;
+
+	// Roll (x-axis rotation)
+	float sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
+	float cosr_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
+	eulerAngles[0] = std::atan2(sinr_cosp, cosr_cosp);
+
+	// Pitch (y-axis rotation)
+	float sinp = 2 * (q.w * q.y - q.z * q.x);
+	if (std::abs(sinp) >= 1)
+		eulerAngles[1] = std::copysignf(float(PI / 2), sinp); // use 90 degrees if out of range
+	else
+		eulerAngles[1] = std::asin(sinp);
+
+	// Yaw (z-axis rotation)
+	float siny_cosp = 2 * (q.w * q.z + q.x * q.y);
+	float cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
+	eulerAngles[2] = std::atan2(siny_cosp, cosy_cosp);
+
+	return eulerAngles;
+}
+
 int32_t IFE::Int2::operator=(const int32_t& i)
 {
 	return i;
