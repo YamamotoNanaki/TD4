@@ -15,8 +15,14 @@ void CameraChange::Initialize()
 
 void CameraChange::Update()
 {
+	static bool once = false;
 	if (ccp_->cameraChange)
 	{
+		if (!once)
+		{
+			once = true;
+			End();
+		}
 		endFlag_ = false;
 		if (ccp_->cameraChangeTimer < ccp_->changeTime)
 		{
@@ -31,7 +37,7 @@ void CameraChange::Update()
 	else if (!endFlag_)
 	{
 		End();
-		endFlag_ = true;
+		once = false;
 	}
 }
 
@@ -41,7 +47,8 @@ void CameraChange::Add()
 	float x = float(sprite_.size() * 30) + IFERand::GetRandF(-10, 30);
 	auto s = SpriteManager::Instance()->AddInitialize("CameraChange", "white");
 	s->transform_->scale2D_ = { 0,0 };
-	s->transform_->position2D_ = { x,y };
+	if (x > 1400)s->transform_->scale2D_ = 0.15f;
+	s->transform_->position2D_ = { x * 1.75f,y };
 	s->transform_->rotation2D_ = 45;
 	s->order_ = 253;
 	sprite_.push_back(s);
@@ -51,7 +58,7 @@ void CameraChange::UpdateSquare()
 {
 	for (size_t i = 0; i < sprite_.size(); i++)
 	{
-		sprite_[i]->transform_->scale2D_ += 0.15f;
+		sprite_[i]->transform_->scale2D_ += 0.175f;
 	}
 }
 
@@ -62,6 +69,7 @@ void CameraChange::UpdateEnd()
 	{
 		sprite_[i]->Destroy();
 	}
+	sprite_.resize(1);
 	sprite_[0]->transform_->scale2D_ = { float(WindowsAPI::Instance()->winWidth_ / 2),float(WindowsAPI::Instance()->winHeight_ / 2) };
 	sprite_[0]->transform_->position2D_ = { float(WindowsAPI::Instance()->winWidth_ / 2),float(WindowsAPI::Instance()->winHeight_ / 2) };
 	sprite_[0]->transform_->rotation2D_ = 0;
@@ -75,5 +83,6 @@ void CameraChange::End()
 		sprite_[i]->Destroy();
 	}
 	sprite_.clear();
+	endFlag_ = true;
 }
 
