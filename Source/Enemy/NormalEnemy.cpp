@@ -317,6 +317,9 @@ void IFE::NormalEnemy::Attack()
 		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos())) {
 			state = CHASE;
 		}
+		else {
+			state = SEARCH;
+		}
 		ani_->SetAnimation("walk");
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
