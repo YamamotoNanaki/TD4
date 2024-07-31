@@ -9,12 +9,16 @@ void Config::Initialize()
 
 void Config::Update()
 {
+	if (IFE::Input::GetKeyTrigger(IFE::Key::Esc) || IFE::Input::PadTrigger(IFE::PADCODE::B))
+	{
+		Reset();
+	}
 	if (oldPoseFlag_ == true && pose_->GetPoseFlag() == false)
 	{
 		Reset();
 	}
 
-	if (pose_->GetPoseFlag() == true)
+	if (pose_->GetCofigFlag()==true)
 	{
 		ConfigSelect();
 		ConfigChange();
@@ -111,6 +115,8 @@ void Config::Reset()
 	selectNum_ = 0;
 	oldLAnalog_ = 0.0f;
 	configFlag_ = ConfigFlag::brightness;
+	oldPoseFlag_ = false;
+	pose_->SetConfigFlag(false);
 }
 
 void Config::ConfigReset()
