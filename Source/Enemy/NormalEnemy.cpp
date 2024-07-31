@@ -282,7 +282,7 @@ void IFE::NormalEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 			isAttack = true;
 			enemyAttack->SetIsShot(true);
-			enemyAttack->objectPtr_->transform_->scale_ = { 0.4f,0.4f,0.4f };
+			enemyAttack->objectPtr_->transform_->scale_ = { 0.1f,0.1f,0.1f };
 			IFE::Sound::Instance()->SoundPlay("gun", false, true);
 			ani_->SetAnimation("gunAttack");
 			float radY = std::atan2(frontVec.x, frontVec.z);
@@ -338,11 +338,11 @@ void IFE::NormalEnemy::Shot()
 		ani_->SetAnimation("walk");
 	}
 	else if (attackTime > 100) {
+		enemyAttack->objectPtr_->DrawFlag_ = false;
+		enemyAttack->SetIsShot(false);
 		state = CHASE;
 		isAttack = false;
 		ani_->SetAnimation("walk");
-		enemyAttack->objectPtr_->DrawFlag_ = false;
-		enemyAttack->SetIsShot(false);
 		attackTime = 0;
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
@@ -369,7 +369,12 @@ void IFE::NormalEnemy::LookAt()
 		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
 		float radY = std::atan2(frontVec.x, frontVec.z);
 		float targetAngle = ((radY * 180.0f) / (float)PI);
-		ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
+		if (state == CHASE) {
+			ApproachTarget(transform_->rotation_.y, targetAngle, 10.0f);
+		}
+		else {
+			ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
+		}
 	}
 }
 

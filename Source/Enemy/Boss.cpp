@@ -20,7 +20,7 @@ void IFE::Boss::Initialize()
 	isFound = false;
 	isOneShot = false;
 	isAttack = false;
-	warningTime = 50;
+	warningTime = 0.5f;
 	hp_ = 100;
 	decHp_ = 0;
 	isHit_ = false;
@@ -28,6 +28,9 @@ void IFE::Boss::Initialize()
 	frontVec = { 0,0,0 };
 	lookfor = { 0,0,0 };
 	shotVec = { 0,0,0 };
+	/*std::random_device seed_gen;
+	std::mt19937_64 engine(seed_gen());
+	std::uniform_real_distribution<float>dist(x, y);*/
 	//HPUI
 	if (!hpUI)
 	{
@@ -39,6 +42,11 @@ void IFE::Boss::Initialize()
 		status_ = ptr->GetComponent<EnemyHp>();
 		status_->objectPtr_->DrawFlag_ = false;
 	}
+	//UŒ‚
+	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("EnemyAttack", ModelManager::Instance()->GetModel("dice"));
+	ptr->AddComponent<EnemyAttack>();
+	enemyAttack = ptr->GetComponent<EnemyAttack>();
+	SetSound();
 }
 
 void IFE::Boss::ChangeState()
@@ -64,9 +72,6 @@ void IFE::Boss::ChangeState()
 			Wait();
 			break;
 		case IFE::BaseEnemy::SEARCH:
-			/*if (!IFE::Sound::Instance()->GetPlayStatus("walk")) {
-				IFE::Sound::Instance()->SoundPlay("walk", false, true);
-			}*/
 			status_->objectPtr_->DrawFlag_ = false;
 			Search();
 			break;
@@ -77,9 +82,6 @@ void IFE::Boss::ChangeState()
 			Warning();
 			break;
 		case IFE::BaseEnemy::CHASE:
-			/*if (!IFE::Sound::Instance()->GetPlayStatus("walk")) {
-				IFE::Sound::Instance()->SoundPlay("walk", false, true);
-			}*/
 			//’ÇÕó‘Ô‚ÌUI‚É•ÏX
 			status_->objectPtr_->GetComponent<Material>()->SetTexture(TextureManager::Instance()->GetTexture("exclamation"));
 			status_->objectPtr_->DrawFlag_ = true;
@@ -96,10 +98,17 @@ void IFE::Boss::ChangeState()
 		case IFE::BaseEnemy::DEAD:
 			deadTime += IFE::IFETime::sDeltaTime_;
 			if (deadTime >= 2.0f) {
-				hpUI->objectPtr_->Destroy();
-				status_->objectPtr_->Destroy();
-				enemyAttack->objectPtr_->Destroy();
-				objectPtr_->Destroy();
+				if (!isDead) {
+					hpUI->objectPtr_->Destroy();
+					status_->objectPtr_->Destroy();
+					enemyAttack->objectPtr_->Destroy();
+					hpUI = nullptr;
+					status_ = nullptr;
+					enemyAttack = nullptr;
+					isDead = true;
+					objectPtr_->GetComponent<Collider>()->GetCollider(1)->active_ = false;
+					Scene::Instance()->SetNextScene("clear");
+				}
 			}
 			break;
 		default:
@@ -124,8 +133,6 @@ void IFE::Boss::EnemyUpdate()
 		//hp•\Ž¦
 		hpUI->Update(transform_->position_, hp_, decHp_);
 		status_->IconUpdate(transform_->position_);
-		rayDist = 0;
-		isChaseDrone = false;
 		//d—Í
 		if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
 		{
@@ -137,6 +144,8 @@ void IFE::Boss::EnemyUpdate()
 		if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetHP() == 0) {
 			state = SEARCH;
 			ani_->SetAnimation("walk", false);
+			rayDist = 0;
+			isChaseDrone = false;
 		}
 	}
 }
@@ -252,7 +261,7 @@ void IFE::Boss::Chase()
 			transform_->rotation_.y = targetAngle;
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
-			warningTime += 100 * IFE::IFETime::sDeltaTime_;
+			warningTime += IFE::IFETime::sDeltaTime_;
 		}
 	}
 	else {
@@ -262,7 +271,7 @@ void IFE::Boss::Chase()
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 			isAttack = true;
 			enemyAttack->SetIsShot(true);
-			enemyAttack->objectPtr_->transform_->scale_ = { 0.4f,0.4f,0.4f };
+			enemyAttack->objectPtr_->transform_->scale_ = { 0.1f,0.1f,0.1f };
 			IFE::Sound::Instance()->SoundPlay("gun", false, true);
 			ani_->SetAnimation("gunAttack");
 			float radY = std::atan2(frontVec.x, frontVec.z);
@@ -270,11 +279,11 @@ void IFE::Boss::Chase()
 			transform_->rotation_.y = targetAngle;
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
-			warningTime += 100 * IFE::IFETime::sDeltaTime_;
+			warningTime += IFE::IFETime::sDeltaTime_;
 		}
 	}
-	if (warningTime >= 60) {
-		warningTime = 50;
+	if (warningTime >= 2.0) {
+		warningTime = 0.5f;
 		state = WARNING;
 		/*IFE::Sound::Instance()->SoundPlay("what", false, true);*/
 		ani_->SetAnimation("search");
@@ -302,6 +311,30 @@ void IFE::Boss::Attack()
 
 void IFE::Boss::Shot()
 {
+	Vector3 worldPos = enemyAttack->transform_->GetWorldPosition();
+	Vector3 dPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
+	attackTime += 100 * IFE::IFETime::sDeltaTime_;
+	if (enemyAttack->GetIsShot()) {
+		if (attackTime < 3) {
+			shotVec = dPos - worldPos;
+			shotVec.Normalize();
+		}
+		enemyAttack->transform_->position_ += (shotVec * 0.3f);
+	}
+	if (enemyAttack->GetIsShot() == false) {
+		state = CHASE;
+		isAttack = false;
+		ani_->SetAnimation("walk");
+	}
+	else if (attackTime > 100) {
+		enemyAttack->objectPtr_->DrawFlag_ = false;
+		enemyAttack->SetIsShot(false);
+		state = CHASE;
+		isAttack = false;
+		ani_->SetAnimation("walk");
+		attackTime = 0;
+	}
+	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
 
 void IFE::Boss::LookAt()
@@ -314,7 +347,12 @@ void IFE::Boss::LookAt()
 		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
 		float radY = std::atan2(frontVec.x, frontVec.z);
 		float targetAngle = ((radY * 180.0f) / (float)PI);
-		ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
+		if (state != CHASE) {
+			ApproachTarget(transform_->rotation_.y, targetAngle, 10.0f);
+		}
+		else {
+			ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
+		}
 	}
 }
 
@@ -361,12 +399,14 @@ bool IFE::Boss::RaySight(Vector3 pos) {
 }
 
 void IFE::Boss::Killed() {
+	objectPtr_->GetComponent<Collider>()->GetCollider(1)->SetNoPushBackFlag(true);
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
-	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
+	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetActualFrontVec();
 	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
-	transform_->position_ = pPos + addVec;
+	transform_->position_ = pPos + (addVec);
 	transform_->rotation_ = rot;
-	ani_->SetAnimation("standBy");
+	status_->objectPtr_->DrawFlag_ = false;
+	ani_->SetAnimation("standBy", false);
 }
 
 #ifdef EditorMode

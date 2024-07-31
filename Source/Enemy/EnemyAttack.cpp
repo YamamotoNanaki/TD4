@@ -8,7 +8,7 @@
 void IFE::EnemyAttack::Initialize()
 {
 	objectPtr_->DrawFlag_ = false;
-	objectPtr_->SetColor({ 0,0,1,1 });
+	objectPtr_->SetColor({ 0,0,0,1 });
 	isShot = false;
 	if (!objectPtr_->GetComponent<IFE::Collider>())
 	{
