@@ -45,6 +45,8 @@ void IFE::NormalEnemy::Initialize()
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
 	SetSound();
+	ani_ = objectPtr_->GetComponent<IFE::Animator>();
+	ani_->SetAnimation("standBy");//待機モーションに変える
 }
 
 void IFE::NormalEnemy::ChangeState()
@@ -222,10 +224,12 @@ void IFE::NormalEnemy::Search()
 		if (len <= 0.1) {
 			if (nextPoint == points.size() - 1) {
 				nextPoint = 0;
+				ani_->SetAnimation("search");
 				state = WAIT;
 			}
 			else {
 				nextPoint++;
+				ani_->SetAnimation("search");
 				state = WAIT;
 			}
 		}
@@ -354,17 +358,6 @@ void IFE::NormalEnemy::Shot()
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
 
-void IFE::NormalEnemy::Killed() {
-	objectPtr_->GetComponent<Collider>()->GetCollider(1)->SetNoPushBackFlag(true);
-	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
-	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetActualFrontVec();
-	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
-	transform_->position_ = pPos + (addVec);
-	transform_->rotation_ = rot;
-	status_->objectPtr_->DrawFlag_ = false;
-	ani_->SetAnimation("standBy", false);
-}
-
 void IFE::NormalEnemy::LookAt()
 {
 	Vector3 ePos = transform_->position_;
@@ -381,7 +374,7 @@ void IFE::NormalEnemy::LookAt()
 
 bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	//視界の距離
-	float maxDistance = 20;
+	float maxDistance = 25;
 	//視野角
 	float sightAngle = 90;
 	// 自身の位置

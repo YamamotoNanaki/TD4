@@ -44,6 +44,8 @@ void IFE::TrapEnemy::Initialize()
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
 	SetSound();
+	ani_ = objectPtr_->GetComponent<IFE::Animator>();
+	ani_->SetAnimation("standBy");//‘Ò‹@ƒ‚[ƒVƒ‡ƒ“‚É•Ï‚¦‚é
 }
 
 void IFE::TrapEnemy::ChangeState()
@@ -296,16 +298,6 @@ void IFE::TrapEnemy::Shot()
 		attackTime = 0;
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
-}
-
-void IFE::TrapEnemy::Killed() {
-	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
-	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
-	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
-	transform_->position_ = pPos + addVec;
-	transform_->rotation_ = rot;
-	status_->objectPtr_->DrawFlag_ = false;
-	ani_->SetAnimation("standBy");
 }
 
 void IFE::TrapEnemy::LookAt()
