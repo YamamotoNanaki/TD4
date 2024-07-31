@@ -50,6 +50,7 @@ void IFE::TrapEnemy::ChangeState()
 {
 	if (hpUI->GetIsDead() == true && state != DEAD) {
 		ani_->loop_ = false;
+		status_->objectPtr_->DrawFlag_ = false;
 		if (isOneShot) {
 			isOneShot = false;
 			ani_->SetAnimation("downFront", false);
@@ -119,9 +120,6 @@ void IFE::TrapEnemy::ChangeState()
 
 void IFE::TrapEnemy::EnemyUpdate()
 {
-	if (hp_ <= 0) {
-		status_->objectPtr_->DrawFlag_ = false;
-	}
 	if (state != DEAD) {
 		if (state != WAIT) {
 			LookAt();

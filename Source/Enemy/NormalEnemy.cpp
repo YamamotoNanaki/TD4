@@ -21,7 +21,7 @@ void IFE::NormalEnemy::Initialize()
 	isFound = false;
 	isOneShot = false;
 	isAttack = false;
-	warningTime = 50;
+	warningTime = 0.5f;
 	hp_ = 100;
 	decHp_ = 0;
 	isHit_ = false;
@@ -51,6 +51,7 @@ void IFE::NormalEnemy::ChangeState()
 {
 	if ((!hpUI || hpUI->GetIsDead() == true) && state != DEAD) {
 		ani_->loop_ = false;
+		status_->objectPtr_->DrawFlag_ = false;
 		if (isOneShot) {
 			isOneShot = false;
 			ani_->SetAnimation("downFront", false);
@@ -129,9 +130,6 @@ void IFE::NormalEnemy::ChangeState()
 
 void IFE::NormalEnemy::EnemyUpdate()
 {
-	//if (hp_ <= 0) {
-	//	status_->objectPtr_->DrawFlag_ = false;
-	//}
 	if (state != DEAD) {
 		if (state != WAIT) {
 			LookAt();
@@ -146,8 +144,6 @@ void IFE::NormalEnemy::EnemyUpdate()
 		//hp•\Ž¦
 		hpUI->Update(transform_->position_, hp_, decHp_);
 		status_->IconUpdate(transform_->position_);
-		rayDist = 0;
-		isChaseDrone = false;
 		//d—Í
 		if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
 		{
@@ -160,8 +156,9 @@ void IFE::NormalEnemy::EnemyUpdate()
 			state = SEARCH;
 			ani_->SetAnimation("walk",false);
 		}
+		isChaseDrone = false;
+		rayDist = 0;
 	}
-	//Ž€–S
 }
 
 void IFE::NormalEnemy::Wait()
@@ -192,7 +189,7 @@ void IFE::NormalEnemy::Warning()
 		warningTime -= IFE::IFETime::sDeltaTime_;
 	}
 
-	if (warningTime >= 0.8f) {
+	if (warningTime >= 1.0f) {
 		warningTime = 0.5f;
 		state = CHASE;
 		/*IFE::Sound::Instance()->SoundPlay("found", false, true);*/
@@ -275,7 +272,7 @@ void IFE::NormalEnemy::Chase()
 			transform_->rotation_.y = targetAngle;
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
-			warningTime += 100 * IFE::IFETime::sDeltaTime_;
+			warningTime += IFE::IFETime::sDeltaTime_;
 		}
 	}
 	else {
@@ -293,11 +290,11 @@ void IFE::NormalEnemy::Chase()
 			transform_->rotation_.y = targetAngle;
 		}
 		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
-			warningTime += 100 * IFE::IFETime::sDeltaTime_;
+			warningTime += IFE::IFETime::sDeltaTime_;
 		}
 	}
-	if (warningTime >= 60) {
-		warningTime = 50;
+	if (warningTime >= 2.0f) {
+		warningTime = 0.5f;
 		state = WARNING;
 		/*IFE::Sound::Instance()->SoundPlay("what", false, true);*/
 		ani_->SetAnimation("search");
