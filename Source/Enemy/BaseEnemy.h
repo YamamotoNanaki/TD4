@@ -2,6 +2,7 @@
 #include"Component.h"
 #include"IFEMath.h"
 #include "Animator.h"
+#include "EnemyHp.h"
 
 namespace IFE {
 	class BaseEnemy :public IFE::Component
@@ -33,6 +34,8 @@ namespace IFE {
 		State preState;
 		Vector3 frontVec;
 		//hp
+		EnemyHp* hpUI = nullptr;
+		EnemyHp* status_ = nullptr;
 		int8_t hp_;
 		int8_t decHp_;
 		float deadTime= 0;
@@ -100,6 +103,8 @@ namespace IFE {
 		/// <param name="mycol">自分のコライダー</param>
 		/// <param name="hitcol">相手のコライダー</param>
 		void OnColliderHit(ColliderCore* mycol, ColliderCore* hitcol)final override;
+
+		void Killed();
 
 		/// <summary>
 		/// 

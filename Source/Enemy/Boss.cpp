@@ -29,6 +29,16 @@ void IFE::Boss::Initialize()
 	frontVec = { 0,0,0 };
 	lookfor = { 0,0,0 };
 	shotVec = { 0,0,0 };
+	points = {
+		{-90,2,-2.5f},
+		{-65,2,-2.5f},
+		{-90,2,-2.5f},
+		{-110,2,-2.5f},
+		{-90,2,-2.5f},
+		{-90,2,-5.0f},
+		{-90,2,-2.5f},
+		{-90,2,-0.0f}
+	};
 	//HPUI
 	if (!hpUI)
 	{
@@ -45,6 +55,8 @@ void IFE::Boss::Initialize()
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
 	SetSound();
+	ani_ = objectPtr_->GetComponent<IFE::Animator>();
+	ani_->SetAnimation("standBy");//‘Ò‹@ƒ‚[ƒVƒ‡ƒ“‚É•Ï‚¦‚é
 }
 
 void IFE::Boss::ChangeState()
@@ -221,10 +233,12 @@ void IFE::Boss::Search()
 		if (len <= 0.1) {
 			if (nextPoint == points.size() - 1) {
 				nextPoint = 0;
+				ani_->SetAnimation("search");
 				state = WAIT;
 			}
 			else {
 				nextPoint++;
+				ani_->SetAnimation("search");
 				state = WAIT;
 			}
 		}
@@ -417,17 +431,6 @@ bool IFE::Boss::RaySight(Vector3 pos) {
 	}
 
 	return inSight;
-}
-
-void IFE::Boss::Killed() {
-	objectPtr_->GetComponent<Collider>()->GetCollider(1)->SetNoPushBackFlag(true);
-	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
-	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetActualFrontVec();
-	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
-	transform_->position_ = pPos + (addVec);
-	transform_->rotation_ = rot;
-	status_->objectPtr_->DrawFlag_ = false;
-	ani_->SetAnimation("standBy", false);
 }
 
 #ifdef EditorMode

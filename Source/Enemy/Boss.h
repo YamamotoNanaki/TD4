@@ -1,7 +1,6 @@
 #pragma once
 #pragma once
 #include "BaseEnemy.h"
-#include "EnemyHp.h"
 #include "IFEMath.h"
 #include "EnemyAttack.h"
 
@@ -34,9 +33,6 @@ namespace IFE {
 		uint8_t attackNum;
 		Vector3 lookfor;
 		Vector3 shotVec;
-		//hp
-		EnemyHp* hpUI = nullptr;
-		EnemyHp* status_ = nullptr;
 		//çUåÇîªíËÉNÉâÉX
 		IFE::EnemyAttack* enemyAttack = nullptr;
 		bool isAttack;
@@ -105,8 +101,6 @@ namespace IFE {
 		/// </summary>
 		/// <param name="collider"></param>
 		void EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)override;
-
-		void Killed();
 
 		/// <summary>
 		/// ï`âÊ

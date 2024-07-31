@@ -146,6 +146,19 @@ void IFE::BaseEnemy::OneShot()
 	}
 }
 
+void IFE::BaseEnemy::Killed() {
+	objectPtr_->GetComponent<Collider>()->GetCollider(1)->SetNoPushBackFlag(true);
+	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
+	/*Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetActualFrontVec();*/
+	Vector3 addVec = (Vector3)transform_->position_ - pPos;
+	addVec.Normalize();
+	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
+	transform_->position_ = pPos + (addVec);
+	transform_->rotation_ = rot;
+	status_->objectPtr_->DrawFlag_ = false;
+	ani_->SetAnimation("standBy", false);
+}
+
 void IFE::BaseEnemy::OnColliderHit(ColliderCore* mycol, ColliderCore* hitcol)
 {
 	if (mycol->colliderNumber_ == 0)
