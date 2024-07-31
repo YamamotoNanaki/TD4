@@ -100,6 +100,8 @@ namespace IFE {
 		/// </summary>
 		void Update()final override;
 
+		bool ChaseLen(Vector3 target);
+
 		/// <summary>
 		/// コライダーの処理
 		/// BaseEnemyクラスの軽傷を行っている場合呼び出せません
