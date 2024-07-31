@@ -17,11 +17,11 @@ void Blood::Initialize()
 
 void Blood::Update()
 {
-	pos = transform_->GetWorldPosition();
-	rot = transform_->GetWorldRotation();
-	if (start_&&isAttack_)
+	if (start_ && isAttack_)
 	{
-		efk_->Play(pos, rot, { 0.25,0.25,0.25 });
+		auto r = ConvertToDegrees(transform_->GetWorldRotation());
+		r.z = 0;
+		efk_->Play(transform_->GetWorldPosition(), r, { 0.25,0.25,0.25 });
 		start_ = false;
 	}
 }
@@ -31,3 +31,11 @@ void Blood::Play(BaseEnemy* enemy)
 	objectPtr_->GetComponent<Attach3DModel>()->SetParent(enemy->objectPtr_);
 	start_ = true;
 }
+
+#ifdef EditorMode
+#include "ImguiManager.h"
+void Blood::ComponentDebugGUI()
+{
+	ImguiManager::Instance()->TextFloat3GUI(ConvertToDegrees(transform_->GetWorldRotation()));
+}
+#endif

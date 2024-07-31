@@ -122,7 +122,7 @@ void Player::ChangeMode()
 {
 	if (action_->GetAttackFlag())return;
 
-	if ((!ccp_.cameraChange && IFE::Input::GetKeyTrigger(IFE::Key::Y) || IFE::Input::PadTrigger(IFE::PADCODE::Y)) || (modeFlag_ == true && oldIsDamageFlag_ == false && action_->GetIsHit() == true))
+	if ((!ccp_.cameraChange && ((IFE::Input::GetKeyTrigger(IFE::Key::Y) || IFE::Input::PadTrigger(IFE::PADCODE::Y))) || (modeFlag_ == true && oldIsDamageFlag_ == false && action_->GetIsHit() == true)))
 	{
 		if (modeFlag_) {
 			IFE::Sound::Instance()->SoundPlay("droneClose", false, true);

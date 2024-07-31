@@ -506,7 +506,14 @@ void PlayerAction::ApproachTarget(float& current, float target, float step)
 {
 	if (std::abs(current - target) > 180)
 	{
-		target -= 180;
+		if (target > current)
+		{
+			target -= 360;
+		}
+		else
+		{
+			target += 360;
+		}
 	}
 	if (std::abs(current - target) < step) {
 		current = target; // 目標値にほぼ達した場合、目標値に設定
