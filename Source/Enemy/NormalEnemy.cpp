@@ -320,6 +320,7 @@ void IFE::NormalEnemy::Attack()
 		else {
 			state = SEARCH;
 		}
+		ani_->loop_ = true;
 		ani_->SetAnimation("walk");
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
