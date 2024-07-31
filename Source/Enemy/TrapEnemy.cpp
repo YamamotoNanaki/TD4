@@ -50,6 +50,7 @@ void IFE::TrapEnemy::ChangeState()
 {
 	if (hpUI->GetIsDead() == true && state != DEAD) {
 		ani_->loop_ = false;
+		status_->objectPtr_->DrawFlag_ = false;
 		if (isOneShot) {
 			isOneShot = false;
 			ani_->SetAnimation("downFront", false);
@@ -119,9 +120,6 @@ void IFE::TrapEnemy::ChangeState()
 
 void IFE::TrapEnemy::EnemyUpdate()
 {
-	if (hp_ <= 0) {
-		status_->objectPtr_->DrawFlag_ = false;
-	}
 	if (state != DEAD) {
 		if (state != WAIT) {
 			LookAt();
@@ -136,8 +134,6 @@ void IFE::TrapEnemy::EnemyUpdate()
 		//hp•\Ž¦
 		hpUI->Update(transform_->position_, hp_, decHp_);
 		status_->IconUpdate(transform_->position_);
-		rayDist = 0;
-		isChaseDrone = false;
 		//d—Í
 		if (!objectPtr_->GetComponent<Collider>()->GetCollider(1)->onGround_)
 		{
@@ -149,6 +145,8 @@ void IFE::TrapEnemy::EnemyUpdate()
 		if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetHP() == 0) {
 			state = SEARCH;
 			ani_->SetAnimation("walk", false);
+			rayDist = 0;
+			isChaseDrone = false;
 		}
 	}
 }
@@ -234,7 +232,7 @@ void IFE::TrapEnemy::Chase()
 			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
 			isAttack = true;
 			enemyAttack->SetIsShot(true);
-			enemyAttack->objectPtr_->transform_->scale_ = { 0.4f,0.4f,0.4f };
+			enemyAttack->objectPtr_->transform_->scale_ = { 0.1f,0.1f,0.1f };
 			IFE::Sound::Instance()->SoundPlay("gun", false, true);
 			ani_->SetAnimation("gunAttack");
 			float radY = std::atan2(frontVec.x, frontVec.z);
@@ -290,11 +288,11 @@ void IFE::TrapEnemy::Shot()
 		ani_->SetAnimation("walk");
 	}
 	else if (attackTime > 100) {
+		enemyAttack->objectPtr_->DrawFlag_ = false;
+		enemyAttack->SetIsShot(false);
 		state = CHASE;
 		isAttack = false;
 		ani_->SetAnimation("walk");
-		enemyAttack->objectPtr_->DrawFlag_ = false;
-		enemyAttack->SetIsShot(false);
 		attackTime = 0;
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
@@ -320,7 +318,12 @@ void IFE::TrapEnemy::LookAt()
 		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
 		float radY = std::atan2(frontVec.x, frontVec.z);
 		float targetAngle = ((radY * 180.0f) / (float)PI);
-		ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
+		if (state == CHASE) {
+			ApproachTarget(transform_->rotation_.y, targetAngle, 10.0f);
+		}
+		else {
+			ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
+		}
 	}
 }
 

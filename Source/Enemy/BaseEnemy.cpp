@@ -8,6 +8,7 @@
 #include "Sound.h"
 #include "PlayerAction.h"
 #include "StringUtil.h"
+#include "Blood.h"
 
 using namespace IFE;
 
@@ -60,8 +61,32 @@ void IFE::BaseEnemy::Update()
 	Highlighting();
 }
 
+bool IFE::BaseEnemy::ChaseLen(Vector3 target)
+{
+	Vector3 ePos = transform_->position_;
+
+	//近づいたら殴る
+	double len = sqrt(pow(ePos.x - target.x, 2) + pow(ePos.y - target.y, 2) +
+		pow(ePos.z - target.z, 2));
+	if (len >= 10.0f) {
+		return true;
+	}
+	return false;
+}
+
 void IFE::BaseEnemy::ApproachTarget(float& current, float target, float step)
 {
+	if (std::abs(current - target) > 180)
+	{
+		if (target > current)
+		{
+			target -= 360;
+		}
+		else
+		{
+			target += 360;
+		}
+	}
 	if (std::abs(current - target) < step) {
 		current = target; // 目標値にほぼ達した場合、目標値に設定
 	}
@@ -116,6 +141,8 @@ void IFE::BaseEnemy::OneShot()
 		hp_ -= hp_;
 		hitTime_ = HIT_COOLTIME;
 		isHit_ = true;
+		auto blood = ObjectManager::Instance()->GetObjectPtr("Blood");
+		if (blood)blood->GetComponent<Blood>()->Play(this);
 	}
 }
 
@@ -169,7 +196,6 @@ const bool IFE::BaseEnemy::GetBack(float judge)
 {
 	Vector3 pFront = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
 	float result = pFront.Dot(-frontVec);
-	 judge = 0.9f;
 	if (result < judge) {
 		return true;
 	}

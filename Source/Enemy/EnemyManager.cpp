@@ -57,6 +57,10 @@ void IFE::EnemyManager::Initialize()
 
 			col1->SetPushBackFlag(true);
 			col1->SetGroundJudgeFlag(true);
+
+			auto col2 = com->AddCollider();
+			col2->SetColliderType(ColliderType::RAY);
+
 			enemyList_.push_back(boss);
 			itr->SetModel(IFE::ModelManager::Instance()->GetModel("enemyMotion"));
 

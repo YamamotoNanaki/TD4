@@ -821,6 +821,62 @@
             "name": "gameOverFade",
             "order": 0,
             "texture": "white.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    600.0,
+                    800.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    5.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "restart",
+            "order": 0,
+            "texture": "text//default//restart.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1320.0,
+                    800.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    4.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "toTitle",
+            "order": 0,
+            "texture": "text//default//returnTitle.png"
         }
     ]
 }

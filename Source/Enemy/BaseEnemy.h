@@ -59,20 +59,10 @@ namespace IFE {
 		virtual ~BaseEnemy() = default;
 
 		/// <summary>
-		/// 初期化
-		/// </summary>
-		virtual void Initialize() = 0;
-
-		/// <summary>
 		/// 更新処理
 		/// 自動で呼ばれます
 		/// </summary>
 		virtual void EnemyUpdate() = 0;
-
-		/// <summary>
-		/// 描画
-		/// </summary>
-		virtual void Draw() = 0;
 
 		/// <summary>
 		/// 終了
@@ -99,6 +89,8 @@ namespace IFE {
 		/// EnemyUpdateを使用してください
 		/// </summary>
 		void Update()final override;
+
+		bool ChaseLen(Vector3 target);
 
 		/// <summary>
 		/// コライダーの処理
@@ -141,9 +133,5 @@ namespace IFE {
 		/// </summary>
 		void Highlighting();
 
-#ifdef EditorMode
-	public:
-		virtual void ComponentDebugGUI() = 0;
-#endif
 	};
 }

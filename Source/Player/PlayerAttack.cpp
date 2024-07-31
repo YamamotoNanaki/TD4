@@ -116,7 +116,7 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 	//boss
 	if (hitCollider->GetColliderType() == IFE::ColliderType::SPHERE && hitCollider->objectPtr_->GetComponent<IFE::Boss>())
 	{
-		if (hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetBack() == false)
+		if (hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetBack(0) == false)
 		{
 			isBackAttack_ = false;
 		}
@@ -134,7 +134,7 @@ void PlayerAttack::OnColliderHit(IFE::ColliderCore* myCollider, IFE::ColliderCor
 		{
 			if (hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetIsHit() == false)
 			{
-				if (hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetBack() == false)
+				if (hitCollider->objectPtr_->GetComponent<IFE::Boss>()->GetBack(0) == false)
 				{
 					//“–‚½‚Á‚½Žž‚Ìˆ—
 					hitCollider->objectPtr_->GetComponent<IFE::Boss>()->DecHp();

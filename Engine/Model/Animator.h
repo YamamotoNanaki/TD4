@@ -8,6 +8,15 @@ namespace IFE
 {
 	class Animator : public Component
 	{
+	public:
+		struct AnimMat
+		{
+			Matrix mat;
+			std::string name;
+			std::string parentName = "";
+			AnimMat* parent = nullptr;
+		};
+	private:
 		using Component::Component;
 		uint8_t oldAnimNum_ = 0;
 		uint8_t interpolationAnimNum_ = 0;
@@ -22,6 +31,8 @@ namespace IFE
 		std::unique_ptr<ConstBuffer<ConstBufferDataSkin>> skinBuffer_;
 		ConstBufferDataSkin* constMapSkin_ = nullptr;
 		uint8_t animNum_ = 0;
+
+		std::vector<AnimMat> animMats_;
 	public:
 		float animSpeed_ = 1.f;
 		bool loop_ = true;
@@ -35,6 +46,7 @@ namespace IFE
 		void Draw()override;
 		float GetEndTime();
 		void SetAnimTime(float animTime_);
+		AnimMat* GetBone(std::string name);
 		~Animator();
 
 		void SetAnimation(std::string animName, bool interpolation = true, float interpolationMaxTimer = 0.3);

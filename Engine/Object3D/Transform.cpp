@@ -9,14 +9,14 @@
 using namespace IFE;
 using namespace std;
 
-void IFE::Transform::ParentBoneMatrix(Matrix& mat, Bone* bone)
+void IFE::Transform::ParentBoneMatrix(Matrix& mat, Animator::AnimMat* bone)
 {
 	if (!bone)
 	{
 		return;
 	}
 	ParentBoneMatrix(mat, bone->parent);
-	mat *= bone->finalMatrix;
+	mat *= bone->mat;
 }
 
 void IFE::Transform::Initialize()
@@ -169,6 +169,21 @@ Vector3 Transform::GetWorldPosition()
 		rMat *= parent_->matWorld_;//e‚Ìs—ñ‚ğŠ|‚¯Z‚·‚é
 	}
 	return Matrix::Transform({ 0,0,0 }, rMat);
+}
+
+Vector3 IFE::Transform::GetWorldRotation()
+{
+	UpdateMatrix();
+	Matrix rMat = matWorld_;
+	if (parent_)
+	{
+		ParentBoneMatrix(rMat, parentBone_);
+		parent_->UpdateMatrix();
+		rMat *= parent_->matWorld_;//e‚Ìs—ñ‚ğŠ|‚¯Z‚·‚é
+	}
+
+	auto q = MatrixToQuaternion(rMat);
+	return QuaternionToEulerAngles(q);
 }
 
 void Transform::SetWorldPosition(const Vector3& worldPos)

@@ -5,6 +5,7 @@
 #include "Over.h"
 #include"Transform.h"
 #include"Ease.h"
+#include"ColorBuffer.h"
 
 using namespace IFE;
 
@@ -19,6 +20,12 @@ void Title::Initialize()
 	IFE::Sound::Instance()->LoadWave("title");
 	IFE::Sound::Instance()->SetVolume("title", 50);
 	isNext = false;
+
+	/*IFE::SpriteManager::Instance()->GetSpritePtr("gameLogo")->order_ = 101;
+	IFE::SpriteManager::Instance()->GetSpritePtr("yes")->order_ = 101;
+	IFE::SpriteManager::Instance()->GetSpritePtr("no")->order_ = 101;*/
+	IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
+	IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
 }
 
 void Title::Update()
@@ -26,12 +33,14 @@ void Title::Update()
 	switch (titleSelectFlag_)
 	{
 	case TitleSelect::TITLE:
+		TitleLogoSimpleHarmonicMotion();
 		CameraRot();
 		if (animationFlag_ == false)
 		{
 			if (Input::PadTrigger(PADCODE::ALL) || Input::GetKeyTrigger(Key::Space))
 			{
 				beforeEaseAngle_ = cameraAngle_;
+				beforeGameLogoPosY_ = IFE::SpriteManager::Instance()->GetSpritePtr("gameLogo")->transform_->position2D_.y;
 				animationFlag_ = true;
 			}
 		}
@@ -46,6 +55,7 @@ void Title::Update()
 		{
 			if (Input::PadTrigger(PADCODE::B) || Input::GetKeyTrigger(Key::Esc))
 			{
+				titleAnimationTimer_ = 0.0f;
 				animationFlag_ = true;
 			}
 		}
@@ -64,6 +74,12 @@ void Title::Update()
 		break;
 	}
 	ImGUI();
+}
+
+void Title::TitleLogoSimpleHarmonicMotion()
+{
+	titleAnimationTimer_ += IFE::IFETime::sDeltaTime_;
+	IFE::SpriteManager::Instance()->GetSpritePtr("gameLogo")->transform_->position2D_.y = 200.0f + IFE::SimpleHarmonicMotion(titleAnimationTimer_, 10.0f, 3.0f);
 }
 
 void Title::CameraRot()
@@ -99,6 +115,10 @@ void Title::ToSelectAnimation()
 		cameraAngle_ = IFE::EaseInOutQuart(animationTime_, beforeEaseAngle_, static_cast<float>(-PI) / 2, maxAnimationTime_);
 	}
 
+	//UI
+	IFE::SpriteManager::Instance()->GetSpritePtr("gameLogo")->transform_->position2D_.y = IFE::EaseInOutBack(animationTime_, 200.0f, -200.0f, maxAnimationTime_);
+	IFE::SpriteManager::Instance()->GetSpritePtr("pressButton")->transform_->position2D_.y = IFE::EaseInOutBack(animationTime_, 880.0f, 1280.0f, maxAnimationTime_);
+
 	if (animationTime_ > maxAnimationTime_)
 	{
 		animationFlag_ = false;
@@ -116,6 +136,10 @@ void Title::BackTitleAnimation()
 {
 	distanse_ = IFE::EaseInOutQuart(animationTime_, 0.1f, 120.0f, maxAnimationTime_);
 	camera_->transform_->eye_.y = IFE::EaseInOutQuart(animationTime_, 120.0f, 5.0f, maxAnimationTime_);
+
+	//UI
+	IFE::SpriteManager::Instance()->GetSpritePtr("gameLogo")->transform_->position2D_.y = IFE::EaseInOutBack(animationTime_, -200.0f, 200.0f, maxAnimationTime_);
+	IFE::SpriteManager::Instance()->GetSpritePtr("pressButton")->transform_->position2D_.y = IFE::EaseInOutBack(animationTime_, 1280.0f, 880.0f, maxAnimationTime_);
 
 	if (animationTime_ > maxAnimationTime_)
 	{
@@ -150,6 +174,8 @@ void Title::Select()
 	if (Input::PadTrigger(PADCODE::A) || Input::GetKeyTrigger(Key::Space))
 	{
 		oldLAnalog_ = 0.0f;
+		IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+		IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
 		titleSelectFlag_ = TitleSelect::SELECT2;
 	}
 }
@@ -159,16 +185,22 @@ void Title::SelectCheck()
 	int32_t range = 10000;
 	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_ > -0.5f && IFE::Input::GetLXAnalog(range) < -0.5f)
 	{
+		IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
+		IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
 		checkFlag_ = true;
 	}
 	else if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_ < 0.5f && IFE::Input::GetLXAnalog(range) >0.5f)
 	{
+		IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+		IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
 		checkFlag_ = false;
 	}
 
 	if (Input::PadTrigger(PADCODE::B) || Input::GetKeyTrigger(Key::Esc))
 	{
 		oldLAnalog_ = 0.0f;
+		IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
+		IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
 		titleSelectFlag_ = TitleSelect::SELECT;
 	}
 
@@ -177,6 +209,8 @@ void Title::SelectCheck()
 		if (checkFlag_ == false)
 		{
 			oldLAnalog_ = 0.0f;
+			IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
 			titleSelectFlag_ = TitleSelect::SELECT;
 		}
 		else
