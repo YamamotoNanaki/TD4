@@ -39,6 +39,8 @@
         "GameOver.png",
         "enemy.png",
         "helmet.png",
-        "Knife.png"
+        "Knife.png",
+        "text//default//restart.png",
+        "text//default//returnTitle.png"
     ]
 }

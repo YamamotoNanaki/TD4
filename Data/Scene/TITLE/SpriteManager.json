@@ -29,6 +29,118 @@
             "name": "Title",
             "order": 0,
             "texture": "Title.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    600.0,
+                    800.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    5.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "yes",
+            "order": 0,
+            "texture": "text//default//restart.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1320.0,
+                    800.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    4.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "no",
+            "order": 0,
+            "texture": "text//default//returnTitle.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    200.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    6.0,
+                    3.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "gameLogo",
+            "order": 0,
+            "texture": "text//default//gameLogo.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    880.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    6.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "pressButton",
+            "order": 0,
+            "texture": "text//default//pressAButton.png"
         }
     ]
 }
