@@ -166,15 +166,18 @@ void Player::ChangeMode()
 				modeFlag_ = false;
 				drone_->SetDrawFlag(drone_->GetIsDroneSurvival());
 				IFE::CameraManager::Instance()->SetActiveCamera("ActionCamera");
-				if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+				if (action_->GetHP() > 0)
 				{
-					action_->SetIsWalk(true);
-					action_->SetAnimation("walk");
-				}
-				else
-				{
-					action_->SetIsWalk(false);
-					action_->SetAnimation("standBy");
+					if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+					{
+						action_->SetIsWalk(true);
+						action_->SetAnimation("walk");
+					}
+					else
+					{
+						action_->SetIsWalk(false);
+						action_->SetAnimation("standBy");
+					}
 				}
 				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;				
 			}

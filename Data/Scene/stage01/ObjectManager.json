@@ -11967,6 +11967,7 @@
         "prefab": false
     },
     {
+        "Config": null,
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -12023,7 +12024,8 @@
             "Transform",
             "TransferGeometryBuffer",
             "Material",
-            "PoseMenu"
+            "PoseMenu",
+            "Config"
         ],
         "drawFlag": false,
         "model": "dice_Model",

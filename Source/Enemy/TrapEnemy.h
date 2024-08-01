@@ -3,6 +3,7 @@
 #include "IFEMath.h"
 #include "enemyAttack.h"
 #include "IFETime.h"
+#include "FLOAT4.h"
 
 namespace IFE {
 	//---めっちゃ普通の敵---//
@@ -32,6 +33,8 @@ namespace IFE {
 		//レイヒット記憶変数
 		float rayDist;
 		ColliderCore* hitColl_ = nullptr;
+		//色
+		Float4 color = {1,1,1,1};
 
 		//メンバ関数
 	public:

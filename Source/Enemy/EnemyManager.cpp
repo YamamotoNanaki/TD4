@@ -110,13 +110,15 @@ void IFE::EnemyManager::PopEnemy(Vector3 position, Vector3 rotation,Vector3 trap
 
 	auto col2 = com->AddCollider();
 	col2->SetColliderType(ColliderType::RAY);
+	/*ptr->AddComponent<IFE::Animator>();*/
+
+	enemy->objectPtr_->AddComponentBack<IFE::Animator>();
+
+	auto anim = enemy->objectPtr_->GetComponent<IFE::Animator>();
+	anim->SetAnimation("walk", false);
+	anim->loop_ = true;
 
 	enemyList_.push_back(enemy);
-	ptr->AddComponent<IFE::Animator>();
-
-	auto anim = ptr->GetComponent<IFE::Animator>();
-	anim->SetAnimation("walk",false);
-	anim->loop_ = true;
 }
 
 #ifdef EditorMode
