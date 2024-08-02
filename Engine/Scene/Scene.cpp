@@ -224,6 +224,7 @@ void IFE::Scene::SceneInit()
 	lightM_->Reset();
 	postEffectM_->Reset();
 	effekseerM_->Reset();
+	gp_->Loading();
 	tex_->LoadingScene();
 	modelM_->LoadingScene();
 	objM_->LoadingScene();
@@ -333,6 +334,8 @@ void IFE::Scene::LoadingScene()
 	lightM_->Reset();
 	effekseerM_->Reset();
 	postEffectM_->Reset();
+	gp_->Reset();
+	gp_->Loading();
 	objM_->LoadingScene();
 	spriteM_->LoadingScene();
 	particleM->LoadingScene();
@@ -385,6 +388,7 @@ void IFE::Scene::OutputScene()
 	lightM_->OutputScene();
 	effekseerM_->Output();
 	postEffectM_->Output();
+	gp_->Output();
 }
 #include "imgui.h"
 #include "Input.h"
@@ -489,6 +493,7 @@ void IFE::Scene::DebugGUI()
 	lightM_->DebugGUI();
 	postEffectM_->DebugGUI();
 	effekseerM_->DebugGUI();
+	gp_->DebugGUI();
 }
 
 bool IFE::Scene::SceneCheck(const std::string& sceneName)

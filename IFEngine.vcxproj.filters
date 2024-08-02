@@ -232,6 +232,9 @@
     <Filter Include="ヘッダー ファイル\Source\Scene">
       <UniqueIdentifier>{034380c2-6c3a-40cf-b397-d708cac51382}</UniqueIdentifier>
     </Filter>
+    <Filter Include="シェーダーファイル\Source\SolidMap">
+      <UniqueIdentifier>{2de5167d-06be-4e71-9527-71012a4e654d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Base\GraphicsAPI.cpp">
@@ -981,6 +984,9 @@
     <None Include="Data\Shaders\RadialBlur.hlsli">
       <Filter>シェーダーファイル\Engine\RadialBlur</Filter>
     </None>
+    <None Include="Data\Shaders\SolidMap.hlsli">
+      <Filter>シェーダーファイル\Source\SolidMap</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Data\Shaders\DefaultPEPS.hlsl">
@@ -1066,6 +1072,15 @@
     </FxCompile>
     <FxCompile Include="Data\Shaders\RadialBlurVS.hlsl">
       <Filter>シェーダーファイル\Engine\RadialBlur</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\SolidMapPS.hlsl">
+      <Filter>シェーダーファイル\Source\SolidMap</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\SolidMapVS.hlsl">
+      <Filter>シェーダーファイル\Source\SolidMap</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shaders\SolidMapGS.hlsl">
+      <Filter>シェーダーファイル\Source\SolidMap</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

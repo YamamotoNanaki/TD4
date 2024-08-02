@@ -52,6 +52,17 @@
         "stage03.png",
         "whiteFrame.png",
         "skyDome.png",
-        "titleFloor.png"
+        "titleFloor.png",
+        "Text//stage.png",
+        "Text//1.png",
+        "Text//2.png",
+        "Text//3.png",
+        "Text//misshonStart.png",
+        "Text//no.png",
+        "Text//yes.png",
+        "Text//pressAny.png",
+        "Text//stageName01.png",
+        "Text//stageName02.png",
+        "Text//stageName03.png"
     ]
 }

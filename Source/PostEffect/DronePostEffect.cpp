@@ -11,7 +11,7 @@ using namespace std;
 void DronePostEffect::Initialize()
 {
 	name_ = "DronePostEffect";
-	gp_ = GraphicsPipelineManager::Instance()->CreatePostEffectPipeLine("DronePostEffect", 2, 1, 1);
+	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("DronePostEffect");
 	cb_ = make_unique<IFE::ConstBuffer<DroneCameraPE>>();
 	buff_ = cb_->GetCBMapObject();
 	buff_->drone = false;

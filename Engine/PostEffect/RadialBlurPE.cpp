@@ -29,7 +29,7 @@ void IFE::RadialBlurPE::Update()
 void IFE::RadialBlurPE::Initialize()
 {
 	name_ = "RadialBlurPE";
-	gp_ = GraphicsPipelineManager::Instance()->CreatePostEffectPipeLine("RadialBlur", 1, 1, 1);
+	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("RadialBlur");
 	drawFlag_ = false;
 	updateFlag_ = true;
 	cb_ = std::make_unique<IFE::ConstBuffer<RadialCB>>();

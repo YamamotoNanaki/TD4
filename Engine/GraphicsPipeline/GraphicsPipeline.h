@@ -17,6 +17,9 @@ namespace IFE
 	public:
 		uint8_t pipelineNum_ = 0;
 		std::string name_ = "";
+		uint16_t inTex_;
+		uint16_t outTex_;
+		uint16_t addParam_;
 
 	public:
 		void SetDrawBlendMode();

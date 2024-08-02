@@ -31,10 +31,17 @@ private:
 	const float maxAnimationTime_ = 2.0f;
 
 	//ステージ選択
-	int8_t stageNum_ = 0;
+	int8_t stageNum_ = 1;
 	int8_t minStageNum_ = 1;
 	int8_t maxStageNum_ = 3;
 	float oldLAnalog_ = 0.0f;
+
+	//フレーム
+	bool flameAnimationFlag_ = false;
+	float flameAnimationTime_ = 0.0f;
+	const float maxFlameAnimationTime_ = 0.5f;
+	IFE::Vector3 flamePos_[3];
+	IFE::Vector3 oldFlamePos = {};
 
 	//最終確認
 	bool checkFlag_ = false;
@@ -56,6 +63,8 @@ private:
 
 	void Select();
 	void SelectCheck();
+
+	void SelectFlame();
 
 	void ImGUI();
 };
