@@ -9,6 +9,7 @@
 #include "PlayerAction.h"
 #include "StringUtil.h"
 #include "Blood.h"
+#include "IFEEffekseerManager.h"
 
 using namespace IFE;
 
@@ -130,6 +131,8 @@ void IFE::BaseEnemy::DecHp()
 		decHp_ = 25;
 		hitTime_ = HIT_COOLTIME;
 		isHit_ = true;
+		auto e = IFE::IFEEffekseerManager::Instance()->GetEffekseer("LowHPBlood");
+		e->Play(&transform_->position_, nullptr, nullptr, 0, 0, { 0.5,0.5,0.5 });
 	}
 }
 

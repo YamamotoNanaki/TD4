@@ -170,6 +170,14 @@ string IFE::ComponentHelp::GetComponentList()
 	ImguiManager::Instance()->InputTextGUI(U8("検索"), search);
 	std::vector<std::string>items = ComponentHelp::SearchClasses(search);
 
+	if (items.size() == 0)
+	{
+		ImguiManager::Instance()->TextGUI(U8("存在しないコンポーネントです"));
+		ImguiManager::Instance()->TextGUI(U8("誤字脱字がないか確認してください"));
+
+		return "";
+	}
+
 	static int32_t returnNum = 0;
 	ImguiManager::Instance()->Combo("component name", returnNum, items);
 	return items[returnNum];
@@ -208,6 +216,13 @@ std::string IFE::IPostEffectHelp::GetComponentList()
 	ImguiManager::Instance()->InputTextGUI(U8("検索"), search);
 	std::vector<std::string>items = IPostEffectHelp::SearchClasses(search);
 
+	if (items.size() == 0)
+	{
+		ImguiManager::Instance()->TextGUI(U8("存在しないコンポーネントです"));
+		ImguiManager::Instance()->TextGUI(U8("誤字脱字がないか確認してください"));
+
+		return "";
+	}
 	static int32_t returnNum = 0;
 	ImguiManager::Instance()->Combo("posteffect name", returnNum, items);
 	return items[returnNum];

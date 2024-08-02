@@ -111,32 +111,6 @@ void PlayerAction::Update()
 	{
 		deathAnimation_->SetDeathAnimationFlag(true);
 	}
-	else if (hp_ < 5)
-	{
-		static float timer = 0;
-		const static float max = 20 / 60.f;
-		static int i = 2;
-		timer += IFE::IFETime::sDeltaTime_;
-		if (timer >= max)
-		{
-			auto e = IFE::IFEEffekseerManager::Instance()->GetEffekseer("LowHPBlood");
-			e->Play(&transform_->position_, nullptr, nullptr, 0, 0, { 0.5,0.5,0.5 });
-			timer = 0;
-			i = 2;
-		}
-	}
-	else if (hp_ <= 8)
-	{
-		static float timer = 0;
-		const static float max = 20 / 60.f;
-		timer += IFE::IFETime::sDeltaTime_;
-		if (timer >= max)
-		{
-			auto e = IFE::IFEEffekseerManager::Instance()->GetEffekseer("MiddleHPBlood");
-			e->Play(transform_->position_);
-			timer = 0;
-		}
-	}
 }
 
 void PlayerAction::Draw()
@@ -170,6 +144,8 @@ void PlayerAction::DecHp(bool isBack_)
 			{
 				ani_->SetAnimation("squatDamage");
 			}
+			auto e = IFE::IFEEffekseerManager::Instance()->GetEffekseer("LowHPBlood");
+			e->Play(&transform_->position_, nullptr, nullptr, 0, 0, { 0.5,0.5,0.5 });
 		}
 		else
 		{
@@ -190,6 +166,8 @@ void PlayerAction::DecHp(bool isBack_)
 			{
 				ani_->SetAnimation("squatDamage");//‚µ‚á‚ª‚ÝŽ€–Sƒ‚[ƒVƒ‡ƒ“
 			}
+			auto e = IFE::IFEEffekseerManager::Instance()->GetEffekseer("LowHPBlood");
+			e->Play(&transform_->position_, nullptr, nullptr, 0, 0, { 0.5,0.5,0.5 });
 		}
 	}
 }
