@@ -33,5 +33,12 @@
         "name": "DronePostEffect",
         "number": 200,
         "outTex": 1
+    },
+    {
+        "addParam": 0,
+        "inTex": 1,
+        "name": "SolidMap",
+        "number": 2,
+        "outTex": 2
     }
 ]

@@ -493,6 +493,7 @@ void IFE::Scene::DebugGUI()
 	lightM_->DebugGUI();
 	postEffectM_->DebugGUI();
 	effekseerM_->DebugGUI();
+	gp_->DebugGUI();
 }
 
 bool IFE::Scene::SceneCheck(const std::string& sceneName)

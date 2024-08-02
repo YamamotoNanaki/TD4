@@ -963,7 +963,7 @@ void IFE::GraphicsPipelineManager::DebugGUI()
 	if (gui->CollapsingHeaderGUI(U8("追加")))
 	{
 		static int32_t num;
-		const static std::vector<std::string> items = { "Object","ObjectAnimation"/*,"PostEffect"*/ };
+		const static std::vector<std::string> items = { "Object","ObjectAnimation","PostEffect" };
 		enum Mode
 		{
 			Object, ObjectAnimation, PostEffect
@@ -1006,7 +1006,7 @@ void IFE::GraphicsPipelineManager::DebugGUI()
 		}
 		else
 		{
-			gui->TextGUI(U8("エラー:すでに存在します"));
+			gui->TextGUI(U8("エラー:すでに存在します。また、生成後はこの表示が出ます"));
 		}
 	}
 
@@ -1016,7 +1016,9 @@ void IFE::GraphicsPipelineManager::DebugGUI()
 		{
 			if (gui->NewTreeNode(itr->name_))
 			{
-				gui->TextGUI(U8("機能追加予定"));
+				gui->TextIntGUI(U8("入力テクスチャ数"), itr->inTex_);
+				gui->TextIntGUI(U8("出力テクスチャ数"), itr->outTex_);
+				gui->TextIntGUI(U8("追加定数バッファ数"), itr->addParam_);
 				gui->EndTreeNode();
 			}
 		}
