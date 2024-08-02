@@ -142,6 +142,9 @@ void IFE::NormalEnemy::EnemyUpdate()
 				isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
 				isChaseDrone = isFound;
 			}
+			else if (!IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival()) {
+				isChaseDrone = false;
+			}
 		}
 		//状態を取得
 		preState = state;
@@ -160,7 +163,6 @@ void IFE::NormalEnemy::EnemyUpdate()
 			state = SEARCH;
 			ani_->SetAnimation("walk", false);
 		}
-		isChaseDrone = false;
 		rayDist = 0;
 	}
 }
@@ -340,7 +342,7 @@ void IFE::NormalEnemy::Shot()
 			shotVec = dPos - worldPos;
 			shotVec.Normalize();
 		}
-		enemyAttack->transform_->position_ += (shotVec * 0.3f);
+		enemyAttack->transform_->position_ += (shotVec * 0.5f);
 	}
 	if (enemyAttack->GetIsShot() == false) {
 		state = CHASE;
@@ -374,7 +376,7 @@ void IFE::NormalEnemy::LookAt()
 
 bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	//視界の距離
-	float maxDistance = 25;
+	float maxDistance = 20;
 	//視野角
 	float sightAngle = 90;
 	// 自身の位置
@@ -409,6 +411,10 @@ bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	if (rayDist < targetDistance && rayDist > 0) {
 		// ターゲットよりも障害物が近い場合は視界が遮られている
 		inSight = false;
+	}
+	if (inSight) {
+		int a;
+		a = 0;
 	}
 
 	return inSight;

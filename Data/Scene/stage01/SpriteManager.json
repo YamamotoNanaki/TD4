@@ -969,6 +969,34 @@
             "name": "config",
             "order": 0,
             "texture": "text//default//hpFlame.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.08000040054321289
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    530.5
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    20.0,
+                    11.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "fade",
+            "order": 255,
+            "texture": "white.png"
         }
     ]
 }
