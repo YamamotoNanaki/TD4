@@ -62,6 +62,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -116,7 +127,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -124,6 +136,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -178,7 +201,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -186,6 +210,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -240,7 +275,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -248,6 +284,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -302,7 +349,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -310,6 +358,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -364,7 +423,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -372,6 +432,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -426,7 +497,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -434,6 +506,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -488,7 +571,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -496,6 +580,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -550,7 +645,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -558,6 +654,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -612,7 +719,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -620,6 +728,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -674,7 +793,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -682,6 +802,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -736,7 +867,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -744,6 +876,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -798,7 +941,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -806,6 +950,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -860,7 +1015,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -868,6 +1024,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -922,7 +1089,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -930,6 +1098,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -984,7 +1163,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -992,6 +1172,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1046,7 +1237,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -1054,6 +1246,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1108,7 +1311,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -1116,6 +1320,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1170,7 +1385,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -1178,6 +1394,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1232,7 +1459,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -1240,6 +1468,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1294,7 +1533,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -1302,6 +1542,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1356,7 +1607,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -1364,6 +1616,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1418,7 +1681,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -1426,6 +1690,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1480,7 +1755,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -1488,6 +1764,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1542,7 +1829,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -1550,6 +1838,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1604,7 +1903,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -1612,6 +1912,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1666,7 +1977,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -1674,6 +1986,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1728,7 +2051,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -1736,6 +2060,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1790,7 +2125,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -1798,6 +2134,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1852,7 +2199,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -1860,6 +2208,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1914,7 +2273,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -1922,6 +2282,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -1976,7 +2347,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -1984,6 +2356,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2038,7 +2421,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2046,6 +2430,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2100,7 +2495,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2108,6 +2504,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2162,7 +2569,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2170,6 +2578,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2224,7 +2643,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2232,6 +2652,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2286,7 +2717,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2294,6 +2726,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2348,7 +2791,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2356,6 +2800,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2410,7 +2865,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2418,6 +2874,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2472,7 +2939,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2480,6 +2948,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2534,7 +3013,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2542,6 +3022,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2596,7 +3087,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2604,6 +3096,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2658,7 +3161,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2666,6 +3170,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2720,7 +3235,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2728,6 +3244,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2782,7 +3309,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2790,6 +3318,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2844,7 +3383,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2852,6 +3392,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2906,7 +3457,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2914,6 +3466,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -2968,7 +3531,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -2976,6 +3540,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3030,7 +3605,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3038,6 +3614,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3092,7 +3679,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3100,6 +3688,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3154,7 +3753,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3162,6 +3762,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3216,7 +3827,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3224,6 +3836,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3278,7 +3901,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3286,6 +3910,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3340,7 +3975,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3348,6 +3984,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3402,7 +4049,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3410,6 +4058,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3464,7 +4123,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3472,6 +4132,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3526,7 +4197,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3534,6 +4206,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3588,7 +4271,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3596,6 +4280,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3650,7 +4345,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3658,6 +4354,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3712,7 +4419,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3720,6 +4428,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3774,7 +4493,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3782,6 +4502,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3836,7 +4567,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3844,6 +4576,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3898,7 +4641,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3906,6 +4650,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -3960,7 +4715,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -3968,6 +4724,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4022,7 +4789,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4030,6 +4798,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4084,7 +4863,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4092,6 +4872,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4146,7 +4937,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4154,6 +4946,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4208,7 +5011,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4216,6 +5020,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4270,7 +5085,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4278,6 +5094,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4332,7 +5159,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4340,6 +5168,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4394,7 +5233,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4402,6 +5242,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4456,7 +5307,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4464,6 +5316,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4518,7 +5381,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4526,6 +5390,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4580,7 +5455,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4588,6 +5464,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4642,7 +5529,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4650,6 +5538,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4704,7 +5603,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4712,6 +5612,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4766,7 +5677,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4774,6 +5686,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4828,7 +5751,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4836,6 +5760,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4890,7 +5825,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testWall_Model",
@@ -4898,6 +5834,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -4952,14 +5899,26 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
-        "drawFlag": false,
+        "drawFlag": true,
         "model": "testGround_Model",
         "name": "roof",
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -5014,14 +5973,26 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
-        "drawFlag": false,
+        "drawFlag": true,
         "model": "testGround_Model",
         "name": "roof1",
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -5076,7 +6047,8 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
         "drawFlag": true,
         "model": "testGround_Model",
@@ -5084,6 +6056,17 @@
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -5138,14 +6121,26 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
-        "drawFlag": false,
+        "drawFlag": true,
         "model": "testGround_Model",
         "name": "roof3",
         "prefab": false
     },
     {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 1,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -5200,9 +6195,10 @@
         "component": [
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Collider"
         ],
-        "drawFlag": false,
+        "drawFlag": true,
         "model": "testGround_Model",
         "name": "roof4",
         "prefab": false
@@ -5268,7 +6264,7 @@
         ],
         "drawFlag": true,
         "model": "playerModel_Model",
-        "name": "enemyManager",
+        "name": "EnemyManager",
         "prefab": false
     },
     {
@@ -5337,134 +6333,6 @@
         "drawFlag": true,
         "model": "playerModel_Model",
         "name": "normalEnemy",
-        "prefab": false
-    },
-    {
-        "EnemyHp": null,
-        "Material": {
-            "ambient": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "bloom": false,
-            "color": [
-                1.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "diffuse": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "multipleMat": false,
-            "specular": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "terxtureName": "white.png"
-        },
-        "TransferGeometryBuffer": {
-            "explosion": 0.0,
-            "gravity": 0.0,
-            "lightFlag": true,
-            "polygonSize": 1.0,
-            "rotation": 0.0,
-            "toonFlag": false
-        },
-        "Transform": {
-            "position": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "scale": [
-                2.0,
-                0.4000000059604645,
-                1.0
-            ]
-        },
-        "component": [
-            "EnemyHp",
-            "Transform",
-            "TransferGeometryBuffer",
-            "Material"
-        ],
-        "drawFlag": true,
-        "model": "hppanel_Model",
-        "name": "EnemyHp",
-        "prefab": false
-    },
-    {
-        "EnemyHp": null,
-        "Material": {
-            "ambient": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "bloom": false,
-            "color": [
-                1.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "diffuse": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "multipleMat": false,
-            "specular": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "terxtureName": "white.png"
-        },
-        "TransferGeometryBuffer": {
-            "explosion": 0.0,
-            "gravity": 0.0,
-            "lightFlag": true,
-            "polygonSize": 1.0,
-            "rotation": 0.0,
-            "toonFlag": false
-        },
-        "Transform": {
-            "position": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "scale": [
-                2.0,
-                0.4000000059604645,
-                1.0
-            ]
-        },
-        "component": [
-            "EnemyHp",
-            "Transform",
-            "TransferGeometryBuffer",
-            "Material"
-        ],
-        "drawFlag": false,
-        "model": "hppanel_Model",
-        "name": "EnemyHp1",
         "prefab": false
     },
     {
@@ -5541,6 +6409,508 @@
         "drawFlag": false,
         "model": "dice_Model",
         "name": "EnemyAttack",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "Player": {
+            "Highlighting": 20.0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Player"
+        ],
+        "drawFlag": false,
+        "model": "playerModel_Model",
+        "name": "playerObject",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 2,
+                    "colliderType": 0,
+                    "groundJudge": true,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "PlayerDrone": null,
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "PlayerDrone",
+            "Collider"
+        ],
+        "drawFlag": false,
+        "model": "drone_Model",
+        "name": "PlayerDrone",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 2,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "PlayerActionCamera": null,
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "PlayerActionCamera",
+            "Collider"
+        ],
+        "drawFlag": false,
+        "model": "playerModel_Model",
+        "name": "PlayerActionCameraObject",
+        "prefab": false
+    },
+    {
+        "Animator": null,
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 2,
+                    "colliderType": 0,
+                    "groundJudge": true,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "PlayerAction": null,
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Animator",
+            "PlayerAction",
+            "Collider"
+        ],
+        "drawFlag": true,
+        "model": "player_animation_Model",
+        "name": "PlayerAction",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 0,
+                    "groundJudge": false,
+                    "notPushBack": true,
+                    "pushBack": false
+                }
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "PlayerAttack": null,
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "PlayerAttack",
+            "Collider",
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "PlayerAttack",
+        "prefab": false
+    },
+    {
+        "Config": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "PoseMenu": null,
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "PoseMenu",
+            "Config"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "PoseMenu",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "StageCollideManageer": null,
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "StageCollideManageer"
+        ],
+        "drawFlag": false,
+        "model": "playerModel_Model",
+        "name": "StageCollideManager",
         "prefab": false
     }
 ]
