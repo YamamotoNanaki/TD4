@@ -9,6 +9,7 @@
 #include"DronePostEffect.h"
 #include"DroneRecoveryUI.h"
 #include"PoseMenu.h"
+#include "Tutorial.h"
 
 class Player :public IFE::Component
 {

@@ -45,6 +45,7 @@
 #include "EnemyHighlighting.h"
 #include"DeathAnimation.h"
 #include "Blood.h"
+#include "Tutorial.h"
 
 using namespace IFE;
 using namespace std;
@@ -106,6 +107,9 @@ void IFE::ComponentHelp::StaticHelpInitialize()
 	Register("DeathAnimation", &CreateInstance<DeathAnimation>);
 	//エフェクト
 	Register("Blood", &CreateInstance<Blood>);
+	//チュートリアル
+	Register("Tutorial", &CreateInstance<Tutorial>);
+
 }
 
 template<typename T>
