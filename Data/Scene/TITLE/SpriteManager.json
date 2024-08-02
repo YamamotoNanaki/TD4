@@ -28,7 +28,7 @@
             ],
             "name": "Title",
             "order": 0,
-            "texture": "Title.png"
+            "texture": "titleLogo.png"
         },
         {
             "ColorBuffer": {
@@ -46,7 +46,7 @@
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    5.0,
+                    2.0,
                     1.0
                 ]
             },
@@ -74,7 +74,7 @@
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    4.0,
+                    2.0,
                     1.0
                 ]
             },
@@ -102,7 +102,7 @@
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    6.0,
+                    8.0,
                     3.0
                 ]
             },
@@ -112,7 +112,7 @@
             ],
             "name": "gameLogo",
             "order": 0,
-            "texture": "text//default//gameLogo.png"
+            "texture": "titleLogo.png"
         },
         {
             "ColorBuffer": {
@@ -140,7 +140,7 @@
             ],
             "name": "pressButton",
             "order": 0,
-            "texture": "text//default//pressAButton.png"
+            "texture": "Text//pressAny.png"
         }
     ]
 }
