@@ -11,6 +11,7 @@
 #include"Collision.h"
 #include "Sound.h"
 #include "IFEEffekseerManager.h"
+#include "Collider.h"
 
 void PlayerAction::Initialize()
 {
@@ -256,6 +257,12 @@ void PlayerAction::Move()
 			IFE::Sound::Instance()->SoundPlay("walk", false, true);
 		}
 	}
+	//d—Í
+	if (!objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_)
+	{
+		transform_->position_.y -= 4.9f * IFE::IFETime::sDeltaTime_;
+	}
+
 #pragma endregion
 }
 
