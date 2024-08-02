@@ -147,6 +147,9 @@ void PoseMenu::Select()
 			IFE::Scene::Instance()->SetNextScene("TITLE");
 			break;
 		case PoseSelectFlag::CONFIG:
+			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->drawFlag_ = false;
+			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->drawFlag_ = false;
+			IFE::SpriteManager::Instance()->GetSpritePtr("config")->drawFlag_ = false;
 			configFlag_ = true;
 			break;
 		default:
@@ -157,7 +160,7 @@ void PoseMenu::Select()
 
 void PoseMenu::Reset()
 {
-	selectFlag_ = PoseSelectFlag::RETURNTITLE;
+	selectFlag_ = PoseSelectFlag::RETURNGAME;
 	selectNum_ = 0;
 	oldLAnalog_ = 0.0f;
 	poseFlag_ = false;

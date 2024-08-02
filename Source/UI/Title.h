@@ -22,7 +22,8 @@ private:
 	IFE::Camera* camera_ = nullptr;
 	float cameraAngle_ = 0.0f;
 	float beforeEaseAngle_ = 0.0f;
-	float distanse_ = 120.0f;
+	float distanse_ = 100.0f;
+	const float cDistance_ = 100.0f;
 
 	//タイトルからセレクトへの遷移
 	bool animationFlag_ = false;
