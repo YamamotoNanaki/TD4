@@ -5,7 +5,6 @@
 #include "Object3D.h"
 #include "FBXModel.h"
 #include "Mesh.h"
-#include "GraphicsPipelineManager.h"
 
 using namespace std;
 using namespace IFE;
@@ -16,6 +15,8 @@ void IFE::Material::Initialize()
 	constMapMaterial_ = materialBuffer_->GetCBMapObject();
 
 	MultipleMaterialCheck();
+
+	if(objectPtr_)objectPtr_->gp_ = gp_;
 }
 
 void IFE::Material::SetDefaultParameter()
@@ -312,7 +313,7 @@ void IFE::Material::LoadingComponent(nlohmann::json& json)
 	string s;
 	if (j->GetData(json, "pipeline", s))
 	{
-		objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline(s);
+		gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline(s);
 	}
 
 	if (multipleMat_)

@@ -7,6 +7,7 @@
 #include <string>
 #include <memory>
 #include <utility>
+#include "GraphicsPipelineManager.h"
 
 namespace IFE
 {
@@ -44,6 +45,8 @@ namespace IFE
 		};
 
 		std::vector<std::pair<ChildMaterial, std::unique_ptr<ConstBuffer<ConstBufferMaterial>>>> childMaterials_;
+		GraphicsPipeline* gp_ = nullptr;
+
 	public:
 		Float4 color_ = { 1,1,1,1 };
 		float alpha_ = 1.0f;
