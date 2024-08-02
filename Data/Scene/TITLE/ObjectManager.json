@@ -24,7 +24,7 @@
                 0.5,
                 0.5
             ],
-            "terxtureName": "white.png"
+            "terxtureName": "stage01.png"
         },
         "TransferGeometryBuffer": {
             "explosion": 0.0,
@@ -36,19 +36,19 @@
         },
         "Transform": {
             "position": [
-                -30.0,
+                -14.48694896697998,
                 0.0,
                 0.0
             ],
             "rotation": [
                 360.0,
-                360.0,
+                180.0,
                 360.0
             ],
             "scale": [
+                10.00000286102295,
                 10.0,
-                10.0,
-                10.0
+                10.00000286102295
             ]
         },
         "component": [
@@ -57,7 +57,7 @@
             "Material"
         ],
         "drawFlag": true,
-        "model": "dice_Model",
+        "model": "stage01_Model",
         "name": "stage",
         "prefab": false
     },
@@ -86,7 +86,7 @@
                 0.5,
                 0.5
             ],
-            "terxtureName": "white.png"
+            "terxtureName": "stage02.png"
         },
         "TransferGeometryBuffer": {
             "explosion": 0.0,
@@ -98,19 +98,19 @@
         },
         "Transform": {
             "position": [
-                30.0,
-                0.0,
+                15.154946327209473,
+                -4.76837158203125e-07,
                 0.0
             ],
             "rotation": [
                 360.0,
-                360.0,
+                180.0,
                 360.0
             ],
             "scale": [
+                10.00000286102295,
                 10.0,
-                10.0,
-                10.0
+                10.00000286102295
             ]
         },
         "component": [
@@ -119,7 +119,7 @@
             "Material"
         ],
         "drawFlag": true,
-        "model": "dice_Model",
+        "model": "stage02_Model",
         "name": "stage1",
         "prefab": false
     },
@@ -148,7 +148,7 @@
                 0.5,
                 0.5
             ],
-            "terxtureName": "white.png"
+            "terxtureName": "stage03.png"
         },
         "TransferGeometryBuffer": {
             "explosion": 0.0,
@@ -162,17 +162,17 @@
             "position": [
                 0.0,
                 0.0,
-                50.0
+                32.577308654785156
             ],
             "rotation": [
                 360.0,
-                360.0,
+                180.0,
                 360.0
             ],
             "scale": [
-                20.0,
-                10.0,
-                10.0
+                6.999999523162842,
+                7.0,
+                6.999999523162842
             ]
         },
         "component": [
@@ -181,7 +181,7 @@
             "Material"
         ],
         "drawFlag": true,
-        "model": "dice_Model",
+        "model": "stage03_Model",
         "name": "stage2",
         "prefab": false
     },
@@ -245,6 +245,68 @@
         "drawFlag": true,
         "model": "skydome_Model",
         "name": "celestialSphere",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "passage.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                1.5969352722167969,
+                -1.5,
+                3.6282238960266113
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                2.5,
+                2.0,
+                2.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "passage_Model",
+        "name": "passage",
         "prefab": false
     }
 ]
