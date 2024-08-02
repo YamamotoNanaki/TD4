@@ -13,6 +13,9 @@ void Config::Update()
 	{
 		if (IFE::Input::GetKeyTrigger(IFE::Key::Esc) || IFE::Input::PadTrigger(IFE::PADCODE::B))
 		{
+			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->drawFlag_ = true;
+			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->drawFlag_ = true;
+			IFE::SpriteManager::Instance()->GetSpritePtr("config")->drawFlag_ = true;
 			Reset();
 		}
 		if (IFE::Input::GetKeyTrigger(IFE::Key::Enter) || IFE::Input::PadTrigger(IFE::PADCODE::START))

@@ -12,7 +12,7 @@ using namespace IFE;
 void Title::Initialize()
 {
 	camera_ = IFE::CameraManager::Instance()->GetCamera("titleCamera");
-	camera_->transform_->eye_ = { 0.0f,5.0f,-120.0f };
+	camera_->transform_->eye_ = { 0.0f,5.0f,-cDistance_ };
 	camera_->transform_->target_ = { 0.0f,20.0f,20.0f };
 	cameraAngle_ = static_cast<float>(-PI) / 2;
 	IFE::CameraManager::Instance()->SetActiveCamera("titleCamera");
@@ -58,14 +58,12 @@ void Title::Update()
 				titleAnimationTimer_ = 0.0f;
 				animationFlag_ = true;
 			}
+			Select();
 		}
-
-		if (animationFlag_ == true)
+		else
 		{
 			BackTitleAnimation();
 		}
-
-		Select();
 		break;
 	case TitleSelect::SELECT2:
 		SelectCheck();
@@ -104,8 +102,8 @@ void Title::CameraRot()
 
 void Title::ToSelectAnimation()
 {
-	distanse_ = IFE::EaseInOutQuart(animationTime_, 120.0f, 0.1f, maxAnimationTime_);
-	camera_->transform_->eye_.y = IFE::EaseInOutBack(animationTime_, 5.0f, 120.0f, maxAnimationTime_);
+	distanse_ = IFE::EaseInOutQuart(animationTime_, cDistance_, 0.1f, maxAnimationTime_);
+	camera_->transform_->eye_.y = IFE::EaseInOutBack(animationTime_, 5.0f, cDistance_, maxAnimationTime_);
 	if (beforeEaseAngle_ >= PI / 2)
 	{
 		cameraAngle_ = IFE::EaseInOutQuart(animationTime_, beforeEaseAngle_, static_cast<float>(PI) * 3 / 2, maxAnimationTime_);
@@ -134,8 +132,8 @@ void Title::ToSelectAnimation()
 
 void Title::BackTitleAnimation()
 {
-	distanse_ = IFE::EaseInOutQuart(animationTime_, 0.1f, 120.0f, maxAnimationTime_);
-	camera_->transform_->eye_.y = IFE::EaseInOutQuart(animationTime_, 120.0f, 5.0f, maxAnimationTime_);
+	distanse_ = IFE::EaseInOutQuart(animationTime_, 0.1f, cDistance_, maxAnimationTime_);
+	camera_->transform_->eye_.y = IFE::EaseInOutQuart(animationTime_, cDistance_, 5.0f, maxAnimationTime_);
 
 	//UI
 	IFE::SpriteManager::Instance()->GetSpritePtr("gameLogo")->transform_->position2D_.y = IFE::EaseInOutBack(animationTime_, -200.0f, 200.0f, maxAnimationTime_);
