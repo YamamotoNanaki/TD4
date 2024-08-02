@@ -17,13 +17,14 @@ void Title::Initialize()
 	cameraAngle_ = static_cast<float>(-PI) / 2;
 	IFE::CameraManager::Instance()->SetActiveCamera("titleCamera");
 
+	flamePos_[0] = { -28.0f,7.0f,-12.0f };
+	flamePos_[1] = { 2.0f,7.0f,-12.0f };
+	flamePos_[2] = { -13.0f,27.5f,15.0f };
+
 	IFE::Sound::Instance()->LoadWave("title");
 	IFE::Sound::Instance()->SetVolume("title", 50);
 	isNext = false;
 
-	/*IFE::SpriteManager::Instance()->GetSpritePtr("gameLogo")->order_ = 101;
-	IFE::SpriteManager::Instance()->GetSpritePtr("yes")->order_ = 101;
-	IFE::SpriteManager::Instance()->GetSpritePtr("no")->order_ = 101;*/
 	IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
 	IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
 }
@@ -59,6 +60,7 @@ void Title::Update()
 				animationFlag_ = true;
 			}
 			Select();
+			SelectFlame();
 		}
 		else
 		{
@@ -158,23 +160,39 @@ void Title::Select()
 	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_ > -0.5f && IFE::Input::GetLXAnalog(range) < -0.5f)
 	{
 		stageNum_--;
+		oldFlamePos = IFE::ObjectManager::Instance()->GetObjectPtr("frame")->transform_->position_;
+		flameAnimationTime_ = 0.0f;
+		flameAnimationFlag_ = true;
 	}
 	else if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_ < 0.5f && IFE::Input::GetLXAnalog(range) >0.5f)
 	{
 		stageNum_++;
+		oldFlamePos = IFE::ObjectManager::Instance()->GetObjectPtr("frame")->transform_->position_;
+		flameAnimationTime_ = 0.0f;
+		flameAnimationFlag_ = true;
 	}
 
 	//ƒtƒ‰ƒO‚ªŒÀŠE‚ð’´‚¦‚È‚¢ˆ—
-	stageNum_ = std::clamp(stageNum_, minStageNum_, maxStageNum_);
+	if (stageNum_ > 3)
+	{
+		stageNum_ = 1;
+	}
+	if (stageNum_ < 1)
+	{
+		stageNum_ = 3;
+	}
 
 	oldLAnalog_ = IFE::Input::GetLXAnalog(range);
 
-	if (Input::PadTrigger(PADCODE::A) || Input::GetKeyTrigger(Key::Space))
+	if (flameAnimationFlag_ == false)
 	{
-		oldLAnalog_ = 0.0f;
-		IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
-		IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
-		titleSelectFlag_ = TitleSelect::SELECT2;
+		if (Input::PadTrigger(PADCODE::A) || Input::GetKeyTrigger(Key::Space))
+		{
+			oldLAnalog_ = 0.0f;
+			IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
+			titleSelectFlag_ = TitleSelect::SELECT2;
+		}
 	}
 }
 
@@ -223,6 +241,27 @@ void Title::SelectCheck()
 	}
 
 	oldLAnalog_ = IFE::Input::GetLXAnalog(range);
+}
+
+void Title::SelectFlame()
+{
+	if (flameAnimationFlag_ == true)
+	{
+		if (flameAnimationTime_ > maxFlameAnimationTime_)
+		{
+			flameAnimationFlag_ = false;
+		}
+
+		IFE::ObjectManager::Instance()->GetObjectPtr("frame")->transform_->position_;
+		IFE::ObjectManager::Instance()->GetObjectPtr("frame")->transform_->position_ =
+		{
+			IFE::EaseInOutQuart(flameAnimationTime_, oldFlamePos.x, flamePos_[stageNum_ - 1].x, maxFlameAnimationTime_),
+			IFE::EaseInOutQuart(flameAnimationTime_, oldFlamePos.y, flamePos_[stageNum_ - 1].y, maxFlameAnimationTime_),
+			IFE::EaseInOutQuart(flameAnimationTime_, oldFlamePos.z, flamePos_[stageNum_ - 1].z, maxFlameAnimationTime_)
+		};
+
+		flameAnimationTime_ += IFE::IFETime::sDeltaTime_;
+	}
 }
 
 void Title::ImGUI()
