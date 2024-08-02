@@ -20,7 +20,7 @@
             ],
             "projectionSize": [
                 1920.0,
-                1080.0
+                1061.0
             ],
             "target": [
                 -48.20164108276367,
@@ -39,5 +39,111 @@
             "DebugCamera"
         ],
         "name": "initCamera"
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 2,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
+        "Fog": {
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "fogFar": 700.0,
+            "fogFlag": false,
+            "fogNear": 650.0
+        },
+        "PlayerCommonCamera": null,
+        "TransformCamera": {
+            "eye": [
+                -3.4969110629390343e-07,
+                5.0,
+                -4.0
+            ],
+            "projectionSize": [
+                1920.0,
+                1080.0
+            ],
+            "target": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "up": [
+                0.0,
+                1.0,
+                0.0
+            ]
+        },
+        "component": [
+            "Fog",
+            "TransformCamera",
+            "Collider",
+            "PlayerCommonCamera"
+        ],
+        "name": "ActionCamera"
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 2,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
+        "Fog": {
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "fogFar": 700.0,
+            "fogFlag": false,
+            "fogNear": 650.0
+        },
+        "PlayerCommonCamera": null,
+        "TransformCamera": {
+            "eye": [
+                0.0,
+                0.0,
+                -5.0
+            ],
+            "projectionSize": [
+                1920.0,
+                1080.0
+            ],
+            "target": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "up": [
+                0.0,
+                1.0,
+                0.0
+            ]
+        },
+        "component": [
+            "Fog",
+            "TransformCamera",
+            "Collider",
+            "PlayerCommonCamera"
+        ],
+        "name": "DroneCamera"
     }
 ]

@@ -45,8 +45,6 @@ void IFE::NormalEnemy::Initialize()
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
 	SetSound();
-	ani_ = objectPtr_->GetComponent<IFE::Animator>();
-	ani_->SetAnimation("standBy");//‘Ò‹@ƒ‚[ƒVƒ‡ƒ“‚É•Ï‚¦‚é
 }
 
 void IFE::NormalEnemy::ChangeState()

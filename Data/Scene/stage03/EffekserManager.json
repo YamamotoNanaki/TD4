@@ -1,1 +1,17 @@
-null
+[
+    {
+        "name": "blood",
+        "offset": 1.0,
+        "scaleFlag": true
+    },
+    {
+        "name": "MiddleHPBlood",
+        "offset": 1.0,
+        "scaleFlag": true
+    },
+    {
+        "name": "LowHPBlood",
+        "offset": 1.0,
+        "scaleFlag": true
+    }
+]
