@@ -969,6 +969,34 @@
             "name": "config",
             "order": 0,
             "texture": "text//default//hpFlame.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.3921568691730499
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1590.0,
+                    825.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.699999988079071,
+                    0.699999988079071
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "LStickDrone",
+            "order": 0,
+            "texture": "key//LStickDrone.png"
         }
     ]
 }
