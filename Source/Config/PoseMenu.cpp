@@ -1,6 +1,8 @@
 #include "PoseMenu.h"
 #include "Input.h"
 #include"SpriteManager.h"
+#include"ColorBuffer.h"
+#include"Scene.h"
 
 PoseMenu::PoseMenu()
 {
@@ -13,14 +15,28 @@ PoseMenu::~PoseMenu()
 void PoseMenu::Initialize()
 {
 	IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = false;
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("resume")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
+	IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+	IFE::SpriteManager::Instance()->GetSpritePtr("config")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
 }
 
 void PoseMenu::Update()
 {
 	//ポーズ切り替え
-	PoseChange();
-	//ポーズ中選択
-	PoseSelect();
+	if (configFlag_ == false)
+	{
+		PoseChange();
+		if (poseFlag_ == true && configFlag_ == false)
+		{
+			//ポーズ中選択
+			PoseSelect();
+			Select();
+		}
+	}
 }
 
 void PoseMenu::Finalize()
@@ -44,11 +60,14 @@ void PoseMenu::SetConfigFlag(bool flag)
 
 void PoseMenu::PoseChange()
 {
-	if (IFE::Input::GetKeyTrigger(IFE::Key::Esc) || IFE::Input::PadTrigger(IFE::PADCODE::START))
+	if (IFE::Input::GetKeyTrigger(IFE::Key::Enter) || IFE::Input::PadTrigger(IFE::PADCODE::START))
 	{
 		poseFlag_ = !poseFlag_;
 		//画面を暗くするスプライトの描画
 		IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = poseFlag_;
+		IFE::SpriteManager::Instance()->GetSpritePtr("resume")->drawFlag_ = poseFlag_;
+		IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->drawFlag_ = poseFlag_;
+		IFE::SpriteManager::Instance()->GetSpritePtr("config")->drawFlag_ = poseFlag_;
 
 		//時間を止める処理
 		if (poseFlag_ == true)
@@ -65,7 +84,7 @@ void PoseMenu::PoseChange()
 void PoseMenu::PoseSelect()
 {
 	int32_t range = 10000;
-	if (poseFlag_ == true&& configFlag_==false)
+	if (poseFlag_ == true && configFlag_ == false)
 	{
 		if (IFE::Input::GetKeyTrigger(IFE::Key::UP) || oldLAnalog_ < 0.5f && IFE::Input::GetLYAnalog(range) > 0.5f)
 		{
@@ -82,6 +101,36 @@ void PoseMenu::PoseSelect()
 		selectFlag_ = static_cast<PoseSelectFlag>(selectNum_);
 		oldLAnalog_ = IFE::Input::GetLYAnalog(range);
 	}
+
+	if (IFE::Input::GetKeyTrigger(IFE::Key::Esc) || IFE::Input::PadTrigger(IFE::PADCODE::B))
+	{
+		Reset();
+	}
+
+	if (selectNum_ != oldSelectNum_)
+	{
+		switch (selectFlag_)
+		{
+		case PoseSelectFlag::RETURNGAME:
+			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+			break;
+		case PoseSelectFlag::RETURNTITLE:
+			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+			break;
+		case PoseSelectFlag::CONFIG:
+			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
+			break;
+		default:
+			break;
+		}
+	}
+	oldSelectNum_ = selectNum_;
 }
 
 void PoseMenu::Select()
@@ -95,6 +144,7 @@ void PoseMenu::Select()
 			break;
 		case PoseSelectFlag::RETURNTITLE:
 			Reset();
+			IFE::Scene::Instance()->SetNextScene("TITLE");
 			break;
 		case PoseSelectFlag::CONFIG:
 			configFlag_ = true;
@@ -112,4 +162,10 @@ void PoseMenu::Reset()
 	oldLAnalog_ = 0.0f;
 	poseFlag_ = false;
 	configFlag_ = false;
+	IFE::IFETime::sTimeScale_ = 1.0f;
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = poseFlag_;
+	IFE::SpriteManager::Instance()->GetSpritePtr("resume")->drawFlag_ = poseFlag_;
+	IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->drawFlag_ = poseFlag_;
+	IFE::SpriteManager::Instance()->GetSpritePtr("config")->drawFlag_ = poseFlag_;
 }

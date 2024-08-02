@@ -1277,8 +1277,8 @@
         "Transform": {
             "position": [
                 -115.0,
-                14.857368469238281,
-                10.567920684814453
+                14.600000381469727,
+                11.0
             ],
             "rotation": [
                 30.0,
@@ -1286,7 +1286,7 @@
                 360.0
             ],
             "scale": [
-                4.978419303894043,
+                4.997110843658447,
                 1.0,
                 11.0
             ]
@@ -1299,6 +1299,3912 @@
         "drawFlag": true,
         "model": "testGround_Model",
         "name": "ground7",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -80.0,
+                20.0,
+                10.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                20.0,
+                1.0,
+                20.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testGround_Model",
+        "name": "ground8",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -105.0,
+                20.0,
+                5.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                5.0,
+                1.0,
+                15.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testGround_Model",
+        "name": "ground9",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -115.0,
+                20.0,
+                -4.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                5.0,
+                1.0,
+                6.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testGround_Model",
+        "name": "ground10",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                20.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                60.0,
+                1.0,
+                30.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testGround_Model",
+        "name": "ground11",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                70.0,
+                20.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                10.0,
+                1.0,
+                30.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testGround_Model",
+        "name": "ground12",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -30.0,
+                20.0,
+                -50.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                30.0,
+                1.0,
+                20.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testGround_Model",
+        "name": "ground13",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -20.0,
+                31.0,
+                -31.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                21.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall12",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                60.0,
+                10.0,
+                14.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                60.0,
+                10.0,
+                26.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door1",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                60.0,
+                12.0,
+                20.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                8.0,
+                2.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door2",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                81.0,
+                10.0,
+                14.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door3",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                81.0,
+                10.0,
+                26.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door4",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                81.0,
+                12.0,
+                20.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                8.0,
+                2.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door5",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -61.0,
+                10.0,
+                14.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door6",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -61.0,
+                10.0,
+                26.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door7",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -61.0,
+                12.0,
+                20.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                8.0,
+                2.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door8",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -61.0,
+                10.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                10.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall13",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -44.0,
+                10.0,
+                -31.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                4.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door9",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -56.0,
+                10.0,
+                -31.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                4.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door10",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -50.0,
+                12.0,
+                -31.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                2.0,
+                8.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door11",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -4.0,
+                10.0,
+                -31.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                4.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door12",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -16.0,
+                10.0,
+                -31.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                4.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door13",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -10.0,
+                12.0,
+                -31.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                2.0,
+                8.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door14",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -61.0,
+                31.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                10.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall14",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -40.0,
+                31.0,
+                -10.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                20.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall15",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -26.0,
+                31.0,
+                10.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                15.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall16",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                21.0,
+                31.0,
+                10.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                20.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall17",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                60.0,
+                31.0,
+                20.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                10.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall18",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                60.0,
+                31.0,
+                -20.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                10.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall19",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                40.0,
+                31.0,
+                -1.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                10.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall20",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                31.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                11.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall21",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -12.0,
+                31.0,
+                5.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.5
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall22",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -12.0,
+                31.0,
+                -24.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                6.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall23",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                81.0,
+                31.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                30.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall24",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -121.0,
+                31.0,
+                10.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                22.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall25",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -91.0,
+                31.0,
+                -11.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                29.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall26",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -61.0,
+                31.0,
+                -40.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                30.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall27",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -30.0,
+                31.0,
+                -71.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                32.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall28",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                1.0,
+                31.0,
+                -51.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                19.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall29",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                41.0,
+                31.0,
+                -31.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                41.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall30",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -19.0,
+                31.0,
+                31.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                101.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall31",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                40.0,
+                31.0,
+                64.92723846435547
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                15.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall32",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                20.0,
+                31.0,
+                -11.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                20.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall33",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -61.0,
+                31.0,
+                14.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door15",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -61.0,
+                31.0,
+                26.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door16",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -61.0,
+                33.0,
+                20.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                8.0,
+                2.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door17",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                60.0,
+                31.0,
+                6.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door18",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                60.0,
+                31.0,
+                -6.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door19",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                60.0,
+                33.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                8.0,
+                2.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door20",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                40.0,
+                31.0,
+                -15.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door21",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                40.0,
+                31.0,
+                -26.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door22",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                40.0,
+                33.0,
+                -20.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                8.0,
+                2.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door23",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                31.0,
+                -15.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door24",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                31.0,
+                -26.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door25",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                33.0,
+                -20.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                8.0,
+                2.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door26",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -12.0,
+                31.0,
+                -3.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door27",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -12.0,
+                31.0,
+                -15.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                4.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door28",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.5882353186607361,
+                0.5882353186607361,
+                0.5882353186607361,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -12.0,
+                33.0,
+                -9.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                8.0,
+                2.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall_door29",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                42.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                60.0,
+                1.0,
+                30.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": false,
+        "model": "testGround_Model",
+        "name": "roof",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                70.0,
+                42.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                10.0,
+                1.0,
+                30.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": false,
+        "model": "testGround_Model",
+        "name": "roof1",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                100.0,
+                20.0,
+                20.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                20.0,
+                1.0,
+                10.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testGround_Model",
+        "name": "roof2",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -30.0,
+                42.0,
+                -50.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                30.0,
+                1.0,
+                20.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": false,
+        "model": "testGround_Model",
+        "name": "roof3",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -90.0,
+                42.0,
+                10.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                30.0,
+                1.0,
+                20.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": false,
+        "model": "testGround_Model",
+        "name": "roof4",
         "prefab": false
     }
 ]

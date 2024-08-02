@@ -1,9 +1,9 @@
 #pragma once
 #include "BaseEnemy.h"
 #include "IFEMath.h"
-#include "EnemyHp.h"
 #include "enemyAttack.h"
 #include "IFETime.h"
+#include "FLOAT4.h"
 
 namespace IFE {
 	//---めっちゃ普通の敵---//
@@ -27,15 +27,14 @@ namespace IFE {
 		bool isChaseDrone;
 		Vector3 lookfor;
 		Vector3 shotVec;
-		//hp
-		EnemyHp* hpUI = nullptr;
-		EnemyHp* status_ = nullptr;
 		//攻撃判定クラス
 		IFE::EnemyAttack* enemyAttack = nullptr;
 		bool isAttack;
 		//レイヒット記憶変数
 		float rayDist;
 		ColliderCore* hitColl_ = nullptr;
+		//色
+		Float4 color = {1,1,1,1};
 
 		//メンバ関数
 	public:
@@ -78,11 +77,6 @@ namespace IFE {
 		/// 撃て
 		/// </summary>
 		void Shot();
-
-		/// <summary>
-		/// 
-		/// </summary>
-		void Killed();
 
 		/// <summary>
 		/// プレイヤーの方を向かせる

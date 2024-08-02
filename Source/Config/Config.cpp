@@ -9,18 +9,26 @@ void Config::Initialize()
 
 void Config::Update()
 {
-	if (oldPoseFlag_ == true && pose_->GetPoseFlag() == false)
+	if (pose_->GetCofigFlag() == true)
 	{
-		Reset();
-	}
+		if (IFE::Input::GetKeyTrigger(IFE::Key::Esc) || IFE::Input::PadTrigger(IFE::PADCODE::B))
+		{
+			Reset();
+		}
+		if (IFE::Input::GetKeyTrigger(IFE::Key::Enter) || IFE::Input::PadTrigger(IFE::PADCODE::START))
+		{
+			pose_->Reset();
+			Reset();
+		}
 
-	if (pose_->GetPoseFlag() == true)
-	{
-		ConfigSelect();
-		ConfigChange();
-	}
+		if (pose_->GetCofigFlag() == true)
+		{
+			ConfigSelect();
+			ConfigChange();
+		}
 
-	oldPoseFlag_ = pose_->GetPoseFlag();
+		oldPoseFlag_ = pose_->GetPoseFlag();
+	}
 }
 
 void Config::Finalize()
@@ -111,6 +119,8 @@ void Config::Reset()
 	selectNum_ = 0;
 	oldLAnalog_ = 0.0f;
 	configFlag_ = ConfigFlag::brightness;
+	oldPoseFlag_ = false;
+	pose_->SetConfigFlag(false);
 }
 
 void Config::ConfigReset()

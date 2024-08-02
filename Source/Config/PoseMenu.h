@@ -18,6 +18,7 @@ private:
 	bool poseFlag_ = false;
 	PoseSelectFlag selectFlag_ = PoseSelectFlag::RETURNGAME;
 	int8_t selectNum_ = 0;
+	int8_t oldSelectNum_ = 0;
 	int8_t minSelectNum_ = 0;
 	int8_t maxSelectNum_ = 2;
 
@@ -49,6 +50,8 @@ public:
 	bool GetCofigFlag();
 	void SetConfigFlag(bool flag);
 
+	void Reset();
+
 private:
 
 	void PoseChange();
@@ -56,7 +59,5 @@ private:
 	void PoseSelect();
 
 	void Select();
-
-	void Reset();
 };
 

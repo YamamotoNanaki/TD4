@@ -155,22 +155,26 @@ void IFE::TrapEnemy::Warning()
 {
 	//ˆÙ•Ï‚Ìó‘Ô‚ª‘±‚¢‚½‚ç’ÇÕ‚ÖˆÚs
 	if (isFound == true) {
-		warningTime += 100 * IFE::IFETime::sDeltaTime_;
+		warningTime += IFE::IFETime::sDeltaTime_;
 	}
 	else {
-		warningTime -= 100 * IFE::IFETime::sDeltaTime_;
+		warningTime -=IFE::IFETime::sDeltaTime_;
 	}
 
-	if (warningTime >= 125) {
-		warningTime = 50;
+	if (warningTime >= 0.9f) {
+		warningTime = 0.5f;
 		state = CHASE;
 		ani_->SetAnimation("walk");
 	}
 	if (warningTime <= 0) {
-		hpUI->objectPtr_->Destroy();
-		status_->objectPtr_->Destroy();
-		enemyAttack->objectPtr_->Destroy();
-		objectPtr_->Destroy();
+		color.w -= 0.05f;
+		objectPtr_->SetColor(color);
+		if (color.w == 0) {
+			hpUI->objectPtr_->Destroy();
+			status_->objectPtr_->Destroy();
+			enemyAttack->objectPtr_->Destroy();
+			objectPtr_->Destroy();
+		}
 	}
 }
 
@@ -298,16 +302,6 @@ void IFE::TrapEnemy::Shot()
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
 }
 
-void IFE::TrapEnemy::Killed() {
-	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
-	Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetFrontVec();
-	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();
-	transform_->position_ = pPos + addVec;
-	transform_->rotation_ = rot;
-	status_->objectPtr_->DrawFlag_ = false;
-	ani_->SetAnimation("standBy");
-}
-
 void IFE::TrapEnemy::LookAt()
 {
 	Vector3 ePos = transform_->position_;
@@ -318,12 +312,7 @@ void IFE::TrapEnemy::LookAt()
 		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
 		float radY = std::atan2(frontVec.x, frontVec.z);
 		float targetAngle = ((radY * 180.0f) / (float)PI);
-		if (state == CHASE) {
-			ApproachTarget(transform_->rotation_.y, targetAngle, 10.0f);
-		}
-		else {
-			ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
-		}
+		ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
 	}
 }
 

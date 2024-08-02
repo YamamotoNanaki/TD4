@@ -743,6 +743,7 @@
                     0.3921568691730499
                 ]
             },
+            "PoseMenu": null,
             "Transform2D": {
                 "position": [
                     960.0,
@@ -756,7 +757,8 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer"
+                "ColorBuffer",
+                "PoseMenu"
             ],
             "name": "BlackBack",
             "order": 0,
@@ -877,6 +879,96 @@
             "name": "toTitle",
             "order": 0,
             "texture": "text//default//returnTitle.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "PoseMenu": null,
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    300.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    4.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer",
+                "PoseMenu"
+            ],
+            "name": "resume",
+            "order": 0,
+            "texture": "text//default//resume.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "PoseMenu": null,
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    540.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    4.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer",
+                "PoseMenu"
+            ],
+            "name": "returnTitle",
+            "order": 0,
+            "texture": "text//default//returnTitle.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "PoseMenu": null,
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    780.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    4.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer",
+                "PoseMenu"
+            ],
+            "name": "config",
+            "order": 0,
+            "texture": "text//default//hpFlame.png"
         }
     ]
 }
