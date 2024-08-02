@@ -1,4 +1,5 @@
 {
-    "debug": "TITLE",
+    "debug": "title",
+
     "start": "title"
 }

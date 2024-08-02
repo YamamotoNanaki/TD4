@@ -20,7 +20,7 @@ void IFE::TrapEnemy::Initialize()
 	isFound = false;
 	isAttack = false;
 	isOneShot = false;
-	warningTime = 50;
+	warningTime = 0.5f;
 	hp_ = 100;
 	decHp_ = 0;
 	isHit_ = false;
@@ -124,10 +124,15 @@ void IFE::TrapEnemy::EnemyUpdate()
 		if (state != WAIT) {
 			LookAt();
 		}
-		isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
-		if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
-			isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
-			isChaseDrone = isFound;
+		if (state != CHASE) {
+			isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
+			if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
+				isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
+				isChaseDrone = isFound;
+			}
+			else if (!IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival()) {
+				isChaseDrone = false;
+			}
 		}
 		//ó‘Ô‚ðŽæ“¾
 		preState = state;
@@ -145,9 +150,8 @@ void IFE::TrapEnemy::EnemyUpdate()
 		if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetHP() == 0) {
 			state = SEARCH;
 			ani_->SetAnimation("walk", false);
-			rayDist = 0;
-			isChaseDrone = false;
 		}
+		rayDist = 0;
 	}
 }
 
@@ -202,6 +206,10 @@ void IFE::TrapEnemy::Chase()
 	else {
 		target = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
 	}
+	//‹ß‚­‚É‚¢‚é‚©”»’è
+	if (ChaseLen(target)) {
+		warningTime += IFE::IFETime::sDeltaTime_;
+	}
 	//player‚Ì•û‚ðŒü‚­
 	lookfor = target;
 	Vector3 addVec = target - ePos;
@@ -225,9 +233,6 @@ void IFE::TrapEnemy::Chase()
 			float targetAngle = ((radY * 180.0f) / (float)PI);
 			transform_->rotation_.y = targetAngle;
 		}
-		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos()) == false) {
-			warningTime += 100 * IFE::IFETime::sDeltaTime_;
-		}
 	}
 	else {
 		if (len <= 18.0) {
@@ -243,12 +248,9 @@ void IFE::TrapEnemy::Chase()
 			float targetAngle = ((radY * 180.0f) / (float)PI);
 			transform_->rotation_.y = targetAngle;
 		}
-		if (RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos()) == false) {
-			warningTime += 100 * IFE::IFETime::sDeltaTime_;
-		}
 	}
-	if (warningTime >= 60) {
-		warningTime = 50;
+	if (warningTime >= 2.0f) {
+		warningTime = 0.5f;
 		state = WARNING;
 		/*IFE::Sound::Instance()->SoundPlay("what", false, true);*/
 		ani_->SetAnimation("search");
