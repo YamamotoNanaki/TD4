@@ -310,10 +310,10 @@ void IFE::Material::LoadingComponent(nlohmann::json& json)
 	bloom_ = json["bloom"];
 	multipleMat_ = json["multipleMat"];
 	string s;
-	if (j->GetData(json, "pipeline", s))
+	/*if (j->GetData(json, "pipeline", s))
 	{
 		objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline(s);
-	}
+	}*/
 
 	if (multipleMat_)
 	{

@@ -19,6 +19,7 @@
     <ClCompile Include="Engine\PostEffect\RadialBlurPE.cpp" />
     <ClCompile Include="Source\Config\Config.cpp" />
     <ClCompile Include="Source\Config\PoseMenu.cpp" />
+    <ClCompile Include="Source\Config\Tutorial.cpp" />
     <ClCompile Include="Source\Enemy\TrapEnemy.cpp" />
     <ClCompile Include="Source\Map\MapUI.cpp" />
     <ClCompile Include="Source\StageGimmick\EnemySpawnEvent.cpp" />
@@ -132,6 +133,7 @@
     <ClInclude Include="Source\Config\Config.h" />
     <ClInclude Include="Source\Config\PoseMenu.h" />
     <ClInclude Include="Engine\Util\IFEList.h" />
+    <ClInclude Include="Source\Config\Tutorial.h" />
     <ClInclude Include="Source\Enemy\TrapEnemy.h" />
     <ClInclude Include="Source\Map\MapUI.h" />
     <ClInclude Include="Source\StageGimmick\EnemySpawnEvent.h" />
