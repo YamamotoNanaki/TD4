@@ -973,6 +973,36 @@
         {
             "ColorBuffer": {
                 "color": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            "Config": null,
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    540.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    19.200000762939453,
+                    10.800000190734863
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer",
+                "Config"
+            ],
+            "name": "brightnessAdjustment",
+            "order": 0,
+            "texture": "white.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
                     1.0,
                     1.0,
                     1.0,

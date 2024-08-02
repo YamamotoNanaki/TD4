@@ -17,11 +17,11 @@ enum class ConfigFlag
 
 struct ConfigValue
 {
-	float brightness;
-	float masterValume;
-	float BGMValume;
-	float SEValume;
-	bool cameraReverse;
+	float brightness = 0.0f;
+	float masterValume = 0.5f;
+	float BGMValume = 0.5f;
+	float SEValume = 0.5f;
+	bool cameraReverse = false;
 };
 
 class Config :public IFE::Component
@@ -33,9 +33,9 @@ private:
 	PoseMenu* pose_ = nullptr;
 
 	ConfigFlag configFlag_ = ConfigFlag::brightness;
-	uint8_t selectNum_ = 0;
-	uint8_t minSelectNum_ = 0;
-	uint8_t maxSelectNum_ = 4;
+	int8_t minSelectNum_ = 0;
+	int8_t maxSelectNum_ = 4;
+	int8_t selectNum_ = 0;
 
 	ConfigValue configValue_;
 
@@ -56,6 +56,8 @@ public:
 	/// èIóπ
 	/// </summary>
 	void Finalize();
+
+	const ConfigValue& GetConfigValue();
 
 private:
 
