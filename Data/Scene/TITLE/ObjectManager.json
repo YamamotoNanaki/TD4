@@ -210,7 +210,7 @@
                 0.30000001192092896,
                 0.30000001192092896
             ],
-            "terxtureName": "Fine_Basin.jpg"
+            "terxtureName": "skyDome.png"
         },
         "TransferGeometryBuffer": {
             "explosion": 0.0,
@@ -307,6 +307,130 @@
         "drawFlag": true,
         "model": "passage_Model",
         "name": "passage",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "titleFloor.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -500.0,
+                -10.0,
+                -500.0
+            ],
+            "rotation": [
+                90.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                499.91748046875,
+                499.92047119140625,
+                499.924560546875
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "Plane_Model",
+        "name": "floor",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "whiteFrame.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -27.415130615234375,
+                12.068862915039063,
+                -11.172529220581055
+            ],
+            "rotation": [
+                90.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                12.998689651489258,
+                12.998754501342773,
+                12.998930931091309
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "Plane_Model",
+        "name": "frame",
         "prefab": false
     }
 ]
