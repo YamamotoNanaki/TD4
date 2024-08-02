@@ -27,12 +27,15 @@ void PoseMenu::Initialize()
 void PoseMenu::Update()
 {
 	//ポーズ切り替え
-	PoseChange();
 	if (configFlag_ == false)
 	{
-		//ポーズ中選択
-		PoseSelect();
-		Select();
+		PoseChange();
+		if (poseFlag_ == true && configFlag_ == false)
+		{
+			//ポーズ中選択
+			PoseSelect();
+			Select();
+		}
 	}
 }
 
@@ -81,7 +84,7 @@ void PoseMenu::PoseChange()
 void PoseMenu::PoseSelect()
 {
 	int32_t range = 10000;
-	if (poseFlag_ == true&& configFlag_==false)
+	if (poseFlag_ == true && configFlag_ == false)
 	{
 		if (IFE::Input::GetKeyTrigger(IFE::Key::UP) || oldLAnalog_ < 0.5f && IFE::Input::GetLYAnalog(range) > 0.5f)
 		{
@@ -160,7 +163,7 @@ void PoseMenu::Reset()
 	poseFlag_ = false;
 	configFlag_ = false;
 	IFE::IFETime::sTimeScale_ = 1.0f;
-	
+
 	IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = poseFlag_;
 	IFE::SpriteManager::Instance()->GetSpritePtr("resume")->drawFlag_ = poseFlag_;
 	IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->drawFlag_ = poseFlag_;

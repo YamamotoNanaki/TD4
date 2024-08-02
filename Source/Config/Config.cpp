@@ -9,22 +9,26 @@ void Config::Initialize()
 
 void Config::Update()
 {
-	if (IFE::Input::GetKeyTrigger(IFE::Key::Esc) || IFE::Input::PadTrigger(IFE::PADCODE::B))
+	if (pose_->GetCofigFlag() == true)
 	{
-		Reset();
-	}
-	if (oldPoseFlag_ == true && pose_->GetPoseFlag() == false)
-	{
-		Reset();
-	}
+		if (IFE::Input::GetKeyTrigger(IFE::Key::Esc) || IFE::Input::PadTrigger(IFE::PADCODE::B))
+		{
+			Reset();
+		}
+		if (IFE::Input::GetKeyTrigger(IFE::Key::Enter) || IFE::Input::PadTrigger(IFE::PADCODE::START))
+		{
+			pose_->Reset();
+			Reset();
+		}
 
-	if (pose_->GetCofigFlag()==true)
-	{
-		ConfigSelect();
-		ConfigChange();
-	}
+		if (pose_->GetCofigFlag() == true)
+		{
+			ConfigSelect();
+			ConfigChange();
+		}
 
-	oldPoseFlag_ = pose_->GetPoseFlag();
+		oldPoseFlag_ = pose_->GetPoseFlag();
+	}
 }
 
 void Config::Finalize()

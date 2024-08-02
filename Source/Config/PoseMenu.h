@@ -50,6 +50,8 @@ public:
 	bool GetCofigFlag();
 	void SetConfigFlag(bool flag);
 
+	void Reset();
+
 private:
 
 	void PoseChange();
@@ -57,7 +59,5 @@ private:
 	void PoseSelect();
 
 	void Select();
-
-	void Reset();
 };
 
