@@ -45,6 +45,10 @@
         "text//default//gameLogo.png",
         "text//default//pressAButton.png",
         "text//default//resume.png",
-        "text//default//hpFlame.png"
+        "text//default//hpFlame.png",
+        "passage.png",
+        "stage01.png",
+        "stage02.png",
+        "stage03.png"
     ]
 }

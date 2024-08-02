@@ -10,6 +10,8 @@
 #include"Scene.h"
 #include"Collision.h"
 #include "Sound.h"
+#include "IFEEffekseerManager.h"
+#include "Collider.h"
 
 void PlayerAction::Initialize()
 {
@@ -143,6 +145,8 @@ void PlayerAction::DecHp(bool isBack_)
 			{
 				ani_->SetAnimation("squatDamage");
 			}
+			auto e = IFE::IFEEffekseerManager::Instance()->GetEffekseer("LowHPBlood");
+			e->Play(&transform_->position_, nullptr, nullptr, 0, 0, { 0.5,0.5,0.5 });
 		}
 		else
 		{
@@ -163,6 +167,8 @@ void PlayerAction::DecHp(bool isBack_)
 			{
 				ani_->SetAnimation("squatDamage");//‚µ‚á‚ª‚ÝŽ€–Sƒ‚[ƒVƒ‡ƒ“
 			}
+			auto e = IFE::IFEEffekseerManager::Instance()->GetEffekseer("LowHPBlood");
+			e->Play(&transform_->position_, nullptr, nullptr, 0, 0, { 0.5,0.5,0.5 });
 		}
 	}
 }
@@ -251,6 +257,12 @@ void PlayerAction::Move()
 			IFE::Sound::Instance()->SoundPlay("walk", false, true);
 		}
 	}
+	//d—Í
+	if (!objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->onGround_)
+	{
+		transform_->position_.y -= 4.9f * IFE::IFETime::sDeltaTime_;
+	}
+
 #pragma endregion
 }
 
@@ -441,11 +453,11 @@ void PlayerAction::Attack()
 		}
 
 		attackTimer_ += IFE::IFETime::sDeltaTime_;
-	}
+		}
 
 	playerAttack_->SetIsAttack(isAttack_);
 	SlowMotion();
-}
+	}
 
 void PlayerAction::SlowMotion()
 {

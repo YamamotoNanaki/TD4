@@ -18,7 +18,7 @@ void IFE::Emitter::Initialize()
 	if (GetComponent<ColorBuffer>() == nullptr)AddComponent<ColorBuffer>();
 	if (GetComponent<TransformParticle>() == nullptr)AddComponent<TransformParticle>();
 	transform_ = GetComponent<TransformParticle>();
-	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("ParticleNormal");
+	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("ParticleNormal_DEFALUT");
 	transformMap = transformCB_.GetCBMapObject();
 	colorMap = colorCB_.GetCBMapObject();
 }

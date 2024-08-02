@@ -112,7 +112,7 @@ void IFE::PostEffectManager::DebugGUI()
 	if (gui->CollapsingHeaderGUI(U8("’Ç‰Á")))
 	{
 		auto s = IPostEffectHelp::GetComponentList();
-		if (gui->ButtonGUI("Add"))
+		if (s != "" && gui->ButtonGUI("Add"))
 		{
 			Add(s);
 		}

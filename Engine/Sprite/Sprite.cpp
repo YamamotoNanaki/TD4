@@ -197,7 +197,7 @@ void IFE::Sprite::SetTexture(const std::string& texName)
 
 void IFE::Sprite::LoadingScene(nlohmann::json& j)
 {
-	JsonManager::GetData<uint8_t>(j, "order",order_);
+	JsonManager::GetData<uint8_t>(j, "order", order_);
 	for (auto& com : j["component"])
 	{
 		ComponentManager::LoadingScene(j, com);
@@ -239,6 +239,14 @@ void IFE::Sprite::ComponentGUI()
 		};
 	std::function<void(void)>f = [&]()
 		{
+			if (ImguiManager::Instance()->CollapsingHeaderGUI(U8("テクスチャ変更")))
+			{
+				string s = TextureManager::Instance()->GetTextureGUI();
+				if (ImguiManager::Instance()->ButtonGUI(U8("変更")))
+				{
+					tex_ = TextureManager::Instance()->GetTexture(s);
+				}
+			}
 			ComponentManager::DebugGUI();
 		};
 	//std::function<void(std::string)>texFunc = [&](std::string name)

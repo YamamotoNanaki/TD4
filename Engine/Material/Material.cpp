@@ -5,6 +5,7 @@
 #include "Object3D.h"
 #include "FBXModel.h"
 #include "Mesh.h"
+#include "GraphicsPipelineManager.h"
 
 using namespace std;
 using namespace IFE;
@@ -250,6 +251,16 @@ void IFE::Material::ComponentDebugGUI()
 			ChildGUI(itr.first);
 		}
 	}
+
+	if (im->NewTreeNode(U8("シェーダー")))
+	{
+		string s = GraphicsPipelineManager::Instance()->GetGraphicsPipelineGUI();
+		if (im->ButtonGUI(U8("変更")))
+		{
+			objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline(s);
+		}
+		im->EndTreeNode();
+	}
 }
 
 void IFE::Material::OutputComponent(nlohmann::json& j)
@@ -262,6 +273,7 @@ void IFE::Material::OutputComponent(nlohmann::json& j)
 	j["terxtureName"] = tex_->texName_;
 	j["bloom"] = bloom_;
 	j["multipleMat"] = multipleMat_;
+	j["pipeline"] = objectPtr_->gp_->name_;
 	if (multipleMat_)
 	{
 		for (size_t i = 0; childMaterials_.size(); i++)
@@ -297,6 +309,11 @@ void IFE::Material::LoadingComponent(nlohmann::json& json)
 	constMapMaterial_ = materialBuffer_->GetCBMapObject();
 	bloom_ = json["bloom"];
 	multipleMat_ = json["multipleMat"];
+	string s;
+	if (j->GetData(json, "pipeline", s))
+	{
+		objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline(s);
+	}
 
 	if (multipleMat_)
 	{

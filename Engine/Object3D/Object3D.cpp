@@ -35,13 +35,13 @@ void IFE::Object3D::OBJInitialize()
 	ComponentManager::Initialize();
 	Material* m = GetComponent<Material>();
 	m->SetDefaultParameter();
-	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("3dNormal");
+	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("Model_DEFALUT");
 	transform_ = GetComponent<Transform>();
 }
 
 void IFE::Object3D::Initialize()
 {
-	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("3dNormal");
+	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("Model_DEFALUT");
 	ComponentManager::Initialize();
 	transform_ = GetComponent<Transform>();
 }
@@ -331,7 +331,7 @@ void IFE::Object3D::LoadChild()
 
 void IFE::Object3D::DebugInitialize()
 {
-	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("3dNormal");
+	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("Model_DEFALUT");
 	ComponentManager::DebugInitialize();
 	transform_ = GetComponent<Transform>();
 }

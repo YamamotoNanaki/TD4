@@ -7,7 +7,7 @@ void IFE::Animator::Initialize()
 {
 	skinBuffer_ = std::make_unique<ConstBuffer<ConstBufferDataSkin>>();
 	constMapSkin_ = skinBuffer_->GetCBMapObject();
-	objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("3dAnim");
+	objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("ModelAnim_DEFALUT");
 	model_ = dynamic_cast<FBXModel*>(objectPtr_->model_);
 	animMats_.resize(model_->bones_.size());
 	for (int i = 0; i < animMats_.size(); i++)
@@ -124,7 +124,7 @@ IFE::Animator::AnimMat* IFE::Animator::GetBone(std::string name)
 
 IFE::Animator::~Animator()
 {
-	objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("3dNormal");
+	objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("Model_DEFALUT");
 }
 
 void IFE::Animator::SetAnimation(std::string animName, bool interpolation, float interpolationMaxTimer)
