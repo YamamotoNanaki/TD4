@@ -45,6 +45,26 @@
         "text//default//gameLogo.png",
         "text//default//pressAButton.png",
         "text//default//resume.png",
-        "text//default//hpFlame.png"
+        "text//default//hpFlame.png",
+        "passage.png",
+        "stage01.png",
+        "stage02.png",
+        "stage03.png",
+        "whiteFrame.png",
+        "skyDome.png",
+        "titleFloor.png",
+        "Text//stage.png",
+        "Text//1.png",
+        "Text//2.png",
+        "Text//3.png",
+        "Text//misshonStart.png",
+        "Text//no.png",
+        "Text//yes.png",
+        "Text//pressAny.png",
+        "Text//stageName01.png",
+        "Text//stageName02.png",
+        "Text//stageName03.png",
+        "wall.png",
+        "floor.png"
     ]
 }

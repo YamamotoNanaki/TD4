@@ -16,7 +16,7 @@ void IFE::Material::Initialize()
 
 	MultipleMaterialCheck();
 
-	if(objectPtr_)objectPtr_->gp_ = gp_;
+	if (objectPtr_ && gp_)objectPtr_->gp_ = gp_;
 }
 
 void IFE::Material::SetDefaultParameter()
@@ -256,6 +256,7 @@ void IFE::Material::ComponentDebugGUI()
 	if (im->NewTreeNode(U8("シェーダー")))
 	{
 		string s = GraphicsPipelineManager::Instance()->GetGraphicsPipelineGUI();
+		im->TextGUI(U8("現在" + objectPtr_->gp_->name_));
 		if (im->ButtonGUI(U8("変更")))
 		{
 			objectPtr_->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline(s);

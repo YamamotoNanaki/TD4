@@ -2,6 +2,9 @@
 #include "Object3D.h"
 #include "ObjectManager.h"
 #include "Collider.h"
+#include "GraphicsPipelineManager.h"
+#include "Material.h"
+#include "TextureManager.h"
 
 using namespace IFE;
 
@@ -27,13 +30,20 @@ void StageCollideManageer::Initialize()
 			}
 			if (itr->GetObjectName().find("wall") != std::string::npos)
 			{
+				itr->GetComponent<Material>()->tex_ = TextureManager::Instance()->GetTexture("wall.png");
 				stages.push_back(itr.get());
 			}
+			if (itr->GetObjectName().find("ground") != std::string::npos)
+			{
+				itr->GetComponent<Material>()->tex_ = TextureManager::Instance()->GetTexture("floor.png");
+			}
+			itr->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("SolidMap");
 		}
 
 		if (itr->GetObjectName().find("roof") != std::string::npos)
 		{
 			itr->DrawFlag_ = true;
+			itr->GetComponent<Material>()->tex_ = TextureManager::Instance()->GetTexture("wall.png");
 		}
 	}
 }

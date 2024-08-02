@@ -63,6 +63,8 @@
         "Text//pressAny.png",
         "Text//stageName01.png",
         "Text//stageName02.png",
-        "Text//stageName03.png"
+        "Text//stageName03.png",
+        "wall.png",
+        "floor.png"
     ]
 }
