@@ -14,9 +14,9 @@ void EnemyHighlighting::Initialize()
 {
 	SetInitParams(2);
 	name_ = "EnemyHighlighting";
-	gp_ = GraphicsPipelineManager::Instance()->CreatePostEffectPipeLine("EnemyHighlightingVS", "EnemyHighlightingPS", "EnemyHighlighting", 2, 1);
-	enemyJuge = GraphicsPipelineManager::Instance()->CreateObjectGraphicsPipeLine("EnemyJudgeVS", "EnemyJudgeGS", "EnemyJudgePS", "EnemyJudge", 1, 1, 2);
-	enemyAnimJuge = GraphicsPipelineManager::Instance()->CreateAnimObjectGraphicsPipeLine("EnemyJudgeAnimVS", "EnemyJudgeAnimGS", "EnemyJudgeAnimPS", "EnemyJudgeAnim", 1, 1, 2);
+	gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("EnemyHighlighting");
+	enemyJuge = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("EnemyJudge");
+	enemyAnimJuge = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("EnemyJudgeAnim");
 	drawFlag_ = false;
 	auto obj = ObjectManager::Instance()->GetObjectPtr("PlayerDrone");
 	if (obj)dronePosition = &obj->transform_->position_;

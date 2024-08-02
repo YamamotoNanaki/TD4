@@ -12,7 +12,7 @@ namespace IFE
 	};
 	enum class PIPELINE_SETTING
 	{
-		Normal = 0, Anim = 20, Transparent = 40, SPrite = 100, PostEffect = 200
+		Normal = 0, Anim = 20, Transparent = 40, Sprite = 100, PostEffect = 200
 	};
 	class GraphicsPipelineManager
 	{
@@ -31,8 +31,10 @@ namespace IFE
 		bool ShaderCompile(const std::string& shaderName, const SHADER_COMPILE_SETTINGS& setting);
 		GraphicsPipeline* CreateBasicGraphicsPipeLine();
 		GraphicsPipeline* CreateObjectGraphicsPipeLine(std::string vs, std::string gs, std::string ps, std::string name, int16_t addRootParam = 0, int16_t inputTexNum = 1, int16_t outputTexNum = 1);
+		GraphicsPipeline* CreateObjectGraphicsPipeLine(std::string pipelineName, int16_t addRootParam = 0, int16_t inputTexNum = 1, int16_t outputTexNum = 1);
 		GraphicsPipeline* CreateAnimGraphicsPipeLine();
 		GraphicsPipeline* CreateAnimObjectGraphicsPipeLine(std::string vs, std::string gs, std::string ps, std::string name, int16_t addRootParam = 0, int16_t inputTexNum = 1, int16_t outputTexNum = 1);
+		GraphicsPipeline* CreateAnimObjectGraphicsPipeLine(std::string pipelineName, int16_t addRootParam = 0, int16_t inputTexNum = 1, int16_t outputTexNum = 1);
 		GraphicsPipeline* CreateBasic2DGraphicsPipeLine();
 		GraphicsPipeline* CreateBasicParticleGraphicsPipeLine();
 		GraphicsPipeline* CreateTransparentParticleGraphicsPipeLine();
@@ -49,5 +51,15 @@ namespace IFE
 
 	private:
 		GraphicsPipelineManager() {}
+
+
+#ifdef EditorMode
+	public:
+		void DebugGUI();
+		std::string GetGraphicsPipelineGUI();
+		void Output();
+#endif
+		void Loading();
+		void Reset();
 	};
 }

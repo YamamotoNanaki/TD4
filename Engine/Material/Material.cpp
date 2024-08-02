@@ -250,6 +250,12 @@ void IFE::Material::ComponentDebugGUI()
 			ChildGUI(itr.first);
 		}
 	}
+
+	if (im->NewTreeNode(U8("シェーダー")))
+	{
+
+		im->EndTreeNode();
+	}
 }
 
 void IFE::Material::OutputComponent(nlohmann::json& j)

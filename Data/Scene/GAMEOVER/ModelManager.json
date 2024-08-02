@@ -105,5 +105,45 @@
             "settings": 1,
             "smooth": true
         }
+    },
+    {
+        "enemyMotion_Model": {
+            "fileName": "enemyMotion",
+            "settings": 1,
+            "smooth": false
+        },
+        "name": "enemyMotion_Model"
+    },
+    {
+        "name": "passage_Model",
+        "passage_Model": {
+            "fileName": "passage",
+            "settings": 0,
+            "smooth": false
+        }
+    },
+    {
+        "name": "stage01_Model",
+        "stage01_Model": {
+            "fileName": "stage01",
+            "settings": 0,
+            "smooth": false
+        }
+    },
+    {
+        "name": "stage02_Model",
+        "stage02_Model": {
+            "fileName": "stage02",
+            "settings": 0,
+            "smooth": false
+        }
+    },
+    {
+        "name": "stage03_Model",
+        "stage03_Model": {
+            "fileName": "stage03",
+            "settings": 0,
+            "smooth": false
+        }
     }
 ]
