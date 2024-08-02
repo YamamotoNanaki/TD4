@@ -56,7 +56,7 @@
             ],
             "name": "yes",
             "order": 0,
-            "texture": "text//default//restart.png"
+            "texture": "Text//yes.png"
         },
         {
             "ColorBuffer": {
@@ -84,7 +84,7 @@
             ],
             "name": "no",
             "order": 0,
-            "texture": "text//default//returnTitle.png"
+            "texture": "Text//no.png"
         },
         {
             "ColorBuffer": {
