@@ -12,7 +12,6 @@
 
 void IFE::NormalEnemy::Initialize()
 {
-	state = SEARCH;
 	preState = state;
 	waitTimer = 0;
 	nextPoint = 0;
@@ -45,8 +44,6 @@ void IFE::NormalEnemy::Initialize()
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
 	SetSound();
-	ani_ = objectPtr_->GetComponent<IFE::Animator>();
-	ani_->SetAnimation("standBy");//待機モーションに変える
 }
 
 void IFE::NormalEnemy::ChangeState()
@@ -125,6 +122,10 @@ void IFE::NormalEnemy::ChangeState()
 			}
 		}
 		break;
+	case IFE::BaseEnemy::TUTO:
+		frontVec = { 0,0,-1 };
+		frontVec.Normalize();
+		break;
 	default:
 		break;
 	}
@@ -141,6 +142,9 @@ void IFE::NormalEnemy::EnemyUpdate()
 			if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
 				isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
 				isChaseDrone = isFound;
+			}
+			else if (!IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival()) {
+				isChaseDrone = false;
 			}
 		}
 		//状態を取得
@@ -160,7 +164,6 @@ void IFE::NormalEnemy::EnemyUpdate()
 			state = SEARCH;
 			ani_->SetAnimation("walk", false);
 		}
-		isChaseDrone = false;
 		rayDist = 0;
 	}
 }
@@ -340,7 +343,7 @@ void IFE::NormalEnemy::Shot()
 			shotVec = dPos - worldPos;
 			shotVec.Normalize();
 		}
-		enemyAttack->transform_->position_ += (shotVec * 0.3f);
+		enemyAttack->transform_->position_ += (shotVec * 0.5f);
 	}
 	if (enemyAttack->GetIsShot() == false) {
 		state = CHASE;
@@ -364,17 +367,19 @@ void IFE::NormalEnemy::LookAt()
 	frontVec = lookfor - ePos;
 	frontVec = frontVec.Normalize();
 	frontVec *= Vector3(1, 0, 1);
-	if (state == CHASE || state == SEARCH || state == WARNING || isOneShot == false) {
-		//カメラ方向に合わせてY軸の回転
-		float radY = std::atan2(frontVec.x, frontVec.z);
-		float targetAngle = ((radY * 180.0f) / (float)PI);
-		ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
+	if (state == CHASE || state == SEARCH || state == WARNING) {
+		if (!isOneShot) {
+			//カメラ方向に合わせてY軸の回転
+			float radY = std::atan2(frontVec.x, frontVec.z);
+			float targetAngle = ((radY * 180.0f) / (float)PI);
+			ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
+		}
 	}
 }
 
 bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	//視界の距離
-	float maxDistance = 25;
+	float maxDistance = 20;
 	//視野角
 	float sightAngle = 90;
 	// 自身の位置
@@ -409,6 +414,10 @@ bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	if (rayDist < targetDistance && rayDist > 0) {
 		// ターゲットよりも障害物が近い場合は視界が遮られている
 		inSight = false;
+	}
+	if (inSight) {
+		int a;
+		a = 0;
 	}
 
 	return inSight;
@@ -451,11 +460,24 @@ void IFE::NormalEnemy::ComponentDebugGUI()
 {
 	ImguiManager* gui = ImguiManager::Instance();
 	gui->DragVectorFloat3GUI(points, "points", transform_->position_);
+	std::vector<std::string> str = {
+		"WAIT",
+		"SEARCH",
+		"WARNING",
+		"CHASE",
+		"ATTACK",
+		"DEAD",
+		"TUTO"
+	};
+	int32_t num = static_cast<int32_t>(state);
+	gui->Combo("state", num, str);
+	state = static_cast<State>(num);
 }
 
 void IFE::NormalEnemy::OutputComponent(nlohmann::json& json)
 {
 	JsonManager::Instance()->OutputVectorFloat3(json["points"], points);
+	json["state"] = state;
 }
 #endif
 
@@ -466,4 +488,7 @@ void IFE::NormalEnemy::LoadingComponent(nlohmann::json& json)
 	//	return;
 	//}
 	JsonManager::Instance()->InputVectorFloat3(json["points"], points);
+	int32_t num = 0;
+	JsonManager::Instance()->GetData(json, "state", num);
+	state = static_cast<State>(num);
 }

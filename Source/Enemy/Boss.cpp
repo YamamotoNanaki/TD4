@@ -12,7 +12,6 @@
 
 void IFE::Boss::Initialize()
 {
-	state = WAIT;
 	preState = state;
 	waitTimer = 0;
 	nextPoint = 0;
@@ -138,10 +137,15 @@ void IFE::Boss::EnemyUpdate()
 		if (state != WAIT) {
 			LookAt();
 		}
-		isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
-		if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
-			isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
-			isChaseDrone = isFound;
+		if (state != CHASE) {
+			isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
+			if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
+				isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
+				isChaseDrone = isFound;
+			}
+			else if (!IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival()) {
+				isChaseDrone = false;
+			}
 		}
 		//ó‘Ô‚ðŽæ“¾
 		preState = state;
@@ -159,9 +163,8 @@ void IFE::Boss::EnemyUpdate()
 		if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetHP() == 0) {
 			state = SEARCH;
 			ani_->SetAnimation("walk", false);
-			rayDist = 0;
-			isChaseDrone = false;
 		}
+		rayDist = 0;
 	}
 }
 
@@ -262,6 +265,10 @@ void IFE::Boss::Chase()
 	}
 	else {
 		target = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
+	}
+	//‹ß‚­‚É‚¢‚é‚©”»’è
+	if (ChaseLen(target)) {
+		warningTime += IFE::IFETime::sDeltaTime_;
 	}
 	//player‚Ì•û‚ðŒü‚­
 	lookfor = target;

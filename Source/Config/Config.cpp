@@ -1,6 +1,9 @@
 #include "Config.h"
 #include "Input.h"
 #include"ObjectManager.h"
+#include "ImguiManager.h"
+#include"ColorBuffer.h"
+#include"SpriteManager.h"
 
 void Config::Initialize()
 {
@@ -13,6 +16,9 @@ void Config::Update()
 	{
 		if (IFE::Input::GetKeyTrigger(IFE::Key::Esc) || IFE::Input::PadTrigger(IFE::PADCODE::B))
 		{
+			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->drawFlag_ = true;
+			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->drawFlag_ = true;
+			IFE::SpriteManager::Instance()->GetSpritePtr("config")->drawFlag_ = true;
 			Reset();
 		}
 		if (IFE::Input::GetKeyTrigger(IFE::Key::Enter) || IFE::Input::PadTrigger(IFE::PADCODE::START))
@@ -28,11 +34,19 @@ void Config::Update()
 		}
 
 		oldPoseFlag_ = pose_->GetPoseFlag();
+
+		IFE::ImguiManager::Instance()->TextIntGUI(selectNum_);
+		IFE::ImguiManager::Instance()->TextFloatGUI(configValue_.brightness);
 	}
 }
 
 void Config::Finalize()
 {
+}
+
+const ConfigValue& Config::GetConfigValue()
+{
+	return configValue_;
 }
 
 void Config::ConfigSelect()
@@ -63,6 +77,7 @@ void Config::ConfigChange()
 	{
 	case ConfigFlag::brightness:
 		GageConfig(configValue_.brightness);
+		IFE::SpriteManager::Instance()->GetSpritePtr("brightnessAdjustment")->GetComponent<IFE::ColorBuffer>()->SetAlpha(configValue_.brightness);
 		break;
 	case ConfigFlag::masterValume:
 		GageConfig(configValue_.masterValume);
@@ -85,21 +100,16 @@ void Config::GageConfig(float& configValue)
 {
 	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT))
 	{
-		configValue--;
+		configValue -= 1 / 255.0f;
 	}
 	if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT))
 	{
-		configValue++;
+		configValue += 1 / 255.0f;
 	}
-	if (IFE::Input::GetLXAnalog() < 0.0f)
-	{
-		configValue -= IFE::Input::GetLXAnalog();
-	}
-	if (IFE::Input::GetLXAnalog() > 0.0f)
-	{
-		configValue += IFE::Input::GetLXAnalog();
-	}
-	configValue = std::clamp(configValue, 0.0f, 255.0f);
+
+	configValue += IFE::Input::GetLXAnalog() / 255.0f;
+
+	configValue = std::clamp(configValue, 0.0f, 1.0f);
 }
 
 void Config::BottonConfig(bool& configValue)
@@ -125,9 +135,9 @@ void Config::Reset()
 
 void Config::ConfigReset()
 {
-	configValue_.brightness=0.0f;
-	configValue_.masterValume = 0.0f;
-	configValue_.BGMValume = 0.0f;
-	configValue_.SEValume = 0.0f;
+	configValue_.brightness = 0.0f;
+	configValue_.masterValume = 0.5f;
+	configValue_.BGMValume = 0.5f;
+	configValue_.SEValume = 0.5f;
 	configValue_.cameraReverse = false;
 }
