@@ -28,7 +28,8 @@ namespace IFE {
 			//UŒ‚
 			ATTACK,
 			//€–S
-			DEAD
+			DEAD,
+			TUTO
 		};
 		State state;
 		State preState;

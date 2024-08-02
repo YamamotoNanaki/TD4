@@ -38,7 +38,7 @@ void IFE::EnemyManager::Initialize()
 			itr->AddComponent<IFE::Animator>();
 
 			auto anim = itr->GetComponent<IFE::Animator>();
-			anim->SetAnimation("walk",false);
+			anim->SetAnimation("standBy",false);
 			anim->loop_ = true;
 			continue;
 		}

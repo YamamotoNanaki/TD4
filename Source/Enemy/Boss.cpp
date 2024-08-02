@@ -12,7 +12,6 @@
 
 void IFE::Boss::Initialize()
 {
-	state = WAIT;
 	preState = state;
 	waitTimer = 0;
 	nextPoint = 0;

@@ -387,7 +387,8 @@
                     ]
                 ],
                 "size": 2
-            }
+            },
+            "state": 0
         },
         "TransferGeometryBuffer": {
             "explosion": 0.0,
@@ -11182,7 +11183,8 @@
                     ]
                 ],
                 "size": 2
-            }
+            },
+            "state": 0
         },
         "TransferGeometryBuffer": {
             "explosion": 0.0,
@@ -11412,7 +11414,8 @@
                     ]
                 ],
                 "size": 4
-            }
+            },
+            "state": 0
         },
         "TransferGeometryBuffer": {
             "explosion": 0.0,
@@ -11502,7 +11505,8 @@
                     ]
                 ],
                 "size": 4
-            }
+            },
+            "state": 0
         },
         "TransferGeometryBuffer": {
             "explosion": 0.0,
@@ -11592,7 +11596,8 @@
                     ]
                 ],
                 "size": 4
-            }
+            },
+            "state": 0
         },
         "TransferGeometryBuffer": {
             "explosion": 0.0,
@@ -11682,7 +11687,8 @@
                     ]
                 ],
                 "size": 4
-            }
+            },
+            "state": 0
         },
         "TransferGeometryBuffer": {
             "explosion": 0.0,
@@ -11762,7 +11768,8 @@
                     ]
                 ],
                 "size": 2
-            }
+            },
+            "state": 0
         },
         "TransferGeometryBuffer": {
             "explosion": 0.0,

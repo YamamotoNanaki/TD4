@@ -12,7 +12,6 @@
 
 void IFE::NormalEnemy::Initialize()
 {
-	state = SEARCH;
 	preState = state;
 	waitTimer = 0;
 	nextPoint = 0;
@@ -122,6 +121,10 @@ void IFE::NormalEnemy::ChangeState()
 				objectPtr_->GetComponent<Collider>()->GetCollider(1)->active_ = false;
 			}
 		}
+		break;
+	case IFE::BaseEnemy::TUTO:
+		frontVec = { 0,0,-1 };
+		frontVec.Normalize();
 		break;
 	default:
 		break;
@@ -364,11 +367,13 @@ void IFE::NormalEnemy::LookAt()
 	frontVec = lookfor - ePos;
 	frontVec = frontVec.Normalize();
 	frontVec *= Vector3(1, 0, 1);
-	if (state == CHASE || state == SEARCH || state == WARNING || isOneShot == false) {
-		//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
-		float radY = std::atan2(frontVec.x, frontVec.z);
-		float targetAngle = ((radY * 180.0f) / (float)PI);
-		ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
+	if (state == CHASE || state == SEARCH || state == WARNING) {
+		if (!isOneShot) {
+			//ƒJƒƒ‰•ûŒü‚É‡‚í‚¹‚ÄYŽ²‚Ì‰ñ“]
+			float radY = std::atan2(frontVec.x, frontVec.z);
+			float targetAngle = ((radY * 180.0f) / (float)PI);
+			ApproachTarget(transform_->rotation_.y, targetAngle, 2.0f);
+		}
 	}
 }
 
@@ -455,11 +460,24 @@ void IFE::NormalEnemy::ComponentDebugGUI()
 {
 	ImguiManager* gui = ImguiManager::Instance();
 	gui->DragVectorFloat3GUI(points, "points", transform_->position_);
+	std::vector<std::string> str = {
+		"WAIT",
+		"SEARCH",
+		"WARNING",
+		"CHASE",
+		"ATTACK",
+		"DEAD",
+		"TUTO"
+	};
+	int32_t num = static_cast<int32_t>(state);
+	gui->Combo("state", num, str);
+	state = static_cast<State>(num);
 }
 
 void IFE::NormalEnemy::OutputComponent(nlohmann::json& json)
 {
 	JsonManager::Instance()->OutputVectorFloat3(json["points"], points);
+	json["state"] = state;
 }
 #endif
 
@@ -470,4 +488,7 @@ void IFE::NormalEnemy::LoadingComponent(nlohmann::json& json)
 	//	return;
 	//}
 	JsonManager::Instance()->InputVectorFloat3(json["points"], points);
+	int32_t num = 0;
+	JsonManager::Instance()->GetData(json, "state", num);
+	state = static_cast<State>(num);
 }
