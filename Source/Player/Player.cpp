@@ -26,7 +26,7 @@ void Player::Initialize()
 	auto droneRecoveryUIPtr = IFE::SpriteManager::Instance()->GetSpritePtr("droneRecoveryUI")->GetComponent<DroneRecoveryUI>();
 	droneRecoveryUI_ = droneRecoveryUIPtr;
 
-	pose_ = IFE::ObjectManager::Instance()->GetObjectPtr("PoseMenu")->GetComponent<PoseMenu>();
+	pose_ = IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>();
 
 	transform_->position_ = { 0,0,0 };
 	objectPtr_->DrawFlag_ = false;

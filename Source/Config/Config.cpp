@@ -7,7 +7,7 @@
 
 void Config::Initialize()
 {
-	pose_ = IFE::ObjectManager::Instance()->GetObjectPtr("PoseMenu")->GetComponent<PoseMenu>();
+	pose_ = IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>();
 
 	IFE::SpriteManager::Instance()->GetSpritePtr("brightness")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("brightnessMemoly")->drawFlag_ = false;

@@ -949,7 +949,6 @@
                     0.5
                 ]
             },
-            "PoseMenu": null,
             "Transform2D": {
                 "position": [
                     960.0,
@@ -963,8 +962,7 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "PoseMenu"
+                "ColorBuffer"
             ],
             "drawFlag": false,
             "name": "returnTitle",
