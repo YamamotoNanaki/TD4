@@ -10,10 +10,12 @@ void IFE::Tutorial::Initialize()
 	isShowText = false;
 	tutoTime = 0.0f;
 	IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("tutoX")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("tutoY")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("R")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("L")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("found")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("backAttack")->drawFlag_ = false;
 	step = CAMERA;
 	isFound = false;
@@ -53,6 +55,7 @@ void IFE::Tutorial::Update()
 		IFE::IFETime::sTimeScale_ = 0.0f;
 	}
 	IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = isShowText;
+	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = isShowText;
 	
 }
 
@@ -119,8 +122,9 @@ void IFE::Tutorial::DroneText()
 
 void IFE::Tutorial::FoundText()
 {
-	/*IFE::SpriteManager::Instance()->GetSpritePtr("found")->drawFlag_ = isShowText;*/
+	IFE::SpriteManager::Instance()->GetSpritePtr("found")->drawFlag_ = true;
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {
+		IFE::SpriteManager::Instance()->GetSpritePtr("found")->drawFlag_ = false;
 		isShowText = false;
 		IFE::IFETime::sTimeScale_ = 1.0f;
 		step = oldStep;
