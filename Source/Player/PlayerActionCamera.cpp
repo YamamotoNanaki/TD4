@@ -9,7 +9,7 @@
 void PlayerActionCamera::Initialize()
 {
 	objectPtr_->DrawFlag_ = false;
-	config_=IFE::ObjectManager::Instance()->GetObjectPtr("config")->GetComponent<Config>();
+	config_ = IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<Config>();
 }
 
 void PlayerActionCamera::CameraInitialize(const IFE::Vector3& playerPos)

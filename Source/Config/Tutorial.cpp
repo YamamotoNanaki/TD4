@@ -5,6 +5,7 @@
 #include"Scene.h"
 #include "PlayerAction.h"
 #include "Player.h"
+#include "Scene.h"
 
 void IFE::Tutorial::Initialize()
 {
@@ -24,48 +25,52 @@ void IFE::Tutorial::Initialize()
 	isFound = false;
 	oldStep = step;
 	nowText = "R";
+	if (IFE::Scene::Instance()->GetSceneName() == "stage02") {
+		isPlayTutorial = true;
+	}
 }
 
 void IFE::Tutorial::Update()
-{
-	switch (step)
-	{
-	case CAMERA:
-		CameraText();
-		break;
-	case MOVE:
-		MoveText();
-		break;
-	case BACK:
-		KillText();
-		break;
-	case ENEMY:
-		KilledText();
-		break;
-	case DRONE:
-		DroneText();
-		break;
-	case SCAN:
-		ScanText();
-		break;
-	case COMEBACK:
-		ComeBackText();
-		break;
-	case END:
-		break;
-	case FOUND:
-		FoundText();
-		break;
-	}
-	CutInStep();
-	//ŽžŠÔŽ~‚ß
-	if (isShowText == true) {
-		HideUI();
-		IFE::IFETime::sTimeScale_ = 0.0f;
-	}
-	IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = isShowText;
-	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = isShowText;
-	
+{			 
+	if (isPlayTutorial) {
+		switch (step)
+		{
+		case CAMERA:
+			CameraText();
+			break;
+		case MOVE:
+			MoveText();
+			break;
+		case BACK:
+			KillText();
+			break;
+		case ENEMY:
+			KilledText();
+			break;
+		case DRONE:
+			DroneText();
+			break;
+		case SCAN:
+			ScanText();
+			break;
+		case COMEBACK:
+			ComeBackText();
+			break;
+		case END:
+			break;
+		case FOUND:
+			FoundText();
+			break;
+		}
+		CutInStep();
+		//ŽžŠÔŽ~‚ß
+		if (isShowText == true) {
+			HideUI();
+			IFE::IFETime::sTimeScale_ = 0.0f;
+		}
+		IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = isShowText;
+		IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = isShowText;
+	}	
 }
 
 void IFE::Tutorial::ChangeStep()
@@ -122,13 +127,13 @@ void IFE::Tutorial::DroneText()
 	}
 	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
 	NextText("scanning");
-	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {
-		isShowText = true;
-	}
 }
 
 void IFE::Tutorial::ScanText()
 {
+	if (ObjectManager::Instance()->GetObjectPtr("playerObject")->GetComponent<Player>()->GetFirstDrone()) {
+		isShowText = true;
+	}
 	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
 	NextText("comeback");
 }
@@ -229,4 +234,21 @@ void IFE::Tutorial::Reset()
 	SpriteManager::Instance()->GetSpritePtr("CharaMove")->drawFlag_ = true;
 	SpriteManager::Instance()->GetSpritePtr("ModeChangeNormal")->drawFlag_ = true;
 	SpriteManager::Instance()->GetSpritePtr("Sneak")->drawFlag_ = true;
+}
+   
+#ifdef EditorMode
+#include "ImguiManager.h"
+void IFE::Tutorial::ComponentDebugGUI()
+{
+}
+
+void IFE::Tutorial::OutputComponent(nlohmann::json& json)
+{
+	json;
+}
+#endif
+
+void IFE::Tutorial::LoadingComponent(nlohmann::json& json)
+{
+	json;
 }

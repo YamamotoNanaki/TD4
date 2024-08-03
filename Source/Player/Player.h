@@ -32,6 +32,7 @@ private:
 
 	bool droneRecoveryFlag_ = false;
 	bool firstRecovery = false;
+	bool firstDrone = false;
 	float droneRecoverytime_ = 0.0f;
 	const float maxDroneRecoverytime_ = 3.0f;
 
@@ -74,6 +75,7 @@ public:
 	void DroneBreak();
 
 	bool GetMode();
+	bool GetFirstDrone();
 	bool GetFirstRecovery();
 	void SetMode(bool flag);
 	inline CameraChangeParam* GetCameraChangeParam() { return &ccp_; }
