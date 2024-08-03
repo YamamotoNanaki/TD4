@@ -869,8 +869,8 @@
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    5.0,
-                    1.0
+                    3.0,
+                    1.5
                 ]
             },
             "component": [
@@ -880,7 +880,7 @@
             "drawFlag": true,
             "name": "restart",
             "order": 0,
-            "texture": "text//default//restart.png"
+            "texture": "Text//retry.png"
         },
         {
             "ColorBuffer": {
@@ -1533,8 +1533,8 @@
             },
             "Transform2D": {
                 "position": [
-                    1546.25,
-                    937.25
+                    1540.0,
+                    937.0
                 ],
                 "rotation": 0.0,
                 "scale": [
@@ -1782,6 +1782,35 @@
             "name": "backAttack",
             "order": 0,
             "texture": "text/tutorial/backAttack.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1540.0,
+                    937.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    3.5,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "decidePop",
+            "order": 0,
+            "texture": "white.png"
         }
     ]
 }

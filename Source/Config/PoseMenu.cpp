@@ -3,6 +3,8 @@
 #include"SpriteManager.h"
 #include"ColorBuffer.h"
 #include"Scene.h"
+#include "Tutorial.h"
+#include "ObjectManager.h"
 
 PoseMenu::PoseMenu()
 {
@@ -62,7 +64,14 @@ void PoseMenu::PoseChange()
 {
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Enter) || IFE::Input::PadTrigger(IFE::PADCODE::START))
 	{
-		poseFlag_ = !poseFlag_;
+		if (poseFlag_) {
+			poseFlag_ = false;
+			IFE::ObjectManager::Instance()->GetObjectPtr("Tutorial")->GetComponent<IFE::Tutorial>()->ShowText();
+		}
+		else {
+			poseFlag_ = true;
+			IFE::ObjectManager::Instance()->GetObjectPtr("Tutorial")->GetComponent<IFE::Tutorial>()->HideText();
+		}
 		//画面を暗くするスプライトの描画
 		IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = poseFlag_;
 		IFE::SpriteManager::Instance()->GetSpritePtr("resume")->drawFlag_ = poseFlag_;
@@ -112,19 +121,19 @@ void PoseMenu::PoseSelect()
 		switch (selectFlag_)
 		{
 		case PoseSelectFlag::RETURNGAME:
-			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
-			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
-			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetColor({1.0f,1.0f ,1.0f ,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetColor({0.25f,0.25f ,0.25f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f,1.0f });
 			break;
 		case PoseSelectFlag::RETURNTITLE:
-			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
-			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
-			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f ,1.0f ,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f,1.0f });
 			break;
 		case PoseSelectFlag::CONFIG:
-			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
-			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
-			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f ,1.0f ,1.0f });
 			break;
 		default:
 			break;

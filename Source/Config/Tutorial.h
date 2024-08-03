@@ -11,7 +11,9 @@ namespace IFE {
 	private:
 
 		bool isShowText = false;
+		bool isUp;
 		float tutoTime;
+		float bottanTime;
 		std::string nowText;
 		enum Step {
 			CAMERA,
@@ -42,7 +44,7 @@ namespace IFE {
 		/// </summary>
 		void Update();
 
-		void ChangeStep();
+		void StopTime();
 
 		void CameraText();
 
@@ -65,6 +67,10 @@ namespace IFE {
 		void NextText(const std::string& str);
 
 		void HideUI();
+
+		void HideText();
+
+		void ShowText();
 
 		/// <summary>
 		/// èIóπ

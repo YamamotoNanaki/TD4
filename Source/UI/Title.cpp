@@ -203,8 +203,8 @@ void Title::Select()
 		if (Input::PadTrigger(PADCODE::A) || Input::GetKeyTrigger(Key::Space))
 		{
 			oldLAnalog_ = 0.0f;
-			IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetColor({});
-			IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetColor({});
+			IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetColor({1.0f,1.0f ,1.0f ,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetColor({0.25f,0.25f ,0.25f ,1.0f });
 			titleSelectFlag_ = TitleSelect::SELECT2;
 		}
 	}
@@ -215,14 +215,14 @@ void Title::SelectCheck()
 	int32_t range = 10000;
 	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_.x > -0.5f && IFE::Input::GetLXAnalog(range) < -0.5f)
 	{
-		IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
-		IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+		IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f ,1.0f ,1.0f });
+		IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f ,1.0f });
 		checkFlag_ = true;
 	}
 	else if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_.x < 0.5f && IFE::Input::GetLXAnalog(range) >0.5f)
 	{
-		IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
-		IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
+		IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f ,1.0f });
+		IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f ,1.0f ,1.0f });
 		checkFlag_ = false;
 	}
 

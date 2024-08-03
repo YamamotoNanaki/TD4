@@ -155,26 +155,26 @@ void Config::ConfigChange()
 	{
 		if (configValue_.cameraReverse == false)
 		{
-			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraON")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.5f,0.5f,0.5f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraON")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f,0.25f,1.0f });
 			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f,1.0f,1.0f });
 		}
 		else
 		{
 			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraON")->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f,1.0f,1.0f });
-			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.5f,0.5f,0.5f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f,0.25f,1.0f });
 		}
 	}
 	else
 	{
 		if (configValue_.cameraReverse == false)
 		{
-			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraON")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f,0.25f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraON")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.125f,0.125f,0.125f,1.0f });
 			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.5f,0.5f,0.5f,1.0f });
 		}
 		else
 		{
 			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraON")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.5f,0.5f,0.5f,1.0f });
-			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f,0.25f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.125f,0.125f,0.125f,1.0f });
 		}
 	}
 	oldLAnalog_.x = IFE::Input::GetLXAnalog(10000);
