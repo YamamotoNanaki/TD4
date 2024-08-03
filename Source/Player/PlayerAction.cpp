@@ -42,9 +42,9 @@ void PlayerAction::Initialize()
 	moveSpeed_ = normalMoveSpeed_;
 
 	//sound
-	IFE::Sound::Instance()->LoadWave("walk");
+	IFE::Sound::Instance()->LoadWave("walk",IFE::Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("walk", 60);
-	IFE::Sound::Instance()->LoadWave("attack");
+	IFE::Sound::Instance()->LoadWave("attack", IFE::Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("attack", 60);
 }
 

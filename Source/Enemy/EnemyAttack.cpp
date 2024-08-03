@@ -19,11 +19,11 @@ void IFE::EnemyAttack::Initialize()
 	}
 
 	player_ = IFE::ObjectManager::Instance()->GetObjectPtr("playerObject")->GetComponent<Player>();
-	IFE::Sound::Instance()->LoadWave("attackHit");
+	IFE::Sound::Instance()->LoadWave("attackHit", Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("attackHit", 30);
-	IFE::Sound::Instance()->LoadMP3("droneBreak");
+	IFE::Sound::Instance()->LoadMP3("droneBreak", Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("droneBreak", 40);
-	IFE::Sound::Instance()->LoadMP3("droneShock");
+	IFE::Sound::Instance()->LoadMP3("droneShock", Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("droneShock", 50);
 }
 

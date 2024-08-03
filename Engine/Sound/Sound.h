@@ -10,6 +10,11 @@ namespace IFE
 {
 	class Sound
 	{
+	public:
+		enum class SoundSettings
+		{
+			SE, BGM
+		};
 	private:
 		struct ChunkHeader
 		{
@@ -32,13 +37,14 @@ namespace IFE
 		struct SoundData
 		{
 			WAVEFORMATEX wfex;
-			float volume = 50;
+			float volume = 0.5f;
 			IXAudio2SourceVoice* pSourceVoice = nullptr;
 			std::vector<BYTE> pBuffer;
 			uint32_t bufferSize = 0;
 			std::string name;
 			bool free = false;
 			bool isPlaying = false;
+			bool bgm = bool(SoundSettings::BGM);
 		};
 
 	private:
@@ -46,12 +52,20 @@ namespace IFE
 		IXAudio2MasteringVoice* masterVoice_;
 		static const uint16_t sMAX_SOUND_ = 128;
 		std::array<SoundData, sMAX_SOUND_> soundDatas_;
+		float masterVolume_ = 0.5f;
+		float bgmVolume_ = 0.5f;
+		float seVolume_ = 0.5f;
 
 	public:
+		void SetMasterVolume(float masterVolume);
+		void SetBGMVolume(float bgmVolume);
+		void SetSEVolume(float seVolume);
+		void SetMasterVolume(int32_t masterVolume);
+		void AllSoundVolumeUpdate();
 		void Initialize();
 		void Update();
-		uint16_t LoadWave(const std::string& wave);
-		uint16_t LoadMP3(const std::string& mp3);
+		uint16_t LoadWave(const std::string& wave, SoundSettings setting);
+		uint16_t LoadMP3(const std::string& mp3, SoundSettings setting);
 		uint16_t GetSoundNum(const std::string& wave);
 		void SoundUnLoad(uint16_t soundNum);
 		void AllUnLoad();
@@ -83,6 +97,7 @@ namespace IFE
 		static void Finalize();
 
 	private:
+		void ChengeMasterVolume(SoundData& sound);
 		Sound() {};
 		Sound(const Sound&) {};
 		Sound& operator=(const Sound&) {}

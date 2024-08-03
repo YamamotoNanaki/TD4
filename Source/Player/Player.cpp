@@ -32,15 +32,15 @@ void Player::Initialize()
 	objectPtr_->DrawFlag_ = false;
 	/*IFE::Sound::Instance()->LoadMP3("mainBGM");
 	IFE::Sound::Instance()->SetVolume("mainBGM", 80);*/
-	IFE::Sound::Instance()->LoadMP3("droneChange");
+	IFE::Sound::Instance()->LoadMP3("droneChange", IFE::Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("droneChange", 80);
-	IFE::Sound::Instance()->LoadMP3("droneClose");
+	IFE::Sound::Instance()->LoadMP3("droneClose", IFE::Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("droneClose", 80);
-	IFE::Sound::Instance()->LoadMP3("drone");
+	IFE::Sound::Instance()->LoadMP3("drone", IFE::Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("drone", 50);
-	IFE::Sound::Instance()->LoadMP3("droneRecovery");
+	IFE::Sound::Instance()->LoadMP3("droneRecovery", IFE::Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("droneRecovery", 60);
-	IFE::Sound::Instance()->LoadMP3("droneBack");
+	IFE::Sound::Instance()->LoadMP3("droneBack", IFE::Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("droneBack", 120);
 }
 

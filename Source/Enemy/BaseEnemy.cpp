@@ -106,9 +106,9 @@ float IFE::BaseEnemy::GetLen()
 
 void IFE::BaseEnemy::SetSound()
 {
-	IFE::Sound::Instance()->LoadWave("attack");
+	IFE::Sound::Instance()->LoadWave("attack", Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("attack", 60);
-	IFE::Sound::Instance()->LoadWave("gun");
+	IFE::Sound::Instance()->LoadWave("gun", Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("gun", 60);
 	//IFE::Sound::Instance()->LoadMP3("what");
 	//IFE::Sound::Instance()->SetVolume("what", 60);

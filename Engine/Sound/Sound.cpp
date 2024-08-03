@@ -12,6 +12,35 @@
 
 using namespace IFE;
 
+void IFE::Sound::SetMasterVolume(float masterVolume)
+{
+	masterVolume_ = masterVolume;
+}
+
+void IFE::Sound::SetBGMVolume(float bgmVolume)
+{
+	bgmVolume_ = bgmVolume;
+}
+
+void IFE::Sound::SetSEVolume(float seVolume)
+{
+	seVolume_ = seVolume;
+}
+
+void IFE::Sound::SetMasterVolume(int32_t masterVolume)
+{
+	SetMasterVolume(masterVolume / 255.f);
+}
+
+void IFE::Sound::AllSoundVolumeUpdate()
+{
+	for (uint16_t i = 0; i < sMAX_SOUND_; i++)
+	{
+		if (soundDatas_[i].free == false)continue;
+		ChengeMasterVolume(soundDatas_[i]);
+	}
+}
+
 void IFE::Sound::Initialize()
 {
 	HRESULT result = XAudio2Create(&xAudio_, 0, XAUDIO2_DEFAULT_PROCESSOR);
@@ -35,7 +64,7 @@ void IFE::Sound::Update()
 	}
 }
 
-uint16_t IFE::Sound::LoadWave(const std::string& filename)
+uint16_t IFE::Sound::LoadWave(const std::string& filename, SoundSettings setting)
 {
 	for (uint16_t i = 0; i < Sound::sMAX_SOUND_; i++)
 	{
@@ -99,11 +128,12 @@ uint16_t IFE::Sound::LoadWave(const std::string& filename)
 	soundDatas_[num].bufferSize = data.size;
 	soundDatas_[num].free = true;
 	soundDatas_[num].name = filename + "_w";
+	soundDatas_[num].bgm = bool(setting);
 
 	return num;
 }
 
-uint16_t IFE::Sound::LoadMP3(const std::string& mp3)
+uint16_t IFE::Sound::LoadMP3(const std::string& mp3, SoundSettings setting)
 {
 	for (uint16_t i = 0; i < Sound::sMAX_SOUND_; i++)
 	{
@@ -197,6 +227,7 @@ uint16_t IFE::Sound::LoadMP3(const std::string& mp3)
 
 	soundDatas_[num].free = true;
 	soundDatas_[num].name = mp3 + "_m";
+	soundDatas_[num].bgm = bool(setting);
 
 	return num;
 }
@@ -261,7 +292,7 @@ Sound* IFE::Sound::Instance()
 void IFE::Sound::SetVolume(uint16_t soundNum, int32_t volume)
 {
 	soundDatas_[soundNum].volume = (float)volume / 255.0f;
-	if (soundDatas_[soundNum].pSourceVoice != nullptr)soundDatas_[soundNum].pSourceVoice->SetVolume(soundDatas_[soundNum].volume);
+	ChengeMasterVolume(soundDatas_[soundNum]);
 }
 
 void IFE::Sound::StopSound(uint16_t soundNum)
@@ -281,8 +312,7 @@ void IFE::Sound::SetVolume(std::string soundName, std::int32_t volume)
 {
 	uint16_t soundNum = GetSoundNum(soundName);
 	if (soundNum == uint16_t(-1))return;
-	soundDatas_[soundNum].volume = (float)volume / 255.0f;
-	if (soundDatas_[soundNum].pSourceVoice != nullptr)soundDatas_[soundNum].pSourceVoice->SetVolume(soundDatas_[soundNum].volume);
+	SetVolume(soundNum, volume);
 }
 
 void IFE::Sound::SoundPlay(std::string soundName, bool roop, bool stop)
@@ -385,4 +415,13 @@ void IFE::Sound::Finalize()
 	Sound* inst = Instance();
 	inst->xAudio_.Reset();
 	inst->AllUnLoad();
+}
+
+void IFE::Sound::ChengeMasterVolume(SoundData& sound)
+{
+	if (sound.pSourceVoice != nullptr)
+	{
+		if(sound.bgm)sound.pSourceVoice->SetVolume(sound.volume * masterVolume_ * bgmVolume_);
+		else sound.pSourceVoice->SetVolume(sound.volume * masterVolume_ * seVolume_);
+	}
 }

@@ -21,7 +21,7 @@ void Title::Initialize()
 	flamePos_[1] = { 2.0f,7.0f,-12.0f };
 	flamePos_[2] = { -13.0f,27.5f,15.0f };
 
-	IFE::Sound::Instance()->LoadWave("title");
+	IFE::Sound::Instance()->LoadWave("title",IFE::Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("title", 50);
 	isNext = false;
 

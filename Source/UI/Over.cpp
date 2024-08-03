@@ -9,7 +9,7 @@ using namespace IFE;
 void Over::Initialize()
 {
 	isNext = false;
-	IFE::Sound::Instance()->LoadWave("title");
+	IFE::Sound::Instance()->LoadWave("title", Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("title", 50);
 	//IFE::Sound::Instance()->LoadWave("over");
 	//IFE::Sound::Instance()->SetVolume("over", 50);
