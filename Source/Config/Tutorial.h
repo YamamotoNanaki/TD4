@@ -9,7 +9,7 @@ namespace IFE {
 	class Tutorial :public IFE::Component
 	{
 	private:
-		uint32_t MAX_SHOWTIME = 70;
+		uint32_t MAX_SHOWTIME = 15;
 	private:
 
 		bool isShowText = false;

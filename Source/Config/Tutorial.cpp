@@ -35,7 +35,7 @@ void IFE::Tutorial::Initialize()
 }
 
 void IFE::Tutorial::Update()
-{			 
+{
 	if (IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>()->GetPoseFlag() == false)
 	{
 		if (isPlayTutorial) {
@@ -108,15 +108,15 @@ void IFE::Tutorial::CameraText()
 {
 	if (tutoTime > 0.7f) {
 		isShowText = true;
+		NextText("L");
+		if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {
+			isShowText = true;
+		}
 	}
 	else {
 		tutoTime += IFE::IFETime::sDeltaTime_;
 	}
 	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
-	NextText("L");
-	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {
-		isShowText = true;
-	}
 }
 
 void IFE::Tutorial::MoveText()
@@ -127,16 +127,14 @@ void IFE::Tutorial::MoveText()
 
 void IFE::Tutorial::KillText()
 {
-	if (!isShowText) {
-		if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos().x <= 87) {
+	if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos().x <= 87) {
+		isShowText = true;
+		NextText("backAttack");
+		if (nowText == "backAttack") {
 			isShowText = true;
 		}
 	}
 	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
-	NextText("backAttack");
-	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {
-		isShowText = true;
-	}
 }
 
 void IFE::Tutorial::KilledText()
@@ -147,36 +145,34 @@ void IFE::Tutorial::KilledText()
 
 void IFE::Tutorial::DroneText()
 {
-	if (!isShowText) {
-		if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos().x <= 54) {
-			isShowText = true;
-		}
+	if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos().x <= 54) {
+		isShowText = true;
+		NextText("scanning");
 	}
 	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
-	NextText("scanning");
 }
 
 void IFE::Tutorial::ScanText()
 {
 	if (ObjectManager::Instance()->GetObjectPtr("playerObject")->GetComponent<Player>()->GetFirstDrone()) {
 		isShowText = true;
+		NextText("comeback");
 	}
 	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
-	NextText("comeback");
 }
 
 void IFE::Tutorial::ComeBackText()
 {
 	if (ObjectManager::Instance()->GetObjectPtr("playerObject")->GetComponent<Player>()->GetFirstRecovery()) {
 		isShowText = true;
+		if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {
+			IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = false;
+			isShowText = false;
+			IFE::IFETime::sTimeScale_ = 1.0f;
+			step = END;
+		}
 	}
 	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
-	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {
-		IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = false;
-		isShowText = false;
-		IFE::IFETime::sTimeScale_ = 1.0f;
-		step = END;
-	}
 }
 
 void IFE::Tutorial::FoundText()
@@ -278,7 +274,7 @@ void IFE::Tutorial::Reset()
 	SpriteManager::Instance()->GetSpritePtr("ModeChangeNormal")->drawFlag_ = true;
 	SpriteManager::Instance()->GetSpritePtr("Sneak")->drawFlag_ = true;
 }
-   
+
 #ifdef EditorMode
 #include "ImguiManager.h"
 void IFE::Tutorial::ComponentDebugGUI()
