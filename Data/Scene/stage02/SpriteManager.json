@@ -1030,6 +1030,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "brightnessAdjustment",
             "order": 254,
             "texture": "white.png"
@@ -1089,6 +1090,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "brightness",
             "order": 0,
             "texture": "Text//light.png"
@@ -1119,6 +1121,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "brightnessMemoly",
             "order": 0,
             "texture": "Text//memoly.png"
@@ -1149,6 +1152,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "brightnessThumb",
             "order": 0,
             "texture": "Text//thumb.png"
@@ -1179,6 +1183,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "volume",
             "order": 0,
             "texture": "Text//volume.png"
@@ -1209,6 +1214,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "masterVolume",
             "order": 0,
             "texture": "Text//master.png"
@@ -1239,6 +1245,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "masterVolumeMemoly",
             "order": 0,
             "texture": "Text//memoly.png"
@@ -1269,6 +1276,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "SEVolume",
             "order": 0,
             "texture": "Text//SE.png"
@@ -1299,6 +1307,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "SEVolumeMemoly",
             "order": 0,
             "texture": "Text//memoly.png"
@@ -1329,6 +1338,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "SEVolumeThumb",
             "order": 0,
             "texture": "Text//thumb.png"
@@ -1357,6 +1367,7 @@
                 "Transform2D",
                 "ColorBuffer"
             ],
+            "drawFlag": true,
             "name": "BGMVolumeMemoly",
             "order": 0,
             "texture": "Text//memoly.png"
@@ -1387,6 +1398,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "BGMVolume",
             "order": 0,
             "texture": "Text//BGM.png"
@@ -1417,6 +1429,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "masterVolumeThumb",
             "order": 0,
             "texture": "Text//thumb.png"
@@ -1447,6 +1460,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "BGMVolumeThumb",
             "order": 0,
             "texture": "Text//thumb.png"
@@ -1477,6 +1491,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "inversionCamera",
             "order": 0,
             "texture": "Text//inversionCamera.png"
@@ -1507,6 +1522,7 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "inversionCameraON",
             "order": 0,
             "texture": "Text//on.png"
@@ -1537,9 +1553,271 @@
                 "ColorBuffer",
                 "Config"
             ],
+            "drawFlag": true,
             "name": "inversionCameraOFF",
             "order": 0,
             "texture": "Text//off.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1546.25,
+                    937.25
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    3.5,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "decide",
+            "order": 0,
+            "texture": "text/tutorial/decide.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    4.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "tutoX",
+            "order": 0,
+            "texture": "text/tutorial/X.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    9.5,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "tutoY",
+            "order": 0,
+            "texture": "text/tutorial/Y.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    11.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "R",
+            "order": 0,
+            "texture": "text/tutorial/R.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    8.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "L",
+            "order": 0,
+            "texture": "text/tutorial/L.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    9.5,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "found",
+            "order": 0,
+            "texture": "text/tutorial/found.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    6.25,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "scanning",
+            "order": 0,
+            "texture": "text/tutorial/scanning.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    10.75,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "comeback",
+            "order": 0,
+            "texture": "text/tutorial/comeback.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    14.5,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "backAttack",
+            "order": 0,
+            "texture": "text/tutorial/backAttack.png"
         }
     ]
 }
