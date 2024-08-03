@@ -28,6 +28,8 @@ namespace IFE {
 		Step oldStep;
 		//説明済みフラグ
 		bool isFound;
+		//チュートリアルやりません
+		bool isNotPlayTutorial;
 
 	public:
 		/// <summary>
@@ -72,6 +74,15 @@ namespace IFE {
 		void Reset();
 
 		bool GetIsShowText() { return isShowText; }
+
+#ifdef EditorMode
+		/// <summary>
+		/// デバック中に調整できるらしい
+		/// </summary>
+		void ComponentDebugGUI()override;
+		void OutputComponent(nlohmann::json& json)override;
+#endif
+		void LoadingComponent(nlohmann::json& json)override;
 	};
 }
 

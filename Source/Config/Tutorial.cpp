@@ -122,13 +122,13 @@ void IFE::Tutorial::DroneText()
 	}
 	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
 	NextText("scanning");
-	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {
-		isShowText = true;
-	}
 }
 
 void IFE::Tutorial::ScanText()
 {
+	if (ObjectManager::Instance()->GetObjectPtr("playerObject")->GetComponent<Player>()->GetFirstDrone()) {
+		isShowText = true;
+	}
 	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
 	NextText("comeback");
 }
@@ -229,4 +229,21 @@ void IFE::Tutorial::Reset()
 	SpriteManager::Instance()->GetSpritePtr("CharaMove")->drawFlag_ = true;
 	SpriteManager::Instance()->GetSpritePtr("ModeChangeNormal")->drawFlag_ = true;
 	SpriteManager::Instance()->GetSpritePtr("Sneak")->drawFlag_ = true;
+}
+   
+#ifdef EditorMode
+#include "ImguiManager.h"
+void IFE::Tutorial::ComponentDebugGUI()
+{
+}
+
+void IFE::Tutorial::OutputComponent(nlohmann::json& json)
+{
+	json;
+}
+#endif
+
+void IFE::Tutorial::LoadingComponent(nlohmann::json& json)
+{
+	json;
 }

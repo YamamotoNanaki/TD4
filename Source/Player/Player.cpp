@@ -122,6 +122,11 @@ bool Player::GetMode()
 	return modeFlag_;
 }
 
+bool Player::GetFirstDrone()
+{
+	return firstDrone;
+}
+
 bool Player::GetFirstRecovery()
 {
 	return firstRecovery;
@@ -202,6 +207,9 @@ void Player::ChangeMode()
 		{
 			if (!firstRecovery && modeFlag_ == false) {
 				firstRecovery = true;
+			}
+			if (!firstRecovery && modeFlag_ == true) {
+				firstDrone = true;
 			}
 			ccp_.cameraChange = false;
 		}
