@@ -27,16 +27,6 @@ void IFE::Boss::Initialize()
 	frontVec = { 0,0,0 };
 	lookfor = { 0,0,0 };
 	shotVec = { 0,0,0 };
-	points = {
-		{-90,2,-2.5f},
-		{-65,2,-2.5f},
-		{-90,2,-2.5f},
-		{-110,2,-2.5f},
-		{-90,2,-2.5f},
-		{-90,2,-5.0f},
-		{-90,2,-2.5f},
-		{-90,2,-0.0f}
-	};
 	//HPUI
 	if (!hpUI)
 	{
@@ -437,12 +427,6 @@ bool IFE::Boss::RaySight(Vector3 pos) {
 	return inSight;
 }
 
-#ifdef EditorMode
-void IFE::Boss::ComponentDebugGUI()
-{
-}
-#endif
-
 void IFE::Boss::EnemyOnColliderHit(ColliderCore* myCollider, ColliderCore* hitCollider)
 {
 	myCollider;
@@ -456,4 +440,21 @@ void IFE::Boss::Draw()
 void IFE::Boss::Finalize()
 {
 	delete hpUI;
+}
+
+#ifdef EditorMode
+#include "ImguiManager.h"
+void IFE::Boss::ComponentDebugGUI()
+{
+	ImguiManager* gui = ImguiManager::Instance();
+	gui->DragVectorFloat3GUI(points, "points", transform_->position_);
+}
+void IFE::Boss::OutputComponent(nlohmann::json& json)
+{
+	JsonManager::Instance()->OutputVectorFloat3(json["points"], points);
+}
+#endif
+void IFE::Boss::LoadingComponent(nlohmann::json& json)
+{
+	JsonManager::Instance()->InputVectorFloat3(json["points"], points);
 }
