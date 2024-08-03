@@ -1510,6 +1510,7 @@
                     1.0
                 ]
             },
+            "Config": null,
             "Transform2D": {
                 "position": [
                     900.0,

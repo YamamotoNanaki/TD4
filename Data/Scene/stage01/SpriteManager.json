@@ -982,6 +982,7 @@
                     1.0
                 ]
             },
+            "Config": null,
             "PoseMenu": null,
             "Transform2D": {
                 "position": [
@@ -997,7 +998,8 @@
             "component": [
                 "Transform2D",
                 "ColorBuffer",
-                "PoseMenu"
+                "PoseMenu",
+                "Config"
             ],
             "drawFlag": true,
             "name": "config",
@@ -1013,7 +1015,6 @@
                     0.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     960.0,
@@ -1027,8 +1028,7 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
             "drawFlag": true,
             "name": "brightnessAdjustment",
@@ -1073,7 +1073,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     600.0,
@@ -1087,10 +1086,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "brightness",
             "order": 0,
             "texture": "Text//light.png"
@@ -1104,7 +1102,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     1200.0,
@@ -1118,10 +1115,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "brightnessMemoly",
             "order": 0,
             "texture": "Text//memoly.png"
@@ -1135,7 +1131,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     840.0,
@@ -1149,10 +1144,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "brightnessThumb",
             "order": 0,
             "texture": "Text//thumb.png"
@@ -1166,7 +1160,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     500.0,
@@ -1180,10 +1173,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "volume",
             "order": 0,
             "texture": "Text//volume.png"
@@ -1197,7 +1189,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     600.0,
@@ -1211,10 +1202,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "masterVolume",
             "order": 0,
             "texture": "Text//master.png"
@@ -1228,7 +1218,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     1200.0,
@@ -1242,10 +1231,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "masterVolumeMemoly",
             "order": 0,
             "texture": "Text//memoly.png"
@@ -1259,7 +1247,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     600.0,
@@ -1273,10 +1260,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "SEVolume",
             "order": 0,
             "texture": "Text//SE.png"
@@ -1290,7 +1276,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     1200.0,
@@ -1304,10 +1289,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "SEVolumeMemoly",
             "order": 0,
             "texture": "Text//memoly.png"
@@ -1321,7 +1305,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     1200.0,
@@ -1335,10 +1318,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "SEVolumeThumb",
             "order": 0,
             "texture": "Text//thumb.png"
@@ -1367,7 +1349,7 @@
                 "Transform2D",
                 "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "BGMVolumeMemoly",
             "order": 0,
             "texture": "Text//memoly.png"
@@ -1381,7 +1363,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     600.0,
@@ -1395,10 +1376,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "BGMVolume",
             "order": 0,
             "texture": "Text//BGM.png"
@@ -1412,7 +1392,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     1200.0,
@@ -1426,10 +1405,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "masterVolumeThumb",
             "order": 0,
             "texture": "Text//thumb.png"
@@ -1443,7 +1421,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     1200.0,
@@ -1457,10 +1434,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "BGMVolumeThumb",
             "order": 0,
             "texture": "Text//thumb.png"
@@ -1474,7 +1450,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     600.0,
@@ -1488,10 +1463,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "inversionCamera",
             "order": 0,
             "texture": "Text//inversionCamera.png"
@@ -1522,7 +1496,7 @@
                 "ColorBuffer",
                 "Config"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "inversionCameraON",
             "order": 0,
             "texture": "Text//on.png"
@@ -1553,7 +1527,7 @@
                 "ColorBuffer",
                 "Config"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "inversionCameraOFF",
             "order": 0,
             "texture": "Text//off.png"
