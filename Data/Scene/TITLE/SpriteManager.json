@@ -187,35 +187,6 @@
             },
             "Transform2D": {
                 "position": [
-                    520.0,
-                    150.0
-                ],
-                "rotation": 0.0,
-                "scale": [
-                    5.440000057220459,
-                    1.0
-                ]
-            },
-            "component": [
-                "Transform2D",
-                "ColorBuffer"
-            ],
-            "drawFlag": false,
-            "name": "stageName",
-            "order": 0,
-            "texture": "Text//stageName01.png"
-        },
-        {
-            "ColorBuffer": {
-                "color": [
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            },
-            "Transform2D": {
-                "position": [
                     150.0,
                     150.0
                 ],
@@ -288,7 +259,7 @@
                 "ColorBuffer"
             ],
             "drawFlag": false,
-            "name": "stageName1",
+            "name": "stageName",
             "order": 0,
             "texture": "Text//stageName01.png"
         },
@@ -317,7 +288,7 @@
                 "ColorBuffer"
             ],
             "drawFlag": false,
-            "name": "stageName2",
+            "name": "stageName1",
             "order": 0,
             "texture": "Text//stageName02.png"
         },
@@ -346,7 +317,7 @@
                 "ColorBuffer"
             ],
             "drawFlag": false,
-            "name": "stageName3",
+            "name": "stageName2",
             "order": 0,
             "texture": "Text//stageName03.png"
         }
