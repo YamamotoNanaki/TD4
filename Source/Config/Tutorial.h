@@ -33,6 +33,8 @@ namespace IFE {
 		//チュートリアルやりません
 		bool isPlayTutorial = false;
 
+		bool oldPauseFlag_ = false;
+
 	public:
 		/// <summary>
 		/// 初期化

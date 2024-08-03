@@ -64,14 +64,8 @@ void PoseMenu::PoseChange()
 {
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Enter) || IFE::Input::PadTrigger(IFE::PADCODE::START))
 	{
-		if (poseFlag_) {
-			poseFlag_ = false;
-			IFE::ObjectManager::Instance()->GetObjectPtr("Tutorial")->GetComponent<IFE::Tutorial>()->ShowText();
-		}
-		else {
-			poseFlag_ = true;
-			IFE::ObjectManager::Instance()->GetObjectPtr("Tutorial")->GetComponent<IFE::Tutorial>()->HideText();
-		}
+		poseFlag_ = !poseFlag_;
+
 		//画面を暗くするスプライトの描画
 		IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = poseFlag_;
 		IFE::SpriteManager::Instance()->GetSpritePtr("resume")->drawFlag_ = poseFlag_;
