@@ -230,14 +230,18 @@ void IFE::Tutorial::HideUI()
 
 void IFE::Tutorial::HideText()
 {
-	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = false;
-	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = false;
+	if (isShowText) {
+		IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = false;
+	}
 }
 
 void IFE::Tutorial::ShowText()
 {
-	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = true;
-	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = true;
+	if (isShowText) {
+		IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = true;
+	}
 }
 
 void IFE::Tutorial::Finalize()
