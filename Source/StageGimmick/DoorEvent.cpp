@@ -91,7 +91,6 @@ void DoorEvent::DebugGUI()
 	gui->DragFloatGUI(&moveCloseTime_, "moveCloseTime", 1.0f, 0, 1000);
 
 }
-#endif
 
 void DoorEvent::OutputData(nlohmann::json& json)
 {
@@ -104,6 +103,7 @@ void DoorEvent::OutputData(nlohmann::json& json)
 	IFE::JsonManager::Instance()->OutputFloat2(json["moveDoorTime"], output);
 
 }
+#endif
 
 void DoorEvent::InputData(nlohmann::json& json)
 {

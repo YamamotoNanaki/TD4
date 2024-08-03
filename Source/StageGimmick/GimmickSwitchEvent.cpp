@@ -90,13 +90,13 @@ void GimmickSwitchEvent::DebugGUI()
 	gui->CheckBoxGUI(&isSwitch_, "InitialSwitch");
 
 }
-#endif
 
 void GimmickSwitchEvent::OutputData(nlohmann::json& json)
 {
 	json["selectGimmickName"] = selectGimmickName_;
 	json["isSwitch"] = isSwitch_;
 }
+#endif
 
 void GimmickSwitchEvent::InputData(nlohmann::json& json)
 {

@@ -17,11 +17,13 @@ public:
 	//毎フレーム更新
 	void Update()override;
 
+#ifdef EditorMode
 	//デバック更新
 	void DebugGUI()override;
 
 	//使うギミック側でデータを出したいとき
 	void OutputData(nlohmann::json& json)override;
+#endif
 
 	//使うギミック側でデータを受け取りたいとき
 	void InputData(nlohmann::json& json)override;

@@ -78,7 +78,6 @@ void EnemySpawnEvent::DebugGUI()
 	gui->DragIntGUI(&MaxEnemyNum_, "MaxSpawnEnemyNum", 1.0f, 1, 100);
 	gui->DragFloatGUI(&enemySpawnMaxCT_, "enemySpawnCT_", 1.0f, 1, 100);
 }
-#endif
 
 void EnemySpawnEvent::OutputData(nlohmann::json& json)
 {
@@ -87,6 +86,7 @@ void EnemySpawnEvent::OutputData(nlohmann::json& json)
 	IFE::Float2 output = { (float)enemySpawnNum_, (float)MaxEnemyNum_ };
 	IFE::JsonManager::Instance()->OutputFloat2(json["enemySpawnNum"], output);
 }
+#endif
 
 void EnemySpawnEvent::InputData(nlohmann::json& json)
 {

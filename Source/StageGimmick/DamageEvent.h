@@ -14,8 +14,10 @@ public:
 	//毎フレーム更新
 	void Update()override;
 
+#ifdef EditorMode
 	//デバック更新
 	void DebugGUI()override;
+#endif
 
 	//開始時の初期化
 	void StartInitialize()override;

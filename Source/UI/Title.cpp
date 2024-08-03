@@ -73,7 +73,6 @@ void Title::Update()
 	default:
 		break;
 	}
-	ImGUI();
 }
 
 void Title::TitleLogoSimpleHarmonicMotion()
@@ -262,19 +261,4 @@ void Title::SelectFlame()
 
 		flameAnimationTime_ += IFE::IFETime::sDeltaTime_;
 	}
-}
-
-void Title::ImGUI()
-{
-	IFE::ImguiManager::Instance()->TextIntGUI(stageNum_);
-	std::string a;
-	if (checkFlag_ == true)
-	{
-		a = "ステージに進む";
-	}
-	else
-	{
-		a = "ステージ選択に戻る";
-	}
-	IFE::ImguiManager::Instance()->TextGUI(a);
 }

@@ -53,8 +53,8 @@ namespace IFE
 		GraphicsPipelineManager() {}
 
 
-#ifdef EditorMode
 	public:
+#ifdef EditorMode
 		void DebugGUI();
 		std::string GetGraphicsPipelineGUI();
 		void Output();

@@ -65,6 +65,4 @@ private:
 	void SelectCheck();
 
 	void SelectFlame();
-
-	void ImGUI();
 };

@@ -63,13 +63,13 @@ void DroneKeepoutZoneEvent::DebugGUI()
 	gui->DragFloat3GUI(&scele_, "DroneKeepoutZoneScele", 1.0f, 1, 100);
 
 }
-#endif
 
 void DroneKeepoutZoneEvent::OutputData(nlohmann::json& json)
 {
 	IFE::JsonManager::Instance()->OutputFloat3(json["DroneKeepoutZonePos"], pos_);
 	IFE::JsonManager::Instance()->OutputFloat3(json["DroneKeepoutZoneScele"], scele_);
 }
+#endif
 
 void DroneKeepoutZoneEvent::InputData(nlohmann::json& json)
 {
