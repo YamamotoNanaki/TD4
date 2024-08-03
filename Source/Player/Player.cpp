@@ -122,6 +122,11 @@ bool Player::GetMode()
 	return modeFlag_;
 }
 
+bool Player::GetFirstRecovery()
+{
+	return firstRecovery;
+}
+
 void Player::SetMode(bool flag)
 {
 	modeFlag_ = flag;
@@ -188,13 +193,16 @@ void Player::ChangeMode()
 						action_->SetAnimation("standBy");
 					}
 				}
-				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;				
+				dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;
 			}
 			//UI•\Ž¦Ø‘Ö
 			ui_->UIChange(modeFlag_);
 		}
 		if (ccp_.cameraChangeTimer >= ccp_.cameraChangeMaxTime)
 		{
+			if (!firstRecovery && modeFlag_ == false) {
+				firstRecovery = true;
+			}
 			ccp_.cameraChange = false;
 		}
 	}
