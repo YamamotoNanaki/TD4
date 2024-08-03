@@ -1531,6 +1531,35 @@
             "name": "inversionCameraOFF",
             "order": 0,
             "texture": "Text//off.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    530.5
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    20.0,
+                    11.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "fade",
+            "order": 255,
+            "texture": "white.png"
         }
     ]
 }

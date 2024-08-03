@@ -203,8 +203,8 @@ void Title::Select()
 		if (Input::PadTrigger(PADCODE::A) || Input::GetKeyTrigger(Key::Space))
 		{
 			oldLAnalog_ = 0.0f;
-			IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
-			IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetColor({});
+			IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetColor({});
 			titleSelectFlag_ = TitleSelect::SELECT2;
 		}
 	}
