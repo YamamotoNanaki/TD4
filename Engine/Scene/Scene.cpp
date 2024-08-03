@@ -249,7 +249,7 @@ void IFE::Scene::SceneTransitionIn()
 {
 	if (!isOut_)
 	{
-		transitionTimer_ += IFETime::sDeltaTime_;
+		transitionTimer_ += IFETime::sNoScaleDeltaTime_;
 		if (transitionTimer_ < maxTransitionTime_)
 		{
 			//‘JˆÚ‚Ì‰‰o
@@ -284,7 +284,7 @@ void IFE::Scene::SceneTransitionOut()
 {
 	if (isOut_ && loadEnd_)
 	{
-		transitionTimer_ += IFETime::sDeltaTime_;
+		transitionTimer_ += IFETime::sNoScaleDeltaTime_;
 		if (transitionTimer_ < maxTransitionTime_)
 		{
 			//‘JˆÚ‚Ì‰‰o
