@@ -239,12 +239,16 @@ void IFE::Sprite::ComponentGUI()
 		};
 	std::function<void(void)>f = [&]()
 		{
-			if (ImguiManager::Instance()->CollapsingHeaderGUI(U8("テクスチャ変更")))
+			if (ImguiManager::Instance()->CollapsingHeaderGUI(U8("スプライト設定変更")))
 			{
-				string s = TextureManager::Instance()->GetTextureGUI();
-				if (ImguiManager::Instance()->ButtonGUI(U8("変更")))
+				ImguiManager::Instance()->CheckBoxGUI(&drawFlag_, U8("描画設定 true:表示 , false:非表示"));
+				if (ImguiManager::Instance()->NewTreeNode(U8("テクスチャ変更")))
 				{
-					tex_ = TextureManager::Instance()->GetTexture(s);
+					string s = TextureManager::Instance()->GetTextureGUI();
+					if (ImguiManager::Instance()->ButtonGUI(U8("変更")))
+					{
+						tex_ = TextureManager::Instance()->GetTexture(s);
+					}
 				}
 			}
 			ComponentManager::DebugGUI();

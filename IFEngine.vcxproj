@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="DeathAnimation.cpp" />
     <ClCompile Include="Blood.cpp" />
+    <ClCompile Include="Engine\Light\LightComponent.cpp" />
     <ClCompile Include="Engine\Model\Attach3DModel.cpp" />
     <ClCompile Include="Engine\Particle\IFEEffekseer.cpp" />
     <ClCompile Include="Engine\Particle\IFEEffekseerManager.cpp" />
@@ -126,6 +127,7 @@
   <ItemGroup>
     <ClInclude Include="DeathAnimation.h" />
     <ClInclude Include="Blood.h" />
+    <ClInclude Include="Engine\Light\LightComponent.h" />
     <ClInclude Include="Engine\Model\Attach3DModel.h" />
     <ClInclude Include="Engine\Particle\IFEEffekseer.h" />
     <ClInclude Include="Engine\Particle\IFEEffekseerManager.h" />

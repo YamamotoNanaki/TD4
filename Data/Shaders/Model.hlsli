@@ -36,7 +36,7 @@ struct DLight
 	uint active;
 };
 
-static const int PLIGHT_NUM = 200;
+static const int PLIGHT_NUM = 100;
 
 struct PLight
 {
@@ -46,7 +46,7 @@ struct PLight
 	uint active;
 };
 
-static const int SLIGHT_NUM = LIGHT_MAX;
+static const int SLIGHT_NUM = 100;
 
 struct SLight
 {
@@ -58,7 +58,7 @@ struct SLight
 	uint active;
 };
 
-static const int CSHADOW_NUM = LIGHT_MAX;
+static const int CSHADOW_NUM = 10;
 
 struct CShadow
 {
