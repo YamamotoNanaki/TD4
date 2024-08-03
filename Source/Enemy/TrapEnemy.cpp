@@ -12,8 +12,6 @@
 
 void IFE::TrapEnemy::Initialize()
 {
-	state = SEARCH;
-	preState = state;
 	trapPos = { 0,0,0 };
 	attackTime = 0;
 	rayDist = 0.0f;
@@ -134,8 +132,6 @@ void IFE::TrapEnemy::EnemyUpdate()
 				isChaseDrone = false;
 			}
 		}
-		//ó‘Ô‚ðŽæ“¾
-		preState = state;
 		//hp•\Ž¦
 		hpUI->Update(transform_->position_, hp_, decHp_);
 		status_->IconUpdate(transform_->position_);

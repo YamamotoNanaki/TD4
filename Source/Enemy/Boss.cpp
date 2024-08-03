@@ -12,7 +12,6 @@
 
 void IFE::Boss::Initialize()
 {
-	preState = state;
 	waitTimer = 0;
 	nextPoint = 0;
 	attackTime = 0;
@@ -147,8 +146,6 @@ void IFE::Boss::EnemyUpdate()
 				isChaseDrone = false;
 			}
 		}
-		//ó‘Ô‚ðŽæ“¾
-		preState = state;
 		//hp•\Ž¦
 		hpUI->Update(transform_->position_, hp_, decHp_);
 		status_->IconUpdate(transform_->position_);

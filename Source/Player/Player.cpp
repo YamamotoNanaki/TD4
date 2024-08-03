@@ -9,6 +9,7 @@
 #include"SpriteManager.h"
 #include"DronePostEffect.h"
 #include "Sound.h"
+#include "Tutorial.h"
 
 void Player::Initialize()
 {
@@ -45,7 +46,15 @@ void Player::Initialize()
 
 void Player::Update()
 {
-	if (pose_->GetPoseFlag() == false)
+	//チュートリアルがあるか
+	bool isTutorial;
+	if (IFE::ObjectManager::Instance()->GetObjectPtr("Tutorial")->GetComponent<IFE::Tutorial>()) {
+		isTutorial = IFE::ObjectManager::Instance()->GetObjectPtr("Tutorial")->GetComponent<IFE::Tutorial>()->GetIsShowText();
+	}
+	else {
+		isTutorial = false;
+	}
+	if (pose_->GetPoseFlag() == false && isTutorial == false)
 	{
 		ChangeMode();
 

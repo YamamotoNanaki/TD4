@@ -1137,6 +1137,34 @@
             "name": "tutoY",
             "order": 0,
             "texture": "text/tutorial/Y.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.010952115058898926
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    530.5
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    20.0,
+                    11.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "fade",
+            "order": 255,
+            "texture": "white.png"
         }
     ]
 }
