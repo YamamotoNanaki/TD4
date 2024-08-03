@@ -89,7 +89,10 @@ void IFE::Sprite::SPRITEInitialize(const std::string& texName, const Float2& s, 
 void IFE::Sprite::Initialize(const std::string& texName, const Float2& s, const Float2& a, bool x, bool y)
 {
 	if (tex_ == nullptr)this->tex_ = TextureManager::Instance()->GetTexture(texName);
-
+	if (tex_ == nullptr)
+	{
+		tex_ = TextureManager::Instance()->GetTexture("white");
+	}
 	this->anchorpoint_ = a;
 	this->size_ = s;
 	this->flipX_ = x;
