@@ -156,16 +156,31 @@ void Title::BackTitleAnimation()
 void Title::Select()
 {
 	int32_t range = 10000;
-	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_ > -0.5f && IFE::Input::GetLXAnalog(range) < -0.5f)
+	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_.x > -0.5f && IFE::Input::GetLXAnalog(range) < -0.5f)
 	{
-		stageNum_--;
+		stageNum_ = 1;
 		oldFlamePos = IFE::ObjectManager::Instance()->GetObjectPtr("frame")->transform_->position_;
 		flameAnimationTime_ = 0.0f;
 		flameAnimationFlag_ = true;
 	}
-	else if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_ < 0.5f && IFE::Input::GetLXAnalog(range) >0.5f)
+	else if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_.x < 0.5f && IFE::Input::GetLXAnalog(range) >0.5f)
 	{
-		stageNum_++;
+		stageNum_ = 2;
+		oldFlamePos = IFE::ObjectManager::Instance()->GetObjectPtr("frame")->transform_->position_;
+		flameAnimationTime_ = 0.0f;
+		flameAnimationFlag_ = true;
+	}
+
+	if (IFE::Input::GetKeyTrigger(IFE::Key::UP) || oldLAnalog_.y > -0.5f && IFE::Input::GetLYAnalog(range) < -0.5f)
+	{
+		stageNum_ = 3;
+		oldFlamePos = IFE::ObjectManager::Instance()->GetObjectPtr("frame")->transform_->position_;
+		flameAnimationTime_ = 0.0f;
+		flameAnimationFlag_ = true;
+	}
+	else if(IFE::Input::GetKeyTrigger(IFE::Key::DOWN) || oldLAnalog_.y < 0.5f && IFE::Input::GetLYAnalog(range) >0.5f)
+	{
+		stageNum_ = 2;
 		oldFlamePos = IFE::ObjectManager::Instance()->GetObjectPtr("frame")->transform_->position_;
 		flameAnimationTime_ = 0.0f;
 		flameAnimationFlag_ = true;
@@ -198,13 +213,13 @@ void Title::Select()
 void Title::SelectCheck()
 {
 	int32_t range = 10000;
-	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_ > -0.5f && IFE::Input::GetLXAnalog(range) < -0.5f)
+	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_.x > -0.5f && IFE::Input::GetLXAnalog(range) < -0.5f)
 	{
 		IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
 		IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
 		checkFlag_ = true;
 	}
-	else if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_ < 0.5f && IFE::Input::GetLXAnalog(range) >0.5f)
+	else if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_.x < 0.5f && IFE::Input::GetLXAnalog(range) >0.5f)
 	{
 		IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
 		IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
@@ -217,6 +232,7 @@ void Title::SelectCheck()
 		IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
 		IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
 		titleSelectFlag_ = TitleSelect::SELECT;
+		checkFlag_ = true;
 	}
 
 	if (Input::PadTrigger(PADCODE::A) || Input::GetKeyTrigger(Key::Space))
@@ -235,11 +251,11 @@ void Title::SelectCheck()
 			}
 			isNext = true;
 
-			Scene::Instance()->SetNextScene("stage0" + std::to_string(stageNum_));
+			Scene::Instance()->SetNextScene("stage0" + std::to_string(stageNum_ + 1));
 		}
 	}
 
-	oldLAnalog_ = IFE::Input::GetLXAnalog(range);
+	oldLAnalog_ = IFE::Input::GetLAnalog(range);
 }
 
 void Title::SelectFlame()

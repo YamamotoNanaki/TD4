@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include"CameraManager.h"
+#include"Config.h"
 
 class PlayerActionCamera:public IFE::Component
 {
@@ -24,6 +25,8 @@ private:
 
 	const uint16_t controllerRange_ = 10000;
 	bool ColliderHitFlag_ = false;
+
+	Config* config_ = nullptr;
 
 public:
 

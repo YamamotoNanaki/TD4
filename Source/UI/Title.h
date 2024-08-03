@@ -34,7 +34,7 @@ private:
 	int8_t stageNum_ = 1;
 	int8_t minStageNum_ = 1;
 	int8_t maxStageNum_ = 3;
-	float oldLAnalog_ = 0.0f;
+	IFE::Vector2 oldLAnalog_ = {};
 
 	//フレーム
 	bool flameAnimationFlag_ = false;
@@ -44,7 +44,7 @@ private:
 	IFE::Vector3 oldFlamePos = {};
 
 	//最終確認
-	bool checkFlag_ = false;
+	bool checkFlag_ = true;
 
 public:
 	void Initialize();
