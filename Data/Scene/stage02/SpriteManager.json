@@ -1137,6 +1137,34 @@
             "name": "tutoY",
             "order": 0,
             "texture": "text/tutorial/Y.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    9.5,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "found",
+            "order": 0,
+            "texture": "text/tutorial/found.png"
         }
     ]
 }
