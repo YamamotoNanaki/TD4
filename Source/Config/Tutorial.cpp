@@ -110,6 +110,7 @@ void IFE::Tutorial::DroneText()
 	}
 	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {
+		IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = false;
 		isShowText = false;
 		IFE::IFETime::sTimeScale_ = 1.0f;
 		step = END;
