@@ -123,6 +123,8 @@ void Title::ToSelectAnimation()
 		animationFlag_ = false;
 		animationTime_ = 0.0f;
 		cameraAngle_ = static_cast<float>(-PI) / 2;
+		IFE::SpriteManager::Instance()->GetSpritePtr("number")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("stageName")->drawFlag_ = true;
 		titleSelectFlag_ = TitleSelect::SELECT;
 	}
 	else
@@ -145,6 +147,8 @@ void Title::BackTitleAnimation()
 		animationFlag_ = false;
 		animationTime_ = 0.0f;
 		cameraAngle_ = static_cast<float>(-PI) / 2;
+		IFE::SpriteManager::Instance()->GetSpritePtr("number")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("stageName")->drawFlag_ = false;
 		titleSelectFlag_ = TitleSelect::TITLE;
 	}
 	else
@@ -159,6 +163,7 @@ void Title::Select()
 	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_.x > -0.5f && IFE::Input::GetLXAnalog(range) < -0.5f)
 	{
 		stageNum_ = 1;
+		StageNameUI();
 		oldFlamePos = IFE::ObjectManager::Instance()->GetObjectPtr("frame")->transform_->position_;
 		flameAnimationTime_ = 0.0f;
 		flameAnimationFlag_ = true;
@@ -166,21 +171,24 @@ void Title::Select()
 	else if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_.x < 0.5f && IFE::Input::GetLXAnalog(range) >0.5f)
 	{
 		stageNum_ = 2;
+		StageNameUI();
 		oldFlamePos = IFE::ObjectManager::Instance()->GetObjectPtr("frame")->transform_->position_;
 		flameAnimationTime_ = 0.0f;
 		flameAnimationFlag_ = true;
 	}
 
-	if (IFE::Input::GetKeyTrigger(IFE::Key::UP) || oldLAnalog_.y > -0.5f && IFE::Input::GetLYAnalog(range) < -0.5f)
+	if (IFE::Input::GetKeyTrigger(IFE::Key::UP) || oldLAnalog_.y < 0.5f && IFE::Input::GetLYAnalog(range) >0.5f)
 	{
 		stageNum_ = 3;
+		StageNameUI();
 		oldFlamePos = IFE::ObjectManager::Instance()->GetObjectPtr("frame")->transform_->position_;
 		flameAnimationTime_ = 0.0f;
 		flameAnimationFlag_ = true;
 	}
-	else if(IFE::Input::GetKeyTrigger(IFE::Key::DOWN) || oldLAnalog_.y < 0.5f && IFE::Input::GetLYAnalog(range) >0.5f)
+	else if(IFE::Input::GetKeyTrigger(IFE::Key::DOWN) || oldLAnalog_.y > -0.5f && IFE::Input::GetLYAnalog(range) < -0.5f)
 	{
 		stageNum_ = 2;
+		StageNameUI();
 		oldFlamePos = IFE::ObjectManager::Instance()->GetObjectPtr("frame")->transform_->position_;
 		flameAnimationTime_ = 0.0f;
 		flameAnimationFlag_ = true;
@@ -276,5 +284,41 @@ void Title::SelectFlame()
 		};
 
 		flameAnimationTime_ += IFE::IFETime::sDeltaTime_;
+	}
+}
+
+void Title::StageNameUI()
+{
+	switch (stageNum_)
+	{
+	case 1:
+		IFE::SpriteManager::Instance()->GetSpritePtr("number")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("number1")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("number2")->drawFlag_ = false;
+
+		IFE::SpriteManager::Instance()->GetSpritePtr("stageName")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("stageName1")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("stageName2")->drawFlag_ = false;
+		break;
+	case 2:
+		IFE::SpriteManager::Instance()->GetSpritePtr("number")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("number1")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("number2")->drawFlag_ = false;
+
+		IFE::SpriteManager::Instance()->GetSpritePtr("stageName")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("stageName1")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("stageName2")->drawFlag_ = false;
+		break;
+	case 3:
+		IFE::SpriteManager::Instance()->GetSpritePtr("number")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("number1")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("number2")->drawFlag_ = true;
+
+		IFE::SpriteManager::Instance()->GetSpritePtr("stageName")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("stageName1")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr("stageName2")->drawFlag_ = true;
+		break;
+	default:
+		break;
 	}
 }

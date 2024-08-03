@@ -171,7 +171,7 @@
                 "Transform2D",
                 "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "number",
             "order": 0,
             "texture": "Text//1.png"
@@ -200,10 +200,155 @@
                 "Transform2D",
                 "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "stageName",
             "order": 0,
             "texture": "Text//stageName01.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    150.0,
+                    150.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.25,
+                    1.25
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": false,
+            "name": "number1",
+            "order": 0,
+            "texture": "Text//2.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    150.0,
+                    150.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.25,
+                    1.25
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": false,
+            "name": "number2",
+            "order": 0,
+            "texture": "Text//3.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    520.0,
+                    150.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    5.440000057220459,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": false,
+            "name": "stageName1",
+            "order": 0,
+            "texture": "Text//stageName01.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    480.0,
+                    150.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    6.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": false,
+            "name": "stageName2",
+            "order": 0,
+            "texture": "Text//stageName02.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    620.0,
+                    150.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    8.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": false,
+            "name": "stageName3",
+            "order": 0,
+            "texture": "Text//stageName03.png"
         }
     ]
 }
