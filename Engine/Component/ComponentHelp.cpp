@@ -47,6 +47,7 @@
 #include"DeathAnimation.h"
 #include "Blood.h"
 #include "Tutorial.h"
+#include"UI.h"
 
 using namespace IFE;
 using namespace std;

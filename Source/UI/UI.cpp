@@ -1,62 +1,57 @@
 #include "UI.h"
+using namespace IFE;
 
-void IFE::UI::Finalize()
+void UI::Initialize()
+{
+	pause_ = IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>();
+
+	sprite_.clear();
+
+	sprite_.push_back(std::make_pair(true,SpriteManager::Instance()->GetSpritePtr("flame")));
+	sprite_.push_back(std::make_pair(true,SpriteManager::Instance()->GetSpritePtr("Down")));
+	sprite_.push_back(std::make_pair(true,SpriteManager::Instance()->GetSpritePtr("Up")));
+	sprite_.push_back(std::make_pair(true,SpriteManager::Instance()->GetSpritePtr("ModeChangeDrone")));
+	sprite_.push_back(std::make_pair(true,SpriteManager::Instance()->GetSpritePtr("SpeedChange")));
+	sprite_.push_back(std::make_pair(true,SpriteManager::Instance()->GetSpritePtr("RT")));
+	sprite_.push_back(std::make_pair(true,SpriteManager::Instance()->GetSpritePtr("LT")));
+	sprite_.push_back(std::make_pair(true,SpriteManager::Instance()->GetSpritePtr("PauseDrone")));
+	sprite_.push_back(std::make_pair(true,SpriteManager::Instance()->GetSpritePtr("YDrone")));
+	sprite_.push_back(std::make_pair(true,SpriteManager::Instance()->GetSpritePtr("PauseTextDrone")));
+
+	sprite_.push_back(std::make_pair(false,SpriteManager::Instance()->GetSpritePtr("Sneak")));
+	sprite_.push_back(std::make_pair(false,SpriteManager::Instance()->GetSpritePtr("B")));
+	sprite_.push_back(std::make_pair(false,SpriteManager::Instance()->GetSpritePtr("X")));
+	sprite_.push_back(std::make_pair(false,SpriteManager::Instance()->GetSpritePtr("Y")));
+	sprite_.push_back(std::make_pair(false,SpriteManager::Instance()->GetSpritePtr("Pause")));
+	sprite_.push_back(std::make_pair(false,SpriteManager::Instance()->GetSpritePtr("RStick")));
+	sprite_.push_back(std::make_pair(false,SpriteManager::Instance()->GetSpritePtr("LStickNormal")));
+	sprite_.push_back(std::make_pair(false,SpriteManager::Instance()->GetSpritePtr("Attack")));
+	sprite_.push_back(std::make_pair(false,SpriteManager::Instance()->GetSpritePtr("CameraMove")));
+	sprite_.push_back(std::make_pair(false,SpriteManager::Instance()->GetSpritePtr("CharaMove")));
+	sprite_.push_back(std::make_pair(false,SpriteManager::Instance()->GetSpritePtr("ModeChangeNormal")));
+	sprite_.push_back(std::make_pair(false,SpriteManager::Instance()->GetSpritePtr("PauseText")));
+}
+
+void UI::Finalize()
 {
 
 }
 
-void IFE::UI::UIChange(bool mode)
+void UI::UIChange(bool mode)
 {
-	if (mode == true)
+	if (pause_->GetPoseFlag() == false)
 	{
-		//ドローンモードのUI
-		SpriteManager::Instance()->GetSpritePtr("flame")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("Down")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("Up")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("ModeChangeDrone")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("CameraMove")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("CharaMove")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("ModeChangeNormal")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("SpeedChange")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("Sneak")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("RT")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("LT")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("B")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("X")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("Y")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("Pause")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("PauseText")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("PauseDrone")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("PauseTextDrone")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("YDrone")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("RStick")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("LStickNormal")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("Attack")->drawFlag_ = false;
+		for (size_t i = 0; i < sprite_.size(); i++)
+		{
+			sprite_[i].second->drawFlag_ = mode && sprite_[i].first;
+		}
 	}
-	else
+}
+
+void UI::UIAllFalse()
+{
+	for (size_t i = 0; i < sprite_.size(); i++)
 	{
-		//アクションモードのUI
-		SpriteManager::Instance()->GetSpritePtr("flame")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("Down")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("Up")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("ModeChangeDrone")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("CameraMove")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("CharaMove")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("ModeChangeNormal")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("SpeedChange")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("Sneak")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("RT")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("LT")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("B")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("X")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("Y")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("Pause")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("PauseText")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("PauseDrone")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("PauseTextDrone")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("YDrone")->drawFlag_ = false;
-		SpriteManager::Instance()->GetSpritePtr("RStick")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("LStickNormal")->drawFlag_ = true;
-		SpriteManager::Instance()->GetSpritePtr("Attack")->drawFlag_ = true;
+		sprite_[i].second->drawFlag_ = false;
 	}
 }

@@ -36,41 +36,54 @@ void IFE::Tutorial::Initialize()
 
 void IFE::Tutorial::Update()
 {			 
-	if (isPlayTutorial && IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>()->GetPoseFlag() == false) {
-		switch (step)
-		{
-		case CAMERA:
-			CameraText();
-			break;
-		case MOVE:
-			MoveText();
-			break;
-		case BACK:
-			KillText();
-			break;
-		case ENEMY:
-			KilledText();
-			break;
-		case DRONE:
-			DroneText();
-			break;
-		case SCAN:
-			ScanText();
-			break;
-		case COMEBACK:
-			ComeBackText();
-			break;
-		case END:
-			break;
-		case FOUND:
-			FoundText();
-			break;
+	if (IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>()->GetPoseFlag() == false)
+	{
+		if (isPlayTutorial) {
+			switch (step)
+			{
+			case CAMERA:
+				CameraText();
+				break;
+			case MOVE:
+				MoveText();
+				break;
+			case BACK:
+				KillText();
+				break;
+			case ENEMY:
+				KilledText();
+				break;
+			case DRONE:
+				DroneText();
+				break;
+			case SCAN:
+				ScanText();
+				break;
+			case COMEBACK:
+				ComeBackText();
+				break;
+			case END:
+				break;
+			case FOUND:
+				FoundText();
+				break;
+			}
+			CutInStep();
+			StopTime();
+			IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = isShowText;
+			IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = isShowText;
 		}
-		CutInStep();
-		StopTime();
-		IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = isShowText;
-		IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = isShowText;
-	}	
+	}
+
+	if (oldPauseFlag_ == false && IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>()->GetPoseFlag() == true)
+	{
+		ShowText();
+	}
+	if (oldPauseFlag_ == true && IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>()->GetPoseFlag() == false)
+	{
+		HideText();
+	}
+	oldPauseFlag_ = IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>()->GetPoseFlag();
 }
 
 void IFE::Tutorial::StopTime()
@@ -235,18 +248,14 @@ void IFE::Tutorial::HideUI()
 
 void IFE::Tutorial::HideText()
 {
-	if (isShowText) {
-		IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = false;
-		IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = false;
-	}
+	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = !isShowText;
+	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = !isShowText;
 }
 
 void IFE::Tutorial::ShowText()
 {
-	if (isShowText) {
-		IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = true;
-		IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = true;
-	}
+	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = isShowText;
+	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
 }
 
 void IFE::Tutorial::Finalize()

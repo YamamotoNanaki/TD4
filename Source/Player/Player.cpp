@@ -21,12 +21,14 @@ void Player::Initialize()
 	dronePostEffect_ = IFE::PostEffectManager::Instance()->GetPostEffect("DronePostEffect");
 	dynamic_cast<EnemyHighlighting*>(IFE::PostEffectManager::Instance()->GetPostEffect("EnemyHighlighting"))->droneHighlightingDistance_ = droneHighlightingDistance_;
 
-	ui_->UIChange(modeFlag_);
-
 	auto droneRecoveryUIPtr = IFE::SpriteManager::Instance()->GetSpritePtr("droneRecoveryUI")->GetComponent<DroneRecoveryUI>();
 	droneRecoveryUI_ = droneRecoveryUIPtr;
 
 	pose_ = IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>();
+
+	ui_ = std::make_unique<UI>();
+	ui_->Initialize();
+	ui_->UIChange(modeFlag_);
 
 	transform_->position_ = { 0,0,0 };
 	objectPtr_->DrawFlag_ = false;
@@ -82,6 +84,16 @@ void Player::Update()
 		}
 		oldIsDamageFlag_ = action_->GetIsHit();
 	}
+
+	if (oldPauseFlag_ == false && pose_->GetPoseFlag() == true)
+	{
+		ui_->UIAllFalse();
+	}
+	if (oldPauseFlag_ == true && pose_->GetPoseFlag() == false)
+	{
+		ui_->UIChange(modeFlag_);
+	}
+	oldPauseFlag_ = pose_->GetPoseFlag();
 }
 
 void Player::Draw()

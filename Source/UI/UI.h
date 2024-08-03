@@ -1,27 +1,25 @@
 #pragma once
-#include"Component.h"
 #include"IFEMath.h"
 #include"SpriteManager.h"
+#include"PoseMenu.h"
+#include"utility"
 
-namespace IFE {
-	class UI :public IFE::Component
-	{
-		using Component::Component;
-	private:
-		//メンバ変数
-		int8_t hp_;
-		bool isDead;
+class UI
+{
+private:
+	std::vector<std::pair<bool, IFE::Sprite*>>sprite_;
 
-		//メンバ関数
-	public:
-		// 終了
-		void Finalize();
+	PoseMenu* pause_ = nullptr;
 
-		// UI切替
-		void UIChange(bool mode);
+	//メンバ関数
+public:
+	void Initialize();
 
-		bool GetIsDead() { return isDead; }
+	// 終了
+	void Finalize();
 
-	private:
-	};
-}
+	// UI切替
+	void UIChange(bool mode);
+
+	void UIAllFalse();
+};

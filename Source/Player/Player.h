@@ -20,7 +20,7 @@ private:
 	PlayerAction* action_ = nullptr;
 	PlayerDrone* drone_ = nullptr;
 
-	IFE::UI* ui_ = nullptr;
+	std::unique_ptr<UI> ui_ = nullptr;
 	DroneRecoveryUI* droneRecoveryUI_ = nullptr;
 
 	float droneHighlightingDistance_ = 20;
@@ -59,6 +59,8 @@ private:
 #pragma endregion
 
 	PoseMenu* pose_ = nullptr;
+
+	bool oldPauseFlag_ = false;
 
 public:
 
