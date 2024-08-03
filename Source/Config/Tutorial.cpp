@@ -6,13 +6,16 @@
 #include "PlayerAction.h"
 #include "Player.h"
 #include "Scene.h"
+#include "PoseMenu.h"
 
 void IFE::Tutorial::Initialize()
 {
 	isShowText = false;
 	tutoTime = 0.0f;
+	bottanTime = 0.0f;
 	IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("decidePop")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("tutoX")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("tutoY")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("R")->drawFlag_ = false;
@@ -32,7 +35,7 @@ void IFE::Tutorial::Initialize()
 
 void IFE::Tutorial::Update()
 {			 
-	if (isPlayTutorial) {
+	if (isPlayTutorial && IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>()->GetPoseFlag() == false) {
 		switch (step)
 		{
 		case CAMERA:
@@ -63,18 +66,28 @@ void IFE::Tutorial::Update()
 			break;
 		}
 		CutInStep();
-		//ŽžŠÔŽ~‚ß
-		if (isShowText == true) {
-			HideUI();
-			IFE::IFETime::sTimeScale_ = 0.0f;
-		}
+		StopTime();
 		IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = isShowText;
 		IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = isShowText;
 	}	
 }
 
-void IFE::Tutorial::ChangeStep()
+void IFE::Tutorial::StopTime()
 {
+	//ŽžŠÔŽ~‚ß
+	if (isShowText == true) {
+		HideUI();
+		IFE::IFETime::sTimeScale_ = 0.0f;
+		bottanTime++;
+		if (bottanTime >= 40) {
+			isUp = !isUp;
+			bottanTime = 0;
+		}
+		IFE::SpriteManager::Instance()->GetSpritePtr("decidePop")->drawFlag_ = isUp;
+	}
+	else {
+		IFE::SpriteManager::Instance()->GetSpritePtr("decidePop")->drawFlag_ = false;
+	}
 }
 
 void IFE::Tutorial::CameraText()
@@ -213,6 +226,18 @@ void IFE::Tutorial::HideUI()
 	SpriteManager::Instance()->GetSpritePtr("CharaMove")->drawFlag_ = false;
 	SpriteManager::Instance()->GetSpritePtr("ModeChangeNormal")->drawFlag_ = false;
 	SpriteManager::Instance()->GetSpritePtr("Sneak")->drawFlag_ = false;
+}
+
+void IFE::Tutorial::HideText()
+{
+	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = false;
+}
+
+void IFE::Tutorial::ShowText()
+{
+	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = true;
+	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = true;
 }
 
 void IFE::Tutorial::Finalize()

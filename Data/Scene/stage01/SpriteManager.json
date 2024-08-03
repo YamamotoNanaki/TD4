@@ -1535,21 +1535,21 @@
         {
             "ColorBuffer": {
                 "color": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
                 ]
             },
             "Transform2D": {
                 "position": [
-                    960.0,
-                    530.5
+                    1540.0,
+                    937.0
                 ],
                 "rotation": 0.0,
                 "scale": [
-                    20.0,
-                    11.0
+                    3.5,
+                    1.0
                 ]
             },
             "component": [
@@ -1557,9 +1557,9 @@
                 "ColorBuffer"
             ],
             "drawFlag": true,
-            "name": "fade",
-            "order": 255,
-            "texture": "white.png"
+            "name": "decidePop",
+            "order": 0,
+            "texture": "text/tutorial/decidePop.png"
         }
     ]
 }
