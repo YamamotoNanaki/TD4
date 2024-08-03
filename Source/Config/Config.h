@@ -28,7 +28,7 @@ class Config :public IFE::Component
 {
 private:
 
-	bool oldPoseFlag_ = false;
+	bool oldConfigFlag_ = false;
 
 	PoseMenu* pose_ = nullptr;
 
@@ -67,6 +67,8 @@ private:
 
 	void GageConfig(float& configValue);
 	void BottonConfig(bool& configValue);
+
+	void SelectNow(ConfigFlag flag, std::string name);
 
 	void Reset();
 	void ConfigReset();

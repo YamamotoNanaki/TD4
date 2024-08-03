@@ -5,6 +5,7 @@
 #include "Object3D.h"
 #include "FBXModel.h"
 #include "Mesh.h"
+#include "Animator.h"
 
 using namespace std;
 using namespace IFE;
@@ -16,7 +17,11 @@ void IFE::Material::Initialize()
 
 	MultipleMaterialCheck();
 
-	if (objectPtr_ && gp_)objectPtr_->gp_ = gp_;
+	if (objectPtr_ && gp_)
+	{
+		if (!objectPtr_->GetComponent<Animator>() && gp_->pipelineNum_ >= (uint8_t)PIPELINE_SETTING::Anim && gp_->pipelineNum_ < (uint8_t)PIPELINE_SETTING::Transparent)
+			objectPtr_->gp_ = gp_;
+	}
 }
 
 void IFE::Material::SetDefaultParameter()

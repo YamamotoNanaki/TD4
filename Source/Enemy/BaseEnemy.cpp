@@ -69,7 +69,7 @@ bool IFE::BaseEnemy::ChaseLen(Vector3 target)
 	//‹ß‚Ã‚¢‚½‚ç‰£‚é
 	double len = sqrt(pow(ePos.x - target.x, 2) + pow(ePos.y - target.y, 2) +
 		pow(ePos.z - target.z, 2));
-	if (len >= 10.0f) {
+	if (len >= 20.0f) {
 		return true;
 	}
 	return false;
@@ -152,7 +152,6 @@ void IFE::BaseEnemy::OneShot()
 void IFE::BaseEnemy::Killed() {
 	objectPtr_->GetComponent<Collider>()->GetCollider(1)->SetNoPushBackFlag(true);
 	Vector3 pPos = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos();
-	/*Vector3 addVec = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetActualFrontVec();*/
 	Vector3 addVec = (Vector3)transform_->position_ - pPos;
 	addVec.Normalize();
 	Vector3 rot = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetRot();

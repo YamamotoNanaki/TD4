@@ -11,14 +11,21 @@ namespace IFE {
 	private:
 
 		bool isShowText = false;
+		float tutoTime;
 		std::string nowText;
 		enum Step {
 			CAMERA,
 			MOVE,
 			BACK,
-			ENEMY
+			ENEMY,
+			DRONE,
+			END,
+			FOUND
 		};
 		Step step;
+		Step oldStep;
+		//ê‡ñæçœÇ›ÉtÉâÉO
+		bool isFound;
 
 	public:
 		/// <summary>
@@ -31,11 +38,25 @@ namespace IFE {
 		/// </summary>
 		void Update();
 
+		void ChangeStep();
+
 		void CameraText();
 
 		void MoveText();
 
+		void KillText();
+
+		void KilledText();
+
+		void DroneText();
+
+		void FoundText();
+
+		void CutInStep();
+
 		void NextText(const std::string& str);
+
+		void HideUI();
 
 		/// <summary>
 		/// èIóπ

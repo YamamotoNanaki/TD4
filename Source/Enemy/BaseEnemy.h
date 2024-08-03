@@ -32,7 +32,6 @@ namespace IFE {
 			TUTO
 		};
 		State state;
-		State preState;
 		Vector3 frontVec;
 		//hp
 		EnemyHp* hpUI = nullptr;

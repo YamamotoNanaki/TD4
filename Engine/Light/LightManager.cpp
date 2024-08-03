@@ -17,6 +17,7 @@ void IFE::LightManager::Initialize()
 void IFE::LightManager::Reset()
 {
 	sNextPNum_ = 0;
+	sNextSNum_ = 0;
 	ConstBufferData* constMap = constBuff_->GetCBMapObject();
 	constMap->ambientColor = ambientColor_;
 	for (int32_t i = 0; i < s_DLIGHT_NUM; i++) {
@@ -318,7 +319,6 @@ uint8_t IFE::LightManager::GetPointLightNumber()
 		if (!Instance()->pLight_[sNextPNum_].IsActive())
 		{
 			returnNum = sNextPNum_;
-			sNextPNum_++;
 		}
 		else
 		{
@@ -327,6 +327,31 @@ uint8_t IFE::LightManager::GetPointLightNumber()
 		if (sNextPNum_ >= s_PLIGHT_NUM)
 		{
 			sNextPNum_ -= s_PLIGHT_NUM;
+		}
+		if (returnNum != uint8_t(-1))
+		{
+			break;
+		}
+	}
+	return returnNum;
+}
+
+uint8_t IFE::LightManager::GetSpotLightNumber()
+{
+	uint8_t returnNum = (uint8_t)-1;
+	for (size_t i = 0; i < s_SLIGHT_NUM; i++)
+	{
+		if (!Instance()->sLight_[sNextSNum_].IsActive())
+		{
+			returnNum = sNextSNum_;
+		}
+		else
+		{
+			sNextSNum_++;
+		}
+		if (sNextSNum_ >= s_SLIGHT_NUM)
+		{
+			sNextSNum_ -= s_SLIGHT_NUM;
 		}
 		if (returnNum != uint8_t(-1))
 		{

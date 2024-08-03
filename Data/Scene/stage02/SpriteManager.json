@@ -997,6 +997,230 @@
             "name": "LStickDrone",
             "order": 0,
             "texture": "key//LStickDrone.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    11.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "R",
+            "order": 0,
+            "texture": "text/tutorial/R.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    8.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "L",
+            "order": 0,
+            "texture": "text/tutorial/L.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    14.5,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "backAttack",
+            "order": 0,
+            "texture": "text/tutorial/backAttack.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    4.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "tutoX",
+            "order": 0,
+            "texture": "text/tutorial/X.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    9.5,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "tutoY",
+            "order": 0,
+            "texture": "text/tutorial/Y.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    9.5,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "found",
+            "order": 0,
+            "texture": "text/tutorial/found.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1546.25,
+                    937.25
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    3.5,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "decide",
+            "order": 0,
+            "texture": "text/tutorial/decide.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    530.5
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    20.0,
+                    11.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "fade",
+            "order": 255,
+            "texture": "white.png"
         }
     ]
 }

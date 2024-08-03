@@ -12,7 +12,6 @@
 
 void IFE::NormalEnemy::Initialize()
 {
-	preState = state;
 	waitTimer = 0;
 	nextPoint = 0;
 	attackTime = 0;
@@ -123,7 +122,7 @@ void IFE::NormalEnemy::ChangeState()
 		}
 		break;
 	case IFE::BaseEnemy::TUTO:
-		frontVec = { 0,0,-1 };
+		frontVec = { -1,0,0 };
 		frontVec.Normalize();
 		break;
 	default:
@@ -137,7 +136,7 @@ void IFE::NormalEnemy::EnemyUpdate()
 		if (state != WAIT) {
 			LookAt();
 		}
-		if (state != CHASE) {
+		if (state != CHASE && state != TUTO) {
 			isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
 			if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
 				isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
@@ -147,8 +146,6 @@ void IFE::NormalEnemy::EnemyUpdate()
 				isChaseDrone = false;
 			}
 		}
-		//状態を取得
-		preState = state;
 		//hp表示
 		hpUI->Update(transform_->position_, hp_, decHp_);
 		status_->IconUpdate(transform_->position_);
@@ -196,7 +193,7 @@ void IFE::NormalEnemy::Warning()
 		warningTime -= IFE::IFETime::sDeltaTime_;
 	}
 
-	if (warningTime >= 1.0f) {
+	if (warningTime >= 0.7f) {
 		warningTime = 0.5f;
 		state = CHASE;
 		/*IFE::Sound::Instance()->SoundPlay("found", false, true);*/
@@ -379,7 +376,7 @@ void IFE::NormalEnemy::LookAt()
 
 bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	//視界の距離
-	float maxDistance = 20;
+	float maxDistance = 60;
 	//視野角
 	float sightAngle = 90;
 	// 自身の位置
@@ -414,10 +411,6 @@ bool IFE::NormalEnemy::RaySight(Vector3 pos) {
 	if (rayDist < targetDistance && rayDist > 0) {
 		// ターゲットよりも障害物が近い場合は視界が遮られている
 		inSight = false;
-	}
-	if (inSight) {
-		int a;
-		a = 0;
 	}
 
 	return inSight;
