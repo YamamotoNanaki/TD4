@@ -2,6 +2,7 @@
 #include "StringUtil.h"
 #include "Component.h"
 #include "IPostEffect.h"
+#include "LightComponent.h"
 #include "DefaultPostEffect.h"
 #include "RadialBlurPE.h"
 #include "Transform.h"
@@ -73,6 +74,7 @@ void IFE::ComponentHelp::StaticHelpInitialize()
 	Register("Fog", &CreateInstance<Fog>);
 	Register("DebugCamera", &CreateInstance<DebugCamera>);
 	Register("Attach3DModel", &CreateInstance<Attach3DModel>);
+	Register("LightComponent", &CreateInstance<LightComponent>);
 	//ÉvÉåÉCÉÑÅ[
 	Register("Player", &CreateInstance<Player>);
 	Register("PlayerAction", &CreateInstance<PlayerAction>);

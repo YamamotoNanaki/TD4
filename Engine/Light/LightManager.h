@@ -13,11 +13,11 @@ namespace IFE
 	class LightManager
 	{
 	public:
-		static const uint32_t s_LIGHT_MAX_ = 200;
+		static const uint32_t s_LIGHT_MAX_ = 100;
 		static const uint32_t s_PLIGHT_NUM = s_LIGHT_MAX_;
 		static const uint32_t s_DLIGHT_NUM = 3;
-		static const uint32_t s_SLIGHT_NUM = 3;
-		static const uint32_t s_CSHADOW_NUM = 3;
+		static const uint32_t s_SLIGHT_NUM = s_LIGHT_MAX_;
+		static const uint32_t s_CSHADOW_NUM = 10;
 
 	public:
 		struct ConstBufferData
@@ -31,6 +31,7 @@ namespace IFE
 		};
 	private:
 		inline static uint8_t sNextPNum_ = 0;
+		inline static uint8_t sNextSNum_ = 0;
 
 	private:
 		std::unique_ptr<ConstBuffer<ConstBufferData>>constBuff_;
@@ -75,6 +76,7 @@ namespace IFE
 		void Update();
 		void ForcedUpdate();
 		static uint8_t GetPointLightNumber();
+		static uint8_t GetSpotLightNumber();
 		void Draw(uint32_t rootParameterIndex);
 		static LightManager* Instance();
 		static void Finalize();

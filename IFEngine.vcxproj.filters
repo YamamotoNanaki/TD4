@@ -568,6 +568,9 @@
     <ClCompile Include="Source\Config\Tutorial.cpp">
       <Filter>ソース ファイル\Source\Config</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Light\LightComponent.cpp">
+      <Filter>ソース ファイル\Engine\Light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -939,6 +942,9 @@
     </ClInclude>
     <ClInclude Include="Source\Config\Tutorial.h">
       <Filter>ヘッダー ファイル\Source\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Light\LightComponent.h">
+      <Filter>ヘッダー ファイル\Engine\Light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
