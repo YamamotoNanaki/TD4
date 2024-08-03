@@ -9,11 +9,14 @@ namespace IFE {
 	class Tutorial :public IFE::Component
 	{
 	private:
+		uint32_t MAX_SHOWTIME = 70;
+	private:
 
 		bool isShowText = false;
 		bool isUp;
 		float tutoTime;
 		float bottanTime;
+		uint32_t textShowTime;
 		std::string nowText;
 		enum Step {
 			CAMERA,

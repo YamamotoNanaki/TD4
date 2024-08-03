@@ -13,6 +13,7 @@ void IFE::Tutorial::Initialize()
 	isShowText = false;
 	tutoTime = 0.0f;
 	bottanTime = 0.0f;
+	textShowTime = MAX_SHOWTIME;
 	IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("decidePop")->drawFlag_ = false;
@@ -195,7 +196,10 @@ void IFE::Tutorial::CutInStep()
 
 void IFE::Tutorial::NextText(const std::string& str)
 {
-	if (isShowText) {
+	if (textShowTime > 0) {
+		textShowTime--;
+	}
+	if (isShowText && textShowTime <= 0) {
 		if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {
 			IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = false;
 			nowText = str;
@@ -206,6 +210,7 @@ void IFE::Tutorial::NextText(const std::string& str)
 			step = static_cast<Step>(tmp);
 			IFE::IFETime::sTimeScale_ = 1.0f;
 			tutoTime = 0.0f;
+			textShowTime = MAX_SHOWTIME;
 			Reset();
 		}
 	}
