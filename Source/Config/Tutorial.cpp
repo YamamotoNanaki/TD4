@@ -5,6 +5,7 @@
 #include"Scene.h"
 #include "PlayerAction.h"
 #include "Player.h"
+#include "Scene.h"
 
 void IFE::Tutorial::Initialize()
 {
@@ -24,48 +25,52 @@ void IFE::Tutorial::Initialize()
 	isFound = false;
 	oldStep = step;
 	nowText = "R";
+	if (IFE::Scene::Instance()->GetSceneName() == "stage02") {
+		isPlayTutorial = true;
+	}
 }
 
 void IFE::Tutorial::Update()
-{
-	switch (step)
-	{
-	case CAMERA:
-		CameraText();
-		break;
-	case MOVE:
-		MoveText();
-		break;
-	case BACK:
-		KillText();
-		break;
-	case ENEMY:
-		KilledText();
-		break;
-	case DRONE:
-		DroneText();
-		break;
-	case SCAN:
-		ScanText();
-		break;
-	case COMEBACK:
-		ComeBackText();
-		break;
-	case END:
-		break;
-	case FOUND:
-		FoundText();
-		break;
-	}
-	CutInStep();
-	//ŽžŠÔŽ~‚ß
-	if (isShowText == true) {
-		HideUI();
-		IFE::IFETime::sTimeScale_ = 0.0f;
-	}
-	IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = isShowText;
-	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = isShowText;
-	
+{			 
+	if (isPlayTutorial) {
+		switch (step)
+		{
+		case CAMERA:
+			CameraText();
+			break;
+		case MOVE:
+			MoveText();
+			break;
+		case BACK:
+			KillText();
+			break;
+		case ENEMY:
+			KilledText();
+			break;
+		case DRONE:
+			DroneText();
+			break;
+		case SCAN:
+			ScanText();
+			break;
+		case COMEBACK:
+			ComeBackText();
+			break;
+		case END:
+			break;
+		case FOUND:
+			FoundText();
+			break;
+		}
+		CutInStep();
+		//ŽžŠÔŽ~‚ß
+		if (isShowText == true) {
+			HideUI();
+			IFE::IFETime::sTimeScale_ = 0.0f;
+		}
+		IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = isShowText;
+		IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = isShowText;
+	}	
 }
 
 void IFE::Tutorial::ChangeStep()

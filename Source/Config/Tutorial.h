@@ -29,7 +29,7 @@ namespace IFE {
 		//説明済みフラグ
 		bool isFound;
 		//チュートリアルやりません
-		bool isNotPlayTutorial;
+		bool isPlayTutorial = false;
 
 	public:
 		/// <summary>
