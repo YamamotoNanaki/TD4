@@ -9,6 +9,28 @@ void Config::Initialize()
 {
 	pose_ = IFE::ObjectManager::Instance()->GetObjectPtr("PoseMenu")->GetComponent<PoseMenu>();
 
+	IFE::SpriteManager::Instance()->GetSpritePtr("brightness")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("brightnessMemoly")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("brightnessThumb")->drawFlag_ = false;
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("volume")->drawFlag_ = false;
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("masterVolume")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("masterVolumeMemoly")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("masterVolumeThumb")->drawFlag_ = false;
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("BGMVolume")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("BGMVolumeMemoly")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("BGMVolumeThumb")->drawFlag_ = false;
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("SEVolume")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("SEVolumeMemoly")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("SEVolumeThumb")->drawFlag_ = false;
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("inversionCamera")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraON")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->drawFlag_ = false;
+
 	IFE::SpriteManager::Instance()->GetSpritePtr("brightnessAdjustment")->order_ = 254;
 }
 
@@ -19,6 +41,24 @@ void Config::Update()
 		IFE::SpriteManager::Instance()->GetSpritePtr("brightness")->drawFlag_ = true;
 		IFE::SpriteManager::Instance()->GetSpritePtr("brightnessMemoly")->drawFlag_ = true;
 		IFE::SpriteManager::Instance()->GetSpritePtr("brightnessThumb")->drawFlag_ = true;
+
+		IFE::SpriteManager::Instance()->GetSpritePtr("volume")->drawFlag_ = true;
+
+		IFE::SpriteManager::Instance()->GetSpritePtr("masterVolume")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("masterVolumeMemoly")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("masterVolumeThumb")->drawFlag_ = true;
+
+		IFE::SpriteManager::Instance()->GetSpritePtr("BGMVolume")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("BGMVolumeMemoly")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("BGMVolumeThumb")->drawFlag_ = true;
+
+		IFE::SpriteManager::Instance()->GetSpritePtr("SEVolume")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("SEVolumeMemoly")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("SEVolumeThumb")->drawFlag_ = true;
+
+		IFE::SpriteManager::Instance()->GetSpritePtr("inversionCamera")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraON")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->drawFlag_ = true;
 	}
 
 	if (pose_->GetCofigFlag() == true)
@@ -41,9 +81,6 @@ void Config::Update()
 			ConfigSelect();
 			ConfigChange();
 		}
-
-		IFE::ImguiManager::Instance()->TextIntGUI(selectNum_);
-		IFE::ImguiManager::Instance()->TextFloatGUI(configValue_.brightness);
 	}
 	oldConfigFlag_ = pose_->GetCofigFlag();
 }
@@ -74,9 +111,6 @@ void Config::ConfigSelect()
 
 	//ëIëíÜÇÃintÇÃílÇselectFlag_Ç…ìØä˙Ç≥ÇπÇÈèàóù
 	configFlag_ = static_cast<ConfigFlag>(selectNum_);
-
-	oldLAnalog_.x = IFE::Input::GetLXAnalog(range);
-	oldLAnalog_.y = IFE::Input::GetLYAnalog(range);
 }
 
 void Config::ConfigChange()
@@ -91,12 +125,15 @@ void Config::ConfigChange()
 		break;
 	case ConfigFlag::masterValume:
 		GageConfig(configValue_.masterValume);
+		IFE::SpriteManager::Instance()->GetSpritePtr("masterVolumeThumb")->transform_->transform2D_->position2D_.x = 840.0f + configValue_.masterValume * 720.0f;
 		break;
 	case ConfigFlag::BGMValume:
 		GageConfig(configValue_.BGMValume);
+		IFE::SpriteManager::Instance()->GetSpritePtr("BGMVolumeThumb")->transform_->transform2D_->position2D_.x = 840.0f + configValue_.BGMValume * 720.0f;
 		break;
 	case ConfigFlag::SEValume:
 		GageConfig(configValue_.SEValume);
+		IFE::SpriteManager::Instance()->GetSpritePtr("SEVolumeThumb")->transform_->transform2D_->position2D_.x = 840.0f + configValue_.SEValume * 720.0f;
 		break;
 	case ConfigFlag::cameraReverse:
 		BottonConfig(configValue_.cameraReverse);
@@ -106,15 +143,47 @@ void Config::ConfigChange()
 	}
 
 	SelectNow(ConfigFlag::brightness, "brightnessThumb");
+	SelectNow(ConfigFlag::masterValume, "masterVolumeThumb");
+	SelectNow(ConfigFlag::BGMValume, "BGMVolumeThumb");
+	SelectNow(ConfigFlag::SEValume, "SEVolumeThumb");
+
+	if (configFlag_ == ConfigFlag::cameraReverse)
+	{
+		if (configValue_.cameraReverse == false)
+		{
+			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraON")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.5f,0.5f,0.5f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f,1.0f,1.0f });
+		}
+		else
+		{
+			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraON")->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f,1.0f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.5f,0.5f,0.5f,1.0f });
+		}
+	}
+	else
+	{
+		if (configValue_.cameraReverse == false)
+		{
+			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraON")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f,0.25f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.5f,0.5f,0.5f,1.0f });
+		}
+		else
+		{
+			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraON")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.5f,0.5f,0.5f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f,0.25f,1.0f });
+		}
+	}
+	oldLAnalog_.x = IFE::Input::GetLXAnalog(10000);
+	oldLAnalog_.y = IFE::Input::GetLYAnalog(10000);
 }
 
 void Config::GageConfig(float& configValue)
 {
-	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT))
+	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
 	{
 		configValue -= 1 / 255.0f;
 	}
-	if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT))
+	if (IFE::Input::GetKeyPush(IFE::Key::RIGHT))
 	{
 		configValue += 1 / 255.0f;
 	}
@@ -130,7 +199,7 @@ void Config::BottonConfig(bool& configValue)
 	{
 		configValue = false;
 	}
-	if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_.x < 0.5f && IFE::Input::GetLXAnalog(10000) > 0.5f)
+	if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_.x < 0.5f && IFE::Input::GetLXAnalog(10000) >0.5f)
 	{
 		configValue = true;
 	}
@@ -158,6 +227,24 @@ void Config::Reset()
 	IFE::SpriteManager::Instance()->GetSpritePtr("brightness")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("brightnessMemoly")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("brightnessThumb")->drawFlag_ = false;
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("volume")->drawFlag_ = false;
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("masterVolume")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("masterVolumeMemoly")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("masterVolumeThumb")->drawFlag_ = false;
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("BGMVolume")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("BGMVolumeMemoly")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("BGMVolumeThumb")->drawFlag_ = false;
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("SEVolume")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("SEVolumeMemoly")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("SEVolumeThumb")->drawFlag_ = false;
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("inversionCamera")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraON")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->drawFlag_ = false;
 
 	pose_->SetConfigFlag(false);
 }
