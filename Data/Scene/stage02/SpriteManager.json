@@ -1165,6 +1165,34 @@
             "name": "found",
             "order": 0,
             "texture": "text/tutorial/found.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    1546.25,
+                    937.25
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    3.5,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "decide",
+            "order": 0,
+            "texture": "text/tutorial/decide.png"
         }
     ]
 }

@@ -10,6 +10,7 @@ void IFE::Tutorial::Initialize()
 	isShowText = false;
 	tutoTime = 0.0f;
 	IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("tutoX")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("tutoY")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("R")->drawFlag_ = false;
@@ -54,6 +55,7 @@ void IFE::Tutorial::Update()
 		IFE::IFETime::sTimeScale_ = 0.0f;
 	}
 	IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = isShowText;
+	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = isShowText;
 	
 }
 
