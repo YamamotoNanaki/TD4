@@ -121,19 +121,19 @@ void PoseMenu::PoseSelect()
 		switch (selectFlag_)
 		{
 		case PoseSelectFlag::RETURNGAME:
-			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
-			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
-			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetColor({1.0f,1.0f ,1.0f ,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetColor({0.25f,0.25f ,0.25f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f,1.0f });
 			break;
 		case PoseSelectFlag::RETURNTITLE:
-			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
-			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
-			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f ,1.0f ,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f,1.0f });
 			break;
 		case PoseSelectFlag::CONFIG:
-			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
-			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
-			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
+			IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f,1.0f });
+			IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f ,1.0f ,1.0f });
 			break;
 		default:
 			break;

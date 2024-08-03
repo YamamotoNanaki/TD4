@@ -154,6 +154,7 @@
                     1.0
                 ]
             },
+            "PoseMenu": null,
             "Transform2D": {
                 "position": [
                     1590.0,
@@ -167,7 +168,8 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer"
+                "ColorBuffer",
+                "PoseMenu"
             ],
             "drawFlag": true,
             "name": "Pause",
@@ -769,7 +771,6 @@
                     0.3921568691730499
                 ]
             },
-            "PoseMenu": null,
             "Transform2D": {
                 "position": [
                     960.0,
@@ -783,10 +784,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "PoseMenu"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "BlackBack",
             "order": 0,
             "texture": "white.png"
@@ -920,7 +920,6 @@
                     1.0
                 ]
             },
-            "PoseMenu": null,
             "Transform2D": {
                 "position": [
                     960.0,
@@ -934,10 +933,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "PoseMenu"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "resume",
             "order": 0,
             "texture": "Text//back.png"
@@ -948,10 +946,9 @@
                     1.0,
                     1.0,
                     1.0,
-                    1.0
+                    0.5
                 ]
             },
-            "PoseMenu": null,
             "Transform2D": {
                 "position": [
                     960.0,
@@ -965,10 +962,9 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "PoseMenu"
+                "ColorBuffer"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "returnTitle",
             "order": 0,
             "texture": "Text//toTitle.png"
@@ -979,11 +975,10 @@
                     1.0,
                     1.0,
                     1.0,
-                    1.0
+                    0.5
                 ]
             },
             "Config": null,
-            "PoseMenu": null,
             "Transform2D": {
                 "position": [
                     960.0,
@@ -998,10 +993,9 @@
             "component": [
                 "Transform2D",
                 "ColorBuffer",
-                "PoseMenu",
                 "Config"
             ],
-            "drawFlag": true,
+            "drawFlag": false,
             "name": "config",
             "order": 0,
             "texture": "Text//option.png"
@@ -1479,7 +1473,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     1100.0,
@@ -1493,8 +1486,7 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
             "drawFlag": false,
             "name": "inversionCameraON",
@@ -1510,7 +1502,6 @@
                     1.0
                 ]
             },
-            "Config": null,
             "Transform2D": {
                 "position": [
                     900.0,
@@ -1524,42 +1515,12 @@
             },
             "component": [
                 "Transform2D",
-                "ColorBuffer",
-                "Config"
+                "ColorBuffer"
             ],
             "drawFlag": false,
             "name": "inversionCameraOFF",
             "order": 0,
             "texture": "Text//off.png"
-        },
-        {
-            "ColorBuffer": {
-                "color": [
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            },
-            "Transform2D": {
-                "position": [
-                    1540.0,
-                    937.0
-                ],
-                "rotation": 0.0,
-                "scale": [
-                    3.5,
-                    1.0
-                ]
-            },
-            "component": [
-                "Transform2D",
-                "ColorBuffer"
-            ],
-            "drawFlag": true,
-            "name": "decidePop",
-            "order": 0,
-            "texture": "text/tutorial/decidePop.png"
         }
     ]
 }
