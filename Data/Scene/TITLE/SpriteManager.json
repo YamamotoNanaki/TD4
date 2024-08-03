@@ -146,6 +146,64 @@
             "name": "pressButton",
             "order": 0,
             "texture": "Text//pressAny.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    150.0,
+                    150.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.25,
+                    1.25
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "number",
+            "order": 0,
+            "texture": "Text//1.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    520.0,
+                    150.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    5.440000057220459,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "stageName",
+            "order": 0,
+            "texture": "Text//stageName01.png"
         }
     ]
 }

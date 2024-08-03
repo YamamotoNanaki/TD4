@@ -243,8 +243,11 @@ void IFE::Tutorial::HideUI()
 
 void IFE::Tutorial::HideText()
 {
-	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = !isShowText;
-	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = !isShowText;
+	if (isShowText)
+	{
+		IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = false;
+		IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = false;
+	}
 }
 
 void IFE::Tutorial::ShowText()
