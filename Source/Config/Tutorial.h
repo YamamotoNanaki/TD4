@@ -16,7 +16,8 @@ namespace IFE {
 			CAMERA,
 			MOVE,
 			BACK,
-			ENEMY
+			ENEMY,
+			DRONE
 		};
 		Step step;
 
@@ -34,6 +35,12 @@ namespace IFE {
 		void CameraText();
 
 		void MoveText();
+
+		void KillText();
+
+		void KilledText();
+
+		void DroneText();
 
 		void NextText(const std::string& str);
 

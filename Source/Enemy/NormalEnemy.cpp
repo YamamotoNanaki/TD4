@@ -123,7 +123,7 @@ void IFE::NormalEnemy::ChangeState()
 		}
 		break;
 	case IFE::BaseEnemy::TUTO:
-		frontVec = { 0,0,-1 };
+		frontVec = { -1,0,0 };
 		frontVec.Normalize();
 		break;
 	default:
