@@ -4,6 +4,7 @@
 #include"ColorBuffer.h"
 #include"Scene.h"
 #include "PlayerAction.h"
+#include "Player.h"
 
 void IFE::Tutorial::Initialize()
 {
@@ -16,6 +17,8 @@ void IFE::Tutorial::Initialize()
 	IFE::SpriteManager::Instance()->GetSpritePtr("R")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("L")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("found")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("scanning")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("comeback")->drawFlag_ = false;
 	IFE::SpriteManager::Instance()->GetSpritePtr("backAttack")->drawFlag_ = false;
 	step = CAMERA;
 	isFound = false;
@@ -41,6 +44,12 @@ void IFE::Tutorial::Update()
 		break;
 	case DRONE:
 		DroneText();
+		break;
+	case SCAN:
+		ScanText();
+		break;
+	case COMEBACK:
+		ComeBackText();
 		break;
 	case END:
 		break;
@@ -110,6 +119,24 @@ void IFE::Tutorial::DroneText()
 		if (ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos().x <= 54) {
 			isShowText = true;
 		}
+	}
+	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
+	NextText("scanning");
+	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {
+		isShowText = true;
+	}
+}
+
+void IFE::Tutorial::ScanText()
+{
+	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
+	NextText("comeback");
+}
+
+void IFE::Tutorial::ComeBackText()
+{
+	if (ObjectManager::Instance()->GetObjectPtr("playerObject")->GetComponent<Player>()->GetFirstRecovery()) {
+		isShowText = true;
 	}
 	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
 	if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {

@@ -78,6 +78,13 @@
         "Text//memoly.png",
         "Text//thumb.png",
         "text/tutorial/found.png",
-        "text/tutorial/decide.png"
+        "text/tutorial/decide.png",
+        "Text//volume.png",
+        "Text//master.png",
+        "Text//SE.png",
+        "Text//BGM.png",
+        "Text//inversionCamera.png",
+        "Text//on.png",
+        "Text//off.png"
     ]
 }

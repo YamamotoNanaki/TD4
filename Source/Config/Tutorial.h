@@ -19,6 +19,8 @@ namespace IFE {
 			BACK,
 			ENEMY,
 			DRONE,
+			SCAN,
+			COMEBACK,
 			END,
 			FOUND
 		};
@@ -49,6 +51,10 @@ namespace IFE {
 		void KilledText();
 
 		void DroneText();
+
+		void ScanText();
+
+		void ComeBackText();
 
 		void FoundText();
 

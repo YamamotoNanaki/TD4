@@ -78,6 +78,8 @@
         "Text//memoly.png",
         "Text//thumb.png",
         "text/tutorial/found.png",
-        "text/tutorial/decide.png"
+        "text/tutorial/decide.png",
+        "text/tutorial/scanning.png",
+        "text/tutorial/comeback.png"
     ]
 }

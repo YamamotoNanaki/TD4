@@ -1311,6 +1311,62 @@
             "name": "brightness",
             "order": 0,
             "texture": "Text//light.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    6.25,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "scanning",
+            "order": 0,
+            "texture": "text/tutorial/scanning.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    920.0,
+                    840.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    10.75,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "comeback",
+            "order": 0,
+            "texture": "text/tutorial/comeback.png"
         }
     ]
 }
