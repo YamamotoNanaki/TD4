@@ -1193,6 +1193,124 @@
             "name": "decide",
             "order": 0,
             "texture": "text/tutorial/decide.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            "Config": null,
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    540.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    19.200000762939453,
+                    10.800000190734863
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer",
+                "Config"
+            ],
+            "name": "brightnessAdjustment",
+            "order": 0,
+            "texture": "white.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Config": null,
+            "Transform2D": {
+                "position": [
+                    1200.0,
+                    300.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    7.5,
+                    0.9599999785423279
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer",
+                "Config"
+            ],
+            "name": "brightnessMemoly",
+            "order": 0,
+            "texture": "Text//memoly.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    840.0,
+                    300.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.0,
+                    0.9599999785423279
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "name": "brightnessThumb",
+            "order": 0,
+            "texture": "Text//thumb.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Config": null,
+            "Transform2D": {
+                "position": [
+                    600.0,
+                    300.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    2.4000000953674316,
+                    1.2000000476837158
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer",
+                "Config"
+            ],
+            "name": "brightness",
+            "order": 0,
+            "texture": "Text//light.png"
         }
     ]
 }

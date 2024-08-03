@@ -8,10 +8,19 @@
 void Config::Initialize()
 {
 	pose_ = IFE::ObjectManager::Instance()->GetObjectPtr("PoseMenu")->GetComponent<PoseMenu>();
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("brightnessAdjustment")->order_ = 254;
 }
 
 void Config::Update()
 {
+	if (oldConfigFlag_ == false && pose_->GetCofigFlag() == true)
+	{
+		IFE::SpriteManager::Instance()->GetSpritePtr("brightness")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("brightnessMemoly")->drawFlag_ = true;
+		IFE::SpriteManager::Instance()->GetSpritePtr("brightnessThumb")->drawFlag_ = true;
+	}
+
 	if (pose_->GetCofigFlag() == true)
 	{
 		if (IFE::Input::GetKeyTrigger(IFE::Key::Esc) || IFE::Input::PadTrigger(IFE::PADCODE::B))
@@ -33,11 +42,10 @@ void Config::Update()
 			ConfigChange();
 		}
 
-		oldPoseFlag_ = pose_->GetPoseFlag();
-
 		IFE::ImguiManager::Instance()->TextIntGUI(selectNum_);
 		IFE::ImguiManager::Instance()->TextFloatGUI(configValue_.brightness);
 	}
+	oldConfigFlag_ = pose_->GetCofigFlag();
 }
 
 void Config::Finalize()
@@ -77,7 +85,9 @@ void Config::ConfigChange()
 	{
 	case ConfigFlag::brightness:
 		GageConfig(configValue_.brightness);
+		configValue_.brightness = min(configValue_.brightness, 0.9f);
 		IFE::SpriteManager::Instance()->GetSpritePtr("brightnessAdjustment")->GetComponent<IFE::ColorBuffer>()->SetAlpha(configValue_.brightness);
+		IFE::SpriteManager::Instance()->GetSpritePtr("brightnessThumb")->transform_->transform2D_->position2D_.x = 840.0f + configValue_.brightness * 800.0f;
 		break;
 	case ConfigFlag::masterValume:
 		GageConfig(configValue_.masterValume);
@@ -94,6 +104,8 @@ void Config::ConfigChange()
 	default:
 		break;
 	}
+
+	SelectNow(ConfigFlag::brightness, "brightnessThumb");
 }
 
 void Config::GageConfig(float& configValue)
@@ -107,14 +119,14 @@ void Config::GageConfig(float& configValue)
 		configValue += 1 / 255.0f;
 	}
 
-	configValue += IFE::Input::GetLXAnalog() / 255.0f;
+	configValue += IFE::Input::GetLXAnalog(10000) / 255.0f;
 
 	configValue = std::clamp(configValue, 0.0f, 1.0f);
 }
 
 void Config::BottonConfig(bool& configValue)
 {
-	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT)||oldLAnalog_.x > -0.5f && IFE::Input::GetLXAnalog(10000) < -0.5f)
+	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_.x > -0.5f && IFE::Input::GetLXAnalog(10000) < -0.5f)
 	{
 		configValue = false;
 	}
@@ -124,12 +136,29 @@ void Config::BottonConfig(bool& configValue)
 	}
 }
 
+void Config::SelectNow(ConfigFlag flag, std::string name)
+{
+	if (configFlag_ == flag)
+	{
+		IFE::SpriteManager::Instance()->GetSpritePtr(name)->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f,1.0f,1.0f });
+	}
+	else
+	{
+		IFE::SpriteManager::Instance()->GetSpritePtr(name)->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f,0.25f,1.0f });
+	}
+}
+
 void Config::Reset()
 {
 	selectNum_ = 0;
 	oldLAnalog_ = 0.0f;
 	configFlag_ = ConfigFlag::brightness;
-	oldPoseFlag_ = false;
+	oldConfigFlag_ = false;
+
+	IFE::SpriteManager::Instance()->GetSpritePtr("brightness")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("brightnessMemoly")->drawFlag_ = false;
+	IFE::SpriteManager::Instance()->GetSpritePtr("brightnessThumb")->drawFlag_ = false;
+
 	pose_->SetConfigFlag(false);
 }
 

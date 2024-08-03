@@ -119,7 +119,9 @@ namespace IFE {
 		/// デバック中に調整できるらしい
 		/// </summary>
 		void ComponentDebugGUI()override;
+		void OutputComponent(nlohmann::json& json)override;
 #endif
+		void LoadingComponent(nlohmann::json& json)override;
 	};
 }
 
