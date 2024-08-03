@@ -30,20 +30,20 @@ void StageCollideManageer::Initialize()
 			}
 			if (itr->GetObjectName().find("wall") != std::string::npos)
 			{
-				itr->GetComponent<Material>()->tex_ = TextureManager::Instance()->GetTexture("wall.png");
+				//itr->GetComponent<Material>()->tex_ = TextureManager::Instance()->GetTexture("wall.png");
 				stages.push_back(itr.get());
 			}
 			if (itr->GetObjectName().find("ground") != std::string::npos)
 			{
-				itr->GetComponent<Material>()->tex_ = TextureManager::Instance()->GetTexture("floor.png");
+				//itr->GetComponent<Material>()->tex_ = TextureManager::Instance()->GetTexture("floor.png");
 			}
-			itr->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("SolidMap");
+			//itr->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("SolidMap");
 		}
 
 		if (itr->GetObjectName().find("roof") != std::string::npos)
 		{
 			itr->DrawFlag_ = true;
-			itr->GetComponent<Material>()->tex_ = TextureManager::Instance()->GetTexture("wall.png");
+			//itr->GetComponent<Material>()->tex_ = TextureManager::Instance()->GetTexture("wall.png");
 		}
 	}
 }
