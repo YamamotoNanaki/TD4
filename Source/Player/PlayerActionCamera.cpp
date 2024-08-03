@@ -9,6 +9,7 @@
 void PlayerActionCamera::Initialize()
 {
 	objectPtr_->DrawFlag_ = false;
+	config_=IFE::ObjectManager::Instance()->GetObjectPtr("config")->GetComponent<Config>();
 }
 
 void PlayerActionCamera::CameraInitialize(const IFE::Vector3& playerPos)
@@ -109,8 +110,16 @@ void PlayerActionCamera::CameraMove(const IFE::Vector3& playerPos)
 
 void PlayerActionCamera::CameraRot()
 {
+	float rotSpeed = 0.0f;
 	//回転速度
-	const float rotSpeed = 80.0f;
+	if (config_->GetConfigValue().cameraReverse == false)
+	{
+		rotSpeed = 80.0f;
+	}
+	else
+	{
+		rotSpeed = -80.0f;
+	}
 
 #pragma region キーボード
 	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
