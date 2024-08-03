@@ -880,7 +880,7 @@
             "drawFlag": true,
             "name": "restart",
             "order": 0,
-            "texture": "Text//back.png"
+            "texture": "text/retry.png"
         },
         {
             "ColorBuffer": {
