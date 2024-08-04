@@ -108,6 +108,7 @@ float IFE::BaseEnemy::GetLen()
 void IFE::BaseEnemy::Initialize()
 {
 	auto texm = TextureManager::Instance();
+	objectPtr_->GetComponent<Material>()->MultipleMaterialCheck();
 	for (auto& mat : objectPtr_->GetComponent<Material>()->childMaterials_)
 	{
 		if (mat.first.name == "Enemy0")
