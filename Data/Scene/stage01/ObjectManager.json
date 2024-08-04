@@ -214,6 +214,89 @@
                 1.0
             ],
             "bloom": false,
+            "child": [
+                {
+                    "ambient": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "bloom": false,
+                    "color": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "diffuse": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "meshNum": 0,
+                    "name": "Helmet",
+                    "specular": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "terxtureName": "white.png"
+                },
+                {
+                    "ambient": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "bloom": false,
+                    "color": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "diffuse": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "meshNum": 0,
+                    "name": "Knife",
+                    "specular": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "terxtureName": "Knife.png"
+                },
+                {
+                    "ambient": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "bloom": false,
+                    "color": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "diffuse": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "meshNum": 0,
+                    "name": "PLayer",
+                    "specular": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "terxtureName": "white.png"
+                }
+            ],
             "color": [
                 1.0,
                 1.0,
@@ -225,7 +308,7 @@
                 1.0,
                 1.0
             ],
-            "multipleMat": false,
+            "multipleMat": true,
             "pipeline": "ModelAnim_DEFALUT",
             "specular": [
                 1.0,

@@ -12,6 +12,8 @@
 #include "Sound.h"
 #include "IFEEffekseerManager.h"
 #include "Collider.h"
+#include "TextureManager.h"
+#include "Material.h"
 
 void PlayerAction::Initialize()
 {
@@ -46,6 +48,26 @@ void PlayerAction::Initialize()
 	IFE::Sound::Instance()->SetVolume("walk", 60);
 	IFE::Sound::Instance()->LoadWave("attack", IFE::Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("attack", 60);
+
+	auto texm = IFE::TextureManager::Instance();
+	for (auto& mat : objectPtr_->GetComponent<IFE::Material>()->childMaterials_)
+	{
+		if (mat.first.name == "PLayer")
+		{
+			mat.first.tex = texm->GetTexture("enemy");
+		}
+		if (mat.first.name == "Knife")
+		{
+			mat.first.tex = texm->GetTexture("Knife");
+		}
+		if (mat.first.name == "Helmet")
+		{
+			mat.first.tex = texm->GetTexture("helmet");
+		}
+		mat.first.ambient = { 0.3f,0.3f ,0.3f };
+		mat.first.diffuse = { 0.7f,0.7f ,0.7f };
+		mat.first.specular = { 1.0f,1.0f ,1.0f };
+	}
 }
 
 void PlayerAction::Update()
