@@ -14707,12 +14707,12 @@
                     [
                         190.0,
                         2.0,
-                        20.0
+                        18.0
                     ],
                     [
                         190.0,
                         2.0,
-                        -20.0
+                        -15.0
                     ]
                 ],
                 "size": 2
@@ -14757,7 +14757,7 @@
             "position": [
                 190.0,
                 2.0,
-                0.0
+                18.0
             ],
             "rotation": [
                 360.0,
@@ -14778,7 +14778,72 @@
         ],
         "drawFlag": true,
         "model": "playerModel_Model",
-        "name": "boss",
+        "name": "Boss",
+        "prefab": false
+    },
+    {
+        "ClearAnimation": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "ClearAnimation"
+        ],
+        "drawFlag": false,
+        "model": "playerModel_Model",
+        "name": "ClearAnimation",
         "prefab": false
     }
 ]

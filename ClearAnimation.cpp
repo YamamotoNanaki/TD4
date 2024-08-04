@@ -91,7 +91,7 @@ void ClearAnimation::SceneChange()
 		}
 		else
 		{
-			IFE::Scene::Instance()->SetNextScene("Clear");
+			IFE::Scene::Instance()->SetNextScene("GAMECLEAR");
 		}
 	}
 }
