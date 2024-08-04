@@ -24,6 +24,7 @@ void DoorEvent::Initialize()
 		//ダイスにしてるけどドアのモデルなどができたら置き換えたいっすね
 		doorObject_ = IFE::ObjectManager::Instance()->AddInitialize("doorObj", IFE::ModelManager::Instance()->GetModel("dice"));
 		doorObject_->transform_->position_ = doorStartPos_;
+		doorObject_->transform_->scale_ = doorScele_;
 	}
 
 	if (!doorObject_->GetComponent<IFE::Collider>())

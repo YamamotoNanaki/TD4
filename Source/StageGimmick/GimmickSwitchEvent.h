@@ -39,4 +39,6 @@ private:
 	//Ø‚è‘Ö‚¦
 	bool isSwitch_ = false;
 
+	int32_t selectNum = 0;
+
 };

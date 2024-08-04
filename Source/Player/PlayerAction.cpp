@@ -123,7 +123,11 @@ void PlayerAction::Update()
 		{
 			if (ani_->GetAnimation() == "walk")
 			{
-				ani_->animSpeed_ = 2.0f;
+				ani_->animSpeed_ = sqrt(IFE::Input::GetLXAnalog(controllerRange_) * IFE::Input::GetLXAnalog(controllerRange_) + IFE::Input::GetLYAnalog(controllerRange_) * IFE::Input::GetLYAnalog(controllerRange_)) * 2.0f;
+			}
+			else if (ani_->GetAnimation() == "squatWalk")
+			{
+				ani_->animSpeed_ = sqrt(IFE::Input::GetLXAnalog(controllerRange_) * IFE::Input::GetLXAnalog(controllerRange_) + IFE::Input::GetLYAnalog(controllerRange_) * IFE::Input::GetLYAnalog(controllerRange_)) * 2.0f;
 			}
 			else
 			{
