@@ -340,6 +340,7 @@ void IFE::NormalEnemy::Shot()
 		}
 		else {
 			state = SEARCH;
+			enemyAttack->objectPtr_->DrawFlag_ = false;
 			ani_->SetAnimation("walk");
 		}
 	}
