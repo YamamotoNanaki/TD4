@@ -10,7 +10,7 @@
 #include"PlayerDrone.h"
 #include "Sound.h"
 
-void IFE::TrapEnemy::Initialize()
+void IFE::TrapEnemy::EnemyInitialize()
 {
 	trapPos = { 0,0,0 };
 	attackTime = 0;

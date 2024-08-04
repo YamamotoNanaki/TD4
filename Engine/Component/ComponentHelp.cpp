@@ -48,6 +48,7 @@
 #include "Blood.h"
 #include "Tutorial.h"
 #include"UI.h"
+#include"ClearAnimation.h"
 
 using namespace IFE;
 using namespace std;
@@ -108,6 +109,7 @@ void IFE::ComponentHelp::StaticHelpInitialize()
 	Register("Config", &CreateInstance<Config>);
 	//死んだ後の処理
 	Register("DeathAnimation", &CreateInstance<DeathAnimation>);
+	Register("ClearAnimation", &CreateInstance<ClearAnimation>);
 	//エフェクト
 	Register("Blood", &CreateInstance<Blood>);
 	//チュートリアル
@@ -231,6 +233,7 @@ std::string IFE::IPostEffectHelp::GetComponentList()
 		return "";
 	}
 	static int32_t returnNum = 0;
+	returnNum = min(max(returnNum, 0), int32_t(items.size()));
 	ImguiManager::Instance()->Combo("posteffect name", returnNum, items);
 	return items[returnNum];
 }

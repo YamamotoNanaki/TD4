@@ -209,6 +209,10 @@ void IFE::Material::MultipleMaterialCheck()
 
 #ifdef InverseEditorMode
 #else
+void IFE::Material::DebugInitialize()
+{
+	//Initialize();
+}
 void IFE::Material::ChildGUI(ChildMaterial& mat)
 {
 	ImguiManager* im = ImguiManager::Instance();
@@ -283,10 +287,9 @@ void IFE::Material::OutputComponent(nlohmann::json& j)
 	j["pipeline"] = objectPtr_->gp_->name_;
 	if (multipleMat_)
 	{
-		for (size_t i = 0; childMaterials_.size(); i++)
+		for (size_t i = 0; i < childMaterials_.size(); i++)
 		{
 			OutputChild(j["child"][i], childMaterials_[i].first);
-			i++;
 		}
 	}
 }

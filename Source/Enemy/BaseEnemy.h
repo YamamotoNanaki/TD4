@@ -61,11 +61,14 @@ namespace IFE {
 		BaseEnemy() = default;
 		virtual ~BaseEnemy() = default;
 
+		void Initialize()override final;
+
 		/// <summary>
 		/// XVˆ—
 		/// ©“®‚ÅŒÄ‚Î‚ê‚Ü‚·
 		/// </summary>
 		virtual void EnemyUpdate() = 0;
+		virtual void EnemyInitialize() = 0;
 
 		/// <summary>
 		/// I—¹
@@ -126,7 +129,7 @@ namespace IFE {
 
 		inline bool GetDroneHitRay() { return droneHit_; }
 		inline float GetDroneHitDistance() { return droneHitDistance_; }
-		const IFE::Vector2 GetPos();
+		const IFE::Vector3 GetPos();
 		const bool GetIsOneShot();
 		const bool GetIsDead() { return isDead; }
 		void SetisOneShot(bool isOne);

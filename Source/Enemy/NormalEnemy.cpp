@@ -10,7 +10,7 @@
 #include"PlayerDrone.h"
 #include "Sound.h"
 
-void IFE::NormalEnemy::Initialize()
+void IFE::NormalEnemy::EnemyInitialize()
 {
 	waitTimer = 0;
 	nextPoint = 0;
@@ -284,17 +284,7 @@ void IFE::NormalEnemy::Chase()
 	}
 	else {
 		if (len <= 18.0) {
-			enemyAttack->objectPtr_->DrawFlag_ = true;
-			state = ATTACK;
-			enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
-			isAttack = true;
-			enemyAttack->SetIsShot(true);
-			enemyAttack->objectPtr_->transform_->scale_ = { 0.1f,0.1f,0.1f };
-			IFE::Sound::Instance()->SoundPlay("gun", false, true);
-			ani_->SetAnimation("gunAttack");
-			float radY = std::atan2(frontVec.x, frontVec.z);
-			float targetAngle = ((radY * 180.0f) / (float)PI);
-			transform_->rotation_.y = targetAngle;
+			ShotSet();
 		}
 	}
 	if (warningTime >= 2.0f) {
@@ -343,19 +333,49 @@ void IFE::NormalEnemy::Shot()
 		enemyAttack->transform_->position_ += (shotVec * 0.5f);
 	}
 	if (enemyAttack->GetIsShot() == false) {
-		state = CHASE;
 		isAttack = false;
-		ani_->SetAnimation("walk");
+		enemyAttack->objectPtr_->DrawFlag_ = false;
+		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos())) {
+			ShotSet();
+		}
+		else {
+			state = SEARCH;
+			ani_->SetAnimation("walk");
+		}
 	}
 	else if (attackTime > 100) {
 		enemyAttack->objectPtr_->DrawFlag_ = false;
 		enemyAttack->SetIsShot(false);
-		state = CHASE;
 		isAttack = false;
-		ani_->SetAnimation("walk");
 		attackTime = 0;
+		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos())) {
+			ShotSet();
+		}
+		else {
+			state = SEARCH;
+			ani_->SetAnimation("walk");
+		}
 	}
 	enemyAttack->objectPtr_->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = isAttack;
+}
+
+void IFE::NormalEnemy::ShotSet()
+{
+	Vector3 ePos = transform_->position_;
+	Vector3 target = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
+	Vector3 addVec = target - ePos;
+	addVec.Normalize();
+	enemyAttack->objectPtr_->DrawFlag_ = true;
+	state = ATTACK;
+	enemyAttack->objectPtr_->transform_->position_ = ePos + (addVec * 2);
+	isAttack = true;
+	enemyAttack->SetIsShot(true);
+	enemyAttack->objectPtr_->transform_->scale_ = { 0.1f,0.1f,0.1f };
+	IFE::Sound::Instance()->SoundPlay("gun", false, true);
+	ani_->SetAnimation("gunAttack");
+	float radY = std::atan2(frontVec.x, frontVec.z);
+	float targetAngle = ((radY * 180.0f) / (float)PI);
+	transform_->rotation_.y = targetAngle;
 }
 
 void IFE::NormalEnemy::LookAt()

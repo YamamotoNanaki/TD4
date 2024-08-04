@@ -9,8 +9,9 @@
 #include "Scene.h"
 #include "PlayerDrone.h"
 #include <random>
+#include "ClearAnimation.h"
 
-void IFE::Boss::Initialize()
+void IFE::Boss::EnemyInitialize()
 {
 	waitTimer = 0;
 	nextPoint = 0;
@@ -43,8 +44,6 @@ void IFE::Boss::Initialize()
 	ptr->AddComponent<EnemyAttack>();
 	enemyAttack = ptr->GetComponent<EnemyAttack>();
 	SetSound();
-	ani_ = objectPtr_->GetComponent<IFE::Animator>();
-	ani_->SetAnimation("standBy");//‘Ò‹@ƒ‚[ƒVƒ‡ƒ“‚É•Ï‚¦‚é
 }
 
 void IFE::Boss::ChangeState()
@@ -110,7 +109,7 @@ void IFE::Boss::ChangeState()
 					enemyAttack = nullptr;
 					isDead = true;
 					objectPtr_->GetComponent<Collider>()->GetCollider(1)->active_ = false;
-					Scene::Instance()->SetNextScene("clear");
+					ObjectManager::Instance()->GetObjectPtr("ClearAnimation")->GetComponent<ClearAnimation>()->SetAnimationFlag(true);
 				}
 			}
 			break;

@@ -1,0 +1,149 @@
+[
+    {
+        "name": "playerModel_Model",
+        "playerModel_Model": {
+            "settings": 104,
+            "smooth": true
+        }
+    },
+    {
+        "name": "skydome_Model",
+        "skydome_Model": {
+            "fileName": "skydome",
+            "settings": 0,
+            "smooth": false
+        }
+    },
+    {
+        "dice_Model": {
+            "fileName": "dice",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "dice_Model"
+    },
+    {
+        "name": "testGround_Model",
+        "testGround_Model": {
+            "settings": 100,
+            "smooth": false
+        }
+    },
+    {
+        "name": "testWall_Model",
+        "testWall_Model": {
+            "settings": 100,
+            "smooth": false
+        }
+    },
+    {
+        "name": "testDrone_ground_Model",
+        "testDrone_ground_Model": {
+            "settings": 100,
+            "smooth": false
+        }
+    },
+    {
+        "name": "testDrone_wall_Model",
+        "testDrone_wall_Model": {
+            "settings": 100,
+            "smooth": false
+        }
+    },
+    {
+        "Plane_Model": {
+            "fileName": "panel",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "Plane_Model"
+    },
+    {
+        "ground_Model": {
+            "fileName": "ground",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "ground_Model"
+    },
+    {
+        "hppanel_Model": {
+            "fileName": "hppanel",
+            "settings": 0,
+            "smooth": false
+        },
+        "name": "hppanel_Model"
+    },
+    {
+        "name": "normalEnemy_Model",
+        "normalEnemy_Model": {
+            "fileName": "enemy",
+            "settings": 1,
+            "smooth": false
+        }
+    },
+    {
+        "drone_Model": {
+            "fileName": "drone",
+            "settings": 0,
+            "smooth": true
+        },
+        "name": "drone_Model"
+    },
+    {
+        "name": "propeller_Model",
+        "propeller_Model": {
+            "fileName": "propeller",
+            "settings": 0,
+            "smooth": false
+        }
+    },
+    {
+        "name": "player_animation_Model",
+        "player_animation_Model": {
+            "fileName": "playerMotion",
+            "settings": 1,
+            "smooth": true
+        }
+    },
+    {
+        "enemyMotion_Model": {
+            "fileName": "enemyMotion",
+            "settings": 1,
+            "smooth": false
+        },
+        "name": "enemyMotion_Model"
+    },
+    {
+        "name": "passage_Model",
+        "passage_Model": {
+            "fileName": "passage",
+            "settings": 0,
+            "smooth": false
+        }
+    },
+    {
+        "name": "stage01_Model",
+        "stage01_Model": {
+            "fileName": "stage01",
+            "settings": 0,
+            "smooth": false
+        }
+    },
+    {
+        "name": "stage02_Model",
+        "stage02_Model": {
+            "fileName": "stage02",
+            "settings": 0,
+            "smooth": false
+        }
+    },
+    {
+        "name": "stage03_Model",
+        "stage03_Model": {
+            "fileName": "stage03",
+            "settings": 0,
+            "smooth": false
+        }
+    }
+]

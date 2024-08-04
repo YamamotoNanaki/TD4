@@ -12,6 +12,8 @@
 #include "Sound.h"
 #include "IFEEffekseerManager.h"
 #include "Collider.h"
+#include "TextureManager.h"
+#include "Material.h"
 
 void PlayerAction::Initialize()
 {
@@ -46,10 +48,32 @@ void PlayerAction::Initialize()
 	IFE::Sound::Instance()->SetVolume("walk", 60);
 	IFE::Sound::Instance()->LoadWave("attack", IFE::Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("attack", 60);
+
+	auto texm = IFE::TextureManager::Instance();
+	for (auto& mat : objectPtr_->GetComponent<IFE::Material>()->childMaterials_)
+	{
+		if (mat.first.name == "PLayer")
+		{
+			mat.first.tex = texm->GetTexture("enemy");
+		}
+		if (mat.first.name == "Knife")
+		{
+			mat.first.tex = texm->GetTexture("Knife");
+		}
+		if (mat.first.name == "Helmet")
+		{
+			mat.first.tex = texm->GetTexture("helmet");
+		}
+		mat.first.ambient = { 0.3f,0.3f ,0.3f };
+		mat.first.diffuse = { 0.7f,0.7f ,0.7f };
+		mat.first.specular = { 1.0f,1.0f ,1.0f };
+	}
 }
 
 void PlayerAction::Update()
 {
+	if (clearFlag_ == true)return;
+
 	if (ani_->GetAnimation() == "damage" || ani_->GetAnimation() == "squatDamage" || ani_->GetAnimation() == "downFront" || ani_->GetAnimation() == "downBack")
 	{
 		ani_->loop_ = false;
@@ -311,6 +335,11 @@ void PlayerAction::SetIsWalk(bool flag)
 	isWalk_ = flag;
 }
 
+void PlayerAction::SetClearFlag(bool flag)
+{
+	clearFlag_ = flag;
+}
+
 void PlayerAction::Rotation()
 {
 #pragma region キーボード
@@ -487,8 +516,14 @@ void PlayerAction::AttackUI()
 	closestEnemy = nullptr;
 	for (auto& enemys : enemyManager_->GetEnemyList())
 	{
-		float distance = sqrt((enemys->GetPos().x - transform_->position_.x) * (enemys->GetPos().x - transform_->position_.x) + (enemys->GetPos().y - transform_->position_.z) * (enemys->GetPos().y - transform_->position_.z));
-		if (distance < minDistance) {
+		if (sqrt((transform_->position_.y - enemys->GetPos().y) * (transform_->position_.y - enemys->GetPos().y)) > 2.0f)
+		{
+			continue;
+		}
+
+		float distance = sqrt((enemys->GetPos().x - transform_->position_.x) * (enemys->GetPos().x - transform_->position_.x) + (enemys->GetPos().z - transform_->position_.z) * (enemys->GetPos().z - transform_->position_.z));
+		if (distance < minDistance)
+		{
 			minDistance = distance;
 			closestEnemy = enemys;
 		}
@@ -496,7 +531,7 @@ void PlayerAction::AttackUI()
 
 	if (attackFlag_ == false)
 	{
-		if (closestEnemy != nullptr && IFE::Collision::CheckCircle({ {transform_->position_.x,transform_->position_.z},5.0f }, { closestEnemy->GetPos(),1.0f }))
+		if (closestEnemy != nullptr && IFE::Collision::CheckCircle({ {transform_->position_.x,transform_->position_.z},5.0f }, { {closestEnemy->GetPos().x,closestEnemy->GetPos().z},1.0f }))
 		{
 			isXBottonUI_ = true;
 		}

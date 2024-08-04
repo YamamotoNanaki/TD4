@@ -19,11 +19,12 @@ void PoseMenu::Initialize()
 	IFE::SpriteManager::Instance()->GetSpritePtr("BlackBack")->drawFlag_ = false;
 
 	IFE::SpriteManager::Instance()->GetSpritePtr("resume")->drawFlag_ = false;
-	IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
 	IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->drawFlag_ = false;
-	IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
 	IFE::SpriteManager::Instance()->GetSpritePtr("config")->drawFlag_ = false;
-	IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+	
+	IFE::SpriteManager::Instance()->GetSpritePtr("resume")->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f ,1.0f ,1.0f });
+	IFE::SpriteManager::Instance()->GetSpritePtr("returnTitle")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f,1.0f });
+	IFE::SpriteManager::Instance()->GetSpritePtr("config")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f,1.0f });
 }
 
 void PoseMenu::Update()
@@ -89,11 +90,11 @@ void PoseMenu::PoseSelect()
 	int32_t range = 10000;
 	if (poseFlag_ == true && configFlag_ == false)
 	{
-		if (IFE::Input::GetKeyTrigger(IFE::Key::UP) || oldLAnalog_ < 0.5f && IFE::Input::GetLYAnalog(range) > 0.5f)
+		if (IFE::Input::GetKeyTrigger(IFE::Key::UP) || oldLAnalog_ < 0.5f && IFE::Input::GetLYAnalog(range) > 0.5f || IFE::Input::PadTrigger(IFE::PADCODE::UP))
 		{
 			selectNum_--;
 		}
-		else if (IFE::Input::GetKeyTrigger(IFE::Key::DOWN) || oldLAnalog_ > -0.5f && IFE::Input::GetLYAnalog(range) < -0.5f)
+		else if (IFE::Input::GetKeyTrigger(IFE::Key::DOWN) || oldLAnalog_ > -0.5f && IFE::Input::GetLYAnalog(range) < -0.5f || IFE::Input::PadTrigger(IFE::PADCODE::DOWN))
 		{
 			selectNum_++;
 		}

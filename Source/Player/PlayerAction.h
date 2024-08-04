@@ -86,6 +86,8 @@ private:
 	bool deathAnimationFlag_ = false;
 	DeathAnimation* deathAnimation_ = nullptr;
 
+	bool clearFlag_ = false;
+
 public:
 
 	/// <summary>
@@ -153,6 +155,8 @@ public:
 	void SetIsWalk(bool flag);
 
 	bool* GetIsAttackPtr() { return &isAttack_; };
+
+	void SetClearFlag(bool flag);
 
 private:
 

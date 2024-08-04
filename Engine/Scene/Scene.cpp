@@ -231,7 +231,6 @@ void IFE::Scene::SceneInit()
 	spriteM_->LoadingScene();
 	particleM->LoadingScene();
 	cameraM_->LoadingScene();
-	lightM_->LoadingScene();
 	postEffectM_->Initialize();
 	postEffectM_->Loading();
 	effekseerM_->Loading();
@@ -339,7 +338,6 @@ void IFE::Scene::LoadingScene()
 	objM_->LoadingScene();
 	spriteM_->LoadingScene();
 	particleM->LoadingScene();
-	lightM_->LoadingScene();
 	cameraM_->LoadingScene();
 	effekseerM_->Loading();
 	postEffectM_->Initialize();
@@ -385,7 +383,6 @@ void IFE::Scene::OutputScene()
 	particleM->OutputScene();
 	cameraM_->OutputScene();
 	//oldPostEffect->OutputScene();
-	lightM_->OutputScene();
 	effekseerM_->Output();
 	postEffectM_->Output();
 	gp_->Output();
@@ -490,7 +487,6 @@ void IFE::Scene::DebugGUI()
 	tex_->DebugGUI();
 	cameraM_->DebugGUI();
 	particleM->DebugGUI();
-	lightM_->DebugGUI();
 	postEffectM_->DebugGUI();
 	effekseerM_->DebugGUI();
 	gp_->DebugGUI();

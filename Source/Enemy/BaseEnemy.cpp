@@ -10,12 +10,13 @@
 #include "StringUtil.h"
 #include "Blood.h"
 #include "IFEEffekseerManager.h"
+#include "TextureManager.h"
 
 using namespace IFE;
 
-const IFE::Vector2 IFE::BaseEnemy::GetPos()
+const IFE::Vector3 IFE::BaseEnemy::GetPos()
 {
-	return { transform_->position_.x, transform_->position_.z };
+	return { transform_->position_.x,transform_->position_.y, transform_->position_.z };
 }
 
 const bool IFE::BaseEnemy::GetIsOneShot()
@@ -102,6 +103,31 @@ void IFE::BaseEnemy::ApproachTarget(float& current, float target, float step)
 float IFE::BaseEnemy::GetLen()
 {
 	return 0.0f;
+}
+
+void IFE::BaseEnemy::Initialize()
+{
+	auto texm = TextureManager::Instance();
+	for (auto& mat : objectPtr_->GetComponent<Material>()->childMaterials_)
+	{
+		if (mat.first.name == "Enemy0")
+		{
+			mat.first.tex = texm->GetTexture("enemy");
+		}
+		if (mat.first.name == "Gun0")
+		{
+			mat.first.tex = texm->GetTexture("Gun");
+		}
+		if (mat.first.name == "Helmet0")
+		{
+			mat.first.tex = texm->GetTexture("helmet");
+		}
+		mat.first.ambient = { 0.3f,0.3f ,0.3f };
+		mat.first.diffuse = { 0.7f,0.7f ,0.7f };
+		mat.first.specular = { 1.0f,1.0f ,1.0f };
+		mat.first.color = { 0.4f,0.4f,0.4f,1 };
+	}
+	EnemyInitialize();
 }
 
 void IFE::BaseEnemy::SetSound()
