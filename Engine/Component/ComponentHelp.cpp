@@ -231,6 +231,7 @@ std::string IFE::IPostEffectHelp::GetComponentList()
 		return "";
 	}
 	static int32_t returnNum = 0;
+	returnNum = min(max(returnNum, 0), int32_t(items.size()));
 	ImguiManager::Instance()->Combo("posteffect name", returnNum, items);
 	return items[returnNum];
 }

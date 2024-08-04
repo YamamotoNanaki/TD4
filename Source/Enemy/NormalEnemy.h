@@ -45,7 +45,7 @@ namespace IFE {
 		/// <summary>
 		/// ‰Šú‰»
 		/// </summary>
-		void Initialize();
+		void EnemyInitialize();
 
 		/// <summary>
 		/// ó‘Ô•Ï‰»

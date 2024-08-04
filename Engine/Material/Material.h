@@ -46,10 +46,10 @@ namespace IFE
 			ConstBufferMaterial* constMapMaterial_ = nullptr;
 		};
 
-		std::vector<std::pair<ChildMaterial, std::unique_ptr<ConstBuffer<ConstBufferMaterial>>>> childMaterials_;
 		GraphicsPipeline* gp_ = nullptr;
 
 	public:
+		std::vector<std::pair<ChildMaterial, std::unique_ptr<ConstBuffer<ConstBufferMaterial>>>> childMaterials_;
 		Float4 color_ = { 1,1,1,1 };
 		float alpha_ = 1.0f;
 		bool bloom_ = false;
@@ -75,6 +75,7 @@ namespace IFE
 		void MultipleMaterialCheck();
 #ifdef InverseEditorMode
 #else
+		void DebugInitialize()override;
 		void ChildGUI(ChildMaterial& mat);
 		void ComponentDebugGUI();
 		void OutputComponent(nlohmann::json& json)override;

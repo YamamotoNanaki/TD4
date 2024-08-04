@@ -10,7 +10,7 @@
 #include "PlayerDrone.h"
 #include <random>
 
-void IFE::Boss::Initialize()
+void IFE::Boss::EnemyInitialize()
 {
 	waitTimer = 0;
 	nextPoint = 0;

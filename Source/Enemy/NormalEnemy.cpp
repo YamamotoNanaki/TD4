@@ -10,7 +10,7 @@
 #include"PlayerDrone.h"
 #include "Sound.h"
 
-void IFE::NormalEnemy::Initialize()
+void IFE::NormalEnemy::EnemyInitialize()
 {
 	waitTimer = 0;
 	nextPoint = 0;

@@ -38,7 +38,7 @@ void IFE::EnemyManager::Initialize()
 			itr->AddComponent<IFE::Animator>();
 
 			auto anim = itr->GetComponent<IFE::Animator>();
-			anim->SetAnimation("standBy",false);
+			anim->SetAnimation("standBy", false);
 			anim->loop_ = true;
 			continue;
 		}
@@ -66,7 +66,7 @@ void IFE::EnemyManager::Initialize()
 
 			itr->AddComponent<IFE::Animator>();
 			auto anim = itr->GetComponent<IFE::Animator>();
-			anim->SetAnimation("walk",false);
+			anim->SetAnimation("walk", false);
 			anim->loop_ = true;
 		}
 	}
@@ -89,7 +89,7 @@ void IFE::EnemyManager::Update()
 /// </summary>
 /// <param name="position"></param>
 /// <param name="rotation"></param>
-void IFE::EnemyManager::PopEnemy(Vector3 position, Vector3 rotation,Vector3 trapPos_)
+void IFE::EnemyManager::PopEnemy(Vector3 position, Vector3 rotation, Vector3 trapPos_)
 {
 	auto ptr = IFE::ObjectManager::Instance()->AddInitialize("TrapEnemy", ModelManager::Instance()->GetModel("enemyMotion"));
 	ptr->AddComponent<TrapEnemy>();
