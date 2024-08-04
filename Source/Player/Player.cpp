@@ -32,8 +32,9 @@ void Player::Initialize()
 
 	transform_->position_ = { 0,0,0 };
 	objectPtr_->DrawFlag_ = false;
-	/*IFE::Sound::Instance()->LoadMP3("mainBGM");
-	IFE::Sound::Instance()->SetVolume("mainBGM", 80);*/
+	IFE::Sound::Instance()->LoadMP3("mainBGM", IFE::Sound::SoundSettings::BGM);
+	IFE::Sound::Instance()->SetVolume("mainBGM", 15);
+	IFE::Sound::Instance()->SoundPlay("mainBGM");
 	IFE::Sound::Instance()->LoadMP3("droneChange", IFE::Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("droneChange", 80);
 	IFE::Sound::Instance()->LoadMP3("droneClose", IFE::Sound::SoundSettings::SE);
