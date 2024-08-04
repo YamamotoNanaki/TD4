@@ -277,9 +277,9 @@ void IFE::Sound::SoundPlay(uint16_t soundNum, bool roop, bool stop)
 	else buf.LoopCount = 0;
 	buf.Flags = XAUDIO2_END_OF_STREAM;
 
-	soundDatas_[soundNum].pSourceVoice->SetVolume(soundDatas_[soundNum].volume);
 	result = soundDatas_[soundNum].pSourceVoice->SubmitSourceBuffer(&buf);
 	result = soundDatas_[soundNum].pSourceVoice->Start();
+	ChengeMasterVolume(soundDatas_[soundNum]);
 	soundDatas_[soundNum].isPlaying = true;
 }
 
@@ -421,7 +421,13 @@ void IFE::Sound::ChengeMasterVolume(SoundData& sound)
 {
 	if (sound.pSourceVoice != nullptr)
 	{
-		if(sound.bgm)sound.pSourceVoice->SetVolume(sound.volume * masterVolume_ * bgmVolume_);
-		else sound.pSourceVoice->SetVolume(sound.volume * masterVolume_ * seVolume_);
+		if (sound.bgm)
+		{
+			sound.pSourceVoice->SetVolume(sound.volume * masterVolume_ * bgmVolume_);
+		}
+		else
+		{
+			sound.pSourceVoice->SetVolume(sound.volume * masterVolume_ * seVolume_);
+		}
 	}
 }

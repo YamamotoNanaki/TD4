@@ -48,6 +48,7 @@ void PlayerAction::Initialize()
 	IFE::Sound::Instance()->SetVolume("walk", 60);
 	IFE::Sound::Instance()->LoadWave("attack", IFE::Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("attack", 60);
+	IFE::Sound::Instance()->AllSoundVolumeUpdate();
 
 	auto texm = IFE::TextureManager::Instance();
 	for (auto& mat : objectPtr_->GetComponent<IFE::Material>()->childMaterials_)

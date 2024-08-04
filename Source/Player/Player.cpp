@@ -45,6 +45,7 @@ void Player::Initialize()
 	IFE::Sound::Instance()->SetVolume("droneRecovery", 60);
 	IFE::Sound::Instance()->LoadMP3("droneBack", IFE::Sound::SoundSettings::SE);
 	IFE::Sound::Instance()->SetVolume("droneBack", 120);
+	IFE::Sound::Instance()->AllSoundVolumeUpdate();
 }
 
 void Player::Update()
