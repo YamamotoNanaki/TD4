@@ -16,9 +16,10 @@ void StageCollideManageer::Initialize()
 
 	for (auto& itr : list)
 	{
-		auto mat = itr->GetComponent<Material>();
 		if (itr->GetObjectName().find("ground") != std::string::npos || itr->GetObjectName().find("wall") != std::string::npos || itr->GetObjectName().find("roof") != std::string::npos || itr->GetObjectName().find("box") != std::string::npos || itr->GetObjectName().find("lightWall") != std::string::npos)
 		{
+			auto mat = itr->GetComponent<Material>();
+			mat->SetTexture(TextureManager::Instance()->GetTexture("white"));
 			if (!itr->GetComponent<Collider>())
 			{
 				itr->AddComponentBack<Collider>();
