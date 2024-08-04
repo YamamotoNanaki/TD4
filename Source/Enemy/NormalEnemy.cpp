@@ -255,7 +255,7 @@ void IFE::NormalEnemy::Chase()
 		target = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
 	}
 	//‹ß‚­‚É‚¢‚é‚©”»’è
-	if (ChaseLen(target)) {
+	if (ChaseLen(target,20)) {
 		warningTime += IFE::IFETime::sDeltaTime_;
 	}
 	//player‚Ì•û‚ðŒü‚­
@@ -308,7 +308,7 @@ void IFE::NormalEnemy::Attack()
 	if (attackTime > 2.0f) {
 		attackTime = 0;
 		isAttack = false;
-		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos())) {
+		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos(),20)) {
 			state = CHASE;
 		}
 		else {
@@ -335,11 +335,12 @@ void IFE::NormalEnemy::Shot()
 	if (enemyAttack->GetIsShot() == false) {
 		isAttack = false;
 		enemyAttack->objectPtr_->DrawFlag_ = false;
-		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos())) {
+		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos(),20)) {
 			ShotSet();
 		}
 		else {
 			state = SEARCH;
+			enemyAttack->objectPtr_->DrawFlag_ = false;
 			ani_->SetAnimation("walk");
 		}
 	}
@@ -348,7 +349,7 @@ void IFE::NormalEnemy::Shot()
 		enemyAttack->SetIsShot(false);
 		isAttack = false;
 		attackTime = 0;
-		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos())) {
+		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos(),20)) {
 			ShotSet();
 		}
 		else {

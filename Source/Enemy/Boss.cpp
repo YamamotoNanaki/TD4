@@ -253,7 +253,7 @@ void IFE::Boss::Chase()
 		target = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
 	}
 	//‹ß‚­‚É‚¢‚é‚©”»’è
-	if (ChaseLen(target)) {
+	if (ChaseLen(target,20)) {
 		warningTime += IFE::IFETime::sDeltaTime_;
 	}
 	//player‚Ì•û‚ðŒü‚­
@@ -322,7 +322,7 @@ void IFE::Boss::Attack()
 	if (attackTime > 2.0f) {
 		attackTime = 0;
 		isAttack = false;
-		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos())) {
+		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos(),20)) {
 			state = WARNING;
 		}
 		else {
@@ -357,7 +357,7 @@ void IFE::Boss::Shot(Vector3 target_)
 	else if (attackTime > 5.0f) {
 		enemyAttack->objectPtr_->DrawFlag_ = false;
 		enemyAttack->SetIsShot(false);
-		if (!ChaseLen(target_)) {
+		if (!ChaseLen(target_,20)) {
 			state = CHASE;
 		}
 		else {

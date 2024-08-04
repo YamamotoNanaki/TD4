@@ -61,6 +61,9 @@ void IFE::TrapEnemy::ChangeState()
 	//UŒ‚‚ÍÅ—Dæ
 	switch (state)
 	{
+	case IFE::BaseEnemy::WAIT:
+		state = SEARCH;
+		break;
 	case IFE::BaseEnemy::SEARCH:
 		if (!isOneShot) {
 			/*if (!IFE::Sound::Instance()->GetPlayStatus("walk")) {
@@ -123,7 +126,7 @@ void IFE::TrapEnemy::EnemyUpdate()
 			LookAt();
 		}
 		if (state != CHASE) {
-			isFound = RaySight(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos());
+			isFound = !ChaseLen(ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos(),20);
 			if (isFound == false && IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetIsDroneSurvival() == true) {
 				isFound = RaySight(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos());
 				isChaseDrone = isFound;
@@ -203,7 +206,7 @@ void IFE::TrapEnemy::Chase()
 		target = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<PlayerDrone>()->GetPos();
 	}
 	//‹ß‚­‚É‚¢‚é‚©”»’è
-	if (ChaseLen(target)) {
+	if (ChaseLen(target,20)) {
 		warningTime += IFE::IFETime::sDeltaTime_;
 	}
 	//player‚Ì•û‚ðŒü‚­
@@ -393,19 +396,31 @@ void IFE::TrapEnemy::ComponentDebugGUI()
 {
 	ImguiManager* gui = ImguiManager::Instance();
 	gui->DragVectorFloat3GUI(points, "points", transform_->position_);
+	std::vector<std::string> str = {
+		"WAIT",
+		"SEARCH",
+		"WARNING",
+		"CHASE",
+		"ATTACK",
+		"DEAD",
+		"TUTO"
+	};
+	int32_t num = static_cast<int32_t>(state);
+	gui->Combo("state", num, str);
+	state = static_cast<State>(num);
 }
 
 void IFE::TrapEnemy::OutputComponent(nlohmann::json& json)
 {
 	JsonManager::Instance()->OutputVectorFloat3(json["points"], points);
+	json["state"] = state;
 }
 #endif
 
 void IFE::TrapEnemy::LoadingComponent(nlohmann::json& json)
 {
-	//if (JsonManager::Instance()->ErrorCheck(json, "points"))
-	//{
-	//	return;
-	//}
 	JsonManager::Instance()->InputVectorFloat3(json["points"], points);
+	int32_t num = 0;
+	JsonManager::Instance()->GetData(json, "state", num);
+	state = static_cast<State>(num);
 }
