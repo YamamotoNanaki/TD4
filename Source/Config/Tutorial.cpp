@@ -29,12 +29,6 @@ void IFE::Tutorial::Initialize()
 	isFound = false;
 	oldStep = step;
 	nowText = "R";
-	if (IFE::Scene::Instance()->GetSceneName() == "stage02") {
-		isPlayTutorial = true;
-	}
-#ifdef EditorMode
-	isPlayTutorial = false;
-#endif
 }
 
 void IFE::Tutorial::Update()
@@ -111,7 +105,7 @@ void IFE::Tutorial::StopTime()
 
 void IFE::Tutorial::CameraText()
 {
-	if (tutoTime > 0.7f) {
+	if (tutoTime >1.2f) {
 		isShowText = true;
 		NextText("L");
 		if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {

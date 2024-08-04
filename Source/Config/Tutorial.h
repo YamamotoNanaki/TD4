@@ -34,7 +34,7 @@ namespace IFE {
 		//説明済みフラグ
 		bool isFound;
 		//チュートリアルやりません
-		bool isPlayTutorial = false;
+		bool isPlayTutorial = true;
 
 		bool oldPauseFlag_ = false;
 
