@@ -29,9 +29,12 @@ void IFE::Tutorial::Initialize()
 	isFound = false;
 	oldStep = step;
 	nowText = "R";
-	//if (IFE::Scene::Instance()->GetSceneName() == "stage02") {
-	//	isPlayTutorial = true;
-	//}
+	if (IFE::Scene::Instance()->GetSceneName() == "stage02") {
+		isPlayTutorial = true;
+	}
+#ifdef EditorMode
+	isPlayTutorial = false;
+#endif
 }
 
 void IFE::Tutorial::Update()
