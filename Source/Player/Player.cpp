@@ -126,6 +126,7 @@ void Player::DroneBreak()
 	droneRecoverytime_ = 0.0f;
 	droneRecoveryUI_->SetDrawFlag(false);
 	droneRecoveryFlag_ = false;
+	ui_->UIChange(modeFlag_);
 	IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = false;
 }
 
