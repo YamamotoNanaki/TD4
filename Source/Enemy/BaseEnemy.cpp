@@ -14,9 +14,9 @@
 
 using namespace IFE;
 
-const IFE::Vector2 IFE::BaseEnemy::GetPos()
+const IFE::Vector3 IFE::BaseEnemy::GetPos()
 {
-	return { transform_->position_.x, transform_->position_.z };
+	return { transform_->position_.x,transform_->position_.y, transform_->position_.z };
 }
 
 const bool IFE::BaseEnemy::GetIsOneShot()
