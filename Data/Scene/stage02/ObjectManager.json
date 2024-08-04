@@ -9781,8 +9781,8 @@
             "bloom": false,
             "color": [
                 1.0,
-                0.0,
-                0.0,
+                1.0,
+                1.0,
                 1.0
             ],
             "diffuse": [
@@ -9809,9 +9809,9 @@
         },
         "Transform": {
             "position": [
-                0.0,
-                0.0,
-                0.0
+                -30.0,
+                22.0,
+                -45.0
             ],
             "rotation": [
                 360.0,
@@ -9819,9 +9819,9 @@
                 360.0
             ],
             "scale": [
-                2.5,
-                2.5,
-                2.5
+                1.0,
+                1.0,
+                1.0
             ]
         },
         "component": [
@@ -9832,7 +9832,7 @@
             "GimmickSwitchObject"
         ],
         "drawFlag": true,
-        "model": "playerModel_Model",
+        "model": "testDrone_wall_Model",
         "name": "swich",
         "prefab": false
     }
