@@ -571,6 +571,9 @@
     <ClCompile Include="Engine\Light\LightComponent.cpp">
       <Filter>ソース ファイル\Engine\Light</Filter>
     </ClCompile>
+    <ClCompile Include="ClearAnimation.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Base\Debug.h">
@@ -945,6 +948,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Light\LightComponent.h">
       <Filter>ヘッダー ファイル\Engine\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearAnimation.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
