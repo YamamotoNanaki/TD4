@@ -17,7 +17,7 @@ private:
 	//アニメーション関連
 	bool animationFlag_ = false;
 	float animationTimer_ = 0.0f;
-	const float maxAnimationTimer_ = 3.0f;
+	const float maxAnimationTimer_ = 1.0f;
 	bool startFlag_ = false;
 
 	const uint16_t controllerRange_ = 10000;

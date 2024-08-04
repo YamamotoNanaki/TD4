@@ -42,14 +42,14 @@ void GimmickSwitchEvent::Initialize()
 	}
 
 	isSwitch_ = isInitSwitch_;
-	if (selectGimmickObject_->GetComponent<LaserWire>() != nullptr)
+	/*if (selectGimmickObject_->GetComponent<LaserWire>() != nullptr)
 	{
 		selectGimmickObject_->GetComponent<LaserWire>()->SetIsActive(isSwitch_);
 	}
 	else if (selectGimmickObject_->GetComponent<SwitchObject>() != nullptr)
 	{
 		selectGimmickObject_->GetComponent<SwitchObject>()->SetIsActive(isSwitch_);
-	}
+	}*/
 
 
 }
