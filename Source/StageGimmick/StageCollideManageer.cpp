@@ -16,6 +16,7 @@ void StageCollideManageer::Initialize()
 
 	for (auto& itr : list)
 	{
+		auto mat = itr->GetComponent<Material>();
 		if (itr->GetObjectName().find("ground") != std::string::npos || itr->GetObjectName().find("wall") != std::string::npos || itr->GetObjectName().find("roof") != std::string::npos || itr->GetObjectName().find("box") != std::string::npos)
 		{
 			if (!itr->GetComponent<Collider>())
@@ -30,20 +31,24 @@ void StageCollideManageer::Initialize()
 			}
 			if (itr->GetObjectName().find("wall") != std::string::npos)
 			{
-				//itr->GetComponent<Material>()->tex_ = TextureManager::Instance()->GetTexture("wall.png");
+				mat->SetColor255({ 35,35,35,255 });
+				mat->ambient_ = { 0.3f,0.3f,0.3f };
+				mat->diffuse_ = { 0.7f,0.7f,0.7f };
+				mat->specular_ = { 1.0f,1.0f,1.0f };
 				stages.push_back(itr.get());
 			}
 			if (itr->GetObjectName().find("ground") != std::string::npos)
 			{
-				//itr->GetComponent<Material>()->tex_ = TextureManager::Instance()->GetTexture("floor.png");
+				mat->SetColor255({ 141,141,141,255 });
+				mat->ambient_ = { 0.3f,0.3f,0.3f };
+				mat->diffuse_ = { 0.6f,0.6f,0.6f };
+				mat->specular_ = { 0.7f,0.7f,0.7f };
 			}
-			//itr->gp_ = GraphicsPipelineManager::Instance()->GetGraphicsPipeline("SolidMap");
 		}
 
 		if (itr->GetObjectName().find("roof") != std::string::npos)
 		{
 			itr->DrawFlag_ = true;
-			//itr->GetComponent<Material>()->tex_ = TextureManager::Instance()->GetTexture("wall.png");
 		}
 	}
 }
