@@ -26,9 +26,11 @@ namespace IFE
 		using Component::Component;
 	private:
 		std::string name_ = "";
+	public:
 		Float3 ambient_ = { 0.3f,0.3f,0.3f };
 		Float3 diffuse_ = { 0.3f,0.3f,0.3f };
 		Float3 specular_ = { 0.3f,0.3f,0.3f };
+	private:
 		bool multipleMat_;
 		struct ChildMaterial
 		{
