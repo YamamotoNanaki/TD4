@@ -77,11 +77,13 @@ void IFE::Tutorial::Update()
 
 	if (oldPauseFlag_ == false && IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>()->GetPoseFlag() == true)
 	{
-		ShowText();
+		HideText();
 	}
 	if (oldPauseFlag_ == true && IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>()->GetPoseFlag() == false)
 	{
-		HideText();
+		if (isShowText) {
+			ShowText();
+		  }
 	}
 	oldPauseFlag_ = IFE::SpriteManager::Instance()->GetSpritePtr("Pause")->GetComponent<PoseMenu>()->GetPoseFlag();
 }
@@ -170,6 +172,7 @@ void IFE::Tutorial::ComeBackText()
 			isShowText = false;
 			IFE::IFETime::sTimeScale_ = 1.0f;
 			step = END;
+			Reset();
 		}
 	}
 	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
@@ -183,6 +186,7 @@ void IFE::Tutorial::FoundText()
 		isShowText = false;
 		IFE::IFETime::sTimeScale_ = 1.0f;
 		step = oldStep;
+		Reset();
 	}
 }
 
@@ -253,8 +257,8 @@ void IFE::Tutorial::HideText()
 
 void IFE::Tutorial::ShowText()
 {
-	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = isShowText;
-	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = isShowText;
+	IFE::SpriteManager::Instance()->GetSpritePtr("decide")->drawFlag_ = true;
+	IFE::SpriteManager::Instance()->GetSpritePtr(nowText)->drawFlag_ = true;
 }
 
 void IFE::Tutorial::Finalize()
@@ -265,7 +269,6 @@ void IFE::Tutorial::Reset()
 {
 	SpriteManager::Instance()->GetSpritePtr("RStick")->drawFlag_ = true;
 	SpriteManager::Instance()->GetSpritePtr("LStickNormal")->drawFlag_ = true;
-	SpriteManager::Instance()->GetSpritePtr("LStickDrone")->drawFlag_ = true;
 	SpriteManager::Instance()->GetSpritePtr("Attack")->drawFlag_ = true;
 	SpriteManager::Instance()->GetSpritePtr("B")->drawFlag_ = true;
 	SpriteManager::Instance()->GetSpritePtr("X")->drawFlag_ = true;
