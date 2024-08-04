@@ -7,7 +7,7 @@ SamplerState smp : register(s0); // 0番スロットに設定されたサンプラー
 
 bool isWhite(float4 color)
 {
-    return color.r == 1.0 && color.g == 1.0 && color.b == 1.0 && color.a == 1.0;
+    return color.r == 1.0 && color.g == 1.0 && color.b == 1.0;
 }
 
 float4 main(VSOutput input) : SV_TARGET
