@@ -80,6 +80,20 @@
         "text/tutorial/found.png",
         "text/tutorial/decide.png",
         "text/tutorial/scanning.png",
-        "text/tutorial/comeback.png"
+        "text/tutorial/comeback.png",
+        "Text//volume.png",
+        "Text//master.png",
+        "Text//SE.png",
+        "Text//BGM.png",
+        "Text//inversionCamera.png",
+        "Text//on.png",
+        "Text//off.png",
+        "titleLogo.png",
+        "text/tutorial/decidePop.png",
+        "text/retry.png",
+        "HP.png",
+        "gaugeFrame.png",
+        "text//CollectingDrone.png",
+        "corectDrone.png"
     ]
 }
