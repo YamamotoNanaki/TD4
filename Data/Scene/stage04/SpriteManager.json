@@ -1521,6 +1521,155 @@
             "name": "inversionCameraOFF",
             "order": 0,
             "texture": "Text//off.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "PlayerHp": null,
+            "Transform2D": {
+                "position": [
+                    191.5,
+                    837.75
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    1.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer",
+                "PlayerHp"
+            ],
+            "drawFlag": true,
+            "name": "playerHp",
+            "order": 0,
+            "texture": "HP.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    300.0,
+                    950.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    5.199999809265137,
+                    0.9599999785423279
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "playerHpGauge",
+            "order": 0,
+            "texture": "gaugeFrame.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "DroneRecoveryUI": null,
+            "Transform2D": {
+                "position": [
+                    810.0,
+                    800.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    0.0,
+                    1.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer",
+                "DroneRecoveryUI"
+            ],
+            "drawFlag": false,
+            "name": "droneRecoveryUI",
+            "order": 0,
+            "texture": "corectDrone.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    965.0,
+                    800.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    3.299999952316284,
+                    0.8999999761581421
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": false,
+            "name": "droneRecoveryUIGauge",
+            "order": 0,
+            "texture": "gaugeFrame.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    710.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    4.159999847412109,
+                    0.9599999785423279
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "droneRecoveryText",
+            "order": 0,
+            "texture": "text//CollectingDrone.png"
         }
     ]
 }
