@@ -6885,8 +6885,8 @@
     },
     {
         "Attach3DModel": {
-            "boneName": "",
-            "parentName": "NormalEnemy"
+            "boneName": "spine.002",
+            "parentName": "normalEnemy"
         },
         "Blood": null,
         "Material": {
@@ -6927,13 +6927,13 @@
         "Transform": {
             "position": [
                 0.0,
-                0.0,
+                0.699999988079071,
                 0.0
             ],
             "rotation": [
-                0.0,
-                0.0,
-                0.0
+                360.0,
+                360.0,
+                360.0
             ],
             "scale": [
                 1.0,
@@ -6948,7 +6948,7 @@
             "Blood",
             "Attach3DModel"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "playerModel_Model",
         "name": "Blood",
         "prefab": false
