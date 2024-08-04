@@ -19026,5 +19026,447 @@
         "model": "dice_Model",
         "name": "StageCollideManageer",
         "prefab": false
+    },
+    {
+        "EnemyManager": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "EnemyManager"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "EnemyManager",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 2,
+                    "colliderType": 0,
+                    "groundJudge": true,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224
+            ],
+            "bloom": false,
+            "color": [
+                0.13333334028720856,
+                0.13333334028720856,
+                0.13333334028720856,
+                1.0
+            ],
+            "diffuse": [
+                0.44999998807907104,
+                0.44999998807907104,
+                0.44999998807907104
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                6.0,
+                6.0,
+                6.0
+            ],
+            "terxtureName": "white.png"
+        },
+        "PlayerDrone": null,
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "PlayerDrone",
+            "Collider"
+        ],
+        "drawFlag": false,
+        "model": "drone_Model",
+        "name": "PlayerDrone",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 2,
+                    "groundJudge": false,
+                    "notPushBack": false,
+                    "pushBack": false
+                }
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "PlayerActionCamera": null,
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                114.0,
+                2.0,
+                20.0
+            ],
+            "rotation": [
+                360.0,
+                270.0,
+                360.0
+            ],
+            "scale": [
+                0.9999611973762512,
+                0.9999615550041199,
+                0.9999611973762512
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider",
+            "PlayerActionCamera"
+        ],
+        "drawFlag": false,
+        "model": "playerModel_Model",
+        "name": "PlayerActionCameraObject",
+        "prefab": false
+    },
+    {
+        "Animator": null,
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 2,
+                    "colliderType": 0,
+                    "groundJudge": true,
+                    "notPushBack": false,
+                    "pushBack": true
+                }
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "ModelAnim_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "PlayerAction": null,
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                114.0,
+                2.0,
+                20.0
+            ],
+            "rotation": [
+                360.0,
+                270.0,
+                360.0
+            ],
+            "scale": [
+                0.999527633190155,
+                0.9995279908180237,
+                0.999527633190155
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider",
+            "Animator",
+            "PlayerAction"
+        ],
+        "drawFlag": true,
+        "model": "player_animation_Model",
+        "name": "PlayerAction",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 0,
+                    "groundJudge": false,
+                    "notPushBack": true,
+                    "pushBack": false
+                }
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "PlayerAttack": null,
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "PlayerAttack",
+            "Collider",
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "PlayerAttack",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "Player": {
+            "Highlighting": 20.0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Player"
+        ],
+        "drawFlag": false,
+        "model": "player_animation_Model",
+        "name": "playerObject",
+        "prefab": false
     }
 ]

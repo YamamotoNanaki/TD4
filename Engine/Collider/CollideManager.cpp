@@ -39,7 +39,7 @@ void IFE::CollideManager::RaycastSystemUpdate()
 			ray.dir = { 0,1,0 };
 			if (Raycast(ray, (uint16_t)Attribute::LANDSHAPE, &itr->groundHit_, itr->GetColliderScale().y * 2.0f + adsDistance))
 			{
-				itr->transform_->position_.y += (itr->groundHit_.distance - itr->GetColliderScale().y * 2.0f) - 0.15f;
+				itr->transform_->position_.y += ((itr->groundHit_.distance - itr->GetColliderScale().y * 2.0f) - 0.2f);
 			}
 			QuerySphere(itr, (uint16_t)Attribute::LANDSHAPE);
 		}
