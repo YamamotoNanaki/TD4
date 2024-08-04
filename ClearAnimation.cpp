@@ -3,18 +3,19 @@
 
 void ClearAnimation::Initialize()
 {
-	player_= IFE::ObjectManager::Instance()->GetObjectPtr("Player")->GetComponent<Player>();
+	player_= IFE::ObjectManager::Instance()->GetObjectPtr("playerObject")->GetComponent<Player>();
 	action_ = IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>();
-	actionCamera_= IFE::ObjectManager::Instance()->GetObjectPtr("PlayerActionCamera")->GetComponent<PlayerActionCamera>();
+	actionCamera_= IFE::ObjectManager::Instance()->GetObjectPtr("PlayerActionCameraObject")->GetComponent<PlayerActionCamera>();
 }
 
 void ClearAnimation::Update()
 {
 	if (animationFlag_ == true)
 	{
-		PlayerMove();
-		CameraMove();
-		CameraRot();
+		AnimationInit();
+		//PlayerMove();
+		//CameraMove();
+		//CameraRot();
 		SceneChange();
 		animationTimer_+= IFE::IFETime::sDeltaTime_;
 	}
@@ -30,7 +31,7 @@ void ClearAnimation::Finalize()
 
 void ClearAnimation::SetAnimationFlag(bool flag)
 {
-	animationTimer_ = flag;
+	animationFlag_ = flag;
 }
 
 bool ClearAnimation::GetAnimationFlag()
@@ -45,41 +46,31 @@ void ClearAnimation::AnimationInit()
 		player_->SetClearFlag(true);
 		action_->SetClearFlag(true);
 		actionCamera_->SetClearFlag(true);
-		action_->SetAnimation("walk");
+		action_->SetAnimation("standBy");
 
-		if (IFE::Scene::Instance()->GetSceneName() == "stage02")
-		{
-			transform_->position_ = { 70.0f ,22.0f ,-18.0f };
-			action_->transform_->rotation_.y = IFE::ConvertToDegrees(180.0f);
-		}
-		else if (IFE::Scene::Instance()->GetSceneName() == "stage03")
-		{
-			transform_->position_;
-		}
 		startFlag_ = true;
 	}
 }
 
 void ClearAnimation::PlayerMove()
 {
-	//通路前の座標に向かわせる処理
-	if (animationTimer_ < maxAnimationTimer_ / 2)
-	{
-		action_->transform_->position_.x = IFE::Lerp(action_->transform_->position_.x, 70.0f, maxAnimationTimer_ / 2, animationTimer_);
-		action_->transform_->position_.y = IFE::Lerp(action_->transform_->position_.y, 22.0f, maxAnimationTimer_ / 2, animationTimer_);
-		action_->transform_->position_.z = IFE::Lerp(action_->transform_->position_.z, -18.0f, maxAnimationTimer_ / 2, animationTimer_);
-	}
-	else
-	{
-		//通路奥の座標に向かわせる処理
+	////通路前の座標に向かわせる処理
+	//if (animationTimer_ < maxAnimationTimer_ / 2)
+	//{
+	//	action_->transform_->position_.x = IFE::Lerp(action_->transform_->position_.x, 70.0f, maxAnimationTimer_ / 2, animationTimer_);
+	//	action_->transform_->position_.y = IFE::Lerp(action_->transform_->position_.y, 22.0f, maxAnimationTimer_ / 2, animationTimer_);
+	//	action_->transform_->position_.z = IFE::Lerp(action_->transform_->position_.z, -18.0f, maxAnimationTimer_ / 2, animationTimer_);
+	//}
+	//else
+	//{
+	//	//通路奥の座標に向かわせる処理
 
-	}
+	//}
 }
 
 void ClearAnimation::CameraMove()
 {
-	AnimationInit();
-
+	
 }
 
 void ClearAnimation::CameraRot()
