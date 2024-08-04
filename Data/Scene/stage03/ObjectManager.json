@@ -16407,7 +16407,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof",
         "prefab": false
@@ -16482,7 +16482,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof1",
         "prefab": false
@@ -16557,7 +16557,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof2",
         "prefab": false
@@ -16632,7 +16632,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof3",
         "prefab": false
@@ -16707,7 +16707,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof4",
         "prefab": false
@@ -16782,7 +16782,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof5",
         "prefab": false
@@ -16857,7 +16857,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof6",
         "prefab": false
@@ -16932,7 +16932,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof7",
         "prefab": false
@@ -17007,7 +17007,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof8",
         "prefab": false
@@ -17082,7 +17082,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof9",
         "prefab": false
@@ -17457,7 +17457,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof14",
         "prefab": false
@@ -19704,7 +19704,23 @@
         "prefab": false
     },
     {
-        "EnemyHp": null,
+        "Boss": {
+            "points": {
+                "nums": [
+                    [
+                        235.0,
+                        2.0,
+                        10.0
+                    ],
+                    [
+                        235.0,
+                        2.0,
+                        30.0
+                    ]
+                ],
+                "size": 2
+            }
+        },
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -19714,8 +19730,8 @@
             "bloom": false,
             "color": [
                 1.0,
-                0.0,
-                0.0,
+                1.0,
+                1.0,
                 1.0
             ],
             "diffuse": [
@@ -19742,172 +19758,30 @@
         },
         "Transform": {
             "position": [
-                0.0,
-                0.0,
-                0.0
+                235.0,
+                2.0,
+                20.0
             ],
             "rotation": [
-                0.0,
-                0.0,
-                0.0
+                360.0,
+                360.0,
+                360.0
             ],
             "scale": [
-                2.0,
-                0.4000000059604645,
+                1.0,
+                1.0,
                 1.0
             ]
         },
         "component": [
-            "EnemyHp",
             "Transform",
             "TransferGeometryBuffer",
-            "Material"
+            "Material",
+            "Boss"
         ],
         "drawFlag": true,
-        "model": "hppanel_Model",
-        "name": "EnemyHp",
-        "prefab": false
-    },
-    {
-        "EnemyHp": null,
-        "Material": {
-            "ambient": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "bloom": false,
-            "color": [
-                1.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "diffuse": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "multipleMat": false,
-            "pipeline": "Model_DEFALUT",
-            "specular": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "terxtureName": "white.png"
-        },
-        "TransferGeometryBuffer": {
-            "explosion": 0.0,
-            "gravity": 0.0,
-            "lightFlag": true,
-            "polygonSize": 1.0,
-            "rotation": 0.0,
-            "toonFlag": false
-        },
-        "Transform": {
-            "position": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "scale": [
-                2.0,
-                0.4000000059604645,
-                1.0
-            ]
-        },
-        "component": [
-            "EnemyHp",
-            "Transform",
-            "TransferGeometryBuffer",
-            "Material"
-        ],
-        "drawFlag": false,
-        "model": "hppanel_Model",
-        "name": "EnemyHp1",
-        "prefab": false
-    },
-    {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 0,
-                    "groundJudge": false,
-                    "notPushBack": true,
-                    "pushBack": false
-                }
-            ]
-        },
-        "EnemyAttack": null,
-        "Material": {
-            "ambient": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "bloom": false,
-            "color": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "diffuse": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "multipleMat": false,
-            "pipeline": "Model_DEFALUT",
-            "specular": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
-            ],
-            "terxtureName": "white.png"
-        },
-        "TransferGeometryBuffer": {
-            "explosion": 0.0,
-            "gravity": 0.0,
-            "lightFlag": true,
-            "polygonSize": 1.0,
-            "rotation": 0.0,
-            "toonFlag": false
-        },
-        "Transform": {
-            "position": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "scale": [
-                1.0,
-                1.0,
-                1.0
-            ]
-        },
-        "component": [
-            "EnemyAttack",
-            "Collider",
-            "Transform",
-            "TransferGeometryBuffer",
-            "Material"
-        ],
-        "drawFlag": false,
-        "model": "dice_Model",
-        "name": "EnemyAttack",
+        "model": "playerModel_Model",
+        "name": "boss",
         "prefab": false
     }
 ]
