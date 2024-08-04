@@ -1,1 +1,44 @@
-null
+[
+    {
+        "addParam": 1,
+        "inTex": 1,
+        "name": "RadialBlur",
+        "number": 200,
+        "outTex": 1
+    },
+    {
+        "addParam": 0,
+        "inTex": 2,
+        "name": "EnemyHighlighting",
+        "number": 200,
+        "outTex": 1
+    },
+    {
+        "addParam": 1,
+        "inTex": 1,
+        "name": "EnemyJudge",
+        "number": 5,
+        "outTex": 2
+    },
+    {
+        "addParam": 1,
+        "inTex": 1,
+        "name": "EnemyJudgeAnim",
+        "number": 23,
+        "outTex": 2
+    },
+    {
+        "addParam": 1,
+        "inTex": 2,
+        "name": "DronePostEffect",
+        "number": 200,
+        "outTex": 1
+    },
+    {
+        "addParam": 0,
+        "inTex": 1,
+        "name": "SolidMap",
+        "number": 6,
+        "outTex": 2
+    }
+]
