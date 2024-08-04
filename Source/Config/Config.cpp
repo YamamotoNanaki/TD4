@@ -127,16 +127,19 @@ void Config::ConfigChange()
 	case ConfigFlag::masterValume:
 		GageConfig(configValue_.masterValume);
 		IFE::Sound::Instance()->SetMasterVolume(configValue_.masterValume);
+		IFE::Sound::Instance()->AllSoundVolumeUpdate();
 		IFE::SpriteManager::Instance()->GetSpritePtr("masterVolumeThumb")->transform_->transform2D_->position2D_.x = 840.0f + configValue_.masterValume * 720.0f;
 		break;
 	case ConfigFlag::BGMValume:
 		GageConfig(configValue_.BGMValume);
 		IFE::Sound::Instance()->SetBGMVolume(configValue_.BGMValume);
+		IFE::Sound::Instance()->AllSoundVolumeUpdate();
 		IFE::SpriteManager::Instance()->GetSpritePtr("BGMVolumeThumb")->transform_->transform2D_->position2D_.x = 840.0f + configValue_.BGMValume * 720.0f;
 		break;
 	case ConfigFlag::SEValume:
 		GageConfig(configValue_.SEValume);
 		IFE::Sound::Instance()->SetSEVolume(configValue_.SEValume);
+		IFE::Sound::Instance()->AllSoundVolumeUpdate();
 		IFE::SpriteManager::Instance()->GetSpritePtr("SEVolumeThumb")->transform_->transform2D_->position2D_.x = 840.0f + configValue_.SEValume * 720.0f;
 		break;
 	case ConfigFlag::cameraReverse:
