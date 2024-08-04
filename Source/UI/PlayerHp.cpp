@@ -15,6 +15,7 @@ void IFE::PlayerHp::Update()
 void IFE::PlayerHp::ScaleCalc(uint8_t hp, uint8_t decHp, float hitTime, float maxTime)
 {
 	transform2D_->scale2D_.x = static_cast<float>(EaseOutQuint(maxTime - hitTime, (hp + decHp) * 0.5f, hp * 0.5f, maxTime));
+	transform2D_->scale2D_.x = max(transform2D_->scale2D_.x, 0.0f);
 }
 
 void IFE::PlayerHp::SetHp(uint8_t hp)

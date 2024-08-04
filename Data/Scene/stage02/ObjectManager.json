@@ -6567,9 +6567,9 @@
                 360.0
             ],
             "scale": [
-                0.999527633190155,
-                0.9995279908180237,
-                0.999527633190155
+                0.9994179010391235,
+                0.9994182586669922,
+                0.9994179010391235
             ]
         },
         "component": [
@@ -6885,8 +6885,8 @@
     },
     {
         "Attach3DModel": {
-            "boneName": "",
-            "parentName": "NormalEnemy"
+            "boneName": "spine.002",
+            "parentName": "normalEnemy"
         },
         "Blood": null,
         "Material": {
@@ -6927,13 +6927,13 @@
         "Transform": {
             "position": [
                 0.0,
-                0.0,
+                0.699999988079071,
                 0.0
             ],
             "rotation": [
-                0.0,
-                0.0,
-                0.0
+                360.0,
+                360.0,
+                360.0
             ],
             "scale": [
                 1.0,
@@ -6948,7 +6948,7 @@
             "Blood",
             "Attach3DModel"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "playerModel_Model",
         "name": "Blood",
         "prefab": false
@@ -7246,9 +7246,9 @@
                 0.2666666805744171
             ],
             "dir": [
-                0.0,
+                -4.800000190734863,
                 -1.0,
-                0.0
+                2.4000000953674316
             ],
             "distance": 100.0,
             "number": 0,
@@ -8762,7 +8762,6 @@
         "prefab": false
     },
     {
-        "EnemyHp": null,
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -8772,8 +8771,8 @@
             "bloom": false,
             "color": [
                 1.0,
-                0.0,
-                0.0,
+                1.0,
+                1.0,
                 1.0
             ],
             "diffuse": [
@@ -8800,34 +8799,32 @@
         },
         "Transform": {
             "position": [
-                0.0,
-                0.0,
-                0.0
+                119.81999969482422,
+                0.9909999966621399,
+                29.76799964904785
             ],
             "rotation": [
-                0.0,
-                0.0,
-                0.0
+                360.0,
+                360.0,
+                360.0
             ],
             "scale": [
-                2.0,
-                0.4000000059604645,
-                1.0
+                0.25,
+                56.75,
+                0.25
             ]
         },
         "component": [
-            "EnemyHp",
             "Transform",
             "TransferGeometryBuffer",
             "Material"
         ],
         "drawFlag": true,
-        "model": "hppanel_Model",
-        "name": "EnemyHp",
+        "model": "testWall_Model",
+        "name": "lightWall",
         "prefab": false
     },
     {
-        "EnemyHp": null,
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -8837,8 +8834,8 @@
             "bloom": false,
             "color": [
                 1.0,
-                0.0,
-                0.0,
+                1.0,
+                1.0,
                 1.0
             ],
             "diffuse": [
@@ -8865,45 +8862,221 @@
         },
         "Transform": {
             "position": [
-                0.0,
-                0.0,
-                0.0
+                119.81999969482422,
+                0.9909999966621399,
+                10.065999984741211
             ],
             "rotation": [
-                0.0,
-                0.0,
-                0.0
+                360.0,
+                360.0,
+                360.0
             ],
             "scale": [
+                0.25,
+                56.75,
+                0.25
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "lightWall1",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                82.052001953125,
+                0.9909999966621399,
+                10.065999984741211
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.25,
+                56.75,
+                0.25
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "lightWall2",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                82.052001953125,
+                0.9909999966621399,
+                29.97599983215332
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.25,
+                56.75,
+                0.25
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "lightWall3",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -104.14900207519531,
                 2.0,
-                0.4000000059604645,
+                21.0310001373291
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                329.0
+            ],
+            "scale": [
+                10.25002670288086,
+                3.7500011920928955,
                 1.0
             ]
         },
         "component": [
-            "EnemyHp",
             "Transform",
             "TransferGeometryBuffer",
             "Material"
         ],
-        "drawFlag": false,
-        "model": "hppanel_Model",
-        "name": "EnemyHp1",
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall47",
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 0,
-                    "groundJudge": false,
-                    "notPushBack": true,
-                    "pushBack": false
-                }
-            ]
-        },
-        "EnemyAttack": null,
         "Material": {
             "ambient": [
                 0.30000001192092896,
@@ -8912,9 +9085,9 @@
             ],
             "bloom": false,
             "color": [
-                0.0,
-                0.0,
-                0.0,
+                1.0,
+                1.0,
+                1.0,
                 1.0
             ],
             "diffuse": [
@@ -8941,31 +9114,533 @@
         },
         "Transform": {
             "position": [
-                0.0,
-                0.0,
-                0.0
+                -100.77999877929688,
+                6.785999774932861,
+                20.229999542236328
             ],
             "rotation": [
-                0.0,
-                0.0,
-                0.0
+                360.0,
+                360.0,
+                330.0
             ],
             "scale": [
+                10.819000244140625,
                 1.0,
-                1.0,
-                1.0
+                0.25
             ]
         },
         "component": [
-            "EnemyAttack",
-            "Collider",
             "Transform",
             "TransferGeometryBuffer",
             "Material"
         ],
-        "drawFlag": false,
-        "model": "dice_Model",
-        "name": "EnemyAttack1",
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "lightWall4",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -91.33599853515625,
+                8.803000450134277,
+                20.229999542236328
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.5,
+                10.46399974822998,
+                0.5
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "lightWall5",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -110.22000122070313,
+                21.941999435424805,
+                10.838000297546387
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.5,
+                1.0,
+                9.437999725341797
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "lightWall6",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -110.26699829101563,
+                16.18400001525879,
+                10.88599967956543
+            ],
+            "rotation": [
+                360.0,
+                270.0,
+                330.0
+            ],
+            "scale": [
+                10.818999290466309,
+                0.9999210238456726,
+                0.24998903274536133
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "lightWall7",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -110.22000122070313,
+                28.197999954223633,
+                20.229999542236328
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.5,
+                17.45400047302246,
+                0.5
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "lightWall8",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -110.22000122070313,
+                30.70599937438965,
+                1.5429999828338623
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.5,
+                10.630000114440918,
+                0.5
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "lightWall9",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -99.80999755859375,
+                21.941999435424805,
+                25.04199981689453
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.5,
+                1.0,
+                5.214000225067139
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "lightWall10",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -104.91500091552734,
+                21.941999435424805,
+                20.33799934387207
+            ],
+            "rotation": [
+                360.0,
+                90.0,
+                360.0
+            ],
+            "scale": [
+                0.49991121888160706,
+                0.9998236894607544,
+                5.208589553833008
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "lightWall11",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -99.8219985961914,
+                30.70599937438965,
+                20.295000076293945
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.5,
+                10.630000114440918,
+                0.5
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "lightWall12",
         "prefab": false
     }
 ]
