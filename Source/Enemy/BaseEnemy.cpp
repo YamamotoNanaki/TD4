@@ -63,14 +63,14 @@ void IFE::BaseEnemy::Update()
 	Highlighting();
 }
 
-bool IFE::BaseEnemy::ChaseLen(Vector3 target)
+bool IFE::BaseEnemy::ChaseLen(Vector3 target,float len_)
 {
 	Vector3 ePos = transform_->position_;
 
 	//‹ß‚Ã‚¢‚½‚ç‰£‚é
 	double len = sqrt(pow(ePos.x - target.x, 2) + pow(ePos.y - target.y, 2) +
 		pow(ePos.z - target.z, 2));
-	if (len >= 20.0f) {
+	if (len >= len_) {
 		return true;
 	}
 	return false;

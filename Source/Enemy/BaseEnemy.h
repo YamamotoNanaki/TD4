@@ -96,7 +96,7 @@ namespace IFE {
 		/// </summary>
 		void Update()final override;
 
-		bool ChaseLen(Vector3 target);
+		bool ChaseLen(Vector3 target,float len_);
 
 		/// <summary>
 		/// コライダーの処理
