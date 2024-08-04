@@ -46,7 +46,7 @@ void SwitchObject::Update()
 	{
 		cols_->GetCollider(0)->SetOffsetPosition(objectPtr_->transform_->position_);
 		//設定したサイズをセット
-		cols_->GetCollider(0)->SetOffsetScale(scale_);
+		cols_->GetCollider(0)->SetOffsetScale(collScale_);
 
 		if (countHitTimer_ > hitMaxTime_ && (IFE::Input::GetKeyPush(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X)))
 		{
@@ -116,7 +116,7 @@ void SwitchObject::ComponentDebugGUI()
 	IFE::ImguiManager* gui = IFE::ImguiManager::Instance();
 
 	//当たり判定の大きさ設定
-	gui->DragFloat3GUI(&scale_, "scale",0.25f, 1, 1000);
+	gui->DragFloat3GUI(&collScale_, "SwitchObjCollscale",0.25f, 1, 1000);
 
 	gui->CheckBoxGUI(&testflag_, "isActive");
 	SetIsActive(testflag_);
@@ -161,7 +161,7 @@ void SwitchObject::OutputComponent(nlohmann::json& json)
 	IFE::JsonManager::Instance()->OutputFloat2(json["hitMaxTime"], output2);
 
 
-	IFE::JsonManager::Instance()->OutputFloat3(json["collisionScale"], scale_);
+	IFE::JsonManager::Instance()->OutputFloat3(json["collisionScale"], collScale_);
 
 	event_->OutputData(json["EventSeting"]);
 
@@ -176,9 +176,9 @@ void SwitchObject::LoadingComponent(nlohmann::json& json)
 	isActive_ = a;
 	hitMaxTime_ = json["hitMaxTime"][0];
 
-	scale_.x = json["collisionScale"][0];
-	scale_.y = json["collisionScale"][1];
-	scale_.z = json["collisionScale"][2];
+	collScale_.x = json["collisionScale"][0];
+	collScale_.y = json["collisionScale"][1];
+	collScale_.z = json["collisionScale"][2];
 
 	event_ = IFE::EventFactory::Instance()->CreateEventClass(EventName::EventString(eventType_));
 

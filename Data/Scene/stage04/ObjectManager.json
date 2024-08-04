@@ -13944,7 +13944,7 @@
                 50.0
             ],
             "hitMaxTime": [
-                0.20000000298023224,
+                0.0,
                 0.0
             ]
         },
@@ -14046,7 +14046,7 @@
                 50.0
             ],
             "hitMaxTime": [
-                0.20000000298023224,
+                0.0,
                 0.0
             ]
         },
@@ -14118,8 +14118,8 @@
         "Collider": null,
         "GimmickSwitchObject": {
             "EventSeting": {
-                "isSwitch": false,
-                "selectGimmickName": "switchObj"
+                "isSwitch": true,
+                "selectGimmickName": "LaserWireObj"
             },
             "EventType": [
                 4.0,
@@ -14131,7 +14131,7 @@
                 50.0
             ],
             "hitMaxTime": [
-                0.20000000298023224,
+                0.0,
                 0.0
             ]
         },
@@ -14203,8 +14203,8 @@
         "Collider": null,
         "GimmickSwitchObject": {
             "EventSeting": {
-                "isSwitch": false,
-                "selectGimmickName": "switchObj"
+                "isSwitch": true,
+                "selectGimmickName": "LaserWireObj1"
             },
             "EventType": [
                 4.0,
@@ -14216,7 +14216,7 @@
                 50.0
             ],
             "hitMaxTime": [
-                0.20000000298023224,
+                0.0,
                 0.0
             ]
         },
@@ -14318,7 +14318,7 @@
                 50.0
             ],
             "hitMaxTime": [
-                0.20000000298023224,
+                0.0,
                 0.0
             ]
         },
@@ -14415,12 +14415,12 @@
                 1.0
             ],
             "collisionScale": [
-                5.0,
-                1.0,
-                5.0
+                50.0,
+                50.0,
+                50.0
             ],
             "hitMaxTime": [
-                0.20000000298023224,
+                0.0,
                 0.0
             ]
         },
