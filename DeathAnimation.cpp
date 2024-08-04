@@ -59,16 +59,16 @@ void DeathAnimation::Fade()
 
 void DeathAnimation::Select()
 {
-	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_ > -0.5f && IFE::Input::GetLXAnalog(controllerRange_) < -0.5f)
+	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_ > -0.5f && IFE::Input::GetLXAnalog(controllerRange_) < -0.5f || IFE::Input::PadTrigger(IFE::PADCODE::LEFT))
 	{
-		IFE::SpriteManager::Instance()->GetSpritePtr("restart")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
-		IFE::SpriteManager::Instance()->GetSpritePtr("toTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
+		IFE::SpriteManager::Instance()->GetSpritePtr("restart")->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f ,1.0f ,1.0f });
+		IFE::SpriteManager::Instance()->GetSpritePtr("toTitle")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f ,1.0f });
 		isContinue_ = true;
 	}
-	else if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_ < 0.5f && IFE::Input::GetLXAnalog(controllerRange_) >0.5f)
+	else if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_ < 0.5f && IFE::Input::GetLXAnalog(controllerRange_) >0.5f || IFE::Input::PadTrigger(IFE::PADCODE::RIGHT))
 	{
-		IFE::SpriteManager::Instance()->GetSpritePtr("restart")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.5f);
-		IFE::SpriteManager::Instance()->GetSpritePtr("toTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(1.0f);
+		IFE::SpriteManager::Instance()->GetSpritePtr("restart")->GetComponent<IFE::ColorBuffer>()->SetColor({ 0.25f,0.25f ,0.25f ,1.0f });
+		IFE::SpriteManager::Instance()->GetSpritePtr("toTitle")->GetComponent<IFE::ColorBuffer>()->SetColor({ 1.0f,1.0f ,1.0f ,1.0f });
 		isContinue_ = false;
 	}
 
