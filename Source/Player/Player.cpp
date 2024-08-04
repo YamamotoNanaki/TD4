@@ -117,7 +117,6 @@ void Player::DroneBreak()
 		IFE::Sound::Instance()->StopSound("drone");
 	}
 	drone_->SetIsDroneSurvival(false);
-	enemyHilight_->updateFlag_ = false;
 	dynamic_cast<DronePostEffect*>(dronePostEffect_)->droneFlag_ = false;
 	if (modeFlag_ == true)
 	{
