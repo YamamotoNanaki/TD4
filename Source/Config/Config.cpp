@@ -99,11 +99,11 @@ void Config::ConfigSelect()
 {
 	int32_t range = 10000;
 
-	if (IFE::Input::GetKeyTrigger(IFE::Key::UP) || oldLAnalog_.y < 0.5f && IFE::Input::GetLYAnalog(range) > 0.5f)
+	if (IFE::Input::GetKeyTrigger(IFE::Key::UP) || oldLAnalog_.y < 0.5f && IFE::Input::GetLYAnalog(range) > 0.5f || IFE::Input::PadTrigger(IFE::PADCODE::UP))
 	{
 		selectNum_--;
 	}
-	else if (IFE::Input::GetKeyTrigger(IFE::Key::DOWN) || oldLAnalog_.y > -0.5f && IFE::Input::GetLYAnalog(range) < -0.5f)
+	else if (IFE::Input::GetKeyTrigger(IFE::Key::DOWN) || oldLAnalog_.y > -0.5f && IFE::Input::GetLYAnalog(range) < -0.5f || IFE::Input::PadTrigger(IFE::PADCODE::DOWN))
 	{
 		selectNum_++;
 	}
@@ -183,11 +183,11 @@ void Config::ConfigChange()
 
 void Config::GageConfig(float& configValue)
 {
-	if (IFE::Input::GetKeyPush(IFE::Key::LEFT))
+	if (IFE::Input::GetKeyPush(IFE::Key::LEFT) || IFE::Input::PadPush(IFE::PADCODE::LEFT))
 	{
 		configValue -= 1 / 255.0f;
 	}
-	if (IFE::Input::GetKeyPush(IFE::Key::RIGHT))
+	if (IFE::Input::GetKeyPush(IFE::Key::RIGHT) || IFE::Input::PadPush(IFE::PADCODE::RIGHT))
 	{
 		configValue += 1 / 255.0f;
 	}
@@ -199,11 +199,11 @@ void Config::GageConfig(float& configValue)
 
 void Config::BottonConfig(bool& configValue)
 {
-	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_.x > -0.5f && IFE::Input::GetLXAnalog(10000) < -0.5f)
+	if (IFE::Input::GetKeyTrigger(IFE::Key::LEFT) || oldLAnalog_.x > -0.5f && IFE::Input::GetLXAnalog(10000) < -0.5f || IFE::Input::PadTrigger(IFE::PADCODE::LEFT))
 	{
 		configValue = false;
 	}
-	if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_.x < 0.5f && IFE::Input::GetLXAnalog(10000) >0.5f)
+	if (IFE::Input::GetKeyTrigger(IFE::Key::RIGHT) || oldLAnalog_.x < 0.5f && IFE::Input::GetLXAnalog(10000) >0.5f || IFE::Input::PadTrigger(IFE::PADCODE::RIGHT))
 	{
 		configValue = true;
 	}
