@@ -1549,7 +1549,7 @@
                 "PlayerHp"
             ],
             "drawFlag": true,
-            "name": "playerHp",
+            "name": "playerHp1",
             "order": 0,
             "texture": "HP.png"
         },
@@ -1609,7 +1609,7 @@
                 "DroneRecoveryUI"
             ],
             "drawFlag": false,
-            "name": "droneRecoveryUI",
+            "name": "droneRecoveryUI1",
             "order": 0,
             "texture": "corectDrone.png"
         },

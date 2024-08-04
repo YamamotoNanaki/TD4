@@ -13911,24 +13911,7 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": true,
-                    "pushBack": false
-                },
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": true,
-                    "pushBack": false
-                }
-            ]
-        },
+        "Collider": null,
         "GimmickSwitchObject": {
             "EventSeting": {
                 "doorEndPos": [
@@ -13956,9 +13939,9 @@
                 1.0
             ],
             "collisionScale": [
-                1.0,
-                1.0,
-                1.0
+                50.0,
+                50.0,
+                50.0
             ],
             "hitMaxTime": [
                 0.20000000298023224,
@@ -14003,7 +13986,7 @@
         "Transform": {
             "position": [
                 31.0,
-                1.5,
+                2.0,
                 -8.0
             ],
             "rotation": [
@@ -14012,9 +13995,9 @@
                 360.0
             ],
             "scale": [
-                0.20000000298023224,
-                0.5,
-                0.20000000298023224
+                1.0,
+                1.0,
+                1.0
             ]
         },
         "component": [
@@ -14030,17 +14013,7 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": true,
-                    "pushBack": false
-                }
-            ]
-        },
+        "Collider": null,
         "GimmickSwitchObject": {
             "EventSeting": {
                 "doorEndPos": [
@@ -14068,9 +14041,9 @@
                 1.0
             ],
             "collisionScale": [
-                1.0,
-                1.0,
-                1.0
+                50.0,
+                50.0,
+                50.0
             ],
             "hitMaxTime": [
                 0.20000000298023224,
@@ -14115,7 +14088,7 @@
         "Transform": {
             "position": [
                 31.0,
-                1.5,
+                2.0,
                 10.553318977355957
             ],
             "rotation": [
@@ -14124,9 +14097,9 @@
                 360.0
             ],
             "scale": [
-                0.20000000298023224,
-                0.5,
-                0.20000000298023224
+                1.0,
+                1.0,
+                1.0
             ]
         },
         "component": [
@@ -14142,20 +14115,10 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": true,
-                    "pushBack": false
-                }
-            ]
-        },
+        "Collider": null,
         "GimmickSwitchObject": {
             "EventSeting": {
-                "isSwitch": true,
+                "isSwitch": false,
                 "selectGimmickName": "switchObj"
             },
             "EventType": [
@@ -14163,9 +14126,9 @@
                 1.0
             ],
             "collisionScale": [
-                2.0,
-                2.0,
-                2.0
+                50.0,
+                50.0,
+                50.0
             ],
             "hitMaxTime": [
                 0.20000000298023224,
@@ -14210,7 +14173,7 @@
         "Transform": {
             "position": [
                 31.0,
-                1.5,
+                2.0,
                 27.617361068725586
             ],
             "rotation": [
@@ -14219,9 +14182,9 @@
                 360.0
             ],
             "scale": [
-                0.20000000298023224,
-                0.5,
-                0.20000000298023224
+                1.0,
+                1.0,
+                1.0
             ]
         },
         "component": [
@@ -14237,20 +14200,10 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": true,
-                    "pushBack": false
-                }
-            ]
-        },
+        "Collider": null,
         "GimmickSwitchObject": {
             "EventSeting": {
-                "isSwitch": true,
+                "isSwitch": false,
                 "selectGimmickName": "switchObj"
             },
             "EventType": [
@@ -14258,9 +14211,9 @@
                 1.0
             ],
             "collisionScale": [
-                2.0,
-                2.0,
-                2.0
+                50.0,
+                50.0,
+                50.0
             ],
             "hitMaxTime": [
                 0.20000000298023224,
@@ -14305,7 +14258,7 @@
         "Transform": {
             "position": [
                 31.0,
-                1.5,
+                2.0,
                 -31.186471939086914
             ],
             "rotation": [
@@ -14314,9 +14267,9 @@
                 360.0
             ],
             "scale": [
-                0.20000000298023224,
-                0.5,
-                0.20000000298023224
+                1.0,
+                1.0,
+                1.0
             ]
         },
         "component": [
@@ -14332,17 +14285,7 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": true,
-                    "pushBack": false
-                }
-            ]
-        },
+        "Collider": null,
         "GimmickSwitchObject": {
             "EventSeting": {
                 "doorEndPos": [
@@ -14370,9 +14313,9 @@
                 1.0
             ],
             "collisionScale": [
-                1.0,
-                1.0,
-                1.0
+                50.0,
+                50.0,
+                50.0
             ],
             "hitMaxTime": [
                 0.20000000298023224,
@@ -14417,7 +14360,7 @@
         "Transform": {
             "position": [
                 107.9266128540039,
-                1.5,
+                2.0,
                 4.732115268707275
             ],
             "rotation": [
@@ -14426,9 +14369,9 @@
                 360.0
             ],
             "scale": [
-                0.20000000298023224,
-                0.5,
-                0.20000000298023224
+                1.0,
+                1.0,
+                1.0
             ]
         },
         "component": [
@@ -14444,17 +14387,7 @@
         "prefab": false
     },
     {
-        "Collider": {
-            "content": [
-                {
-                    "attribute": 0,
-                    "colliderType": 3,
-                    "groundJudge": false,
-                    "notPushBack": true,
-                    "pushBack": false
-                }
-            ]
-        },
+        "Collider": null,
         "GimmickSwitchObject": {
             "EventSeting": {
                 "doorEndPos": [
@@ -14482,9 +14415,9 @@
                 1.0
             ],
             "collisionScale": [
+                5.0,
                 1.0,
-                1.0,
-                1.0
+                5.0
             ],
             "hitMaxTime": [
                 0.20000000298023224,
@@ -14529,7 +14462,7 @@
         "Transform": {
             "position": [
                 63.11768341064453,
-                1.5,
+                2.0,
                 -23.190540313720703
             ],
             "rotation": [
@@ -14538,9 +14471,9 @@
                 360.0
             ],
             "scale": [
-                0.20000000298023224,
-                0.5,
-                0.20000000298023224
+                1.0,
+                1.0,
+                1.0
             ]
         },
         "component": [
