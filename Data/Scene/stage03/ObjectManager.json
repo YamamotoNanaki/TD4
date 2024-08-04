@@ -19297,9 +19297,9 @@
         },
         "Transform": {
             "position": [
-                114.0,
-                2.0,
-                20.0
+                0.0,
+                0.0,
+                0.0
             ],
             "rotation": [
                 360.0,
@@ -19307,9 +19307,9 @@
                 360.0
             ],
             "scale": [
-                0.9995017051696777,
-                0.9995020627975464,
-                0.9995017051696777
+                0.9994025230407715,
+                0.9994028806686401,
+                0.9994025230407715
             ]
         },
         "component": [
@@ -19782,6 +19782,826 @@
         "drawFlag": true,
         "model": "playerModel_Model",
         "name": "boss",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        25.0,
+                        2.0,
+                        -6.0
+                    ],
+                    [
+                        70.0,
+                        2.0,
+                        -6.0
+                    ]
+                ],
+                "size": 2
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                25.0,
+                2.0,
+                -6.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy2",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        43.0,
+                        2.0,
+                        47.510921478271484
+                    ],
+                    [
+                        13.0,
+                        2.0,
+                        47.510921478271484
+                    ]
+                ],
+                "size": 2
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                43.0,
+                2.0,
+                47.510921478271484
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy3",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        93.0,
+                        2.0,
+                        0.0
+                    ],
+                    [
+                        120.0,
+                        2.0,
+                        0.0
+                    ]
+                ],
+                "size": 2
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                93.0,
+                2.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy4",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        107.3331069946289,
+                        0.0,
+                        38.0
+                    ],
+                    [
+                        107.3331069946289,
+                        0.0,
+                        50.0
+                    ]
+                ],
+                "size": 2
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                107.3331069946289,
+                2.0,
+                38.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy5",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        204.3530731201172,
+                        2.0,
+                        113.68869018554688
+                    ],
+                    [
+                        204.3530731201172,
+                        2.0,
+                        80.0
+                    ]
+                ],
+                "size": 2
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                204.3530731201172,
+                2.0,
+                113.68869018554688
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy6",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        203.24822998046875,
+                        2.0,
+                        2.9454212188720703
+                    ],
+                    [
+                        203.24822998046875,
+                        2.0,
+                        -20.0
+                    ]
+                ],
+                "size": 2
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                203.24822998046875,
+                2.0,
+                2.9454212188720703
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy7",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        189.47232055664063,
+                        2.0,
+                        105.77555084228516
+                    ],
+                    [
+                        170.0,
+                        2.0,
+                        105.77555084228516
+                    ]
+                ],
+                "size": 2
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                189.47232055664063,
+                2.0,
+                105.77555084228516
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy8",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        231.04025268554688,
+                        2.0,
+                        -51.95173263549805
+                    ],
+                    [
+                        231.04025268554688,
+                        2.0,
+                        -70.0
+                    ]
+                ],
+                "size": 2
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                231.04025268554688,
+                2.0,
+                -51.95173263549805
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy9",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        186.0,
+                        2.0,
+                        153.3331756591797
+                    ],
+                    [
+                        100.0,
+                        2.0,
+                        153.3331756591797
+                    ]
+                ],
+                "size": 2
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                186.0,
+                2.0,
+                153.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy10",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        168.3365020751953,
+                        2.0,
+                        -65.2472152709961
+                    ],
+                    [
+                        100.0,
+                        2.0,
+                        -65.2472152709961
+                    ]
+                ],
+                "size": 2
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                168.3365020751953,
+                2.0,
+                -65.2472152709961
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy11",
         "prefab": false
     }
 ]
