@@ -48,6 +48,8 @@ void Player::Initialize()
 
 void Player::Update()
 {
+	if (clearFlag_ == true)return;
+
 	//チュートリアルがあるか
 	bool isTutorial;
 	if (IFE::ObjectManager::Instance()->GetObjectPtr("Tutorial")->GetComponent<IFE::Tutorial>()) {
@@ -158,6 +160,11 @@ bool Player::GetFirstRecovery()
 void Player::SetMode(bool flag)
 {
 	modeFlag_ = flag;
+}
+
+void Player::SetClearFlag(bool flag)
+{
+	clearFlag_ = flag;
 }
 
 void Player::ChangeMode()

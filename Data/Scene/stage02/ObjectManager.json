@@ -6567,9 +6567,9 @@
                 360.0
             ],
             "scale": [
-                0.9997707009315491,
-                0.9997710585594177,
-                0.9997707009315491
+                0.999527633190155,
+                0.9995279908180237,
+                0.999527633190155
             ]
         },
         "component": [
@@ -7477,7 +7477,7 @@
                     [
                         32.0,
                         2.0,
-                        27.0
+                        22.0
                     ],
                     [
                         32.0,
@@ -7501,7 +7501,7 @@
             "position": [
                 32.0,
                 2.0,
-                27.0
+                22.0
             ],
             "rotation": [
                 360.0,
@@ -7523,6 +7523,1449 @@
         "drawFlag": true,
         "model": "playerModel_Model",
         "name": "normalEnemy2",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        -10.0,
+                        2.0,
+                        -25.0
+                    ],
+                    [
+                        0.0,
+                        2.0,
+                        -25.0
+                    ],
+                    [
+                        10.0,
+                        2.0,
+                        -25.0
+                    ]
+                ],
+                "size": 3
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -10.0,
+                2.0,
+                -25.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy3",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                20.0,
+                10.0,
+                15.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall37",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                10.0,
+                15.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall38",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                20.0,
+                10.0,
+                -15.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall39",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                10.0,
+                -15.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall40",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                10.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall41",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                20.0,
+                10.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall42",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -15.0,
+                10.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                30.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall43",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        -10.0,
+                        2.0,
+                        22.0
+                    ],
+                    [
+                        10.0,
+                        2.0,
+                        22.0
+                    ],
+                    [
+                        -10.0,
+                        2.0,
+                        22.0
+                    ],
+                    [
+                        -10.0,
+                        2.0,
+                        2.0
+                    ]
+                ],
+                "size": 4
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -10.0,
+                2.0,
+                22.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy4",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -35.0,
+                10.0,
+                0.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                10.0,
+                30.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall44",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        -10.0,
+                        2.0,
+                        -38.0
+                    ],
+                    [
+                        -10.0,
+                        2.0,
+                        -40.0
+                    ],
+                    [
+                        -10.0,
+                        2.0,
+                        -66.0
+                    ],
+                    [
+                        -10.0,
+                        2.0,
+                        -40.0
+                    ]
+                ],
+                "size": 4
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -10.0,
+                2.0,
+                -38.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy5",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        -50.0,
+                        2.0,
+                        -20.0
+                    ],
+                    [
+                        -50.0,
+                        2.0,
+                        0.0
+                    ],
+                    [
+                        -50.0,
+                        2.0,
+                        27.0
+                    ],
+                    [
+                        -50.0,
+                        2.0,
+                        0.0
+                    ]
+                ],
+                "size": 4
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -50.0,
+                2.0,
+                -20.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy6",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -25.0,
+                10.0,
+                -39.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                8.0,
+                10.0,
+                7.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall45",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -25.0,
+                10.0,
+                -60.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                8.0,
+                10.0,
+                10.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "testWall_Model",
+        "name": "wall46",
+        "prefab": false
+    },
+    {
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "NormalEnemy": {
+            "points": {
+                "nums": [
+                    [
+                        -35.0,
+                        2.0,
+                        -65.0
+                    ],
+                    [
+                        -35.0,
+                        2.0,
+                        -35.0
+                    ],
+                    [
+                        -35.0,
+                        2.0,
+                        -65.0
+                    ],
+                    [
+                        -50.0,
+                        2.0,
+                        -65.0
+                    ]
+                ],
+                "size": 4
+            },
+            "state": 0
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -35.0,
+                2.0,
+                -65.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "NormalEnemy"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "normalEnemy7",
+        "prefab": false
+    },
+    {
+        "ClearAnimation": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "ClearAnimation"
+        ],
+        "drawFlag": false,
+        "model": "playerModel_Model",
+        "name": "ClearAnimation",
+        "prefab": false
+    },
+    {
+        "Boss": {
+            "points": {
+                "nums": [
+                    [
+                        72.0,
+                        22.0,
+                        -18.0
+                    ],
+                    [
+                        72.0,
+                        22.0,
+                        0.0
+                    ],
+                    [
+                        72.0,
+                        22.0,
+                        -18.0
+                    ]
+                ],
+                "size": 3
+            }
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                72.0,
+                22.0,
+                -18.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Boss"
+        ],
+        "drawFlag": true,
+        "model": "playerModel_Model",
+        "name": "Boss",
+        "prefab": false
+    },
+    {
+        "EnemyHp": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                2.0,
+                0.4000000059604645,
+                1.0
+            ]
+        },
+        "component": [
+            "EnemyHp",
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": true,
+        "model": "hppanel_Model",
+        "name": "EnemyHp",
+        "prefab": false
+    },
+    {
+        "EnemyHp": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                2.0,
+                0.4000000059604645,
+                1.0
+            ]
+        },
+        "component": [
+            "EnemyHp",
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": false,
+        "model": "hppanel_Model",
+        "name": "EnemyHp1",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 0,
+                    "groundJudge": false,
+                    "notPushBack": true,
+                    "pushBack": false
+                }
+            ]
+        },
+        "EnemyAttack": null,
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "EnemyAttack",
+            "Collider",
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "EnemyAttack1",
         "prefab": false
     }
 ]

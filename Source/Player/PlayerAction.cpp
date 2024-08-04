@@ -72,6 +72,8 @@ void PlayerAction::Initialize()
 
 void PlayerAction::Update()
 {
+	if (clearFlag_ == true)return;
+
 	if (ani_->GetAnimation() == "damage" || ani_->GetAnimation() == "squatDamage" || ani_->GetAnimation() == "downFront" || ani_->GetAnimation() == "downBack")
 	{
 		ani_->loop_ = false;
@@ -331,6 +333,11 @@ void PlayerAction::SetAnimation(std::string name)
 void PlayerAction::SetIsWalk(bool flag)
 {
 	isWalk_ = flag;
+}
+
+void PlayerAction::SetClearFlag(bool flag)
+{
+	clearFlag_ = flag;
 }
 
 void PlayerAction::Rotation()

@@ -30,6 +30,8 @@ void PlayerActionCamera::CameraInitialize(const IFE::Vector3& playerPos)
 
 void PlayerActionCamera::Update()
 {
+	if (clearFlag_ == true)return;
+
 	IFE::Vector3 v = player_->transform_->position_ - transform_->position_;
 	defaultRayDistance_ = v.Length();
 	v.Normalize();
@@ -75,6 +77,11 @@ IFE::Float3 PlayerActionCamera::GetPos()
 IFE::Camera* PlayerActionCamera::GetCamera()
 {
 	return actionCamera_;
+}
+
+void PlayerActionCamera::SetClearFlag(bool flag)
+{
+	clearFlag_ = flag;
 }
 
 void PlayerActionCamera::CameraMove(const IFE::Vector3& playerPos)
