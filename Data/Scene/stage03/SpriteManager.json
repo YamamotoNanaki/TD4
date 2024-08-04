@@ -649,37 +649,6 @@
                     1.0
                 ]
             },
-            "PlayerHp": null,
-            "Transform2D": {
-                "position": [
-                    180.0,
-                    980.0
-                ],
-                "rotation": 0.0,
-                "scale": [
-                    3.0,
-                    0.5
-                ]
-            },
-            "component": [
-                "Transform2D",
-                "ColorBuffer",
-                "PlayerHp"
-            ],
-            "drawFlag": true,
-            "name": "playerHp",
-            "order": 0,
-            "texture": "green.png"
-        },
-        {
-            "ColorBuffer": {
-                "color": [
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            },
             "Transform2D": {
                 "position": [
                     1200.0,
@@ -699,37 +668,6 @@
             "name": "attackUI",
             "order": 0,
             "texture": "key//X.png"
-        },
-        {
-            "ColorBuffer": {
-                "color": [
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            },
-            "DroneRecoveryUI": null,
-            "Transform2D": {
-                "position": [
-                    930.0,
-                    800.0
-                ],
-                "rotation": 0.0,
-                "scale": [
-                    0.0,
-                    1.0
-                ]
-            },
-            "component": [
-                "Transform2D",
-                "ColorBuffer",
-                "DroneRecoveryUI"
-            ],
-            "drawFlag": true,
-            "name": "droneRecoveryUI",
-            "order": 0,
-            "texture": "white.png"
         },
         {
             "CameraChange": null,
@@ -1534,7 +1472,7 @@
             "PlayerHp": null,
             "Transform2D": {
                 "position": [
-                    191.5,
+                    214.5,
                     837.75
                 ],
                 "rotation": 0.0,
@@ -1549,7 +1487,7 @@
                 "PlayerHp"
             ],
             "drawFlag": true,
-            "name": "playerHp1",
+            "name": "playerHp",
             "order": 0,
             "texture": "HP.png"
         },
@@ -1609,7 +1547,7 @@
                 "DroneRecoveryUI"
             ],
             "drawFlag": false,
-            "name": "droneRecoveryUI1",
+            "name": "droneRecoveryUI",
             "order": 0,
             "texture": "corectDrone.png"
         },
