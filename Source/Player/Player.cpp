@@ -127,6 +127,16 @@ void Player::DroneBreak()
 	droneRecoveryUI_->SetDrawFlag(false);
 	droneRecoveryFlag_ = false;
 	ui_->UIChange(modeFlag_);
+	if (IFE::Input::GetKeyPush(IFE::Key::W) || IFE::Input::GetKeyPush(IFE::Key::A) || IFE::Input::GetKeyPush(IFE::Key::S) || IFE::Input::GetKeyPush(IFE::Key::D) || IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
+	{
+		action_->SetIsWalk(true);
+		action_->SetAnimation("walk");
+	}
+	else
+	{
+		action_->SetIsWalk(false);
+		action_->SetAnimation("standBy");
+	}
 	IFE::ObjectManager::Instance()->GetObjectPtr("PlayerDrone")->GetComponent<IFE::Collider>()->GetCollider(0)->active_ = false;
 }
 
