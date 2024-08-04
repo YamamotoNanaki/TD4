@@ -87,6 +87,8 @@ namespace IFE {
 		/// </summary>
 		void Shot();
 
+		void ShotSet();
+
 		/// <summary>
 		/// ƒvƒŒƒCƒ„[‚Ì•û‚ğŒü‚©‚¹‚é
 		/// </summary>
