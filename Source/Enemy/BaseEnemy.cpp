@@ -203,7 +203,6 @@ void IFE::BaseEnemy::OnColliderHit(ColliderCore* mycol, ColliderCore* hitcol)
 						hitObject_ = hitcol->objectPtr_;
 						hitDistance_ = mycol->rayDistance;
 					}
-					else if (hitObject_->GetObjectName() != "PlayerDrone");
 					else
 					{
 						if (hitDistance_ > mycol->rayDistance)
