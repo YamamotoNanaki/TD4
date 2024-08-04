@@ -46,7 +46,7 @@ private:
 	IFE::Vector3 camerafrontVec_ = {};
 
 	const float normalMoveSpeed_ = 10.0f;
-	const float crouchMoveSpeed_ = 5.0f;
+	const float crouchMoveSpeed_ = 2.5f;
 	float moveSpeed_ = 0.0f;
 
 	bool attackFlag_ = false;
@@ -55,7 +55,7 @@ private:
 	const float maxAttackAnimationTime_ = 1.0f;
 	float attackTimer_ = 0;
 
-	const uint16_t controllerRange_ = 10000;
+	const uint16_t controllerRange_ = 5000;
 
 	//ÀÛ‚Ì•ûŒüƒxƒNƒgƒ‹
 	IFE::Vector3 actualFrontVec_ = { 0,0,1.0f };
