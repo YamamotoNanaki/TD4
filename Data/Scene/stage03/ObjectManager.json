@@ -19618,7 +19618,7 @@
         ],
         "drawFlag": false,
         "model": "playerModel_Model",
-        "name": "blood",
+        "name": "Blood",
         "prefab": false
     },
     {
