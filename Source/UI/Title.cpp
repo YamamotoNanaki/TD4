@@ -11,6 +11,10 @@ using namespace IFE;
 
 void Title::Initialize()
 {
+	IFE::Sound::Instance()->LoadMP3("mainBGM", IFE::Sound::SoundSettings::BGM);
+	IFE::Sound::Instance()->SetVolume("mainBGM", 15);
+	IFE::Sound::Instance()->SoundPlay("mainBGM");
+
 	camera_ = IFE::CameraManager::Instance()->GetCamera("titleCamera");
 	camera_->transform_->eye_ = { 0.0f,5.0f,-cDistance_ };
 	camera_->transform_->target_ = { 0.0f,20.0f,20.0f };
