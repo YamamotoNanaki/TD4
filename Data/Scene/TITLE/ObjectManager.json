@@ -425,9 +425,9 @@
                 360.0
             ],
             "scale": [
-                12.998149871826172,
-                12.998214721679688,
-                12.998391151428223
+                12.993098258972168,
+                12.993163108825684,
+                12.993339538574219
             ]
         },
         "component": [
@@ -438,6 +438,985 @@
         "drawFlag": true,
         "model": "Plane_Model",
         "name": "frame",
+        "prefab": false
+    },
+    {
+        "LightComponent": {
+            "active": true,
+            "angle": [
+                0.5,
+                0.20000000298023224
+            ],
+            "atten": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "color": [
+                0.03861004114151001,
+                0.03861004114151001,
+                0.03861004114151001
+            ],
+            "dir": [
+                1.0,
+                -0.10000000149011612,
+                0.0
+            ],
+            "distance": 100.0,
+            "number": 0,
+            "setting": 0
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "LightComponent"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "dirLight",
+        "prefab": false
+    },
+    {
+        "LightComponent": {
+            "active": true,
+            "angle": [
+                0.5,
+                0.20000000298023224
+            ],
+            "atten": [
+                0.004999999888241291,
+                0.004999999888241291,
+                0.004999999888241291
+            ],
+            "color": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "dir": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "distance": 100.0,
+            "number": 0,
+            "setting": 1
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -9.771990776062012,
+                7.805535793304443,
+                -4.985559940338135
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "LightComponent"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "pLight",
+        "prefab": false
+    },
+    {
+        "LightComponent": {
+            "active": true,
+            "angle": [
+                0.5,
+                0.20000000298023224
+            ],
+            "atten": [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+            ],
+            "color": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "dir": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "distance": 100.0,
+            "number": 1,
+            "setting": 1
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                10.978168487548828,
+                6.838622093200684,
+                -3.7706024646759033
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "LightComponent"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "pLight1",
+        "prefab": false
+    },
+    {
+        "LightComponent": {
+            "active": true,
+            "angle": [
+                0.5,
+                0.20000000298023224
+            ],
+            "atten": [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+            ],
+            "color": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "dir": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "distance": 100.0,
+            "number": 2,
+            "setting": 1
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                20.30483055114746,
+                8.967924118041992,
+                -3.9241135120391846
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "LightComponent"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "pLight2",
+        "prefab": false
+    },
+    {
+        "LightComponent": {
+            "active": true,
+            "angle": [
+                0.5,
+                0.20000000298023224
+            ],
+            "atten": [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+            ],
+            "color": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "dir": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "distance": 100.0,
+            "number": 3,
+            "setting": 1
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                21.03329086303711,
+                13.591938018798828,
+                6.039362907409668
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "LightComponent"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "pLight3",
+        "prefab": false
+    },
+    {
+        "LightComponent": {
+            "active": true,
+            "angle": [
+                0.5,
+                0.20000000298023224
+            ],
+            "atten": [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+            ],
+            "color": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "dir": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "distance": 100.0,
+            "number": 4,
+            "setting": 1
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                10.115517616271973,
+                10.184635162353516,
+                5.709625720977783
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "LightComponent"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "pLight4",
+        "prefab": false
+    },
+    {
+        "LightComponent": {
+            "active": true,
+            "angle": [
+                0.5,
+                0.20000000298023224
+            ],
+            "atten": [
+                0.004999999888241291,
+                0.004999999888241291,
+                0.004999999888241291
+            ],
+            "color": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "dir": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "distance": 100.0,
+            "number": 5,
+            "setting": 1
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -15.489592552185059,
+                15.547873497009277,
+                24.470882415771484
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "LightComponent"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "pLight5",
+        "prefab": false
+    },
+    {
+        "LightComponent": {
+            "active": true,
+            "angle": [
+                0.5,
+                0.20000000298023224
+            ],
+            "atten": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "color": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "dir": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "distance": 100.0,
+            "number": 6,
+            "setting": 1
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -10.781274795532227,
+                10.184635162353516,
+                38.704410552978516
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "LightComponent"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "pLight6",
+        "prefab": false
+    },
+    {
+        "LightComponent": {
+            "active": true,
+            "angle": [
+                0.5,
+                0.20000000298023224
+            ],
+            "atten": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "color": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "dir": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "distance": 100.0,
+            "number": 7,
+            "setting": 1
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                10.417402267456055,
+                23.307945251464844,
+                24.337602615356445
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "LightComponent"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "pLight7",
+        "prefab": false
+    },
+    {
+        "LightComponent": {
+            "active": true,
+            "angle": [
+                0.5,
+                0.20000000298023224
+            ],
+            "atten": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "color": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "dir": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "distance": 100.0,
+            "number": 7,
+            "setting": 1
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                16.747045516967773,
+                10.184635162353516,
+                39.40549850463867
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "LightComponent"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "pLight8",
+        "prefab": false
+    },
+    {
+        "LightComponent": {
+            "active": true,
+            "angle": [
+                0.5,
+                0.20000000298023224
+            ],
+            "atten": [
+                0.004999999888241291,
+                0.004999999888241291,
+                0.004999999888241291
+            ],
+            "color": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "dir": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "distance": 100.0,
+            "number": 8,
+            "setting": 1
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                -15.1814546585083,
+                19.123310089111328,
+                24.470882415771484
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "LightComponent"
+        ],
+        "drawFlag": false,
+        "model": "dice_Model",
+        "name": "pLight9",
         "prefab": false
     }
 ]
