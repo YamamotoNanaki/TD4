@@ -509,8 +509,14 @@ void PlayerAction::AttackUI()
 	closestEnemy = nullptr;
 	for (auto& enemys : enemyManager_->GetEnemyList())
 	{
-		float distance = sqrt((enemys->GetPos().x - transform_->position_.x) * (enemys->GetPos().x - transform_->position_.x) + (enemys->GetPos().y - transform_->position_.z) * (enemys->GetPos().y - transform_->position_.z));
-		if (distance < minDistance) {
+		if (sqrt((transform_->position_.y - enemys->GetPos().y) * (transform_->position_.y - enemys->GetPos().y)) > 2.0f)
+		{
+			continue;
+		}
+
+		float distance = sqrt((enemys->GetPos().x - transform_->position_.x) * (enemys->GetPos().x - transform_->position_.x) + (enemys->GetPos().z - transform_->position_.z) * (enemys->GetPos().z - transform_->position_.z));
+		if (distance < minDistance)
+		{
 			minDistance = distance;
 			closestEnemy = enemys;
 		}
@@ -518,7 +524,7 @@ void PlayerAction::AttackUI()
 
 	if (attackFlag_ == false)
 	{
-		if (closestEnemy != nullptr && IFE::Collision::CheckCircle({ {transform_->position_.x,transform_->position_.z},5.0f }, { closestEnemy->GetPos(),1.0f }))
+		if (closestEnemy != nullptr && IFE::Collision::CheckCircle({ {transform_->position_.x,transform_->position_.z},5.0f }, { {closestEnemy->GetPos().x,closestEnemy->GetPos().z},1.0f }))
 		{
 			isXBottonUI_ = true;
 		}

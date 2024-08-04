@@ -129,7 +129,7 @@ namespace IFE {
 
 		inline bool GetDroneHitRay() { return droneHit_; }
 		inline float GetDroneHitDistance() { return droneHitDistance_; }
-		const IFE::Vector2 GetPos();
+		const IFE::Vector3 GetPos();
 		const bool GetIsOneShot();
 		const bool GetIsDead() { return isDead; }
 		void SetisOneShot(bool isOne);
