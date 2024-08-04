@@ -41,6 +41,16 @@ void GimmickSwitchEvent::Initialize()
 
 	}
 
+	isSwitch_ = isInitSwitch_;
+	if (selectGimmickObject_->GetComponent<LaserWire>() != nullptr)
+	{
+		selectGimmickObject_->GetComponent<LaserWire>()->SetIsActive(isSwitch_);
+	}
+	else if (selectGimmickObject_->GetComponent<SwitchObject>() != nullptr)
+	{
+		selectGimmickObject_->GetComponent<SwitchObject>()->SetIsActive(isSwitch_);
+	}
+
 
 }
 
@@ -86,7 +96,7 @@ void GimmickSwitchEvent::DebugGUI()
 	IFE::ImguiManager* gui = IFE::ImguiManager::Instance();
 	gui->Combo("selectObject", selectNum, selectGimmickNames);
 	selectGimmickName_ = selectGimmickNames[selectNum];
-	gui->CheckBoxGUI(&isSwitch_, "InitialSwitch");
+	gui->CheckBoxGUI(&isInitSwitch_, "InitialSwitch");
 
 }
 
@@ -94,6 +104,7 @@ void GimmickSwitchEvent::OutputData(nlohmann::json& json)
 {
 	json["selectGimmickName"] = selectGimmickName_;
 	json["isSwitch"] = isSwitch_;
+	json["isSwitch"] = isInitSwitch_;
 }
 #endif
 

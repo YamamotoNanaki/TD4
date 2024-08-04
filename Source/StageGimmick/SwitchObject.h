@@ -38,7 +38,7 @@ public:
 private:
 
 	//“–‚½‚è”»’è‚Ìtransform
-	IFE::Float3 scale_ = { 1,1,1 };
+	IFE::Float3 collScale_ = { 1,1,1 };
 
 
 	IFE::Collider* cols_=nullptr;
