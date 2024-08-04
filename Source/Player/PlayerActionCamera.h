@@ -28,6 +28,8 @@ private:
 
 	Config* config_ = nullptr;
 
+	bool clearFlag_ = false;
+
 public:
 
 	void Initialize();
@@ -47,6 +49,8 @@ public:
 	IFE::Float3 GetPos();
 
 	IFE::Camera* GetCamera();
+
+	void SetClearFlag(bool flag);
 
 private:
 

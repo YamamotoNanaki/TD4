@@ -62,6 +62,8 @@ private:
 
 	bool oldPauseFlag_ = false;
 
+	bool clearFlag_ = false;
+
 public:
 
 	void Initialize();
@@ -81,6 +83,8 @@ public:
 	bool GetFirstRecovery();
 	void SetMode(bool flag);
 	inline CameraChangeParam* GetCameraChangeParam() { return &ccp_; }
+
+	void SetClearFlag(bool flag);
 
 private:
 
