@@ -18,7 +18,7 @@ void LaserWire::Initialize()
 		auto col = objectPtr_->GetComponent<IFE::Collider>();
 		auto c = col->AddCollider();
 		c->SetColliderType(IFE::ColliderType::OBB);
-		c->SetNoPushBackFlag(false);
+		c->SetNoPushBackFlag(true);
 		c->SetPushBackFlag(false);
 	}
 	cols_ = objectPtr_->GetComponent<IFE::Collider>();

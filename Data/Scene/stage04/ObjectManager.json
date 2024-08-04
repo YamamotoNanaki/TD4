@@ -9807,7 +9807,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof",
         "prefab": false
@@ -9882,7 +9882,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof1",
         "prefab": false
@@ -9957,7 +9957,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof2",
         "prefab": false
@@ -10032,7 +10032,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof3",
         "prefab": false
@@ -10107,7 +10107,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof4",
         "prefab": false
@@ -10182,7 +10182,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof5",
         "prefab": false
@@ -10257,7 +10257,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof6",
         "prefab": false
@@ -10332,7 +10332,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof7",
         "prefab": false
@@ -10407,7 +10407,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof8",
         "prefab": false
@@ -10482,7 +10482,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof9",
         "prefab": false
@@ -10557,7 +10557,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof10",
         "prefab": false
@@ -10632,7 +10632,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof11",
         "prefab": false
@@ -10707,7 +10707,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof12",
         "prefab": false
@@ -10782,7 +10782,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof13",
         "prefab": false
@@ -10857,7 +10857,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof14",
         "prefab": false
@@ -10932,7 +10932,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof15",
         "prefab": false
@@ -11007,7 +11007,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof16",
         "prefab": false
@@ -11082,7 +11082,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof17",
         "prefab": false
@@ -11157,7 +11157,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof18",
         "prefab": false
@@ -11232,7 +11232,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "roof19",
         "prefab": false
@@ -11307,7 +11307,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "drone_roof",
         "prefab": false
@@ -11382,7 +11382,7 @@
             "Material",
             "Collider"
         ],
-        "drawFlag": true,
+        "drawFlag": false,
         "model": "testGround_Model",
         "name": "drone_roof1",
         "prefab": false
@@ -13908,6 +13908,863 @@
         "drawFlag": false,
         "model": "dice_Model",
         "name": "StageCollideManageer",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": true,
+                    "pushBack": false
+                },
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": true,
+                    "pushBack": false
+                }
+            ]
+        },
+        "GimmickSwitchObject": {
+            "EventSeting": {
+                "doorEndPos": [
+                    130.0,
+                    4.0,
+                    45.0
+                ],
+                "doorScele": [
+                    0.5,
+                    2.0,
+                    2.0
+                ],
+                "doorStartPos": [
+                    130.0,
+                    2.0,
+                    45.0
+                ],
+                "moveDoorTime": [
+                    1.0,
+                    1.0
+                ]
+            },
+            "EventType": [
+                1.0,
+                1.0
+            ],
+            "collisionScale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "hitMaxTime": [
+                0.20000000298023224,
+                0.0
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                31.0,
+                1.5,
+                -8.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.20000000298023224,
+                0.5,
+                0.20000000298023224
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider",
+            "GimmickSwitchObject"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "switchObj",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": true,
+                    "pushBack": false
+                }
+            ]
+        },
+        "GimmickSwitchObject": {
+            "EventSeting": {
+                "doorEndPos": [
+                    130.0,
+                    5.0,
+                    -45.0
+                ],
+                "doorScele": [
+                    0.5,
+                    2.0,
+                    2.0
+                ],
+                "doorStartPos": [
+                    130.0,
+                    2.0,
+                    -45.0
+                ],
+                "moveDoorTime": [
+                    1.0,
+                    1.0
+                ]
+            },
+            "EventType": [
+                1.0,
+                1.0
+            ],
+            "collisionScale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "hitMaxTime": [
+                0.20000000298023224,
+                0.0
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                31.0,
+                1.5,
+                10.553318977355957
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.20000000298023224,
+                0.5,
+                0.20000000298023224
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider",
+            "GimmickSwitchObject"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "switchObj1",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": true,
+                    "pushBack": false
+                }
+            ]
+        },
+        "GimmickSwitchObject": {
+            "EventSeting": {
+                "isSwitch": true,
+                "selectGimmickName": "switchObj"
+            },
+            "EventType": [
+                4.0,
+                1.0
+            ],
+            "collisionScale": [
+                2.0,
+                2.0,
+                2.0
+            ],
+            "hitMaxTime": [
+                0.20000000298023224,
+                0.0
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                31.0,
+                1.5,
+                27.617361068725586
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.20000000298023224,
+                0.5,
+                0.20000000298023224
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider",
+            "GimmickSwitchObject"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "switchObj2",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": true,
+                    "pushBack": false
+                }
+            ]
+        },
+        "GimmickSwitchObject": {
+            "EventSeting": {
+                "isSwitch": true,
+                "selectGimmickName": "switchObj"
+            },
+            "EventType": [
+                4.0,
+                1.0
+            ],
+            "collisionScale": [
+                2.0,
+                2.0,
+                2.0
+            ],
+            "hitMaxTime": [
+                0.20000000298023224,
+                0.0
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                31.0,
+                1.5,
+                -31.186471939086914
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.20000000298023224,
+                0.5,
+                0.20000000298023224
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider",
+            "GimmickSwitchObject"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "switchObj3",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": true,
+                    "pushBack": false
+                }
+            ]
+        },
+        "GimmickSwitchObject": {
+            "EventSeting": {
+                "doorEndPos": [
+                    40.0,
+                    5.0,
+                    19.0
+                ],
+                "doorScele": [
+                    2.0,
+                    2.0,
+                    0.5
+                ],
+                "doorStartPos": [
+                    40.0,
+                    2.0,
+                    19.0
+                ],
+                "moveDoorTime": [
+                    1.0,
+                    1.0
+                ]
+            },
+            "EventType": [
+                1.0,
+                1.0
+            ],
+            "collisionScale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "hitMaxTime": [
+                0.20000000298023224,
+                0.0
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                107.9266128540039,
+                1.5,
+                4.732115268707275
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.20000000298023224,
+                0.5,
+                0.20000000298023224
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider",
+            "GimmickSwitchObject"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "switchObj4",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": true,
+                    "pushBack": false
+                }
+            ]
+        },
+        "GimmickSwitchObject": {
+            "EventSeting": {
+                "doorEndPos": [
+                    40.0,
+                    5.0,
+                    -19.0
+                ],
+                "doorScele": [
+                    2.0,
+                    2.0,
+                    0.5
+                ],
+                "doorStartPos": [
+                    40.0,
+                    2.0,
+                    -19.0
+                ],
+                "moveDoorTime": [
+                    1.0,
+                    1.0
+                ]
+            },
+            "EventType": [
+                1.0,
+                1.0
+            ],
+            "collisionScale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "hitMaxTime": [
+                0.20000000298023224,
+                0.0
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                63.11768341064453,
+                1.5,
+                -23.190540313720703
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                0.20000000298023224,
+                0.5,
+                0.20000000298023224
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider",
+            "GimmickSwitchObject"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "switchObj5",
+        "prefab": false
+    },
+    {
+        "Collider": {
+            "content": [
+                {
+                    "attribute": 0,
+                    "colliderType": 3,
+                    "groundJudge": false,
+                    "notPushBack": true,
+                    "pushBack": false
+                }
+            ]
+        },
+        "LaserWire": {
+            "EventSeting": {
+                "enemySpawnNum": [
+                    3.0,
+                    10.0
+                ],
+                "enemySpawnPos": [
+                    65.0,
+                    2.0,
+                    39.0
+                ]
+            },
+            "EventType": [
+                3.0,
+                1.0
+            ],
+            "hitMaxTime": [
+                0.20000000298023224,
+                0.0
+            ],
+            "pos": [
+                [
+                    0.0,
+                    0.0,
+                    -5.0
+                ]
+            ],
+            "scale": [
+                [
+                    1.0,
+                    1.0,
+                    5.0
+                ]
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                55.70145034790039,
+                2.0,
+                50.00807189941406
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider",
+            "LaserWire"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "LaserWireObj",
+        "prefab": false
+    },
+    {
+        "Collider": null,
+        "LaserWire": {
+            "EventSeting": {
+                "enemySpawnNum": [
+                    3.0,
+                    10.0
+                ],
+                "enemySpawnPos": [
+                    70.0,
+                    2.0,
+                    -39.0
+                ]
+            },
+            "EventType": [
+                3.0,
+                1.0
+            ],
+            "hitMaxTime": [
+                0.20000000298023224,
+                0.0
+            ],
+            "pos": [
+                [
+                    0.0,
+                    0.0,
+                    5.0
+                ]
+            ],
+            "scale": [
+                [
+                    1.0,
+                    1.0,
+                    5.0
+                ]
+            ]
+        },
+        "Material": {
+            "ambient": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "bloom": false,
+            "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "multipleMat": false,
+            "pipeline": "Model_DEFALUT",
+            "specular": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "terxtureName": "white.png"
+        },
+        "TransferGeometryBuffer": {
+            "explosion": 0.0,
+            "gravity": 0.0,
+            "lightFlag": true,
+            "polygonSize": 1.0,
+            "rotation": 0.0,
+            "toonFlag": false
+        },
+        "Transform": {
+            "position": [
+                55.70145034790039,
+                2.0,
+                -50.0
+            ],
+            "rotation": [
+                360.0,
+                360.0,
+                360.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "component": [
+            "Transform",
+            "TransferGeometryBuffer",
+            "Material",
+            "Collider",
+            "LaserWire"
+        ],
+        "drawFlag": true,
+        "model": "dice_Model",
+        "name": "LaserWireObj1",
         "prefab": false
     }
 ]

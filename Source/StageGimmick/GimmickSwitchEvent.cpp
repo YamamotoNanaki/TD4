@@ -84,7 +84,6 @@ void GimmickSwitchEvent::DebugGUI()
 	}
 
 	IFE::ImguiManager* gui = IFE::ImguiManager::Instance();
-	int32_t selectNum = 0;
 	gui->Combo("selectObject", selectNum, selectGimmickNames);
 	selectGimmickName_ = selectGimmickNames[selectNum];
 	gui->CheckBoxGUI(&isSwitch_, "InitialSwitch");
