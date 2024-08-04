@@ -14204,7 +14204,7 @@
         "GimmickSwitchObject": {
             "EventSeting": {
                 "isSwitch": false,
-                "selectGimmickName": "LaserWireObj1"
+                "selectGimmickName": "switchObj"
             },
             "EventType": [
                 4.0,
@@ -14503,13 +14503,13 @@
         "LaserWire": {
             "EventSeting": {
                 "enemySpawnNum": [
-                    3.0,
-                    10.0
+                    1.0,
+                    1.0
                 ],
                 "enemySpawnPos": [
                     65.0,
                     2.0,
-                    39.0
+                    35.0
                 ]
             },
             "EventType": [
@@ -14604,13 +14604,13 @@
         "LaserWire": {
             "EventSeting": {
                 "enemySpawnNum": [
-                    3.0,
-                    10.0
+                    1.0,
+                    1.0
                 ],
                 "enemySpawnPos": [
                     70.0,
                     2.0,
-                    -39.0
+                    -35.0
                 ]
             },
             "EventType": [
