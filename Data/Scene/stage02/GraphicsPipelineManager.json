@@ -17,14 +17,7 @@
         "addParam": 1,
         "inTex": 1,
         "name": "EnemyJudge",
-        "number": 11,
-        "outTex": 2
-    },
-    {
-        "addParam": 1,
-        "inTex": 1,
-        "name": "EnemyJudgeAnim",
-        "number": 26,
+        "number": 3,
         "outTex": 2
     },
     {
@@ -38,7 +31,7 @@
         "addParam": 0,
         "inTex": 1,
         "name": "SolidMap",
-        "number": 12,
+        "number": 4,
         "outTex": 2
     }
 ]
