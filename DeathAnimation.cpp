@@ -9,8 +9,10 @@ void DeathAnimation::Initialize()
 
 	IFE::SpriteManager::Instance()->GetSpritePtr("restart")->order_ = 101;
 	IFE::SpriteManager::Instance()->GetSpritePtr("toTitle")->order_ = 101;
+	IFE::SpriteManager::Instance()->GetSpritePtr("youDied")->order_ = 101;
 	IFE::SpriteManager::Instance()->GetSpritePtr("restart")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
 	IFE::SpriteManager::Instance()->GetSpritePtr("toTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
+	IFE::SpriteManager::Instance()->GetSpritePtr("youDied")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
 }
 
 void DeathAnimation::Update()
@@ -47,6 +49,7 @@ void DeathAnimation::Fade()
 			IFE::SpriteManager::Instance()->GetSpritePtr("gameOverFade")->GetComponent<IFE::ColorBuffer>()->SetAlpha(IFE::EaseInBack(0.0f, 0.75f, maxDeathFadeAnimationTime_, deathFadeAnimationTime_));
 			IFE::SpriteManager::Instance()->GetSpritePtr("restart")->GetComponent<IFE::ColorBuffer>()->SetAlpha(IFE::EaseInBack(0.0f, 1.0f, maxDeathFadeAnimationTime_, deathFadeAnimationTime_));
 			IFE::SpriteManager::Instance()->GetSpritePtr("toTitle")->GetComponent<IFE::ColorBuffer>()->SetAlpha(IFE::EaseInBack(0.0f, 0.5f, maxDeathFadeAnimationTime_, deathFadeAnimationTime_));
+			IFE::SpriteManager::Instance()->GetSpritePtr("youDied")->GetComponent<IFE::ColorBuffer>()->SetAlpha(IFE::EaseInBack(0.0f, 0.5f, maxDeathFadeAnimationTime_, deathFadeAnimationTime_));
 		}
 		else
 		{

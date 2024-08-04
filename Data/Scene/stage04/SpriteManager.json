@@ -1608,6 +1608,35 @@
             "name": "droneRecoveryText",
             "order": 0,
             "texture": "text//CollectingDrone.png"
+        },
+        {
+            "ColorBuffer": {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "Transform2D": {
+                "position": [
+                    960.0,
+                    300.0
+                ],
+                "rotation": 0.0,
+                "scale": [
+                    6.71999979019165,
+                    2.0
+                ]
+            },
+            "component": [
+                "Transform2D",
+                "ColorBuffer"
+            ],
+            "drawFlag": true,
+            "name": "youDied",
+            "order": 0,
+            "texture": "text//youDied.png"
         }
     ]
 }

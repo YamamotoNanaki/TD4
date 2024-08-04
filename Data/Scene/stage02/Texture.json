@@ -94,6 +94,7 @@
         "HP.png",
         "gaugeFrame.png",
         "text//CollectingDrone.png",
-        "corectDrone.png"
+        "corectDrone.png",
+        "text//youDied.png"
     ]
 }
