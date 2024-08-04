@@ -48,7 +48,7 @@ void IFE::Boss::EnemyInitialize()
 
 void IFE::Boss::ChangeState()
 {
-	if (hp_ <= 0 && state != DEAD) {
+	if ((!hpUI || hpUI->GetIsDead() == true) && state != DEAD) {
 		ani_->loop_ = false;
 		status_->objectPtr_->DrawFlag_ = false;
 		if (isOneShot) {

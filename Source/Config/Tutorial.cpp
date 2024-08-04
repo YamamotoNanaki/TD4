@@ -105,7 +105,7 @@ void IFE::Tutorial::StopTime()
 
 void IFE::Tutorial::CameraText()
 {
-	if (tutoTime >1.2f) {
+	if (tutoTime >1.0f) {
 		isShowText = true;
 		NextText("L");
 		if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::A)) {

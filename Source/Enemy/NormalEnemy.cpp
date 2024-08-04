@@ -298,16 +298,18 @@ void IFE::NormalEnemy::Chase()
 void IFE::NormalEnemy::Attack()
 {
 	attackTime += IFE::IFETime::sDeltaTime_;
-	if (attackTime > 0.6 && attackTime < 0.8f) {
-		IFE::Sound::Instance()->SoundPlay("attack", false, true);
+	if (attackTime > 0.8f - IFE::IFETime::sDeltaTime_ && attackTime < 0.9f) {
+		if (isHit_ == false) {
+			isAttack = true;
+			IFE::Sound::Instance()->SoundPlay("attack", false, true);
+		}
 	}
-	if (attackTime > 0.8f - IFE::IFETime::sDeltaTime_) {
-		isAttack = true;
+	else {
+		isAttack = false;
 	}
 
 	if (attackTime > 2.0f) {
 		attackTime = 0;
-		isAttack = false;
 		if (!ChaseLen(IFE::ObjectManager::Instance()->GetObjectPtr("PlayerAction")->GetComponent<PlayerAction>()->GetPos(),20)) {
 			state = CHASE;
 		}
