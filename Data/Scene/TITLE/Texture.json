@@ -90,6 +90,10 @@
         "Text//off.png",
         "titleLogo.png",
         "text/tutorial/decidePop.png",
-        "text/retry.png"
+        "text/retry.png",
+        "HP.png",
+        "gaugeFrame.png",
+        "text//CollectingDrone.png",
+        "corectDrone.png"
     ]
 }

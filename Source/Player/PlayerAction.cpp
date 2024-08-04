@@ -121,17 +121,35 @@ void PlayerAction::Update()
 
 		if (hp_ > 0)
 		{
-			if (ani_->GetAnimation() == "walk")
+			if (IFE::Input::GetLAnalog().x != 0.0f && IFE::Input::GetLAnalog().y != 0.0f)
 			{
-				ani_->animSpeed_ = sqrt(IFE::Input::GetLXAnalog(controllerRange_) * IFE::Input::GetLXAnalog(controllerRange_) + IFE::Input::GetLYAnalog(controllerRange_) * IFE::Input::GetLYAnalog(controllerRange_)) * 2.0f;
-			}
-			else if (ani_->GetAnimation() == "squatWalk")
-			{
-				ani_->animSpeed_ = sqrt(IFE::Input::GetLXAnalog(controllerRange_) * IFE::Input::GetLXAnalog(controllerRange_) + IFE::Input::GetLYAnalog(controllerRange_) * IFE::Input::GetLYAnalog(controllerRange_)) * 2.0f;
+				if (ani_->GetAnimation() == "walk")
+				{
+					ani_->animSpeed_ = sqrt(IFE::Input::GetLXAnalog(controllerRange_) * IFE::Input::GetLXAnalog(controllerRange_) + IFE::Input::GetLYAnalog(controllerRange_) * IFE::Input::GetLYAnalog(controllerRange_)) * 2.0f;
+				}
+				else if (ani_->GetAnimation() == "squatWalk")
+				{
+					ani_->animSpeed_ = sqrt(IFE::Input::GetLXAnalog(controllerRange_) * IFE::Input::GetLXAnalog(controllerRange_) + IFE::Input::GetLYAnalog(controllerRange_) * IFE::Input::GetLYAnalog(controllerRange_)) * 2.0f;
+				}
+				else
+				{
+					ani_->animSpeed_ = 1.0f;
+				}
 			}
 			else
 			{
-				ani_->animSpeed_ = 1.0f;
+				if (ani_->GetAnimation() == "walk")
+				{
+					ani_->animSpeed_ = 2.0f;
+				}
+				else if (ani_->GetAnimation() == "squatWalk")
+				{
+					ani_->animSpeed_ = 2.0f;
+				}
+				else
+				{
+					ani_->animSpeed_ = 1.0f;
+				}
 			}
 		}
 	}
@@ -400,8 +418,8 @@ void PlayerAction::Rotation()
 
 void PlayerAction::Attack()
 {
-	AttackUI();
 	AutoAim();
+	AttackUI();
 	if (attackFlag_ == false)
 	{
 		if (IFE::Input::GetKeyTrigger(IFE::Key::Space) || IFE::Input::PadTrigger(IFE::PADCODE::X))
