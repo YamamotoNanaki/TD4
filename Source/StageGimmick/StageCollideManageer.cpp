@@ -17,7 +17,7 @@ void StageCollideManageer::Initialize()
 	for (auto& itr : list)
 	{
 		auto mat = itr->GetComponent<Material>();
-		if (itr->GetObjectName().find("ground") != std::string::npos || itr->GetObjectName().find("wall") != std::string::npos || itr->GetObjectName().find("roof") != std::string::npos || itr->GetObjectName().find("box") != std::string::npos)
+		if (itr->GetObjectName().find("ground") != std::string::npos || itr->GetObjectName().find("wall") != std::string::npos || itr->GetObjectName().find("roof") != std::string::npos || itr->GetObjectName().find("box") != std::string::npos || itr->GetObjectName().find("lightWall") != std::string::npos)
 		{
 			if (!itr->GetComponent<Collider>())
 			{
@@ -35,6 +35,15 @@ void StageCollideManageer::Initialize()
 				mat->ambient_ = { 0.3f,0.3f,0.3f };
 				mat->diffuse_ = { 0.7f,0.7f,0.7f };
 				mat->specular_ = { 1.0f,1.0f,1.0f };
+				stages.push_back(itr.get());
+			}
+			if (itr->GetObjectName().find("lightWall") != std::string::npos)
+			{
+				mat->SetColor255({ 74,161,142,255 });
+				mat->ambient_ = { 1,1,1 };
+				mat->diffuse_ = { 0,0,0 };
+				mat->specular_ = { 0,0,0 };
+				mat->bloom_ = true;
 				stages.push_back(itr.get());
 			}
 			if (itr->GetObjectName().find("ground") != std::string::npos)
