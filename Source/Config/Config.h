@@ -18,9 +18,9 @@ enum class ConfigFlag
 struct ConfigValue
 {
 	float brightness = 0.0f;
-	float masterValume = 0.5f;
-	float BGMValume = 0.5f;
-	float SEValume = 0.5f;
+	float masterValume = 1;
+	float BGMValume = 1;
+	float SEValume = 1;
 	bool cameraReverse = false;
 };
 

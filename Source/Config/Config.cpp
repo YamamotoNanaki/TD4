@@ -33,6 +33,10 @@ void Config::Initialize()
 	IFE::SpriteManager::Instance()->GetSpritePtr("inversionCameraOFF")->drawFlag_ = false;
 
 	IFE::SpriteManager::Instance()->GetSpritePtr("brightnessAdjustment")->order_ = 254;
+	IFE::Sound::Instance()->SetMasterVolume(configValue_.masterValume);
+	IFE::Sound::Instance()->SetBGMVolume(configValue_.BGMValume);
+	IFE::Sound::Instance()->SetSEVolume(configValue_.SEValume);
+	IFE::Sound::Instance()->AllSoundVolumeUpdate();
 }
 
 void Config::Update()

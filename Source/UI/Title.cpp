@@ -32,6 +32,8 @@ void Title::Initialize()
 	IFE::SpriteManager::Instance()->GetSpritePtr("yes")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
 	IFE::SpriteManager::Instance()->GetSpritePtr("no")->GetComponent<IFE::ColorBuffer>()->SetAlpha(0.0f);
 	IFE::Sound::Instance()->AllSoundVolumeUpdate();
+
+	IFE::IFETime::sTimeScale_ = 1;
 }
 
 void Title::Update()
